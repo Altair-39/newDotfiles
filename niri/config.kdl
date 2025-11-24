@@ -380,7 +380,7 @@ binds {
     Mod+Return hotkey-overlay-title="Open a Terminal: wezterm" { spawn "wezterm"; }
     Mod+T hotkey-overlay-title="Open Telegram" { spawn "64gram-desktop"; }
     Mod+Z hotkey-overlay-title="Open Zen" { spawn "zen-browser"; }
-    Mod+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock" "-i" "Pictures/Wallpapers/Vocaloid/Ghost miku 4.jpg"; }
+    Mod+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock" "-i" "Pictures/Wallpapers/Breakcore/xenogender.jpg"; }
     Mod+R {
         spawn "rofi" "-show" "drun" "-lines" "10" "-width" "20";
     }
