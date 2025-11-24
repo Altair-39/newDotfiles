@@ -73,10 +73,5 @@ use = "yazi-rs/plugins:toggle-pane"
 rev = "55bf699"
 hash = "f3853bbdd1da2fad09d059ab5464abfd"
 
-[[plugin.deps]]
-use = "Rolv-Apneseth/starship"
-rev = "6fde3b2"
-hash = "7ddb7a790746fd91ecdd0350cc5a5d8c"
-
 [flavor]
 deps = []
