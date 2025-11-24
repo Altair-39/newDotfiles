@@ -1,0 +1,207 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:7c0e:0:b0:2f3:ec6d:e6a7 with SMTP id x14csp599198ljc;
+        Wed, 2 Oct 2024 06:01:04 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHjWPv6GXNvzWidNXUTu+r6wi567Wu6+wkdo62wLUEVDziheTV+MZuZwUh+oa1Tg+S/oent
+X-Received: by 2002:a05:6402:26d1:b0:5c8:97b9:5863 with SMTP id 4fb4d7f45d1cf-5c8b1b78474mr982882a12.6.1727874064328;
+        Wed, 02 Oct 2024 06:01:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727874064; cv=none;
+        d=google.com; s=arc-20240605;
+        b=kC4tzFV5D/ZiI0M2YKUnFviGHctOcK3zi20OOHFkGQahbSINsCLLTIr3fs3K3brnR2
+         wEfscHziWp2hDoQqVMZwbsuTGLQ7KwxhoOP1S3e0TMjiSAytPlsbllFP7ter3mf/tFjb
+         6x+ls3Tqt+lomsLMuiUJYlQDrlGL7hRa7OwlwYgsVAtOzwwppAmqbyw9BKlmiR3BEFUp
+         xKWB6iuNGpEj5GkAxLRSzcHSot5p8pJ3kh5DSDSvAUVJB9OhGpYAOY9XwtNH72ko8PiS
+         9eIdCylNEwwtMdfsPFFFG4g/Rm2T7BlZ/uzaZYEgzCGpvpCT14Jip4EiX+zkFkYQuXa2
+         dXTg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=emoD/zCPQ+h8Gc2C2f5oUy86QO4xQOoCz7tJZXIAMeU=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=K8HDozlhmMTz1SyOThugrxIkmCjZQIuKsROGGtMS4zND2l5F6ENfXElh7Z52Wi+c8R
+         t40U1UhEH0+WcDh81LpeixKS3KUE0olc38K5cA0gTsV15HH0ZOBdjvM+1J7TcKLl32KZ
+         LHpvzAcAQQt1ste6upBcrOhWXnZeE4IE8otbUVLtDS4N7eiikoaciJB85BvRGsDZ8ytk
+         WZncJV/C0UX7ZP0M1TrUOH8fGo1BP6JTiMdQ2UDMXMytdElff5znaHhj+jXeTPwOxpzn
+         WZMcvxXrdZpWes2H54qSJT8MOC+mo/SxBxEvxdWF7KbMZFfm00BVU++MeX/LNB948wfL
+         1uhA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-5c88edf9bb6si6139857a12.398.2024.10.02.06.01.02
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Oct 2024 06:01:04 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 492D127O1037006
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Wed, 2 Oct 2024 15:01:02 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 492D127O1037006
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 492D11rV049258
+	for <luca.barra@edu.unito.it>; Wed, 2 Oct 2024 15:01:01 +0200
+Date: Wed, 2 Oct 2024 15:01:01 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Gunetti Daniele (via informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Do not reply to this email" <noreply@educ.di.unito.it>
+Subject: archII-24/25: registrazione della lezione di Architetture II del 02/10/24
+Message-ID: <31f561655a68d944c473ac6c1c0c79bf03b1b2a1f13ea62e121c98c76494c6d0@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7314@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7314
+X-Course-Id: 2898
+X-Course-Name: Architettura degli Elaboratori II 24/25
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: archII-24/25: registrazione della lezione di Architetture II del 02/10/24
+Thread-Index: 31f561655a68d944c473ac6c1c0c
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_bpIVPHH8nqNSBzPuioAlHKiKypbQ50hvIAu03DoxEY"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 492D127O1037006
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_bpIVPHH8nqNSBzPuioAlHKiKypbQ50hvIAu03DoxEY
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+archII-24/25 -> Forums -> Annunci -> registrazione della lezione di
+Architetture II del 02/10/24
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D42652#p69958
+registrazione della lezione di Architetture II del 02/10/24
+by Gunetti Daniele - Wednesday, 2 October 2024, 2:45 PM
+---------------------------------------------------------------------
+Numero di risposte: 0
+
+Numero di risposte: 0
+
+Numero di risposte: 0
+
+Numero di risposte: 0
+
+La registrazione della lezione di oggi =C3=A8 disponibile al seguente link:
+
+https://unito.webex.com/unito/ldr.php?RCID=3D2f2c627e17613169f9483c0759d047=
+f5
+
+---------------------------------------------------------------------
+This is a copy of a message posted in archII-24/25.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2898
+
+--b1_bpIVPHH8nqNSBzPuioAlHKiKypbQ50hvIAu03DoxEY
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2898">archII-24/25</a>=0A    &raqu=
+o;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/index.php?id=3D2898">Forums</a>=0A    &raquo;=0A    <a target=3D"=
+_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=
+=3D7314">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https=
+://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D42652">registrazi=
+one della lezione di Architetture II del 02/10/24</a>=0A</div>=0A=0A<table =
+border=3D"0" cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A   =
+ <tr class=3D"header">=0A        <td width=3D"35" valign=3D"top" class=3D"p=
+icture left">=0A            <a href=3D"https://informatica.i-learn.unito.it=
+/user/view.php?id=3D296&amp;course=3D2898" class=3D"d-inline-block aabtn"><=
+img src=3D"https://informatica.i-learn.unito.it/theme/image.php/_s/lambda/c=
+ore/1727030549/u/f2" class=3D"userpicture defaultuserpic" width=3D"35" heig=
+ht=3D"35" alt=3D"" /></a>=0A        </td>=0A        <td class=3D"topic star=
+ter">=0A            <div class=3D"subject">=0A                registrazione=
+ della lezione di Architetture II del 02/10/24=0A            </div>=0A     =
+       <div class=3D"author">=0A                by <a target=3D'_blank' hre=
+f=3D'https://informatica.i-learn.unito.it/user/view.php?id=3D296&course=3D2=
+898'>Gunetti Daniele</a> - Wednesday, 2 October 2024, 2:45 PM=0A           =
+ </div>=0A        </td>=0A    </tr>=0A    <tr>=0A        <td class=3D"left =
+side" valign=3D"top">=0A                &nbsp;=0A        </td>=0A        <t=
+d class=3D"content">=0A            <p dir=3D"ltr" style=3D"text-align:left;=
+">
+                           =20
+                    </p><div class=3D"d-flex flex-column">
+                           =20
+                            <span class=3D"sr-only">Numero di risposte: 0</=
+span>
+                    </div>
+               =20
+   =20
+               =20
+                            <div class=3D"mr-2 author-groups-container" sty=
+le=3D"width:45px;">
+                            </div>
+   =20
+                   =20
+                       =20
+                            <div class=3D"d-flex flex-column">
+                           =20
+                            <span class=3D"sr-only">Numero di risposte: 0</=
+span>
+                    </div>
+               =20
+   =20
+               =20
+                            <div class=3D"mr-2 author-groups-container" sty=
+le=3D"width:45px;">
+                            </div>
+   =20
+                   =20
+                       =20
+                            <div class=3D"d-flex flex-column">
+                           =20
+                            <span class=3D"sr-only">Numero di risposte: 0</=
+span>
+                    </div>
+               =20
+   =20
+               =20
+                            <div class=3D"mr-2 author-groups-container" sty=
+le=3D"width:45px;">
+                            </div>
+   =20
+                   =20
+                       =20
+                            <div class=3D"d-flex flex-column">
+                           =20
+                            <span class=3D"sr-only">Numero di risposte: 0</=
+span>
+                    </div>
+               =20
+   =20
+               =20
+                            <div class=3D"mr-2 author-groups-container" sty=
+le=3D"width:45px;">
+                            </div>
+   =20
+                   =20
+                       =20
+                            <p dir=3D"ltr" style=3D"text-align:left;">La re=
+gistrazione della lezione di oggi =C3=A8 disponibile al seguente link:</p><=
+p dir=3D"ltr" style=3D"text-align:left;">https://unito.webex.com/unito/ldr.=
+php?RCID=3D2f2c627e17613169f9483c0759d047f5<br /></p>=0A=0A            <div=
+ class=3D"commands">=0A            </div>=0A=0A            <div class=3D"li=
+nk">=0A                <a target=3D"_blank" href=3D"https://informatica.i-l=
+earn.unito.it/mod/forum/discuss.php?d=3D42652#p69958">=0A                  =
+  See this post in context=0A                </a>=0A            </div>=0A  =
+      </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align un=
+subscribelink">=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/f=
+orum/index.php?id=3D2898">Change your forum digest preferences</a>=0A</div>
+
+--b1_bpIVPHH8nqNSBzPuioAlHKiKypbQ50hvIAu03DoxEY--
+

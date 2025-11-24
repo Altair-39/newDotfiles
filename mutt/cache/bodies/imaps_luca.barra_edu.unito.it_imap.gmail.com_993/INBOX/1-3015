@@ -1,0 +1,190 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:2241:0:b0:37b:a51c:a37f with SMTP id i62csp506126lji;
+        Tue, 18 Nov 2025 02:02:52 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFCN4206i1X+LqUENGri1FGcwDBlYMN4t5fQrn9g23dTCKwPVj6w4RVwgohKyqkQV8xrows
+X-Received: by 2002:a17:907:728f:b0:b73:4006:187b with SMTP id a640c23a62f3a-b76238ef5dfmr141384266b.7.1763460171818;
+        Tue, 18 Nov 2025 02:02:51 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1763460171; cv=none;
+        d=google.com; s=arc-20240605;
+        b=DDy8jGCJ368ATOwLRzE3hmYlEteorOCFeyKyx5g0cuRrZwgWAsxduFfZ8WTp7bgwTd
+         DEwDDBYOqlgMICzoKlmOrGiFlrDlqzE5FIBYs1BGmIcQY7SXLyJvWMgKNIM8CY0KjP5W
+         WaQrc40qofL5tdiV0+OWo2Tm0CRCTk87FPA051Cwyn7VtRmSova+8l5DSKfehfRi0aYA
+         sWOqL0fkS6JlfoxqJ+lSpSnu9JFyzYEdn0NTFzQshPX7Mzq6PXDHlaQJ5UhEsEcpyOjL
+         19N2xMOSFvbGTQVOgrdOdxyb81aholE7SDsII1izEtNGw9f6NYrD/PgK2K4BC75ktGDn
+         7a1Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-signature:dkim-filter;
+        bh=LkLX6f1N7rtf1XNW1jUNzjBfnoCjaHnXRtHN1oosHHk=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=QNce7ajdm9i6ipAskzuzkVaGh2BH3vBRZpruVfpD7nTkAT2oftCAyVtO/Ary5RH3dY
+         oEI/UDT6nwuX2Lr3iVxtn02FDUgnUUr8Xi2uHUDstQwb7qrTC3XouN8mv/+/sc8RLZ7l
+         SB6+RgerHcRwJOQQWK1ejw2B7Orzek6VpqbNuVHDLWTjo1Ko6dC7UVpmrMFbirpnK/9y
+         U978rKrMlFIolJd/pG0ZAkWDTxGhVYZb1ifPKDhFjVjbAQjkqenwOrtb9Q+QZ8Yh1s4v
+         rD7crjXFd4mTkP7EzcIuTeR0gJX0RCPMCKttYdCabRLK3iBwuJEpylfQuqqUkSMz/7bf
+         WQhA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=NT1cuYVB;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-b7399a69011si285315066b.678.2025.11.18.02.02.51
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 18 Nov 2025 02:02:51 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=NT1cuYVB;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 5AIA2n8N1914173
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Tue, 18 Nov 2025 11:02:49 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 5AIA2n8N1914173
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=i-learn.unito.it;
+	s=default; t=1763460169;
+	bh=LkLX6f1N7rtf1XNW1jUNzjBfnoCjaHnXRtHN1oosHHk=;
+	h=Date:To:From:Reply-To:Subject:List-Id:List-Help:List-Unsubscribe:
+	 From;
+	b=NT1cuYVBYm2DCPkkbcIBp33y0/5tueRvdwxsl42lK8gybdHYC3iQ8RX9ko7QnoLOj
+	 caX/bGLm0fU55WN1IwFqozKbWorMLhUiGdxHjPs23XQMuvPqoinZRL8eje9qWbEPAV
+	 Ic2Ikcz1SkzVtGPaPtd5gNolgdGPS7A84hSqsY4I=
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 5AIA2mxA3646684
+	for <luca.barra@edu.unito.it>; Tue, 18 Nov 2025 11:02:48 +0100
+Date: Tue, 18 Nov 2025 11:02:48 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Baroglio Cristina (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: SisInt2425: Avviso per appelli di dicembre'25 e gennaio'26
+Message-ID: <3657f9b377d2a7c8654232c6b76599e724090c8d13aa753679b099d7f2787faf@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.6.5 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7702@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7702
+X-Course-Id: 3092
+X-Course-Name: Sistemi Intelligenti
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: SisInt2425: Avviso per appelli di dicembre'25 e gennaio'26
+Thread-Index: 3657f9b377d2a7c8654232c6b765
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_1R32LyBf4Ao5xXVkyptHsn2vVeUP9Xt5pKYEvlj6c0"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 5AIA2n8N1914173
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply-informatica@i-learn.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_1R32LyBf4Ao5xXVkyptHsn2vVeUP9Xt5pKYEvlj6c0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SisInt2425 -> Forums -> Annunci -> Avviso per appelli di dicembre'25 e
+gennaio'26
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45932#p73954
+Avviso per appelli di dicembre'25 e gennaio'26
+by Baroglio Cristina - Tuesday, 18 November 2025, 10:42 AM
+---------------------------------------------------------------------
+Buongiorno,
+
+purtroppo a ridosso del prossimo appello io far=C3=B2 un'operazione a un oc=
+chio
+(con data non negoziabile) che mi impedir=C3=A0 di svolgere esami il 15
+dicembre e nei giorni successivi. Per questa ragione i due appelli
+rimanenti quest'anno subiranno delle modifiche. E' essenziale che chi
+intende parteciparvi legga quanto segue:
+
+* appello del 15 dicembre: per motivi amministrativi l'appello non
+cambier=C3=A0 data in esse3 ma l'esame si svolger=C3=A0 a gennaio e pi=
+=C3=B9
+precisamente il 7 gennaio, aula D. come al solito se un giorno non dovesse
+essere sufficiente organizzeremo insieme una distribuzione su pi=C3=B9 gior=
+ni.
+Considerate per=C3=B2 il 7 gennaio come data reale dell'esame. La
+verbalizzazione manterr=C3=A0 invece la data del 15/12;
+* appello del 13 gennaio: sar=C3=A0 spostato pi=C3=B9 avanti, al 4 febbraio=
+,
+perch=C3=A9 la data attuale =C3=A8 troppo a ridosso delle interrogazioni
+precedenti. Vedrete la nuova data gi=C3=A0 in esse3.
+
+Per cortesia, se sapete di persone interessate a questi appelli dite loro
+di fare riferimento alla pagina moodle del corso. In esse3 per il prossimo
+appello =C3=A8 stata aggiunta una notache dice di fare riferimento alle
+comunicazioni di questo corso.
+
+Cristina Baroglio
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SisInt2425.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092
+
+--b1_1R32LyBf4Ao5xXVkyptHsn2vVeUP9Xt5pKYEvlj6c0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3092">SisInt2425</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3092">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+702">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://i=
+nformatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45932">Avviso per app=
+elli di dicembre'25 e gennaio'26</a>=0A</div>=0A=0A<table border=3D"0" cell=
+padding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"hea=
+der">=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=0A =
+           <a href=3D"https://informatica.i-learn.unito.it/user/view.php?id=
+=3D37&amp;course=3D3092" class=3D"d-inline-block aabtn"><img src=3D"https:/=
+/informatica.i-learn.unito.it/pluginfile.php/16311/user/icon/lambda/f2?rev=
+=3D1" class=3D"userpicture" width=3D"35" height=3D"35" alt=3D"Baroglio Cris=
+tina" title=3D"Baroglio Cristina" /></a>=0A        </td>=0A        <td clas=
+s=3D"topic starter">=0A            <div class=3D"subject">=0A              =
+  Avviso per appelli di dicembre'25 e gennaio'26=0A            </div>=0A   =
+         <div class=3D"author">=0A                by <a target=3D'_blank' h=
+ref=3D'https://informatica.i-learn.unito.it/user/view.php?id=3D37&course=3D=
+3092'>Baroglio Cristina</a> - Tuesday, 18 November 2025, 10:42 AM=0A       =
+     </div>=0A        </td>=0A    </tr>=0A    <tr>=0A        <td class=3D"l=
+eft side" valign=3D"top">=0A                &nbsp;=0A        </td>=0A      =
+  <td class=3D"content">=0A            <p dir=3D"ltr" style=3D"text-align:l=
+eft;">Buongiorno,</p><p dir=3D"ltr" style=3D"text-align:left;">purtroppo a =
+ridosso del prossimo appello io far=C3=B2 un'operazione a un occhio (con da=
+ta non negoziabile) che mi impedir=C3=A0 di svolgere esami il 15 dicembre e=
+ nei giorni successivi. Per questa ragione i due appelli rimanenti quest'an=
+no subiranno delle modifiche. E' essenziale che chi intende parteciparvi le=
+gga quanto segue:</p><ul dir=3D"ltr"><li style=3D"text-align:left;">appello=
+ del 15 dicembre: per motivi amministrativi l'appello non cambier=C3=A0 dat=
+a in esse3 ma l'esame si svolger=C3=A0 a gennaio e pi=C3=B9 precisamente il=
+ 7 gennaio, aula D. come al solito se un giorno non dovesse essere sufficie=
+nte organizzeremo insieme una distribuzione su pi=C3=B9 giorni. Considerate=
+ per=C3=B2 il 7 gennaio come data reale dell'esame. La verbalizzazione mant=
+err=C3=A0 invece la data del 15/12;</li><li style=3D"text-align:left;">appe=
+llo del 13 gennaio: sar=C3=A0 spostato pi=C3=B9 avanti, al 4 febbraio, perc=
+h=C3=A9 la data attuale =C3=A8 troppo a ridosso delle interrogazioni preced=
+enti. Vedrete la nuova data gi=C3=A0 in esse3.</li></ul><div>Per cortesia, =
+se sapete di persone interessate a questi appelli dite loro di fare riferim=
+ento alla pagina moodle del corso. In esse3 per il prossimo appello =C3=
+=A8 stata aggiunta una notache dice di fare riferimento alle comunicazioni =
+di questo corso.</div><div><br /></div><div>Cristina Baroglio</div><br />=
+=0A=0A            <div class=3D"commands">=0A            </div>=0A=0A      =
+      <div class=3D"link">=0A                <a target=3D"_blank" href=3D"h=
+ttps://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45932#p73954"=
+>=0A                    See this post in context=0A                </a>=0A =
+           </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div=
+ class=3D"mdl-align unsubscribelink">=0A    <a href=3D"https://informatica.=
+i-learn.unito.it/mod/forum/index.php?id=3D3092">Change your forum digest pr=
+eferences</a>=0A</div>
+
+--b1_1R32LyBf4Ao5xXVkyptHsn2vVeUP9Xt5pKYEvlj6c0--
+

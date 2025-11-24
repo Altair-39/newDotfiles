@@ -1,0 +1,152 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b16c:0:b0:2f3:ec6d:e6a7 with SMTP id a12csp590270ljm;
+        Thu, 26 Sep 2024 00:24:58 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFH5s/kzjzHNUOTsh2eWF2BrPL2iIv114iAYly3jUYEFc21dicgcwnLd1x8Lw2HPexlOOfx
+X-Received: by 2002:a17:907:2d90:b0:a7a:b895:6571 with SMTP id a640c23a62f3a-a93b26e97fbmr77530766b.9.1727335498154;
+        Thu, 26 Sep 2024 00:24:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727335498; cv=none;
+        d=google.com; s=arc-20240605;
+        b=k17/2ogCgkkM/FVvS0KWRS7yQa3Bked5MicxSci2LEk+NOl1xaYlGYajE42PvDFMRs
+         RPtZG59nCwuN6rIqdYD/hJRTOT1nt2BG44CXkosO5PZUr+N/xoBO1QPdu+GFcOrXPhTH
+         IwhYApsh+dZ/dLyevIgVJ9bamwKg5lj6dA6p7hsL8uhGqcCck9VkYpKzgyDN48C/8oAg
+         axiDJNzyfpT8whIvc+p2HrvshoLEzsSqKFla6br1DtXMSII92mkE91KgGb1ncIGu8UCr
+         MZotmZjaqrz5iHGL2YvGODXoXBZ2mH5CN8PT0VjL36/lzPXNR8hKPQu9CkjFsnoZPTsY
+         0lnQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=F9SrEdeSUgx6h5jW7lFpqJtMIB3EeZKVz3hHBKUyYWY=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=BK8jrSwtP66hS2pL7HaJwnhHNzoGGOGkNbfDb0oYj2kqwqYgYKyH/RVLfc3D/5eIUm
+         IZjf6xmPgkn2tgocZCBvTsEK1/HCxb6Fzy1zW0wuX2MiX5ZJOiqiTpQJOuR7O1IoU5cW
+         s4hLt1pGcY01A4TfCIRlIEYq6K8HrDsoQmgUX/JkxijbmWXyZ09ypwr2Hm6Y1p5qTQR6
+         YAi6VwvOzOhP0k8ogNkV49mO8/29t1MzPLhfdvo+zCwbDCgaNxIbWbyhA0sVf5a01vYb
+         qfHnUUp4eEEkzg4+vB3OR2Iwfkl9E92GVGrKHz4ZpSz0n6Au08VJoBOmAX0YdjCokd7B
+         YX9w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-a93930ec859si351692466b.646.2024.09.26.00.24.57
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Sep 2024 00:24:58 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 48Q7Orj0599556
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Thu, 26 Sep 2024 09:24:53 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 48Q7Orj0599556
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 48Q7Orkf011197
+	for <luca.barra@edu.unito.it>; Thu, 26 Sep 2024 09:24:53 +0200
+Date: Thu, 26 Sep 2024 09:24:53 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Micalizio Roberto (via informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Do not reply to this email" <noreply@educ.di.unito.it>
+Subject: =?utf-8?B?UGFydFRpbWUyMDI1OiBDb250YXR0aSBwZXIgSW5pemlvIGF0dGl2aXTDoA==?=
+Message-ID: <4fe4a6524ac5331a5fc7f5a837daa10f7728b134b03c30875cba660a93bb5233@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7436@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7436
+X-Course-Id: 2966
+X-Course-Name: Collaborazioni art. 11, A.A. 2024-2025
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: =?utf-8?B?UGFydFRpbWUyMDI1OiBDb250YXR0aSBwZXIgSW5pemlvIGF0dGl2aXTDoA==?=
+Thread-Index: 4fe4a6524ac5331a5fc7f5a837da
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_pLka4m03hoVXXMHWiRtTZUyN6FfwZMohxFg5WD28Ks"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 48Q7Orj0599556
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_pLka4m03hoVXXMHWiRtTZUyN6FfwZMohxFg5WD28Ks
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+PartTime2025 -> Forums -> Annunci -> Contatti per Inizio attivit=C3=A0
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D42612#p69918
+Contatti per Inizio attivit=C3=A0
+by Micalizio Roberto - Thursday, 26 September 2024, 9:08 AM
+---------------------------------------------------------------------
+Buongiorno,
+
+sulla pagina moodle ho reso disponibile l'elenco delle borse assegnate e i
+contatti email dei vincitori, in questo modo potete contattare i vostri
+colleghi di borsa e potete organizzarvi a coprire tutti i turni.
+
+Vi ricordo che questo file =C3=A8 ad uso interno degli studenti collaborato=
+ri e
+non deve essere divulgato.
+
+Cordialmente,
+
+Roberto Micalizio
+
+---------------------------------------------------------------------
+This is a copy of a message posted in PartTime2025.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2966
+
+--b1_pLka4m03hoVXXMHWiRtTZUyN6FfwZMohxFg5WD28Ks
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2966">PartTime2025</a>=0A    &raqu=
+o;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/index.php?id=3D2966">Forums</a>=0A    &raquo;=0A    <a target=3D"=
+_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=
+=3D7436">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https=
+://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D42612">Contatti p=
+er Inizio attivit=C3=A0 </a>=0A</div>=0A=0A<table border=3D"0" cellpadding=
+=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=
+=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=0A      =
+      <a href=3D"https://informatica.i-learn.unito.it/user/view.php?id=3D20=
+08&amp;course=3D2966" class=3D"d-inline-block aabtn"><img src=3D"https://in=
+formatica.i-learn.unito.it/pluginfile.php/19163/user/icon/lambda/f2?rev=3D1=
+" class=3D"userpicture" width=3D"35" height=3D"35" alt=3D"" /></a>=0A      =
+  </td>=0A        <td class=3D"topic starter">=0A            <div class=3D"=
+subject">=0A                Contatti per Inizio attivit=C3=A0 =0A          =
+  </div>=0A            <div class=3D"author">=0A                by <a targe=
+t=3D'_blank' href=3D'https://informatica.i-learn.unito.it/user/view.php?id=
+=3D2008&course=3D2966'>Micalizio Roberto</a> - Thursday, 26 September 2024,=
+ 9:08 AM=0A            </div>=0A        </td>=0A    </tr>=0A    <tr>=0A    =
+    <td class=3D"left side" valign=3D"top">=0A                &nbsp;=0A    =
+    </td>=0A        <td class=3D"content">=0A            <p dir=3D"ltr" sty=
+le=3D"text-align:left;">Buongiorno,</p><p dir=3D"ltr" style=3D"text-align:l=
+eft;">sulla pagina moodle ho reso disponibile l'elenco delle borse assegnat=
+e e i contatti email dei vincitori, in questo modo potete contattare i vost=
+ri colleghi di borsa e potete organizzarvi a coprire tutti i turni.</p><p d=
+ir=3D"ltr" style=3D"text-align:left;">Vi ricordo che questo file =C3=A8 ad =
+uso interno degli studenti collaboratori e non deve essere divulgato.</p><p=
+ dir=3D"ltr" style=3D"text-align:left;">Cordialmente,</p><p dir=3D"ltr" sty=
+le=3D"text-align:left;">Roberto Micalizio<br /></p>=0A=0A            <div c=
+lass=3D"commands">=0A            </div>=0A=0A            <div class=3D"link=
+">=0A                <a target=3D"_blank" href=3D"https://informatica.i-lea=
+rn.unito.it/mod/forum/discuss.php?d=3D42612#p69918">=0A                    =
+See this post in context=0A                </a>=0A            </div>=0A    =
+    </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsu=
+bscribelink">=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/for=
+um/index.php?id=3D2966">Change your forum digest preferences</a>=0A</div>
+
+--b1_pLka4m03hoVXXMHWiRtTZUyN6FfwZMohxFg5WD28Ks--
+

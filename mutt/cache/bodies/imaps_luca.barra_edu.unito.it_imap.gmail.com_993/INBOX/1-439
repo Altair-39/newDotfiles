@@ -1,0 +1,78 @@
+X-Google-Smtp-Source: APBJJlG5TbwQcL7/9F2JK8hcy2y3sVRUVFxz8SItzjuVT0ehlU76qfXMCHMwaQsTdLupnrSgehD3R9qYSbywtLOs6w==
+X-Received: by 2002:a63:3d04:0:b0:534:67f7:9364 with SMTP id k4-20020a633d04000000b0053467f79364mr8651698pga.4.1688991634205;
+        Mon, 10 Jul 2023 05:20:34 -0700 (PDT)
+Received: from 292831042739
+	named unknown
+	by gmailapi.google.com
+	with HTTPREST;
+	Mon, 10 Jul 2023 05:20:34 -0700
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a17:90a:318c:0:0:0:0 with SMTP id j12csp482161pjb;
+        Wed, 22 Sep 2021 06:37:46 -0700 (PDT)
+X-Received: by 2002:a5d:4bc8:: with SMTP id l8mr42912915wrt.105.1632317866399;
+        Wed, 22 Sep 2021 06:37:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1632317866; cv=none;
+        d=google.com; s=arc-20160816;
+        b=u7yY5DfFzZ1oU2Bz42YSHF/Boqu6Hi4nqYneZjYGus4CcnoTDC9oSxCy5VZonsGtQf
+         CUvhhXXlhh6eYZSam0GrJVD8x9tBGQfQEz60OVGU7DoPEKOFOqDE1Y8BuZz6spw57qcd
+         nZyXydNNW9NvBJCKbuKAvkDqTQ4BNMehlDr4lMJ0wD8sm7+Hvl84raI5LwDoxoDqFEpA
+         raVSADTjZ13ZGhswUnWZX0reGxbspX3Ymy1X9mg0T2XrftW5UshQxcVLBrZsBXXtdtkH
+         IZnTYq/wbVF2zBXZ95RLw+OPxctOmlHcqAuuo8JAj3Cazs1X/+LjNaMBoLIMcznb7aGM
+         G1Gg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:subject:message-id:to:from
+         :date;
+        bh=/cKgrS3oMuhHwhPLiCvxqr5RbTcxS8MEJ/eACVPomoc=;
+        b=AFwQyGFkiqeJmSUpem3N2aolgXMYWxEW0fVGcpUSkJmeRb3Q6q3NIHLkSR0nT5FvHA
+         jABrpixW+6V0xkr9qmNXBKOtv/t4qIzq3sV4DUHFB/N2y5nvxv6QVqyD608kRU3IHhc5
+         biIuCGbZFDS9LuvXIvbZD8sFw1t7wMVcvcXzYaUG3K5WUbwD2tVeMn/J1tk/JNbPdt/S
+         bby19j9U75W3IuDsiBrdiX4Ml23WyWGsusBbAREW35Lh0tf11FHwGrgZ0sXKnpdn4eL3
+         nrIFD+AdXOGiIJKxMACoRbRVZqGH2fPr2Yar9qDngfYCzBK4NXeQceg3obyreNgz0FCN
+         JZug==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain edu.unito.it configured 130.186.31.165 as internal address) smtp.mailfrom=noreply@unito.it
+Return-Path: <noreply@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id m4si2662962wmc.132.2021.09.22.06.37.45
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 22 Sep 2021 06:37:46 -0700 (PDT)
+Received-SPF: pass (google.com: domain edu.unito.it configured 130.186.31.165 as internal address)
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain edu.unito.it configured 130.186.31.165 as internal address) smtp.mailfrom=noreply@unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 9722721058
+	for <luca.barra@edu.unito.it>; Wed, 22 Sep 2021 15:37:45 +0200 (CEST)
+Received: from smtp4.cineca.it ([127.0.0.1])
+	by localhost (zm20.private.cineca.it [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id elYkv8QaMRSk for <luca.barra@edu.unito.it>;
+	Wed, 22 Sep 2021 15:37:45 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 7CFD320FCB
+	for <luca.barra@edu.unito.it>; Wed, 22 Sep 2021 15:37:45 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+	by localhost (zm20.private.cineca.it [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id HnRPbg-OZD90 for <luca.barra@edu.unito.it>;
+	Wed, 22 Sep 2021 15:37:45 +0200 (CEST)
+Received: from dc-squealer-prod-29-79m6l (oscompute78.private.cineca.it [10.254.9.84])
+	by smtp4.cineca.it (Postfix) with ESMTPS id 685A120FC9
+	for <luca.barra@edu.unito.it>; Wed, 22 Sep 2021 15:37:45 +0200 (CEST)
+Date: Wed, 22 Sep 2021 15:37:45 +0200 (CEST)
+From: noreply@unito.it
+To: luca.barra@edu.unito.it
+Message-ID: <1154443088.6521.1632317865399@dc-squealer-prod-29-79m6l>
+Subject: Aggiornamento sullo stato dell'evento
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Gentile LUCA BARRA,
+
+L'evento MD-A - MATEMATICA DISCRETA previsto in data 27/09/2021 11:00 =C3=
+=A8 stato sospeso. Lo stato della tua prenotazione =C3=A8 rimasto invariato=
+.
+
+Ci scusiamo per il disagio.
+
+Cordiali saluti

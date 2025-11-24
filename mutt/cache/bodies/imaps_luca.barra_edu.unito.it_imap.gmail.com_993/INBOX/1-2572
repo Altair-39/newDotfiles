@@ -1,0 +1,153 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:1467:b0:328:ea4:e135 with SMTP id r7csp2988487ljc;
+        Mon, 26 May 2025 02:51:10 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGRWdawvVjyLvhww3ANKF9SllXQNOJKzUDrsNOxbv5f7jCJ9+s6Y+/0mAP4o/n5XtS+tKFt
+X-Received: by 2002:a05:6402:1d4b:b0:600:a6a9:bf9c with SMTP id 4fb4d7f45d1cf-602d7eb902emr2947488a12.0.1748253070746;
+        Mon, 26 May 2025 02:51:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1748253070; cv=none;
+        d=google.com; s=arc-20240605;
+        b=SUaEkbMMgc3q+w0wMtOlxhjG3f+25nzQeLWwgDVHS9dh46qeYUVJ7oGYuKuYlrJP2V
+         rb7Rbm3xTJl1x2Iz4PcvvfKyI1t1khoachD1+i1lhCnwGflTUDh2r7p32TihTmc3v1GD
+         5crpw1EX/M2iArNvVS2rA5d/QJ3JYEOefQ/eelQtmUOA7wR2eS1LNeUamORszILAwmzG
+         glutdvI5Sfi9supPN/DBQYkN2L0pa1oPtAdPbTDTcfWYxXGeAQhXUpCNs12Op8RjQNLd
+         pchKrTFPQgS/PFfDEXr2re8EBypk1wIsRIHowuczkSbNnLm0FPOag+k4kKOi1JLde9v2
+         rJeQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=z0ZCsTEr6iu+5fmlRCBjpEs7/Smc8v3ZbIh9ZFJzPY4=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=CjN0bSvalxwQqd2jE114pMsSe6RExk3xQ4cgZ+91ekfmNfXacpHkxsComlmRo9pqGn
+         II2dSesRBMsyKGBNFqsNe+P00wL653em3Bm3TXtqYZ4rN1VRtVQpEUgEh27fQcfyGuZn
+         B+AAZ6udKk3csWsvTy0eeTxEr3h/LtcT8sZC/jq9FobX1c5XDm3cPmqU/1VIkHeG1S44
+         lCM/uGg5WrbPCIOwqP5tO+d3XzXrf/6ifdq4srsA+FF3hzn2bt8ul85wwKc9AqsX0L89
+         sJojdEZuZVTQ4TKNIdgaJomvHoIQ6lUduTmzEAoLT2RBtpQ56RsfRmeDrWRWHuA5oO9Q
+         rrog==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ad52d27c20dsi1632248366b.198.2025.05.26.02.51.10
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 May 2025 02:51:10 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 54Q9pAoL1235558
+	for <luca.barra@edu.unito.it>; Mon, 26 May 2025 11:51:10 +0200
+Date: Mon, 26 May 2025 11:51:10 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Mazzei Alessandro (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: TLN2425: Colloqui TLN - parte 1 (Mazzei) - Giugno 2025
+Message-ID: <e82ea15cccefb20cb61ea0cc5e89ecc84723b32387c78118ec74c4bcd7dc5c30@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7628@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7628
+X-Course-Id: 3062
+X-Course-Name: Tecnologie del Linguaggio Naturale, A.A. 2024/2025
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: TLN2425: Colloqui TLN - parte 1 (Mazzei) - Giugno 2025
+Thread-Index: e82ea15cccefb20cb61ea0cc5e89
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_BzwLVI2VKNTzpP1dDpOde0BJWFyTS1aLet5DmoPRc"
+
+This is a multi-part message in MIME format.
+
+--b1_BzwLVI2VKNTzpP1dDpOde0BJWFyTS1aLet5DmoPRc
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+TLN2425 -> Forums -> Annunci -> Colloqui TLN - parte 1 (Mazzei) - Giugno
+2025
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44835#p72619
+Colloqui TLN - parte 1 (Mazzei) - Giugno 2025
+by Mazzei Alessandro - Monday, 26 May 2025, 11:35 AM
+---------------------------------------------------------------------
+Buongiorno,
+
+per poter organizzare al meglio i colloqui per l'appello, che si terranno
+il giorno 11 Giugno in Aula E, vi prego:
+
+1) di comunicare al pi=C3=B9 presto la vostra intenzione di fare l'esame vi=
+a
+email (alessandro.mazzei@unito.it)
+
+2) di iscriversi all'appello sulla piattaforma S3, specificando "Esame
+Parte 1" nelle note
+
+3) di consegnare relazione e codice via email (alessandro.mazzei@unito.it)
+entro le ore 12:00 del giorno =C2=A04 Giugno 2025=C2=A0
+
+A chiusura iscrizioni vi comunicher=C3=B2 il calendario dettagliato.
+
+Un cordiale saluto,
+
+Alessandro Mazzei
+
+---------------------------------------------------------------------
+This is a copy of a message posted in TLN2425.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3062
+
+--b1_BzwLVI2VKNTzpP1dDpOde0BJWFyTS1aLet5DmoPRc
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3062">TLN2425</a>=0A    &raquo;=0A=
+    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/f=
+orum/index.php?id=3D3062">Forums</a>=0A    &raquo;=0A    <a target=3D"_blan=
+k" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7628=
+">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://info=
+rmatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44835">Colloqui TLN - pa=
+rte 1 (Mazzei) - Giugno 2025</a>=0A</div>=0A=0A<table border=3D"0" cellpadd=
+ing=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header"=
+>=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=0A     =
+       <a href=3D"https://informatica.i-learn.unito.it/user/view.php?id=3D1=
+262&amp;course=3D3062" class=3D"d-inline-block aabtn"><img src=3D"https://i=
+nformatica.i-learn.unito.it/pluginfile.php/17859/user/icon/lambda/f2?rev=3D=
+1" class=3D"userpicture" width=3D"35" height=3D"35" alt=3D"" /></a>=0A     =
+   </td>=0A        <td class=3D"topic starter">=0A            <div class=3D=
+"subject">=0A                Colloqui TLN - parte 1 (Mazzei) - Giugno 2025=
+=0A            </div>=0A            <div class=3D"author">=0A              =
+  by <a target=3D'_blank' href=3D'https://informatica.i-learn.unito.it/user=
+/view.php?id=3D1262&course=3D3062'>Mazzei Alessandro</a> - Monday, 26 May 2=
+025, 11:35 AM=0A            </div>=0A        </td>=0A    </tr>=0A    <tr>=
+=0A        <td class=3D"left side" valign=3D"top">=0A                &nbsp;=
+=0A        </td>=0A        <td class=3D"content">=0A            <p dir=3D"l=
+tr">Buongiorno,</p><p dir=3D"ltr">per poter organizzare al meglio i colloqu=
+i per l'appello, che si terranno il giorno 11 Giugno in Aula E, vi prego:</=
+p><p dir=3D"ltr">1) di comunicare al pi=C3=B9 presto la vostra intenzione d=
+i fare l'esame via email (alessandro.mazzei@unito.it)</p><p dir=3D"ltr">2) =
+di iscriversi all'appello sulla piattaforma S3, specificando "Esame Parte 1=
+" nelle note</p><p dir=3D"ltr">3) di consegnare relazione e codice via emai=
+l (alessandro.mazzei@unito.it) entro le ore 12:00 del giorno =C2=A04 Giugno=
+ 2025=C2=A0</p><p dir=3D"ltr">A chiusura iscrizioni vi comunicher=C3=B2 il =
+calendario dettagliato.</p><p dir=3D"ltr"><br /></p><p dir=3D"ltr">Un cordi=
+ale saluto,</p><p dir=3D"ltr">Alessandro Mazzei</p><p><br /></p>=0A=0A     =
+       <div class=3D"commands">=0A            </div>=0A=0A            <div =
+class=3D"link">=0A                <a target=3D"_blank" href=3D"https://info=
+rmatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44835#p72619">=0A       =
+             See this post in context=0A                </a>=0A            =
+</div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"m=
+dl-align unsubscribelink">=0A    <a href=3D"https://informatica.i-learn.uni=
+to.it/mod/forum/index.php?id=3D3062">Change your forum digest preferences</=
+a>=0A</div>
+
+--b1_BzwLVI2VKNTzpP1dDpOde0BJWFyTS1aLet5DmoPRc--
+

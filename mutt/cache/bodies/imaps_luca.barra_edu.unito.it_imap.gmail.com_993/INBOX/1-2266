@@ -1,0 +1,165 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:9a88:0:b0:30c:2dd2:a8c1 with SMTP id p8csp877684lji;
+        Thu, 20 Mar 2025 11:00:56 -0700 (PDT)
+X-Received: by 2002:a17:907:bac2:b0:abf:6d80:ae1 with SMTP id a640c23a62f3a-ac3f23dbea1mr6361666b.2.1742493655848;
+        Thu, 20 Mar 2025 11:00:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1742493655; cv=none;
+        d=google.com; s=arc-20240605;
+        b=BWtV1LX1ut3yhQiMjH2slKcZct+r/rF1a5JVc33d55tqn1OHQKw4G6185eAEmD8oPT
+         ALfC6yGAIMPaEPI1QjacIotMpIanf17qZCBVjcxIg70Os27I7a5uYdoYeO+clzgiC5e5
+         GRzo2WvpvAe2QDcqSDJ3YLwc0efO4mPAhI7r6TQ2JewVRFsXXEQLyibc9irEpVwkHTN1
+         /o15VM2XB5QRIXRMDWUWFnW8DMNGmq5qmjexBboBFSDxshiTv683DkJPHJF1JFfUqKSp
+         EDWpGkJGezES/p1I9nVsKnyHM00FnGn4aKJHNdHyODSagi0pWhgiAtliEzwyxlmSnpar
+         paFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:in-reply-to:references:message-id:date:subject:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=YV+vVzLSw1ElqmyJhNjs/0tqj1vJEjQgVZ9YOmqEW9s=;
+        fh=wnoTQjHgWz4kRW5W3Yv210Aj9LolbdJ/Lvc/uyAoO3M=;
+        b=Ql8rJdUiMoZ0ERcrX064xf1boKIDeKJSHdpPeyzTqefavb+zuZnX+TIlGIy22GW4i/
+         JRuq+zSpWp8IUh1A5x+E6+n5zwOldo16L0Q8zNhCdLCKBUwE9vumW0yBPfHf9TXj0qlF
+         PsEXzS0cHziOCzV86TWAfktyNKR9sKMfCEvt96c2od+jS0PU6EY9kbn8cKiwjShq6D6A
+         QQqF2TYJKYYaSlaGb9J3MuTG06a1Pq7VStRiA4rJW6C03Dnvc9G04ER7hz45czkEmC0W
+         Tit4ePpR1d2nTuBlcAHpG0ppYUq41vnqWqHSvD104iN1m1rRn21iXppKtDInHv/IOsUi
+         RX8A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=W4dpeCw1;
+       spf=pass (google.com: domain of luigi.dicaro@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=luigi.dicaro@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <luigi.dicaro@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-ac3efec0ccasor16962366b.11.2025.03.20.11.00.54
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Thu, 20 Mar 2025 11:00:54 -0700 (PDT)
+Received-SPF: pass (google.com: domain of luigi.dicaro@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=W4dpeCw1;
+       spf=pass (google.com: domain of luigi.dicaro@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=luigi.dicaro@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1742493654; x=1743098454; darn=edu.unito.it;
+        h=to:in-reply-to:references:message-id:date:subject:mime-version:from
+         :content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YV+vVzLSw1ElqmyJhNjs/0tqj1vJEjQgVZ9YOmqEW9s=;
+        b=W4dpeCw1fpHYI6Md8YM5nxxVN1tnE3tRobKmlnLX4dErdPA5tDFDOweWCGvuYNq/6K
+         CIYROkLOch9gzn4fSccexpY9RA9y9v2S0eG97DgV8XLc8qLadpIBjIr+D2utNYmMlbb6
+         Q4MenKlcya0Y1KzgQdQ7rvR/7hPcAXxZ2zqlRsifbHaAj0ZDwJFen8mZYQb4ZzuewQKt
+         Rh7yilwYZPBf8uAVj/9WE/87hWBea2lYYZXOyx9LL2puQ7SIo9GEj5cVB3m+M4Q/Hy0h
+         GTEhLfjGgYBuRZ4lG8dGYrlph1FnQ14hkWjcVS9oPP9KreHbL8WlLtfWObMGZnDUAZoL
+         rVHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742493654; x=1743098454;
+        h=to:in-reply-to:references:message-id:date:subject:mime-version:from
+         :content-transfer-encoding:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=YV+vVzLSw1ElqmyJhNjs/0tqj1vJEjQgVZ9YOmqEW9s=;
+        b=dpK2blnKseUHOlM5CjWF0o0sqTikc8YcsNRY5S3rDjWkicfyN1nAjAKseR9y6J2xQS
+         V5A6qgDo0MtFJ3jiBICY3TAZSIuNuLqPMQkvmY/km1kIclv/T90FtYCe400+8x9b1wdy
+         lOhChGul+k8ZwzCo3ZzeccWY3USBrKfOqVUDNNUxRc6r6V0cjEofYQWWfnyypDhjO51b
+         jdzJy+Z+WgPm4bIWxyqtXblTDs37OIMq9jx1Pm3V/kWZAEFZZlx2ieaLIEKKK3E4C+bI
+         nAX8OoinPJAfYG2MvJUAnQbFE8cADKsACGNEc72kicInik34eYrHLhgBhzzyaVPTeEVt
+         TIkA==
+X-Gm-Message-State: AOJu0Yzz4zi4R56ig+fzd2iTZX8GJuIDaQqRC2SryxYrIVoFMGJ+dlt8
+	nlL5cgJEpYqHhsRXUqgJ3uDcdKv8g/7GWY0XN/1LQF0MEl8WamzTfU3maoQiXQ4iYv1bSKeR7BR
+	iUoM=
+X-Gm-Gg: ASbGncsuz45SHs5mVFzwtnXFHs+eSYNe8tFTxHJLTpZJGcvDTyvkwSVVGrQVkDPZNL9
+	HyVOj10YWh7EchKmNJr1kawmYz4E8JvZfiHJtgVZ1eAcHP/g58DuO2uK/eYsQxt3KBqYvn3cMfk
+	0Ygfs0gAGh6zU3Gm2mrHOspImjEaKOfIxR8pmVJIUdfZXV3beoI3MMdEPLjNCv1FlQwIsh+8Nt6
+	9UuXj6bp/8tZdw6ReAKEtsf41Lq6KjXBUaFqHDJ7ZOjZkTLT73nDZYk544VNEt66pZyd7qXGquu
+	3mN/bcj2Ev+kQrEaN2VgCqcJq+FJMsrFsfVwrEoPaxI+lUP85kdpng26OwsLT4OewGZyiZIlQVQ
+	IvY20yySkaoJjcA==
+X-Google-Smtp-Source: AGHT+IEhmS2f8JkdBNIszVm1NrzvueKlHt2RK+nPy70+M/LvhwUYLs01Qq8/ZGOGpfar3p+qoYKxpg==
+X-Received: by 2002:a17:907:3f0a:b0:ac3:1883:ece1 with SMTP id a640c23a62f3a-ac3f253a121mr8563866b.54.1742493653769;
+        Thu, 20 Mar 2025 11:00:53 -0700 (PDT)
+Return-Path: <luigi.dicaro@unito.it>
+Received: from smtpclient.apple (93-35-32-7.ip53.fastwebnet.it. [93.35.32.7])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3efd47fd6sm16287766b.162.2025.03.20.11.00.53
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 20 Mar 2025 11:00:53 -0700 (PDT)
+Content-Type: multipart/alternative; boundary=Apple-Mail-52FE6AA2-439A-4F2E-B36B-1FCCB206F6FC
+Content-Transfer-Encoding: 7bit
+From: Luigi Di Caro <luigi.dicaro@unito.it>
+Mime-Version: 1.0 (1.0)
+Subject: Re: Collaborazione art.11 - PPOO
+Date: Thu, 20 Mar 2025 19:00:42 +0100
+Message-Id: <D1D808DA-C918-44EC-9280-24E91EC6102F@unito.it>
+References: <CAAhooxshaDjPvFSdD1FmnYJqdUFfFQtp8=Ea-EJsCDUW=QRkZg@mail.gmail.com>
+In-Reply-To: <CAAhooxshaDjPvFSdD1FmnYJqdUFfFQtp8=Ea-EJsCDUW=QRkZg@mail.gmail.com>
+To: Luca Barra <luca.barra@edu.unito.it>
+X-Mailer: iPhone Mail (22D72)
+
+
+--Apple-Mail-52FE6AA2-439A-4F2E-B36B-1FCCB206F6FC
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Caro Luca,
+ se ho capito bene la prossima settimana sarai assistente alla mia lezione d=
+el gioved=C3=AC. Grazie, prima di tutto.
+
+Volevo anticiparti che forse dovr=C3=B2 uscire un po=E2=80=99 prima per una q=
+uestione personale. Spero non sia un problema per te rimanere fino alle 19 c=
+on studenti e studentesse. Spiegher=C3=B2 comunque io nella prima parte dell=
+a lezione tutti gli esercizi da svolgere.
+
+Grazie e a presto
+Luigi
+
+> Il giorno 30 set 2024, alle ore 08:01, Luca Barra <luca.barra@edu.unito.it=
+> ha scritto:
+>=20
+> =EF=BB=BF
+> Buongiorno,
+> Sono Luca Barra, uno degli studenti collaboratori per il corso di "Princip=
+i di Programmazione Orientata agli Oggetti". Scrivo questa mail per  present=
+armi in attesa del secondo semestre.
+> Distinti saluti,
+> LB
+>=20
+> ------------------------
+>=20
+> Indirizzo istituzionale di posta elettronica degli studenti e dei laureati=
+ dell'Universit=C3=A0 di Torino
+> Official University of Turin email address for students and graduates=20
+
+--Apple-Mail-52FE6AA2-439A-4F2E-B36B-1FCCB206F6FC
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto"><div dir=3D"ltr"></div><div dir=3D"ltr">Car=
+o Luca,</div><div dir=3D"ltr">&nbsp;se ho capito bene la prossima settimana s=
+arai assistente alla mia lezione del gioved=C3=AC. Grazie, prima di tutto.</=
+div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Volevo anticiparti che forse=
+ dovr=C3=B2 uscire un po=E2=80=99 prima per una questione personale. Spero n=
+on sia un problema per te rimanere fino alle 19 con studenti e studentesse. S=
+piegher=C3=B2 comunque io nella prima parte della lezione tutti gli esercizi=
+ da svolgere.</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Grazie e a pr=
+esto</div><div dir=3D"ltr">Luigi</div><div dir=3D"ltr"><br><blockquote type=3D=
+"cite">Il giorno 30 set 2024, alle ore 08:01, Luca Barra &lt;luca.barra@edu.=
+unito.it&gt; ha scritto:<br><br></blockquote></div><blockquote type=3D"cite"=
+><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div>Buongiorno,</div><div>Sono L=
+uca Barra, uno degli studenti=20
+collaboratori per il corso di "Principi di Programmazione Orientata agli Ogg=
+etti". Scrivo questa mail per&nbsp;=20
+presentarmi in attesa del secondo semestre.</div><div>Distinti saluti,</div>=
+<div>LB</div></div>
+
+<br>
+<div style=3D"font-size:1.3em">------------------------</div><span style=3D"=
+font-size:small"><div><img src=3D"https://web.unito.it/logofirmastu.png" dat=
+a-unique-identifier=3D""><br></div>Indirizzo istituzionale di posta elettron=
+ica degli studenti e dei laureati dell'Universit=C3=A0 di Torino</span><div>=
+<font size=3D"2">Official&nbsp;University of Turin&nbsp;email address&nbsp;f=
+or students and graduates&nbsp;</font></div></div></blockquote></body></html=
+>=
+
+--Apple-Mail-52FE6AA2-439A-4F2E-B36B-1FCCB206F6FC--

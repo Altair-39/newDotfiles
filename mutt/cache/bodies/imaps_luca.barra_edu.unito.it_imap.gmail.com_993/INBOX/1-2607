@@ -1,0 +1,181 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:9dd8:0:b0:32a:7f76:203e with SMTP id x24csp327564ljj;
+        Thu, 29 May 2025 07:52:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCXWvDcSH+puwQvL4+ewEwQfX0Xwn3Fp5V5xcCZYb769X2wMIR+EHL05hCFkUiDm49UhaRLNjIGl2ynz@edu.unito.it
+X-Received: by 2002:a17:906:8442:b0:ad8:9c64:e9ca with SMTP id a640c23a62f3a-ad89f338e8fmr189671466b.0.1748530330189;
+        Thu, 29 May 2025 07:52:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1748530330; cv=none;
+        d=google.com; s=arc-20240605;
+        b=JquztQngd4VBCagVfpHJe7IaRa05Q2PkGkzFWCGAjAMNAlIMEVOX08OJR2iPKY+yVi
+         Q/eLKOsOuXWLIVm9jDbNrxuTP5xbFwAv7cWpcEA2Ue6NaA3YgNyjhclWl+mbwtKOA4QE
+         6QPO52vqNzLTOzpnT+EGWWyE/1iyBi65g9j5b+wHS5abqaAwHeYlRgT/B7qVxxFDOFD9
+         a1ojAAfGNl7vFODo8D9Lgj3cQAhIJ9HpEoQrq3x8KzfvBbiGm8AJ2X71ZYmyy9wWZJci
+         qwVsXxq+KnIhLQk7Qt9pwKFHgtsW508vHC/cPzmOYV/lV+1lN5xOCf7BkDPGHaoiUz5J
+         78bQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:message-id:subject:date:mime-version:from:dkim-signature;
+        bh=dLJossABenxGn7BajGyHvvmcc4cULi7HZNB7aJRrB3Q=;
+        fh=NQFyrfwenqncN0HO1AAlJzdnqXZVwbthVXwOXku5vfc=;
+        b=PU+MOyrI0nPZCbpDKzodBKxB2gU5wiybTX/ZJDfyfxmE09Ni/LLCoLNuv6Ogvz86rr
+         51Bk7kQi1ql182Lf4+IsImxX5ozGnPIjykzYmDdQ+4v60kzgY1JcMoJGy9Ot/Vu8cj6V
+         AAvVmzMk6R0fk68TeWib2N7hK7Bxc1801ykvWa3IjtomBAFNDKBxahVU0rpyi9ae3HaV
+         PDfZ2OQce4G7zMoc5/WEz0YktpBHJp07rq33Nta7cnyKpt06m2kbx0O8WcC++b7UphmU
+         2OulDgCgrTmQKm7/S975t1K3Q3NivncfNGFEBjgDX4OXjB3lJMIVgaDcSEc2e9x6yadl
+         GPDQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=DVwataRQ;
+       spf=pass (google.com: domain of luigi.dicaro@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=luigi.dicaro@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <luigi.dicaro@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-ada5d83dac3sor81152066b.2.2025.05.29.07.52.09
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Thu, 29 May 2025 07:52:10 -0700 (PDT)
+Received-SPF: pass (google.com: domain of luigi.dicaro@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=DVwataRQ;
+       spf=pass (google.com: domain of luigi.dicaro@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=luigi.dicaro@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1748530329; x=1749135129; darn=edu.unito.it;
+        h=cc:message-id:subject:date:mime-version:from:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=dLJossABenxGn7BajGyHvvmcc4cULi7HZNB7aJRrB3Q=;
+        b=DVwataRQl3thaBwuNLtuXQ1fM46b1BWmjqgcLS81S38I0ATVI7z+C7Sk4aQgWhExYo
+         e+eE2fMx6V7b6wj/KerqfBMdz1vXAT70h31CHr5Vwu+aDKhhwp5+haYPPeVX22uIt8hW
+         WEBsN4nGjR57MclBQAEeOfwGKuU/KlER8pa/ZDF2CpwpyCfPW25uwrulcUKCKWmwFJBj
+         vNLdykvMdl8MLXra5hprdVW2Eb8a/0EfTP57aHCEe/nzeuFFLfE8rud6llhXnLnNjs3d
+         YEIZhb2A/t4WuOSxmL2l5TWvCoRAAi8NEE5q6+BbreeTU0gw/3RUXXJgKCf8192mqghf
+         bRuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748530329; x=1749135129;
+        h=cc:message-id:subject:date:mime-version:from:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dLJossABenxGn7BajGyHvvmcc4cULi7HZNB7aJRrB3Q=;
+        b=M06l4U8EgxoUggyi5qjLKa9UiLNVQ3xT2BQvr6J4cSytX845SkSRBXNRBIjIau1OO+
+         1fzTMBXOav6z5nQGpIeOR3wGGMIiJn3PX5sRgNwBWpdeaefcUWAPlu6AEp/RL+QcuSjP
+         7nR0/BOpdpsRjDqjpkK35HGgeHwd/8NHi6eS4CQ//T1fDAEvoIJl524hltql+K8OTRFT
+         LdOCDJuJH9iQ81OUrOkHD/GGan5AlwdLTXVK60lGoCSYbA/yJ+YED3AdbKzsTUDgzHil
+         6WlYQjFeE5AWGYIO8hzbGcOsFt1rVtb+aFJkYXxy1NAapKvspHB2+pPFmXwGCsO3G3qG
+         +p7g==
+X-Forwarded-Encrypted: i=1; AJvYcCWzCshW804kVRiQcDcTYMBr1chPPopink5a1USE2i2eNtDfhddezD0zXnnD9FUva7dzG39QNKLv6Xtp@edu.unito.it
+X-Gm-Message-State: AOJu0YzS4ztQvsbrzex5icUkxiRzB52Sqx3bSL3NZmIdlqBDvGWKFz4O
+	RzrA7d42A/6TO/6X4Q+4TMYkN5E3vxYLurrN8dUrhP8ufmbUUQaPC/m5MSFqSTz3vT0S0A==
+X-Gm-Gg: ASbGnctujO1HjYV+33x5e0abM941l4TTEC4XRufhYxhf07RhriKug9i/h7tAd3O5j8h
+	A/e49V6mNtCfzs70tqkkVS97pyJiODOxsJeBn8Tl7cVsSdjL7Ds3DeUqR4A5fDDtZEj2gteZkDF
+	Db4I7C125qVAE74sdkv5yC7OL1UlmQmz/d3hGJ6+pvLoBHvG3UfA6SZdU+RqLVb7fk/medYOqWX
+	k3VLgJeTBPYWA3mLPj7LodPcNlbOCtORLT3CjEJ2YEdqucACTQemxoGSDr543WuLtkZucMXrCwW
+	Du7ybg27XbyY5cg2Of9asQpPk1ny5zzJ4pH0MEf+A/O8RQ/2cDoCz+o5mZ4GAICdaz7LAUn6vMf
+	gbjyqvBipLZOGxSo/B8OHZDmzkNkf5g==
+X-Google-Smtp-Source: AGHT+IEW/gL7LC8wjV/qhPgkyJdaSR/HddsqhLNMHIN14GPcLEJk7fi438EOVTnWVpkKOJry/sx5PQ==
+X-Received: by 2002:a17:907:961f:b0:ad8:9257:5733 with SMTP id a640c23a62f3a-ad8925759e7mr875729966b.20.1748530329372;
+        Thu, 29 May 2025 07:52:09 -0700 (PDT)
+Return-Path: <luigi.dicaro@unito.it>
+Received: from smtpclient.apple ([130.192.98.147])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ada5dd04586sm155699166b.98.2025.05.29.07.52.08
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 29 May 2025 07:52:08 -0700 (PDT)
+From: Luigi Di Caro <luigi.dicaro@unito.it>
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_290E625D-6A12-440A-BEDD-487BDC1D3295";
+	protocol="application/pkcs7-signature";
+	micalg=sha-256
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3776.700.51\))
+Date: Thu, 29 May 2025 16:51:57 +0200
+Subject: Appello TLN (terza parte)
+Message-Id: <81B6FC0F-27A4-45EC-A6C4-123507C3FFEE@unito.it>
+Cc: Luigi Di Caro <luigi.dicaro@unito.it>
+X-Mailer: Apple Mail (2.3776.700.51)
+
+
+--Apple-Mail=_290E625D-6A12-440A-BEDD-487BDC1D3295
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_34ED87E0-D355-43EF-833F-9C7856A69FEC"
+
+
+--Apple-Mail=_34ED87E0-D355-43EF-833F-9C7856A69FEC
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+Buongiorno,
+
+Ricevi questa email in quanto =E2=80=9Ccalendarizzato=E2=80=9D per =
+l=E2=80=99appello di TLN (terza parte) nel giorno 17 Giugno 2025. =
+L=E2=80=99orario =C3=A8 ancora in fase di definizione, in ogni caso =
+verr=C3=A0 utilizzata tutta la giornata.
+
+Ho cercato di mantenere le vostre preferenze, ma ho dovuto ridurre le =
+date di Giugno e sdoppiare quella di Luglio. Ho utilizzato il criterio =
+first-in-first-out. Detto ci=C3=B2, in caso di problemi, contattatemi e =
+vedremo di trovare una soluzione.
+
+Cordiali saluti
+Luigi Di Caro
+
+
+
+
+
+--Apple-Mail=_34ED87E0-D355-43EF-833F-9C7856A69FEC
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: =
+after-white-space;">Buongiorno,<div><br></div><div>Ricevi questa email =
+in quanto =E2=80=9Ccalendarizzato=E2=80=9D per l=E2=80=99appello di TLN =
+(terza parte) nel giorno <b>17 Giugno 2025</b>. L=E2=80=99orario =C3=A8 =
+ancora in fase di definizione, in ogni caso verr=C3=A0 utilizzata tutta =
+la giornata.</div><div><br></div><div>Ho cercato di mantenere le vostre =
+preferenze, ma ho dovuto ridurre le date di Giugno e sdoppiare quella di =
+Luglio. Ho utilizzato il criterio first-in-first-out. Detto ci=C3=B2, in =
+caso di problemi, contattatemi e vedremo di trovare una =
+soluzione.</div><div><br></div><div>Cordiali saluti</div><div>Luigi Di =
+Caro</div><div><br></div><div><br></div><div><br></div><div><br></div></bo=
+dy></html>=
+
+--Apple-Mail=_34ED87E0-D355-43EF-833F-9C7856A69FEC--
+
+--Apple-Mail=_290E625D-6A12-440A-BEDD-487BDC1D3295
+Content-Disposition: attachment;
+	filename=smime.p7s
+Content-Type: application/pkcs7-signature;
+	name=smime.p7s
+Content-Transfer-Encoding: base64
+
+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
+--Apple-Mail=_290E625D-6A12-440A-BEDD-487BDC1D3295--

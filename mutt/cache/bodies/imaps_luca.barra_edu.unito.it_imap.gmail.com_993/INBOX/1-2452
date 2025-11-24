@@ -1,0 +1,147 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:511a:0:b0:326:dd0e:fb84 with SMTP id f26csp169151ljb;
+        Sun, 11 May 2025 00:35:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFLzXhFwdqnJTpGBgKQw0x9K2fyOv+KFSpfkdHijbcwDfztDiu58p5Cu0UxeNiyPgIMOmjd
+X-Received: by 2002:a05:6402:35cd:b0:5fd:1a46:a7d7 with SMTP id 4fb4d7f45d1cf-5fd1a46ac13mr848696a12.3.1746948913167;
+        Sun, 11 May 2025 00:35:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1746948913; cv=none;
+        d=google.com; s=arc-20240605;
+        b=DYqPQAalhL+SanF5GV0EWjlMLGtHY8IRPt544hH+5tBJ/zQoQkUQmdvBJhol9lY6iD
+         s7umB5s365wr8mdse39QGr8i8g03d/yHW30VUkjjGmefAYejl8UAQxZP8PeMZKpAot6B
+         gv3MlsThYq++P1FeoxjXuCf3uhPcWuPg4Oy8T8i831MHZTGCfVeyIStjJuorddRLp5Fz
+         1PFvsGKqNztbDe8smjDQMYPn0xqin/RhiFR4V6Ck8up9fXuzVx4h5X+/hjh17EqtcLk4
+         Bc11wPm302URWorr3n4KWw0KAFJRB17UH0a0pXBah/1WEKnzRhetMI1LvSuuWCV7DKzH
+         lkyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=UFv3CF7a9aY6njL1rpuLbaTiCaq7SxlrjXJKxEl8a0E=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=kwCq8zjzK/tT7OQty4QfrUKRQem4jN1CllADpmNMAN1CNixV06HA60pcE82qhohRlZ
+         S6Pg2X5tZeTbdD02oAg3yst89DC6/G41/n02hMMz8JapdkGrz/9edV7qxeLvRps2dGI7
+         UxIbmQBO3e4NNlG2DdVc/DyYt2CqLyRrnzyrARb7jrPRfFlXeCx//RVr8F74MRXitwuE
+         gvHEUfcwgLX4uQRS61yDlJOYNpsCl7uETqCUZnH8Ycnyc/GVLM975CKblbzwJfWXzgix
+         +91pyKMQ0I8Y7k0qHBr4GiVeDgcmzidL3iiUZvcntgrCtJnTDjnhdV0W3pmxpxaHjrEI
+         oFyw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-5fd16c36d60si1510002a12.131.2025.05.11.00.35.12
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 May 2025 00:35:13 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 54B7ZCna3513265
+	for <luca.barra@edu.unito.it>; Sun, 11 May 2025 09:35:12 +0200
+Date: Sun, 11 May 2025 09:35:12 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Baroglio Cristina (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: SisInt2425: Compito per la lezione di domani (12 maggio)
+Message-ID: <a3f36e208045c8b812aa8747b0e03b614114d140918c456ebde352916705c826@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7702@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7702
+X-Course-Id: 3092
+X-Course-Name: Sistemi Intelligenti
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: SisInt2425: Compito per la lezione di domani (12 maggio)
+Thread-Index: a3f36e208045c8b812aa8747b0e0
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_bZCtAWlUdZZEtrcujx5Vz44fuuoEXDYZMAcMOkeb4"
+
+This is a multi-part message in MIME format.
+
+--b1_bZCtAWlUdZZEtrcujx5Vz44fuuoEXDYZMAcMOkeb4
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SisInt2425 -> Forums -> Annunci -> Compito per la lezione di domani (12
+maggio)
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44559#p72291
+Compito per la lezione di domani (12 maggio)
+by Baroglio Cristina - Sunday, 11 May 2025, 9:33 AM
+---------------------------------------------------------------------
+Buongiorno,
+
+chiedo scusa per lo scarso preavviso ma vorrei fare un esperimento. Chi
+viene a lezione domani, per cortesia, porti il disegno o la foto (stampata
+o ritagliata, a colori o bianco e nero non importa) di un fiore di propria
+scelta senza mettersi d'accordo con nessuno. L'importante =C3=A8 che il fog=
+lio
+sia di piccole dimensioni (un paio di centimetri) perch=C3=A9 dovremo compo=
+rli
+in una sola figura. Quando arrivo mi date i vostri foglietti.Chi lo
+desidera alla fine della lezione potr=C3=A0 riprendersi il suo foglietto.
+
+Grazie,
+
+Cristina Baroglio
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SisInt2425.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092
+
+--b1_bZCtAWlUdZZEtrcujx5Vz44fuuoEXDYZMAcMOkeb4
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3092">SisInt2425</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3092">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+702">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://i=
+nformatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44559">Compito per la=
+ lezione di domani (12 maggio)</a>=0A</div>=0A=0A<table border=3D"0" cellpa=
+dding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"heade=
+r">=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=0A   =
+         <a href=3D"https://informatica.i-learn.unito.it/user/view.php?id=
+=3D37&amp;course=3D3092" class=3D"d-inline-block aabtn"><img src=3D"https:/=
+/informatica.i-learn.unito.it/pluginfile.php/16311/user/icon/lambda/f2?rev=
+=3D1" class=3D"userpicture" width=3D"35" height=3D"35" alt=3D"" /></a>=0A  =
+      </td>=0A        <td class=3D"topic starter">=0A            <div class=
+=3D"subject">=0A                Compito per la lezione di domani (12 maggio=
+)=0A            </div>=0A            <div class=3D"author">=0A             =
+   by <a target=3D'_blank' href=3D'https://informatica.i-learn.unito.it/use=
+r/view.php?id=3D37&course=3D3092'>Baroglio Cristina</a> - Sunday, 11 May 20=
+25, 9:33 AM=0A            </div>=0A        </td>=0A    </tr>=0A    <tr>=0A =
+       <td class=3D"left side" valign=3D"top">=0A                &nbsp;=0A =
+       </td>=0A        <td class=3D"content">=0A            <p dir=3D"ltr" =
+style=3D"text-align:left;">Buongiorno,</p><p dir=3D"ltr" style=3D"text-alig=
+n:left;">chiedo scusa per lo scarso preavviso ma vorrei fare un esperimento=
+. Chi viene a lezione domani, per cortesia, porti il disegno o la foto (sta=
+mpata o ritagliata, a colori o bianco e nero non importa) di un fiore di pr=
+opria scelta senza mettersi d'accordo con nessuno. L'importante =C3=A8 che =
+il foglio sia di piccole dimensioni (un paio di centimetri) perch=C3=A9 dov=
+remo comporli in una sola figura. Quando arrivo mi date i vostri foglietti.=
+Chi lo desidera alla fine della lezione potr=C3=A0 riprendersi il suo fogli=
+etto.</p><p dir=3D"ltr" style=3D"text-align:left;">Grazie,</p><p dir=3D"ltr=
+" style=3D"text-align:left;">Cristina Baroglio</p>=0A=0A            <div cl=
+ass=3D"commands">=0A            </div>=0A=0A            <div class=3D"link"=
+>=0A                <a target=3D"_blank" href=3D"https://informatica.i-lear=
+n.unito.it/mod/forum/discuss.php?d=3D44559#p72291">=0A                    S=
+ee this post in context=0A                </a>=0A            </div>=0A     =
+   </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsub=
+scribelink">=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/foru=
+m/index.php?id=3D3092">Change your forum digest preferences</a>=0A</div>
+
+--b1_bZCtAWlUdZZEtrcujx5Vz44fuuoEXDYZMAcMOkeb4--
+

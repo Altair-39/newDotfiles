@@ -1,0 +1,178 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:319:b0:309:27f0:106e with SMTP id a25csp1086678ljp;
+        Wed, 19 Feb 2025 07:48:17 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCUUGaBZ77AOmTiidE1Xb4eeMr4RN65WBIU7+JUBm8qjOB0mevTH6HuZfjWXuN7vWPHOKZnDpIZ1j3pB@edu.unito.it
+X-Received: by 2002:a17:906:f5a2:b0:aa6:9407:34e4 with SMTP id a640c23a62f3a-abb70de37f6mr681228166b.12.1739980096864;
+        Wed, 19 Feb 2025 07:48:16 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1739980096; cv=none;
+        d=google.com; s=arc-20240605;
+        b=VhVZvtdXVNjsmsuYMz8ck4Wxc9QqNrl5qPyFXv4rUqrnlDw6HYMRErU2dq4G8/ioIB
+         uq/UaUNQVXGKrBrjNsJsp7ez69Wti+VuLFTe1GARCUc5NdpHE9AyT8peROYN3ZoOmozj
+         yXXQW8/egCMBCD0F2Zy4SMkr70i7onrc3Y8p+z1G/V4+0++AtULH6RpMbES2Bkd9jCq5
+         FZvz1dtnvtH/1K/5aAUM65a4Vnp6p5B+NbNxHVLErFSkP/Q+rxA0Ppc3TbFwHntbZcAw
+         55xbQNVzIktZcq5SKuW19Krk5TMSKpvS/2UMyrZnVKQby4uJHxy4ezIl7qpfCHkSzhoQ
+         TGXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=HIeiDNvmF3DdOXw3sOMbuVGO0qS/ZgWKJEsS3F2IIgk=;
+        fh=bdRh7KP3gP/ye1OK4c5Tf6jXpdvX1pjdgKFwMu0BKVc=;
+        b=N5vbd8opATTMdBwkxk0uj0eXlvMQZWArRhyDAAoZIHnu5bNDIrb17Ol3bjXtI6EMKH
+         1i3gG0rpmOQJsOW8IeRhDuZffh189mZwQR00DF+GBUsFaK7/7ipql0FR9fJ6ngyvX22x
+         YX1WcnrV8q23G60fDA7QoeQuogUJTQDQbl53ymvwQ2wlOsGx66bVh1XFbK+TFYEkPdPH
+         OEyRek4e4DOKCZMaUObb+qVLmEnFE+wkiGtBYDMy+h+Vsi1GEhx3pYie/qS2ASID+bQm
+         8IXABAD5bdaW42Rj7Ff9bV9k3YvrTZ3Mg42PDw39mJJmmeMIv+OAqFtG0Z/FxoupJN8S
+         XIuA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=oafGBUOJ;
+       spf=pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.inclusione@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <tutorato.inclusione@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-abb8f791a5bsor444442266b.4.2025.02.19.07.48.16
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Wed, 19 Feb 2025 07:48:16 -0800 (PST)
+Received-SPF: pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=oafGBUOJ;
+       spf=pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.inclusione@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1739980096; x=1740584896; darn=edu.unito.it;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=HIeiDNvmF3DdOXw3sOMbuVGO0qS/ZgWKJEsS3F2IIgk=;
+        b=oafGBUOJlUtJJZBZpFOZCXEfJgQPJSPQFWusHmkt+gj5eJZWHWJvdEOOt+FFyuD0tM
+         dfVNsWLsZyOSgg/oxhfh6K+vWCBnY3Ql4aFgOZGwogHvSnMXTNiiHM6fY1emcv9Nr5Tj
+         m7rS94WAedx8otQFXJVT+2L8WNPaB2M9cv9kEPG1NWUaHtXZeLI2pNHPSnodiXBc8X8m
+         pSTO2FUlD+J2QrCWr7nDMQa+AXNOF3a+fcvXyb9xtqzSKsOb28d/Hase7/Pgou2Mn5B8
+         6VF60yAQ5ToBopOJFi5kYptKnMqTKaXhth87xphynmzZFruYvjip/VZWUYXRVQBy+stJ
+         fQ/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739980096; x=1740584896;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HIeiDNvmF3DdOXw3sOMbuVGO0qS/ZgWKJEsS3F2IIgk=;
+        b=Fp3aTE4tmsL4iTtMZwwxAn0EoIQMd/B8SLfCPOz4cFTOjSG1NjoL9mHXwe2AcUr2hH
+         9Sc1sL288ri3sLsnxQHNIL72idrh939DMQ6JVNcPpuar6cGiwdwesu2/nzrj1gJitFcw
+         BTR1YRJlVZ1OCqDrn9WgM/g56wRPLkwPh2ywP4kuHHp/AfuLnC+11NEhIFPalQKgreGG
+         Kkts0v9I/FW3ECTe9Fqao27GRqYVOUZCU/v+52GTtymqVK2pa5cgs9td+qQJi8WAOA65
+         KqVxTWTUvurhpxSP9FPTiVVr7FY/ivNqXl4sPgqKWvJjH5su9L+OrbfXaNVn1WBF7VeV
+         kbqg==
+X-Forwarded-Encrypted: i=1; AJvYcCUoz9XVssdHGm1mjn8bUfMssIu40MOlPhagTnHmo1UBDTaNceKIU+DYjT80hS34PoeZDZEBejANxraA@edu.unito.it
+X-Gm-Message-State: AOJu0YzlsllINp9hRlH2JL85TehMumSRDvfyyaz2v2gtNG5Rd6+1kwu0
+	LNYce6zcMOPCUqvbZeh8WeinSnSa7LVdXfckyQycuzc69svzgcla7UdAph6MQCYLGZCS6JvXJuV
+	71VsZFCGBp1XG+3sD6g46UTDikzRPJJLx8HDhscUa
+X-Gm-Gg: ASbGncsv1DyNiaVTeluCGKKW8JrSE/+6vlvmADD7ocTGVxp8uygT+5qBPgfX0SbWbUu
+	kItKTELYegzCjsJxCOy5s5GzYAPFkW31/USh2jcRb9D2wCFhuCuNGBKNSMODrUJU6q79M+681qA
+	==
+X-Google-Smtp-Source: AGHT+IEzUAlrwG5Gb44bH0LubtAesPZpBP3QLYwF7WAPg3U8DJgEXRjmH3Ew0J89v7xC7t9ahr+dFQ/l59wev3hYPoU=
+X-Received: by 2002:a17:906:3148:b0:ab7:e41d:34b6 with SMTP id
+ a640c23a62f3a-abbccf0839bmr326123866b.28.1739980095882; Wed, 19 Feb 2025
+ 07:48:15 -0800 (PST)
+MIME-Version: 1.0
+From: Tutorato Disabili <tutorato.inclusione@unito.it>
+Date: Wed, 19 Feb 2025 16:48:00 +0100
+X-Gm-Features: AWEUYZlrKHfa-oR_lx8yeu-4bOHL_iCHSv7V8R0LyzOrl86Xz_ydQ9myT9x5U9M
+Message-ID: <CAOKF-fX+61OB=AKrgKstA4QbKStxn6p7Dnp=of6Jo-BdJWuGUA@mail.gmail.com>
+Subject: Richiesta supporto esame in PRESENZA
+To: undisclosed-recipients:;
+Content-Type: multipart/alternative; boundary="000000000000881d46062e80afcb"
+Bcc: luca.barra@edu.unito.it
+
+--000000000000881d46062e80afcb
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Gentile tutor,
+
+in seguito alla richiesta di un/a nostro/a studente/essa, con la presente
+Le chiediamo disponibilit=C3=A0 per un'*attivit=C3=A0 di supporto alla
+lettura/scrittura* per l'esame di *"*Elementi di propedeutica alla
+biochimica e biochimica*'"* che si terr=C3=A0 il 27/2/25 alle ore 9 presso
+Campus Samev(Grugliasco)
+
+La invitiamo a comunicare *quanto prima* le sue disponibilit=C3=A0 risponde=
+ndo a
+questa email. Si precisa che la ricezione di tale email, anche in caso di
+una sua risposta affermativa, non garantisce l'assegnazione dell'incarico,
+ma permette di essere tenuti in considerazione per l'assegnazione
+dell'attivit=C3=A0.
+*Le attivit=C3=A0 di questo tipo non richiedono competenze nella specifica
+materia*
+
+*Segnalando l'urgenza*, si porgono
+Cordiali saluti
+
+
+
+Cordiali saluti
+Ufficio Studenti con Disabilit=C3=A0 e DSA
+Direzione Didattica Servizi agli Studenti
+Via Verdi 25 - 10124 Torino
+tel. 011.6704284
+mail tutorato.inclusione@unito.it <ufficio.dsa@unito.it>
+
+--000000000000881d46062e80afcb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div dir=3D"ltr"><div class=3D"gmail_default" style=
+=3D"font-family:verdana,sans-serif"><div dir=3D"ltr"><div class=3D"gmail_de=
+fault"><div dir=3D"ltr"><div class=3D"gmail_default"><div dir=3D"ltr"><div =
+class=3D"gmail_default"><div dir=3D"ltr"><div class=3D"gmail_default"><div =
+dir=3D"ltr"><font face=3D"verdana, sans-serif">Gentile tutor,<br><br>in seg=
+uito alla richiesta=C2=A0di=C2=A0un/a nostro/a studente/essa, con la presen=
+te Le chiediamo disponibilit=C3=A0 per un&#39;<u>attivit=C3=A0=C2=A0di=C2=
+=A0supporto=C2=A0alla lettura/scrittura</u>=C2=A0per l&#39;esame=C2=A0di=C2=
+=A0<b>&quot;</b></font>Elementi di propedeutica alla biochimica e biochimic=
+a<font face=3D"verdana, sans-serif"><b>&#39;&quot;</b>=C2=A0che si terr=C3=
+=A0 il=C2=A0</font>27/2/25<font face=3D"verdana, sans-serif"><big><b>=C2=A0=
+</b>alle=C2=A0</big></font>ore 9 presso Campus Samev(Grugliasco)=C2=A0<div>=
+<font face=3D"verdana, sans-serif"><b><br></b>La invitiamo a comunicare=C2=
+=A0<u><b>quanto prima</b></u>=C2=A0le sue disponibilit=C3=A0 rispondendo a =
+questa email.=C2=A0</font>Si precisa che la ricezione di tale email, anche =
+in caso di una sua risposta affermativa, non garantisce l&#39;assegnazione =
+dell&#39;incarico, ma permette di essere tenuti in considerazione per l&#39=
+;assegnazione dell&#39;attivit=C3=A0.</div><div><b><u>Le attivit=C3=A0 di q=
+uesto tipo non richiedono competenze nella specifica materia</u></b><br></d=
+iv><div><div><u><br></u></div><div><u>Segnalando l&#39;urgenza</u>, si porg=
+ono</div></div></div></div></div></div><div><div dir=3D"ltr"><div dir=3D"lt=
+r"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><=
+div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=
+=3D"ltr"><div><div dir=3D"ltr"><div><div><font color=3D"#000000"><font colo=
+r=3D"#666666"><font color=3D"#000000" face=3D"verdana, sans-serif">Cordiali=
+ saluti</font></font></font></div><div><font color=3D"#000000"><font color=
+=3D"#666666"><font color=3D"#000000" face=3D"verdana, sans-serif"><br></fon=
+t></font></font></div><div dir=3D"ltr"><br></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div><div><div dir=3D"ltr" class=3D"g=
+mail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><br></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div><div><div dir=3D"ltr" class=3D"gmail_signature"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div><div><div dir=3D"ltr" class=3D"gmail_signature"=
+ data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div><font face=3D"verdana, sans-serif" style=3D"colo=
+r:rgb(34,34,34)">Cordiali saluti</font></div><div dir=3D"ltr"><font face=3D=
+"verdana, sans-serif" style=3D"color:rgb(34,34,34)">Ufficio Studenti con Di=
+sabilit=C3=A0 e DSA</font><div style=3D"color:rgb(34,34,34)"><font face=3D"=
+verdana, sans-serif" color=3D"#666666">Direzione Didattica Servizi agli Stu=
+denti</font></div><div style=3D"color:rgb(34,34,34)"><span style=3D"color:r=
+gb(102,102,102);font-family:verdana,sans-serif">Via Verdi 25 - 10124 Torino=
+</span><br></div><div style=3D"color:rgb(34,34,34)"><font face=3D"verdana, =
+sans-serif" color=3D"#666666">tel. 011.6704284</font></div><div style=3D"co=
+lor:rgb(34,34,34)"><font face=3D"verdana, sans-serif"><font color=3D"#66666=
+6">mail</font>=C2=A0</font><a href=3D"mailto:ufficio.dsa@unito.it" style=3D=
+"color:rgb(17,85,204);font-family:verdana,sans-serif;font-size:12.8px" targ=
+et=3D"_blank">tutorato.inclusione@unito.it</a></div></div></div></div></div=
+></div></div></div></div></div></div></div></div>
+
+--000000000000881d46062e80afcb--

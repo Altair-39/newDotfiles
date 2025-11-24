@@ -1,0 +1,391 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:312a:b0:30c:2dd2:a8c1 with SMTP id a10csp532408ljd;
+        Wed, 30 Apr 2025 00:45:45 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCXm+l1HfT2/Zu5EQUugGQzc2+puJ8NhqrKEeixEZYsf6YP/A09JOpAodBjjEw6sma+/foAbMXAzZy5t@edu.unito.it
+X-Google-Smtp-Source: AGHT+IGvRo+AnR3S0dvbEnmVU5bXpU2FQdaBdTiD9XzijraaGcFsDosHY1DppnbVG5jwi5ILx5Zv
+X-Received: by 2002:a05:6402:350f:b0:5e5:e98:1a28 with SMTP id 4fb4d7f45d1cf-5f8af0bbefemr463845a12.8.1745999145607;
+        Wed, 30 Apr 2025 00:45:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1745999145; cv=none;
+        d=google.com; s=arc-20240605;
+        b=PYW08cZCzWAeOUY7G61xgXWVLlPia0r7tgJEemT42S3ILXpY72Wkqc5HkIwXQkxTPi
+         aQtAxGMErsFfDbJsvxG4dTz3e6Vlsv4nfm/aONTD6fNYUVJR9N4gNpzS0AvvAy5CNVPx
+         W9zxPXhlL4DwTqQ6egl5lK+RHDb/5bnPC7L/xUEDu0Jf165jzgAVKB82ccvsEQy+Oz18
+         xl9Pme4PadaOA9h5J1VO3gWAF+vVprLhqK3KCCIkDhf3TM6tfIZquPHNOhD+nAdqN7ag
+         iODmDx98Ks21qGX3RuSm44qRTgGJpJhp6LuUm1ivHfrZCv1OUlXDn7LDXbnMMqea2vwL
+         021Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:dkim-signature:dkim-filter;
+        bh=awkelJVFkRTbOgKP6MgmCk2ZsGsszhIy9Y4my/8dt4o=;
+        fh=zEcUynQ9SYBs+JOzVjt/acKoDHXnPjzHJR7Tl0RpmNk=;
+        b=hAQcd27hbL8V52a2NLn4WYBefy3b4sHEsvtnEKm9zsKDCsn5Un8clFMOmWa1nUSugJ
+         FYAPr+HNeuwXv3IMW4YOnaTV9JiJEbSO42nj44VvTTXE6WUTVmtC+sfQOo3wymHTteZA
+         nEwDGt+FdZIJzqbrhDrQZKfTcAWGVH4w5VrYdfVfVh5TBz/UQB+U7E8CHJtNvEP1uawc
+         KraE4JRgErzVcTjt/eKyeKOuOz/EfyTYfDQK4D960XeAuC+c88uojUqrxP1QeIJQkF/u
+         A1AEtkbjNX5xC59LFzwt91J5peb7K91aasW7TDw4fojsNAmKDViyunXdWGL3nyBXl5VC
+         tLAg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@di.unito.it header.s=dipinfo2011 header.b=oC8xJ5Hv;
+       spf=pass (google.com: domain of pensa@di.unito.it designates 130.192.156.1 as permitted sender) smtp.mailfrom=pensa@di.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=di.unito.it
+Return-Path: <pensa@di.unito.it>
+Received: from mail.di.unito.it (pianeta.di.unito.it. [130.192.156.1])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-5f72a21badcsi7212922a12.270.2025.04.30.00.45.45
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 30 Apr 2025 00:45:45 -0700 (PDT)
+Received-SPF: pass (google.com: domain of pensa@di.unito.it designates 130.192.156.1 as permitted sender) client-ip=130.192.156.1;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@di.unito.it header.s=dipinfo2011 header.b=oC8xJ5Hv;
+       spf=pass (google.com: domain of pensa@di.unito.it designates 130.192.156.1 as permitted sender) smtp.mailfrom=pensa@di.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=di.unito.it
+X-MailScanner-From: pensa@di.unito.it
+X-SpamCheck: not spam, SpamAssassin (not cached, score=-101.138, required 3,
+	autolearn=not spam, ALL_TRUSTED -1.00, AUTHENTICATEDUSER -100.00,
+	AWL 0.25, BAYES_00 -1.90, HTML_MESSAGE 0.00, MIME_HTML_ONLY 0.72,
+	MIME_HTML_ONLY_MULTI 0.00, MIME_QP_LONG_LINE 0.00,
+	MPART_ALT_DIFF 0.79)
+X-AntiVirus: Email Clean
+X-dipinfo-MailScanner-ID: 53U7jcDe009493
+X-dipinfo-MailScanner-Information: Please contact Department of Computer Science technical staff for more information
+Received: from mail.di.unito.it ([130.192.156.1])
+         by mail.di.unito.it (INFO-DIP) with ESMTPSA id 53U7jcDe009493
+	 (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO AuthenticatedUser=pensa );
+	 Wed, 30 Apr 2025 09:45:39 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.di.unito.it 53U7jcDe009493
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=di.unito.it;
+	s=dipinfo2011; t=1745999140;
+	bh=Rz0SUT5J4ImOoSiuxPnVYTtmZW0j1ne0dYVb98UMMkQ=;
+	h=From:Subject:Date:References:Cc:In-Reply-To:To;
+	b=oC8xJ5HvOAK+O6OnpfySRcZBeslTMXFAa+WE/CXEvMYEmGoVL+YrC/wtSXWCq38Dz
+	 rv6uDPQky98D+9CdQ7SP2svNKp5/ap8o3V8xeQcHr67OJUQ9AYXeBWH4z9akJQ1Pma
+	 wgjJev2LCtpjk4qqHvmOv8l1uUsqDmGKz9yFEPeA=
+Content-Type: multipart/alternative; boundary=Apple-Mail-A0448B58-40E5-428E-8680-DE88427086C2
+Content-Transfer-Encoding: 7bit
+From: "Ruggero G. Pensa" <pensa@di.unito.it>
+Mime-Version: 1.0 (1.0)
+Subject: Re: Lab basi di dati
+Date: Wed, 30 Apr 2025 09:45:28 +0200
+Message-Id: <0AA1D119-981D-4F4B-97A1-6FE37D2FE489@di.unito.it>
+References: <CAFf2f7ba6n3tSZQEVxhpACb=pYZcONENt3wWMSqoGdh8yc-dQA@mail.gmail.com>
+Cc: Gianluca Rizzo <gianluca.rizzo@hevs.ch>,
+        Luca Barra <luca.barra@edu.unito.it>,
+        Fabiana Vernero <fabiana.vernero@unito.it>
+In-Reply-To: <CAFf2f7ba6n3tSZQEVxhpACb=pYZcONENt3wWMSqoGdh8yc-dQA@mail.gmail.com>
+To: Anselma Luca <luca.anselma@unito.it>
+X-Mailer: iPhone Mail (22E252)
+
+
+--Apple-Mail-A0448B58-40E5-428E-8680-DE88427086C2
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Ciao, non saprei.<div>Da me non mi sono sta=
+ti segnalati problemi, a parte quelli noti relativi alla connessione Wi-Fi c=
+he non permette il tunneling ssh su service.&nbsp;</div><div><br><div>&nbsp;=
+ &nbsp; &nbsp; Ruggero<br id=3D"lineBreakAtBeginningOfSignature"><div dir=3D=
+"ltr"><div><span style=3D"background-color: rgba(255, 255, 255, 0); font-siz=
+e: 17pt;">--&nbsp;</span></div><span style=3D"background-color: rgba(255, 25=
+5, 255, 0);">Ruggero G. Pensa, PhD<br>Associate professor</span><div><span s=
+tyle=3D"background-color: rgba(255, 255, 255, 0);">Deputy head for teaching<=
+br>Dept. of Computer Science<br>University of Torino, Italy<br>Phone:&nbsp;<=
+span dir=3D"ltr">+39-011-670-6798</span><br>E-mail:&nbsp;<span dir=3D"ltr">p=
+ensa@di.unito.it</span><br>URL:&nbsp;<span dir=3D"ltr">http://www.di.unito.i=
+t/~pensa</span></span><div><span style=3D"background-color: rgba(255, 255, 2=
+55, 0);"><span dir=3D"ltr"><br></span></span></div></div></div><div dir=3D"l=
+tr"><br><blockquote type=3D"cite">Il giorno 30 apr 2025, alle ore 09:33, Luc=
+a Anselma &lt;luca.anselma@unito.it&gt; ha scritto:<br><br></blockquote></di=
+v><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div>=
+Il server del corso di studi per me serve solo se hanno problemi a installar=
+e il server in locale.</div><div>Forse potremmo modificare le istruzioni ten=
+endo solo due configurazioni:</div><div>1) installare sia server che client i=
+n locale</div><div>2) usare il client web della intranet per collegarsi al s=
+erver del corso di studi.</div><div>E cancelliamo le parti pi=C3=B9 complica=
+te di collegarsi dal client in locale al server del corso di studi.</div><di=
+v><br></div><div>Cosa ne dite?</div><div><br></div><br></div><br><div class=3D=
+"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On=
+ Tue, Apr 29, 2025 at 11:01=E2=80=AFAM Rizzo Gianluca &lt;<a href=3D"mailto:=
+gianluca.rizzo@hevs.ch">gianluca.rizzo@hevs.ch</a>&gt; wrote:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex"><div class=3D"msg188890967674051=
+6818">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Ho visto molti studenti bloccarsi nel tentativo di usare PGAdmin. Alcuni anc=
+he dopo qualche settimane ancora non erano in grado di collegarsi ed usarlo.=
+ Si confondevano soesso con le password ed i nomi dei server, e non capivano=
+ perche' collegarsi al server
+ di laboratorio piuttosto che installare tutto sul loro PC.&nbsp;</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Poi molti vengono a lezione e fanno esercizi solo con il loro telefonino o t=
+ablet.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Non chiedetemi perche' lo facciano, ma se facilitiamo loro il lavoro anche c=
+on quei mezzi, tanto di guadagnato secondo me.&nbsp;</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+G</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+&nbsp;</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div id=3D"m_1888909676740516818Signature" style=3D"color:inherit">
+<div style=3D"direction:ltr;font-size:12pt">Dr. Gianluca Rizzo, PhD</div>
+<div style=3D"direction:ltr;font-size:12pt">Connected Experience Lab (ConExL=
+ab) - Institute of Information Systems (IIG)</div>
+<div style=3D"direction:ltr;font-size:12pt">University of Applied Sciences o=
+f Western Switzerland - HES SO Valais</div>
+<div style=3D"direction:ltr;font-family:Calibri,Arial,Helvetica,sans-serif;f=
+ont-size:12pt;color:rgb(17,85,204)">
+<a href=3D"mailto:gianluca.rizzo@hevs.ch" style=3D"color:rgb(17,85,204)" tar=
+get=3D"_blank">gianluca.rizzo@hevs.ch</a></div>
+<div style=3D"font-size:12pt;color:rgb(0,0,0)">
+<span style=3D"background-color:rgba(0,0,0,0)">Associate Professor, Dipartim=
+ento di Informatica - Universita' di Torino, Italy</span></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;=
+color:rgb(0,0,0)">
+<a href=3D"mailto:gianluca.rizzo@unifg.it" title=3D"gianluca.rizzo@unifg.it"=
+ target=3D"_blank">gianluca.rizzo@unito.it</a></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;=
+color:rgb(0,0,0)">
+<a href=3D"https://rb.gy/s8ku9a" title=3D"https://rb.gy/s8ku9a" target=3D"_b=
+lank">Whatsapp chat/call</a></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;=
+color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-size:12pt">=E2=80=8B</div>
+</div>
+<div id=3D"m_1888909676740516818appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_1888909676740516818divRplyFwdMsg" dir=3D"ltr"><font face=3D"Cal=
+ibri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>Da:</b> Luca=
+ Anselma &lt;<a href=3D"mailto:luca.anselma@unito.it" target=3D"_blank">luca=
+.anselma@unito.it</a>&gt;<br>
+<b>Inviato:</b> luned=C3=AC 28 aprile 2025 16:32<br>
+<b>A:</b> Rizzo Gianluca &lt;<a href=3D"mailto:gianluca.rizzo@hevs.ch" targe=
+t=3D"_blank">gianluca.rizzo@hevs.ch</a>&gt;<br>
+<b>Cc:</b> Luca Barra &lt;<a href=3D"mailto:luca.barra@edu.unito.it" target=3D=
+"_blank">luca.barra@edu.unito.it</a>&gt;; Fabiana Vernero &lt;<a href=3D"mai=
+lto:fabiana.vernero@unito.it" target=3D"_blank">fabiana.vernero@unito.it</a>=
+&gt;; Ruggero G. Pensa &lt;<a href=3D"mailto:pensa@di.unito.it" target=3D"_b=
+lank">pensa@di.unito.it</a>&gt;<br>
+<b>Oggetto:</b> Re: Lab basi di dati</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">
+<div>L'interfaccia utente di pgAdmin per Android =C3=A8 cos=C3=AC diversa? I=
+n cosa consiste questa intro a pgAdmin: slide, video, ...?</div>
+<br>
+</div>
+<br>
+<div>
+<div dir=3D"ltr">On Mon, Apr 28, 2025 at 3:53=E2=80=AFPM Rizzo Gianluca &lt;=
+<a href=3D"mailto:gianluca.rizzo@hevs.ch" target=3D"_blank">gianluca.rizzo@h=
+evs.ch</a>&gt; wrote:<br>
+</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex">
+<div>
+<div dir=3D"ltr">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Ok, grazie,</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Questa idea di aiutarli ad usare un client Android e' &nbsp;da discutere tra=
+ tutti: Cosa ne pensate?</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+&nbsp;G</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div id=3D"m_1888909676740516818x_m_-6978691482170647367Signature" style=3D"=
+color:inherit">
+<div style=3D"direction:ltr;font-size:12pt">Dr. Gianluca Rizzo, PhD</div>
+<div style=3D"direction:ltr;font-size:12pt">Connected Experience Lab (ConExL=
+ab) - Institute of Information Systems (IIG)</div>
+<div style=3D"direction:ltr;font-size:12pt">University of Applied Sciences o=
+f Western Switzerland - HES SO Valais</div>
+<div style=3D"direction:ltr;font-family:Calibri,Arial,Helvetica,sans-serif;f=
+ont-size:12pt;color:rgb(17,85,204)">
+<a href=3D"mailto:gianluca.rizzo@hevs.ch" id=3D"m_1888909676740516818x_m_-69=
+78691482170647367OWAabe2071d-bb52-0295-7d6b-e24b1f9b48b3" style=3D"color:rgb=
+(17,85,204)" target=3D"_blank">gianluca.rizzo@hevs.ch</a></div>
+<div style=3D"font-size:12pt;color:rgb(0,0,0)"><span style=3D"background-col=
+or:rgba(0,0,0,0)">Associate Professor, Dipartimento di Informatica - Univers=
+ita' di Torino, Italy</span></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;=
+color:rgb(0,0,0)">
+<a href=3D"mailto:gianluca.rizzo@unifg.it" id=3D"m_1888909676740516818x_m_-6=
+978691482170647367OWA1db133a3-50de-823f-e8b1-a140f5332ce3" title=3D"gianluca=
+.rizzo@unifg.it" target=3D"_blank">gianluca.rizzo@unito.it</a></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;=
+color:rgb(0,0,0)">
+<a href=3D"https://rb.gy/s8ku9a" id=3D"m_1888909676740516818x_m_-69786914821=
+70647367OWAff97767d-a1cc-f2b8-0425-2c344c52d068" title=3D"https://rb.gy/s8ku=
+9a" target=3D"_blank">Whatsapp chat/call</a></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;=
+color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-size:12pt">=E2=80=8B</div>
+</div>
+<div id=3D"m_1888909676740516818x_m_-6978691482170647367appendonsend"></div>=
+
+<hr style=3D"display:inline-block;width:98%">
+<div id=3D"m_1888909676740516818x_m_-6978691482170647367divRplyFwdMsg" dir=3D=
+"ltr"><font face=3D"Calibri, sans-serif" color=3D"#000000" style=3D"font-siz=
+e:11pt"><b>Da:</b> Luca Barra &lt;<a href=3D"mailto:luca.barra@edu.unito.it"=
+ target=3D"_blank">luca.barra@edu.unito.it</a>&gt;<br>
+<b>Inviato:</b> domenica 27 aprile 2025 13:00<br>
+<b>A:</b> Rizzo Gianluca &lt;<a href=3D"mailto:gianluca.rizzo@hevs.ch" targe=
+t=3D"_blank">gianluca.rizzo@hevs.ch</a>&gt;<br>
+<b>Oggetto:</b> Re: Lab basi di dati</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div dir=3D"ltr">
+<div>Buongiorno,</div>
+<div>Sono disponibile per la consulenza sul progetto (e eventualmente per du=
+bbi su SQL) l'8, il 15, il 22 e il 29 Maggio dalle 11 alle 13.</div>
+<div>L'intro a PGAdmin =C3=A8 quasi finita, devo solo fare gli ultimi test p=
+er android. Prevedo di finire entro il prossimo weekend.&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;
+<br>
+</div>
+<div>Distinti saluti,</div>
+<div>LB</div>
+</div>
+<br>
+<div>
+<div dir=3D"ltr">On Fri, 25 Apr 2025 at 17:48, Rizzo Gianluca &lt;<a href=3D=
+"mailto:gianluca.rizzo@hevs.ch" target=3D"_blank">gianluca.rizzo@hevs.ch</a>=
+&gt; wrote:<br>
+</div>
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex">
+<div>
+<div dir=3D"ltr">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Ciao Fabiana&nbsp; e Luca.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+@fabiana: come va il corso? Vengono a lezione? Quando pensi di finire il pro=
+gramma?</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Hai gia' qualche feedback sul loro lavoro di progetto?</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+@Luca: hai stabilito le date e gli orari nei quali sarai disponibile per con=
+sulenza sul progetto?</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Fammi sapere quando avrai completato quel lavoro sull intro a PGAdmin.</div>=
+
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Grazie a entrambi e buon weekend,</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+G</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Calib=
+ri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div id=3D"m_1888909676740516818x_m_-6978691482170647367x_m_7423474109655351=
+18Signature" style=3D"color:inherit">
+<div style=3D"direction:ltr;font-size:12pt">Dr. Gianluca Rizzo, PhD</div>
+<div style=3D"direction:ltr;font-size:12pt">Connected Experience Lab (ConExL=
+ab) - Institute of Information Systems (IIG)</div>
+<div style=3D"direction:ltr;font-size:12pt">University of Applied Sciences o=
+f Western Switzerland - HES SO Valais</div>
+<div style=3D"direction:ltr;font-family:Calibri,Arial,Helvetica,sans-serif;f=
+ont-size:12pt;color:rgb(17,85,204)">
+<a href=3D"mailto:gianluca.rizzo@hevs.ch" style=3D"color:rgb(17,85,204)" tar=
+get=3D"_blank">gianluca.rizzo@hevs.ch</a></div>
+<div style=3D"font-size:12pt;color:rgb(0,0,0)"><span style=3D"background-col=
+or:rgba(0,0,0,0)">Associate Professor, Dipartimento di Informatica - Univers=
+ita' di Torino, Italy</span></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;=
+color:rgb(0,0,0)">
+<a href=3D"mailto:gianluca.rizzo@unifg.it" title=3D"gianluca.rizzo@unifg.it"=
+ target=3D"_blank">gianluca.rizzo@unito.it</a></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;=
+color:rgb(0,0,0)">
+<a href=3D"https://rb.gy/s8ku9a" title=3D"https://rb.gy/s8ku9a" target=3D"_b=
+lank">Whatsapp chat/call</a></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;=
+color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-size:12pt">=E2=80=8B</div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+<br>
+<div style=3D"font-size:1.3em">------------------------</div>
+<span style=3D"font-size:small">
+<div><img src=3D"https://web.unito.it/logofirmastu.png" data-unique-identifi=
+er=3D""><br>
+</div>
+Indirizzo istituzionale di posta elettronica degli studenti e dei laureati d=
+ell'Universit=C3=A0 di Torino</span>
+<div><font size=3D"2">Official&nbsp;University of Turin&nbsp;email address&n=
+bsp;for students and graduates&nbsp;</font></div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+
+</div></blockquote></div>
+</div></blockquote></div></div></body></html>=
+
+--Apple-Mail-A0448B58-40E5-428E-8680-DE88427086C2--

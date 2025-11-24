@@ -1,0 +1,178 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:be92:0:b0:32a:7f76:203e with SMTP id a18csp122390ljr;
+        Thu, 19 Jun 2025 00:56:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGZj9Swp7jeZZiRtzT71IANKQW1hs5ii8e2HaiT4uhRaG4ZATcBx3Rnylzetzw88ZxedLxQ
+X-Received: by 2002:a17:907:2d92:b0:ad8:908a:544e with SMTP id a640c23a62f3a-adffae5039bmr377868966b.8.1750319813851;
+        Thu, 19 Jun 2025 00:56:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1750319813; cv=none;
+        d=google.com; s=arc-20240605;
+        b=g7rnMzy/yvW6sNWw+AooPO7EpY0eH0EFbFtTyv22KG8TlQZrBOXWZXUeFBfroDGA+X
+         u4DFCb37OVDAL1JCLoeBQDafi+JvUbwAo5u2k2wSryam7lQizvyYcOFZJ3nrAGoWRqHS
+         t/jvrVl5jbCB+uI58VAF6uQoYmBd0HMGyz89qSPjVB8xW2DxqABLG20xcqiqsrYCnZMF
+         z5MUEveEGKZ9Bhs9MaCtPntX81sh/TEpwU8n3LtxLGsqj5cSInYrMe6Ns2uOi6LzUIwo
+         QyHwMDeQm4HbYOTytKXshfieqSE2drZT05vV2gG1ry8M5Kw6jAwaOqgiV9xjZAeMZlTf
+         WFwA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=istKz/QG8r5N2Ojx6pXbH5aDFXLmD9OjnKnrlijV1EU=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=PiOf2pu810fgi0T4Kvd1XJWal9Q68YLk3+bQpI+yb15fCydZOvMzgvkV9AyAn5+Hog
+         E1ALkQ5aJzAT7pfYODN3EtPF0zbNWa46QswRtbqJYLOD2I/BSy7JoQXpIrG3aWY8ezw6
+         BGUx3pDTM/Xn3oEmFjtxY6gRI4c4W0tHc34+PYJZmyeGNkgOCNPvJF3r03LaqonSnLMK
+         cyFK0F5RFnN6/BjnU9cCfSt+r9Vf81zSputp07IFNTLFpnGOS6YHZSSw67mQN52iJTYM
+         CFL60Cqz0AgrhduajL6K4DtT11myXeFn8sajnRAC3xC1xLu8j5eZzZ3wIOg0l0FsI8ko
+         V0RQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id a640c23a62f3a-adec81c0da2si1122049666b.12.2025.06.19.00.56.53
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jun 2025 00:56:53 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 55J7urd61031290
+	for <luca.barra@edu.unito.it>; Thu, 19 Jun 2025 09:56:53 +0200
+Date: Thu, 19 Jun 2025 09:56:53 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Radicioni Daniele Paolo (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: TLN2425: Colloqui TLN - parte 2 (Radicioni) - Luglio 2025
+Message-ID: <84ebb422f8e545f8c34331014814cc6dbfd5fce7ba8c12cea3cf95f0db15f3e0@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7628@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7628
+X-Course-Id: 3062
+X-Course-Name: Tecnologie del Linguaggio Naturale, A.A. 2024/2025
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: TLN2425: Colloqui TLN - parte 2 (Radicioni) - Luglio 2025
+Thread-Index: 84ebb422f8e545f8c34331014814
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_MBlVFHxvddDwOsZsTkPZr7HrBoFaVyZ0xvMcZbJ1cE"
+
+This is a multi-part message in MIME format.
+
+--b1_MBlVFHxvddDwOsZsTkPZr7HrBoFaVyZ0xvMcZbJ1cE
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+TLN2425 -> Forums -> Annunci -> Colloqui TLN - parte 2 (Radicioni) - Luglio
+2025
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45043#p72859
+Colloqui TLN - parte 2 (Radicioni) - Luglio 2025
+by Radicioni Daniele Paolo - Thursday, 19 June 2025, 9:41 AM
+---------------------------------------------------------------------
+Buongiorno,
+
+i colloqui sulla seconda parte del corso di Tecnologie del Linguaggio
+Naturale sono fissati per la mattinata di mercoled=C3=AC 9 luglio 2025.
+
+Ho preparato un Google form per raccogliere le iscrizioni, disponibile
+all'URL
+
+=C2=A0 https://forms.gle/hAqsirAS51KxXeya8 [1]
+
+Le iscrizioni avverranno in 2 passi:
+
+1. specificando nome, cognome e indirizzo email istituzionale dei membri
+del gruppo (da 1 a 3 componenti);
+
+2. effettuando l'upload del codice delle esercitazioni.
+
+Dopo l'invio del form riceverete una email che contiene il link per
+modificare le risposte: sar=C3=A0 quindi possibile caricare le esercitazion=
+i in
+un secondo momento. Chi si iscrivesse e poi decidesse di non presentarsi
+per cortesia mi informi via email, per semplificare la creazione del
+calendario dei colloqui.
+
+DEADLINE. Sar=C3=A0 possibile effettuare il primo passo fino alle 23:59 del
+giorno 2 luglio. Sar=C3=A0 successivamente possibile aggiungere/modificare =
+gli
+upload fino alle 23:59 del 6 luglio 2025.
+
+Cordiali saluti,
+
+Daniele Radicioni
+
+Links:
+------
+[1] https://forms.gle/hAqsirAS51KxXeya8
+
+---------------------------------------------------------------------
+This is a copy of a message posted in TLN2425.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3062
+
+--b1_MBlVFHxvddDwOsZsTkPZr7HrBoFaVyZ0xvMcZbJ1cE
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3062">TLN2425</a>=0A    &raquo;=0A=
+    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/f=
+orum/index.php?id=3D3062">Forums</a>=0A    &raquo;=0A    <a target=3D"_blan=
+k" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7628=
+">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://info=
+rmatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45043">Colloqui TLN - pa=
+rte 2 (Radicioni) - Luglio 2025</a>=0A</div>=0A=0A<table border=3D"0" cellp=
+adding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"head=
+er">=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=0A  =
+          <a href=3D"https://informatica.i-learn.unito.it/user/view.php?id=
+=3D2068&amp;course=3D3062" class=3D"d-inline-block aabtn"><img src=3D"https=
+://informatica.i-learn.unito.it/pluginfile.php/19265/user/icon/lambda/f2?re=
+v=3D1" class=3D"userpicture" width=3D"35" height=3D"35" alt=3D"daniele " ti=
+tle=3D"daniele " /></a>=0A        </td>=0A        <td class=3D"topic starte=
+r">=0A            <div class=3D"subject">=0A                Colloqui TLN - =
+parte 2 (Radicioni) - Luglio 2025=0A            </div>=0A            <div c=
+lass=3D"author">=0A                by <a target=3D'_blank' href=3D'https://=
+informatica.i-learn.unito.it/user/view.php?id=3D2068&course=3D3062'>Radicio=
+ni Daniele Paolo</a> - Thursday, 19 June 2025, 9:41 AM=0A            </div>=
+=0A        </td>=0A    </tr>=0A    <tr>=0A        <td class=3D"left side" v=
+align=3D"top">=0A                &nbsp;=0A        </td>=0A        <td class=
+=3D"content">=0A            <p dir=3D"ltr"><br /></p><p dir=3D"ltr">Buongio=
+rno,</p><p dir=3D"ltr">i colloqui sulla seconda parte del corso di Tecnolog=
+ie del Linguaggio Naturale sono fissati per la mattinata di mercoled=C3=
+=AC 9 luglio 2025.</p><p dir=3D"ltr">Ho preparato un Google form per raccog=
+liere le iscrizioni, disponibile all'URL</p><p dir=3D"ltr">=C2=A0 <a href=
+=3D"https://forms.gle/hAqsirAS51KxXeya8" target=3D"_blank" rel=3D"noreferre=
+r noopener">https://forms.gle/hAqsirAS51KxXeya8</a></p><p dir=3D"ltr">Le is=
+crizioni avverranno in 2 passi:<br /></p><p dir=3D"ltr">1. specificando nom=
+e, cognome e indirizzo email istituzionale dei membri del gruppo (da 1 a 3 =
+componenti);</p><p dir=3D"ltr">2. effettuando l'upload del codice delle ese=
+rcitazioni.</p><p dir=3D"ltr">Dopo l'invio del form riceverete una email ch=
+e contiene il link per modificare le risposte: sar=C3=A0 quindi possibile c=
+aricare le esercitazioni in un secondo momento. Chi si iscrivesse e poi dec=
+idesse di non presentarsi per cortesia mi informi via email, per semplifica=
+re la creazione del calendario dei colloqui.<br /></p><p dir=3D"ltr">DEADLI=
+NE. Sar=C3=A0 possibile effettuare il primo passo fino alle 23:59 del giorn=
+o 2 luglio. Sar=C3=A0 successivamente possibile aggiungere/modificare gli u=
+pload fino alle 23:59 del 6 luglio 2025.</p><p dir=3D"ltr"><br /></p><p dir=
+=3D"ltr">Cordiali saluti,<br /></p><p dir=3D"ltr">Daniele Radicioni</p><p><=
+br /></p>=0A=0A            <div class=3D"commands">=0A            </div>=0A=
+=0A            <div class=3D"link">=0A                <a target=3D"_blank" =
+href=3D"https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D4504=
+3#p72859">=0A                    See this post in context=0A               =
+ </a>=0A            </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr =
+/>=0A<div class=3D"mdl-align unsubscribelink">=0A    <a href=3D"https://inf=
+ormatica.i-learn.unito.it/mod/forum/index.php?id=3D3062">Change your forum =
+digest preferences</a>=0A</div>
+
+--b1_MBlVFHxvddDwOsZsTkPZr7HrBoFaVyZ0xvMcZbJ1cE--
+

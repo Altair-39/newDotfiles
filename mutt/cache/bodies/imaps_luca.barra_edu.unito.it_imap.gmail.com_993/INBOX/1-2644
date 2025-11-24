@@ -1,0 +1,182 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:8543:0:b0:32a:7f76:203e with SMTP id u3csp1366543ljj;
+        Tue, 10 Jun 2025 01:06:14 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUcq3Cbc+E+76592p6rct6umbC6mLY1PHUTyaOeKkN2iAEGuNFGTi15rDIC9fcCCWldyhKSi3AaraFt@edu.unito.it
+X-Received: by 2002:a17:906:34d6:b0:ade:40cb:2520 with SMTP id a640c23a62f3a-ade40cb36efmr244953566b.11.1749542774302;
+        Tue, 10 Jun 2025 01:06:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1749542774; cv=none;
+        d=google.com; s=arc-20240605;
+        b=B3Yar0H5V3/kydZkzyMae8Yn9kt1S85E7y96B/fz1PdSGPHSRDNVWl9j3NSsV3mDK0
+         84fLKqt3FyLeERU6l+nIwkk1olg4P2h5SFUGTI1BsLwL315tw09WaC1dN0nRSIOtKVTs
+         qiGXrCvg55UcItfGtKMlxNn2Ux40xQJP6r8/uYGZV5N19wYKV/0oIBZ7b3yDRn2RadnF
+         YwkcXLLv1hpm7aHyKAlgc7k+9vPvWncurmw1zZKGqUJ1cGiaE0E8tfXFPNgN/A2E7XyO
+         wW6HwBVQajFUqaHa+X+ZKLpP8tXD+6TvcWxzgNqr0UF2A8OyLYa0QOJHMiv+7WjWMZU+
+         OgAA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:cc:date:message-id:subject:mime-version:from:dkim-signature;
+        bh=Wr7saxFkDuXE8yHH8OqIgnfsysj8+BJpj7pX1vnA71Y=;
+        fh=QHjEg9gUcsGXrCt334wgMjWMR7DKeGgM5Y1RxBod5OU=;
+        b=YvGbs9vhI4pvQhGGdDpCE0BPnxY3k3CiQixOd4nn3t4lS8blWUOhfNGiHETyOxP0/T
+         cjnQ70QGqSVsZpOYZ3yn8SSmtrvHXSzmj2d3/GOUDP0ekThXN9AR33U5YATI9jbBXp87
+         PdiTV2A3CCcXid1nhx7Gl773/q/uIfVNbZLZpaksGLrsUAsPcjnAPV3e6oyBeEJZluT3
+         wBcGFqUW8ZWcOaFouICBDpJ1bNpLCF4CfWCJdb9rruBhO3GjzYQDXpfrYrdTVz6Yl1cu
+         duqCAktzq+fIsGUBaP+9xxfhCEU2HSruAX+HIwH8UEWDi+RPH2zMbHb8hEAOJBdqV6d/
+         9FcA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=HbZLyXR7;
+       spf=pass (google.com: domain of daniele.radicioni@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=daniele.radicioni@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <daniele.radicioni@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-ade1dc1d277sor353809266b.9.2025.06.10.01.06.14
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Tue, 10 Jun 2025 01:06:14 -0700 (PDT)
+Received-SPF: pass (google.com: domain of daniele.radicioni@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=HbZLyXR7;
+       spf=pass (google.com: domain of daniele.radicioni@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=daniele.radicioni@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1749542774; x=1750147574; darn=edu.unito.it;
+        h=to:cc:date:message-id:subject:mime-version:from:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Wr7saxFkDuXE8yHH8OqIgnfsysj8+BJpj7pX1vnA71Y=;
+        b=HbZLyXR7EPP1HlUaXlPzfugxzIDbmEbeWrWGO2B2ZJBmDReb9Fz7G8UQyaHmFZIRW0
+         PLZ2G/ejsUlqD8PvrgUa5wzqx39Puit/aDDRrG115d7fzYnSMRPFb1aPhVLk1aJw6j+/
+         zVDYwJYG+hheYK7daSGwTVR66m/B9bnIusCsApy7+g7EtoTmF90y4zmQGPEOwxliMnWf
+         1E9aerEm/pmFQpT84RqEUfU3ouKT3I8CvlaNdofD5Cg1yCX3/TLna4IlqfQF2iagBspR
+         DyNrUp3RsIGqcp009pBUqyKYq8BDRxUORBrsAdQMusNoujcnc4fFFG2KnGJKGeDTbetp
+         b/FA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749542774; x=1750147574;
+        h=to:cc:date:message-id:subject:mime-version:from:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Wr7saxFkDuXE8yHH8OqIgnfsysj8+BJpj7pX1vnA71Y=;
+        b=n+RcBK0jFDN9Ib0CRt2VO7HKw1nX4FEmZ2aOIEZawwMlJr7T30zG9euaeig3spvEbl
+         ac5apSPzkEzWO3pimQUfSNrlgPF+7Z2D1Mt3KOwV8cfXh9Yy6Xftr++GgBM9ANczyPU2
+         xNQxS1ikXeuksoSXEMaio9tOHftnrNu2VYK2/CvhjgdTE/NCr5H2QC3WlydhSruOnSVV
+         EFMElPZAl5XRFKsq1C1iIYLxWfpqyXdgwJBVvHzGq4+xaSsHo3aRdD6YaWsGGKYnd+5V
+         w1C4pAWD2WilpnQnFB8RBw5UvB/Up4B7U0xUsqSLPJ+c/Z37dMxS8d7SX+J/A3B5qgGO
+         1bwg==
+X-Forwarded-Encrypted: i=1; AJvYcCVAQ9BpXvVrsFPQg3js3yyM5bozvaexJuEH/hz3FtYWTaRQZ2oawJ+ACCk+/H5CYdyd0DMLHjOVCoyW@edu.unito.it
+X-Gm-Message-State: AOJu0YyNX8QjMrDXsICKwuzCiiR3yIKgj1N8ldn79o/HPV4Pq/oZ0WsN
+	va6VLSvyLvoGi8NZJ3jF1noMnq1GL0fwLOpfetEdtq+KT0XNXfbbDgauRlE4l3Bt5IPHMQ==
+X-Gm-Gg: ASbGncvo+BAlJz6A0JudzPEGKcktJfHsxw2dKdmkOU/giqJyZRWArswWsi++pCHZw9m
+	o/QuVkR1yTOKM1yNWqzOI1B4p3H8kNW5hs3cFI4yUjkcJPrewzn+uX+8BwgvdNrCWljCyX+p5M3
+	LSSPpXlx+VnE0sH6zEfbFPzlyd7XqlQQF1TmjMsv2cgMsza0JC8mxdBibuyRdx7D6PsJyKkDHGx
+	SEMQinYHeHFQ0MEO0BvVOb+cOjI0QNN5nZ/Y25bWfbjjhm96lU3f3zvKhguxZg4zFpMNez2oj8n
+	QWTUkUB/gi/RfJ8dkQysHZ5BaBWP9QJui3hQNAsqk/55jPu9AerQdYptaJ0haM/uIHnlCDCi9Xm
+	oHkxR942n2yo2NNxaRmlZJgJ6iK+hWtOkMtyUGW64DH0fOynPfwx6RYgHWUcm+A==
+X-Google-Smtp-Source: AGHT+IFK7+j1WDRK68WAw5jgcu2gH2QH7U/JZWZvxxFlpLwdmAb/hTwMVim+i8Kv6ZyOsyHdrohMBg==
+X-Received: by 2002:a17:906:ef0a:b0:ade:f72:435 with SMTP id a640c23a62f3a-ade1aaba8d7mr1535155466b.36.1749542773617;
+        Tue, 10 Jun 2025 01:06:13 -0700 (PDT)
+Return-Path: <daniele.radicioni@unito.it>
+Received: from smtpclient.apple (nat3.di.unito.it. [130.192.156.246])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ade1dc7c82csm683034866b.174.2025.06.10.01.06.12
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 10 Jun 2025 01:06:13 -0700 (PDT)
+From: Daniele Paolo Radicioni <daniele.radicioni@unito.it>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_2B0DE689-7D68-40E9-B0FE-4025CCF00D68"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.600.51.1.1\))
+Subject: Colloqui TLN - Parte 2
+Message-Id: <999CE514-4C6B-4C63-AFC2-56EE0D15EE78@unito.it>
+Date: Tue, 10 Jun 2025 10:06:02 +0200
+Cc: Daniele Paolo Radicioni <daniele.radicioni@unito.it>
+To: jacopo.malpesi@edu.unito.it,
+ matteo.olivero693@edu.unito.it,
+ sofia.trucco@edu.unito.it,
+ riccardo.simondi@edu.unito.it,
+ luca.barra@edu.unito.it,
+ veronica.aimar150@edu.unito.it,
+ andrea.camoia@edu.unito.it,
+ ramiro.calo@edu.unito.it,
+ dario.franzese@edu.unito.it,
+ nicolo.polizzi@edu.unito.it,
+ tommaso.remondino@edu.unito.it
+X-Mailer: Apple Mail (2.3826.600.51.1.1)
+
+
+--Apple-Mail=_2B0DE689-7D68-40E9-B0FE-4025CCF00D68
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+
+
+Buongiorno,
+
+le discussioni si terranno il giorno 12 giugno 2025 in Aula E secondo il =
+seguente calendario:
+
+09:30   Malpesi, Olivero, Trucco=20
+10:30   Simondi, Barra, Aimar
+11:30   Cal=C3=B2, Franzese, Polizzi
+12:30   Camoia, Remondino=20
+
+
+Cordiali saluti,
+Daniele Radicioni
+
+
+
+
+
+
+
+: : : : : : : : : : : : : : : : : : :
+
+Daniele Radicioni, PhD
+Department of Computer Science
+University of Turin
+Corso Svizzera, 185
+10149 - Torino
+phone: +39 011 6706802
+fax:   +39 011 751603
+http://www.di.unito.it/~radicion
+
+
+
+--Apple-Mail=_2B0DE689-7D68-40E9-B0FE-4025CCF00D68
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;"><br><div>
+<div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); =
+font-family: &quot;Courier New&quot;; font-size: 12px; font-style: =
+normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
+normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+text-decoration: =
+none;"><div><br></div><div>Buongiorno,</div><div><br></div><div>le =
+discussioni si terranno il giorno 12 giugno 2025 in Aula E secondo il =
+seguente calendario:</div><div><br></div><div>09:30 &nbsp; Malpesi, =
+Olivero, Trucco&nbsp;</div><div>10:30 &nbsp; Simondi, Barra, =
+Aimar</div><div>11:30 &nbsp; Cal=C3=B2, Franzese, =
+Polizzi</div><div>12:30 &nbsp; Camoia, =
+Remondino&nbsp;</div><div><br></div><div><br></div><div>Cordiali =
+saluti,</div><div>Daniele =
+Radicioni</div><div><br></div><div><br></div><div><br></div><div><br></div=
+><br></div><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); =
+font-family: &quot;Courier New&quot;; font-size: 12px; font-style: =
+normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
+normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+text-decoration: none;"><br><br>: : : : : : : : : : : : : : :&nbsp;: : : =
+:<br><br>Daniele Radicioni, PhD<br>Department of =
+Computer&nbsp;Science<br>University of Turin<br>Corso Svizzera, =
+185<br>10149 - Torino<br>phone: +39 011 6706802<br>fax: &nbsp; +39 011 =
+751603<br>http://www.di.unito.it/~radicion<br><br></div>
+</div>
+<br></body></html>=
+
+--Apple-Mail=_2B0DE689-7D68-40E9-B0FE-4025CCF00D68--

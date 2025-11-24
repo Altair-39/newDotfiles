@@ -1,0 +1,123 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:205e:b0:309:27f0:106e with SMTP id t30csp116592ljo;
+        Fri, 21 Feb 2025 01:36:30 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCWRaAFEd4EtUZ/uLfUsOqfQL2synUMEg/GEt+Pnm/OSI6RQTVvSTyyv/r7iTYihMu+NerC+SJmkphQE@edu.unito.it
+X-Google-Smtp-Source: AGHT+IEoQ7tFl0gLpohKf5pyIet+Gtb3/ee7Te+9Sqb1kAPK6ZmpqUiNRxu5dCcaKFtOPWgG64uu
+X-Received: by 2002:a17:907:7e8e:b0:abb:b411:5e02 with SMTP id a640c23a62f3a-abc0aea5253mr245711866b.18.1740130590404;
+        Fri, 21 Feb 2025 01:36:30 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1740130590; cv=none;
+        d=google.com; s=arc-20240605;
+        b=f++eWDEB5KW+a4ttbfLh98q+GXdRkhGZe/OiBM6Kr29EA/jwWv7WVPdzucX9O1w1Re
+         YH7fwYVXC2aKKDJp2Ba9Gf+xL9Lr73RMqst0MJJLYqqq044GzhVMsxZJEc/xkPtUbhEZ
+         8jlrdVUqD3MTS/1qhWlg3o+4KBc5bC96eHF9AD8YULAZ9MQh5IXzxjAdkKq8CpTxSvCW
+         ojs+igMVOC4rbhbNQxwacOM3TlXfWo/yKm2u2vqy9GF/LZMVUsFOr/pOFMt9g5lKQBhw
+         2gU7slFbzKeR+wtS9RTDyYIOTpuxU9Bjucr5O7E51ATTkHCinzdoQKwJrTI8LF3BySOb
+         b7iQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=EHq9rNHp8SVJcJFArivoNcrYqfxTgKYouXmVXiqtEUI=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=ROMrWcQTsCtzbzddFQ0ItrENSMDPbw7Vlodt7YUH2/Mx+1bAVUTE6d1xFj1ynTBYm5
+         yew7ty+KwZxel8OxXBBlGmUPCV+hD5ISiadJUt1BAsneUykLvXXIhP2dR4v6f3Bo3/AR
+         Oey8OtD0+uuw99z8r5Y3GQlsCAIaGdliKJBMNMPrhff9IcGPz1HMHRs+lSvRZN6SGi2a
+         g6VLx5AvcJFCH8gWV7k+JV+0Xqsw01y5djmuCV/DSfkSdw5Jw1goXrQ2M6cWadpsMKav
+         q5cm108LmHxSgh03f7yRB9UsA61q8YBsEt2qXG3CZI0/FSE6haJQW2LY0+Swn8FTFaQw
+         A6PQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=SSmzsNu7;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id a640c23a62f3a-abbdb438edasi376686066b.727.2025.02.21.01.36.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Feb 2025 01:36:30 -0800 (PST)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=SSmzsNu7;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id E323625A4C;
+	Fri, 21 Feb 2025 10:36:25 +0100 (CET)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id g5AjJj0QdgK4; Fri, 21 Feb 2025 10:36:25 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 7F2D026162;
+	Fri, 21 Feb 2025 10:36:23 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 7F2D026162
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1740130584;
+	bh=EHq9rNHp8SVJcJFArivoNcrYqfxTgKYouXmVXiqtEUI=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=SSmzsNu75hSyL+psxEouI4elQZg1yL/XBVZrfV2vohzwDv3lY1KGyBjDOvA71LejB
+	 qvAXhzB554c+c2q1aAASYvpYAdkeZoMUjFOLKsk7PRA9LQZsFHg3cvcc62t+IIEXCp
+	 QRuhdRyIFj2Lf7g1TvtXFeA1YpQ4SmIWWaSiOG0RVoBRW0VTLY2tK87TsORQKmz5ry
+	 skb+aOVhjHxZhHJcaAq8gZwp9r6evae1H3ey8lEUihKJKyogaLp34FwTrShvxPe76Y
+	 LokV/U9UpOPqbDovBHKbsvtfaJPTBvv48CJr5mKpoXEVWJU+lIIXtGj74TT8tTnuWj
+	 SjUzG+mDUJIVw==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id nc4c8yvpLc1h; Fri, 21 Feb 2025 10:36:23 +0100 (CET)
+Received: from esse3appjboss23.private.cineca.it (esse3appjboss23.cineca.it [130.186.5.144])
+	by smtp4.cineca.it (Postfix) with ESMTP id C9B2F26517;
+	Fri, 21 Feb 2025 10:36:18 +0100 (CET)
+Received: from esse3appjboss23.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss23.private.cineca.it (Postfix) with ESMTP id C4C4642;
+	Fri, 21 Feb 2025 10:36:16 +0100 (CET)
+Date: Fri, 21 Feb 2025 10:36:16 +0100 (CET)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <532967790.19.1740130576788@esse3appjboss23.private.cineca.it>
+Subject: =?UTF-8?Q?Puoi_ancora_candidarti_al_progetto?=
+ =?UTF-8?Q?_In_pari_=E2=80=93_Tutoring_Online_Program?=
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+<!DOCTYPE html>
+<html lang=3D"it">
+<head>
+    <meta charset=3D"UTF-8">
+    <title>In pari =E2=80=93 Tutoring Online Program</title>
+</head>
+<body>
+    <p>Care studentesse, cari studenti,</p>
+
+    <p>Con piacere vi informiamo che sono riaperte le candidature al proget=
+to <strong><a href=3D"https://www.ufficiopio.it/programmi/volontariato/inpa=
+ri/" target=3D"_blank">In pari =E2=80=93 Tutoring Online Program</a></stron=
+g>, un'esperienza di impegno sociale e volontariato che l'<a href=3D"https:=
+//www.unito.it/avvisi/pari-tutoring-online-program-candidature-aperte" targ=
+et=3D"_blank">Ateneo ha gi=C3=A0 promosso</a> con successo a gennaio e che =
+offre una preziosa opportunit=C3=A0 di crescita.</p>
+
+    <p>Partecipando a In pari</a></strong> potrete affiancare giovani stude=
+nti/studentesse delle scuole secondarie di primo grado in difficolt=C3=A0, =
+supportandoli/e in una o pi=C3=B9 materie a scelta tra italiano, inglese e =
+matematica. Potrai dare un supporto concreto con l=E2=80=99obiettivo di sos=
+tenere l=E2=80=99alunno/a sulla motivazione, sul metodo di studio e sull=E2=
+=80=99orientamento scolastico, aiutandoli/le cos=C3=AC a sviluppare una vis=
+ione pi=C3=B9 positiva del loro percorso educativo.</p>
+
+    <p>Al termine del percorso verr=C3=A0 rilasciato un <strong>Open Badge<=
+/strong>, un certificato digitale ufficiale emesso congiuntamente da Unito =
+e Polito.</p>
+
+    <p>Cogli l=E2=80=99occasione per arricchire il tuo curriculum con un=E2=
+=80=99esperienza di volontariato che certifica le tue soft skills. Hai temp=
+o fino al 28 febbraio!</p>
+
+    <p><a href=3D"https://harvard.az1.qualtrics.com/jfe/form/SV_4JxlBE7aJcK=
+7riS" target=3D"_blank">Candidati come tutor cliccando qui</a>.</p>
+
+    <p>Hai qualche domanda? Scrivi a=E2=80=AF<a href=3D"mailto:inpari@uffic=
+iopio.it">inpari@ufficiopio.it</a></p>
+</body>
+</html>

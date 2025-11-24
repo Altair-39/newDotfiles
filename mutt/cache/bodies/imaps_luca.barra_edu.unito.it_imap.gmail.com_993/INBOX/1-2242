@@ -1,0 +1,462 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:9c43:0:b0:30c:2dd2:a8c1 with SMTP id t3csp97914ljj;
+        Thu, 13 Mar 2025 10:53:01 -0700 (PDT)
+X-Received: by 2002:a17:907:97c5:b0:abf:7b59:6e62 with SMTP id a640c23a62f3a-ac2b9db299bmr562693166b.7.1741888381689;
+        Thu, 13 Mar 2025 10:53:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1741888381; cv=none;
+        d=google.com; s=arc-20240605;
+        b=IUcNLP4WKu1JUe/EqREoYW1woNtQQmRqsgHu3AfY1Vg6Lp6BmPUvL5xPZ+A3guJvQm
+         0QsYUCqibMCzeFFdRkMi8FmsoBUL6TEibwoqvMEU5G83paRRZCK+QXFHEGqDkdU9I3LL
+         FKL7IbKQo1oidiEQbVGCMyZfivD/rbMiJhRVc8xzVhJM/xsYlUC6NdMbXryNU3ArtfYJ
+         U4p1Ofoisetixi2WJdguuk2hzN6xXkRjEEa7saXjDjlaKaOaRaGc2oI0fPM6dNYbksp6
+         rD/UBc4nLA+MDT8usD2T1iAGujTGk5JBFfE5D7rmQZWiG/DdmPDhRpopQ8ro3fLSTgwN
+         ICEQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=message-id:in-reply-to:to:references:date:subject:mime-version:from
+         :dkim-signature;
+        bh=yjRDFi21bVHwTNKMAyYo24n3aF6rVddR9iIFX9XNEK8=;
+        fh=75fMJZTXFZnsyxtinu+dx14CCVab1rFxDVSsvcMtt0Y=;
+        b=M+UKkDBGnYImmOLs11nXHOzhAYxXXbkkJFOzGm2J7X8wn17AbbISTqHHilcdJ57sa8
+         lAxADbSkR9wnAIXPDtQYzLbn3jgEB/Jxni4MtDyKcflLZwvXiQ81MvKSN6nvgeaQazKV
+         VmsBdtUwPbAMLUN7+dbs5+RdTfcdydLrEeKlEHgC/RTduHH8iTZzUDOoQXI90k45X+3m
+         3kBUngi+U+iaas3njwaDryZHOi3JgZHLUzXtPH5oTeWanAEjJj0iZL84NZ+k0QZetOrb
+         2hInxkKIx7VN+83q07Dg01gpF8JNmp28Ew2igvIvDGuzo+0buo7dWiB2R99aok21pq7W
+         uClA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=j4L3vq7h;
+       spf=pass (google.com: domain of vladimiro.loverarulfi@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=vladimiro.loverarulfi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <vladimiro.loverarulfi@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-ac3147e7f06sor124872666b.6.2025.03.13.10.53.01
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Thu, 13 Mar 2025 10:53:01 -0700 (PDT)
+Received-SPF: pass (google.com: domain of vladimiro.loverarulfi@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=j4L3vq7h;
+       spf=pass (google.com: domain of vladimiro.loverarulfi@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=vladimiro.loverarulfi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1741888381; x=1742493181; darn=edu.unito.it;
+        h=message-id:in-reply-to:to:references:date:subject:mime-version:from
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yjRDFi21bVHwTNKMAyYo24n3aF6rVddR9iIFX9XNEK8=;
+        b=j4L3vq7hn/sG7ySQGR6cNfkKAqkx8+ZPXUF4/opl1hXKs7T8gitl8r5kNIhgeN0y7n
+         ZlbFCcT22dFNPraxq9Y/ncrTTkhpoG4uyVPpc3vpwIw3yDrAzDA0uDdYlcY++uV2dPA/
+         NDRQPB5mIK6KbaZvoMOaF1uNjZQuoqgeg8hLzDaYnJ+diNZe/PWDvpxjnWVYSh62ceAK
+         SyDGnEao76YIlbuTqSln+cWQmDNLDmAzY6n09LSAC/R5NEcrAWC+FOj7gVQUeKM1i6vE
+         a+UwgNe+MMl8C9kWthuahdqkDuXrUZWDqTchOzY/l4l7kWBR3kjJ9ekVfdsUCAS5NZ8R
+         wJLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1741888381; x=1742493181;
+        h=message-id:in-reply-to:to:references:date:subject:mime-version:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yjRDFi21bVHwTNKMAyYo24n3aF6rVddR9iIFX9XNEK8=;
+        b=ianM6kEoGtt6aiPcM4VI97xyUihEyisJtQOTRVCweB94paeQz53cSBD1lBKcgJtP4l
+         rsrgyW5pe2hS/3eRqgXh97HUK5nbMeJ1/Ip8xas1dpn6VCGfwU3wvbAY65Zwp5emHr5Q
+         WkWbB5qHSLot1Hg/7tp5pCcdkMVcNtFRrPP5YXWiKpH/ElvmjePG4oPpskDOm0DjPAgH
+         6yHXtqihMfUPOBHlzb54qPVCmL2EY4QpXg8aQ5TekstJ3coHA8xUaWnPjhGhWtoCNLWX
+         oT4LbU5wQ9TVArkoCt+aLz8oGsRVR0qTTN8tEemYJ3U+YLsEe64cCPdOoB49rhYZOWXN
+         kUgw==
+X-Gm-Message-State: AOJu0YwOV4pa0Rze21HywhFGHDiSHVTsDBRLt3mgnCOEMAaj8j3uhl77
+	qzfaS3XPVCv4k1k/+a3pCh8XMcAkEJeOeHhsz3hf/1Y4WHM7pSRddiikN2dTzwfpMWXn5fQIDXc
+	p61M=
+X-Gm-Gg: ASbGncs/ueW3lGCrVPiZZtRHOvdaORmxbqw7WeTSa0Zp/tIAohKewQqhY2nMTu8Orb0
+	KX+WcJB2vZmMZNBZzVILSUmDjGUC4/QYuWKlF38SShY0sPGKJTvDN/FWuMNMXjk4+wWqgnIWPCQ
+	B14jN87w27+EPUpUZQtveZi2cshWUUU2gqFtbgJatUZRziRlAy5ykq3wrpYoJnCJZ2Sm17Yaxxw
+	yo5juX7EZbk7XQ3Ds10xGqGvbjnfU0glhw3D9GeujGnfzrJC9HE9O7pbE5Oq1NMCd8TfZBmEvci
+	wkyOAU+tf+Cr0QAi1WkYjoBHReyi6tbUNNnb5v9H6crPW5A9ScrqMKA7TYf+9zruPQIfAU9aeFz
+	QXjIIFhugelC3MEKyAM2urSWMgVUY9g3i/5mk+DY=
+X-Google-Smtp-Source: AGHT+IHIUTfdMISkdfe3nTNIEbSJmNp643lBK2HBcpvt+qtQV8GB1ds+r6ZZDzCe8L9YCj49krR8NQ==
+X-Received: by 2002:a17:906:dc89:b0:ac2:7d72:c2aa with SMTP id a640c23a62f3a-ac3296a3967mr33353466b.51.1741888381002;
+        Thu, 13 Mar 2025 10:53:01 -0700 (PDT)
+Return-Path: <vladimiro.loverarulfi@unito.it>
+Received: from smtpclient.apple (nat3.di.unito.it. [130.192.156.246])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ac3146aefa2sm105798066b.5.2025.03.13.10.53.00
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 13 Mar 2025 10:53:00 -0700 (PDT)
+From: Vladimiro Lovera Rulfi <vladimiro.loverarulfi@unito.it>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_7CF76963-F72B-4667-A992-AAE6DE73FA42"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.300.87.4.3\))
+Subject: Re: Studente Collaboratore PPOO B T2
+Date: Thu, 13 Mar 2025 18:52:49 +0100
+References: <CANoSdAwzEKdODkLca7edYTzKD0pmZNCAP9enAfpLCxMJeDeuMA@mail.gmail.com>
+ <CAEw4pn6+FQri_r3PkiXi8JV6Ezf7LbUHc7BV4SNet716ZTuJVg@mail.gmail.com>
+ <70E914B7-4F51-487F-A04B-6CC15474879A@unito.it>
+ <5312C56C-4D7D-4565-81B5-F8541FAAD397@edu.unito.it>
+ <40092A57-4082-4E38-9F68-B7FBD24EA7F3@unito.it>
+ <1B75EF5F-A456-4F0F-A6F3-E04AEE80F88C@edu.unito.it>
+To: Luca <luca.barra@edu.unito.it>
+In-Reply-To: <1B75EF5F-A456-4F0F-A6F3-E04AEE80F88C@edu.unito.it>
+Message-Id: <5515A2CB-5639-4BD8-B173-031F2BE0B319@unito.it>
+X-Mailer: Apple Mail (2.3826.300.87.4.3)
+
+
+--Apple-Mail=_7CF76963-F72B-4667-A992-AAE6DE73FA42
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+Grazie!! Allora confermiamo, dimmi se ti torna:
+
+io faccio luned=C3=AC 17 marzo dalle 14 alle 17, tu fai gioved=C3=AC 27 =
+marzo dalle 16 alle 19
+
+Vladimiro Lovera Rulfi
+Ph.D. Candidate
+University of Turin, Department of Computer Science
+Corso Svizzera 185, Turin, Italy 10149
+
+> Il giorno 13 mar 2025, alle ore 17:28, Luca <luca.barra@edu.unito.it> =
+ha scritto:
+>=20
+> Va bene
+>=20
+>=20
+> On March 13, 2025 4:17:29 PM UTC, Vladimiro Lovera Rulfi =
+<vladimiro.loverarulfi@unito.it> wrote:
+>> Ciao, che ne dici di quella prima? (Luned=C3=AC prossimo)
+>>=20
+>> Vladimiro Lovera Rulfi
+>> Ph.D. Candidate
+>> University of Turin, Department of Computer Science
+>> Corso Svizzera 185, Turin, Italy 10149
+>>=20
+>>> Il giorno 13 mar 2025, alle ore 16:50, Luca =
+<luca.barra@edu.unito.it> ha scritto:
+>>>=20
+>>> Posso fare cambio per A T2 del 31, dalle 14 alle 17.
+>>>=20
+>>>=20
+>>> On March 13, 2025 3:45:02 PM UTC, Vladimiro Lovera Rulfi =
+<vladimiro.loverarulfi@unito.it> wrote:
+>>>> Buongiorno,
+>>>>=20
+>>>> Volevo comunicare che sar=C3=B2 assente tutta la settimana del 24 =
+marzo, pertanto perder=C3=B2 l=E2=80=99assistenza di laboratorio di B T2 =
+Gioved=C3=AC 27 Marzo dalle 16 alle 19. Qualcun* farebbe un cambio turno =
+con me? Ovviamente, non quella stessa settimana ma quella =
+precedente/successiva!
+>>>>=20
+>>>> Grazie,
+>>>> Un cordiale saluto
+>>>>=20
+>>>> Vladimiro Lovera Rulfi
+>>>> Ph.D. Candidate
+>>>> University of Turin, Department of Computer Science
+>>>> Corso Svizzera 185, Turin, Italy 10149
+>>>>=20
+>>>>> Il giorno 24 feb 2025, alle ore 08:00, Sara Capecchi =
+<sara.capecchi@unito.it> ha scritto:
+>>>>>=20
+>>>>> Buongiorno
+>>>>> metto in cc gli altri collaboratori e docenti. Visto che avete 30 =
+ore a testa dovrebbe esserci un monte ore adeguato a coprire tutte le =
+lezioni. Vi chiederemmo  di mettervi d'accordo per coprire tutte le =
+lezioni magari scambiandovi eventualmente i turni.=20
+>>>>> Riportiamo qui il calendario =
+https://docs.google.com/spreadsheets/d/1TBkIczliPORY14cME5rLFleSYIhhNZRX7z=
+0ZwmNy_Ps/edit?gid=3D0#gid=3D0 =
+<https://www.google.com/url?q=3Dhttps://www.google.com/url?q%3Dhttps://www=
+.google.com/url?q%253Dhttps://docs.google.com/spreadsheets/d/1TBkIczliPORY=
+14cME5rLFleSYIhhNZRX7z0ZwmNy_Ps/edit?gid%25253D0%252523gid%25253D0%2526sou=
+rce%253Dgmail-imap%2526ust%253D1740985247000000%2526usg%253DAOvVaw3P1Ki2MZ=
+VIdaLFcw7mHNzp%26source%3Dgmail-imap%26ust%3D1742485857000000%26usg%3DAOvV=
+aw0yvD_kdxX13ndsWKU_T4bU&source=3Dgmail-imap&ust=3D1742488090000000&usg=3D=
+AOvVaw0S5oVUS5HNJ5-UXnREBCj->
+>>>>>=20
+>>>>> Fateci poi sapere quante lezioni rimangono scoperte e cercheremo =
+delle soluzioni, grazie!
+>>>>>=20
+>>>>> cordiali saluti
+>>>>> i docenti di laboratorio
+>>>>>=20
+>>>>>=20
+>>>>> Il giorno ven 21 feb 2025 alle ore 17:43 Lorenzo Falchi =
+<lorenzo.falchi@edu.unito.it <mailto:lorenzo.falchi@edu.unito.it>> ha =
+scritto:
+>>>>>> Buon pomeriggio professoressa,
+>>>>>> ho controllato il calendario e ho constatato che non riuscir=C3=B2 =
+ad essere disponibile per le lezioni del 23 e 30 aprile e quella del 7 =
+maggio. Ora, la mia borsa =C3=A8 di 30 ore, considerando che una lezione =
+=C3=A8 da 3 ore, una di queste 3 non riuscirei comunque a coprirla, in =
+quanto fuori dal monte ore (infatti, ad oggi, riesco coprire 8 lezioni). =
+La mia idea era quella di cercare di fare cambio con qualche mio collega =
+degli altri turni per due di queste tre date, cos=C3=AC da non lasciare =
+le lezioni scoperte. Mi faccia sapere cosa ne pensa e anche quale delle =
+3 lezioni =C3=A8 quella che sarebbe pi=C3=B9 disposta a sostenere senza =
+uno di noi collaboratori.=20
+>>>>>>=20
+>>>>>> Saluti,=20
+>>>>>> Lorenzo Falchi
+>>>>>>=20
+>>>>>> ------------------------
+>>>>>>=20
+>>>>>> Indirizzo istituzionale di posta elettronica degli studenti e dei =
+laureati dell'Universit=C3=A0 di Torino
+>>>>>> Official University of Turin email address for students and =
+graduates=20
+>>>>>=20
+>>>>>=20
+>>>>>=20
+>>>>> --
+>>>>> Sara Capecchi, Ph.D.
+>>>>> Assistant Professor - Researcher
+>>>>> Universit=C3=A0 di Torino
+>>>>> Department  of  Computer Science
+>>>>> Corso Svizzera 185
+>>>>> 10149 Torino
+>>>>> Italy
+>>>>>=20
+>>>>> Tel: +39 011 6706747
+>>>>> Fax: +39 011 751603
+>>>>> e-mail: capecchi@di.unito.it <mailto:capecchi@di.unito.it>
+>>>>> www.di.unito.it/~capecchi =
+<https://www.google.com/url?q=3Dhttps://www.google.com/url?q%3Dhttps://www=
+.google.com/url?q%253Dhttp://www.di.unito.it/~capecchi%2526source%253Dgmai=
+l-imap%2526ust%253D1740985247000000%2526usg%253DAOvVaw3ToJqWJrER4B0QeO8itk=
+LU%26source%3Dgmail-imap%26ust%3D1742485857000000%26usg%3DAOvVaw0TdlOiifQZ=
+rxU8Q0QM_XZl&source=3Dgmail-imap&ust=3D1742488090000000&usg=3DAOvVaw3s2yo3=
+aas4FWWvwhvxXqVQ>
+>>>>> https://unito.webex.com/meet/sara.capecchi =
+<https://www.google.com/url?q=3Dhttps://www.google.com/url?q%3Dhttps://www=
+.google.com/url?q%253Dhttps://unito.webex.com/meet/sara.capecchi%2526sourc=
+e%253Dgmail-imap%2526ust%253D1740985247000000%2526usg%253DAOvVaw0DKh990uU9=
+ZPIxJuhzufQL%26source%3Dgmail-imap%26ust%3D1742485857000000%26usg%3DAOvVaw=
+2fGYYahcoIZRQ6uv-FbAjd&source=3Dgmail-imap&ust=3D1742488090000000&usg=3DAO=
+vVaw0lOOZ4RzFRuQinzgfF3h6c>
+>>>>=20
+>>>=20
+>>> luca.barra@edu.unito.it
+>>>=20
+>>> ------------------------
+>>>=20
+>>> Indirizzo istituzionale di posta elettronica degli studenti e dei =
+laureati dell'Universit=C3=A0 di Torino
+>>> Official University of Turin email address for students and =
+graduates=20
+>>=20
+>=20
+> luca.barra@edu.unito.it
+>=20
+> ------------------------
+>=20
+> Indirizzo istituzionale di posta elettronica degli studenti e dei =
+laureati dell'Universit=C3=A0 di Torino
+> Official University of Turin email address for students and graduates=20=
+
+
+
+--Apple-Mail=_7CF76963-F72B-4667-A992-AAE6DE73FA42
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;">Grazie!! =
+Allora confermiamo, dimmi se ti torna:<div><br></div><div>io faccio =
+luned=C3=AC 17 marzo dalle 14 alle 17, tu fai gioved=C3=AC 27 marzo =
+dalle 16 alle 19</div><div><br></div><div><div>
+<meta charset=3D"UTF-8"><div><b style=3D"font-variant-ligatures: normal; =
+orphans: 2; widows: 2; background-color: rgb(255, 255, 255); =
+text-decoration-thickness: initial;"><font color=3D"#666666" =
+face=3D"garamond, times new roman, serif">Vladimiro Lovera =
+Rulfi</font></b><div style=3D"font-variant-ligatures: normal; orphans: =
+2; widows: 2; background-color: rgb(255, 255, 255); =
+text-decoration-thickness: initial;"><font color=3D"#666666" =
+face=3D"garamond, times new roman, serif">Ph.D. =
+Candidate</font></div><div style=3D"font-variant-ligatures: normal; =
+orphans: 2; widows: 2; background-color: rgb(255, 255, 255); =
+text-decoration-thickness: initial;"><font color=3D"#666666" =
+face=3D"garamond, times new roman, serif">University of =
+Turin,&nbsp;</font><span style=3D"color: rgb(102, 102, 102); =
+font-family: garamond, &quot;times new roman&quot;, serif;">Department =
+of Computer Science</span></div><div style=3D"font-variant-ligatures: =
+normal; orphans: 2; widows: 2; background-color: rgb(255, 255, 255); =
+text-decoration-thickness: initial;"><font color=3D"#666666" =
+face=3D"garamond, times new roman, serif">Corso Svizzera 185, Turin, =
+Italy 10149</font></div></div>
+</div>
+<div><br><blockquote type=3D"cite"><div>Il giorno 13 mar 2025, alle ore =
+17:28, Luca &lt;luca.barra@edu.unito.it&gt; ha scritto:</div><br =
+class=3D"Apple-interchange-newline"><div><meta http-equiv=3D"content-type"=
+ content=3D"text/html; charset=3Dutf-8"><div style=3D"overflow-wrap: =
+break-word; -webkit-nbsp-mode: space; line-break: =
+after-white-space;"><div dir=3D"auto">Va bene</div><br><br><div =
+class=3D"gmail_quote"><div dir=3D"auto">On March 13, 2025 4:17:29 PM =
+UTC, Vladimiro Lovera Rulfi &lt;vladimiro.loverarulfi@unito.it&gt; =
+wrote:</div><blockquote class=3D"gmail_quote" style=3D"margin: 0pt 0pt =
+0pt 0.8ex; border-left: 1px solid rgb(204, 204, 204); padding-left: =
+1ex;">
+Ciao, che ne dici di quella prima? (Luned=C3=AC prossimo)<div><br =
+id=3D"lineBreakAtBeginningOfMessage"><div>
+<meta charset=3D"UTF-8"><div><b style=3D"font-variant-ligatures: normal; =
+orphans: 2; widows: 2; background-color: rgb(255, 255, 255); =
+text-decoration-thickness: initial;"><font color=3D"#666666" =
+face=3D"garamond, times new roman, serif">Vladimiro Lovera =
+Rulfi</font></b><div style=3D"font-variant-ligatures: normal; orphans: =
+2; widows: 2; background-color: rgb(255, 255, 255); =
+text-decoration-thickness: initial;"><font color=3D"#666666" =
+face=3D"garamond, times new roman, serif">Ph.D. =
+Candidate</font></div><div style=3D"font-variant-ligatures: normal; =
+orphans: 2; widows: 2; background-color: rgb(255, 255, 255); =
+text-decoration-thickness: initial;"><font color=3D"#666666" =
+face=3D"garamond, times new roman, serif">University of =
+Turin,&nbsp;</font><span style=3D"color: rgb(102, 102, 102); =
+font-family: garamond, &quot;times new roman&quot;, serif;">Department =
+of Computer Science</span></div><div style=3D"font-variant-ligatures: =
+normal; orphans: 2; widows: 2; background-color: rgb(255, 255, 255); =
+text-decoration-thickness: initial;"><font color=3D"#666666" =
+face=3D"garamond, times new roman, serif">Corso Svizzera 185, Turin, =
+Italy 10149</font></div></div>
+</div>
+<div><br><blockquote type=3D"cite"><div>Il giorno 13 mar 2025, alle ore =
+16:50, Luca &lt;luca.barra@edu.unito.it&gt; ha scritto:</div><br =
+class=3D"Apple-interchange-newline"><div><meta http-equiv=3D"content-type"=
+ content=3D"text/html; charset=3Dutf-8"><div style=3D"overflow-wrap: =
+break-word; -webkit-nbsp-mode: space; line-break: =
+after-white-space;"><div dir=3D"auto">Posso fare cambio per A T2 del 31, =
+dalle 14 alle 17.<br></div><br><br><div class=3D"gmail_quote"><div =
+dir=3D"auto">On March 13, 2025 3:45:02 PM UTC, Vladimiro Lovera Rulfi =
+&lt;vladimiro.loverarulfi@unito.it&gt; wrote:</div><blockquote =
+class=3D"gmail_quote" style=3D"margin: 0pt 0pt 0pt 0.8ex; border-left: =
+1px solid rgb(204, 204, 204); padding-left: 1ex;">
+Buongiorno,<div><br></div><div>Volevo comunicare che sar=C3=B2 assente =
+tutta la settimana del 24 marzo, pertanto <b>perder=C3=B2 l=E2=80=99assist=
+enza di laboratorio di B T2 Gioved=C3=AC 27 Marzo dalle 16 alle 19</b>. =
+Qualcun* farebbe un cambio turno con me? Ovviamente, non quella stessa =
+settimana ma quella =
+precedente/successiva!</div><div><br></div><div>Grazie,</div><div>Un =
+cordiale saluto</div><div><br></div><div><div>
+<meta charset=3D"UTF-8"><div><b style=3D"font-variant-ligatures: normal; =
+orphans: 2; widows: 2; background-color: rgb(255, 255, 255); =
+text-decoration-thickness: initial;"><font color=3D"#666666" =
+face=3D"garamond, times new roman, serif">Vladimiro Lovera =
+Rulfi</font></b><div style=3D"font-variant-ligatures: normal; orphans: =
+2; widows: 2; background-color: rgb(255, 255, 255); =
+text-decoration-thickness: initial;"><font color=3D"#666666" =
+face=3D"garamond, times new roman, serif">Ph.D. =
+Candidate</font></div><div style=3D"font-variant-ligatures: normal; =
+orphans: 2; widows: 2; background-color: rgb(255, 255, 255); =
+text-decoration-thickness: initial;"><font color=3D"#666666" =
+face=3D"garamond, times new roman, serif">University of =
+Turin,&nbsp;</font><span style=3D"color: rgb(102, 102, 102); =
+font-family: garamond, &quot;times new roman&quot;, serif;">Department =
+of Computer Science</span></div><div style=3D"font-variant-ligatures: =
+normal; orphans: 2; widows: 2; background-color: rgb(255, 255, 255); =
+text-decoration-thickness: initial;"><font color=3D"#666666" =
+face=3D"garamond, times new roman, serif">Corso Svizzera 185, Turin, =
+Italy 10149</font></div></div>
+</div>
+<div><br><blockquote type=3D"cite"><div>Il giorno 24 feb 2025, alle ore =
+08:00, Sara Capecchi &lt;sara.capecchi@unito.it&gt; ha scritto:</div><br =
+class=3D"Apple-interchange-newline"><div><div dir=3D"ltr"><div =
+dir=3D"ltr">Buongiorno<div>metto in cc gli altri collaboratori e =
+docenti. Visto che avete 30 ore a testa dovrebbe esserci un monte ore =
+adeguato a coprire tutte le lezioni. Vi chiederemmo&nbsp; di mettervi =
+d'accordo per coprire tutte le lezioni magari =
+scambiandovi&nbsp;eventualmente i turni.&nbsp;</div><div>Riportiamo qui =
+il calendario&nbsp;<a =
+href=3D"https://www.google.com/url?q=3Dhttps://www.google.com/url?q%3Dhttp=
+s://www.google.com/url?q%253Dhttps://docs.google.com/spreadsheets/d/1TBkIc=
+zliPORY14cME5rLFleSYIhhNZRX7z0ZwmNy_Ps/edit?gid%25253D0%252523gid%25253D0%=
+2526source%253Dgmail-imap%2526ust%253D1740985247000000%2526usg%253DAOvVaw3=
+P1Ki2MZVIdaLFcw7mHNzp%26source%3Dgmail-imap%26ust%3D1742485857000000%26usg=
+%3DAOvVaw0yvD_kdxX13ndsWKU_T4bU&amp;source=3Dgmail-imap&amp;ust=3D17424880=
+90000000&amp;usg=3DAOvVaw0S5oVUS5HNJ5-UXnREBCj-">https://docs.google.com/s=
+preadsheets/d/1TBkIczliPORY14cME5rLFleSYIhhNZRX7z0ZwmNy_Ps/edit?gid=3D0#gi=
+d=3D0</a></div><div><br></div><div>Fateci poi sapere quante lezioni =
+rimangono scoperte e cercheremo delle soluzioni, =
+grazie!</div><div><br></div><div>cordiali saluti</div><div>i docenti di =
+laboratorio</div><div><br></div></div><br><div class=3D"gmail_quote =
+gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">Il giorno =
+ven 21 feb 2025 alle ore 17:43 Lorenzo Falchi &lt;<a =
+href=3D"mailto:lorenzo.falchi@edu.unito.it">lorenzo.falchi@edu.unito.it</a=
+>&gt; ha scritto:<br></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Buon pomeriggio =
+professoressa,<div>ho controllato il calendario e ho constatato che non =
+riuscir=C3=B2 ad essere disponibile per le lezioni del 23 e 30 aprile e =
+quella del 7 maggio. Ora, la mia borsa =C3=A8 di 30 ore, considerando =
+che una lezione =C3=A8 da 3 ore, una di queste 3 non riuscirei comunque =
+a coprirla, in quanto fuori dal monte ore (infatti, ad oggi, riesco =
+coprire 8 lezioni). La mia idea era quella di cercare di fare cambio con =
+qualche mio collega degli altri turni per due di queste tre date, cos=C3=AC=
+ da non lasciare le lezioni scoperte. Mi faccia sapere cosa ne pensa e =
+anche quale delle 3 lezioni =C3=A8 quella che sarebbe pi=C3=B9 disposta =
+a sostenere senza uno di noi =
+collaboratori.&nbsp;</div><div><br></div><div>Saluti,&nbsp;</div><div>Lore=
+nzo Falchi</div></div>
+
+<br>
+<div style=3D"font-size:1.3em">------------------------</div><span =
+style=3D"font-size:small"><div><img =
+src=3D"https://web.unito.it/logofirmastu.png"><br></div>Indirizzo =
+istituzionale di posta elettronica degli studenti e dei laureati =
+dell'Universit=C3=A0 di Torino</span><div><font =
+size=3D"2">Official&nbsp;University of Turin&nbsp;email address&nbsp;for =
+students and graduates&nbsp;</font></div></blockquote></div><div><br =
+clear=3D"all"></div><div><br></div><span =
+class=3D"gmail_signature_prefix">-- </span><br><div dir=3D"ltr" =
+class=3D"gmail_signature"><div dir=3D"ltr">Sara Capecchi, Ph.D.<br>
+Assistant Professor - Researcher<br>
+Universit=C3=A0 di Torino<br>
+Department&nbsp; of&nbsp; Computer Science<br>
+Corso Svizzera 185<br>
+10149 Torino<br>
+Italy<br>
+<br>
+Tel: +39 011 6706747<br>
+Fax: +39 011 751603<br>
+e-mail: <a href=3D"mailto:capecchi@di.unito.it" =
+target=3D"_blank"><span>capecchi@di.unito.it</span></a><br>
+<div><a =
+href=3D"https://www.google.com/url?q=3Dhttps://www.google.com/url?q%3Dhttp=
+s://www.google.com/url?q%253Dhttp://www.di.unito.it/~capecchi%2526source%2=
+53Dgmail-imap%2526ust%253D1740985247000000%2526usg%253DAOvVaw3ToJqWJrER4B0=
+QeO8itkLU%26source%3Dgmail-imap%26ust%3D1742485857000000%26usg%3DAOvVaw0Td=
+lOiifQZrxU8Q0QM_XZl&amp;source=3Dgmail-imap&amp;ust=3D1742488090000000&amp=
+;usg=3DAOvVaw3s2yo3aas4FWWvwhvxXqVQ" rel=3D"noreferrer" =
+target=3D"_blank">www.di.unito.it/~capecchi</a><font =
+color=3D"#888888"><br></font></div><div><span><span><span dir=3D"auto" =
+title=3D"https://unito.webex.com/meet/sara.capecchi"><a =
+href=3D"https://www.google.com/url?q=3Dhttps://www.google.com/url?q%3Dhttp=
+s://www.google.com/url?q%253Dhttps://unito.webex.com/meet/sara.capecchi%25=
+26source%253Dgmail-imap%2526ust%253D1740985247000000%2526usg%253DAOvVaw0DK=
+h990uU9ZPIxJuhzufQL%26source%3Dgmail-imap%26ust%3D1742485857000000%26usg%3=
+DAOvVaw2fGYYahcoIZRQ6uv-FbAjd&amp;source=3Dgmail-imap&amp;ust=3D1742488090=
+000000&amp;usg=3DAOvVaw0lOOZ4RzFRuQinzgfF3h6c" =
+target=3D"_blank">https://unito.webex.com/meet/sara.capecchi</a></span></s=
+pan></span></div><div><font color=3D"#888888">
+</font></div></div></div></div>
+</div></blockquote></div><br></div></blockquote></div><div =
+dir=3D"auto">luca.barra@edu.unito.it</div></div>
+<br>
+<div style=3D"font-size:1.3em">------------------------</div><span =
+style=3D"font-size:small"><div><img =
+src=3D"https://web.unito.it/logofirmastu.png"><br></div>Indirizzo =
+istituzionale di posta elettronica degli studenti e dei laureati =
+dell'Universit=C3=A0 di Torino</span><div><font =
+size=3D"2">Official&nbsp;University of Turin&nbsp;email address&nbsp;for =
+students and =
+graduates&nbsp;</font></div></div></blockquote></div><br></div></blockquot=
+e></div><div dir=3D"auto">luca.barra@edu.unito.it</div></div>
+<br>
+<div style=3D"font-size:1.3em">------------------------</div><span =
+style=3D"font-size:small"><div><img =
+src=3D"https://web.unito.it/logofirmastu.png"><br></div>Indirizzo =
+istituzionale di posta elettronica degli studenti e dei laureati =
+dell'Universit=C3=A0 di Torino</span><div><font =
+size=3D"2">Official&nbsp;University of Turin&nbsp;email address&nbsp;for =
+students and =
+graduates&nbsp;</font></div></div></blockquote></div><br></div></body></ht=
+ml>=
+
+--Apple-Mail=_7CF76963-F72B-4667-A992-AAE6DE73FA42--

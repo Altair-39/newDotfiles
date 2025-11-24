@@ -1,0 +1,121 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a54a:0:b0:328:ea4:e135 with SMTP id e10csp1252716ljn;
+        Mon, 19 May 2025 00:59:30 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCWpJ4jvl91oC7svx6RAol6EmsR/QWh/gGxXIyWrqUmx2m5lOGC+5TEJ1/e08S0qUSn4Xk5xKXE1hdQu@edu.unito.it
+X-Google-Smtp-Source: AGHT+IFTjwsMCVKmzV/58ufmRcDDeiN3sqMlkRM74oh22gwbMB4MqqA+a9G9W+AHXmYid4KdELQe
+X-Received: by 2002:a05:6402:254a:b0:601:9aeb:3d9 with SMTP id 4fb4d7f45d1cf-6019aeb05f4mr6993508a12.20.1747641569931;
+        Mon, 19 May 2025 00:59:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1747641569; cv=none;
+        d=google.com; s=arc-20240605;
+        b=OFHxEqOkcHuwsI+71ckR5QqlGw/PIHAQhEQB5DwumdXQYgOrsgPs7uw5Y0FwvXiByB
+         a1r/E9av+lhXxuTsAN+fH5mMPqC7Kt+GbMDnah1TXc+8BpqmFe+/9aw4dpxtNOyD0IqM
+         htpjxlRHUdlN3pp/zuA87t24WHhHRVwojxBl6+Yufq1t2yVhxYqoZ8tof89qY6uf9d6C
+         aRaBEUW3PGE2vHmL8tnvvSMtHqJrMmq+WYb+9zFc2t2f8XPC5OWsw5h9uUAAR6LsrFaD
+         LKW9KUJd+FucxEE/vohNgA40XDU+NngAule5UoxMBoJ+N5mKcTgNjOGC29pftd1jmjlq
+         Nkbg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:mime-version:subject:message-id:from:date
+         :dkim-signature:dkim-filter;
+        bh=iQGUpiQTl80McnjMQIW5jNS5DFiwg5K2yLIB00057XU=;
+        fh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+        b=AAamXKAYu+X4BRNMnPRnhOkiXjQJFSdlm9VboKVcQC9KchV4i5iIcX3A7ty2f3osEz
+         aR6fKMg9bflSa3TzcntzGFfKLmbtnofAmETnigrhU0G2DioJ/3ac4QNCi6GeHWc2zP2r
+         DjU7Oh+mxAYp40Y5PYefJP4tnrxG9CfAI8e0Elc0iAN3LE8LQfKYy40nUBEbRarqELG6
+         hdLR4dW4A+yscjz1jdittqQfzfXdlf8smQetFaWMGHOlLyWzSK3TlrIVuMoTONK4ZJUd
+         yZTm2n/5srCp1uH1/SkA89dlM7tIki6v2N5JJVR9UNckRezTRai/CpAlNG4JafZfi5om
+         YkpA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=G9zJztK8;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-6004d4f5da6si5535813a12.60.2025.05.19.00.59.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 May 2025 00:59:29 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=G9zJztK8;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 9005B20EC4;
+	Mon, 19 May 2025 09:59:27 +0200 (CEST)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id C1zVsEKBr6zR; Mon, 19 May 2025 09:59:27 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id CA5242BEE5;
+	Mon, 19 May 2025 09:59:25 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it CA5242BEE5
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1747641566;
+	bh=iQGUpiQTl80McnjMQIW5jNS5DFiwg5K2yLIB00057XU=;
+	h=Date:From:Message-ID:MIME-Version;
+	b=G9zJztK8VkHTMkoZjS3YTfcXdk9HR9nkPOgw35o7CdwNU2CmNol/5Uo/ccYV2Bqw0
+	 R0oGsnV1OGXV8SjyQYDGaH1dv7/HbO8pIGdoEn2QJOmR+zni/qQEo3juCn176anwj/
+	 yMkRdxTzaeAf5qgHKlED0TcUNpJWy3gNHVd2ai0el2lIUthyAcfh6/9yHO83VTvshg
+	 3WGGMTak71mUOZbEgLVHe/CJKuYG7LDaL/ZddNoCZpcfRL/nFk66rsZ1VJWqLp20u7
+	 K3Mjikcp1QFlnYx+ltJ9yX1U4TLuBzNIavfniTVkzZEGdhtstqsN6tLyMpbpJ5WFX+
+	 eIxd42C0SBQqA==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id XiCAS9AIvsSV; Mon, 19 May 2025 09:59:25 +0200 (CEST)
+Received: from esse3be408.private.cineca.it (esse3be408.private.cineca.it [10.100.48.130])
+	by smtp4.cineca.it (Postfix) with ESMTP id 495312D23F;
+	Mon, 19 May 2025 09:59:22 +0200 (CEST)
+Received: from esse3be408.private.cineca.it (localhost [127.0.0.1])
+	by esse3be408.private.cineca.it (Postfix) with ESMTP id 37BF420024;
+	Mon, 19 May 2025 09:59:20 +0200 (CEST)
+Date: Mon, 19 May 2025 09:59:20 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <1109740532.3.1747641560225@esse3be408.private.cineca.it>
+Subject: UNITA Green Day 2025
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+UNITA Green day 2025 =E2=80=93 Book Swap Fair al Campus Einaudi
+
+Hai un libro sui temi della sostenibilit=C3=A0 ambientale =E2=80=93 come il=
+ cambiamento climatico, la transizione ecologica, l=E2=80=99economia circol=
+are o la mobilit=C3=A0 sostenibile =E2=80=93 che merita di essere condiviso=
+?
+Non lasciarlo inutilizzato su uno scaffale: portalo con te e partecipa alla=
+ Book Swap Fair dedicata alla sostenibilit=C3=A0, in programma gioved=C3=AC=
+ 22 maggio, dalle ore 13:00 alle 15:00, presso il cortile del Campus Luigi =
+Einaudi.
+In linea con il principio dello scambio reciproco, potrai donare un libro e=
+ sceglierne un altro tra quelli disponibili. Un=E2=80=99occasione per far c=
+ircolare idee e letture che ispirano il cambiamento.
+L=E2=80=99iniziativa =C3=A8 promossa dall=E2=80=99Alleanza UNITA, in collab=
+orazione con il Green Office di UniTo, nell=E2=80=99ambito del Green Day 20=
+25: una giornata di eventi paralleli negli Atenei partner dell=E2=80=99Alle=
+anza dedicata alla promozione di buone pratiche ambientali e alla diffusion=
+e della cultura della sostenibilit=C3=A0.
+Dai nuova vita ai tuoi libri. Condividi il sapere. Promuovi la sostenibilit=
+=C3=A0.
+
+---------------------------------------------------------------------
+
+UNITA Green Day 2025 =E2=80=93 Book Swap Fair at Campus Einaudi
+Do you own a book on environmental sustainability =E2=80=94 such as climate=
+ change, ecological transition, circular economy, or sustainable mobility =
+=E2=80=94 that deserves to be shared?
+Don=E2=80=99t let it gather dust on a shelf: bring it with you and take par=
+t in the Sustainability-Themed Book Swap Fair, taking place on Thursday, Ma=
+y 22, from 1:00 PM to 3:00 PM at Campus Luigi Einaudi.
+Following the principle of reciprocal exchange, you can donate a book and c=
+hoose another from those available =E2=80=94 an opportunity to share ideas =
+and readings that inspire positive change.
+The initiative is promoted by the UNITA Alliance, in collaboration with the=
+ Green Office of UniTo, as part of Green Day 2025: a day of parallel events=
+ across the Alliance=E2=80=99s partner universities, dedicated to promoting=
+ environmentally responsible practices and fostering a culture of sustainab=
+ility.
+Give your books new life. Share knowledge. Promote sustainability.
+

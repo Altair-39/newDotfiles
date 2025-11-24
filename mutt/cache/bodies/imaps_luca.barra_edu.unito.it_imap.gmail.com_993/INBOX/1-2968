@@ -1,0 +1,115 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:948a:0:b0:361:9897:9696 with SMTP id c10csp937878ljh;
+        Mon, 3 Nov 2025 00:15:50 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHa43aoPDNk/kFxLhZVE9P8S8VXsZ0fg9262X7game478P41VGCiwKg+vRd9FDJ+6bdXt7C
+X-Received: by 2002:a17:907:3da5:b0:b70:4377:4d29 with SMTP id a640c23a62f3a-b707011afbdmr658780566b.2.1762157750033;
+        Mon, 03 Nov 2025 00:15:50 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762157750; cv=none;
+        d=google.com; s=arc-20240605;
+        b=WC6JIdpb4bLUCvOzteoWkcI8C+fgI9lzNJr1P0Pq0CKaTFTkysQHx6KERpvWeZ7vp/
+         K0Yd+KG7yo/KhTrt9Y9bvkHxL7tY6JHUjuHGkPY3wdBchRqyxDLshuOCKHq27JdLJhIB
+         27dxNcgQ2kOblfweIOhZ6wMS0UaAk5w5DrmwhHmf12kgH5tw1tfmfSTtNq/zgBkSPruJ
+         QkK5bu5ZgZY5HfXeWbTjyWlz0EdR0lKj7UCg37UBm8GzOn/xeyrvoj5KYD6CeKabwi9M
+         tx1rtAjXmlB505PUVFZUZlrs9xkUVvAApxUhdDjl2WbO6UuEdjk/4UzVxRvQjcqw/yEy
+         aHzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:message-id:subject:reply-to:from:to:date
+         :dkim-signature:dkim-filter;
+        bh=y/8JtZPoyLFKvX0BqKEksxVgan/pw4k0RE8XmJg4FOA=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=UHvrX1hddc0QUS7hpBCjmCamAYWlBAXD5E0uTcvOnhz6MhiUzMyMoFs2OwlKCrNhjg
+         VfF5Ol2SP9RNdiKihWOJrKtfBdfCa5Q4Au+tK8/Q+TJdVr5/pbPe9F51EPVSCXpZOJtA
+         kP2rOSX5gtx94MmcKThmYmTlAAwj4K2vyAvw+T7EMJSv5NInZcROUB11SqjcC/Ck6o8L
+         r7itmYzTAIBtkAtnw3Fa/5Dl+UnlrjaS5ilDGzGKuN3mTFy90wVvPX0/m6+BPMiqNzIL
+         2d5qi5EBxzpLg4UtQPzk98hZbgqY83cNfysjaoIoEKB8Ai6iC0sJPC9qrg6DpGVRtmL3
+         PB1g==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=CM4Qv8nb;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-b7077c87c2bsi453013566b.312.2025.11.03.00.15.49
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Nov 2025 00:15:50 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=CM4Qv8nb;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 5A38FmF3740256
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Mon, 3 Nov 2025 09:15:48 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 5A38FmF3740256
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=i-learn.unito.it;
+	s=default; t=1762157748;
+	bh=y/8JtZPoyLFKvX0BqKEksxVgan/pw4k0RE8XmJg4FOA=;
+	h=Date:To:From:Reply-To:Subject:From;
+	b=CM4Qv8nbd/fR3CgxWpo2f1CkMeOOo3ndWECWfRHfyJ8D3ENJ3rjgFNLx3HuRa8o4U
+	 pvGn6ZcbG6HMA3w64k5la2GhSvJ0buG5IIFqsz6UYGPNy8HPzCIGJx5jsfALFG5s9O
+	 QfwUnb4dLml5xjMTO1ORJm/Joz49H4VgkHsytmH8=
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 5A38Fmmc089331
+	for <luca.barra@edu.unito.it>; Mon, 3 Nov 2025 09:15:48 +0100
+Date: Mon, 3 Nov 2025 09:15:48 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Do not reply to this email (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: New sign in to your Corsi di Studi in Informatica account
+Message-ID: <690864b4014051.14316887@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.6.5 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_jmng00mQEFsXOJt9YSyhXTspIRkcdwGeuFf9Lsv8UnY"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 5A38FmF3740256
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply-informatica@i-learn.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_jmng00mQEFsXOJt9YSyhXTspIRkcdwGeuFf9Lsv8UnY
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+Hi Barra Luca,
+
+Your Corsi di Studi in Informatica account was just signed in to from a new
+device.
+
+* Your account: luca.barra luca.barra@edu.unito.it
+* Monday, 3 November 2025, 9:15 AM
+* Device: Mozilla/5.0 (X11; Linux x86_64; rv:144.0) Gecko/20100101
+Firefox/144.0
+* IP: 130.192.150.65
+
+If this was you, then you don't need to do anything.
+
+If you don't recognise this activity, please change your password [1].
+
+Links:
+------
+[1] https://informatica.i-learn.unito.it/user/preferences.php?userid=3D2804=
+2
+
+--b1_jmng00mQEFsXOJt9YSyhXTspIRkcdwGeuFf9Lsv8UnY
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hi Barra Luca,</p>=0A<p>Your Corsi di Studi in Informatica account was j=
+ust signed in to from a new device.</p>=0A<ul>=0A<li>Your account: luca.bar=
+ra luca.barra@edu.unito.it</li>=0A<li>Monday, 3 November 2025, 9:15 AM</li>=
+=0A<li>Device:  Mozilla/5.0 (X11; Linux x86_64; rv:144.0) Gecko/20100101 Fi=
+refox/144.0</li>=0A<li>IP: 130.192.150.65</li>=0A</ul>=0A<p>If this was you=
+, then you don't need to do anything.</p>=0A<p>If you don't recognise this =
+activity, please <a href=3D"https://informatica.i-learn.unito.it/user/prefe=
+rences.php?userid=3D28042">change your password</a>.</p>
+
+--b1_jmng00mQEFsXOJt9YSyhXTspIRkcdwGeuFf9Lsv8UnY--
+

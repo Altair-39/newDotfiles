@@ -1,0 +1,106 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:948a:0:b0:361:9897:9696 with SMTP id c10csp633074ljh;
+        Sun, 2 Nov 2025 04:21:27 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEHLi4brN+TnfO9hZUXRXq8x/A5KEBy9YO+gQV9coSU8gOfhBfqPrKATsK9k9x1+6IJAeIf
+X-Received: by 2002:a05:6402:35ce:b0:640:9f68:f42c with SMTP id 4fb4d7f45d1cf-6409f68f6c7mr1794710a12.1.1762086087349;
+        Sun, 02 Nov 2025 04:21:27 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762086087; cv=none;
+        d=google.com; s=arc-20240605;
+        b=PcQBCRfn4WtsRZlbAXRx6PpDgn/tzyC2TRtXoqmHoe7QR3h0mJVMdDr7oYSyoIBfkF
+         wsLE9ALG+CEto6aZlQR1xmk9Df3RlJfXyxXZuulfYCZw0IF2XBPW2QOSs/uvd6ZOF4jD
+         VOy/zEW1vFvw5+bvXlWN22owrV3ITYHRyuHZCwGvlwyvbzXgT8zRFsIcHJf2AIuoLLy5
+         P74YJX6zuknnXteX0eW8pRMsI0LmwxvrqQEOH5nTKJi//920RTRRwbuYxHilUP2Gvl06
+         BDFRZwuqEE15SYwK9mCcxweB6OKr1DZqHhFagb2j5PxzYUVGQa6Xdq6JeSYzomVptjao
+         6OhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:mime-version:subject:message-id:to:from
+         :date:dkim-signature:dkim-filter;
+        bh=wMJj9SEBW0hio3oOUldSphP2cuwGgPtcqvu/MHj4npo=;
+        fh=MPr9bvqLUhOuXiLHXXeI2OeiwnxjK+z77MlT8YwvP+Q=;
+        b=Z/o+Z+oIZMPZZ3W5c80v19CO1VFYoSH3wRv8BKXEoB9E/IhAcoeL9LMdJqY6k+gCCM
+         kQLZxGdCbxbbS0RYcknFVemrl90PE7D2DqboZhmzPENjMDngpbr5UJEDLniIUw29QNo1
+         CHaV3RALRR1slC8fTfwp54G4oX6Fin6hq52zTA7XJvFmz/Bwtxz6QHEJoclzQu4EcTee
+         45+y03P4aCxnOnyBmlsy3SzcRUOMheCQs2F7NzeX9B8/G+luRjNBZ5jOFi6Ljum68tf1
+         43uiezGcIN3WYcMdj9VhO560FyWdWYhXyKVe4Sbd5/ZuEXDOUNVlap9E2abCF+MdXN+/
+         nVkA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=AVJ8ccjv;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-640b7f6a1a3si605734a12.465.2025.11.02.04.21.27
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 Nov 2025 04:21:27 -0800 (PST)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=AVJ8ccjv;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id F33E42CC25;
+	Sun,  2 Nov 2025 13:21:26 +0100 (CET)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id FuL0B7SqvhlH; Sun,  2 Nov 2025 13:21:26 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id CE23E2CC16;
+	Sun,  2 Nov 2025 13:21:26 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it CE23E2CC16
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1762086086;
+	bh=wMJj9SEBW0hio3oOUldSphP2cuwGgPtcqvu/MHj4npo=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=AVJ8ccjvMCKvqA1sVuAYsiq8NwfyJrtuvJYhIWkabeXgamFcdBYizFC2FMQPEu8ML
+	 8xYcrW4hz4HFh0bQsE+uMUV26qJXu/WZQ0TWHw/+bzEZauJQZ8Hd6k3J6PFrDWYGit
+	 rlf1sdBOcFMYy7JJGScnJh+CA2UL2wFoWaUn1rLvvnfzxqOV8jGp5IsKaaOaLI+WWv
+	 mnRJGQQvGkqAw7R+jnR7uNEMmbrVPjK9YBBMKI59u/WugQPZ8rCRDtmBHxFswQiYne
+	 WPj2YAqOv3MOeZS9j4GgM1ylNanHl1Zd6nTBC6RKH6l+qsg6rFjOSoi3SBatVyfytl
+	 fq5F73+o6IFGA==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id Y-Y8h2Rrx7eU; Sun,  2 Nov 2025 13:21:26 +0100 (CET)
+Received: from esse3be408.private.cineca.it (esse3be408.private.cineca.it [10.100.48.130])
+	by smtp4.cineca.it (Postfix) with ESMTP id A47BA2CC27;
+	Sun,  2 Nov 2025 13:21:26 +0100 (CET)
+Received: from esse3be408.private.cineca.it (localhost [127.0.0.1])
+	by esse3be408.private.cineca.it (Postfix) with ESMTP id 9BC3220063;
+	Sun,  2 Nov 2025 13:21:26 +0100 (CET)
+Date: Sun, 2 Nov 2025 13:21:26 +0100 (CET)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+To: luca.barra@edu.unito.it, Luca.Barra.Bodoni@gmail.com
+Message-ID: <1589971047.947.1762086086637@esse3be408.private.cineca.it>
+Subject: Avviso - Piano Carriera
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<P>Gentile BARRA,</P>
+<P>hai confermato il tuo Piano carriera in data 02-NOV-25.</P>
+
+<P>Ti informiamo che: </P>
+
+<P>- fino al 30 gennaio 2026 puoi modificare l=E2=80=99impegno (tempo pieno=
+ o tempo parziale) e il piano carriera in modalit=C3=A0 on line;</P>
+
+<P>- dal 31 gennaio 2026 al 29 maggio 2026 puoi modificare soltanto il pian=
+o carriera; la modifica dell'impegno non =C3=A8 pi=C3=B9 consentita. </P>
+
+<P>Le modifiche eventualmente apportate al piano saranno recepite solo se c=
+ompilerai e confermerai nuovamente tutto il piano carriera; in caso contrar=
+io le modifiche rimarranno in stato "Bozza" e rimarr=C3=A0 attivo l'ultimo =
+piano carriera confermato.</P>
+
+<P>Se devi soltanto visualizzare il tuo piano carriera gi=C3=A0 confermato,=
+ consulta la sezione "Compilazione piano carriera" della MyUnito e non util=
+izzare il pulsante "Modifica piano".</P>
+
+<P>Cordiali saluti</P>
+<P>Universit=C3=A0 degli Studi di Torino</P>
+
+NOTA BENE: Non rispondere a questo messaggio

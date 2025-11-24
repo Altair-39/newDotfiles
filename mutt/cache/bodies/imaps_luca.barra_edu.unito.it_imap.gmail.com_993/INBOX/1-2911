@@ -1,0 +1,769 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:221c:b0:361:9897:9696 with SMTP id y28csp5695727ljq;
+        Sun, 19 Oct 2025 07:07:38 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEPz6DJLiCSFHSiUciLPrERGXeI4D/eZ+pF/5Lh8qMdravkT0xq1HcpWDNDaKTWlolZmehN
+X-Received: by 2002:a05:6000:1884:b0:425:6794:77fd with SMTP id ffacd0b85a97d-42704d855b5mr3891207f8f.1.1760882858467;
+        Sun, 19 Oct 2025 07:07:38 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1760882858; cv=none;
+        d=google.com; s=arc-20240605;
+        b=c91HzyF4a4ANXAgyCIbf0fnGq9CILLiA+qQB6ZjGWu+JTloBAH970Lux9djCjG8o2a
+         eaPAB0F1pAInqXn2ltQcIcEW6iYYG6HCVGPDMtWSLDcA29ky5k+PzQeeoOm5eN3dWQ7c
+         n5clY4xtxJnHVHQUiKbAKaTfFcjRtY5CT0OS1rI3qpetseesYa9zHbRZyiZ84LBwcNy9
+         yt0s162Ni3yE8EDW65eQ3ONI6fH94aOM0DL2rTbFdILTgabf15aXBL4j2G+fTmZtSMo1
+         KCmT56GNaJc5Q90uYBGKtvt2545HZnqVoy6c5ECyvLJN0MDrFrv3QgsvUkFOGYj8rr9N
+         NkIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=destinations:list-unsubscribe-post:list-unsubscribe:list-post
+         :list-archive:list-id:precedence:content-transfer-encoding
+         :mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=u/UA7BJmvgFwSSpQ0o/QGl6Mh8bnXGu9ourcePVni0o=;
+        fh=ky5TuBuQEQFoAy4OjqtEIDd6fZw6iEBmHdZj2KBsDLw=;
+        b=PbBdJKHgNKX6j9YOyelAm1YyKAUdSHcn5l6VwFC7xHG7xiOVskxxOlvpJYDQJWXI4f
+         6qDO0iFkMHtf6ykd4EeghoaaaIVcExPxYo88BHoorZtoG6hMdiEr3qH3xfK7FZ1a93/X
+         23pVtwjKrIibC0ehL/f5zN2DoXU6pscipNpl4tXiLB48ubFgXhS0yLxYjZqK1oJVmc0f
+         z47dL63tpFyVUP8uxDk68/vVUHgLpgIRoRUDKDqTR9qs1s2FKHFh43apb93QpMTFHJYr
+         i8FMsDIjLojmA7UtcPAAUfB7JYA95pUzH2SScKm1oquP4aJIpSDpZHQTH6NSiu3bj/mc
+         R2hA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@github.com header.s=pf2023 header.b=JjcdWGAz;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.205 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Return-Path: <noreply@github.com>
+Received: from out-22.smtp.github.com (out-22.smtp.github.com. [192.30.252.205])
+        by mx.google.com with ESMTPS id 6a1803df08f44-87cf51e81b7si17599486d6.198.2025.10.19.07.07.38
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 19 Oct 2025 07:07:38 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@github.com designates 192.30.252.205 as permitted sender) client-ip=192.30.252.205;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@github.com header.s=pf2023 header.b=JjcdWGAz;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.205 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Received: from github.com (hubbernetes-node-b6b8be6.ac4-iad.github.net [10.52.130.35])
+	by smtp.github.com (Postfix) with ESMTPA id D701F20954
+	for <luca.barra@edu.unito.it>; Sun, 19 Oct 2025 07:07:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	s=pf2023; t=1760882857;
+	bh=u/UA7BJmvgFwSSpQ0o/QGl6Mh8bnXGu9ourcePVni0o=;
+	h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:List-ID:
+	 List-Archive:List-Post:List-Unsubscribe:List-Unsubscribe-Post:
+	 From;
+	b=JjcdWGAzLOFoRnwX80wKN/BtZGAtwkGg+Hy6RT63YyQW7ifB3CMaPmBUw1ErUeYHw
+	 M+jrj8oyF0O0UWu4qQAQO6f0NAylMfT/8G5CVj2h21A0v7XioHzAHRbWZVxuhxDFlP
+	 9GWNjN+fi8jmcs5eDHswuL2um5nBooqcOt85oZ8Y=
+Date: Sun, 19 Oct 2025 07:07:37 -0700
+From: Copilot <notifications@github.com>
+Reply-To: fastfetch-cli/fastfetch <reply+BAG3TZLYIX3SACIXIUANYEDJNY5KTEVBNHHNEWS2UU@reply.github.com>
+To: fastfetch-cli/fastfetch <fastfetch@noreply.github.com>
+Cc: Altair <luca.barra@edu.unito.it>, 
+ Author <author@noreply.github.com>
+Message-ID: <fastfetch-cli/fastfetch/pull/2015/review/3354541720@github.com>
+In-Reply-To: <fastfetch-cli/fastfetch/pull/2015@github.com>
+References: <fastfetch-cli/fastfetch/pull/2015@github.com>
+Subject: Re: [fastfetch-cli/fastfetch] add kiss packages count (PR #2015)
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_68f4f0a9d3f7f_4509a10d876712";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Precedence: list
+X-GitHub-Sender: Copilot
+X-GitHub-Recipient: Altair-39
+X-GitHub-Reason: author
+List-ID: fastfetch-cli/fastfetch <fastfetch.fastfetch-cli.github.com>
+List-Archive: https://github.com/fastfetch-cli/fastfetch
+List-Post: <mailto:reply+BAG3TZLYIX3SACIXIUANYEDJNY5KTEVBNHHNEWS2UU@reply.github.com>
+List-Unsubscribe: <mailto:unsub+BAG3TZLYIX3SACIXIUANYEDJNY5KTEVBNHHNEWS2UU@reply.github.com>,
+ <https://github.com/notifications/unsubscribe/one-click/BAG3TZORUIVC6DDNEJRUVFT3YOLKTANCNFSM6AAAAACJSFYK5E>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-GitHub-Notify-Platform: newsies
+X-Auto-Response-Suppress: All
+destinations: luca.barra@edu.unito.it
+X-GitHub-Recipient-Address: luca.barra@edu.unito.it
+
+
+----==_mimepart_68f4f0a9d3f7f_4509a10d876712
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+@Copilot commented on this pull request.
+
+## Pull Request Overview
+
+This PR adds support for counting packages managed by the KISS package ma=
+nager, a Linux package manager. The implementation follows the establishe=
+d pattern used by other package managers in the codebase.
+
+Key changes:
+- Adds KISS package counting functionality with dedicated detection funct=
+ion
+- Integrates KISS support into the existing package management framework
+- Updates documentation to reflect the new package manager support
+
+### Reviewed Changes
+
+Copilot reviewed 6 out of 6 changed files in this pull request and genera=
+ted 7 comments.
+
+<details>
+<summary>Show a summary per file</summary>
+
+| File | Description |
+| ---- | ----------- |
+| src/modules/packages/packages.c | Adds KISS package manager integration=
+ to printing, formatting, JSON parsing, and module info |
+| src/modules/packages/option.h | Defines the KISS package manager flag b=
+it |
+| src/detection/packages/packages_linux.c | Implements KISS package detec=
+tion logic and integrates it into the main detection flow |
+| src/detection/packages/packages.h | Adds kiss field to the packages res=
+ult structure |
+| doc/json_schema.json | Updates documentation to include KISS package ma=
+nager format option |
+| CMakeLists.txt | Adds KISS to the list of supported package managers fo=
+r build configuration |
+</details>
+
+
+
+
+
+
+---
+
+<sub>**Tip:** Customize your code reviews with copilot-instructions.md. <=
+a href=3D"/fastfetch-cli/fastfetch/new/dev/.github?filename=3Dcopilot-ins=
+tructions.md" class=3D"Link--inTextBlock" target=3D"_blank" rel=3D"noopen=
+er noreferrer">Create the file</a> or <a href=3D"https://docs.github.com/=
+en/copilot/customizing-copilot/adding-repository-custom-instructions-for-=
+github-copilot" class=3D"Link--inTextBlock" target=3D"_blank" rel=3D"noop=
+ener noreferrer">learn how to get started</a>.</sub>
+
+> @@ -146,6 +146,7 @@ bool ffPrintPackages(FFPackagesOptions* options)
+         FF_PRINT_PACKAGE(mport)
+         FF_PRINT_PACKAGE(pisi)
+         FF_PRINT_PACKAGE(soar)
++	FF_PRINT_PACKAGE(kiss)
+
+Inconsistent indentation: this line uses tabs while surrounding lines use=
+ spaces. Should use spaces to match the existing code style.
+```suggestion
+        FF_PRINT_PACKAGE(kiss)
+```
+
+> @@ -194,7 +195,8 @@ bool ffPrintPackages(FFPackagesOptions* options)
+             FF_FORMAT_ARG(counts.hpkgUser, "hpkg-user"),
+             FF_FORMAT_ARG(counts.pisi, "pisi"),
+             FF_FORMAT_ARG(counts.soar, "soar"),
+-            FF_FORMAT_ARG(nixAll, "nix-all"),
++            FF_FORMAT_ARG(counts.kiss, "kiss"),
++	    FF_FORMAT_ARG(nixAll, "nix-all"),
+
+Inconsistent indentation: line 199 uses tabs while line 198 and surroundi=
+ng lines use spaces. Should use spaces to match the existing code style.
+```suggestion
+            FF_FORMAT_ARG(nixAll, "nix-all"),
+```
+
+> +             	        case 'K': if (false);
++			    FF_TEST_PACKAGE_NAME(KISS)
++			    break;
++	                case 'L': if (false);
+
+Inconsistent indentation: these lines use tabs while surrounding code use=
+s spaces. Should use spaces to match the existing code style.
+```suggestion
+                        case 'K': if (false);
+                            FF_TEST_PACKAGE_NAME(KISS)
+                            break;
+                        case 'L': if (false);
+```
+
+> @@ -498,6 +505,7 @@ FFModuleBaseInfo ffPackagesModuleInfo =3D {
+         {"Number of hpkg-user packages", "hpkg-user"},
+         {"Number of pisi packages", "pisi"},
+         {"Number of soar packages", "soar"},
++	{"Number of kiss packages", "kiss"},
+
+Inconsistent indentation: this line uses tabs while surrounding lines use=
+ spaces. Should use spaces to match the existing code style.
+```suggestion
+        {"Number of kiss packages", "kiss"},
+```
+
+> @@ -452,6 +472,7 @@ static void getPackageCounts(FFstrbuf* baseDir, FFP=
+ackagesResult* packageCounts,
+     if (!(options->disabled & FF_PACKAGES_FLAG_PACSTALL_BIT)) packageCou=
+nts->pacstall +=3D getNumElements(baseDir, "/var/lib/pacstall/metadata", =
+false);
+     if (!(options->disabled & FF_PACKAGES_FLAG_PISI_BIT)) packageCounts-=
+>pisi +=3D getNumElements(baseDir, "/var/lib/pisi/package", true);
+     if (!(options->disabled & FF_PACKAGES_FLAG_PKGSRC_BIT)) packageCount=
+s->pkgsrc +=3D getNumElements(baseDir, "/usr/pkg/pkgdb", DT_DIR);
++    if (!(options->disabled & FF_PACKAGES_FLAG_KISS_BIT)) packageCounts-=
+>kiss +=3D getNumElements(baseDir, "/var/db/kiss/installed", true);
+
+This line duplicates the KISS package detection logic that's already impl=
+emented in the getKissPackages function at line 584. The custom getKissPa=
+ckages function should be used here instead of getNumElements for consist=
+ency.
+```suggestion
+    if (!(options->disabled & FF_PACKAGES_FLAG_KISS_BIT)) packageCounts->=
+kiss +=3D getKissPackages(baseDir, "/var/db/kiss/installed");
+```
+
+> @@ -558,4 +579,7 @@ void ffDetectPackagesImpl(FFPackagesResult* result,=
+ FFPackagesOptions* options)
+ =
+
+     if (!(options->disabled & FF_PACKAGES_FLAG_SOAR_BIT))
+         result->soar +=3D getSQLite3Int(&baseDir, ".local/share/soar/db/=
+soar.db", "SELECT COUNT(DISTINCT pkg_id || pkg_name) FROM packages WHERE =
+is_installed =3D true", "soar");
++    =
+
++    if (!(options->disabled & FF_PACKAGES_FLAG_KISS_BIT)) =
+
++	result->kiss +=3D getKissPackages(&baseDir);
+
+Inconsistent indentation: line 584 uses tabs while line 583 and surroundi=
+ng code uses spaces. Should use spaces to match the existing code style.
+```suggestion
+    result->kiss +=3D getKissPackages(&baseDir);
+```
+
+> @@ -442,7 +442,7 @@
+             "type": "string"
+         },
+         "packagesFormat": {
+-            "description": "Output format of the module `Packages`. See =
+Wiki for formatting syntax\n    1. {all}: Number of all packages\n    2. =
+{pacman}: Number of pacman packages\n    3. {pacman-branch}: Pacman branc=
+h on manjaro\n    4. {dpkg}: Number of dpkg packages\n    5. {rpm}: Numbe=
+r of rpm packages\n    6. {emerge}: Number of emerge packages\n    7. {eo=
+pkg}: Number of eopkg packages\n    8. {xbps}: Number of xbps packages\n =
+   9. {nix-system}: Number of nix-system packages\n    10. {nix-user}: Nu=
+mber of nix-user packages\n    11. {nix-default}: Number of nix-default p=
+ackages\n    12. {apk}: Number of apk packages\n    13. {pkg}: Number of =
+pkg packages\n    14. {flatpak-system}: Number of flatpak-system app pack=
+ages\n    15. {flatpak-user}: Number of flatpak-user app packages\n    16=
+. {snap}: Number of snap packages\n    17. {brew}: Number of brew package=
+s\n    18. {brew-cask}: Number of brew-cask packages\n    19. {macports}:=
+ Number of macports packages\n    20. {scoop-user}: Number of scoop-user =
+packages\n    21. {scoop-global}: Number of scoop-global packages\n    22=
+. {choco}: Number of choco packages\n    23. {pkgtool}: Number of pkgtool=
+ packages\n    24. {paludis}: Number of paludis packages\n    25. {winget=
+}: Number of winget packages\n    26. {opkg}: Number of opkg packages\n  =
+  27. {am-system}: Number of am-system packages\n    28. {sorcery}: Numbe=
+r of sorcery packages\n    29. {lpkg}: Number of lpkg packages\n    30. {=
+lpkgbuild}: Number of lpkgbuild packages\n    31. {guix-system}: Number o=
+f guix-system packages\n    32. {guix-user}: Number of guix-user packages=
+\n    33. {guix-home}: Number of guix-home packages\n    34. {linglong}: =
+Number of linglong packages\n    35. {pacstall}: Number of pacstall packa=
+ges\n    36. {mport}: Number of mport packages\n    37. {am-user}: Number=
+ of am-user (aka appman) packages\n    38. {pkgsrc}: Number of pkgsrc pac=
+kages\n    39. {hpkg-system}: Number of hpkg-system packages\n    40. {hp=
+kg-user}: Number of hpkg-user packages\n    41. {pisi}: Number of pisi pa=
+ckages\n    42. {soar}: Number of soar packages\n    43. {nix-all}: Total=
+ number of all nix packages\n    44. {flatpak-all}: Total number of all f=
+latpak app packages\n    45. {brew-all}: Total number of all brew package=
+s\n    46. {guix-all}: Total number of all guix packages\n    47. {hpkg-a=
+ll}: Total number of all hpkg packages",
++            "description": "Output format of the module `Packages`. See =
+Wiki for formatting syntax\n    1. {all}: Number of all packages\n    2. =
+{pacman}: Number of pacman packages\n    3. {pacman-branch}: Pacman branc=
+h on manjaro\n    4. {dpkg}: Number of dpkg packages\n    5. {rpm}: Numbe=
+r of rpm packages\n    6. {emerge}: Number of emerge packages\n    7. {eo=
+pkg}: Number of eopkg packages\n    8. {xbps}: Number of xbps packages\n =
+   9. {nix-system}: Number of nix-system packages\n    10. {nix-user}: Nu=
+mber of nix-user packages\n    11. {nix-default}: Number of nix-default p=
+ackages\n    12. {apk}: Number of apk packages\n    13. {pkg}: Number of =
+pkg packages\n    14. {flatpak-system}: Number of flatpak-system app pack=
+ages\n    15. {flatpak-user}: Number of flatpak-user app packages\n    16=
+. {snap}: Number of snap packages\n    17. {brew}: Number of brew package=
+s\n    18. {brew-cask}: Number of brew-cask packages\n    19. {macports}:=
+ Number of macports packages\n    20. {scoop-user}: Number of scoop-user =
+packages\n    21. {scoop-global}: Number of scoop-global packages\n    22=
+. {choco}: Number of choco packages\n    23. {pkgtool}: Number of pkgtool=
+ packages\n    24. {paludis}: Number of paludis packages\n    25. {winget=
+}: Number of winget packages\n    26. {opkg}: Number of opkg packages\n  =
+  27. {am-system}: Number of am-system packages\n    28. {sorcery}: Numbe=
+r of sorcery packages\n    29. {lpkg}: Number of lpkg packages\n    30. {=
+lpkgbuild}: Number of lpkgbuild packages\n    31. {guix-system}: Number o=
+f guix-system packages\n    32. {guix-user}: Number of guix-user packages=
+\n    33. {guix-home}: Number of guix-home packages\n    34. {linglong}: =
+Number of linglong packages\n    35. {pacstall}: Number of pacstall packa=
+ges\n    36. {mport}: Number of mport packages\n    37. {am-user}: Number=
+ of am-user (aka appman) packages\n    38. {pkgsrc}: Number of pkgsrc pac=
+kages\n    39. {hpkg-system}: Number of hpkg-system packages\n    40. {hp=
+kg-user}: Number of hpkg-user packages\n    41. {pisi}: Number of pisi pa=
+ckages\n    42. {soar}: Number of soar packages\n   43. {kiss-all}: Total=
+ number of kiss packages\n   44. {nix-all}: Total number of all nix packa=
+ges\n    45. {flatpak-all}: Total number of all flatpak app packages\n   =
+ 46. {brew-all}: Total number of all brew packages\n    47. {guix-all}: T=
+otal number of all guix packages\n    48. {hpkg-all}: Total number of all=
+ hpkg packages",
+
+Incorrect format variable name: should be '{kiss}' not '{kiss-all}' since=
+ KISS doesn't have separate categories like other package managers (syste=
+m/user). The documentation shows this as a single count, not an aggregate=
+d 'all' count.
+```suggestion
+            "description": "Output format of the module `Packages`. See W=
+iki for formatting syntax\n    1. {all}: Number of all packages\n    2. {=
+pacman}: Number of pacman packages\n    3. {pacman-branch}: Pacman branch=
+ on manjaro\n    4. {dpkg}: Number of dpkg packages\n    5. {rpm}: Number=
+ of rpm packages\n    6. {emerge}: Number of emerge packages\n    7. {eop=
+kg}: Number of eopkg packages\n    8. {xbps}: Number of xbps packages\n  =
+  9. {nix-system}: Number of nix-system packages\n    10. {nix-user}: Num=
+ber of nix-user packages\n    11. {nix-default}: Number of nix-default pa=
+ckages\n    12. {apk}: Number of apk packages\n    13. {pkg}: Number of p=
+kg packages\n    14. {flatpak-system}: Number of flatpak-system app packa=
+ges\n    15. {flatpak-user}: Number of flatpak-user app packages\n    16.=
+ {snap}: Number of snap packages\n    17. {brew}: Number of brew packages=
+\n    18. {brew-cask}: Number of brew-cask packages\n    19. {macports}: =
+Number of macports packages\n    20. {scoop-user}: Number of scoop-user p=
+ackages\n    21. {scoop-global}: Number of scoop-global packages\n    22.=
+ {choco}: Number of choco packages\n    23. {pkgtool}: Number of pkgtool =
+packages\n    24. {paludis}: Number of paludis packages\n    25. {winget}=
+: Number of winget packages\n    26. {opkg}: Number of opkg packages\n   =
+ 27. {am-system}: Number of am-system packages\n    28. {sorcery}: Number=
+ of sorcery packages\n    29. {lpkg}: Number of lpkg packages\n    30. {l=
+pkgbuild}: Number of lpkgbuild packages\n    31. {guix-system}: Number of=
+ guix-system packages\n    32. {guix-user}: Number of guix-user packages\=
+n    33. {guix-home}: Number of guix-home packages\n    34. {linglong}: N=
+umber of linglong packages\n    35. {pacstall}: Number of pacstall packag=
+es\n    36. {mport}: Number of mport packages\n    37. {am-user}: Number =
+of am-user (aka appman) packages\n    38. {pkgsrc}: Number of pkgsrc pack=
+ages\n    39. {hpkg-system}: Number of hpkg-system packages\n    40. {hpk=
+g-user}: Number of hpkg-user packages\n    41. {pisi}: Number of pisi pac=
+kages\n    42. {soar}: Number of soar packages\n   43. {kiss}: Number of =
+kiss packages\n   44. {nix-all}: Total number of all nix packages\n    45=
+. {flatpak-all}: Total number of all flatpak app packages\n    46. {brew-=
+all}: Total number of all brew packages\n    47. {guix-all}: Total number=
+ of all guix packages\n    48. {hpkg-all}: Total number of all hpkg packa=
+ges",
+```
+
+-- =
+
+Reply to this email directly or view it on GitHub:
+https://github.com/fastfetch-cli/fastfetch/pull/2015#pullrequestreview-33=
+54541720
+You are receiving this because you authored the thread.
+
+Message ID: <fastfetch-cli/fastfetch/pull/2015/review/3354541720@github.c=
+om>=
+
+----==_mimepart_68f4f0a9d3f7f_4509a10d876712
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p></p>
+<p><b>@Copilot</b> commented on this pull request.</p>
+
+<h2 dir=3D"auto">Pull Request Overview</h2>
+<p dir=3D"auto">This PR adds support for counting packages managed by the=
+ KISS package manager, a Linux package manager. The implementation follow=
+s the established pattern used by other package managers in the codebase.=
+</p>
+<p dir=3D"auto">Key changes:</p>
+<ul dir=3D"auto">
+<li>Adds KISS package counting functionality with dedicated detection fun=
+ction</li>
+<li>Integrates KISS support into the existing package management framewor=
+k</li>
+<li>Updates documentation to reflect the new package manager support</li>=
+
+</ul>
+<h3 dir=3D"auto">Reviewed Changes</h3>
+<p dir=3D"auto">Copilot reviewed 6 out of 6 changed files in this pull re=
+quest and generated 7 comments.</p>
+<details>
+<summary>Show a summary per file</summary>
+<markdown-accessiblity-table><table role=3D"table">
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>src/modules/packages/packages.c</td>
+<td>Adds KISS package manager integration to printing, formatting, JSON p=
+arsing, and module info</td>
+</tr>
+<tr>
+<td>src/modules/packages/option.h</td>
+<td>Defines the KISS package manager flag bit</td>
+</tr>
+<tr>
+<td>src/detection/packages/packages_linux.c</td>
+<td>Implements KISS package detection logic and integrates it into the ma=
+in detection flow</td>
+</tr>
+<tr>
+<td>src/detection/packages/packages.h</td>
+<td>Adds kiss field to the packages result structure</td>
+</tr>
+<tr>
+<td>doc/json_schema.json</td>
+<td>Updates documentation to include KISS package manager format option</=
+td>
+</tr>
+<tr>
+<td>CMakeLists.txt</td>
+<td>Adds KISS to the list of supported package managers for build configu=
+ration</td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+</details>
+<hr>
+<p dir=3D"auto"><sub><strong>Tip:</strong> Customize your code reviews wi=
+th copilot-instructions.md. <a href=3D"/fastfetch-cli/fastfetch/new/dev/.=
+github?filename=3Dcopilot-instructions.md">Create the file</a> or <a href=
+=3D"https://docs.github.com/en/copilot/customizing-copilot/adding-reposit=
+ory-custom-instructions-for-github-copilot">learn how to get started</a>.=
+</sub></p><hr>
+
+<p>In <a href=3D"https://github.com/fastfetch-cli/fastfetch/pull/2015#dis=
+cussion_r2443330173">src/modules/packages/packages.c</a>:</p>
+<pre style=3D'color:#555'>&gt; @@ -146,6 +146,7 @@ bool ffPrintPackages(F=
+FPackagesOptions* options)
+         FF_PRINT_PACKAGE(mport)
+         FF_PRINT_PACKAGE(pisi)
+         FF_PRINT_PACKAGE(soar)
++	FF_PRINT_PACKAGE(kiss)
+</pre>
+<p dir=3D"auto">Inconsistent indentation: this line uses tabs while surro=
+unding lines use spaces. Should use spaces to match the existing code sty=
+le.</p>
+=E2=AC=87=EF=B8=8F Suggested change
+<pre style=3D"color: #555">-	FF_PRINT_PACKAGE(kiss)
++        FF_PRINT_PACKAGE(kiss)
+</pre>
+
+
+<hr>
+
+<p>In <a href=3D"https://github.com/fastfetch-cli/fastfetch/pull/2015#dis=
+cussion_r2443330179">src/modules/packages/packages.c</a>:</p>
+<pre style=3D'color:#555'>&gt; @@ -194,7 +195,8 @@ bool ffPrintPackages(F=
+FPackagesOptions* options)
+             FF_FORMAT_ARG(counts.hpkgUser, &quot;hpkg-user&quot;),
+             FF_FORMAT_ARG(counts.pisi, &quot;pisi&quot;),
+             FF_FORMAT_ARG(counts.soar, &quot;soar&quot;),
+-            FF_FORMAT_ARG(nixAll, &quot;nix-all&quot;),
++            FF_FORMAT_ARG(counts.kiss, &quot;kiss&quot;),
++	    FF_FORMAT_ARG(nixAll, &quot;nix-all&quot;),
+</pre>
+<p dir=3D"auto">Inconsistent indentation: line 199 uses tabs while line 1=
+98 and surrounding lines use spaces. Should use spaces to match the exist=
+ing code style.</p>
+=E2=AC=87=EF=B8=8F Suggested change
+<pre style=3D"color: #555">-	    FF_FORMAT_ARG(nixAll, "nix-all"),
++            FF_FORMAT_ARG(nixAll, "nix-all"),
+</pre>
+
+
+<hr>
+
+<p>In <a href=3D"https://github.com/fastfetch-cli/fastfetch/pull/2015#dis=
+cussion_r2443330181">src/modules/packages/packages.c</a>:</p>
+<pre style=3D'color:#555'>&gt; +             	        case &#39;K&#39;: i=
+f (false);
++			    FF_TEST_PACKAGE_NAME(KISS)
++			    break;
++	                case &#39;L&#39;: if (false);
+</pre>
+<p dir=3D"auto">Inconsistent indentation: these lines use tabs while surr=
+ounding code uses spaces. Should use spaces to match the existing code st=
+yle.</p>
+=E2=AC=87=EF=B8=8F Suggested change
+<pre style=3D"color: #555">-             	        case 'K': if (false);
+-			    FF_TEST_PACKAGE_NAME(KISS)
+-			    break;
+-	                case 'L': if (false);
++                        case 'K': if (false);
++                            FF_TEST_PACKAGE_NAME(KISS)
++                            break;
++                        case 'L': if (false);
+</pre>
+
+
+<hr>
+
+<p>In <a href=3D"https://github.com/fastfetch-cli/fastfetch/pull/2015#dis=
+cussion_r2443330183">src/modules/packages/packages.c</a>:</p>
+<pre style=3D'color:#555'>&gt; @@ -498,6 +505,7 @@ FFModuleBaseInfo ffPac=
+kagesModuleInfo =3D {
+         {&quot;Number of hpkg-user packages&quot;, &quot;hpkg-user&quot;=
+},
+         {&quot;Number of pisi packages&quot;, &quot;pisi&quot;},
+         {&quot;Number of soar packages&quot;, &quot;soar&quot;},
++	{&quot;Number of kiss packages&quot;, &quot;kiss&quot;},
+</pre>
+<p dir=3D"auto">Inconsistent indentation: this line uses tabs while surro=
+unding lines use spaces. Should use spaces to match the existing code sty=
+le.</p>
+=E2=AC=87=EF=B8=8F Suggested change
+<pre style=3D"color: #555">-	{"Number of kiss packages", "kiss"},
++        {"Number of kiss packages", "kiss"},
+</pre>
+
+
+<hr>
+
+<p>In <a href=3D"https://github.com/fastfetch-cli/fastfetch/pull/2015#dis=
+cussion_r2443330187">src/detection/packages/packages_linux.c</a>:</p>
+<pre style=3D'color:#555'>&gt; @@ -452,6 +472,7 @@ static void getPackage=
+Counts(FFstrbuf* baseDir, FFPackagesResult* packageCounts,
+     if (!(options-&gt;disabled &amp; FF_PACKAGES_FLAG_PACSTALL_BIT)) pac=
+kageCounts-&gt;pacstall +=3D getNumElements(baseDir, &quot;/var/lib/pacst=
+all/metadata&quot;, false);
+     if (!(options-&gt;disabled &amp; FF_PACKAGES_FLAG_PISI_BIT)) package=
+Counts-&gt;pisi +=3D getNumElements(baseDir, &quot;/var/lib/pisi/package&=
+quot;, true);
+     if (!(options-&gt;disabled &amp; FF_PACKAGES_FLAG_PKGSRC_BIT)) packa=
+geCounts-&gt;pkgsrc +=3D getNumElements(baseDir, &quot;/usr/pkg/pkgdb&quo=
+t;, DT_DIR);
++    if (!(options-&gt;disabled &amp; FF_PACKAGES_FLAG_KISS_BIT)) package=
+Counts-&gt;kiss +=3D getNumElements(baseDir, &quot;/var/db/kiss/installed=
+&quot;, true);
+</pre>
+<p dir=3D"auto">This line duplicates the KISS package detection logic tha=
+t's already implemented in the getKissPackages function at line 584. The =
+custom getKissPackages function should be used here instead of getNumElem=
+ents for consistency.</p>
+=E2=AC=87=EF=B8=8F Suggested change
+<pre style=3D"color: #555">-    if (!(options-&gt;disabled &amp; FF_PACKA=
+GES_FLAG_KISS_BIT)) packageCounts-&gt;kiss +=3D getNumElements(baseDir, "=
+/var/db/kiss/installed", true);
++    if (!(options-&gt;disabled &amp; FF_PACKAGES_FLAG_KISS_BIT)) package=
+Counts-&gt;kiss +=3D getKissPackages(baseDir, "/var/db/kiss/installed");
+</pre>
+
+
+<hr>
+
+<p>In <a href=3D"https://github.com/fastfetch-cli/fastfetch/pull/2015#dis=
+cussion_r2443330189">src/detection/packages/packages_linux.c</a>:</p>
+<pre style=3D'color:#555'>&gt; @@ -558,4 +579,7 @@ void ffDetectPackagesI=
+mpl(FFPackagesResult* result, FFPackagesOptions* options)
+ =
+
+     if (!(options-&gt;disabled &amp; FF_PACKAGES_FLAG_SOAR_BIT))
+         result-&gt;soar +=3D getSQLite3Int(&amp;baseDir, &quot;.local/sh=
+are/soar/db/soar.db&quot;, &quot;SELECT COUNT(DISTINCT pkg_id || pkg_name=
+) FROM packages WHERE is_installed =3D true&quot;, &quot;soar&quot;);
++    =
+
++    if (!(options-&gt;disabled &amp; FF_PACKAGES_FLAG_KISS_BIT)) =
+
++	result-&gt;kiss +=3D getKissPackages(&amp;baseDir);
+</pre>
+<p dir=3D"auto">Inconsistent indentation: line 584 uses tabs while line 5=
+83 and surrounding code uses spaces. Should use spaces to match the exist=
+ing code style.</p>
+=E2=AC=87=EF=B8=8F Suggested change
+<pre style=3D"color: #555">-	result-&gt;kiss +=3D getKissPackages(&amp;ba=
+seDir);
++    result-&gt;kiss +=3D getKissPackages(&amp;baseDir);
+</pre>
+
+
+<hr>
+
+<p>In <a href=3D"https://github.com/fastfetch-cli/fastfetch/pull/2015#dis=
+cussion_r2443330191">doc/json_schema.json</a>:</p>
+<pre style=3D'color:#555'>&gt; @@ -442,7 +442,7 @@
+             &quot;type&quot;: &quot;string&quot;
+         },
+         &quot;packagesFormat&quot;: {
+-            &quot;description&quot;: &quot;Output format of the module `=
+Packages`. See Wiki for formatting syntax\n    1. {all}: Number of all pa=
+ckages\n    2. {pacman}: Number of pacman packages\n    3. {pacman-branch=
+}: Pacman branch on manjaro\n    4. {dpkg}: Number of dpkg packages\n    =
+5. {rpm}: Number of rpm packages\n    6. {emerge}: Number of emerge packa=
+ges\n    7. {eopkg}: Number of eopkg packages\n    8. {xbps}: Number of x=
+bps packages\n    9. {nix-system}: Number of nix-system packages\n    10.=
+ {nix-user}: Number of nix-user packages\n    11. {nix-default}: Number o=
+f nix-default packages\n    12. {apk}: Number of apk packages\n    13. {p=
+kg}: Number of pkg packages\n    14. {flatpak-system}: Number of flatpak-=
+system app packages\n    15. {flatpak-user}: Number of flatpak-user app p=
+ackages\n    16. {snap}: Number of snap packages\n    17. {brew}: Number =
+of brew packages\n    18. {brew-cask}: Number of brew-cask packages\n    =
+19. {macports}: Number of macports packages\n    20. {scoop-user}: Number=
+ of scoop-user packages\n    21. {scoop-global}: Number of scoop-global p=
+ackages\n    22. {choco}: Number of choco packages\n    23. {pkgtool}: Nu=
+mber of pkgtool packages\n    24. {paludis}: Number of paludis packages\n=
+    25. {winget}: Number of winget packages\n    26. {opkg}: Number of op=
+kg packages\n    27. {am-system}: Number of am-system packages\n    28. {=
+sorcery}: Number of sorcery packages\n    29. {lpkg}: Number of lpkg pack=
+ages\n    30. {lpkgbuild}: Number of lpkgbuild packages\n    31. {guix-sy=
+stem}: Number of guix-system packages\n    32. {guix-user}: Number of gui=
+x-user packages\n    33. {guix-home}: Number of guix-home packages\n    3=
+4. {linglong}: Number of linglong packages\n    35. {pacstall}: Number of=
+ pacstall packages\n    36. {mport}: Number of mport packages\n    37. {a=
+m-user}: Number of am-user (aka appman) packages\n    38. {pkgsrc}: Numbe=
+r of pkgsrc packages\n    39. {hpkg-system}: Number of hpkg-system packag=
+es\n    40. {hpkg-user}: Number of hpkg-user packages\n    41. {pisi}: Nu=
+mber of pisi packages\n    42. {soar}: Number of soar packages\n    43. {=
+nix-all}: Total number of all nix packages\n    44. {flatpak-all}: Total =
+number of all flatpak app packages\n    45. {brew-all}: Total number of a=
+ll brew packages\n    46. {guix-all}: Total number of all guix packages\n=
+    47. {hpkg-all}: Total number of all hpkg packages&quot;,
++            &quot;description&quot;: &quot;Output format of the module `=
+Packages`. See Wiki for formatting syntax\n    1. {all}: Number of all pa=
+ckages\n    2. {pacman}: Number of pacman packages\n    3. {pacman-branch=
+}: Pacman branch on manjaro\n    4. {dpkg}: Number of dpkg packages\n    =
+5. {rpm}: Number of rpm packages\n    6. {emerge}: Number of emerge packa=
+ges\n    7. {eopkg}: Number of eopkg packages\n    8. {xbps}: Number of x=
+bps packages\n    9. {nix-system}: Number of nix-system packages\n    10.=
+ {nix-user}: Number of nix-user packages\n    11. {nix-default}: Number o=
+f nix-default packages\n    12. {apk}: Number of apk packages\n    13. {p=
+kg}: Number of pkg packages\n    14. {flatpak-system}: Number of flatpak-=
+system app packages\n    15. {flatpak-user}: Number of flatpak-user app p=
+ackages\n    16. {snap}: Number of snap packages\n    17. {brew}: Number =
+of brew packages\n    18. {brew-cask}: Number of brew-cask packages\n    =
+19. {macports}: Number of macports packages\n    20. {scoop-user}: Number=
+ of scoop-user packages\n    21. {scoop-global}: Number of scoop-global p=
+ackages\n    22. {choco}: Number of choco packages\n    23. {pkgtool}: Nu=
+mber of pkgtool packages\n    24. {paludis}: Number of paludis packages\n=
+    25. {winget}: Number of winget packages\n    26. {opkg}: Number of op=
+kg packages\n    27. {am-system}: Number of am-system packages\n    28. {=
+sorcery}: Number of sorcery packages\n    29. {lpkg}: Number of lpkg pack=
+ages\n    30. {lpkgbuild}: Number of lpkgbuild packages\n    31. {guix-sy=
+stem}: Number of guix-system packages\n    32. {guix-user}: Number of gui=
+x-user packages\n    33. {guix-home}: Number of guix-home packages\n    3=
+4. {linglong}: Number of linglong packages\n    35. {pacstall}: Number of=
+ pacstall packages\n    36. {mport}: Number of mport packages\n    37. {a=
+m-user}: Number of am-user (aka appman) packages\n    38. {pkgsrc}: Numbe=
+r of pkgsrc packages\n    39. {hpkg-system}: Number of hpkg-system packag=
+es\n    40. {hpkg-user}: Number of hpkg-user packages\n    41. {pisi}: Nu=
+mber of pisi packages\n    42. {soar}: Number of soar packages\n   43. {k=
+iss-all}: Total number of kiss packages\n   44. {nix-all}: Total number o=
+f all nix packages\n    45. {flatpak-all}: Total number of all flatpak ap=
+p packages\n    46. {brew-all}: Total number of all brew packages\n    47=
+. {guix-all}: Total number of all guix packages\n    48. {hpkg-all}: Tota=
+l number of all hpkg packages&quot;,
+</pre>
+<p dir=3D"auto">Incorrect format variable name: should be '{kiss}' not '{=
+kiss-all}' since KISS doesn't have separate categories like other package=
+ managers (system/user). The documentation shows this as a single count, =
+not an aggregated 'all' count.</p>
+=E2=AC=87=EF=B8=8F Suggested change
+<pre style=3D"color: #555">-            "description": "Output format of =
+the module `Packages`. See Wiki for formatting syntax\n    1. {all}: Numb=
+er of all packages\n    2. {pacman}: Number of pacman packages\n    3. {p=
+acman-branch}: Pacman branch on manjaro\n    4. {dpkg}: Number of dpkg pa=
+ckages\n    5. {rpm}: Number of rpm packages\n    6. {emerge}: Number of =
+emerge packages\n    7. {eopkg}: Number of eopkg packages\n    8. {xbps}:=
+ Number of xbps packages\n    9. {nix-system}: Number of nix-system packa=
+ges\n    10. {nix-user}: Number of nix-user packages\n    11. {nix-defaul=
+t}: Number of nix-default packages\n    12. {apk}: Number of apk packages=
+\n    13. {pkg}: Number of pkg packages\n    14. {flatpak-system}: Number=
+ of flatpak-system app packages\n    15. {flatpak-user}: Number of flatpa=
+k-user app packages\n    16. {snap}: Number of snap packages\n    17. {br=
+ew}: Number of brew packages\n    18. {brew-cask}: Number of brew-cask pa=
+ckages\n    19. {macports}: Number of macports packages\n    20. {scoop-u=
+ser}: Number of scoop-user packages\n    21. {scoop-global}: Number of sc=
+oop-global packages\n    22. {choco}: Number of choco packages\n    23. {=
+pkgtool}: Number of pkgtool packages\n    24. {paludis}: Number of paludi=
+s packages\n    25. {winget}: Number of winget packages\n    26. {opkg}: =
+Number of opkg packages\n    27. {am-system}: Number of am-system package=
+s\n    28. {sorcery}: Number of sorcery packages\n    29. {lpkg}: Number =
+of lpkg packages\n    30. {lpkgbuild}: Number of lpkgbuild packages\n    =
+31. {guix-system}: Number of guix-system packages\n    32. {guix-user}: N=
+umber of guix-user packages\n    33. {guix-home}: Number of guix-home pac=
+kages\n    34. {linglong}: Number of linglong packages\n    35. {pacstall=
+}: Number of pacstall packages\n    36. {mport}: Number of mport packages=
+\n    37. {am-user}: Number of am-user (aka appman) packages\n    38. {pk=
+gsrc}: Number of pkgsrc packages\n    39. {hpkg-system}: Number of hpkg-s=
+ystem packages\n    40. {hpkg-user}: Number of hpkg-user packages\n    41=
+. {pisi}: Number of pisi packages\n    42. {soar}: Number of soar package=
+s\n   43. {kiss-all}: Total number of kiss packages\n   44. {nix-all}: To=
+tal number of all nix packages\n    45. {flatpak-all}: Total number of al=
+l flatpak app packages\n    46. {brew-all}: Total number of all brew pack=
+ages\n    47. {guix-all}: Total number of all guix packages\n    48. {hpk=
+g-all}: Total number of all hpkg packages",
++            "description": "Output format of the module `Packages`. See =
+Wiki for formatting syntax\n    1. {all}: Number of all packages\n    2. =
+{pacman}: Number of pacman packages\n    3. {pacman-branch}: Pacman branc=
+h on manjaro\n    4. {dpkg}: Number of dpkg packages\n    5. {rpm}: Numbe=
+r of rpm packages\n    6. {emerge}: Number of emerge packages\n    7. {eo=
+pkg}: Number of eopkg packages\n    8. {xbps}: Number of xbps packages\n =
+   9. {nix-system}: Number of nix-system packages\n    10. {nix-user}: Nu=
+mber of nix-user packages\n    11. {nix-default}: Number of nix-default p=
+ackages\n    12. {apk}: Number of apk packages\n    13. {pkg}: Number of =
+pkg packages\n    14. {flatpak-system}: Number of flatpak-system app pack=
+ages\n    15. {flatpak-user}: Number of flatpak-user app packages\n    16=
+. {snap}: Number of snap packages\n    17. {brew}: Number of brew package=
+s\n    18. {brew-cask}: Number of brew-cask packages\n    19. {macports}:=
+ Number of macports packages\n    20. {scoop-user}: Number of scoop-user =
+packages\n    21. {scoop-global}: Number of scoop-global packages\n    22=
+. {choco}: Number of choco packages\n    23. {pkgtool}: Number of pkgtool=
+ packages\n    24. {paludis}: Number of paludis packages\n    25. {winget=
+}: Number of winget packages\n    26. {opkg}: Number of opkg packages\n  =
+  27. {am-system}: Number of am-system packages\n    28. {sorcery}: Numbe=
+r of sorcery packages\n    29. {lpkg}: Number of lpkg packages\n    30. {=
+lpkgbuild}: Number of lpkgbuild packages\n    31. {guix-system}: Number o=
+f guix-system packages\n    32. {guix-user}: Number of guix-user packages=
+\n    33. {guix-home}: Number of guix-home packages\n    34. {linglong}: =
+Number of linglong packages\n    35. {pacstall}: Number of pacstall packa=
+ges\n    36. {mport}: Number of mport packages\n    37. {am-user}: Number=
+ of am-user (aka appman) packages\n    38. {pkgsrc}: Number of pkgsrc pac=
+kages\n    39. {hpkg-system}: Number of hpkg-system packages\n    40. {hp=
+kg-user}: Number of hpkg-user packages\n    41. {pisi}: Number of pisi pa=
+ckages\n    42. {soar}: Number of soar packages\n   43. {kiss}: Number of=
+ kiss packages\n   44. {nix-all}: Total number of all nix packages\n    4=
+5. {flatpak-all}: Total number of all flatpak app packages\n    46. {brew=
+-all}: Total number of all brew packages\n    47. {guix-all}: Total numbe=
+r of all guix packages\n    48. {hpkg-all}: Total number of all hpkg pack=
+ages",
+</pre>
+
+
+<p style=3D"font-size:small;-webkit-text-size-adjust:none;color:#666;">&m=
+dash;<br />Reply to this email directly, <a href=3D"https://github.com/fa=
+stfetch-cli/fastfetch/pull/2015#pullrequestreview-3354541720">view it on =
+GitHub</a>, or <a href=3D"https://github.com/notifications/unsubscribe-au=
+th/BAG3TZKN7RFOXUOLHCMRBFD3YOLKTAVCNFSM6AAAAACJSFYK5GVHI2DSMVQWIX3LMV43YU=
+DVNRWFEZLROVSXG5CSMV3GSZLXHMZTGNJUGU2DCNZSGA">unsubscribe</a>.<br />You a=
+re receiving this because you authored the thread.<img src=3D"https://git=
+hub.com/notifications/beacon/BAG3TZOJQRBDCZR5UURKRK33YOLKTA5CNFSM6AAAAACJ=
+SFYK5GWGG33NNVSW45C7OR4XAZNRKB2WY3CSMVYXKZLTORJGK5TJMV32UY3PNVWWK3TUL5UWJ=
+TWH6I7JQ.gif" height=3D"1" width=3D"1" alt=3D"" /><span style=3D"color: t=
+ransparent; font-size: 0; display: none; visibility: hidden; overflow: hi=
+dden; opacity: 0; width: 0; height: 0; max-width: 0; max-height: 0; mso-h=
+ide: all">Message ID: <span>&lt;fastfetch-cli/fastfetch/pull/2015/review/=
+3354541720</span><span>@</span><span>github</span><span>.</span><span>com=
+&gt;</span></span></p>
+<script type=3D"application/ld+json">[
+{
+"@context": "http://schema.org",
+"@type": "EmailMessage",
+"potentialAction": {
+"@type": "ViewAction",
+"target": "https://github.com/fastfetch-cli/fastfetch/pull/2015#pullreque=
+streview-3354541720",
+"url": "https://github.com/fastfetch-cli/fastfetch/pull/2015#pullrequestr=
+eview-3354541720",
+"name": "View Pull Request"
+},
+"description": "View this Pull Request on GitHub",
+"publisher": {
+"@type": "Organization",
+"name": "GitHub",
+"url": "https://github.com"
+}
+}
+]</script>=
+
+----==_mimepart_68f4f0a9d3f7f_4509a10d876712--

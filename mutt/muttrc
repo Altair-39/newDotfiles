@@ -1,0 +1,47 @@
+#connection
+
+set ssl_starttls=yes
+set ssl_force_tls=yes
+
+#user
+set imap_user=luca.barra@edu.unito.it
+set imap_pass=eecffjdwkdrlcbbm 
+
+#folder
+set folder = "imaps://imap.gmail.com:993"  
+set spoolfile = "+INBOX"
+
+#send mail
+set smtp_url = "smtps://luca.barra@edu.unito.it@smtp.gmail.com:465/"
+set smtp_pass = eecffjdwkdrlcbbm
+
+#sent mail
+set record = "+Sent"
+
+#trash
+set trash = "+Trash"
+
+mailboxes =INBOX =Trash 
+named-mailboxes Sent '+[Gmail]/Sent Mail'
+
+#some shit
+set header_cache = "~/.config/mutt/cache/headers"
+set message_cachedir = "~/.config/mutt/cache/bodies"
+set certificate_file = "~/.config/mutt/certificates"
+set sendmail="/usr/sbin/ssmtp"
+
+auto_view application/pdf application/msword text/plain image/png
+
+set mailcap_path = ~/.config/mutt/.mailcap
+
+set from = "luca.barra@edu.unito.it"
+set realname = "Luca Barra"
+
+set date_format="%d/%m/%Y"
+
+#sort 
+set sort_aux = last-date-received                           
+set sort = reverse-threads
+
+#color
+source color.muttrc

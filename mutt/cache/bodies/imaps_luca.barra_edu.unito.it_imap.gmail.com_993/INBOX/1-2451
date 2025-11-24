@@ -1,0 +1,208 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a40c:0:b0:30c:2dd2:a8c1 with SMTP id p12csp1347944ljn;
+        Sat, 10 May 2025 06:35:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFjmMtIbLTMvGlUf00vQSTQTb+th0WxoQaCURTh81WhJ81P/HZqRQ6/ZkAicjxVWu76Yv1s
+X-Received: by 2002:a17:906:cc48:b0:ad2:2671:2e94 with SMTP id a640c23a62f3a-ad226713148mr124513166b.8.1746884113092;
+        Sat, 10 May 2025 06:35:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1746884113; cv=none;
+        d=google.com; s=arc-20240605;
+        b=aAsOvh70bD/sihqJ7JLkMrfXTrCEKqxmA/Y7NgVUQtQGakEuo5EwhdCtRQ0a34hdIc
+         pBu4GEfheN3HFU6dY/RvpWFB523qeMX9XaPGSMOYjo1YaafofZ9qGSsCdj1dSMOkqwwk
+         XdWuzS1Z6dahACopsmOGu3KenL/JvR9CsUi5MuxlHAy1Yo6wVOqNJkqykvXkZjoL9Mmx
+         3K9X9Wn3k7GzEr1kBOueFjZJjH3zcCyiqQe6RE3t+7lpEIF2Y7FhlrMk8V43Wv2xDIuX
+         bnsCDELU6mcnd41S5UDxPOQj86pM+MCuUMCpaUxO9e/NE+1dHVlw6KuZt2/Xnd+67CAQ
+         mG+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=KvgmT8EtKPL/ZfHX+/6dRW7eSWpLzg//d+T6UbibsvE=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=RmVIqwu7r3AmNEs69OD5RkM0phA7b/qyzab2cwidXCq8BaCt2b1Dniyh25QUJJgs7B
+         mNAGb0TYSgLSZkQm69dYislVgQRN2D8rH1WWoBZlFpZp2qW/y4iNEw7Wat48YloEsJFq
+         t0VIwzqm01PAIM3F0KW0DInvbBIcNzz8G0wyJ9lzfHMoBaoRQx7nGfiEWnRxdaQHxH53
+         ltrpqdRVefUaVP2543Ih7I1M0yJHyQ2oIkDTdh7oQUT8+TbAILyZNWjqBQjLLkAR69Y5
+         qNLfSXG8DGpmSW97iJUi/RWpg5dn1wTXdxJLyDxnJI2xMYu2ymQPDVLguWc/SoXrRbqN
+         Qokw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ad219c13e30si312742066b.772.2025.05.10.06.35.12
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 10 May 2025 06:35:13 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 54ADZCH0608282
+	for <luca.barra@edu.unito.it>; Sat, 10 May 2025 15:35:12 +0200
+Date: Sat, 10 May 2025 15:35:12 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Ali Apetrii Maher Andreas (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: =?utf-8?B?U2lzSW50MjQyNTogTOKAmWludGVncmF6aW9uZSBkZWxs4oCZZWR1Y2F6aW9u?=
+ =?utf-8?B?ZSBhbGzigJlBSSBuZWkgcHJvZ3JhbW1pIHNjb2xhc3RpY2kgZGVnbGkgRW1p?=
+ =?utf-8?B?cmF0aSBBcmFiaQ==?=
+Message-ID: <72b27a7d972a65149114192c7bc7c445cef778cfc4b0e53470c06ffbc35cad7d@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Segnalazioni" <moodleforum7706@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7706
+X-Course-Id: 3092
+X-Course-Name: Sistemi Intelligenti
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=7706&d=44557>
+Thread-Topic: =?utf-8?B?U2lzSW50MjQyNTogTOKAmWludGVncmF6aW9uZSBkZWxs4oCZZWR1Y2F6aW9u?=
+ =?utf-8?B?ZSBhbGzigJlBSSBuZWkgcHJvZ3JhbW1pIHNjb2xhc3RpY2kgZGVnbGkgRW1p?=
+ =?utf-8?B?cmF0aSBBcmFiaQ==?=
+Thread-Index: 72b27a7d972a65149114192c7bc7
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_ZLDUXIR9N00T557sl27eo9DtmJCyrywwPh4JfZM"
+
+This is a multi-part message in MIME format.
+
+--b1_ZLDUXIR9N00T557sl27eo9DtmJCyrywwPh4JfZM
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SisInt2425 -> Forums -> Segnalazioni -> L=E2=80=99integrazione dell=
+=E2=80=99educazione
+all=E2=80=99AI nei programmi scolastici degli Emirati Arabi
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44557#p72289
+L=E2=80=99integrazione dell=E2=80=99educazione all=E2=80=99AI nei programmi=
+ scolastici degli
+Emirati Arabi
+by Ali Apetrii Maher Andreas - Saturday, 10 May 2025, 3:18 PM
+---------------------------------------------------------------------
+* FONTE: _UAE to teach its children AI_ [1]
+* TIPOLOGIA DI COMUNICAZIONE: Articolo giornalistico
+* TONO DELLA COMUNICAZIONE: Informativo e divulgativo
+* BREVE SUNTO: Il governo degli Emirati Arabi Uniti integrer=C3=A0
+l=E2=80=99educazione all=E2=80=99intelligenza artificiale nei programmi sco=
+lastici,
+dalla scuola materna alle superiori. I ragazzi studieranno aspetti tecnici
+(dati, algoritmi, applicazioni software), etici e di policy sull=E2=80=
+=99AI.
+L=E2=80=99iniziativa fa parte della =E2=80=9CNational Artificial Intelligen=
+ce Strategy
+2031=E2=80=9D, volta a diversificare l=E2=80=99economia oltre il petrolio e=
+ a
+sviluppare infrastrutture, ricerca e un fondo di investimento da 100 mld $
+(USD). Previsti inoltre massicci investimenti in USA, partnership con
+universit=C3=A0 locali e apertura a tecnologie cinesi, il tutto in un conte=
+sto
+geopolitico di mediazione tra Blocchi occidentale ed orientale.
+* PERCH=C3=89 MI HA COLPITO: Trovo significativo che un paese intero ricono=
+sca
+l=E2=80=99importanza di formare i giovani fin dall=E2=80=99infanzia sui fon=
+damenti e
+sulle implicazioni etiche dell=E2=80=99AI: =C3=A8 un approccio lungimirante=
+ che pu=C3=B2
+creare cittadini consapevoli e innovatori responsabili. Inoltre, penso che
+stiamo vivendo un cambiamento tecnologico cos=C3=AC rapido che le nuove
+generazioni cresceranno senza neanche rendersi conto che fino a pochi anni
+fa l=E2=80=99AI non esisteva: per loro sar=C3=A0 =E2=80=9Csempre stata l=
+=C3=AC=E2=80=9D, e questo
+rende ancora pi=C3=B9 cruciale un=E2=80=99educazione che li aiuti a compren=
+derne
+potenzialit=C3=A0 e limiti.
+
+Links:
+------
+[1]
+https://www.artificialintelligence-news.com/news/uae-to-teach-its-children-=
+ai/
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SisInt2425.
+
+To reply click on this link:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D72289
+Unsubscribe from this forum:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706
+Unsubscribe from this discussion:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D=
+44557
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092
+
+--b1_ZLDUXIR9N00T557sl27eo9DtmJCyrywwPh4JfZM
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3092">SisInt2425</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3092">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+706">Segnalazioni</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44557">L=
+=E2=80=99integrazione dell=E2=80=99educazione all=E2=80=99AI nei programmi =
+scolastici degli Emirati Arabi</a>=0A</div>=0A=0A<table border=3D"0" cellpa=
+dding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"heade=
+r">=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=0A   =
+         <a href=3D"https://informatica.i-learn.unito.it/user/view.php?id=
+=3D30608&amp;course=3D3092" class=3D"d-inline-block aabtn"><img src=3D"http=
+s://informatica.i-learn.unito.it/theme/image.php/_s/lambda/core/1745224313/=
+u/f2" class=3D"userpicture defaultuserpic" width=3D"35" height=3D"35" alt=
+=3D"" /></a>=0A        </td>=0A        <td class=3D"topic starter">=0A     =
+       <div class=3D"subject">=0A                L=E2=80=99integrazione del=
+l=E2=80=99educazione all=E2=80=99AI nei programmi scolastici degli Emirati =
+Arabi=0A            </div>=0A            <div class=3D"author">=0A         =
+       by <a target=3D'_blank' href=3D'https://informatica.i-learn.unito.it=
+/user/view.php?id=3D30608&course=3D3092'>Ali Apetrii Maher Andreas</a> - Sa=
+turday, 10 May 2025, 3:18 PM=0A            </div>=0A        </td>=0A    </t=
+r>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=0A         =
+       &nbsp;=0A        </td>=0A        <td class=3D"content">=0A          =
+  <p dir=3D"ltr"></p><ol><li><strong>Fonte</strong>: <a href=3D"https://www=
+.artificialintelligence-news.com/news/uae-to-teach-its-children-ai/" target=
+=3D"_blank" rel=3D"noreferrer noopener"><em>UAE to teach its children AI</e=
+m></a></li><li><strong>Tipologia di comunicazione</strong>: Articolo giorna=
+listico</li><li><strong>Tono della comunicazione</strong>: Informativo e di=
+vulgativo</li><li><strong>Breve sunto</strong>: Il governo degli Emirati Ar=
+abi Uniti integrer=C3=A0 l=E2=80=99educazione all=E2=80=99intelligenza arti=
+ficiale nei programmi scolastici, dalla scuola materna alle superiori. I ra=
+gazzi studieranno aspetti tecnici (dati, algoritmi, applicazioni software),=
+ etici e di policy sull=E2=80=99AI. L=E2=80=99iniziativa fa parte della =
+=E2=80=9CNational Artificial Intelligence Strategy 2031=E2=80=9D, volta a d=
+iversificare l=E2=80=99economia oltre il petrolio e a sviluppare infrastrut=
+ture, ricerca e un fondo di investimento da 100 mld $ (USD). Previsti inolt=
+re massicci investimenti in USA, partnership con universit=C3=A0 locali e a=
+pertura a tecnologie cinesi, il tutto in un contesto geopolitico di mediazi=
+one tra Blocchi occidentale ed orientale.</li><li><strong>Perch=C3=A9 mi ha=
+ colpito</strong>: Trovo significativo che un paese intero riconosca l=
+=E2=80=99importanza di formare i giovani fin dall=E2=80=99infanzia sui fond=
+amenti e sulle implicazioni etiche dell=E2=80=99AI: =C3=A8 un approccio lun=
+gimirante che pu=C3=B2 creare cittadini consapevoli e innovatori responsabi=
+li. Inoltre, penso che stiamo vivendo un cambiamento tecnologico cos=C3=
+=AC rapido che le nuove generazioni cresceranno senza neanche rendersi cont=
+o che fino a pochi anni fa l=E2=80=99AI non esisteva: per loro sar=C3=A0 =
+=E2=80=9Csempre stata l=C3=AC=E2=80=9D, e questo rende ancora pi=C3=B9 cruc=
+iale un=E2=80=99educazione che li aiuti a comprenderne potenzialit=C3=A0 e =
+limiti.</li></ol>=0A=0A            <div class=3D"commands">=0A             =
+       <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/post.php?reply=3D72289">=0A                        Reply=0A        =
+            </a>=0A            </div>=0A=0A            <div class=3D"link">=
+=0A                <a target=3D"_blank" href=3D"https://informatica.i-learn=
+.unito.it/mod/forum/discuss.php?d=3D44557#p72289">=0A                    Se=
+e this post in context=0A                </a>=0A            </div>=0A      =
+  </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubs=
+cribelink">=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/forum=
+/subscribe.php?id=3D7706">Unsubscribe from this forum</a>&nbsp;=0A    <a hr=
+ef=3D"https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D770=
+6&d=3D44557">Unsubscribe from this discussion</a>&nbsp;=0A    <a href=3D"ht=
+tps://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092">Change yo=
+ur forum digest preferences</a>=0A</div>
+
+--b1_ZLDUXIR9N00T557sl27eo9DtmJCyrywwPh4JfZM--
+

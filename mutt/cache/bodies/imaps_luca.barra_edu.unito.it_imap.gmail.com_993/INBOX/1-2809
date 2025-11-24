@@ -1,0 +1,170 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a00e:0:20b0:361:9897:9696 with SMTP id q14-n2csp1014729ljb;
+        Sun, 21 Sep 2025 09:52:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFsj42FcoP7VCSNjGZDAoiTDlyR7TgKUbCxv5PEW4HL/PA8DVfdMXvA9+YROcunmM656Vcf
+X-Received: by 2002:a05:6402:520a:b0:62f:3531:d8ff with SMTP id 4fb4d7f45d1cf-62fc0ac9a15mr4431186a12.8.1758473574078;
+        Sun, 21 Sep 2025 09:52:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1758473574; cv=none;
+        d=google.com; s=arc-20240605;
+        b=IOQtHcHh0GkoREp4kytqiVmhmvfm6WWS/P13kODXv5cy110i8IW8WzgdOtpAoteKEO
+         h3eSrRciseAxvex2aPJWzbQlwMr2S24n+hOARE9snPsGZKK+0fNPb7SoRvMSNCYx0CrP
+         4speq+G4idZBxkv3I+kcKKNIBrfLEVeBYhD3iVEAujSsI0kXgL8or+/Ppnke/RwseTdb
+         Sejcvg8IAQV7QkWmSlv+WJQW9oGPPTTmzfAyZ9raZ831zJ4ifsHfmpntHRjsKlWdNw4h
+         iXbA8jg1X9CXIQjjRQJ74OKQmCIRylApjSVZwFwwA5/I4vzUKdmv7/KiEml70JKulYRU
+         h1LQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:mime-version:message-id:from:date:subject
+         :to:dkim-signature:dkim-filter;
+        bh=pyxWTY8Atv2tl2VwqfICxnw4litQRl82LlMK0SW/JVc=;
+        fh=kLhlT/zWEv02U8epaJJmtHcXdOj86upx6yqu1QxPdWs=;
+        b=DvqLAB9Hhgd8yRghuU7hOp6kDMYrKkySRfYJ7RiwCboet0emfzS4qszfj7YcJX/dSX
+         8PGAp3n53AfBsshbicPNRB1PpHRVEpuGvNo3jV2NevxODIydiWSEyG/W4pQFlQ2J/4rg
+         sn+/tsLEaK5y7Bt2YkiRau/cqED4AitfN+LhJkPPt5iGUsLUKHL28jLB/K0CTk9vEC3P
+         xa/ON/uYIzuR+nHdZpAgZrXBYTM/dwcbxd1X5KfTkcp28fDb82E0aNu3C5KAZZ/uOTqz
+         f5pNJiJJJS7SrdYUVj/uGfGbsIq7SnwtlZFbXVDP5vN9VdcQ+H+4br48y/ewaphyh/kU
+         GEpw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b="T/x5meiH";
+       spf=pass (google.com: domain of portale-supporto@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=portale-supporto@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <portale-supporto@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-62fb332ec02si4986233a12.136.2025.09.21.09.52.53
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 21 Sep 2025 09:52:54 -0700 (PDT)
+Received-SPF: pass (google.com: domain of portale-supporto@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b="T/x5meiH";
+       spf=pass (google.com: domain of portale-supporto@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=portale-supporto@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 6120E27874
+	for <luca.barra@edu.unito.it>; Sun, 21 Sep 2025 18:52:53 +0200 (CEST)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id tsgNsZtU5jG8 for <luca.barra@edu.unito.it>;
+ Sun, 21 Sep 2025 18:52:53 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 19ED7278DF
+	for <luca.barra@edu.unito.it>; Sun, 21 Sep 2025 18:52:53 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 19ED7278DF
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1758473573;
+	bh=pyxWTY8Atv2tl2VwqfICxnw4litQRl82LlMK0SW/JVc=;
+	h=To:Date:From:Message-ID:MIME-Version;
+	b=T/x5meiHUHc/jxAFHEopURqmkBO60P3qegDgxNhdc1Dcdk9VkayGJw0O4ywX5YvkB
+	 i3JXMK4iXjhiq5U8Q++VZr1+QudUpx3rVP67E2usEJxB9QkIW3HAIPUOmHJBE3j2LK
+	 DF3tibKNj57w11a/bD+f2qbBVizN5gdnvVT1NLaISonkTvU9uxbVFxUA5Hw1gS7xEo
+	 Htgh/SZYkenU7hryOpbjHDffNH1CZchXFju6OdieQhyYDqXiuzB/vLLYPd1+4P0zts
+	 DnRA5qXx5M8yOEoeaZoeolc8xbDHAyaQGz6Mq9tmkSmoani9cyu+vJOtSGHx5hYu46
+	 zHkx273ULhedw==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id F3EpOo-ubsl5 for <luca.barra@edu.unito.it>;
+ Sun, 21 Sep 2025 18:52:52 +0200 (CEST)
+Received: from vmunito116.private.cineca.it (vmunito116.private.cineca.it [10.100.0.17])
+	by smtp4.cineca.it (Postfix) with ESMTP id E15E02256A
+	for <luca.barra@edu.unito.it>; Sun, 21 Sep 2025 18:52:52 +0200 (CEST)
+Received: by vmunito116.private.cineca.it (Postfix, from userid 33)
+	id CFFDC1868; Sun, 21 Sep 2025 18:52:52 +0200 (CEST)
+To: LUCA BARRA <luca.barra@edu.unito.it>
+Subject: Promemoria per partecipare all'indagine SAMBA
+Date: Sun, 21 Sep 2025 18:52:52 +0200
+From: il Team SAMBA <survey.samba@unito.it>
+Message-ID: <hsefiKImi5iIBOobiiJr0b5c9j8R4bmY7S79ypxBw@www.survey.unito.it>
+X-Mailer: PHPMailer 6.8.1 (https://github.com/PHPMailer/PHPMailer)
+X-Surveymailer: LimeSurvey Emailer (LimeSurvey.org)
+X-surveyid: 265274
+X-tokenid: vzjygM8zdgDq68v
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1=_hsefiKImi5iIBOobiiJr0b5c9j8R4bmY7S79ypxBw"
+Content-Transfer-Encoding: 7bit
+
+--b1=_hsefiKImi5iIBOobiiJr0b5c9j8R4bmY7S79ypxBw
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+=20
+Ciao LUCA,
+Ti ricordiamo che =C3=A8 ancora possibile compilare il questionario
+introduttivo del progetto SAMBA [https://samba.unito.it/it], il
+progetto Salute, Movimento e Benessere che UniTo dedica ai suoi
+studenti e alle sue studentesse:=C2=A0
+
+rispondere =C3=A8 importante, perch=C3=A9 ci aiuter=C3=A0 a fornirti serv=
+izi pi=C3=B9
+adatti alle tue esigenze!
+
+Se non hai ancora avuto modo di compilarlo, puoi farlo cliccando qui:
+https://www.survey.unito.it/index.php/265274?token=3DvzjygM8zdgDq68v&lang=
+=3Dit
+[https://www.survey.unito.it/index.php/265274?token=3DvzjygM8zdgDq68v&lan=
+g=3Dit]
+Alla fine del questionario riceverai la sintesi delle tue risposte.
+
+Ti ringraziamo per il tempo che vorrai dedicare
+
+=C2=A0
+
+Il Team Samba
+
+=C2=A0
+
+----------------------------------------------
+Fare clic qui per accedere all'indagine e rispondere al questionario:
+https://www.survey.unito.it/index.php/265274?token=3DvzjygM8zdgDq68v&lang=
+=3Dit
+[https://www.survey.unito.it/index.php/265274?token=3DvzjygM8zdgDq68v&lan=
+g=3Dit]
+
+=C2=A0
+=20
+
+--b1=_hsefiKImi5iIBOobiiJr0b5c9j8R4bmY7S79ypxBw
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<p><span style=3D"font-size:12pt;"><span style=3D"font-family:Aptos, sans=
+-serif;">Ciao LUCA,<br />Ti ricordiamo che =C3=A8 ancora possibile compil=
+are il questionario introduttivo del progetto <a href=3D"https://samba.un=
+ito.it/it" style=3D"color:#0000FF;text-decoration:underline;">SAMBA</a>, =
+il progetto Salute, Movimento e Benessere che UniTo dedica ai suoi studen=
+ti e alle sue studentesse:=C2=A0</span></span></p>
+
+<p><span style=3D"font-size:12pt;"><span style=3D"font-family:Aptos, sans=
+-serif;">rispondere =C3=A8 importante, perch=C3=A9 ci aiuter=C3=A0 a forn=
+irti servizi pi=C3=B9 adatti alle tue esigenze!<br /><br />Se non hai anc=
+ora avuto modo di compilarlo, puoi farlo cliccando qui: <a href=3D"https:=
+//www.survey.unito.it/index.php/265274?token=3DvzjygM8zdgDq68v&amp;lang=3D=
+it">https://www.survey.unito.it/index.php/265274?token=3DvzjygM8zdgDq68v&=
+lang=3Dit</a><br />Alla fine del questionario riceverai la sintesi delle =
+tue risposte.<br /><br />Ti ringraziamo per il tempo che vorrai dedicare<=
+/span></span></p>
+
+<p>=C2=A0</p>
+
+<p><span style=3D"font-size:12pt;"><span style=3D"font-family:Aptos, sans=
+-serif;">Il Team Samba</span></span><br /><br />=C2=A0</p>
+
+<p><br />----------------------------------------------<br />Fare clic qu=
+i per accedere all'indagine e rispondere al questionario:<br /><a href=3D=
+"https://www.survey.unito.it/index.php/265274?token=3DvzjygM8zdgDq68v&amp=
+;lang=3Dit">https://www.survey.unito.it/index.php/265274?token=3DvzjygM8z=
+dgDq68v&lang=3Dit</a><br /><br />=C2=A0</p>
+</body>
+</html>
+
+
+--b1=_hsefiKImi5iIBOobiiJr0b5c9j8R4bmY7S79ypxBw--
+

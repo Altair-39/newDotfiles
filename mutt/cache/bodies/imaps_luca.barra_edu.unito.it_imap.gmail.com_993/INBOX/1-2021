@@ -1,0 +1,141 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b5b0:0:b0:2fb:4c9b:a38b with SMTP id f16csp578819ljn;
+        Wed, 27 Nov 2024 02:29:20 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCWVtexfen+JP69R6Vpjfxzx9QudVOVYgtkNUGvfHcYmS2uN/Fa8/NACX4Y70paF6RLVVNIveG3qXruE@edu.unito.it
+X-Google-Smtp-Source: AGHT+IEgdNUhsS3T7vv+xKTCT0/aIAD7MZStnK7mbnCBADozsEQsYLKuoDhUSam3bdfSBJ+ugQdu
+X-Received: by 2002:a05:6602:2d84:b0:841:a678:de40 with SMTP id ca18e2360f4ac-843ecda4577mr337201539f.0.1732703357602;
+        Wed, 27 Nov 2024 02:29:17 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1732703357; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ZBw+ldaSkCBZ55XPIKONpU0Csg4Vzn5IXIMqYIyvyji5rbZwvobv9ZoRdcVMoNPE1f
+         MKZkGd1D0olnGlZXuP1nEyU/vJnqFPr5QCbSr9JREpFbFhbbjINxpAHe6u+XslP0jiJj
+         A4fDZuSv7pTDMCuy9OGUNZ+zBkCeuyNFPykvguZnOCLi5t2SrBnG5NptT2JzPKguk1vp
+         k53TwdAlE9VSq4eWOHUyG2GiC+nRsoANEKZgtEg09aB3hTq7i77PSBb5iHhTW+b1d6+Q
+         eJG7ftmAH2xNik2AAD7T00Q68ez42tL1Fae/0sFCwZHRdGspgsyu6alJ4etBBX6IiEGK
+         +SqQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=88H85Q5wP6ytbbVMqPS/LB16oog3SZ70uky1/XpbImE=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=cAD8/C7VrZyMcIVUrRxvGMyFwdVTbhw7EMffK6sb/khOz3RBDqEtwZsZ0H721i2AOu
+         gS6j044vkgYZAQWJAxDWvInuWYZVdYaeFMvHtrImKrvaNmfaJjqHBhYHPSQ8PC8T8r/e
+         E2RHfRmjFwf5MowZx9Dq20I4pqEmrVCUhsVhHQ453XzFKKTBjgZkNgNMz2hIeAhphakM
+         WEvg6Xxf0qplI1qj0lhQEYPYnidKOoCI+cBp+wgcdF9pqXIbh7hIb+t/PIKe76Aw3a87
+         9V4mPA+WtZngpwSPgM2asF1Ndeumos3mj1qTi43erE/zXbBV/tPfQ2IaP2AYnVxq8SP0
+         I+wA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=pJBlB+bp;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-4e1ecccf1aasi5087316173.58.2024.11.27.02.29.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Nov 2024 02:29:17 -0800 (PST)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=pJBlB+bp;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 7D2C6245BC;
+	Wed, 27 Nov 2024 11:29:14 +0100 (CET)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id NQrNzDTQSoYQ; Wed, 27 Nov 2024 11:29:14 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 9780824A75;
+	Wed, 27 Nov 2024 11:29:13 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 9780824A75
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1732703354;
+	bh=88H85Q5wP6ytbbVMqPS/LB16oog3SZ70uky1/XpbImE=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=pJBlB+bpYKQdnasa1GKfSJ7CjpfEtBwbRZn2cXqsR4Xq+57i75BQWsUuio2w3njLg
+	 f0EI5Z7jzASN0A7iMPvUJ8Y0s8j+H5oeJt0NqPrO/EzXn4bZEpWDE2YX95g6fO4WOo
+	 zb3BDVWvpFV4cLapNH/Qw+t9+KEb15115crEyhfjBxGzC/GxlNMb6SgPKBEWboXh5A
+	 XCM3rRlKfj8SSvzcDj22WUlwzR++mYrVekWxtqDTf99/xA6889TuTQ9IQhxy9O3bNV
+	 azoTZZJBP3A+3/krNNFCvppNAGTgic5Nnowqre+D8xaaK7CsUUdviAVbPVgfBDGTTc
+	 VRyQI5INXo90A==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id RzmEiepR6u7S; Wed, 27 Nov 2024 11:29:13 +0100 (CET)
+Received: from esse3appjboss22.private.cineca.it (esse3appjboss22.cineca.it [130.186.5.143])
+	by smtp4.cineca.it (Postfix) with ESMTP id 91A16247D6;
+	Wed, 27 Nov 2024 11:29:09 +0100 (CET)
+Received: from esse3appjboss22.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss22.private.cineca.it (Postfix) with ESMTP id 7A5801325;
+	Wed, 27 Nov 2024 11:29:09 +0100 (CET)
+Date: Wed, 27 Nov 2024 11:29:09 +0100 (CET)
+From: =?UTF-8?Q?Universit=C3=A0_di_Torino?= <avvisi@unito.it>
+Message-ID: <496706353.241.1732703349494@esse3appjboss22.private.cineca.it>
+Subject: Posizioni lavorative aperte per Informatici - Master in
+ CYBERSECURITY, CLOUD COMPUTING e INNOVATION DESIGN MANAGER
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+<!DOCTYPE html>
+<html lang=3D"it">
+<head>
+    <meta charset=3D"UTF-8">
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1.0">
+    <title>Posizioni Aperte</title>
+</head>
+<body>
+    <p>Gentile dott./dott.ssa,</p>
+
+    <p>le segnaliamo di seguito le posizioni aperte (e i profili ricercati)=
+ nei master GRATUITI in Alto Apprendistato dell'Universit=C3=A0 di Torino (=
+con assunzione sin dall'inizio del master).</p>
+    <p>Le selezioni sono in corso e i master partiranno a gennaio 2024 con =
+inserimento immediato in azienda.</p>
+    <p>Per ulteriori informazioni: <a href=3D"mailto:iscrizioni@corep.it">i=
+scrizioni@corep.it</a> tel. 011/63.99254</p>
+    <p>Master CYBERSECURITY <a href=3D"https://www.mastercybersecuritytorin=
+o.it/">(https://www.mastercybersecuritytorino.it/)</a></p>
+
+    <ul>
+        <li>LUTECH/CERTIMETER srl, Torino (TO) - Informatica o Ingegneria i=
+nformatica.</li>
+        <li>NAIS srl - Torino (TO) - Computer engineering ed equipollenti. =
+Lingua inglese. Capacit=C3=A0 di lavorare in Team. Problem solving. Capacit=
+=C3=A0 relazionali. Soft skills: predisposizione al lavoro in team, curiosi=
+t=C3=A0, proattivit=C3=A0, capacit=C3=A0 di analisi e problem solving.</li>
+        <li>NPDU, Calamandrana (AT) - Informatica o affini.</li>
+        <li>RED REPLY Srl, Torino (TO) - Background accademico in Informati=
+ca, Ingegneria o CyberSecurity.</li>
+        <li>WPWEB srl, Torino (TO) - Informatica, Ingegneria informatica co=
+n profilo tecnico</li>
+    </ul>
+   =20
+    <p>Per partecipare alle selezioni, deve provvedere alla sua pre-iscrizi=
+one come indicato nella Sezione iscrizioni del sito del master.</p>
+
+    <p>Master CLOUD COMPUTING <a href=3D"https://www.mastercloudcomputing.i=
+t/">(https://www.mastercloudcomputing.it/)</a></p>
+   =20
+    <ul>
+        <li>LUTECH/CERTIMETER srl, Torino (TO) - Informatica o Ingegneria I=
+nformatica.</li>
+        <li>HAL SERVICE spa, Borgosesia (VC) - Laurea in discipline informa=
+tiche.</li>
+        <li>NPDU, Calamandrana (AT) - Informatica o affini.</li>
+        <li>RGI spa, Torino/Ivrea (TO) - Informatica o affini.</li>
+        <li>RED REPLY Business Unit di Technology Reply srl, Torino (TO) - =
+Informatica, Telecomunicazioni, Elettronica.</li>
+        <li>WPWEB srl, Torino (TO) - Informatica/Ingegneria informatica</li=
+>
+    </ul>
+
+    <p>Per partecipare alle selezioni, deve provvedere alla sua pre-iscrizi=
+one come indicato nella Sezione iscrizioni del sito master.</p>
+</body>
+</html>

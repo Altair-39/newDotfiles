@@ -1,0 +1,98 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:be92:0:b0:32a:7f76:203e with SMTP id a18csp145838ljr;
+        Thu, 19 Jun 2025 02:11:35 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUUtKt5o695jFbrrGPdsO4mcruJ44DpWSUjl79C8FSTmnstWCaOXKUlj0f++ZF07yNW6vVui3hWG2X4@edu.unito.it
+X-Google-Smtp-Source: AGHT+IErpj8XEpmKUa2k5Je6IqCxGrgdPg2QViUOMgZVK3Rh5f/Yzm2cukrlZoJHesfi8NZBMprU
+X-Received: by 2002:a17:907:3d8f:b0:ad8:93c0:27a5 with SMTP id a640c23a62f3a-adfad29fc9bmr2092958966b.5.1750324295162;
+        Thu, 19 Jun 2025 02:11:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1750324295; cv=none;
+        d=google.com; s=arc-20240605;
+        b=AntXNT8CJwwNrKO9WRrHKXXyVKwjtCCTLOq6XwI86Zdc8g0sUnCykUgxfWHF0reLGG
+         9y5/I24bgw8QiBOAovK0uCbQeYZrhSaSjV9h8INwMiRtWPjh7UMW5ow1sbl0COPtBxeN
+         hGaPllCTV2sBcl5GUvrRbiQIMcCDyA5U3R/b9rY06Q80BRJN7yOhcyw7TJh+XcjTHrL1
+         eTpUilcAkOITyvSc+NqFfKPz2bQoM29m5WBZwBIt4T4hMXj9oHUzK2YK6AwKppbKaBf9
+         Ltzi7AawApqa9GzfstkOYRG7TNyuIgwj+daKT6Q45HF23y+pNWy64pUBGcddfYVkGVIT
+         ypIA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:mime-version:subject:message-id:from:date
+         :dkim-signature:dkim-filter;
+        bh=0WbGSjeO4/w1uAxn/nzrvvsik7/7ZuFGUyEJqqy2sVI=;
+        fh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+        b=hCpef3AhY3uq4+ezJbh5/Gex06aXnA1SLXpTLg8Fgte/zYM0ciSznBN9wHfe6dHNJK
+         vHo+UoLvY/XFLTDrLun2elSMVapNI+aamPONpYI8A6T2wO87BcM+lMYFbNjvn9h7boIl
+         3Vvg+aKhcHnArfgS7jGNFZvlnCug39WPVrU1mamceVtVy6M/1SZyAAosPbMDrTnzMWT9
+         vJ+rxJjWkaEGRm2jWLr8qKAZ3ym0LuFL27dUqibJcXWT70Oh8PvaJYqRwJvi4s29kJvf
+         rllrhqxRbTIOZpxioolKEHQBmgvSj+GyKcWfSRi0CL9yVB8xg2kQPksd2zRl65xCrCGv
+         FTMQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=rAreP8NG;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-608b4987f31si11656214a12.151.2025.06.19.02.11.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jun 2025 02:11:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=rAreP8NG;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 28AA3420F7;
+	Thu, 19 Jun 2025 11:11:33 +0200 (CEST)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id QkSZyM12GMot; Thu, 19 Jun 2025 11:11:32 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id D2140430BB;
+	Thu, 19 Jun 2025 11:11:29 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it D2140430BB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1750324290;
+	bh=0WbGSjeO4/w1uAxn/nzrvvsik7/7ZuFGUyEJqqy2sVI=;
+	h=Date:From:Message-ID:MIME-Version;
+	b=rAreP8NGFxd4bESw5qi16h5osjCTnt7gxQE/9v0WqBGD5L7BKneAz/trtOSI9p1Gl
+	 D+C1WMRnmuG6KOYKdpUCpuTqLdWQjKTuIL36Z2Sh4tXAWgn7rVRjkphq2SKP9Oqnbx
+	 MmilVcUI9Ad5AnVR3jk7rYMfKm0h+3U0hnwHcuHao+JLGRwtpZoJS97tDVk0h8eLrY
+	 OMQJ5ayP7p22ZXmggi3UTEjHbVP4JrStYSovRRk8B3rcbr7/dlEpZKHL9I0n6DnxhR
+	 1xettvZ5QyBZFgqSFtUFi5mb+plTSv8KZr6tVK0TW6Ma11+aWd3P517/5MyIzjnwWS
+	 WiOKWKgvAKpIA==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id NnAig1CtHq9n; Thu, 19 Jun 2025 11:11:29 +0200 (CEST)
+Received: from esse3be408.private.cineca.it (esse3be408.private.cineca.it [10.100.48.130])
+	by smtp4.cineca.it (Postfix) with ESMTP id 01F8343197;
+	Thu, 19 Jun 2025 11:11:22 +0200 (CEST)
+Received: from esse3be408.private.cineca.it (localhost [127.0.0.1])
+	by esse3be408.private.cineca.it (Postfix) with ESMTP id EC47120027;
+	Thu, 19 Jun 2025 11:11:20 +0200 (CEST)
+Date: Thu, 19 Jun 2025 11:11:20 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <1366627727.369.1750324280965@esse3be408.private.cineca.it>
+Subject: L'Infopoint di Ateneo ritorna nella sede di via Po 29!
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Gentili studenti/studentesse,
+
+A seguito della conclusione dei lavori di ristrutturazione dei locali, che =
+ne hanno determinato il temporaneo spostamento, da giovedi 26 giugno l=E2=
+=80=99Infopoint di Ateneo torner=C3=A0 nella sua sede istituzionale di Via =
+Po 29.
+
+Vi aspettiamo nella rinnovata sede, pi=C3=B9 moderna ed accogliente, con i =
+consueti orari di apertura: dal lunedi al venerdi: 09.00-16,30.
+
+=20
+
+Infopoint di Ateneo-Direzione Generale
+Palazzo degli Stemmi, Via Po, 29 - 10124 Torino=20
+Telefono +39 011 6703020-21=20
+infopoint@unito.it
+

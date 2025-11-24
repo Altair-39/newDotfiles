@@ -1,0 +1,155 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:9e10:0:b0:2ea:83d6:7f34 with SMTP id e16csp105205ljk;
+        Wed, 5 Jun 2024 01:49:24 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFNSvMVpwV0KnQpb6MSmmCaQ7T+spon2L3K3QrfZdPpUMPH3T9Y2dRhFRh9D5KJwQInx3zj
+X-Received: by 2002:a17:906:4e82:b0:a69:ba7:2dc7 with SMTP id a640c23a62f3a-a699f561c91mr121613866b.27.1717577363813;
+        Wed, 05 Jun 2024 01:49:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1717577363; cv=none;
+        d=google.com; s=arc-20160816;
+        b=l4Qd8exsDhMEkyjzQ1YkbT1ohmNujNO3w1g40EW825VSXlrXuZU2cw/ctozGoAjxx7
+         Wo9AnMga6oScZUGmjUm9ns+q9UQW07Y3bXCeiD0quVvYKspH8cAxcRlZbVtt15WQKOkn
+         MS7njaK4IAOXSjX2zzdCB6zvNTXinCj8Jcw8keCoTFynu1etWs18B5aC0nPThOqFqaOF
+         lPrimMkew2nAyEmBxbVZ/XGotRFuadBiHvaauEJ7yBofDPKV8i+AOIsDKvN6AegHhJoy
+         ZkRiqSVFD/Q+/mI8ekpwQ0ZTtMHBSPs8tO6WS23B6aRpanbg/xCY95tFYNuCSthpJeSG
+         J+ZQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=cmpGFDmzc0nSdm6iNtfgjyLWC7pVQ5sZ54H7Ids5n4U=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=M2YpuOCA2ODvlhyE5uK1ZGArrtVg0LtdHvUQSgwK8K+UPu2FYdOp0IIx9dbgHbLT6f
+         P62RXL1VtzD3CP3JNyUI6wk+NQSvG8MAZON95g5zSwXq04xJIZ/mcrznG3q/6CW/lVlI
+         UBqtp/SYvt9gDfx05RqDpvQBGX7dkZQ7cURC2oiyM1Y5hxLTr1p3DS0agfgzJ3C4Xy8l
+         piiF4h0K5KJvK6spqh/JWmow0gEEdfJN5ZYmiexnUK5y3/vEgwrxXOHI8PhOPbuwQx2o
+         n8oTI/wSgxGltCa8N7e4w5XZws+Pu42Og6LjtaIxdDSbQ6RCYK88fChfbsUxRIT9r/jz
+         iRGg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-57a31c62fe6si6168203a12.271.2024.06.05.01.49.23
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jun 2024 01:49:23 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 4558nKps3442809
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Wed, 5 Jun 2024 10:49:21 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 4558nKps3442809
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 4558nK26085690
+	for <luca.barra@edu.unito.it>; Wed, 5 Jun 2024 10:49:20 +0200
+Date: Wed, 5 Jun 2024 10:49:20 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Ardissono Liliana (da informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: ProgrIII-2023/24: Verbalizzazione dei voti di programmazione III
+Message-ID: <b5b38a978cb59a1b03e35a8fb94a6408ba9e1e1d35e3e9caf289587c6db1b446@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum6768@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=6768
+X-Course-Id: 2672
+X-Course-Name: Programmazione III, Istituzioni di programmazione in rete
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: ProgrIII-2023/24: Verbalizzazione dei voti di programmazione III
+Thread-Index: b5b38a978cb59a1b03e35a8fb94a
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_uJWZKYXzsIPgVRtUidSyBn6xrdioqAwIu5cUOxcxQ"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 4558nKps3442809
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_uJWZKYXzsIPgVRtUidSyBn6xrdioqAwIu5cUOxcxQ
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+ProgrIII-2023/24 -> Forum -> Annunci -> Verbalizzazione dei voti di
+programmazione III
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D42022#p69248
+Verbalizzazione dei voti di programmazione III
+di Ardissono Liliana - mercoled=C3=AC, 5 giugno 2024, 10:33
+---------------------------------------------------------------------
+PER COLORO CHE HANNO GI=C3=A0 SUPERATO SCRITTO E DISCUSSIONE DI LAB DI
+PROGRAMMAZIONE III.
+
+Buongiorno,
+
+=C2=A0ho verbalizzato i voti finali di coloro che nell'a.a. 2023/24 hanno
+superato sia la prova teorica che quella di laboratorio di Programmazione
+III. Chiedo di controllare il proprio libretto per verificare che sia tutto
+a posto. Per anomalie, mandatemi mail, grazie.
+
+LA
+
+---------------------------------------------------------------------
+Questa =C3=A8 la copia di un intervento effettuato su ProgrIII-2023/24 .
+
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2672
+
+--b1_uJWZKYXzsIPgVRtUidSyBn6xrdioqAwIu5cUOxcxQ
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2672">ProgrIII-2023/24</a>=0A    &=
+raquo;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito=
+.it/mod/forum/index.php?id=3D2672">Forum</a>=0A    &raquo;=0A    <a target=
+=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php=
+?f=3D6768">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"htt=
+ps://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D42022">Verbaliz=
+zazione dei voti di programmazione III</a>=0A</div>=0A=0A<table border=3D"0=
+" cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=
+=3D"header">=0A        <td width=3D"35" valign=3D"top" class=3D"picture lef=
+t">=0A            <a href=3D"https://informatica.i-learn.unito.it/user/view=
+.php?id=3D105&amp;course=3D2672" class=3D"d-inline-block aabtn"><img src=3D=
+"https://informatica.i-learn.unito.it/pluginfile.php/16419/user/icon/lambda=
+/f2?rev=3D729431" class=3D"userpicture" width=3D"35" height=3D"35" alt=3D""=
+ /></a>=0A        </td>=0A        <td class=3D"topic starter">=0A          =
+  <div class=3D"subject">=0A                Verbalizzazione dei voti di pro=
+grammazione III=0A            </div>=0A            <div class=3D"author">=
+=0A                di <a target=3D'_blank' href=3D'https://informatica.i-le=
+arn.unito.it/user/view.php?id=3D105&course=3D2672'>Ardissono Liliana</a> - =
+mercoled=C3=AC, 5 giugno 2024, 10:33=0A            </div>=0A        </td>=
+=0A    </tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=
+=0A                &nbsp;=0A        </td>=0A        <td class=3D"content">=
+=0A            <p dir=3D"ltr" style=3D"text-align:left;">PER COLORO CHE HAN=
+NO GI=C3=A0 SUPERATO SCRITTO E DISCUSSIONE DI LAB DI PROGRAMMAZIONE III.</p=
+><p dir=3D"ltr" style=3D"text-align:left;">Buongiorno,</p><p dir=3D"ltr" st=
+yle=3D"text-align:left;">=C2=A0ho verbalizzato i voti finali di coloro che =
+nell'a.a. 2023/24 hanno superato sia la prova teorica che quella di laborat=
+orio di Programmazione III. Chiedo di controllare il proprio libretto per v=
+erificare che sia tutto a posto. Per anomalie, mandatemi mail, grazie.</p><=
+p dir=3D"ltr" style=3D"text-align:left;">LA<br /></p>=0A=0A            <div=
+ class=3D"commands">=0A            </div>=0A=0A            <div class=3D"li=
+nk">=0A                <a target=3D"_blank" href=3D"https://informatica.i-l=
+earn.unito.it/mod/forum/discuss.php?d=3D42022#p69248">=0A                  =
+  Visualizza questo intervento nel contesto=0A                </a>=0A      =
+      </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div clas=
+s=3D"mdl-align unsubscribelink">=0A    <a href=3D"https://informatica.i-lea=
+rn.unito.it/mod/forum/index.php?id=3D2672">Modifica preferenze email di rac=
+colta</a>=0A</div><p>Reading this in an email? <a href=3D"https://download.=
+moodle.org/mobile?version=3D2021051718&amp;lang=3Dit&amp;iosappid=3D6333595=
+93&amp;androidappid=3Dcom.moodle.moodlemobile">Download the mobile app and =
+receive notifications on your mobile device</a>.</p>
+
+--b1_uJWZKYXzsIPgVRtUidSyBn6xrdioqAwIu5cUOxcxQ--
+

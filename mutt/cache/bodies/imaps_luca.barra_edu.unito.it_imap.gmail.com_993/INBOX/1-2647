@@ -1,0 +1,171 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:8543:0:b0:32a:7f76:203e with SMTP id u3csp1530113ljj;
+        Tue, 10 Jun 2025 07:40:06 -0700 (PDT)
+X-Received: by 2002:a2e:be9a:0:b0:32a:8a5d:3660 with SMTP id 38308e7fff4ca-32ae3098a96mr14422611fa.0.1749566405846;
+        Tue, 10 Jun 2025 07:40:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1749566405; cv=none;
+        d=google.com; s=arc-20240605;
+        b=SmJKhgQupNrMgiKsOxu5RNye5PuDJJFTcvEbsuf+BPckHfMsfVQSkEynPwAISd+iC+
+         rx6w9r9L5CemsuC82eRJTkH1ahib9DYH1Rg/kapyxh1YeV6o6bAykWBm6TcSX5RdSdZU
+         38YZOP3BxCOT6Pa4hOU3ryF0bHMv6vwvmoMfX1l7cCW6MeosE5gpqlGTEy7YiwGkJ9vZ
+         1jCrQJHTndzK4xfI6pLd4WgxPcMlKVicYMgDl1efwBvbDN/XVS5UwtKDX2CcAgObDoRq
+         wnjhInVoKeaswvJxGRKKGOkFksJKDlf1VEuNev/ikw5zhTNc7jYkqaWt2/g5cLz9A84D
+         P3yg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=DGBnKlfiV/qRIZe91DSj8gIHki1fNHu7r3L4vJf/ngs=;
+        fh=wnoTQjHgWz4kRW5W3Yv210Aj9LolbdJ/Lvc/uyAoO3M=;
+        b=UsBPrs2v4+Cfmvr0fxziCUMDYn6hKq1vRq3GZETCkC4RSwOxPTCQH2JKitNTZ8ps/I
+         NlcJZouxUG3+oYSszAzztin4Q9+N4dimXkEuD5uVJtFykWqPX9iTbsoucPITxdAO+Zgn
+         BFHaTzWBgmFq0HEHr6YVHub/VRH4CxKNgP05FwoBWQiY58uh2XHSWYxz9IQHA7RHsPEu
+         DETin8LneP62hLKtpb9cQRK795g5nEWyIpnKAYxm/BOh/MnyT5W27cuE2jijrtE4gUFR
+         nUltc99mJlYnZZXlIE0tCr9HU6NQR1TSOuUW+RZXWxplT3nOtBjtlfKt+iYe6NCjixJl
+         xGyA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=f3DMxcEp;
+       spf=pass (google.com: domain of luigi.dicaro@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=luigi.dicaro@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <luigi.dicaro@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 38308e7fff4ca-32ae1cc2145sor16328401fa.11.2025.06.10.07.40.05
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Tue, 10 Jun 2025 07:40:05 -0700 (PDT)
+Received-SPF: pass (google.com: domain of luigi.dicaro@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=f3DMxcEp;
+       spf=pass (google.com: domain of luigi.dicaro@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=luigi.dicaro@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1749566405; x=1750171205; darn=edu.unito.it;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DGBnKlfiV/qRIZe91DSj8gIHki1fNHu7r3L4vJf/ngs=;
+        b=f3DMxcEpeBeE1GO+t1dr4X001rwGZ7Q+hd7R1ghKIvIWyTZQxpHNQ+AWMCKR5VvRne
+         /dRUE1nWv8s0IvxStmc272uHB/zcbrOSiVbKnzEsNs/OWm3/1G12cVgRG4iottgmvfgQ
+         Cd5RVjOC7XnB/iynGqILSkqq9N1eBTnCYvZ/YAcw5VFSi6LX2xfgs/ij/f8tLSUp/ajT
+         YBh3a7GJtOXnkqzKeDCx1dncG3wvtTqSe3GozOSA/jG/bIL4/TkfgiCms0DQZatQO8Kr
+         B5WT1uzKItYpB6YvoHiR1X8P6IUEEKNP/fykEGtPJA+v9bsjZSmfTWG8Lg5344S3FLs7
+         6L0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749566405; x=1750171205;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DGBnKlfiV/qRIZe91DSj8gIHki1fNHu7r3L4vJf/ngs=;
+        b=khtYMJ6KGl4PiwRBM48FSYeB2huAwDLyPF7nrbSf73WDjAPFA74KKt44gb6O4uVxls
+         50toY5nZ2Gy5D0B+nnEiRbep4ImxaCdJNz2ftx+tushxbElbaF3HKozGSxfh8DqbxpfP
+         uORE7u887+n6EVn0DPHsrTYf2oPz5rDfSW4jT++CsaGlfBKg/ChdnF4TrWezpnZaT1DJ
+         lH2AoosXPrcLtBd4XTTnlzgrlU2otEJv0SFQfCwpR1F8OBi2l2YjLtgMtU3Ee934nwzc
+         721RTTpWX/W8xeRiVzkaaK1FFJbXKyoHAiyADpk+wtiZzgngyNno/sUCJajFLrAbUayV
+         4emw==
+X-Gm-Message-State: AOJu0Yxbmb+bueJHWyut8BqKZG1KGma+F7Q2TLuN/jGwN1yqZzUZtJa7
+	/bZfKptPATsZaqXDrGYIJgg1JtlN7wwvQqW1ER+H5qADqwbSl2CzEP0ruMzUhSNUgQmGO10QYxj
+	IlK/68ENSz3dTXeiv6DKdgNLPGA4/b1n+t4831KfrHbbaLtQ6BBra3nh+9w==
+X-Gm-Gg: ASbGncumzrHEAxRKzeFxkvY1vhY7itNrBzNgxvrvBTp19Xzea6bNcAvlaNNZmlFXb0G
+	uar8Na0eWVYOTF98nv/4Eun6XLkEMMMhy6gnkDVk0duRSJO4wzg/MUHeUS7fXbHl7syum7D5zfQ
+	vGVLDt/VoJfhkyFqMdSwadVudY2F4tjmxMAFXJB1m4
+X-Google-Smtp-Source: AGHT+IEUrrsTVRWugEsa/uqr6xGH4a1psydA9aPOES+Gs8orMl1Ukwqs102u1joquXvGwuPst/1W7tynuvD3pHgothc=
+X-Received: by 2002:a05:651c:220a:b0:32a:8591:668f with SMTP id
+ 38308e7fff4ca-32adfdd88abmr42114151fa.31.1749566405100; Tue, 10 Jun 2025
+ 07:40:05 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAAhooxu=QYxpiUNtyPwDysTi91QdZyoDWGr-NXMYhrYko0pz7A@mail.gmail.com>
+In-Reply-To: <CAAhooxu=QYxpiUNtyPwDysTi91QdZyoDWGr-NXMYhrYko0pz7A@mail.gmail.com>
+From: Luigi Di Caro <luigi.dicaro@unito.it>
+Date: Tue, 10 Jun 2025 16:39:53 +0200
+X-Gm-Features: AX0GCFtY-ZsmFHrRqnxIC9ptOU3jMjJFebT7kMWPZbUQWvRpULkFe4FY-IDIPsE
+Message-ID: <CAH2i-5L58wNfKNhFUYM4-GCVfLWKSLUr5Xj9t-QO-jGWrUFnKA@mail.gmail.com>
+Subject: Re: TLN - Progetto
+To: Luca Barra <luca.barra@edu.unito.it>
+Content-Type: multipart/alternative; boundary="000000000000166558063738ac3d"
+
+--000000000000166558063738ac3d
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+S=C3=AC molto interessante. In effetti sui singoli termini ci possono esser=
+e
+riduzioni diverse a seconda delle lingue incrociate. Procedi pure
+Grazie
+
+Il giorno mar 10 giu 2025 alle ore 16:31 Luca Barra <luca.barra@edu.unito.i=
+t>
+ha scritto:
+
+> Buonasera,
+> le scrivo per un'idea che mi =C3=A8 venuta in mente durante la scrittura =
+del
+> paper per il progetto di TLN (creazione di una nuova lingua). Ho notato,
+> facendo alcuni test con BabelNet, che la distribuzione dei termini ambigu=
+i
+> non =C3=A8 puramente casuale: per esempio combinando una lingua *L1* e un=
+a
+> lingua *L2* e poi combinando la stessa *L1* con una terza lingua *L3* non
+> si ha un aumento o una diminuzione "assoluta", ma a livello dei singoli
+> termini. Quindi si possono avere termini meno ambigui in *L1-L2* che sono
+> pi=C3=B9 ambigui nella coppia* L1-L3* (e viceversa).
+>
+> E.g.* L1*: Italiano, *L2*: Inglese, *L3*: Tedesco
+> Per la parola "Casa" lo score di riduzione dell'ambiguit=C3=A0 risulta ma=
+ggiore
+> in* L1-L3*, mentre per la parola "Cane" risulta maggiore in *L1-L2*.
+>
+> Volevo chiederle se secondo lei avesse senso incentrare il paper su
+> un'analisi di tipo pi=C3=B9 linguistico andando a fare ipotesi sul perch=
+=C3=A9 ci=C3=B2 si
+> verifichi con degli esempi.
+>
+> Distinti saluti,
+> LB
+>
+> ------------------------
+>
+> Indirizzo istituzionale di posta elettronica degli studenti e dei laureat=
+i
+> dell'Universit=C3=A0 di Torino
+> Official University of Turin email address for students and graduates
+>
+
+--000000000000166558063738ac3d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">S=C3=AC molto interessante. In effetti sui singoli termini=
+ ci possono essere riduzioni diverse a seconda delle lingue incrociate. Pro=
+cedi pure<div>Grazie</div></div><br><div class=3D"gmail_quote gmail_quote_c=
+ontainer"><div dir=3D"ltr" class=3D"gmail_attr">Il giorno mar 10 giu 2025 a=
+lle ore 16:31 Luca Barra &lt;<a href=3D"mailto:luca.barra@edu.unito.it">luc=
+a.barra@edu.unito.it</a>&gt; ha scritto:<br></div><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-lef=
+t-style:solid;border-left-color:rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"ltr"><div>Buonasera,</div><div>le scrivo per un&#39;idea che mi =C3=A8 =
+venuta in mente durante la scrittura del paper per il progetto di TLN (crea=
+zione di una nuova lingua). Ho notato, facendo alcuni test con BabelNet, ch=
+e la distribuzione dei termini ambigui non =C3=A8 puramente casuale: per es=
+empio combinando una lingua <i>L1</i> e una lingua <i>L2</i> e poi combinan=
+do la stessa <i>L1</i> con una terza lingua <i>L3</i> non si ha un aumento =
+o una diminuzione &quot;assoluta&quot;, ma a livello dei singoli termini. Q=
+uindi si possono avere termini meno ambigui in <i>L1-L2</i> che sono pi=C3=
+=B9 ambigui nella coppia<i> L1-L3</i> (e viceversa).=C2=A0</div><div><br></=
+div><div>E.g.<i> L1</i>: Italiano, <i>L2</i>: Inglese, <i>L3</i>: Tedesco</=
+div><div>Per la parola &quot;Casa&quot; lo score di riduzione dell&#39;ambi=
+guit=C3=A0 risulta maggiore in<i> L1-L3</i>, mentre per la parola &quot;Can=
+e&quot; risulta maggiore in <i>L1-L2</i>.</div><div><br></div><div>Volevo c=
+hiederle=C2=A0se secondo lei avesse senso incentrare il paper su un&#39;ana=
+lisi di tipo pi=C3=B9 linguistico andando a fare ipotesi sul perch=C3=A9 ci=
+=C3=B2 si verifichi con degli esempi.</div><div><br></div><div>Distinti sal=
+uti,</div><div>LB</div></div>
+
+<br>
+<div style=3D"font-size:1.3em">------------------------</div><span style=3D=
+"font-size:small"><div><img src=3D"https://web.unito.it/logofirmastu.png"><=
+br></div>Indirizzo istituzionale di posta elettronica degli studenti e dei =
+laureati dell&#39;Universit=C3=A0 di Torino</span><div><font size=3D"2">Off=
+icial=C2=A0University of Turin=C2=A0email address=C2=A0for students and gra=
+duates=C2=A0</font></div></blockquote></div>
+
+--000000000000166558063738ac3d--

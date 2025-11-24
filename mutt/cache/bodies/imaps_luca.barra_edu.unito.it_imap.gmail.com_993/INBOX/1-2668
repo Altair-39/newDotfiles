@@ -1,0 +1,255 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:be92:0:b0:32a:7f76:203e with SMTP id a18csp271788ljr;
+        Thu, 19 Jun 2025 07:28:33 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUQ5bGBEJondF+VKhabX26wUJlaluHQhbu1M8eM1S5UuFcth9908GJK57W0sJJdltaTJbFnpB5C/PMl@edu.unito.it
+X-Google-Smtp-Source: AGHT+IG+m37nxwg1z4lU7q/VZ8kndOpZNpsd/I5Sf0ApLOna+m2aksJbE7Xs0uJfKKCmUEBIevmP
+X-Received: by 2002:a17:907:c12:b0:ad5:2caa:cda0 with SMTP id a640c23a62f3a-adffaca251dmr452088166b.2.1750343312859;
+        Thu, 19 Jun 2025 07:28:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1750343312; cv=none;
+        d=google.com; s=arc-20240605;
+        b=YVBqr3Px2lEoatFR/ctc/2091EVZK5b91hmAiNBieTQo0zwzhqxLd7tpx8VTEjbmag
+         hf713LBNmryCoG9Yj26tvd8sX+ZcVNpgSLcLD2of7EKTVlwDzvOzCcAPI8RQqb6FuRXy
+         Tc9ZNVeUVM4rIV3FfgM1WW0dI3Ies22L+XyhyKC1BrFUCzuHJCpzP18gcoV4L4Nhi1uX
+         tFtpxnRHAw8VnkvVDCE3lr9kh1AKE9ASYreDKvNCalujDPQc8ACGUaq6KaBVDMeSlBrI
+         yD5c/QtYIu2cldeMhLPRYog8lMuFwuyl+mJhnkP5oSjX2/wb0NDigEliJ+4h5rDbcIm5
+         tQNA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:mime-version:subject:message-id:from:date
+         :dkim-signature:dkim-filter;
+        bh=0UnAHoSuPVEVWplFnCy5bLmiWdf+LdYE5ehnXcS0+rY=;
+        fh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+        b=BJX5Jg04zMAhaiH50dt13xFQNq4cTLmEzCsrNU9jyCcgmU5TqIsbKpDGmB1t8MoSh8
+         vw1WGTJJTxvgQB/S5k1XWCgOQt2pBU2LXffQBDypyHgv40vc6ozK3beYV3L0QD7uEkbt
+         rDw+9rBjJ4AOFdZnef+y50/ExLbvBI3VqSbqy+SqQbQVjUmUb2yRGanM2aQcS+/mdNvn
+         v3pxt4wwEWKkIaeDk5YDVRlJHY0z2hAXcNh7m7I+MJdfqzynqIHK3daOnr3qR69rh0QU
+         hYX2qB2aBbADmJNYCNCvvNtxRrVYXpGvNnseMRlvrUkAf4NRuJ9IQIQbUdWnI2MF8ane
+         +XBA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=n9MJkHBa;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id a640c23a62f3a-adec81c0f31si1170646466b.51.2025.06.19.07.28.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Jun 2025 07:28:32 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=n9MJkHBa;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 0810130C68;
+	Thu, 19 Jun 2025 16:28:31 +0200 (CEST)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id p9ti6QwpuXHe; Thu, 19 Jun 2025 16:28:30 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 60AF030C02;
+	Thu, 19 Jun 2025 16:28:30 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 60AF030C02
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1750343310;
+	bh=0UnAHoSuPVEVWplFnCy5bLmiWdf+LdYE5ehnXcS0+rY=;
+	h=Date:From:Message-ID:MIME-Version;
+	b=n9MJkHBaB9echJJlGABYK2D8coIIUoXgyPVWH/qAzIwUYs6ulW/0aGs+Ynvfq4Hi0
+	 6V5fYM6tIAEZqf1P3oVtyVm6gqbXQPlsHFWE7m5oyXcQJWJyvtGjOBcJq1YOF/pTgT
+	 ksSFMLuHc9btwTu9Z7gZIQ7S8uAFrPFVVTddmjxjdBwg3mD9Bsm5xROoBZdlvFWSyz
+	 6Vt5HYAeb6JQJENbXurqr5GzTnAR0EOBrJdXjYek7wYmTxRCWBkc3jIvn0iZk8yei7
+	 iGSXU1aUKpRyLuOLyz4+4d2OGRsVo8UywW73LDhAKntlzOklJBUxJ7Y+Pn0jQrGU0c
+	 /RePOwXQX5mLQ==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id Cuk0VwsKwnF2; Thu, 19 Jun 2025 16:28:30 +0200 (CEST)
+Received: from esse3be408.private.cineca.it (esse3be408.private.cineca.it [10.100.48.130])
+	by smtp4.cineca.it (Postfix) with ESMTP id 024F3309D4;
+	Thu, 19 Jun 2025 16:28:25 +0200 (CEST)
+Received: from esse3be408.private.cineca.it (localhost [127.0.0.1])
+	by esse3be408.private.cineca.it (Postfix) with ESMTP id EEE8D20027;
+	Thu, 19 Jun 2025 16:28:23 +0200 (CEST)
+Date: Thu, 19 Jun 2025 16:28:23 +0200 (CEST)
+From: "SAMBA - Salute, Movimento e Benessere" <avvisi@unito.it>
+Message-ID: <1589108766.59.1750343303976@esse3be408.private.cineca.it>
+Subject: Partecipa alle iniziative SAMBA dal 23 al 29 giugno
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p align="center" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+      <a href="https://www.samba.unito.it"><img src="https://www.samba.unito.it/sites/www.samba.unito.it/files/logosamba_1.png" alt="Logo SAMBA">
+      </a>
+    </p>
+    <p style="line-height: 1.5; padding-top: 0px; padding-right: 20px; padding-bottom: 0px; padding-left: 20px">
+      <strong>SAMBA</strong> &#232; un progetto che si pone come obiettivo la <strong>promozione 
+      del benessere psicofisico e contrasto ai fenomeni di disagio psicologico 
+      ed emotivo</strong> della popolazione studentesca attraverso <strong>iniziative 
+      gratuite rivolte a studenti</strong> degli Atenei e degli istituti AFAM 
+      partner del progetto.<br>Scopri di pi&#249; sulle iniziative e sul progetto 
+      all&#8217;indirizzo <a href="https://www.samba.unito.it">www.samba.unito.it</a>
+    </p>
+    <h1 align="left" style="padding-top: 30px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px">
+      <strong><font face="Serif.plain" size="6">Iniziative dal 23 al 29 giugno 
+      2025</font></strong>
+    </h1>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 30px">
+      <tr>
+        <td colspan="2" style="background-color: #ff00ff; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px">
+          <strong><font face="Serif.plain" size="5" color="#ffffff">23 giugno</font></strong><br><font color="#ffffff">Ambulatorio 
+          di Medicina del sonno, via Cherasco 15</font>
+        </td>
+      </tr>
+      <tr>
+        <td width="40%" valign="top" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px">
+          <img src="https://samba.unito.it/files/dormi-meglio.jpg" alt="" style="display: block; width: 100%">
+          
+        </td>
+        <td width="60%" valign="top" style="padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px">
+          <p style="margin-top: 0; margin-right: 0; margin-bottom: 10px; margin-left: 0">
+            <strong><font face="Serif.plain" size="4">DORMI MEGLIO, VIVI MEGLIO</font></strong><br>Un&#8217;occasione 
+            per verificare se hai un <strong>disturbo del ritmo sonno veglia</strong>, 
+            che potrai correggere senza farmaci, in modo da affrontare meglio 
+            le tue giornate.
+          </p>
+          <p align="left">
+            <a href="https://www.samba.unito.it/it/aree/dip" style="background-color: #ff00ff; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; display: inline-block"><font color="#ffffff" size="4"><b>PARTECIPA</b></font></a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 30px">
+      <tr>
+        <td colspan="2" style="background-color: #1057d5; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px">
+          <strong><font face="Serif.plain" size="5" color="#ffffff">23, 25, 26 
+          e 27 giugno</font></strong><font color="#ffffff"><br>Vari punti di 
+          ritrovo a Torino e a Collegno</font>
+        </td>
+      </tr>
+      <tr>
+        <td width="40%" valign="top" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px">
+          <img src="https://samba.unito.it/files/TRAIN4Students.jpg" alt="" style="display: block; width: 100%">
+          
+        </td>
+        <td width="60%" valign="top" style="padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px">
+          <p style="margin-top: 0; margin-right: 0; margin-bottom: 10px; margin-left: 0">
+            <strong><font face="Serif.plain" size="4">TRAIN4STUDENTS</font></strong><br>Full 
+            body strength, GAG, Basi calisthenic, HIIT - Circuit Training, 
+            Postural, Pilates, Fit-dance, Tecnica di corsa: <strong>allenamenti 
+            di gruppo</strong> guidati da chinesiologi/he. &#200; necessario il 
+            certificato medico: puoi ottenerlo gratis con CHECK-UP4STUDENTS.
+          </p>
+          <p align="left">
+            <a href="https://www.samba.unito.it/it/aree/sport" style="background-color: #ff00ff; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; display: inline-block"><font color="#ffffff" size="4"><b>PARTECIPA</b></font></a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 30px">
+      <tr>
+        <td colspan="2" style="background-color: #ff00ff; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px">
+          <strong><font face="Serif.plain" size="5" color="#ffffff">25 giugno</font></strong><font color="#ffffff"> 
+          ore 18<br>Ponte Isabella, Fiume Po, lato Corso Dogliotti</font>
+        </td>
+      </tr>
+      <tr>
+        <td width="40%" valign="top" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px">
+          <img src="https://samba.unito.it/files/Cultura-in-movimento.jpg" alt="" style="display: block; width: 100%">
+          
+        </td>
+        <td width="60%" valign="top" style="padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px">
+          <p style="margin-top: 0; margin-right: 0; margin-bottom: 10px; margin-left: 0">
+            <strong><font face="Serif.plain" size="4">CULTURA IN MOVIMENTO</font></strong><br>&#8220;<b>Cado 
+            e mi rialzo: disabilit&#224; e benessere</b>&#8221;: un <strong>dialogo 
+            aperto</strong> per superare stereotipi e scoprire che ogni corpo 
+            ha la forza e il diritto di muoversi, a modo suo. Camminando si 
+            parler&#224; di difficolt&#224; e resilienza,<b> </b><strong>disabilit&#224; 
+            e benessere</strong>, con il racconto diretto di chi la vive ogni 
+            giorno.
+          </p>
+          <p align="left">
+            <a href="https://www.samba.unito.it/it/aree/sport" style="background-color: #ff00ff; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; display: inline-block"><font color="#ffffff" size="4"><b>PARTECIPA</b></font></a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 30px">
+      <tr>
+        <td colspan="2" style="background-color: #00eaeb; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px">
+          <strong><font face="Serif.plain" size="5">Su appuntamento</font></strong><br>In 
+          presenza o online
+        </td>
+      </tr>
+      <tr>
+        <td width="40%" valign="top" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px">
+          <img src="https://samba.unito.it/files/Gestione-delle-emozioni.jpg" alt="" style="display: block; width: 100%">
+          
+        </td>
+        <td width="60%" valign="top" style="padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px">
+          <p style="margin-top: 0; margin-right: 0; margin-bottom: 10px; margin-left: 0">
+            <strong><font face="Serif.plain" size="4">CONSULENZA PSICOLOGICA</font></strong><br>Colloqui 
+            per migliorare la <strong>gestione dell&#8217;ansia</strong> e di <strong>situazioni 
+            e/o eventi stressanti</strong>, migliorare la regolazione emotiva 
+            e affrontare con maggiore equilibrio le sfide della tua vita 
+            accademica e privata. Se ne senti la necessit&#224;, puoi richiedere i 
+            colloqui <strong>anche a luglio e ad agosto</strong>!
+          </p>
+          <p align="left">
+            <a href="https://www.samba.unito.it/it/aree/psic" style="background-color: #ff00ff; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; display: inline-block"><font color="#ffffff" size="4"><b>PARTECIPA</b></font></a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 30px">
+      <tr>
+        <td colspan="2" style="background-color: #00f42b; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px">
+          <strong><font face="Serif.plain" size="5">Su appuntamento</font></strong><br>Sede 
+          comunicata in fase di prenotazione
+        </td>
+      </tr>
+      <tr>
+        <td width="40%" valign="top" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px">
+          <img src="https://samba.unito.it/files/Gestione-dellansia-e-regolazione-emotiva.jpg" alt="" style="display: block; width: 100%">
+          
+        </td>
+        <td width="60%" valign="top" style="padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px">
+          <p style="margin-top: 0; margin-right: 0; margin-bottom: 10px; margin-left: 0">
+            <strong><font face="Serif.plain" size="4">GESTIONE DELL'ANSIA 
+            RELATIVA ALLO STUDIO</font></strong><br><strong>Colloqui 
+            individuali e di gruppo</strong> per imparare a distinguere l&#8217;<strong>ansia</strong> 
+            (quella &#8220;positiva&#8221;, anticipatoria, da quella invalidante) e 
+            imparare a gestirla con <strong>tecniche e strategie</strong> 
+            funzionali allo studio e alla vita universitaria, anche facendo 
+            ricorso alla forza del gruppo. Se ne senti la necessit&#224;, puoi 
+            richiedere i colloqui <strong>anche a luglio e ad agosto</strong>!
+          </p>
+          <p align="left">
+            <a href="https://www.samba.unito.it/it/aree/stud" style="background-color: #ff00ff; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; display: inline-block"><font color="#ffffff" size="4"><b>PARTECIPA</b></font></a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <hr style="height: 2px">
+    
+
+    <p>
+      Gli eventi proseguono la prossima settimana con:<br>
+    </p>
+    <p>
+      - 30 giugno, 1, 7 e 8 luglio 2025, <strong>Dormi meglio, vivi meglio</strong>
+    </p>
+    <p>
+      - 30 giugno, 9 e 11 luglio 2025, <strong>Gestione delle emozioni: un 
+      percorso di gruppo</strong>
+    </p>
+    <p>
+      - Prossime date in definizione, <strong>TRAIN4STUDENTS - Full body 
+      strength, GAG, Basi calisthenic, HIIT - Circuit Training, Postural, 
+      Pilates, Fit-dance, Tecnica di corsa</strong>
+    </p>
+    <p>
+      <br>
+      <i>Alla prossima settimana, con una nuova newsletter SAMBA!</i>
+    </p>

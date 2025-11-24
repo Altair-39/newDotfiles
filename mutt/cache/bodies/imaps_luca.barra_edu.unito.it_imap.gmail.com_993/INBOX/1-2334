@@ -1,0 +1,229 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:95d5:0:b0:30c:2dd2:a8c1 with SMTP id y21csp1134584ljh;
+        Sun, 13 Apr 2025 09:30:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGn/jswLauiUIAO/QeJ6Ta9vV8CsG0PDiYDrLIPRrh65vnhnWxjkM5QDKwjuSv/U0w2CEoN
+X-Received: by 2002:a17:907:edc5:b0:ac3:79ed:7bf0 with SMTP id a640c23a62f3a-acad30d59a6mr281150466b.0.1744561819815;
+        Sun, 13 Apr 2025 09:30:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1744561819; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Ss7xLJCATUdTUohYVI7bbZX17M6WSA+gNFpdyZL3lnTi82fUqFEqQdZ0HBP/WWhXqI
+         UJ3FAwtFglVow7fWt6VULpncSAcK7yUJXmKtPWruCcJGda5AHdPHLGkv89+6G0ByLx+w
+         loRGQdwjF9d5sP8YFFOx3z6C/Y8NomskAzBG2AMMGaDrLMSGL2edzspi2w4CT3p/Nvla
+         NhmBiUJKNMRADEuveRZsfQK6dBSKmCBuAO5uFPtmo14b/YOmpvkG56LxoqJuYk3ugXMw
+         vBml+hh30PiVynSJSSj1R8MyaEkfE64IUx+XivIQAlYAfHRBCTWWprNqg3eL3xbNXqeN
+         YjkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=j2AWUPIaGor4Cs0Dw+VKRtZ+luSbGtV2YsSgCqk+B1k=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=MmTfSlh5fA6b3OVD8n7RgEfNx8MIaJi5jybZGGfcdNWYDiJ5nQoE9C2dg6rWNjQaZn
+         0GbkUuM1QtXBPePLPmzeMNI7aJWTFppOkBtUbbTNAgPasIQnE5tWBrD+9wJnon6RpbUL
+         fdViTrQBI1mNg241C6bu6kfRLuurX7Lq/GbpzZoahC6jBiZbkX5f9p5U36S4cbAN7UlT
+         7yYQuE8q4etGo/EHqX4HxU0RUe94y0mu2fm2M7ckmG6/C6wY8mZs9zmPxKTKBfFSYzuZ
+         4bfJ2qw3zI7eiWYY/YJTzHBZlULD8GWWaVGo+dVjwjMVsr4bZwuq09nyVHtc75aavaHG
+         dzPg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id a640c23a62f3a-acaa1cba4a2si655322266b.421.2025.04.13.09.30.19
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Apr 2025 09:30:19 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 53DGUJIb1221480
+	for <luca.barra@edu.unito.it>; Sun, 13 Apr 2025 18:30:19 +0200
+Date: Sun, 13 Apr 2025 18:30:19 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Orusa Marco (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: SisInt2425: The AI revolution comes to protein sequencing
+Message-ID: <5edbe394381c61875cf0ad963e20607e311b508e4acad6e5d5ad48dc0cb94f48@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Segnalazioni" <moodleforum7706@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7706
+X-Course-Id: 3092
+X-Course-Name: Sistemi Intelligenti
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=7706&d=44281>
+Thread-Topic: SisInt2425: The AI revolution comes to protein sequencing
+Thread-Index: 5edbe394381c61875cf0ad963e20
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_3t3xq1xG8SGeiVGlQUdSK7GrC0HzLHzZxPpA1LXeRb4"
+
+This is a multi-part message in MIME format.
+
+--b1_3t3xq1xG8SGeiVGlQUdSK7GrC0HzLHzZxPpA1LXeRb4
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SisInt2425 -> Forums -> Segnalazioni -> The AI revolution comes to protein
+sequencing
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44281#p71915
+The AI revolution comes to protein sequencing
+by Orusa Marco - Sunday, 13 April 2025, 6:14 PM
+---------------------------------------------------------------------
+*
+FONTE:
+https://www.science.org/content/article/ai-revolution-comes-protein-sequenc=
+ing
+[1]
+
+*
+TIPOLOGIA DI COMUNICAZIONE: Articolo
+
+*
+TONO: Il tono =C3=A8 serio e l=E2=80=99articolo =C3=A8 di carattere divulga=
+tivo
+
+*
+RIASSUNTO
+In questo articolo si illustra come l=E2=80=99uso delle AI ha permesso di
+velocizzare notevolmente il sequenziamento delle proteine: la ricerca di
+match tra peptidi richiedeva infatti sforzi considerevoli fino a non molto
+tempo fa, mentre i nuovi sequenziatori sono ora in grado non solo di
+trovare corrispondenze ma anche di tentare dei ri-assemblaggi al fine di
+ricavare proteine a lunghezza intera, in alcuni casi mai viste in
+precedenza.
+
+Sono state inoltre testate altre strategie basate sull=E2=80=99aggiunta (co=
+n
+successiva rimozione) di rumore casuale sui dati in input al fine di
+migliorare l=E2=80=99esito finale con risultati promettenti: alla prova con
+situazioni del mondo reale il modello ha infatti identificato 10 volte pi=
+=C3=B9
+peptidi di quanto era riuscita a fare la ricerca tradizionale. Ci sono
+state anche applicazioni dei modelli in ambito archeologico, in alcuni casi
+sono state infatti ritrovate proteine provenienti da animali cacciati in
+ambienti di uomini primitivi.
+
+*
+MOTIVO PER CUI MI HA COLPITO
+Ho trovato interessante in questo articolo il meccanismo che riguarda
+l=E2=80=99apprendimento per quanto riguarda le AI: viene infatti riportato =
+che
+l=E2=80=99approccio usato si basa sul fornire al modello milioni di peptidi=
+ e
+illustrare come vengono assemblati in proteine, cos=C3=AC che possa imparar=
+e i
+metodi migliori per combinare catene di amminoacidi.
+
+*
+LEGAME CON I TEMI VISTI A LEZIONE
+I meccanismi di apprendimento automatico illustrati nell=E2=80=99articolo s=
+i
+basano sul comportamento degli agenti intelligenti: partendo infatti da uno
+stato iniziale si riesce ad arrivare ad uno stato =E2=80=9Cgoal=E2=80=9D, a=
+pprendendo
+dagli esempi forniti.
+
+Links:
+------
+[1]
+https://www.science.org/content/article/ai-revolution-comes-protein-sequenc=
+ing
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SisInt2425.
+
+To reply click on this link:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D71915
+Unsubscribe from this forum:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706
+Unsubscribe from this discussion:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D=
+44281
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092
+
+--b1_3t3xq1xG8SGeiVGlQUdSK7GrC0HzLHzZxPpA1LXeRb4
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3092">SisInt2425</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3092">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+706">Segnalazioni</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44281">The AI re=
+volution comes to protein sequencing</a>=0A</div>=0A=0A<table border=3D"0" =
+cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D=
+"header">=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=
+=0A            <a href=3D"https://informatica.i-learn.unito.it/user/view.ph=
+p?id=3D30876&amp;course=3D3092" class=3D"d-inline-block aabtn"><img src=3D"=
+https://informatica.i-learn.unito.it/theme/image.php/_s/lambda/core/1742774=
+192/u/f2" class=3D"userpicture defaultuserpic" width=3D"35" height=3D"35" a=
+lt=3D"" /></a>=0A        </td>=0A        <td class=3D"topic starter">=0A   =
+         <div class=3D"subject">=0A                The AI revolution comes =
+to protein sequencing=0A            </div>=0A            <div class=3D"auth=
+or">=0A                by <a target=3D'_blank' href=3D'https://informatica.=
+i-learn.unito.it/user/view.php?id=3D30876&course=3D3092'>Orusa Marco</a> - =
+Sunday, 13 April 2025, 6:14 PM=0A            </div>=0A        </td>=0A    <=
+/tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=0A       =
+         &nbsp;=0A        </td>=0A        <td class=3D"content">=0A        =
+    <p dir=3D"ltr" style=3D"text-align:left;"><strong></strong></p><ol><li =
+dir=3D"ltr"><p dir=3D"ltr"><span><strong>Fonte:</strong> <a href=3D"https:/=
+/www.science.org/content/article/ai-revolution-comes-protein-sequencing">ht=
+tps://www.science.org/content/article/ai-revolution-comes-protein-sequencin=
+g</a></span></p></li><li dir=3D"ltr"><p dir=3D"ltr"><span><strong>Tipologia=
+ di comunicazione:</strong> Articolo</span></p></li><li dir=3D"ltr"><p dir=
+=3D"ltr"><span><strong>Tono:</strong> Il tono =C3=A8 serio e l=E2=80=99arti=
+colo =C3=A8 di carattere divulgativo</span></p></li><li dir=3D"ltr"><p dir=
+=3D"ltr"><span><strong>Riassunto</strong><br />In questo articolo si illust=
+ra come l=E2=80=99uso delle AI ha permesso di velocizzare notevolmente il s=
+equenziamento delle proteine: la ricerca di match tra peptidi richiedeva in=
+fatti sforzi considerevoli fino a non molto tempo fa, mentre i nuovi sequen=
+ziatori sono ora in grado non solo di trovare corrispondenze ma anche di te=
+ntare dei ri-assemblaggi al fine di ricavare proteine a lunghezza intera, i=
+n alcuni casi mai viste in precedenza.<br /></span><span><br />Sono state i=
+noltre testate altre strategie basate sull=E2=80=99aggiunta (con successiva=
+ rimozione) di rumore casuale sui dati in input al fine di migliorare l=
+=E2=80=99esito finale con risultati promettenti: alla prova con situazioni =
+del mondo reale il modello ha infatti identificato 10 volte pi=C3=B9 peptid=
+i di quanto era riuscita a fare la ricerca tradizionale. Ci sono state anch=
+e applicazioni dei modelli in ambito archeologico, in alcuni casi sono stat=
+e infatti ritrovate proteine provenienti da animali cacciati in ambienti di=
+ uomini primitivi.</span></p></li></ol><span><br /></span><ol start=3D"5"><=
+li dir=3D"ltr"><p dir=3D"ltr"><strong>Motivo per cui mi ha colpito</strong>=
+<br />Ho trovato interessante in questo articolo il meccanismo che riguarda=
+ l=E2=80=99apprendimento per quanto riguarda le AI: viene infatti riportato=
+ che l=E2=80=99approccio usato si basa sul fornire al modello milioni di pe=
+ptidi e illustrare come vengono assemblati in proteine, cos=C3=AC che possa=
+ imparare i metodi migliori per combinare catene di amminoacidi.</p></li></=
+ol><br /><ol start=3D"6"><li dir=3D"ltr"><p dir=3D"ltr"><strong>Legame con =
+i temi visti a lezione</strong><br />I meccanismi di apprendimento automati=
+co illustrati nell=E2=80=99articolo si basano sul comportamento degli agent=
+i intelligenti: partendo infatti da uno stato iniziale si riesce ad arrivar=
+e ad uno stato =E2=80=9Cgoal=E2=80=9D, apprendendo dagli esempi forniti.</p=
+></li></ol><p></p>=0A=0A            <div class=3D"commands">=0A            =
+        <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/m=
+od/forum/post.php?reply=3D71915">=0A                        Reply=0A       =
+             </a>=0A            </div>=0A=0A            <div class=3D"link"=
+>=0A                <a target=3D"_blank" href=3D"https://informatica.i-lear=
+n.unito.it/mod/forum/discuss.php?d=3D44281#p71915">=0A                    S=
+ee this post in context=0A                </a>=0A            </div>=0A     =
+   </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsub=
+scribelink">=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/foru=
+m/subscribe.php?id=3D7706">Unsubscribe from this forum</a>&nbsp;=0A    <a h=
+ref=3D"https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D77=
+06&d=3D44281">Unsubscribe from this discussion</a>&nbsp;=0A    <a href=3D"h=
+ttps://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092">Change y=
+our forum digest preferences</a>=0A</div>
+
+--b1_3t3xq1xG8SGeiVGlQUdSK7GrC0HzLHzZxPpA1LXeRb4--
+

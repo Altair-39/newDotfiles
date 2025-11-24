@@ -1,0 +1,139 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:9c4d:0:b0:32a:7f76:203e with SMTP id t13csp172421ljj;
+        Wed, 28 May 2025 08:22:50 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFW7UWuvqMb5xwL7GOIFgmNX/ChX3xCRHaZOsQ1bjUPioBSoC0o9o7sCrn21U0duH4Gjy+0
+X-Received: by 2002:a17:907:1df3:b0:ad8:8f5a:9d2b with SMTP id a640c23a62f3a-ad88f5a9df8mr191898566b.16.1748445770392;
+        Wed, 28 May 2025 08:22:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1748445770; cv=none;
+        d=google.com; s=arc-20240605;
+        b=LRllOpI05YlHbVCrhVRZrXoxlIlt8PSpXq5OcZD3doSNw59NNv6WSjLYdvbo4/LSiM
+         0YkWlslmpFRSOuRUT0c1+/4XsSPOg3AKxtdkJYMhN2RenZUHsB9Ovo6mt0Qdykfek9gH
+         VMLFSH9/Js6/RYmV1/O2AFliZDucdB/VHG1ygu0KVhZRU6t+EgfQuF2FPRaLZlpJbYA5
+         vt52mxUfOuGQhTjzLLNXZwO3IxB1nI1yjtuDfvozsp0s1yxizaajd1LibtWG2uw7mmoC
+         EbrMHYzr/n3F08duP92r5VGYNm5+Tb15L42iJbtyb15TOHDEPkBqkwE3FWVPc/5cXB+l
+         fTlA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=JuLSHQKa9XKx+dNXL+sA44ujv6pN1MVkrx16jorbh/Y=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=WpkigKkMG1RH+IqM9rVFZkGOcR9o7G7VaY6+O1/5ruYlo4A1dcE0l0e+nB/D27zaL2
+         cGbGKiXsPVpzmn8gMPHRJXic+jnJNiO0fy7GJyMXhtWbH9kN6Doi4V2rM+r/L35RipNA
+         bpFpVMoLjY6oJPRUh6pZn1DkXC5JZksmuApjT26xB5BIf//fneIxHbiVVQYW/iRWEkOR
+         VTm6qDaYfvCDa6lppLKBmFDTXdboSAT+/gv/K3/C/M+6M2LJnpkk0M/Ajtprro9Z7L+q
+         PDEbQWxxCm2CZtkMQxY/31YgNzcfKrRn8kuChyzJmYEmjMgaeIkj3ANy8tJcKFp67J+r
+         oFeg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ad8a19ad182si117638266b.56.2025.05.28.08.22.50
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 May 2025 08:22:50 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 54SFMnjp1752211
+	for <luca.barra@edu.unito.it>; Wed, 28 May 2025 17:22:49 +0200
+Date: Wed, 28 May 2025 17:22:49 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Aldinucci Marco (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: SCPD-24-25: Domani: Ultima lezione del corso SCPD
+Message-ID: <2a85d6898fb2b4debf5ffbc6b69d6dfdc90a735c206c524c7b311eec35c057f0@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7648@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7648
+X-Course-Id: 3074
+X-Course-Name: Sistemi di Calcolo Paralleli e Distribuiti 24-25
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: SCPD-24-25: Domani: Ultima lezione del corso SCPD
+Thread-Index: 2a85d6898fb2b4debf5ffbc6b69d
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_C6p0hDbcwjZhwJvstWo8VBJgw0kWUehOzDaqcJWNY"
+
+This is a multi-part message in MIME format.
+
+--b1_C6p0hDbcwjZhwJvstWo8VBJgw0kWUehOzDaqcJWNY
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SCPD-24-25 -> Forums -> Annunci -> Domani: Ultima lezione del corso SCPD
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44911#p72711
+Domani: Ultima lezione del corso SCPD
+by Aldinucci Marco - Wednesday, 28 May 2025, 5:06 PM
+---------------------------------------------------------------------
+Carissimi,
+
+a causa di un problema di agenda devo riallocare l'ultima lezione del corso
+a domani 29/5 11-13. Molte lezioni sono terminate e configdo possiate
+essere liberi. Troviamoci alle macchinette del caffe piano aule per poi
+cercare un aula libera. Sar=C3=B2 comunque a disposizione su appuntamento p=
+er
+concordare i progetti di esame tutto giugno e la prima met=C3=A0 di luglio.
+
+Marco Aldinucci
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SCPD-24-25.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3074
+
+--b1_C6p0hDbcwjZhwJvstWo8VBJgw0kWUehOzDaqcJWNY
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3074">SCPD-24-25</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3074">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+648">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://i=
+nformatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44911">Domani: Ultima=
+ lezione del corso SCPD</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=
+=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=
+=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=0A      =
+      <a href=3D"https://informatica.i-learn.unito.it/user/view.php?id=3D50=
+98&amp;course=3D3074" class=3D"d-inline-block aabtn"><img src=3D"https://in=
+formatica.i-learn.unito.it/pluginfile.php/26090/user/icon/lambda/f2?rev=3D6=
+28364" class=3D"userpicture" width=3D"35" height=3D"35" alt=3D"" /></a>=0A =
+       </td>=0A        <td class=3D"topic starter">=0A            <div clas=
+s=3D"subject">=0A                Domani: Ultima lezione del corso SCPD=0A  =
+          </div>=0A            <div class=3D"author">=0A                by =
+<a target=3D'_blank' href=3D'https://informatica.i-learn.unito.it/user/view=
+.php?id=3D5098&course=3D3074'>Aldinucci Marco</a> - Wednesday, 28 May 2025,=
+ 5:06 PM=0A            </div>=0A        </td>=0A    </tr>=0A    <tr>=0A    =
+    <td class=3D"left side" valign=3D"top">=0A                &nbsp;=0A    =
+    </td>=0A        <td class=3D"content">=0A            <p dir=3D"ltr" sty=
+le=3D"text-align:left;">Carissimi,</p><p dir=3D"ltr" style=3D"text-align:le=
+ft;">a causa di un problema di agenda devo riallocare l'ultima lezione del =
+corso a domani 29/5 11-13. Molte lezioni sono terminate e configdo possiate=
+ essere liberi. Troviamoci alle macchinette del caffe piano aule per poi ce=
+rcare un aula libera. Sar=C3=B2 comunque a disposizione su appuntamento per=
+ concordare i progetti di esame tutto giugno e la prima met=C3=A0 di luglio=
+.</p><p dir=3D"ltr" style=3D"text-align:left;"><br /></p><p dir=3D"ltr" sty=
+le=3D"text-align:left;">Marco Aldinucci</p>=0A=0A            <div class=3D"=
+commands">=0A            </div>=0A=0A            <div class=3D"link">=0A   =
+             <a target=3D"_blank" href=3D"https://informatica.i-learn.unito=
+.it/mod/forum/discuss.php?d=3D44911#p72711">=0A                    See this=
+ post in context=0A                </a>=0A            </div>=0A        </td=
+>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribel=
+ink">=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/forum/index=
+.php?id=3D3074">Change your forum digest preferences</a>=0A</div>
+
+--b1_C6p0hDbcwjZhwJvstWo8VBJgw0kWUehOzDaqcJWNY--
+

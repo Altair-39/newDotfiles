@@ -1,0 +1,196 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b81c:0:b0:2fb:4c9b:a38b with SMTP id u28csp1989044ljo;
+        Mon, 2 Dec 2024 03:50:31 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCWG5SG+eI22rt7oyS6fO5b+5dBv+mUoDkTxZGw09OSAaXNjaDUiI5TGb0P279LCl4INUCjuZKJ3bPXi@edu.unito.it
+X-Google-Smtp-Source: AGHT+IErt4lr4HOEtILJiOjT1BT54c7ju3bfn4JGCESrMRu0JOr78F5Ic+/PRDtJeiKTluzoU2zq
+X-Received: by 2002:a05:6512:224e:b0:53d:e7b6:c708 with SMTP id 2adb3069b0e04-53df0106999mr11001364e87.46.1733140230894;
+        Mon, 02 Dec 2024 03:50:30 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1733140230; cv=none;
+        d=google.com; s=arc-20240605;
+        b=B63OOm/Qh/oG3xWsv8TQIKbmLrIFD6qiBDa2w5590KcbSNihFPJFwBbe40+nc6g37z
+         m0v6sGrn4cqvkYQvVTlQ8HIOtllxourJHvzPEyHcNHjQdT+XJpTGCAByYuvlhasdv4UH
+         pFzfvImHBc8TbPUhvc+CxMDUZoq1bZR3f7LpQjodibHWkW499wXnTAdyXIFB1cB0hgmK
+         Lj48ooR0t8HMrral0qJaDBTeW0So4VTJoJnlb5kXI5+8ihWVibNgEmHa43KvdR43b/D1
+         uudWnoklVg37xEgXb37k+hXCK0RJ+GJxr6OB2xg0zDwioLdnptfR6cCB75bVZ4lv08S4
+         bG/g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=M4e9gqa6fjAKPs3LLOR0UYR4KsPhQOuSacqREyGtytA=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=Hs5i+uC/Q4fkHQkN8dufPyrY+x5noDOUiApZ2fmpwNGEjQHwzlJir0EquMg5x0XBC1
+         CzOq/ueUz8P1w3k450Payovs7wA+Xfe6cUOPMQX4EdVVJZW9xe4g7VLqL4iEGCp2rF1b
+         kboOPGAlzO8fVQOkK7Ln1rr7LCECJF9un0mIY+sXQbHeZU0XQXJ7umzwD0nZuvJcSnq9
+         yKYPKO6iMpyDOeXXpU9j3D/yLNXD9kXRyV5DztCwsEGklij1xBNkR4FWLYjmudCWuLqB
+         S9nm2f5ahWfbI71BtBWF9cjKbZvxYMDTSxzpvLT+QFiV1x441LywsjUisaTL2gq6LSSa
+         xZ5Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=WHVxYWmj;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id ca18e2360f4ac-84405f9fbebsi694903539f.95.2024.12.02.03.50.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Dec 2024 03:50:30 -0800 (PST)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=WHVxYWmj;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id C6CB4240CE;
+	Mon,  2 Dec 2024 12:50:27 +0100 (CET)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id ku5mBDqv8Skm; Mon,  2 Dec 2024 12:50:27 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 25036237A9;
+	Mon,  2 Dec 2024 12:50:27 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 25036237A9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1733140227;
+	bh=M4e9gqa6fjAKPs3LLOR0UYR4KsPhQOuSacqREyGtytA=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=WHVxYWmjll6fIlXqr470MumbwN0rQN5PXS4SUCoB0CcaKt0YTtjvelgsQfLJ4kTJ9
+	 c4hlBDOORacfM2OHKQlqfmvo4g//MKxf6jHLgkT7UG3zhGbDbJlS3j3SjPwEdRhJOO
+	 YKfuTaq5JVjSIYZGLiJ2t7DgPYgJzVnLO4/YbjCUpTy5uDMTer/UobpF8gIY75b4EL
+	 +0R3RXQLXozO4KL9aqVYt7N7CM5mdOCdc40K0kqqh/a2GulXqzm4W+o/tShX/mA9GY
+	 DbS7LmFqrU8wZYt0uMxLTsaDEOspUj3ayjmo7Zbf545mJylbHX4NPcXN27ktLf9J7z
+	 0ySVWQ2xGjfmg==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id jx6quOxwV-5y; Mon,  2 Dec 2024 12:50:26 +0100 (CET)
+Received: from esse3appjboss27.private.cineca.it (esse3appjboss27.cineca.it [130.186.5.162])
+	by smtp4.cineca.it (Postfix) with ESMTP id D8E3A23DC4;
+	Mon,  2 Dec 2024 12:50:23 +0100 (CET)
+Received: from esse3appjboss27.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss27.private.cineca.it (Postfix) with ESMTP id BF4F91C9;
+	Mon,  2 Dec 2024 12:50:21 +0100 (CET)
+Date: Mon, 2 Dec 2024 12:50:21 +0100 (CET)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <1986798974.51.1733140221774@esse3appjboss27.private.cineca.it>
+Subject: =?UTF-8?Q?Le_elezioni_sono_alle_porte_-_Perch=C3=A9_ca?=
+ =?UTF-8?Q?ndidarsi_per_la_Student_Assembly_UNITA!?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+
+English version below
+Cara e caro studente,
+le elezioni dei rappresentanti della Student Assembly di UNITA si terranno =
+alla fine di marzo 2025! =C3=88 la tua occasione per candidarti come rappre=
+sentante della tua universit=C3=A0 e contribuire a plasmare il futuro dell=
+=E2=80=99Alleanza UNITA.
+Cos'=C3=A8 la Student Assembly UNITA? L'Assemblea degli studenti di UNITA =
+=C3=A8 un organo unico nel suo genere che conferisce a studenti e studentes=
+se un ruolo attivo nel processo decisionale che influenza ogni aspetto dell=
+a vostra vita accademica. Eleggendo 7 rappresentanti da ciascuna delle 12 u=
+niversit=C3=A0 partner di UNITA, nascer=C3=A0 un gruppo dedicato a rapprese=
+ntare gli interessi degli studenti in tutta l'alleanza. I e le rappresentan=
+ti lavoreranno direttamente con i vertici delle universit=C3=A0, offrendo s=
+punti, soluzioni e nuove idee sui temi pi=C3=B9 importanti per gli studenti=
+.
+Perch=C3=A9 dovresti candidarti?
+In qualit=C3=A0 di candidato, potrai:
+=E2=80=A2=09Avere un impatto sulla vita accademica: influenzare ogni decisi=
+one, dalle politiche accademiche ai servizi per gli studenti, assicurando c=
+he la voce degli studenti sia parte di ogni cambiamento importante.
+=E2=80=A2=09Acquisire esperienza personale e professionale: Essere un rappr=
+esentante permette di acquisire capacit=C3=A0 di leadership, di negoziazion=
+e e di gestione del tempo, esperienze preziose per il proprio CV e per la p=
+ropria carriera futura.
+=E2=80=A2=09Rappresentare la tuo comunit=C3=A0: Portate al tavolo le preocc=
+upazioni dei vostri coetanei, sia che si tratti di accessibilit=C3=A0 econo=
+mica, di sostegno alla salute mentale o di alloggi.
+=E2=80=A2=09Promuovere cambiamenti positivi: Sostenete nuovi progetti per l=
+a sostenibilit=C3=A0, l'inclusione e la mobilit=C3=A0, contribuendo a rende=
+re l'UNITA un'universit=C3=A0 europea davvero trasformativa.
+=E2=80=A2=09Fare rete e collaborare: Entrare in contatto con studenti e doc=
+enti motivati di tutta Europa, stabilendo relazioni che possono portare ben=
+efici personali e professionali.
+Chi pu=C3=B2 partecipare? Qualsiasi studente iscritto a un programma di stu=
+dio o a un corso di dottorato presso una delle 12 universit=C3=A0 UNITA pu=
+=C3=B2 candidarsi.
+Come funzionano le elezioni? Le elezioni si svolgeranno online attraverso u=
+na piattaforma di voto sicura, che garantisce segretezza, equit=C3=A0 e tra=
+sparenza. Ogni votante potr=C3=A0 scegliere un candidato o una candidata de=
+lla propria universit=C3=A0 durante i tre giorni di elezioni, con la possib=
+ilit=C3=A0 di cambiare il proprio voto fino alla chiusura della finestra.
+Partecipare a un momento storico. Questa =C3=A8 pi=C3=B9 di una semplice el=
+ezione: =C3=A8 un'opportunit=C3=A0 per far parte di un'alleanza innovativa =
+che sta costruendo il futuro dell'Europa. Rappresentando la vostra universi=
+t=C3=A0 nell'Assemblea degli studenti, potete contribuire a realizzare camb=
+iamenti reali e positivi per gli studenti di tutta Europa.
+Se siete pronti a far parte di questo entusiasmante movimento, prendete in =
+considerazione la possibilit=C3=A0 di candidarvi!
+Informazioni dettagliate sulle modalit=C3=A0 di candidatura e sulle scadenz=
+e saranno presto disponibili sul portale di Ateneo al link: https://www.uni=
+to.it/internazionalita/unita-universitas-montium/student-assembly-di-unita=
+=20
+Per ulteriori informazioni, puoi contattare la Student Assembly UNITA all'i=
+ndirizzo elections@univ-unita.eu.=20
+Segui UNITA su Instagram: @universitasmontium e @unitastudentsassembly
+Cordiali saluti
+UNITA Student Assembly
+---------------------------------------------------------------------------=
+---------------------------------------------
+Dear Student,
+We=E2=80=99re thrilled to announce the upcoming elections of the UNITA Stud=
+ent Assembly, taking place at the end of March, 2025! This is your chance t=
+o stand up as a representative of your university and help shape the future=
+ of our UNITA alliance.
+What is the UNITA Student Assembly? UNITA=E2=80=99s Student Assembly is a u=
+nique body that gives students an active role in the decision-making proces=
+s that influence every aspect of your life as a student or PhD. By electing=
+ 7 representatives from each of the 12 partner universities, we=E2=80=99re =
+creating a group dedicated to representing student interests across the all=
+iance. Elected representatives will work directly with university leadershi=
+p, offering insights, solutions, and new ideas on topics that matter most t=
+o students.
+Why Should You Be a Candidate?
+As a candidate, you=E2=80=99ll:
+=E2=97=8F=09Directly Impact Academic Life: Influence EVERY decision from ac=
+ademic policies to student services, ensuring that student voices are part =
+of every major change.
+=E2=97=8F=09Gain Personal and Professional Experience: Being a representati=
+ve builds skills in leadership, negotiation, and time management=E2=80=94va=
+luable experiences for your CV and future career.
+=E2=97=8F=09Represent Your Community: Bring your peers' concerns to the tab=
+le, whether it=E2=80=99s on affordability, mental health support, or housin=
+g.
+=E2=97=8F=09Promote Positive Change: Support new projects for sustainabilit=
+y, inclusion, and mobility, helping to make UNITA a truly transformative Eu=
+ropean university.
+=E2=97=8F=09Network and Collaborate: Connect with driven students and facul=
+ty from across Europe, establishing relationships that can benefit you pers=
+onally and professionally.
+Who Can Run? Any enrolled student in a study program or PhD course at one o=
+f the 12 UNITA universities can apply to be a candidate.
+How Do Elections Work? The elections will be held online through a secure v=
+oting platform, ensuring secrecy, fairness, and transparency. Voters can se=
+lect one candidate from their university during the three-day election peri=
+od, with flexibility to change their vote until the window closes.
+Be Part of a Historical Moment This is more than just an election; it=E2=80=
+=99s an opportunity to be part of a groundbreaking alliance that=E2=80=99s =
+building the future of Europe. By representing your university in the Stude=
+nt Assembly, you can help bring about real, positive changes for students a=
+cross Europe.
+If you=E2=80=99re ready to be part of this exciting movement, consider beco=
+ming a candidate!
+Deatiled information on how to candidate and deadlines will be available so=
+on on the UniTO website at the link: https://en.unito.it/international-rela=
+tions/unita-universitas-montium/unita-students-assembly=20
+For further information, contact the UNITA Student Assembly at elections@un=
+iv-unita.eu=20
+And don=E2=80=99t forget to follow UNITA on Instagram: @universitasmontium =
+and @unitastudentsassembly
+
+Best regards
+UNITA Student Assembly

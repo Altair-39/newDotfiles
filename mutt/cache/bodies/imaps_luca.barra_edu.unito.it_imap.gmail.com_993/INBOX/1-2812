@@ -1,0 +1,72 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a00e:0:20b0:361:9897:9696 with SMTP id q14-n2csp1112200ljb;
+        Sun, 21 Sep 2025 16:33:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGYr1CbMFH8HOHE26y+DLWqbGlTOMnm4LHv6sog/ZwN+LRhOWr0kxGcdoswi+dMqC9KQW6G
+X-Received: by 2002:a05:6000:2893:b0:3fe:709b:9d8c with SMTP id ffacd0b85a97d-3fe709ba140mr468041f8f.10.1758497624514;
+        Sun, 21 Sep 2025 16:33:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1758497624; cv=none;
+        d=google.com; s=arc-20240605;
+        b=X/Dy0vCk2tLo3C1Gln0CP9dsgSL1Dvu61QFDd81yVXesuKXvkbmnMkjG8Amtd966Jw
+         8eTN7D18ebVnMem2AhPJtmEYxlpRck4nIGy6OQUrMzjrEVo5fdQAu4nYjjInJemuQ6Wr
+         VkhyGUgW3aoR1hbyCxngQCGIjxFY+HE47P7XgZOv5kG2p18GJAwOUQmNLDkra2m9JxNe
+         9+Gkzg0Bk9Ef+kS20mgGQWo3y4Vwqe3RjO6C6kLKDGx+PRNgGaPoY2Tlla49iY7ZxPEO
+         opQj8XW+/cN5bp9pP1HvB+Z3gfxvl/HnFqAv+ZJRwzaxl49MPv5iXoV4Y7z7It/G8iRh
+         xrGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=date:content-transfer-encoding:subject:from:to:message-id:sender
+         :dkim-signature;
+        bh=b8TJ9oEJAvE3YYCo6/KNO0yoBZYYaqCnXEU/7r1AKQc=;
+        fh=IxM04YauqXzCozmF/ngeXvaWuWeW7uONbHgj9jmZsgE=;
+        b=b16H0lfpejmMMJUjAo1D9XElJZyc3Mt/Rb2vzQpvMvX52NyFoaG1jG4tuCYN5wsobT
+         JH5fkfkSO54ArKVLUMGy3XUVvpawvlpFt8/nw8vl8I4dUbF6XGDu1WuGYFWYt2gM4jjc
+         URykKnWY3wzjz8xXVA0ae3FpnGI9wwSheO0ZFeggJl1/B8A7qTikRAu34AVFbuXo8cK6
+         wE4RJ0YzQApJuDPGPPiCae1ONlPjvvrWqiluoa7YVIDG2wfTuW0G7ksFRIF9qzob4quJ
+         8Jkgz+OMxCtaBNm0iB0Io75ljQH5HkfxFLTjT4gbCt/K0yeqpa8NtpaCzJ+swsvn+ks2
+         CW4A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@crates.io header.s=mailo header.b=jf1QGuD1;
+       spf=pass (google.com: domain of bounce+92773d.e953aa-luca.barra=edu.unito.it@crates.io designates 69.72.43.12 as permitted sender) smtp.mailfrom="bounce+92773d.e953aa-luca.barra=edu.unito.it@crates.io";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=crates.io
+Return-Path: <bounce+92773d.e953aa-luca.barra=edu.unito.it@crates.io>
+Received: from m43-12.mailgun.net (m43-12.mailgun.net. [69.72.43.12])
+        by mx.google.com with UTF8SMTPS id d75a77b69052e-4bf94b87e81si33368311cf.406.2025.09.21.16.33.43
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 21 Sep 2025 16:33:44 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce+92773d.e953aa-luca.barra=edu.unito.it@crates.io designates 69.72.43.12 as permitted sender) client-ip=69.72.43.12;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@crates.io header.s=mailo header.b=jf1QGuD1;
+       spf=pass (google.com: domain of bounce+92773d.e953aa-luca.barra=edu.unito.it@crates.io designates 69.72.43.12 as permitted sender) smtp.mailfrom="bounce+92773d.e953aa-luca.barra=edu.unito.it@crates.io";
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=crates.io
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=crates.io; q=dns/txt; s=mailo; t=1758497622; x=1758504822;
+ h=Date: Content-Transfer-Encoding: Content-Type: Subject: Subject: From: From: To: To: Message-ID: Sender: Sender;
+ bh=b8TJ9oEJAvE3YYCo6/KNO0yoBZYYaqCnXEU/7r1AKQc=;
+ b=jf1QGuD1L5vVPiycbOOZa1WZf4op/Wb78Y7jWln5C4e8RNRB10khZRptM5yDBxUMHjza5rduAEAbVllf0/xnEk/+CkYBriJ2l2KFYe0O3ZxaG5VMwZ8/VCzPJwjlyHs0sszOGIBS2bg7AF4r91/kAb+bu0UgFvZzCsohLanE1J0=
+X-Mailgun-Sid: WyIzM2I0YSIsImx1Y2EuYmFycmFAZWR1LnVuaXRvLml0IiwiZTk1M2FhIl0=
+Received: from 8d66ffbe-75f0-4a7c-a9e0-2fcf38f97229
+ (ec2-13-218-230-117.compute-1.amazonaws.com [13.218.230.117]) by
+ 09a4eedc3a0308a8f603027c0fd7ed8ec838eb526f3be75b229f1bf704bc9722 with SMTP id
+ 68d08b56e91fd97ec39100d6; Sun, 21 Sep 2025 23:33:42 GMT
+X-Mailgun-Sending-Ip: 69.72.43.12
+Sender: noreply@crates.io
+Message-ID: <RDVK2t9NkhW10k3RSmxwg9ePRx16C6tA@crates.io>
+To: luca.barra@edu.unito.it
+From: crates.io <noreply@crates.io>
+Subject: crates.io: Successfully published kingler@0.6.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sun, 21 Sep 2025 23:33:42 +0000
+
+
+Hello Luca-Barra!
+
+A new version of the package kingler (0.6.0) was published by your account =
+(https://crates.io/users/Luca-Barra) at 2025-09-21T23:33:39Z.
+
+If you have questions or security concerns, you can contact us at help@crat=
+es.io. If you would like to stop receiving these security notifications, yo=
+u can disable them in your account settings.
+
+--
+The crates.io Team

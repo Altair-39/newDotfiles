@@ -1,0 +1,164 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:2241:0:b0:37b:a51c:a37f with SMTP id i62csp142211lji;
+        Mon, 17 Nov 2025 08:41:01 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG3fkCV3oLlZMo/BJR69WpG3cN237DnOyXmdiCrGbC5hcl96ZkOinu3G0xT3DUZ9RD7jEit
+X-Received: by 2002:a17:907:3f1d:b0:b72:c1b6:e947 with SMTP id a640c23a62f3a-b73678eeeefmr768204166b.4.1763397661571;
+        Mon, 17 Nov 2025 08:41:01 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1763397661; cv=none;
+        d=google.com; s=arc-20240605;
+        b=JRyZqOCgovpFNI+gjOvSAf2KE84PQesOjCqap+1IdCHJaaA9bKI/2ABLDRTFlSYFfV
+         /anCH1OJ64FBTDok4kTJ1ZqjQ8YhEqJ7HP+Uwdgtu6wWP/VWVv0/ccUDVcBXxkUwouQV
+         PxelV2JSGAUkAy6H+ieZhAAzLxBTnHUAMUY/t47nqYCncuAnabFS5vmX/1iVDeYMBzst
+         d8SXw8OjFMvN49h6qGQA89jmpvIHx8f/EeQQop41AO6m54vQzPShwgpPYdv+DooGTCte
+         Cbv/aw0i0kGtbftWUvSsPrFmn4vEZMRdY7gYX6UBXJ0uaDfTWaSaJWHJBovfckhkweh9
+         MXSQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-signature:dkim-filter;
+        bh=e3MK0QhBB1R+FYOD7dnFvNHZVY9OZlbMFNPC4/uOBFs=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=X2V1X94NSYYa+6qMe1uxIp3DNM/HqXv3Fj3szTYyCr8M7bL9ddmL1Yt/NSCWMkTNrS
+         pfhm9iA6/DX3tvlcUt5U4bjbm4jXZWx1tW3qC2tvLnKfNZkMVFIVOefrmx/6ci00cLTy
+         Wb0T4z+VrjcZi21ZzqdZhYN37H1nZm2+JhjzizLE0tLML+qLiXbor+mdF9hsXv2zGLiD
+         peeoakccRuH+m5hn5fYnVHE3KIsvrdR0pGnR3Vq6RC7vAeVwB4zWiSE5s5aDGmQwplHQ
+         A/ZAmYGFNJ6Z6k58HaWPAhlsLC1vBWHWunjW5U6eTiDEEuhaqHm5L+4fHbKMPOdnElTf
+         4Y0Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=VrImfttP;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-b734fcbdf5esi658053766b.740.2025.11.17.08.41.01
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Nov 2025 08:41:01 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=VrImfttP;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 5AHGf0fm1842968
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Mon, 17 Nov 2025 17:41:00 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 5AHGf0fm1842968
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=i-learn.unito.it;
+	s=default; t=1763397660;
+	bh=e3MK0QhBB1R+FYOD7dnFvNHZVY9OZlbMFNPC4/uOBFs=;
+	h=Date:To:From:Reply-To:Subject:List-Id:List-Help:List-Unsubscribe:
+	 From;
+	b=VrImfttPNRCz8/D4Z65MXAmjVCM532M7flSaru61HrE+OxhN0u6gNzqIE4EdCZmgA
+	 qsAI2r8YNk/SU7lcvLy2+LHL38UFCO363xTqy11ZIcD0CJcq0D00/3gqQnClhE5LCy
+	 OB8HosFONBROiLfpQNfNrugwHn8lZ+S5xvcqvoYU=
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 5AHGexbl751582
+	for <luca.barra@edu.unito.it>; Mon, 17 Nov 2025 17:40:59 +0100
+Date: Mon, 17 Nov 2025 17:40:59 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Baroglio Cristina (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: SisInt2425: Appelli di dicembre e di gennaio 2025 Sis. Int.: ATTENZIONE, leggere
+Message-ID: <98e52fadc886724c3db80674af2e5a746d257b86108efcacd60d3ea6a214f1e1@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.6.5 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7702@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7702
+X-Course-Id: 3092
+X-Course-Name: Sistemi Intelligenti
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: SisInt2425: Appelli di dicembre e di gennaio 2025 Sis. Int.: ATTENZIONE, leggere
+Thread-Index: 98e52fadc886724c3db80674af2e
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_iZ9zUVK3OmQMIvCVYORn07g4bGrbRgKwFblWWZDk"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 5AHGf0fm1842968
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply-informatica@i-learn.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_iZ9zUVK3OmQMIvCVYORn07g4bGrbRgKwFblWWZDk
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SisInt2425 -> Forums -> Annunci -> Appelli di dicembre e di gennaio 2025
+Sis. Int.: ATTENZIONE, leggere
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45926#p73944
+Appelli di dicembre e di gennaio 2025 Sis. Int.: ATTENZIONE, leggere
+by Baroglio Cristina - Monday, 17 November 2025, 5:20 PM
+---------------------------------------------------------------------
+Buongiorno,
+
+per chi =C3=A8 intenzionato a dare l'esame in uno dei due prossimi appelli:=
+ vi
+informo che per cause di forza maggiore ci saranno delle modifiche nei
+prossimi due appelli. Appena avr=C3=B2 conferma dell'ipotesi in discussione=
+ vi
+informer=C3=B2. Essendo lontani dalle sessioni di laurea non vi saranno
+ricadute di rilievo ma solo organizzative.
+
+Tenete d'occhio il forum.
+
+Cristina Baroglio
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SisInt2425.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092
+
+--b1_iZ9zUVK3OmQMIvCVYORn07g4bGrbRgKwFblWWZDk
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3092">SisInt2425</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3092">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+702">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://i=
+nformatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45926">Appelli di dic=
+embre e di gennaio 2025 Sis. Int.: ATTENZIONE, leggere</a>=0A</div>=0A=0A<t=
+able border=3D"0" cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=
+=0A    <tr class=3D"header">=0A        <td width=3D"35" valign=3D"top" clas=
+s=3D"picture left">=0A            <a href=3D"https://informatica.i-learn.un=
+ito.it/user/view.php?id=3D37&amp;course=3D3092" class=3D"d-inline-block aab=
+tn"><img src=3D"https://informatica.i-learn.unito.it/pluginfile.php/16311/u=
+ser/icon/lambda/f2?rev=3D1" class=3D"userpicture" width=3D"35" height=3D"35=
+" alt=3D"Baroglio Cristina" title=3D"Baroglio Cristina" /></a>=0A        </=
+td>=0A        <td class=3D"topic starter">=0A            <div class=3D"subj=
+ect">=0A                Appelli di dicembre e di gennaio 2025 Sis. Int.: AT=
+TENZIONE, leggere=0A            </div>=0A            <div class=3D"author">=
+=0A                by <a target=3D'_blank' href=3D'https://informatica.i-le=
+arn.unito.it/user/view.php?id=3D37&course=3D3092'>Baroglio Cristina</a> - M=
+onday, 17 November 2025, 5:20 PM=0A            </div>=0A        </td>=0A   =
+ </tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=0A     =
+           &nbsp;=0A        </td>=0A        <td class=3D"content">=0A      =
+      <p dir=3D"ltr" style=3D"text-align:left;">Buongiorno,</p><p dir=3D"lt=
+r" style=3D"text-align:left;">per chi =C3=A8 intenzionato a dare l'esame in=
+ uno dei due prossimi appelli: vi informo che per cause di forza maggiore c=
+i saranno delle modifiche nei prossimi due appelli. Appena avr=C3=B2 confer=
+ma dell'ipotesi in discussione vi informer=C3=B2. Essendo lontani dalle ses=
+sioni di laurea non vi saranno ricadute di rilievo ma solo organizzative.</=
+p><p dir=3D"ltr" style=3D"text-align:left;">Tenete d'occhio il forum.</p><p=
+ dir=3D"ltr" style=3D"text-align:left;">Cristina Baroglio</p><p dir=3D"ltr"=
+ style=3D"text-align:left;"><br /></p>=0A=0A            <div class=3D"comma=
+nds">=0A            </div>=0A=0A            <div class=3D"link">=0A        =
+        <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/m=
+od/forum/discuss.php?d=3D45926#p73944">=0A                    See this post=
+ in context=0A                </a>=0A            </div>=0A        </td>=0A =
+   </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=
+=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/forum/index.php?=
+id=3D3092">Change your forum digest preferences</a>=0A</div>
+
+--b1_iZ9zUVK3OmQMIvCVYORn07g4bGrbRgKwFblWWZDk--
+

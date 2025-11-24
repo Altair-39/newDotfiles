@@ -1,0 +1,181 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b689:0:b0:302:3d35:6815 with SMTP id l9csp1150773ljo;
+        Sun, 12 Jan 2025 23:03:48 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE2llZr7MOOCzE4hFZAwcx1O5zHMl3GmWkD3SRzOFxcIyizfWGKuMElNm2HuWLuE8xRMACf
+X-Received: by 2002:a17:907:780e:b0:ab2:b4d2:b308 with SMTP id a640c23a62f3a-ab2b4d2cc8cmr596393466b.8.1736751828060;
+        Sun, 12 Jan 2025 23:03:48 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1736751828; cv=none;
+        d=google.com; s=arc-20240605;
+        b=S0otlmB6+IIa6KUBcx//vVoEUQQ5kwG/7aFtMBnBoxbtRoqgVqQz1lqkFWtzYBBXEh
+         gVDEzEFjURNmiHEdc/g+eeisYuDZZGY877ioXQZ8bbxg9QWMO8qTCkAZhgPUcKgTPCS8
+         ANogrSM32JkSGTbfpOZyvXhEDwn/gLopLPioSnHL8r1QgkVuHu8fxenAeg+33vzQSOlo
+         UKeZVAekXGCZhMCcmmqaHrBG2DbZ8lyemdRQ04SY+zJXxPJv3qZVdAcKn02mTHukoxzd
+         EGqXiQkHjHm1IvQnXUIwVMP+P9ZGVArdZR7W0+H4FVwWVie137H7nQyP5VCGS+uoeX4o
+         1vQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:dkim-filter;
+        bh=MUISyTyfrVOMLT6oArpGWwazgwjxxfa8N156K5LXPuk=;
+        fh=wnoTQjHgWz4kRW5W3Yv210Aj9LolbdJ/Lvc/uyAoO3M=;
+        b=CLiMFf8wrpIa0yyRX5KZy7alMyaPBT4pmJRxy6JRrJCS5m2iamBQfFaPMhjUoLO1YV
+         w2lUwM9bvWtrJ9XHNQrdnEErtfzNd7dAFnBQLVK/RJBTsOoMdw9W95Pu7lvKF4fLuxKc
+         uWZoUvC/ODhmYALyfoUN9GLRE7q+lEAT1/NUfuWwxPZsGZjkoCp05ycWE4V+M1LFYQ5l
+         19iGDTJ72g+7xOiX5eB3BelSm5u2qdYYGASVuechwmcH3j632l32JfnHwcMP0t4WM21h
+         77nkQaALmnpBqPKLf2EZVgWKz+8zsEgv9c/HGQUcQYpR5iOpkEbOssldrciLtz6U3jW7
+         OCXg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of aperturalogin@educ.di.unito.it designates 130.192.156.1 as permitted sender) smtp.mailfrom=aperturalogin@educ.di.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <aperturalogin@educ.di.unito.it>
+Received: from mail.di.unito.it (pianeta.di.unito.it. [130.192.156.1])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ab2c9058402si595716566b.125.2025.01.12.23.03.47
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 12 Jan 2025 23:03:48 -0800 (PST)
+Received-SPF: pass (google.com: domain of aperturalogin@educ.di.unito.it designates 130.192.156.1 as permitted sender) client-ip=130.192.156.1;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of aperturalogin@educ.di.unito.it designates 130.192.156.1 as permitted sender) smtp.mailfrom=aperturalogin@educ.di.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+X-MailScanner-From: aperturalogin@educ.di.unito.it
+X-SpamCheck: not spam (whitelisted), SpamAssassin (not cached,
+	score=-100.254, required 3, autolearn=not spam, ALL_TRUSTED -1.00,
+	AUTHENTICATEDUSER -100.00, AWL -0.67, HTML_IMAGE_ONLY_28 1.40,
+	HTML_MESSAGE 0.00, T_REMOTE_IMAGE 0.01, URIBL_BLOCKED 0.00)
+X-AntiVirus: Email Clean
+X-dipinfo-MailScanner-ID: 50D73jtw017625
+X-dipinfo-MailScanner-Information: Please contact Department of Computer Science technical staff for more information
+Received: from mail.di.unito.it ([130.192.156.1])
+         by mail.di.unito.it (INFO-DIP) with ESMTPSA id 50D73jtw017625
+	 (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO AuthenticatedUser=cordero );
+	 Mon, 13 Jan 2025 08:03:46 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.di.unito.it 50D73jtw017625
+Content-Type: multipart/alternative;
+ boundary="------------Zel03E50N4hV0KwpliQg2Ynf"
+Message-ID: <268eba36-26e5-4e3d-9a07-af7731a4dfd8@educ.di.unito.it>
+Date: Mon, 13 Jan 2025 08:03:45 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: Apertura account @educ.di.unito.it
+Content-Language: it
+To: Luca Barra <luca.barra@edu.unito.it>
+References: <CAAhooxvK-2wXj=0qyv4nMwH-goZjVo=bhaNu4gMe7M5Gn3+L0Q@mail.gmail.com>
+From: Apertura Login <aperturalogin@educ.di.unito.it>
+In-Reply-To: <CAAhooxvK-2wXj=0qyv4nMwH-goZjVo=bhaNu4gMe7M5Gn3+L0Q@mail.gmail.com>
+
+This is a multi-part message in MIME format.
+--------------Zel03E50N4hV0KwpliQg2Ynf
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Buongiorno,
+la sua richiesta di apertura login è stata evasa.
+
+Entro un paio d'ore l'account verrà generato dalle procedure 
+automatiche, dopo di che si potrà collegare al servizio web:
+
+https://intranet.educ.di.unito.it/ServiziUnito/
+
+Autenticandosi con le credenziali di MyUnito per conoscere l'account che 
+le è stato assegnato ed impostare una password di accesso.
+
+L'account è riportato tra le parentesi dopo il suo Cognome e Nome.
+
+Cordiali saluti,
+
+Il 13/01/25 08:00, Luca Barra ha scritto:
+> Buongiorno,
+> sono uno studente della laurea magistrale in informatica e vorrei 
+> richiedere l'apertura dell'account @educ.di.unito.it 
+> <http://educ.di.unito.it>.
+> Distinti saluti,
+> LB
+>
+> ------------------------
+>
+> Indirizzo istituzionale di posta elettronica degli studenti e dei 
+> laureati dell'Università di Torino
+> Official University of Turin email address for students and graduates
+-- 
+-- 
+Servizio di Apertura Login - per informazioni ed orari:
+http://laurea.educ.di.unito.it/index.php/info-utili/servizi-agli-studenti/aperturalogin/
+
+UniversitÃ degli Studi di Torino
+Dipartimento di Informatica
+
+Tel: +39-0116706711 Fax: +39-011751603
+C.so Svizzera , 185 - 10149 - Torino
+
+--------------Zel03E50N4hV0KwpliQg2Ynf
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Buongiorno,<br>
+      la sua richiesta di apertura login è stata evasa.<br>
+      <br>
+      Entro un paio d'ore l'account verrà generato dalle procedure
+      automatiche, dopo di che si potrà collegare al servizio web:<br>
+      <br>
+      <a class="moz-txt-link-freetext" href="https://intranet.educ.di.unito.it/ServiziUnito/">https://intranet.educ.di.unito.it/ServiziUnito/</a><br>
+      <br>
+      Autenticandosi con le credenziali di MyUnito per conoscere
+      l'account che le è stato assegnato ed impostare una password di
+      accesso.<br>
+      <br>
+      L'account è riportato tra le parentesi dopo il suo Cognome e Nome.<br>
+      <br>
+      Cordiali saluti,<br>
+    </p>
+    <div class="moz-cite-prefix">Il 13/01/25 08:00, Luca Barra ha
+      scritto:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAAhooxvK-2wXj=0qyv4nMwH-goZjVo=bhaNu4gMe7M5Gn3+L0Q@mail.gmail.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div dir="ltr">
+        <div>Buongiorno, <br>
+        </div>
+        <div>sono uno studente della laurea magistrale in informatica e
+          vorrei richiedere l'apertura dell'account @<a
+            href="http://educ.di.unito.it" moz-do-not-send="true">educ.di.unito.it</a>.</div>
+        <div>Distinti saluti,</div>
+        <div>LB<br>
+        </div>
+      </div>
+      <br>
+      <div style="font-size:1.3em">------------------------</div>
+      <span style="font-size:small">
+        <div><img src="https://web.unito.it/logofirmastu.png"
+            moz-do-not-send="true"><br>
+        </div>
+        Indirizzo istituzionale di posta elettronica degli studenti e
+        dei laureati dell'Università di Torino</span>
+      <div><font size="2">Official University of Turin email address for
+          students and graduates </font></div>
+    </blockquote>
+    <div class="moz-signature">-- <br>
+      <div class="moz-signature">-- <br>
+        <center> Servizio di Apertura Login - per informazioni ed orari:<br>
+          <a
+href="http://laurea.educ.di.unito.it/index.php/info-utili/servizi-agli-studenti/aperturalogin/"
+            class="moz-txt-link-freetext">http://laurea.educ.di.unito.it/index.php/info-utili/servizi-agli-studenti/aperturalogin/</a><br>
+          <br>
+          UniversitÃ degli Studi di Torino<br>
+          Dipartimento di Informatica<br>
+          <br>
+          Tel: +39-0116706711 Fax: +39-011751603<br>
+          C.so Svizzera , 185 - 10149 - Torino<br>
+        </center>
+      </div>
+    </div>
+  </body>
+</html>
+
+--------------Zel03E50N4hV0KwpliQg2Ynf--

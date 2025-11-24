@@ -1,0 +1,110 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b990:0:b0:2fb:4c9b:a38b with SMTP id p16csp1924706ljp;
+        Mon, 18 Nov 2024 00:49:30 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCXIevV3WqvICOIsMxjtGSUp/qXgEHZ2A43Wk9P1eLlv7pcYzjLpnUY9qVKqzFLFTkXeWXAyvWTF/bn6@edu.unito.it
+X-Google-Smtp-Source: AGHT+IGo+TvLLCmEmAJc/Lc5lp+q/Xy+UVGp+IYB1WaXM3qZBl3NOe6W35sI6dQQrjoT+BmqvZKD
+X-Received: by 2002:a05:6512:32c9:b0:53d:a2cb:1350 with SMTP id 2adb3069b0e04-53dab29f15amr6555231e87.17.1731919770247;
+        Mon, 18 Nov 2024 00:49:30 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1731919770; cv=none;
+        d=google.com; s=arc-20240605;
+        b=h+bkyFR2Gw4oTMve13NQpFLAy7+wCc5TYha8UfovE81B/prrgzURTjlZhT6L4AYyyx
+         JD1uKvVVi5F48LLVMLD9quGVTrXfTH/KRy+vb0SSJs53OyhvdUGX7o7PUNXtOObV2Vjs
+         OgkCos7sFz6RehokHKK1uyYH1OI3SPVGXPln/XTeGVAHAM4wW7p1ltk7gVn3GesmXaLP
+         kBDahwx89jZDFp7T2S2MroBD/0eXJR9yY77ZQgfNI6P71xxAWXeelA5Ep5ugh20QrN0w
+         vRx5p8VBqdXCyZYUNXvlfosc24bXNgC+WFLiX3ghS1uTpRQm9crQa5ac38eIzLdgAfEP
+         GeEw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=92koZYybfL6BekTZZsiqHII+86+h5Tae60c9e/5UTs4=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=NrYz9ElDn64sYD+mC5KTMYMiuzlgweIVr7W/czP4RDqziqQO2/8xKqUBqTQbOhVryj
+         ihETOEuPJ56k2NAGU2rQhCCsn/mJbrqZJlTjxE03zsk1C9Rvv08wkVpt/RrqnjuFhc3N
+         pBNp/eZRX/lSj+ISxPcZAYaF4mpje7rPOoz4WUn+75D01VWFC8XPbcjE2Mjp6kCfFL0/
+         KJyZZWqZMkIrvw7loEkyRLsaJ40kSTxxdF2/0eqYXbBUUB6umZHZ2b/7QjbHbilxcmy5
+         S9P0atMK7PR5Hn6fpR39amWi3+VqBD0s9+DrrWH4vlHEfARkdp2EvJ1k6h8pyNbz6IXv
+         BIqw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=dXKEo8id;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-4e070b22895si4237197173.108.2024.11.18.00.49.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 18 Nov 2024 00:49:30 -0800 (PST)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=dXKEo8id;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 31EF121D54;
+	Mon, 18 Nov 2024 09:49:27 +0100 (CET)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id X3YtWF6w0ucs; Mon, 18 Nov 2024 09:49:27 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 74B6423BDB;
+	Mon, 18 Nov 2024 09:49:26 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 74B6423BDB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1731919766;
+	bh=92koZYybfL6BekTZZsiqHII+86+h5Tae60c9e/5UTs4=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=dXKEo8idbenukHajS/Q7AqUOfVxgnGQMXws+m6xX8F7o82N1ey1iaPu17ZrL0gfYc
+	 evCb8JcAERsMEczQlMKRfc98YnPN3WEpw1OeVjZW7HAUpyG63HmIbHVoclPCI0+B9G
+	 yXMFH5W4rtXAmbND4PnS/ZkF8mvVdj9K5YC/qNqYaARWOdXCrajCBM14Pt5NuU+UTM
+	 9X/esvNHM0DopcodpuPiwQTRLFWBCMDdsUAUUnJ3KJJAbZrA63kOfW23HKqO86Yj0L
+	 EHIno+Afd0HU3TiYnmEit24PsOxKxQ+zu6DegQKfPLkOq1x/BL1sJhu+IMwGlB1jTg
+	 nuR/fbx+7JlxQ==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id mX-iAnVSikIX; Mon, 18 Nov 2024 09:49:26 +0100 (CET)
+Received: from esse3appjboss26.private.cineca.it (esse3appjboss26.cineca.it [130.186.5.161])
+	by smtp4.cineca.it (Postfix) with ESMTP id 6753D23081;
+	Mon, 18 Nov 2024 09:49:23 +0100 (CET)
+Received: from esse3appjboss26.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss26.private.cineca.it (Postfix) with ESMTP id 4DA40545;
+	Mon, 18 Nov 2024 09:49:21 +0100 (CET)
+Date: Mon, 18 Nov 2024 09:49:21 +0100 (CET)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <2018131423.149.1731919761310@esse3appjboss26.private.cineca.it>
+Subject: =?UTF-8?Q?Ultima_occasione_per_provare_a_vincer?=
+ =?UTF-8?Q?e_i_premi_dell'Indagine_Mobilit=C3=A0_2024?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+Gentile studentessa e gentile studente,=20
+
+facci sapere come vieni in universit=C3=A0... se rispondi a tutte le domand=
+e del questionario puoi VINCERE PREMI come buoni acquisto Decathlon (30=E2=
+=82=AC), borsine con il logo UniTo e borse sport-viaggio UniTo, caschi per =
+bicicletta etc..
+
+SOLO FINO A MERCOLEDI' 20 NOVEMBRE RISPONDI AL QUESTIONARIO A PROVA A VINCE=
+RE  https://bit.ly/IndagineMobilit=C3=A024
+
+Il questionario =C3=A8 anonimo ma se fornisci la tua email istituzionale e =
+rispondi a tutte le domande, puoi partecipare all=E2=80=99estrazione dei pr=
+emi.
+
+L=E2=80=99obiettivo dell'l=E2=80=99Indagine Mobilit=C3=A0 2024, promossa da=
+ll'Universit=C3=A0 di Torino e il suo Green Office UniToGO, =C3=A8 comprend=
+ere esigenze ed abitudini di mobilit=C3=A0 della comunit=C3=A0 universitari=
+a ed individuare le azioni che l=E2=80=99Ateneo pu=C3=B2 realizzare per fac=
+ilitare la mobilit=C3=A0 attiva ed ecosostenibile da e verso l'universit=C3=
+=A0, come sconti per i mezzi pubblici e mobilit=C3=A0 in sharing, posteggi =
+bici=E2=80=A6
+
+Segui gli aggiornamenti sui social di UniToGO
+
+Facebook https://www.facebook.com/UniToGO=20
+
+Instagram https://www.instagram.com/unito_go/=20

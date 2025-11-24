@@ -1,0 +1,96 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:83d6:0:b0:2f3:ec6d:e6a7 with SMTP id s22csp1657049ljh;
+        Mon, 23 Sep 2024 05:52:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCWMFjWisMykx0p7eo+U2V3nQOEo44/ak14B7Tvc23ihRRKQKUmpQA4rRjAPJuRPGd1YT+unQxBpBDs1@edu.unito.it
+X-Google-Smtp-Source: AGHT+IGy4vO/YOHAIZlO1rQriFSKyEBThIFnp0ZwvbgyYecrDD7j5kBQv8M/PZkrScVowYxUffFI
+X-Received: by 2002:a05:6000:18c4:b0:374:c8b7:63ec with SMTP id ffacd0b85a97d-37a42278393mr9251745f8f.21.1727095946162;
+        Mon, 23 Sep 2024 05:52:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727095946; cv=none;
+        d=google.com; s=arc-20240605;
+        b=EsG+xeeaDhf344/nDD+aPaqGBN2UB6rk4wE1Tnv36gZGaYu9/DB1wU9uClMyw/g+TF
+         9WOYI8wSjPcgyEikFaMjnkXhL4Gc6AT323Jn328Pt5XKPaiwTHlVN+T8oLRikL474/b8
+         EUHN3zSehPUDQKPRj235CitnvtnFFEEQSbPIfAgw9BG4Z/0gXqx1H4YPCDcZCLygLgmd
+         2+EBUGHSWhFtVifLyIBDla7xykEs6oUxHbHllEZ4gKotfuuca4iKFwXyMNWOyT85sLdT
+         a1fClVwfvz9mYrBCTJ4Nv/d5EstyhbnkCR1mRhIwdFObsc0QT2fVRqudiTN/xNf8oHhG
+         nEeA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=rlHhiLHPv5WvOeICw4Uucg+pmpFytnbiFs7XfrI/h5Y=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=NoN7kNVLiDXn1kesR1LiFyXXEo7t5IeHDcarRYz9Bup15bc00PMm3q29QN0Baj0LL4
+         qk1rvpr1xctW0EGjpFfgucgRAM2yROUefAVztYINhpC47nan/bJdwmkywyJwnXXHN+0D
+         BzFfsCBw9HYZSteNP88FmsGSzu+sQJWEowOMEduRyVOEiPgY5Og44oWia+VT31Atpkdz
+         xxQFeI4aDVrHeSU4o386HY3PBOSsfBZrDoH5r8BYIEc2UTxFau6Z8R0sDoGfQTJzx5FF
+         sMyVw30uS7Oseozd8U54n1XSyHpZ3tfDQd+4NVRgrCFCWbu1RxMSkIzgZUArDOaL0iQ0
+         cAMw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=uflhccv1;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-4d37ebe099esi9309808173.17.2024.09.23.05.52.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Sep 2024 05:52:26 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=uflhccv1;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id E74D8274F8;
+	Mon, 23 Sep 2024 14:52:22 +0200 (CEST)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id qlr8KGrgsM21; Mon, 23 Sep 2024 14:52:22 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id C93332445D;
+	Mon, 23 Sep 2024 14:52:21 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it C93332445D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1727095942;
+	bh=rlHhiLHPv5WvOeICw4Uucg+pmpFytnbiFs7XfrI/h5Y=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=uflhccv1X/RLqOWVb4ZXzeVOwi4q3tkhQpy7i+YosYiLWBUN5nqesBrJ5JDg7IY/W
+	 pUKUIWWoHCUBoUXXKe3HAzVhNAdMWKfonIfImNxJcSS/HNZMA1ySxLvgMF74TvxiZp
+	 JYEeL5y2Vh/FbGuTNeZKTWw9vaz1FSmxvtBZZZQYHpRSaLOUXIg7QEOnSq5enQsita
+	 d6qTKkKrape5EcjsEAakfX2orgTBOKBfT3SJJYzb/JqlBSuA9e6CM0j2enc0pa4HGn
+	 0EYxJXhBYjGNC/L2YbxijIQr1J2XtREPQjPkLbdkl/PmO1DocEIgtH4QJe1HKPcjOf
+	 Kch0NvTLVvA/g==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id klFNf9hwhJuj; Mon, 23 Sep 2024 14:52:21 +0200 (CEST)
+Received: from esse3appjboss27.private.cineca.it (esse3appjboss27.cineca.it [130.186.5.162])
+	by smtp4.cineca.it (Postfix) with ESMTP id 9E08623788;
+	Mon, 23 Sep 2024 14:52:18 +0200 (CEST)
+Received: from esse3appjboss27.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss27.private.cineca.it (Postfix) with ESMTP id AA231880;
+	Mon, 23 Sep 2024 14:52:16 +0200 (CEST)
+Date: Mon, 23 Sep 2024 14:52:16 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <1986814164.473.1727095936688@esse3appjboss27.private.cineca.it>
+Subject:  Bando Parcheggio CLE 2024/2025 - Gruppo B Studenti e Studentesse
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+Si rende noto che alla pagina
+https://www.unito.it/ateneo/strutture-e-sedi/sedi/sedi-metropolitane-torino=
+-e-provincia/campus-luigi-einaudi/il
+=C3=A8 stato pubblicato il bando per l=E2=80=99assegnazione dei permessi di=
+ accesso al Parcheggio del Campus Luigi Einaudi per l'A.A. 2024/2025.
+Possono partecipare anche gli studenti e le studentesse gi=C3=A0 in possess=
+o di un permesso in scadenza, rilasciato in esito al precedente bando.
+Il termine per la presentazione delle domande =C3=A8 il 10 ottobre 2024 com=
+preso.
+
+Cordiali saluti,
+
+Area Gestione Contratti Generali di Servizi di Ateneo e Facility Management=
+ Amministrazione Centrale

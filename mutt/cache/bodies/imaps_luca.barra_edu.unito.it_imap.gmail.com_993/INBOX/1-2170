@@ -1,0 +1,311 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:7e09:0:b0:302:3d35:6815 with SMTP id z9csp471930ljc;
+        Thu, 13 Feb 2025 09:46:51 -0800 (PST)
+X-Received: by 2002:a5d:59ad:0:b0:38b:ef22:d8d2 with SMTP id ffacd0b85a97d-38dea2db16amr3468856f8f.12.1739468810799;
+        Thu, 13 Feb 2025 09:46:50 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1739468810; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Z1/wEatMx/VE27HQCzsTBg4o7YgvgfzoA8NS5H88H4OReVQj20Z0+GaHZyDPvj7uch
+         TcDWivc6MTBE0iSBUP9Djp/X1NQ8hHfYj6Ic/Il6UuoDUmPQcDE9N82G9nzvqj0POrwA
+         fBnw1MwDBk3wdJdBlqigljyXxpdx3McIC7P4khwxPfRFXgWJVCiuRn1ErjIm+G/VzmJ0
+         xAHWZyKoKMc47WBNcvQZU5E8Q8q/nX5aVI9vSMGnFk7vrzR59/Pe6dj7X7EU80bhGmuJ
+         15c+9cVRHMWweWUsXU2XcKw3MsxGJx+lPmLcnetEwQuA7xPf8xB9bZoZGJG5vbTxN6QL
+         QoSA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=jnYIdYNjTJVV5c7hEsmIPIAX78We1bA1/LLyk9UwRIc=;
+        fh=Eq00aDmqrJGJrQiuX+GAxTuBbrdssMoxTcTw15uT/ZA=;
+        b=DOr1uPogcRmEykTOg4DVFsPG4oUl3JJYabtVAdnGH07YGbwykojOq4HBZJCs4ucJPQ
+         Tx+J1mufLJqih40kWsoufcmhIzEpFSAP1jezESc9EpViebatXrd63wsXO0CIX58GPwYO
+         7HCdy5ry9Gt1hAiTfNymz+4TXUTy9b5IIuq5Yxfmwnv8GGSR4X/Q60GsGfBIKYCx6heq
+         TzriigIqO54Kg43Lc1JZmODUjPpFa1eEcSWDW6eiYICKS869JpwT0F6CE2bWiJJPREkt
+         SvIbcncBOPQy4dadH2Jg3j0QgRlU0SuXlKaQKAChJK/axtXlWEkNB1kvnfb/DlPn792D
+         my1w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@edu.unito.it header.s=edugoogle header.b=M8kXCgGE;
+       spf=pass (google.com: domain of lorenzo.falchi@edu.unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=lorenzo.falchi@edu.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <lorenzo.falchi@edu.unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id ffacd0b85a97d-38f258f37d7sor772460f8f.3.2025.02.13.09.46.50
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Thu, 13 Feb 2025 09:46:50 -0800 (PST)
+Received-SPF: pass (google.com: domain of lorenzo.falchi@edu.unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@edu.unito.it header.s=edugoogle header.b=M8kXCgGE;
+       spf=pass (google.com: domain of lorenzo.falchi@edu.unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=lorenzo.falchi@edu.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edu.unito.it; s=edugoogle; t=1739468810; x=1740073610; darn=edu.unito.it;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=jnYIdYNjTJVV5c7hEsmIPIAX78We1bA1/LLyk9UwRIc=;
+        b=M8kXCgGEZ8MZxrXflzbCQM2Cy4766+LNR39fuTnwrijVJKWuB8kwW/4IiW0HONKLdZ
+         fqHOa5/2yXm/g/5DtlWODGpC320dNKW7S4nu6X5mtCd8ghv7bVEhpAiybUcVkBvhno96
+         wsoG+8M6OXW23oEFExTZgJS/dUJcKay1+KMV57PGLiwqMeNFg5ck88CLtVB9alUwoG6a
+         T50Q4TN9WalfdPXClD5xRSTcWCKgtvEm4CMD/jNaFtsOIxpLP6gXupV/To9QKlTksdPK
+         BsorejsdBiAMoLPcR3kXbm0voIG9HJDfagawuizDhFa2DOTIArygUpFa5NQc6SikOXkC
+         nirw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739468810; x=1740073610;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jnYIdYNjTJVV5c7hEsmIPIAX78We1bA1/LLyk9UwRIc=;
+        b=m9XCU9m3Vx/frx3pmXDHYRMGqH53FIduLG0FkyxcXDMToAY17kyUrP9vW4mPRf26qS
+         sg60MdSse/aXDcmiZBa5/dQux6r6Fkbf5uJVe4f3zd5yL27jd3r/GM23StR0bz4bytS/
+         c1GmPpMRacUR00e7BYcGurzUoZPUt/HaPYVSFo31UtI5UWJx4iNpOjO8rlJ55enXvqH7
+         SIP/xfq3HECn5OrPNUPGEW5aEU4cX6Qqs/+9cLHg6CiNvS1FBmE7SaPoRxf9Fcv0TNad
+         Fd1r7qc0uwzPsutrk61XkluuM0gTRoSQLzIKBCfSFEbeVykhlVY67LankUqcSLilAnfT
+         Jy9g==
+X-Gm-Message-State: AOJu0YxyYgyMhf7G0Ie2vhHPwKjVfMmtIVuLg3s2pWzEVLBsUftBHcLS
+	1rocgQn2g0TayLKnRYNzB0ItQrSRFlsRRn3Ry0fbp9tybla8msPHPBW9qAbnexRusZeTUNGgmYG
+	PbaSflUsPWZ7fPVlqL3c5/X1IJAn8hovm2NjYxKKRcH5WRJrZJx/nNV+geS62cDVFwyRiRQTqqX
+	hezsPKRsV8I+eGpO5bSDi0D29d
+X-Gm-Gg: ASbGnct1gfLYMmatRIvb6/JLwDnum2ZcJAnvwoHt0GA1RbAr1/ZTj9Be6Uw0qi6nq0y
+	AZxGmtU8rn6S6Z97fQ5PJYhrM/XY5FxMzWxGMR7MuAfyd/oHJtJaQ7rgjHvJGdRqnMMrpfFNR2T
+	BtcFd7FuI1ggTI0NZvw7xGeFE5Mac=
+X-Google-Smtp-Source: AGHT+IHfLe87J6R3QxmSUne14i+NO8DvjsuYPq1FqXkRmMBCtC1jdinQp/N5LG9uyAl39/8tZMcnRLSMKrGpIL36mLI=
+X-Received: by 2002:a05:6000:402c:b0:38b:d7c3:3768 with SMTP id
+ ffacd0b85a97d-38dea3cfaabmr7916473f8f.12.1739468810178; Thu, 13 Feb 2025
+ 09:46:50 -0800 (PST)
+MIME-Version: 1.0
+References: <6d64f5a6-ecca-49c8-86d9-8491c6a9280a@di.unito.it>
+ <d1015378-08b6-4dd3-a4f9-cce3854fb574@unito.it> <CAEw4pn7MwBtKdsmeCGHKbcjFVzRQd_gq3t9cPpsmp+=j4DZAtA@mail.gmail.com>
+ <1607f578-8c94-4580-a8a6-5ed1962f010c@unito.it> <CAEw4pn7byAq+z_Mt4AFVEEd2oyUdT3aojMUeBXSFP9zmbKnu1w@mail.gmail.com>
+In-Reply-To: <CAEw4pn7byAq+z_Mt4AFVEEd2oyUdT3aojMUeBXSFP9zmbKnu1w@mail.gmail.com>
+From: Lorenzo Falchi <lorenzo.falchi@edu.unito.it>
+Date: Thu, 13 Feb 2025 18:46:38 +0100
+X-Gm-Features: AWEUYZmxc99us08OcUwiKyCNSDPGweLnPaajaWFNwGhtSYYF86GKOvHK0N_O8OA
+Message-ID: <CANoSdAxZzbqutF9htCMvmtGycsqwvR5uvidx68jBU=LVFKrxtw@mail.gmail.com>
+Subject: Re: collaborazione art 11 su Principi di Programmazione Orientata
+ agli Oggetti
+To: Sara Capecchi <sara.capecchi@unito.it>
+Cc: luca.barra@edu.unito.it, vladimiro.loverarulfi@unito.it, 
+	paolo.giordano494@edu.unito.it, Jeremy Sproston <sproston@di.unito.it>, 
+	Luigi Di Caro <luigi.dicaro@unito.it>
+Content-Type: multipart/alternative; boundary="000000000000876b3f062e09a42b"
+
+--000000000000876b3f062e09a42b
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Buonasera,
+a me =C3=A8 stato assegnato il T1 corso B. Purtroppo, come ho scritto per e=
+-mail
+alla professoressa Capecchi, non potr=C3=B2 essere presente nella prima
+settimana di lezione, pertanto dovr=C3=B2 saltare il laboratorio del 19 feb=
+braio.
+
+Saluti,
+Lorenzo Falchi
+
+On Thu, 13 Feb 2025 at 17:54, Sara Capecchi <sara.capecchi@unito.it> wrote:
+
+> buonasera a tutti
+>
+> un benvenuto ai collaboratori!
+>
+> Come prima cosa avremmo bisogno di sapere  chi potr=C3=A0 essere in labor=
+atorio
+> per la prima lezione dei turni del canale B la prossima settimana, sotto =
+vi
+> ho  incollato le informazioni sull'orario.
+>
+> Grazie per la collaborazione!
+>
+> Sara Capecchi, Jeremy Sproston, Luigi Di Caro
+>
+> orario canale A
+> <https://unito.prod.up.cineca.it/calendarioPubblico/linkCalendarioId=3D61=
+3b940fda7aec0018faeede>
+> orario canale B
+> <https://unito.prod.up.cineca.it/calendarioPubblico/linkCalendarioId=3D61=
+3b951ac10c8a0017da45cf>
+>
+> Come potete vedere e prime lezioni di laboratorio seguiranno questo
+> calendario:
+>
+> *Canale A Lab T1*
+>
+> - la data d'inizio del laboratorio e` il 25 febbraio anziche' il 18
+> febbraio
+>
+> - *lezioni cancellate: 18 febbraio, 4 marzo*
+>
+> *Canale A Lab T**2*
+>
+> - la data d'inizio del  laboratorio e` il 24 febbraio anziche' il 17
+> febbraio
+>
+> -  *lezioni cancellate:** 17 febbraio, 3 marzo*
+>
+> *Canale B Lab T**1*
+>
+> - la data d'inizio del  laboratorio e` quella attualmente prevista (19
+> febbraio)
+>
+> -  *lezione cancellat: **26 febbraio*
+>
+> *Canale B Lab T**2*
+>
+> - la data d'inizio del  laboratorio e` quella attualmente prevista (20
+> febbraio)
+>
+> -  *lezioni cancellate:** 27 febbraio, 6 marzo*
+>
+>
+> Il giorno gio 13 feb 2025 alle ore 15:06 Gatti Paola <paola.gatti@unito.i=
+t>
+> ha scritto:
+>
+>> Carissimi,
+>>
+>> la presente per ricordarvi di organizzarvi tra di voi per l'assistenza
+>> ai turni di laboratorio dell'insegnamento in oggetto, e di avvisare di
+>> conseguenza poi i docenti che ci leggono in copia.
+>>
+>> (pagina insegnamento:
+>> https://laurea.informatica.unito.it/do/corsi.pl/Show?_id=3Dkjs9
+>> al fondo, puntatore alla pagina orari: l'insegnamento e' del 2 anno,
+>> spartito in canale A e canale B)
+>>
+>> grazie
+>> paola gatti
+>>
+>
+>
+> --
+> Sara Capecchi, Ph.D.
+> Assistant Professor - Researcher
+> Universit=C3=A0 di Torino
+> Department  of  Computer Science
+> Corso Svizzera 185
+> <https://www.google.com/maps/search/Corso+Svizzera+185+%0D%0A10149+Torino=
++%0D%0AItaly?entry=3Dgmail&source=3Dg>
+> 10149 Torino
+> <https://www.google.com/maps/search/Corso+Svizzera+185+%0D%0A10149+Torino=
++%0D%0AItaly?entry=3Dgmail&source=3Dg>
+> Italy
+> <https://www.google.com/maps/search/Corso+Svizzera+185+%0D%0A10149+Torino=
++%0D%0AItaly?entry=3Dgmail&source=3Dg>
+>
+> Tel: +39 011 6706747
+> Fax: +39 011 751603
+> e-mail: capecchi@di.unito.it
+> www.di.unito.it/~capecchi
+> https://unito.webex.com/meet/sara.capecchi
+>
+
+--=20
+------------------------
+
+
+Indirizzo istituzionale di posta elettronica=20
+degli studenti e dei laureati dell'Universit=C3=A0 di TorinoOfficial=C2=A0U=
+niversity=20
+of Turin=C2=A0email address=C2=A0for students and graduates=C2=A0
+
+--000000000000876b3f062e09a42b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><div dir=3D"auto">Buonasera,</div><div dir=3D"auto">a me =C3=A8 stato =
+assegnato il T1 corso B. Purtroppo, come ho scritto per e-mail alla profess=
+oressa Capecchi, non potr=C3=B2 essere presente nella prima settimana di le=
+zione, pertanto dovr=C3=B2 saltare il laboratorio del 19 febbraio.</div><di=
+v dir=3D"auto"><br></div><div dir=3D"auto">Saluti,</div><div dir=3D"auto">L=
+orenzo Falchi</div><div><br><div class=3D"gmail_quote gmail_quote_container=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, 13 Feb 2025 at 17:54, Sara =
+Capecchi &lt;<a href=3D"mailto:sara.capecchi@unito.it">sara.capecchi@unito.=
+it</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">=
+<div>buonasera a tutti</div><div><br></div><div>un benvenuto ai collaborato=
+ri!</div><div><br></div><div dir=3D"ltr">Come prima cosa avremmo=C2=A0bisog=
+no di sapere=C2=A0 chi potr=C3=A0 essere in laboratorio per la prima lezion=
+e dei turni del canale B la prossima settimana, sotto vi ho=C2=A0 incollato=
+ le informazioni sull&#39;orario.</div><div dir=3D"ltr"><br></div><div dir=
+=3D"ltr">Grazie per la collaborazione!</div><div dir=3D"ltr">=C2=A0</div><d=
+iv dir=3D"ltr">Sara Capecchi, Jeremy Sproston, Luigi Di Caro<br><div><br></=
+div><div><a href=3D"https://unito.prod.up.cineca.it/calendarioPubblico/link=
+CalendarioId=3D613b940fda7aec0018faeede" target=3D"_blank">orario canale A<=
+/a></div><div><a href=3D"https://unito.prod.up.cineca.it/calendarioPubblico=
+/linkCalendarioId=3D613b951ac10c8a0017da45cf" target=3D"_blank">orario cana=
+le B</a></div><div><br></div><div>Come potete=C2=A0vedere e prime lezioni d=
+i laboratorio seguiranno questo calendario:</div><div><br></div><div><p><b>=
+Canale A Lab T1</b></p><p>- la data d&#39;inizio del laboratorio e` il 25 f=
+ebbraio anziche&#39; il 18 febbraio</p><p>-=C2=A0<b>lezioni cancellate: 18 =
+febbraio, 4 marzo</b><br></p><p><b>Canale A Lab T</b><b>2</b></p><p>- la da=
+ta d&#39;inizio del=C2=A0=C2=A0laboratorio=C2=A0e` il 24 febbraio anziche&#=
+39; il 17 febbraio</p><p>-=C2=A0=C2=A0<b>lezioni cancellate:</b><b>=C2=A017=
+ febbraio, 3 marzo</b></p><p></p><p><b>Canale B Lab T</b><b>1</b>=C2=A0</p>=
+<p>- la data d&#39;inizio del=C2=A0=C2=A0laboratorio=C2=A0e` quella attualm=
+ente prevista (19 febbraio)<br></p><p>-=C2=A0=C2=A0<b>lezione cancellat:=C2=
+=A0</b><b>26 febbraio</b><br></p><p><b>Canale B Lab T</b><b>2</b>=C2=A0</p>=
+<p>- la data d&#39;inizio del=C2=A0=C2=A0laboratorio=C2=A0e` quella attualm=
+ente prevista (20 febbraio)<br></p><p>-=C2=A0=C2=A0<b>lezioni cancellate:</=
+b><b>=C2=A027 febbraio, 6 marzo</b></p></div><div><br></div></div></div><di=
+v dir=3D"ltr"><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
+l_attr">Il giorno gio 13 feb 2025 alle ore 15:06 Gatti Paola &lt;<a href=3D=
+"mailto:paola.gatti@unito.it" target=3D"_blank">paola.gatti@unito.it</a>&gt=
+; ha scritto:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Ca=
+rissimi,<br>
+<br>
+la presente per ricordarvi di organizzarvi tra di voi per l&#39;assistenza =
+<br>
+ai turni di laboratorio dell&#39;insegnamento in oggetto, e di avvisare di =
+<br>
+conseguenza poi i docenti che ci leggono in copia.<br>
+<br>
+(pagina insegnamento:<br>
+<a href=3D"https://laurea.informatica.unito.it/do/corsi.pl/Show?_id=3Dkjs9"=
+ rel=3D"noreferrer" target=3D"_blank">https://laurea.informatica.unito.it/d=
+o/corsi.pl/Show?_id=3Dkjs9</a><br>
+al fondo, puntatore alla pagina orari: l&#39;insegnamento e&#39; del 2 anno=
+, <br>
+spartito in canale A e canale B)<br>
+<br>
+grazie<br>
+paola gatti<br>
+</blockquote></div><div><br clear=3D"all"></div><div><br></div></div><div d=
+ir=3D"ltr"><span class=3D"gmail_signature_prefix">-- </span><br><div dir=3D=
+"ltr" class=3D"gmail_signature"><div dir=3D"ltr">Sara Capecchi, Ph.D.<br>
+Assistant Professor - Researcher<br>
+Universit=C3=A0 di Torino<br>
+Department=C2=A0 of=C2=A0 Computer Science<br>
+<a href=3D"https://www.google.com/maps/search/Corso+Svizzera+185+%0D%0A1014=
+9+Torino+%0D%0AItaly?entry=3Dgmail&amp;source=3Dg">Corso Svizzera 185</a><b=
+r><a href=3D"https://www.google.com/maps/search/Corso+Svizzera+185+%0D%0A10=
+149+Torino+%0D%0AItaly?entry=3Dgmail&amp;source=3Dg">
+10149 Torino</a><br><a href=3D"https://www.google.com/maps/search/Corso+Svi=
+zzera+185+%0D%0A10149+Torino+%0D%0AItaly?entry=3Dgmail&amp;source=3Dg">
+Italy</a><br>
+<br>
+Tel: +39 011 6706747<br>
+Fax: +39 011 751603<br>
+e-mail: <a href=3D"mailto:capecchi@di.unito.it" target=3D"_blank"><span>cap=
+ecchi@di.unito.it</span></a><br>
+<div><a href=3D"http://www.di.unito.it/~capecchi" rel=3D"noreferrer" target=
+=3D"_blank">www.di.unito.it/~capecchi</a><font color=3D"#888888"><br></font=
+></div><div><span><span><span dir=3D"auto" title=3D"https://unito.webex.com=
+/meet/sara.capecchi"><a href=3D"https://unito.webex.com/meet/sara.capecchi"=
+ target=3D"_blank">https://unito.webex.com/meet/sara.capecchi</a></span></s=
+pan></span></div><div><font color=3D"#888888">
+</font></div></div></div>
+</div>
+</blockquote></div></div></div>
+
+<br>
+<div style=3D"font-size:1.3em">------------------------</div><span style=3D=
+"font-size:small"><div><img src=3D"https://web.unito.it/logofirmastu.png"><=
+br></div>Indirizzo istituzionale di posta elettronica degli studenti e dei =
+laureati dell&#39;Universit=C3=A0 di Torino</span><div><font size=3D"2">Off=
+icial=C2=A0University of Turin=C2=A0email address=C2=A0for students and gra=
+duates=C2=A0</font></div>
+--000000000000876b3f062e09a42b--

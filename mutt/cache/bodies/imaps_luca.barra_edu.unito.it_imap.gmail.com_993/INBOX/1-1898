@@ -1,0 +1,117 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:109:b0:2f3:ec6d:e6a7 with SMTP id a9csp127603ljb;
+        Thu, 26 Sep 2024 23:57:37 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCXDi85AsXoHu9DeagpKgaf5YtPeJO3xwjeC9jNX48/kmJ2ODEDtgqVl5U564xqEUdOimRoARtE2jTZx@edu.unito.it
+X-Google-Smtp-Source: AGHT+IFjm356XwWW/53ox7VnuMO/HkTs4zTixtwY2kTBk2ZwimJDtP2ymZtH35pJnBHlkoJy4y2g
+X-Received: by 2002:a05:6000:c9:b0:37c:cbd8:66cf with SMTP id ffacd0b85a97d-37cd5aed753mr1428323f8f.48.1727420257339;
+        Thu, 26 Sep 2024 23:57:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727420257; cv=none;
+        d=google.com; s=arc-20240605;
+        b=RJ3hhzmsmGOFj/hbXeHuXH2D547fAjOW9p3PtXxrNhjcX9+rOoMpJmLSp41oE+6IRt
+         AGYRj0mqKuK+QtU2odGUfbQxZVOxAvWoyMppOkIaFESvcK9HrgI5LK2D4lyLgno1unqP
+         Na4mCDmR94wx8GZr+ERjSpZWVaRm2NvPMgTQdi2AZBQJ3syyS6M+5cXu3S4/Et/Yv9BT
+         XBs11yr+nrYf/7C4yixoLCsImyXz5RknAbEHyjKpfJQxAHV9eDzCv4tpX74xWk2BzCxB
+         ZyhwDYEcRmT4IJT9wkmmM5+LKfLzknw+0K3BwG0drmPyb3c1TG17W3urk8kQTrYztOcz
+         c2ZQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=ogy639wNN0qLzHdUd+UvxWv7FmmNcq3192nv0ykvq/U=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=Ibo7SbcJrWpd5OGETwZH0p4JE9QEo7XCPM5E23X1H1794F7Qoh+mCL3EJZmbz5qt/6
+         ek0sSjddxJvLzIFse88a7K7NZzPcOuZZirP8wKRajwcA874E52EUnL4lJneHoNuid7m2
+         1ZkAtbErlyjSAH8goaAn7ybXv8JPUSCP7ZfZ6AAIA89ojyk6ud9oDl0iK9SHz6E7NpGw
+         fpvYr5z/EJyOACEZaHvhDlR3HsM95zejSasbTvyp/4dAJFVMHR60/egKbr8y/YBGrpQa
+         X5Bd84PFXgcI9w/OJBriZ511u41zRMZmCd9xH620Ogu8NJEy4apOh/GzRVOtsunufWB0
+         +FdA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=mKvaAouq;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id ca18e2360f4ac-834936b1b56si65559839f.23.2024.09.26.23.57.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Sep 2024 23:57:37 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=mKvaAouq;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 8DE1F25006;
+	Fri, 27 Sep 2024 08:57:34 +0200 (CEST)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id kZQ9dP-F01HO; Fri, 27 Sep 2024 08:57:34 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 93F4225D0B;
+	Fri, 27 Sep 2024 08:57:33 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 93F4225D0B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1727420254;
+	bh=ogy639wNN0qLzHdUd+UvxWv7FmmNcq3192nv0ykvq/U=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=mKvaAouqpvHKlAoZ8uUc2MJ12w4PrJbmYVdZp8QuvMCaRkmU447j+7jmFkrA8nfm0
+	 mA24tfJoexJM9/58NEw2+xs71T0R2ioK02M3uGrY+lbo4e371FLuCzcGRfRYyxdmN9
+	 c0uNgJbh9eOqgGqzygaErn9Gsb/5QQi2/qEHK6o3UEiaRLx4DH6vn7bfV3SRiZLrMM
+	 hE8AZeDBrSQxKhyH1yM0IeETKLjVfKE7HAG8vsNni0ZbibfF4G2eVD25pjrJnhomy1
+	 ka7mPH8bdREYFsQ+jqd7noBZd49W0LUFGMYpgujgq1ypVhQw3uSlpBNiFZfnG5Ww1T
+	 UxkpRZ4ZNl8HA==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id BUNiKcZcd3m8; Fri, 27 Sep 2024 08:57:33 +0200 (CEST)
+Received: from esse3appjboss23.private.cineca.it (esse3appjboss23.cineca.it [130.186.5.144])
+	by smtp4.cineca.it (Postfix) with ESMTP id 4EAFC26710;
+	Fri, 27 Sep 2024 08:57:29 +0200 (CEST)
+Received: from esse3appjboss23.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss23.private.cineca.it (Postfix) with ESMTP id 7D85E9F8;
+	Fri, 27 Sep 2024 08:57:27 +0200 (CEST)
+Date: Fri, 27 Sep 2024 08:57:27 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <1953509933.159.1727420247485@esse3appjboss23.private.cineca.it>
+Subject: Bando Erasmus+ for Traineeship - Call 2024 Scuola di Scienze della
+ Natura / School of Science of Nature
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+[English version below]
+
+Gentilissime e gentilissimi studenti,
+
+desideriamo informarvi che il bando Erasmus+ for Traineeship Call 2024 dell=
+a Scuola di Scienze della Natura =C3=A8 aperto! La scadenza del bando =C3=
+=A8 prevista il giorno 8 novembre alle ore 12.00.
+
+Maggiori informazioni su come candidarsi sono disponibili alla pagina: http=
+s://www.scienzedellanatura.unito.it/it/internazionalita/erasmus-traineeship
+
+L'incontro informativo online si terr=C3=A0 il giorno 01/10/2024 alle 10:00=
+:
+Collegamento per partecipare all=E2=80=99incontro
+Password: Traineeship
+
+Cordiali saluti
+____________________________________________________________________
+
+Dear Students
+
+we would like to inform you that the Erasmus+ Traineeship Call 2024 of the =
+School of Sciences of Nature is open! The call is due to close on 8 Novembe=
+r at 12 pm.
+
+More information on how to apply can be found at: https://www.scienzedellan=
+atura.unito.it/en/international/outgoing-mobility/erasmus-traineeship-call-=
+2024
+
+The online information meeting will be held on 01/10/2024 at 10:00 am:
+Link to participate in the meeting
+Password: Traineeship
+
+Kind regards

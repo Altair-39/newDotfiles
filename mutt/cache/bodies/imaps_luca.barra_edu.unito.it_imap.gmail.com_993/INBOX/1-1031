@@ -1,0 +1,179 @@
+X-Google-Smtp-Source: AGHT+IHUcw+v61+MT3WdeWeqqYPn5XXNl23Y8XCPd/hUv7GZFhKfDG0fGSrrzJPtaJW4H9kqSQAhtv9WcCQ66j0+lg==
+X-Received: by 2002:a05:6102:90:b0:44d:50f8:10 with SMTP id t16-20020a056102009000b0044d50f80010mr17312819vsp.25.1693120530403;
+        Sun, 27 Aug 2023 00:15:30 -0700 (PDT)
+Received: from 292831042739
+	named unknown
+	by gmailapi.google.com
+	with HTTPREST;
+	Sun, 27 Aug 2023 03:15:30 -0400
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a5d:5146:0:0:0:0:0 with SMTP id u6csp157351wrt;
+        Thu, 1 Dec 2022 00:13:48 -0800 (PST)
+X-Received: by 2002:a17:907:1df2:b0:7ae:8411:112c with SMTP id og50-20020a1709071df200b007ae8411112cmr52209578ejc.97.1669882428122;
+        Thu, 01 Dec 2022 00:13:48 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1669882428; cv=none;
+        d=google.com; s=arc-20160816;
+        b=QTj/39k7zkePlggrlmouBFL9Zw/AEjpByq8ZaVlXi0scstss1LgN7gU8FC5UA9DkKA
+         2QUOnuCVr8jyg8E+dfE6MexucCNKak+eRglAVweVkyi6NnhMGIXSCQD9CzwIismSlhDt
+         r9iSZzbsgrd0sQ5dxH0YbVRpXP7z4vaKgqF1kV8IzIM32HrE5cFCZ08A/8azGOz+TueU
+         dojYgPYraT5RGkfz95+/aPYRWdCLPVpNZvnowIv1gPpAauXBWPnxAVcYUjQXaIAFYDMe
+         yeZGy4o9rd9RlqhuPzEEN6NKvPcf8o/XdnId1vyPEkvbas6qfQnaS1sZkfWsz+DM4qZ+
+         jdRQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=BivE6pVa7yrLUpdVnJDwO0k4HMRKaIDe+RVnIcVjoEs=;
+        b=H2MjaSeihagRGoEIJuYsWNJjCTmbxvv9E/rdLWWLQo55eRM51/qhyqOufygXI12icZ
+         wGIBCppVMZ2mKWqYmp6Ziy1QolslG+SUhkNEprYxfLuusnV54icPCX76DRrKsyX8N8ie
+         vGvSRA62tbkRqHHDmCq403rzCwIw1q2NhzduWmE5nuNX6ruiRfLol+9uDzHg3qR0tEkV
+         HL07a+nN8zo92T1E9iFwjt35qPGVV+6vWWwWmDKyUDHmCKT3Cu/l3BXOKy9l1NAlRHIz
+         A9LF2VAAsEYqp4v9hJtpCS8kdB6jkIUlybiEI+cDM4LKIADWXoVTzwhBBuBNVJcmLC/x
+         q4jw==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id b10-20020a056402278a00b0046883aeffd8si3394084ede.278.2022.12.01.00.13.47
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 01 Dec 2022 00:13:48 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 2B18DlJM1186281
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Thu, 1 Dec 2022 09:13:47 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 2B18DlJM1186281
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 2B18DlMO111586
+	for <luca.barra@edu.unito.it>; Thu, 1 Dec 2022 09:13:47 +0100
+Date: Thu, 1 Dec 2022 09:13:47 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Baccega Daniele (da informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: SOA_lab_T1_22-23: Tutoraggio
+Message-ID: <fb1be47f94c038871348a794828a07da4d488b816b3ffb986a210ff898d43aff@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum6458@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=6458
+X-Course-Id: 2574
+X-Course-Name: Laboratorio di Sistemi Operativi - Corso A - Turno T1
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: SOA_lab_T1_22-23: Tutoraggio
+Thread-Index: fb1be47f94c038871348a794828a
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_DG6y0gy8cty9CJ4oozlkZQNksElqhzYCFvfQk8WM"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 2B18DlJM1186281
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_DG6y0gy8cty9CJ4oozlkZQNksElqhzYCFvfQk8WM
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SOA_lab_T1_22-23 -> Forum -> Annunci -> Tutoraggio
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D37176#p63150
+Tutoraggio
+di Baccega Daniele - gioved=C3=AC, 1 dicembre 2022, 08:56
+---------------------------------------------------------------------
+Buongiorno a tutti,
+
+mi chiamo Daniele Baccega e sono il vostro tutor per il corso di Sistemi
+Operativi. Ho creato un Google Calendar con alcuni appuntamenti (trovate il
+link sotto), in particolare:
+
+* 5 dicembre 2022 ore 17/18
+* 12 dicembre 2022 ore 17/18
+* 19 dicembre 2022 ore 17/18
+* 12 gennaio 2023 ore 11/13
+* 19 gennaio 2023 ore 11/13
+* 26 gennaio 2023 ore 11/13
+
+Durante queste ore si potranno porre quesiti sulla programmazione C, sulla
+parte di Unix, sugli esercizi, sul progetto, ecc.
+
+Link alla mia stanza webex: https://unito.webex.com/meet/daniele.baccega
+
+Link al calendario:
+https://calendar.google.com/calendar/u/0?cid=3DY180OGNlMDgyOWIwOTRlMGZkMGE0=
+OWJlYzA4Mjg5YTIwYTc0M2Y5NzMzZTkwNTVkMjAxMzcxOGQzODVlODIxNzRlQGdyb3VwLmNhbGV=
+uZGFyLmdvb2dsZS5jb20
+
+A presto,
+
+Daniele Baccega
+
+---------------------------------------------------------------------
+Questa =C3=A8 la copia di un intervento effettuato su SOA_lab_T1_22-23 .
+
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2574
+
+--b1_DG6y0gy8cty9CJ4oozlkZQNksElqhzYCFvfQk8WM
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2574">SOA_lab_T1_22-23</a>=0A    &=
+raquo;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito=
+.it/mod/forum/index.php?id=3D2574">Forum</a>=0A    &raquo;=0A    <a target=
+=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php=
+?f=3D6458">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"htt=
+ps://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D37176">Tutoragg=
+io</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" cellspacing=3D"0=
+" class=3D"forumpost">=0A    <tr class=3D"header">=0A        <td width=3D"3=
+5" valign=3D"top" class=3D"picture left">=0A            <a href=3D"https://=
+informatica.i-learn.unito.it/user/view.php?id=3D29722&amp;course=3D2574" cl=
+ass=3D"d-inline-block aabtn"><img src=3D"https://informatica.i-learn.unito.=
+it/pluginfile.php/334232/user/icon/lambda/f2?rev=3D1864870" class=3D"userpi=
+cture" width=3D"35" height=3D"35" alt=3D"" /></a>=0A        </td>=0A       =
+ <td class=3D"topic starter">=0A            <div class=3D"subject">=0A     =
+           Tutoraggio=0A            </div>=0A            <div class=3D"auth=
+or">=0A                di <a target=3D'_blank' href=3D'https://informatica.=
+i-learn.unito.it/user/view.php?id=3D29722&course=3D2574'>Baccega Daniele</a=
+> - gioved=C3=AC, 1 dicembre 2022, 08:56=0A            </div>=0A        </t=
+d>=0A    </tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=
+=0A                &nbsp;=0A        </td>=0A        <td class=3D"content">=
+=0A            <p dir=3D"ltr">Buongiorno a tutti,</p><p dir=3D"ltr">mi chia=
+mo Daniele Baccega e sono il vostro tutor per il corso di Sistemi Operativi=
+. Ho creato un Google Calendar con alcuni appuntamenti (trovate il link sot=
+to), in particolare:</p><p dir=3D"ltr"></p><ul><li>5 dicembre 2022 ore 17/1=
+8</li><li>12 dicembre 2022 ore 17/18</li><li>19 dicembre 2022 ore 17/18</li=
+><li>12 gennaio 2023 ore 11/13</li><li>19 gennaio 2023 ore 11/13</li><li>26=
+ gennaio 2023 ore 11/13</li></ul><p dir=3D"ltr">Durante queste ore si potra=
+nno porre quesiti sulla programmazione C, sulla parte di Unix, sugli eserci=
+zi, sul progetto, ecc.</p><p dir=3D"ltr"><br /></p><p dir=3D"ltr">Link alla=
+ mia stanza webex: https://unito.webex.com/meet/daniele.baccega</p><p dir=
+=3D"ltr">Link al calendario: https://calendar.google.com/calendar/u/0?cid=
+=3DY180OGNlMDgyOWIwOTRlMGZkMGE0OWJlYzA4Mjg5YTIwYTc0M2Y5NzMzZTkwNTVkMjAxMzcx=
+OGQzODVlODIxNzRlQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20</p><p dir=3D"ltr"><br /=
+></p><p dir=3D"ltr">A presto,</p><p dir=3D"ltr">Daniele Baccega</p>=0A=0A  =
+          <div class=3D"commands">=0A            </div>=0A=0A            <d=
+iv class=3D"link">=0A                <a target=3D"_blank" href=3D"https://i=
+nformatica.i-learn.unito.it/mod/forum/discuss.php?d=3D37176#p63150">=0A    =
+                Visualizza questo intervento nel contesto=0A               =
+ </a>=0A            </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr =
+/>=0A<div class=3D"mdl-align unsubscribelink">=0A    <a href=3D"https://inf=
+ormatica.i-learn.unito.it/mod/forum/index.php?id=3D2574">Modifica preferenz=
+e email di raccolta</a>=0A</div><p>Reading this in an email? <a href=3D"htt=
+ps://download.moodle.org/mobile?version=3D2021051711&amp;lang=3Dit&amp;iosa=
+ppid=3D633359593&amp;androidappid=3Dcom.moodle.moodlemobile">Download the m=
+obile app and receive notifications on your mobile device</a>.</p>
+
+--b1_DG6y0gy8cty9CJ4oozlkZQNksElqhzYCFvfQk8WM--
+

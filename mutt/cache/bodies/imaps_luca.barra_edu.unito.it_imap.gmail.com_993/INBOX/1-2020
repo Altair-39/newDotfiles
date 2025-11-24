@@ -1,0 +1,184 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b5b0:0:b0:2fb:4c9b:a38b with SMTP id f16csp557775ljn;
+        Wed, 27 Nov 2024 01:21:38 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IETMB9NE/Hfh6qvHFzodAo5e6IjOyQMdibg8drSz6sGD2F2zOoojHj3iCmvPttrGT5ICRiX
+X-Received: by 2002:a5d:6da8:0:b0:382:3c7b:9b2 with SMTP id ffacd0b85a97d-385c6edb860mr600075f8f.14.1732699298546;
+        Wed, 27 Nov 2024 01:21:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1732699298; cv=none;
+        d=google.com; s=arc-20240605;
+        b=AFL+CxJ0zVC7thZU1shjpQsXSl5bzs4go3xqzhW43vNFAqZpGyiefUAnDsolLixP38
+         PVMXQW1a6PZdIb4+YFgWX+FgQikLbV2ZBd+TcgJue4Vhw4u73NguX4jMDPX4k7b68crr
+         FF2HoJkE9OLprx37OXy1tptEiy4QnhiGgB3pilxpmXG/WjFZD/vCAX/P4CdoOPcoTULx
+         P1VYDV4xmx+jlvneqqQTyMlA02wNk2xidlJ+3BP0yXPJkBlE6g+JVmTvdZr4rHNxf9OW
+         RZPI3a+qijiHrx2r2hAEkDa1u7E6bhlMh1GaukVuF+K/4S2q2l/2JkplGF0sXao1Bx5v
+         1amQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=sMGe7ICI/DZG+wmAYZu3LJTYJSn2nlIQABMwFP7A3Ec=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=cLdzJ6MUeD2irKcO8TfTykT+Vn4hRLOwJMxkXnzhNp41Yx8hJI2KJrsU7iPQy/wQUj
+         dY2oIrCPdLy+ha01B/6M5OiJI0tXfpzT+llwjKYYNV/W5DROA75tMYcZpdwUN7p0Eepq
+         I9jfwB+W208TMdS7NlUMVTn42u1gSJLeTpZ+qu1swyX5zzkGyLEiG516b7Qtfjr728rz
+         MMHUB4j5sfLMRGAA3XF5/ruErnWaTHDupaGbyj8nUOo/DW164UCzwxUfjNDO71WTFPNY
+         olGlSNouc/qq+0JwX1JHfPV/OJgRaFptBy+BtFcVRn4uThev67g8RCy+G3J109aobWfX
+         xbAw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id e9e14a558f8ab-3a79ac95b1asi71067275ab.176.2024.11.27.01.21.37
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Nov 2024 01:21:38 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 4AR9LTSU2314883
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Wed, 27 Nov 2024 10:21:29 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 4AR9LTSU2314883
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 4AR9LSp1122869
+	for <luca.barra@edu.unito.it>; Wed, 27 Nov 2024 10:21:28 +0100
+Date: Wed, 27 Nov 2024 10:21:28 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Jin Monica Xin Yue (via informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Do not reply to this email" <noreply@educ.di.unito.it>
+Subject: PartTime2025: Reminder rendiconto Dicembre 2024
+Message-ID: <c0bd67d348fd9d0b6c58bf45f34b58c20a325b10a89027ceb31bb37c4cd2e71b@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Studenti" <moodleforum7440@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7440
+X-Course-Id: 2966
+X-Course-Name: Collaborazioni art. 11, A.A. 2024-2025
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=7440&d=43126>
+Thread-Topic: PartTime2025: Reminder rendiconto Dicembre 2024
+Thread-Index: c0bd67d348fd9d0b6c58bf45f34b
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_QiXjPXe314aFp9GRGaHve1RkpNY6pc4nKmoHxRWmvM"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 4AR9LTSU2314883
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_QiXjPXe314aFp9GRGaHve1RkpNY6pc4nKmoHxRWmvM
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+PartTime2025 -> Forums -> Studenti -> Reminder rendiconto Dicembre 2024
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43126#p70496
+Reminder rendiconto Dicembre 2024
+by Jin Monica Xin Yue - Wednesday, 27 November 2024, 10:04 AM
+---------------------------------------------------------------------
+Buongiorno a tutte/i,
+
+vi ricordo di inviare ENTRO IL 5 DICEMBRE il rendiconto delle ORE SVOLTE DI
+NOVEMBRE all'indirizzo e-mail paola.gatti@unito.it
+
+In caso non abbiate ancora inviato le ore dei mesi precedenti, siete
+pregati di inviare anche quelle.
+
+Dovreste inviare la copia scannerizzata del MODULO FIRMATO dal responsabile
+dell=E2=80=99attivit=C3=A0, ma in caso il docente non abbia firmato il modu=
+lo, basta
+inserirlo in copia nella mail di consegna (campo Cc), cos=C3=AC che possa d=
+are
+la conferma delle ore dichiarate. In quest'ultimo caso, =C3=A8 possibile an=
+che
+inserire data e ore di collaborazione direttamente nel testo della mail.
+
+Vi ringrazio per la collaborazione e vi auguro un buon proseguimento di
+giornata,
+
+Monica Jin (Assistente al CCS)
+
+---------------------------------------------------------------------
+This is a copy of a message posted in PartTime2025.
+
+To reply click on this link:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D70496
+Unsubscribe from this forum:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7440
+Unsubscribe from this discussion:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7440&d=3D=
+43126
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2966
+
+--b1_QiXjPXe314aFp9GRGaHve1RkpNY6pc4nKmoHxRWmvM
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2966">PartTime2025</a>=0A    &raqu=
+o;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/index.php?id=3D2966">Forums</a>=0A    &raquo;=0A    <a target=3D"=
+_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=
+=3D7440">Studenti</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43126">Reminder =
+rendiconto Dicembre 2024</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=
+=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=
+=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=0A      =
+      <a href=3D"https://informatica.i-learn.unito.it/user/view.php?id=3D29=
+694&amp;course=3D2966" class=3D"d-inline-block aabtn"><img src=3D"https://i=
+nformatica.i-learn.unito.it/theme/image.php/_s/lambda/core/1727030549/u/f2"=
+ class=3D"userpicture defaultuserpic" width=3D"35" height=3D"35" alt=3D"" /=
+></a>=0A        </td>=0A        <td class=3D"topic starter">=0A            =
+<div class=3D"subject">=0A                Reminder rendiconto Dicembre 2024=
+=0A            </div>=0A            <div class=3D"author">=0A              =
+  by <a target=3D'_blank' href=3D'https://informatica.i-learn.unito.it/user=
+/view.php?id=3D29694&course=3D2966'>Jin Monica Xin Yue</a> - Wednesday, 27 =
+November 2024, 10:04 AM=0A            </div>=0A        </td>=0A    </tr>=0A=
+    <tr>=0A        <td class=3D"left side" valign=3D"top">=0A              =
+  &nbsp;=0A        </td>=0A        <td class=3D"content">=0A            <p =
+dir=3D"ltr" style=3D"text-align:left;">Buongiorno a tutte/i,</p><p dir=3D"l=
+tr" style=3D"text-align:left;"><br /></p><p dir=3D"ltr" style=3D"text-align=
+:left;">vi ricordo di inviare <strong>entro il 5 dicembre</strong> il rendi=
+conto delle <strong>ore svolte di novembre</strong> all'indirizzo e-mail pa=
+ola.gatti@unito.it</p><p dir=3D"ltr" style=3D"text-align:left;"><br /></p><=
+p dir=3D"ltr" style=3D"text-align:left;">In caso non abbiate ancora inviato=
+ le ore dei mesi precedenti, siete pregati di inviare anche quelle.</p><p d=
+ir=3D"ltr" style=3D"text-align:left;"><br /></p><p dir=3D"ltr" style=3D"tex=
+t-align:left;">Dovreste inviare la copia scannerizzata del <strong>modulo</=
+strong> <strong>firmato</strong> dal responsabile dell=E2=80=99attivit=
+=C3=A0, ma in caso il docente non abbia firmato il modulo, basta inserirlo =
+in copia nella mail di consegna (campo Cc), cos=C3=AC che possa dare la con=
+ferma delle ore dichiarate. In quest'ultimo caso, =C3=A8 possibile anche in=
+serire data e ore di collaborazione direttamente nel testo della mail.</p><=
+p dir=3D"ltr" style=3D"text-align:left;"><br /></p><p dir=3D"ltr" style=3D"=
+text-align:left;">Vi ringrazio per la collaborazione e vi auguro un buon pr=
+oseguimento di giornata,</p><p dir=3D"ltr" style=3D"text-align:left;"><br /=
+></p><p dir=3D"ltr" style=3D"text-align:left;">Monica Jin (Assistente al CC=
+S)</p>=0A=0A            <div class=3D"commands">=0A                    <a t=
+arget=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/pos=
+t.php?reply=3D70496">=0A                        Reply=0A                   =
+ </a>=0A            </div>=0A=0A            <div class=3D"link">=0A        =
+        <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/m=
+od/forum/discuss.php?d=3D43126#p70496">=0A                    See this post=
+ in context=0A                </a>=0A            </div>=0A        </td>=0A =
+   </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=
+=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/forum/subscribe.=
+php?id=3D7440">Unsubscribe from this forum</a>&nbsp;=0A    <a href=3D"https=
+://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7440&d=3D43126=
+">Unsubscribe from this discussion</a>&nbsp;=0A    <a href=3D"https://infor=
+matica.i-learn.unito.it/mod/forum/index.php?id=3D2966">Change your forum di=
+gest preferences</a>=0A</div>
+
+--b1_QiXjPXe314aFp9GRGaHve1RkpNY6pc4nKmoHxRWmvM--
+

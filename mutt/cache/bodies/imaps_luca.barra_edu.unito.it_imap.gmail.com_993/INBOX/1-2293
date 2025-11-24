@@ -1,0 +1,181 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:3614:0:b0:30c:2dd2:a8c1 with SMTP id d20csp567223lja;
+        Fri, 28 Mar 2025 10:37:15 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHFkQu5T5DSWJWLUHvjUW4WjjNdEPCJLI0nN4H4ABzN6T8Vat9X8zDQmyVVtGn5A8jJEmtL
+X-Received: by 2002:a05:6402:50c7:b0:5e5:e030:2e39 with SMTP id 4fb4d7f45d1cf-5edfcead0c2mr27486a12.4.1743183434941;
+        Fri, 28 Mar 2025 10:37:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1743183434; cv=none;
+        d=google.com; s=arc-20240605;
+        b=HwN5lk2IL6/eIPkVbLVx4egn8vtgB8QQDA11xIsbM+qBao+URO/r3n3V8jhKCCh9JL
+         yBqhHeqkbjVvzMun4OiT4Pq/f+XsBUUQZZIua6dXVS659TBQYqBfqfgBSSXyfm1Rk+WG
+         5XFMlU0dNVJhz1xQBPaKx/n+QqKYe4pcu1+O+5VRhhZlgn+7LNvY34XCzPiSKOiinfc2
+         oP4/GqGuaaaSFY7Q+Uqzoa8SVYAhpibZ3JjbXnG5ztg4LCP0LRDK/AmZUfolxEZ2exij
+         bZJR+Ir3b1GN5+WHQkn07ulvEw4mqciMv4PiB19edIDUC1OO6tOnBhlfrpNLXXPrR9sX
+         xMKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=8UqpMjy8QyTYmfj5JKNVt8n9VEO16RYf+Vxipg+dxGA=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=Eq2t6A4HUrYOhk8URGVMYsIV9EQmbhhnjVcSRXfVyL2ntIEKTTPY/07qS4vQi1CGcb
+         Zljnzho0XAZrJgloxX4lM8TTSiku4kqKgRabxa9QWJnf+lAazije4apmhAd6MWUA0DX+
+         xU3LPN0rTA3wKTgE0nPywtYj4sNVv1TGk5DCTg+O3IsbuBNuN2TSsNEi5tj3YR2kj5OU
+         t0d9rYdKRTZld1UuLRr0Xe84qRIueO8l10ON57GtcU57ZUQdvZ4SGvuknwzlrnSBhgjv
+         FmtmbCMDhP+Yk7QzQ/0Xa62KO2Fnlr26mazL1F29xOnS7YeKOvgTgWGr3knsaI3LODTb
+         rNnQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-5edc16b6306si1745824a12.171.2025.03.28.10.37.14
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Mar 2025 10:37:14 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 52SHbEg03822335
+	for <luca.barra@edu.unito.it>; Fri, 28 Mar 2025 18:37:14 +0100
+Date: Fri, 28 Mar 2025 18:37:14 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Jin Monica Xin Yue (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: PartTime2025: Reminder rendiconto Marzo 2025
+Message-ID: <eac8a12f5dea89b7c2571fb5c818ce1fa4940127fb260642fa9f424dcd8beb27@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Studenti" <moodleforum7440@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7440
+X-Course-Id: 2966
+X-Course-Name: Collaborazioni art. 11, A.A. 2024-2025
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=7440&d=44152>
+Thread-Topic: PartTime2025: Reminder rendiconto Marzo 2025
+Thread-Index: eac8a12f5dea89b7c2571fb5c818
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_sTag4lWNeMNjWLaLTOiTJM9EkwYuCpmE3uCww5w5ftM"
+
+This is a multi-part message in MIME format.
+
+--b1_sTag4lWNeMNjWLaLTOiTJM9EkwYuCpmE3uCww5w5ftM
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+PartTime2025 -> Forums -> Studenti -> Reminder rendiconto Marzo 2025
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44152#p71742
+Reminder rendiconto Marzo 2025
+by Jin Monica Xin Yue - Friday, 28 March 2025, 6:21 PM
+---------------------------------------------------------------------
+Buongiorno a tutte/i,
+
+vi ricordo di inviare=C2=A0ENTRO IL 7 APRILE=C2=A0il rendiconto delle ORE S=
+VOLTE
+DI=C2=A0MARZO=C2=A0all'indirizzo e-mail=C2=A0paola.gatti@unito.it
+
+In caso non abbiate ancora inviato le ore dei mesi precedenti, siete
+pregati di inviare anche quelle.
+
+Dovreste inviare la copia scannerizzata del=C2=A0MODULO=C2=A0FIRMATO=C2=
+=A0dal
+responsabile dell=E2=80=99attivit=C3=A0, ma in caso il docente non abbia fi=
+rmato il
+modulo, basta inserirlo in copia nella mail di consegna (campo Cc), cos=
+=C3=AC
+che possa dare la conferma delle ore dichiarate. In quest'ultimo caso, =
+=C3=A8
+possibile anche inserire data e ore di collaborazione direttamente nel
+testo della mail.
+
+Vi ringrazio per la collaborazione,
+
+Monica Jin (Assistente al CCS)
+
+---------------------------------------------------------------------
+This is a copy of a message posted in PartTime2025.
+
+To reply click on this link:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D71742
+Unsubscribe from this forum:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7440
+Unsubscribe from this discussion:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7440&d=3D=
+44152
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2966
+
+--b1_sTag4lWNeMNjWLaLTOiTJM9EkwYuCpmE3uCww5w5ftM
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2966">PartTime2025</a>=0A    &raqu=
+o;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/index.php?id=3D2966">Forums</a>=0A    &raquo;=0A    <a target=3D"=
+_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=
+=3D7440">Studenti</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44152">Reminder =
+rendiconto Marzo 2025</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"=
+3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=0A   =
+     <td width=3D"35" valign=3D"top" class=3D"picture left">=0A            =
+<a href=3D"https://informatica.i-learn.unito.it/user/view.php?id=3D29694&am=
+p;course=3D2966" class=3D"d-inline-block aabtn"><img src=3D"https://informa=
+tica.i-learn.unito.it/theme/image.php/_s/lambda/core/1742774192/u/f2" class=
+=3D"userpicture defaultuserpic" width=3D"35" height=3D"35" alt=3D"" /></a>=
+=0A        </td>=0A        <td class=3D"topic starter">=0A            <div =
+class=3D"subject">=0A                Reminder rendiconto Marzo 2025=0A     =
+       </div>=0A            <div class=3D"author">=0A                by <a =
+target=3D'_blank' href=3D'https://informatica.i-learn.unito.it/user/view.ph=
+p?id=3D29694&course=3D2966'>Jin Monica Xin Yue</a> - Friday, 28 March 2025,=
+ 6:21 PM=0A            </div>=0A        </td>=0A    </tr>=0A    <tr>=0A    =
+    <td class=3D"left side" valign=3D"top">=0A                &nbsp;=0A    =
+    </td>=0A        <td class=3D"content">=0A            <p dir=3D"ltr" sty=
+le=3D"text-align:left;"></p><p>Buongiorno a tutte/i,</p>
+
+<p>vi ricordo di inviare=C2=A0<b>entro il 7 aprile</b>=C2=A0il
+rendiconto delle <b>ore svolte di</b>=C2=A0<b>marzo</b>=C2=A0all'indirizzo
+e-mail=C2=A0<a href=3D"mailto:paola.gatti@unito.it">paola.gatti@unito.it</a=
+></p>
+
+<p>In caso non abbiate ancora inviato le ore dei mesi
+precedenti, siete pregati di inviare anche quelle.</p>
+
+<p>Dovreste inviare la copia scannerizzata del=C2=A0<b>modulo=C2=A0firmato=
+=C2=A0</b>dal
+responsabile dell=E2=80=99attivit=C3=A0, ma in caso il docente non abbia fi=
+rmato il modulo,
+basta inserirlo in copia nella mail di consegna (campo Cc), cos=C3=AC che p=
+ossa dare
+la conferma delle ore dichiarate. In quest'ultimo caso, =C3=A8 possibile an=
+che
+inserire data e ore di collaborazione direttamente nel testo della mail.</p=
+>
+
+<p>Vi ringrazio per la collaborazione,</p>
+
+<p>Monica Jin (Assistente al CCS)</p><p></p>=0A=0A            <div class=3D=
+"commands">=0A                    <a target=3D"_blank" href=3D"https://info=
+rmatica.i-learn.unito.it/mod/forum/post.php?reply=3D71742">=0A             =
+           Reply=0A                    </a>=0A            </div>=0A=0A     =
+       <div class=3D"link">=0A                <a target=3D"_blank" href=3D"=
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44152#p71742=
+">=0A                    See this post in context=0A                </a>=0A=
+            </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<di=
+v class=3D"mdl-align unsubscribelink">=0A    <a href=3D"https://informatica=
+.i-learn.unito.it/mod/forum/subscribe.php?id=3D7440">Unsubscribe from this =
+forum</a>&nbsp;=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/f=
+orum/subscribe.php?id=3D7440&d=3D44152">Unsubscribe from this discussion</a=
+>&nbsp;=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/forum/ind=
+ex.php?id=3D2966">Change your forum digest preferences</a>=0A</div>
+
+--b1_sTag4lWNeMNjWLaLTOiTJM9EkwYuCpmE3uCww5w5ftM--
+

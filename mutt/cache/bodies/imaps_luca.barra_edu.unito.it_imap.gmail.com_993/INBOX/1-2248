@@ -1,0 +1,2313 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:9c43:0:b0:30c:2dd2:a8c1 with SMTP id t3csp1623069ljj;
+        Mon, 17 Mar 2025 02:49:25 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEj+sEJXLpi6PDboceVR+Nk2X46wM2xFajMOdxkB69koqiq3UNXZQZ9g/DOffM/JcHZ3Zbo
+X-Received: by 2002:a05:651c:b0b:b0:308:ee65:7f40 with SMTP id 38308e7fff4ca-30c4a7485c8mr23700481fa.2.1742204965404;
+        Mon, 17 Mar 2025 02:49:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1742204965; cv=none;
+        d=google.com; s=arc-20240605;
+        b=HJHjHEPTIHkTSn1YEA5+QrH+RWykGhgs73LV0aoUmT7wUvggwop+vIcwVCGenvTSOB
+         a/Ya/gZ6sAwNwD0d+LLs4E+L9/z7fvwVNZig2PXyS4xX6ApHkXPCkr+Byjle6msIgOYl
+         4swsLYP4nrmfJWbq5k/wvxMsspfA+4nKKVQGwxGYBeav/Rt/dOklzhNZOplL6BHAnKcn
+         69sRLLYlnZn8xV7GtGBUN6tuIsKJsXLpTLTw+veRzcHgXO9W2n1KbAnrUIfoR0NAvDHd
+         WV5EePbDj9iuMTpqP3xwYBjTYWWSmkC6beW03ZZwAI7uS52rJ5MobxvC2EO0/3ma3+jf
+         0ydQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=in-reply-to:from:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:dkim-signature:dkim-filter;
+        bh=vlZXwmbHNf7NS9873CPUDhtWGZIrdhDOPhtsHiL1+8Q=;
+        fh=qdJlU91HIgo2a01y6sEtN3W3jrIxj5bP8OmCBCD5X5A=;
+        b=HXwnorbg+qvVxrmY6k6C7jv+w5uzPSTNUJY26hXA+G2gXdkbUYoBE6aUT71tJySPVD
+         0SxQeeubLFQRWTC0v1QSt7d8WhZdnXlZ6T/mDA/gieL+boZPH94ehA7i0ZqAY24OrMtq
+         33Ht91oDK790kuPGrTdn0ZcQ4jhN8yTqnCDvFdbea0BgwAFQoNUCERFgMjvQF4IZQL4b
+         MgC7WgGPFY0hfMnIcdM1YattX0m8MUawn1FWkF0orCcAlQmZEeWp9KpgyMoOgMGGRcFq
+         nxLeWg/OrvgBeDdKVVAFjOijgUdBtzXiS26Hm4yoOVlgiMFLhKY5npE/9eMBhf1iG++P
+         7lfQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@di.unito.it header.s=dipinfo2011 header.b=Ob6HQE9U;
+       spf=pass (google.com: domain of sproston@di.unito.it designates 130.192.156.1 as permitted sender) smtp.mailfrom=sproston@di.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=di.unito.it
+Return-Path: <sproston@di.unito.it>
+Received: from mail.di.unito.it (pianeta.di.unito.it. [130.192.156.1])
+        by mx.google.com with ESMTPS id 38308e7fff4ca-30c3f19ca62si60422511fa.318.2025.03.17.02.49.24
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 17 Mar 2025 02:49:25 -0700 (PDT)
+Received-SPF: pass (google.com: domain of sproston@di.unito.it designates 130.192.156.1 as permitted sender) client-ip=130.192.156.1;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@di.unito.it header.s=dipinfo2011 header.b=Ob6HQE9U;
+       spf=pass (google.com: domain of sproston@di.unito.it designates 130.192.156.1 as permitted sender) smtp.mailfrom=sproston@di.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=di.unito.it
+X-MailScanner-From: sproston@di.unito.it
+X-SpamCheck: not spam, SpamAssassin (not cached, score=-101.823, required 3,
+	autolearn=not spam, ALL_TRUSTED -1.00, AUTHENTICATEDUSER -100.00,
+	AWL -0.08, BAYES_00 -1.90, HTML_MESSAGE 0.00,
+	HTML_TAG_BALANCE_BODY 1.16, URIBL_BLOCKED 0.00)
+X-AntiVirus: Email Clean
+X-dipinfo-MailScanner-ID: 52H9nEPT006653
+X-dipinfo-MailScanner-Information: Please contact Department of Computer Science technical staff for more information
+Received: from mail.di.unito.it ([130.192.156.1])
+         by mail.di.unito.it (INFO-DIP) with ESMTPSA id 52H9nEPT006653
+	 (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO AuthenticatedUser=sproston );
+	 Mon, 17 Mar 2025 10:49:18 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.di.unito.it 52H9nEPT006653
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=di.unito.it;
+	s=dipinfo2011; t=1742204958;
+	bh=UnO9c1n4dT/WKqU/FlVTn8wiZCME3n4S3nLTgmug3AQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To;
+	b=Ob6HQE9Uts+3kYV5CwGfJHKdE5fhtg6ypYDJoLOjdpuCGCPHlI+3PVNLH6yj9LD6t
+	 +M8CebdkzBzT/E5JlKbx3L1CIo/pae+0Sz0GlMHiBtqvCUO+1/wJiKZaD4tLnWfYYu
+	 RYnDx2E+KCkuCoiFXp/kWNiL9LpWYuBbDTySYTJI=
+Content-Type: multipart/alternative;
+ boundary="------------b0EHXgniWqd3h3T9KMHSuM2U"
+Message-ID: <fb61b8b4-6c25-7037-0e2c-6c3f2dd7bd17@di.unito.it>
+Date: Mon, 17 Mar 2025 10:49:13 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.8.1
+Subject: Re: Lezioni lab A T1 e A T2 della prossima settimana
+To: Luca Barra <luca.barra@edu.unito.it>,
+        Vladimiro Lovera Rulfi <vladimiro.loverarulfi@unito.it>
+Cc: Jeremy Sproston <sproston@di.unito.it>
+References: <b080f2e1-1816-4de3-a685-88d6dbddfda8@di.unito.it>
+ <202fce67-53ac-4a3e-b403-6880e7b3be48@di.unito.it>
+ <c99e0623-6bc2-498e-8cb3-d06600021aff@di.unito.it>
+ <CAAhooxvmy4rQvKYNTmwjsQxKCtYS5Ow17V4aLa8hFtVh8nJ=8g@mail.gmail.com>
+From: Jeremy Sproston <sproston@di.unito.it>
+In-Reply-To: <CAAhooxvmy4rQvKYNTmwjsQxKCtYS5Ow17V4aLa8hFtVh8nJ=8g@mail.gmail.com>
+
+This is a multi-part message in MIME format.
+--------------b0EHXgniWqd3h3T9KMHSuM2U
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+OK, grazie.
+
+@Vladimiro: facciamo gli esercizi che ha presentato Luigi Di Caro 
+giovedì scorso. Ci vediamo alle 14.00.
+
+Ciao,
+
+Jeremy Sproston
+
+
+Il 17/03/2025 09:25, Luca Barra ha scritto:
+> Buongiorno,
+> dato che a Vladimiro (aggiunto in cc) serviva un cambio, poiché non 
+> poteva partecipare alla lezione del suo turno, mi sono offerto di 
+> dargli la lezione odierna (17 Marzo) in cambio della sua della 
+> prossima settimana.
+> Distinti saluti,
+> LB
+>
+> On Mon, 17 Mar 2025 at 07:50, Jeremy Sproston <sproston@di.unito.it> 
+> wrote:
+>
+>     Per la lezione di questo pomeriggio, ti mando le soluzioni agli
+>     esercizi sulla Metropolitana e sulla calcolatrice RPN e, per
+>     comodita`, ti rimando il file degli esercizi. Si nota che gli
+>     esercizi 5 e 6 sulla calcolatrice RPN non facciamo, eppure non
+>     daro` nessun enfasi all'esercizio 7.
+>
+>     Ciao,
+>
+>     Jeremy
+>
+>
+>     On 3/9/2025 10:52 PM, Jeremy Sproston wrote:
+>>
+>>     Caro Luca, caro Paolo,
+>>
+>>     @Luca: IMPORTANTE: ho deciso di cancellare la mia lezione di
+>>     domani per malattia.
+>>
+>>     @Paolo: spero di stare meglio per la lezione di lunedi`. Ti
+>>     faccio sapere.
+>>
+>>     Ciao,
+>>
+>>     Jeremy Sproston
+>>
+>>
+>>     On 3/8/2025 5:25 PM, Jeremy Sproston wrote:
+>>>
+>>>     Caro Paolo, caro Luca,
+>>>
+>>>     volevo contattarvi per farvi sapere gli esercizi che abbiamo
+>>>     l'intenzione di fare al laboratorio di PPOO questa settimana.
+>>>     Vedi il materiale sotto e allegato. Il piano e` il seguente:
+>>>
+>>>     - fare esercitazione 01 dal testo sotto, facendo la classe
+>>>     Matita insieme con gli studenti, lasciando la classe Elicottero
+>>>     a loro;
+>>>
+>>>     - dal pdf allegato, lasciare la classe Metropolitano a loro, MA
+>>>     fare qualche cose sulla classe Calcolatrice insieme, lasciando
+>>>     quello che rimane a loro.
+>>>
+>>>     Ancora tutto e` in una forma preliminare, ma tra domani e
+>>>     lunedi` mattina mettiamo tutto a posto.
+>>>
+>>>     Ciao,
+>>>
+>>>     Jeremy Sproston
+>>>
+>>>     -----
+>>>
+>>>     La classe Matita.Vi chiediamo di scrivere una classe
+>>>     pubblicaMatita per rappresentare virtualmente matite. Una matita
+>>>     è definita come uno stelo (una lunghezza interain millimetri, da
+>>>     un minimo minSteloa un massimo maxStelo) seguita da una punta
+>>>     (un interoda 0 a un massimo maxPunta).
+>>>
+>>>      Fissate nella definizione della classe dei valori per massimi e
+>>>     minimi, per esempio: minStelo=10, maxStelo=200, maxPunta=5. Il
+>>>     prossimo disegno riassume il significato appena visto dei
+>>>     diversi attributi.
+>>>
+>>>
+>>>     Rappresentazione di una matita e la sua divisione in punta,
+>>>     stelo e minStelo
+>>>
+>>>
+>>>     (i)minStelo, maxStelo, maxPuntasono attributi interi pubblici,
+>>>     staticie finaldella classe Matita (non legati a un oggetto ma
+>>>     alla classe). Invece stelo e punta sono attributi interi dinamici.
+>>>
+>>>      (ii)Il costruttore di Matitaconsente di costruire una matita
+>>>     con punta di lunghezza massima dato lo stelo. Un assert
+>>>     impedisce lunghezze non accettabili dello stelo.
+>>>
+>>>     (iii)La classe ha i metodi getper stelo e punta e nessun metodo
+>>>     set: non consento di cambiare la lunghezza a una matita.
+>>>
+>>>     (iv)Un metodo “disegna” restituisce “true” (successo) se la
+>>>     matita ha almeno 1mm di punta, e “false” (fallimento)
+>>>     altrimenti. Nel primo caso usa la matita fino a ridurne la punta
+>>>     di un 1mm.
+>>>
+>>>     (v)Un metodo “tempera” restituisce “true” (successo) se la
+>>>     matita è più lunga del minimo e “false” (fallimento) altrimenti.
+>>>     Nel primo caso riduce lo stelo di 1mm e allunga la punta di 1mm,
+>>>     a meno che la lunghezza della punta sia già il massimo. In
+>>>     questo caso la matita si accorcia ma la punta resta invariata.
+>>>
+>>>
+>>>      Scrivete Matita.maxSteloper richiamare il massimo dello stelo
+>>>     (attributo statico). Scrivete Math.minper richiamare il metodo
+>>>     statico min(x,y) della classe Math, che calcola il minimo.
+>>>     Includiamo una classe TestMatita per sperimentare la classe
+>>>     Matita: eseguitela e controllate che i risultati siano sensati.
+>>>
+>>>
+>>>     //Una classe come test della classe Matita: salvate nel file
+>>>
+>>>     //TestMatita.java
+>>>
+>>>     //Non si compila senza la classe Matita
+>>>
+>>>
+>>>     public class TestMatita {
+>>>
+>>>      public static void main(String[] args){
+>>>
+>>>       Matita m = new Matita(Matita.maxStelo);
+>>>
+>>>       int s = m.getStelo(), p = m.getPunta();
+>>>
+>>>     System.out.println("Matita di stelo " + s + " e punta " + p);
+>>>
+>>>     System.out.println("Disegno per " + 2*p + " volte:");
+>>>
+>>>     System.out.println("dopo " + p + " volte il disegno fallisce");
+>>>
+>>>       for (int i = 0; i < 2*p; i++)
+>>>
+>>>        System.out.println(" Successo disegno n."+i+" = "+m.disegna());
+>>>
+>>>       System.out.println("Tempero di 1mm la matita"); m.tempera();
+>>>
+>>>       System.out.println(" nuova lunghezza punta = " + m.getPunta());
+>>>
+>>>       System.out.println(" nuova lunghezza stelo = " + m.getStelo());
+>>>
+>>>       System.out.println("Stampo la matita m. Ottengo \"Matita@\"
+>>>     seguito dall'indirizzo dell'oggetto (in esadecimale): " + m);
+>>>
+>>>       }
+>>>
+>>>     }
+>>>
+>>>
+>>>
+>>>     DA LASCIARE AGLI STUDENTI:
+>>>
+>>>
+>>>     La classe Elicottero.Vi chiediamo di scrivere una classe
+>>>     Elicottero per rappresentare virtualmente elicotteri. Un
+>>>     elicottero è definito con tre coordinate (intere, in km): x,ye
+>>>     altitude(non negativa), due velocità (intere, in hm/h),
+>>>     speed(orizzontale e non negativa) e verticalSpeed(verticale), e
+>>>     una direzione orizzontale track(un reale, un angolo in radianti
+>>>     tra 0 e 2π). Il prossimo disegno riassume i significati degli
+>>>     attributi di un elicottero.
+>>>
+>>>
+>>>     Rappresentazione grafica della posizione di un Elicottero a
+>>>     partire dai suoi attributi.
+>>>
+>>>
+>>>
+>>>
+>>>      La classe ha i seguenti metodi. Usate degli assert per impedire
+>>>     valori non accettabili degli attributi.
+>>>
+>>>
+>>>     (i)Il costruttore di Elicottero definisce un elicottero fermo in
+>>>     cielo, date le coordinate (x, y, altitude), con velocità nulle e
+>>>     angolo di direzione nullo.
+>>>
+>>>      (ii)La classe ha i metodi get per ogni attributo e metodi set
+>>>     per velocità e direzione, ma nonper x, y, altitude. Non
+>>>     consentiamo a un elicottero di cambiare la posizione se non
+>>>     spostandosi con lo scorrere del tempo.
+>>>
+>>>     (iii)Un metodo void elapse(double time)modifica la posizione
+>>>     dell’elicottero dato il tempo trascorso, in base alle velocità e
+>>>     alla direzione, usando le formule della trigonometria. Quando
+>>>     assegnate il risultato a delle coordinate intere dovrete
+>>>     arrotondarlo, scrivendo: (int) espressione.
+>>>
+>>>
+>>>      Per richiamare un attributo/metodo statico pubblico fuori dalla
+>>>     sua classe C scrivete C.attributo, C.metodo. Per esempio
+>>>     scrivete Math.sin, Math.cosper i metodi statici per seno e
+>>>     coseno della classe Math. Includiamo una classe
+>>>     TestElicotteroper sperimentare la classe Elicottero: eseguitela
+>>>     (richiede la classe Elicottero) e controllate che i risultati
+>>>     siano sensati. Pubblicheremo le soluzioni la prossima settimana.
+>>>
+>>>
+>>>
+>>>     //Una classe come test della classe Elicottero: salvate nel file
+>>>
+>>>     //TestElicottero.java. Non si compila senza la classe Elicottero
+>>>
+>>>
+>>>     public class TestElicottero {
+>>>
+>>>     public static void main(String[] args) {
+>>>
+>>>     //creo un elicottero collocato all'origine del sistema di
+>>>     riferimento
+>>>
+>>>      Elicottero a = new Elicottero(0, 0, 0);
+>>>
+>>>     // visualizzo le coordinate dell'elicottero
+>>>
+>>>      System.out.println( "Elicottero a di coordinate" );
+>>>
+>>>      System.out.println("("+a.getX()+","+a.getY()+","+
+>>>
+>>>                        a.getAltitude()+")");
+>>>
+>>>     // imposto la velocita' dell'elicottero a 500 km/h
+>>>
+>>>      a.setSpeed(500);
+>>>
+>>>      // imposto la velocita' verticale dell'elicottero a +10 km/h
+>>>
+>>>      a.setVerticalSpeed(10);
+>>>
+>>>      // imposto la direzione dell'elicottero a nord-nord-est (in
+>>>     radianti)
+>>>
+>>>      a.setTrack((double) (3 * Math.PI / 8));
+>>>
+>>>      System.out.println("velocita'="+a.getSpeed()+" velocita'
+>>>     verticale="
+>>>
+>>>                        + a.getVerticalSpeed()+" angolo="+a.getTrack());
+>>>
+>>>      // faccio trascorrere mezz'ora
+>>>
+>>>      a.elapse(0.5);
+>>>
+>>>      // visualizzo le nuove coordinate: (95,230,5)
+>>>
+>>>      System.out.println("Dopo mezz'ora di volo coordinate: ");
+>>>
+>>>     System.out.println("("+a.getX()+","+a.getY()+","
+>>>
+>>>     +a.getAltitude()+")");
+>>>
+>>>      }
+>>>
+>>>     }
+>>>
+>>>     Soluzione dell’Esercitazione 01, es. 1: la classe pubblica
+>>>     Matita. Come esempio poniamo minStelo, maxStelo, maxPunta uguali
+>>>     a: 5,200,5.
+>>>
+>>>     // Matita.java
+>>>
+>>>     public class Matita {
+>>>
+>>>      public static final int minStelo = 10; //min. lunghezza matita (mm)
+>>>
+>>>      public static final int maxStelo = 200; //max. lunghezza matita
+>>>     (mm)
+>>>
+>>>      public static final int maxPunta =   5; //max. lunghezza punta 
+>>>     (mm)
+>>>
+>>>     //Una matita e' uno stelo seguito da una punta
+>>>
+>>>      private int stelo; // 0 <= stelo <= maxStelo
+>>>
+>>>      private int punta; // 0 <= punta <= maxPunta
+>>>
+>>>      public Matita(int stelo) {
+>>>
+>>>      assert minStelo<=stelo && stelo<=maxStelo:
+>>>
+>>>     "stelo matita non accettabile:" + stelo;
+>>>
+>>>      this.stelo = stelo;
+>>>
+>>>      this.punta = maxPunta;
+>>>
+>>>     }
+>>>
+>>>
+>>>     /** disegna restituisce true quando la matita ha ancora punta, e
+>>>     ne riduce la punta di 1 mm. Restituisce false se la punta e'
+>>>     finita. */
+>>>
+>>>      public boolean disegna() {
+>>>
+>>>      if (this.punta > 0) {
+>>>
+>>>          this.punta--;
+>>>
+>>>          return true;
+>>>
+>>>      }
+>>>
+>>>      else
+>>>
+>>>          return false;
+>>>
+>>>      }
+>>>
+>>>
+>>>     /** "tempera" riduce di un 1mm la matita, e allunga di 1mm la punta
+>>>
+>>>     a meno che la lunghezza della punta sia gia' il massimo. */
+>>>
+>>>         public boolean tempera() {
+>>>
+>>>          if (this.stelo > minStelo) {
+>>>
+>>>            this.stelo--;
+>>>
+>>>            this.punta = Math.min(this.punta + 1, maxPunta);
+>>>
+>>>            return true;
+>>>
+>>>          }
+>>>
+>>>          else return false;
+>>>
+>>>        }
+>>>
+>>>
+>>>      public int getStelo() {return this.stelo;}
+>>>
+>>>      public int getPunta() {return this.punta;}
+>>>
+>>>     }
+>>>
+>>>
+>>>
+>>>     Soluzione dell'Esercitazione 1, es. 2: la classe pubblica
+>>>     Elicottero.
+>>>
+>>>
+>>>     //Elicottero.java
+>>>
+>>>     public class Elicottero {
+>>>
+>>>       private int x;
+>>>
+>>>       private int y;
+>>>
+>>>       private int altitude; // 0 <= altitude
+>>>
+>>>       private int speed; // velocita' orizzontale: 0 <= speed
+>>>
+>>>       private int verticalSpeed;
+>>>
+>>>       private double track; // angolo direzione: 0<= track<=2pigreco
+>>>
+>>>
+>>>       /** Costruiamo un elicottero sospeso nelle coordinate
+>>>     (0,0,altitude) con velocita' nulle e angolo di direzione 0 */
+>>>
+>>>       public Elicottero(int x, int y, int a) {
+>>>
+>>>        this.x = x;
+>>>
+>>>        this.y = y;
+>>>
+>>>        this.altitude = a;
+>>>
+>>>        this.speed = 0;
+>>>
+>>>        this.verticalSpeed = 0;
+>>>
+>>>        this.track = 0.0;
+>>>
+>>>       }
+>>>
+>>>
+>>>       //Metodi get per ogni attributo
+>>>
+>>>       public int getX()             {return x;}
+>>>
+>>>       public int getY()             {return y;}
+>>>
+>>>       public int getAltitude()      {return altitude;}
+>>>
+>>>       public int getSpeed()         {return speed;}
+>>>
+>>>       public int getVerticalSpeed() {return verticalSpeed;}
+>>>
+>>>       public double getTrack()       {return track;}
+>>>
+>>>
+>>>       /** Metodi set per speed, verticalSpeed e track. Non consento
+>>>     invece di cambiare le coordinate "istantaneamente" */
+>>>
+>>>       public void setSpeed(int speed) {
+>>>
+>>>        assert 0 <= speed: "velocita'non accettabile:" + speed;
+>>>
+>>>        this.speed = speed;
+>>>
+>>>      }
+>>>
+>>>
+>>>
+>>>      public void setVerticalSpeed(int verticalSpeed)
+>>>
+>>>       {this.verticalSpeed = verticalSpeed;}
+>>>
+>>>
+>>>      public void setTrack(double track) {
+>>>
+>>>       assert 0 <= track && track <= 2 * Math.PI: "angolo non
+>>>     accettabile:" + track;
+>>>
+>>>       this.track = track;
+>>>
+>>>      }
+>>>
+>>>
+>>>       /** Consento di cambiare le coordinate con lo scorrere del
+>>>     tempo */
+>>>
+>>>      public void elapse(double time) {
+>>>
+>>>       int dx = (int) (speed * Math.cos(track) * time); //incremento x
+>>>
+>>>       int dy = (int) (speed * Math.sin(track) * time); //incremento y
+>>>
+>>>       int dz = (int) (verticalSpeed * time);          //incremento z
+>>>
+>>>       x += dx;
+>>>
+>>>       y += dy;
+>>>
+>>>       altitude = Math.max(0, altitude + dz);
+>>>
+>>>      }
+>>>
+>>>     }
+>>>
+>
+> ------------------------
+>
+> Indirizzo istituzionale di posta elettronica degli studenti e dei 
+> laureati dell'Università di Torino
+> Official University of Turin email address for students and graduates
+--------------b0EHXgniWqd3h3T9KMHSuM2U
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <p>OK, grazie.</p>
+    <p>@Vladimiro: facciamo gli esercizi che ha presentato Luigi Di Caro
+      gioved=C3=AC scorso. Ci vediamo alle 14.00.</p>
+    <p>Ciao,</p>
+    <p>Jeremy Sproston<br>
+    </p>
+    <p><br>
+    </p>
+    <div class=3D"moz-cite-prefix">Il 17/03/2025 09:25, Luca Barra ha
+      scritto:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAAhooxvmy4rQvKYNTmwjsQxKCtYS5Ow17V4aLa8hFtVh8nJ=3D8g@mail.gm=
+ail.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <div dir=3D"ltr">
+        <div>Buongiorno,</div>
+        <div>dato che a Vladimiro (aggiunto in cc) serviva un cambio,
+          poich=C3=A9 non poteva partecipare alla lezione del suo turno, =
+mi
+          sono offerto di dargli la lezione odierna (17 Marzo) in cambio
+          della sua della prossima settimana.</div>
+        <div>Distinti saluti,</div>
+        <div>LB</div>
+      </div>
+      <br>
+      <div class=3D"gmail_quote gmail_quote_container">
+        <div dir=3D"ltr" class=3D"gmail_attr">On Mon, 17 Mar 2025 at 07:5=
+0,
+          Jeremy Sproston &lt;<a href=3D"mailto:sproston@di.unito.it"
+            moz-do-not-send=3D"true" class=3D"moz-txt-link-freetext">spro=
+ston@di.unito.it</a>&gt;
+          wrote:<br>
+        </div>
+        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
+          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
+
+          <div>
+            <p>Per la lezione di questo pomeriggio, ti mando le
+              soluzioni agli esercizi sulla Metropolitana e sulla
+              calcolatrice RPN e, per comodita`, ti rimando il file
+              degli esercizi. Si nota che gli esercizi 5 e 6 sulla
+              calcolatrice RPN non facciamo, eppure non daro` nessun
+              enfasi all'esercizio 7. </p>
+            <p>Ciao,</p>
+            <p>Jeremy</p>
+            <p><br>
+            </p>
+            <div>On 3/9/2025 10:52 PM, Jeremy Sproston wrote:<br>
+            </div>
+            <blockquote type=3D"cite">
+              <p>Caro Luca, caro Paolo,</p>
+              <p>@Luca: IMPORTANTE: ho deciso di cancellare la mia
+                lezione di domani per malattia.</p>
+              <p>@Paolo: spero di stare meglio per la lezione di
+                lunedi`. Ti faccio sapere.<br>
+              </p>
+              <p>Ciao,</p>
+              <p>Jeremy Sproston<br>
+              </p>
+              <p><br>
+              </p>
+              <div>On 3/8/2025 5:25 PM, Jeremy Sproston wrote:<br>
+              </div>
+              <blockquote type=3D"cite">
+                <p>Caro Paolo, caro Luca,</p>
+                <p>volevo contattarvi per farvi sapere gli esercizi che
+                  abbiamo l'intenzione di fare al laboratorio di PPOO
+                  questa settimana. Vedi il materiale sotto e allegato.
+                  Il piano e` il seguente:<br>
+                </p>
+                <p>- fare esercitazione 01 dal testo sotto, facendo la
+                  classe Matita insieme con gli studenti, lasciando la
+                  classe Elicottero a loro; </p>
+                <p>- dal <span
+id=3D"m_5889804934578701583m_-8882517114049349862docs-title-input-label-i=
+nner">pdf
+                    allegato</span>, lasciare la classe Metropolitano a
+                  loro, MA fare qualche cose sulla classe Calcolatrice
+                  insieme, lasciando quello che rimane a loro.</p>
+                <p>Ancora tutto e` in una forma preliminare, ma tra
+                  domani e lunedi` mattina mettiamo tutto a posto.</p>
+                <p>Ciao,</p>
+                <p>Jeremy Sproston</p>
+                <p>-----</p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"
+id=3D"m_5889804934578701583docs-internal-guid-19cb52f6-7fff-6a8f-2614-87f=
+d3d7b7104"><span style=3D"font-size:14pt;font-family:&quot;Courier New&qu=
+ot;,monospace;color:rgb(0,0,0);background-color:transparent;font-weight:7=
+00;font-style:normal;font-variant:normal;text-decoration:none;vertical-al=
+ign:baseline;white-space:pre-wrap">La classe Matita.</span><span style=3D=
+"font-size:16pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0=
+,0,0);background-color:transparent;font-weight:700;font-style:normal;font=
+-variant:normal;text-decoration:none;vertical-align:baseline;white-space:=
+pre-wrap"> </span><span style=3D"font-size:12pt;font-family:&quot;Courier=
+ New&quot;,monospace;color:rgb(0,0,0);background-color:transparent;font-w=
+eight:400;font-style:normal;font-variant:normal;text-decoration:none;vert=
+ical-align:baseline;white-space:pre-wrap">Vi chiediamo di scrivere una cl=
+asse </span><span style=3D"font-size:12pt;font-family:&quot;Courier New&q=
+uot;,monospace;color:rgb(0,0,0);background-color:transparent;font-weight:=
+400;font-style:normal;font-variant:normal;text-decoration:underline;verti=
+cal-align:baseline;white-space:pre-wrap">pubblica</span><span style=3D"fo=
+nt-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,=
+0);background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre=
+-wrap"> Matita per rappresentare virtualmente matite. Una matita =C3=A8 d=
+efinita come uno stelo (una lunghezza </span><span style=3D"font-size:12p=
+t;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);backgrou=
+nd-color:transparent;font-weight:400;font-style:normal;font-variant:norma=
+l;text-decoration:underline;vertical-align:baseline;white-space:pre-wrap"=
+>intera</span><span style=3D"font-size:12pt;font-family:&quot;Courier New=
+&quot;,monospace;color:rgb(0,0,0);background-color:transparent;font-weigh=
+t:400;font-style:normal;font-variant:normal;text-decoration:none;vertical=
+-align:baseline;white-space:pre-wrap"> in millimetri, da un minimo </span=
+><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monosp=
+ace;color:rgb(0,0,0);background-color:transparent;font-weight:700;font-st=
+yle:italic;font-variant:normal;text-decoration:none;vertical-align:baseli=
+ne;white-space:pre-wrap">minStelo</span><span style=3D"font-size:12pt;fon=
+t-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background-co=
+lor:transparent;font-weight:400;font-style:normal;font-variant:normal;tex=
+t-decoration:none;vertical-align:baseline;white-space:pre-wrap"> a un mas=
+simo </span><span style=3D"font-size:12pt;font-family:&quot;Courier New&q=
+uot;,monospace;color:rgb(0,0,0);background-color:transparent;font-weight:=
+700;font-style:italic;font-variant:normal;text-decoration:none;vertical-a=
+lign:baseline;white-space:pre-wrap">maxStelo</span><span style=3D"font-si=
+ze:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);ba=
+ckground-color:transparent;font-weight:400;font-style:normal;font-variant=
+:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap=
+">) seguita da una punta (un </span><span style=3D"font-size:12pt;font-fa=
+mily:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background-color:=
+transparent;font-weight:400;font-style:normal;font-variant:normal;text-de=
+coration:underline;vertical-align:baseline;white-space:pre-wrap">intero</=
+span><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,mo=
+nospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;fon=
+t-style:normal;font-variant:normal;text-decoration:none;vertical-align:ba=
+seline;white-space:pre-wrap"> da 0 a un massimo </span><span style=3D"fon=
+t-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0=
+);background-color:transparent;font-weight:700;font-style:italic;font-var=
+iant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-=
+wrap">maxPunta</span><span style=3D"font-size:12pt;font-family:&quot;Cour=
+ier New&quot;,monospace;color:rgb(0,0,0);background-color:transparent;fon=
+t-weight:400;font-style:normal;font-variant:normal;text-decoration:none;v=
+ertical-align:baseline;white-space:pre-wrap">).=C2=A0</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0Fissate nella definizione della class=
+e dei valori per massimi e minimi, per esempio: </span><span style=3D"fon=
+t-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0=
+);background-color:transparent;font-weight:700;font-style:italic;font-var=
+iant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-=
+wrap">minStelo=3D10, maxStelo=3D200, maxPunta=3D5</span><span style=3D"fo=
+nt-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,=
+0);background-color:transparent;font-weight:400;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre=
+-wrap">. Il prossimo disegno riassume il significato appena visto dei div=
+ersi attributi.</span></p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:center;margin-top:0pt;margin-bottom:=
+0pt"><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;color:r=
+gb(0,0,0);background-color:transparent;font-weight:400;font-style:normal;=
+font-variant:normal;text-decoration:none;vertical-align:baseline;white-sp=
+ace:pre-wrap"><span style=3D"border:medium;display:inline-block;overflow:=
+hidden;width:306px;height:176px"><img alt=3D"Rappresentazione di una mati=
+ta e la sua divisione in punta, stelo e minStelo" src=3D"https://lh7-qw.g=
+oogleusercontent.com/docsz/AD_4nXfeySzrSVHLS8RBCXSGdGGi0RCyDHM-uQJPUIjKuh=
+IFuza7pRr6sArgXMrSqyq1CVbtw1OgGMUVvrXDd__SUQjrjRI7eiyQCYkbZaCqEIiRPwSbJOS=
+MUZFnzvENQRhrv82Mq2iv?key=3DSCUADlaPkCTzQNuDQnQkqOcR" style=3D"margin-lef=
+t: 0px; margin-top: 0px;" moz-do-not-send=3D"true" width=3D"306" height=3D=
+"176"></span></span></p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0</span><span style=3D"font-size:12pt;=
+font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background=
+-color:transparent;font-weight:700;font-style:italic;font-variant:normal;=
+text-decoration:none;vertical-align:baseline;white-space:pre-wrap">(i)</s=
+pan><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,mon=
+ospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;font=
+-style:normal;font-variant:normal;text-decoration:none;vertical-align:bas=
+eline;white-space:pre-wrap"> </span><span style=3D"font-size:12pt;font-fa=
+mily:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background-color:=
+transparent;font-weight:700;font-style:italic;font-variant:normal;text-de=
+coration:none;vertical-align:baseline;white-space:pre-wrap">minStelo, max=
+Stelo, maxPunta</span><span style=3D"font-size:12pt;font-family:&quot;Cou=
+rier New&quot;,monospace;color:rgb(0,0,0);background-color:transparent;fo=
+nt-weight:400;font-style:normal;font-variant:normal;text-decoration:none;=
+vertical-align:baseline;white-space:pre-wrap"> sono attributi interi </sp=
+an><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,mono=
+space;color:rgb(0,0,0);background-color:transparent;font-weight:700;font-=
+style:italic;font-variant:normal;text-decoration:none;vertical-align:base=
+line;white-space:pre-wrap">pubblici</span><span style=3D"font-size:12pt;f=
+ont-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background-=
+color:transparent;font-weight:400;font-style:normal;font-variant:normal;t=
+ext-decoration:none;vertical-align:baseline;white-space:pre-wrap">, </spa=
+n><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monos=
+pace;color:rgb(0,0,0);background-color:transparent;font-weight:700;font-s=
+tyle:italic;font-variant:normal;text-decoration:none;vertical-align:basel=
+ine;white-space:pre-wrap">statici</span><span style=3D"font-size:12pt;fon=
+t-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background-co=
+lor:transparent;font-weight:400;font-style:normal;font-variant:normal;tex=
+t-decoration:none;vertical-align:baseline;white-space:pre-wrap"> e </span=
+><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monosp=
+ace;color:rgb(0,0,0);background-color:transparent;font-weight:700;font-st=
+yle:italic;font-variant:normal;text-decoration:none;vertical-align:baseli=
+ne;white-space:pre-wrap">final</span><span style=3D"font-size:12pt;font-f=
+amily:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background-color=
+:transparent;font-weight:400;font-style:normal;font-variant:normal;text-d=
+ecoration:none;vertical-align:baseline;white-space:pre-wrap"> della class=
+e Matita (non legati a un oggetto ma alla classe). Invece stelo e punta s=
+ono attributi interi </span><span style=3D"font-size:12pt;font-family:&qu=
+ot;Courier New&quot;,monospace;color:rgb(0,0,0);background-color:transpar=
+ent;font-weight:700;font-style:italic;font-variant:normal;text-decoration=
+:none;vertical-align:baseline;white-space:pre-wrap">dinamici</span><span =
+style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;col=
+or:rgb(0,0,0);background-color:transparent;font-weight:400;font-style:nor=
+mal;font-variant:normal;text-decoration:none;vertical-align:baseline;whit=
+e-space:pre-wrap">.=C2=A0</span></p>
+                <p dir=3D"ltr"
+                  style=3D"line-height:1.38;margin-top:0pt;margin-bottom:=
+0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,mo=
+nospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fon=
+t-style:italic;font-variant:normal;text-decoration:none;vertical-align:ba=
+seline;white-space:pre-wrap">=C2=A0(ii)</span><span style=3D"font-size:12=
+pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);backgro=
+und-color:transparent;font-weight:400;font-style:normal;font-variant:norm=
+al;text-decoration:none;vertical-align:baseline;white-space:pre-wrap"> Il=
+ costruttore di </span><span style=3D"font-size:12pt;font-family:&quot;Co=
+urier New&quot;,monospace;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:700;font-style:italic;font-variant:normal;text-decoration:none=
+;vertical-align:baseline;white-space:pre-wrap">Matita</span><span style=3D=
+"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0=
+,0,0);background-color:transparent;font-weight:400;font-style:normal;font=
+-variant:normal;text-decoration:none;vertical-align:baseline;white-space:=
+pre-wrap"> consente di costruire una matita con punta di lunghezza massim=
+a dato lo stelo. Un assert impedisce lunghezze non accettabili dello stel=
+o.</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0</span><span style=3D"font-size:12pt;=
+font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background=
+-color:transparent;font-weight:700;font-style:italic;font-variant:normal;=
+text-decoration:none;vertical-align:baseline;white-space:pre-wrap">(iii)<=
+/span><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap"> La classe ha i metodi </span><span style=3D=
+"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0=
+,0,0);background-color:transparent;font-weight:700;font-style:italic;font=
+-variant:normal;text-decoration:none;vertical-align:baseline;white-space:=
+pre-wrap">get</span><span style=3D"font-size:12pt;font-family:&quot;Couri=
+er New&quot;,monospace;color:rgb(0,0,0);background-color:transparent;font=
+-weight:400;font-style:normal;font-variant:normal;text-decoration:none;ve=
+rtical-align:baseline;white-space:pre-wrap"> per stelo e punta e nessun m=
+etodo </span><span style=3D"font-size:12pt;font-family:&quot;Courier New&=
+quot;,monospace;color:rgb(0,0,0);background-color:transparent;font-weight=
+:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-=
+align:baseline;white-space:pre-wrap">set</span><span style=3D"font-size:1=
+2pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);backgr=
+ound-color:transparent;font-weight:400;font-style:normal;font-variant:nor=
+mal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap">: =
+non consento di cambiare la lunghezza a una matita.=C2=A0</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0</span><span style=3D"font-size:12pt;=
+font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background=
+-color:transparent;font-weight:700;font-style:italic;font-variant:normal;=
+text-decoration:none;vertical-align:baseline;white-space:pre-wrap">(iv)</=
+span><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,mo=
+nospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;fon=
+t-style:normal;font-variant:normal;text-decoration:none;vertical-align:ba=
+seline;white-space:pre-wrap"> Un metodo =E2=80=9Cdisegna=E2=80=9D restitu=
+isce =E2=80=9Ctrue=E2=80=9D (successo) se la matita ha almeno 1mm di punt=
+a, e =E2=80=9Cfalse=E2=80=9D (fallimento) altrimenti. Nel primo caso usa =
+la matita fino a ridurne la punta di un 1mm.=C2=A0</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0</span><span style=3D"font-size:12pt;=
+font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background=
+-color:transparent;font-weight:700;font-style:italic;font-variant:normal;=
+text-decoration:none;vertical-align:baseline;white-space:pre-wrap">(v)</s=
+pan><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,mon=
+ospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;font=
+-style:normal;font-variant:normal;text-decoration:none;vertical-align:bas=
+eline;white-space:pre-wrap"> Un metodo =E2=80=9Ctempera=E2=80=9D restitui=
+sce =E2=80=9Ctrue=E2=80=9D (successo) se la matita =C3=A8 pi=C3=B9 lunga =
+del minimo e =E2=80=9Cfalse=E2=80=9D (fallimento) altrimenti. Nel primo c=
+aso riduce lo stelo di 1mm e allunga la punta di 1mm, a meno che la lungh=
+ezza della punta sia gi=C3=A0 il massimo. In questo caso la matita si acc=
+orcia ma la punta resta invariata.</span></p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0Scrivete </span><span style=3D"font-s=
+ize:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);b=
+ackground-color:transparent;font-weight:700;font-style:italic;font-varian=
+t:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wra=
+p">Matita.maxStelo</span><span style=3D"font-size:12pt;font-family:&quot;=
+Courier New&quot;,monospace;color:rgb(0,0,0);background-color:transparent=
+;font-weight:400;font-style:normal;font-variant:normal;text-decoration:no=
+ne;vertical-align:baseline;white-space:pre-wrap"> per richiamare il massi=
+mo dello stelo (attributo statico). Scrivete </span><span style=3D"font-s=
+ize:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);b=
+ackground-color:transparent;font-weight:700;font-style:italic;font-varian=
+t:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wra=
+p">Math.min</span><span style=3D"font-size:12pt;font-family:&quot;Courier=
+ New&quot;,monospace;color:rgb(0,0,0);background-color:transparent;font-w=
+eight:400;font-style:normal;font-variant:normal;text-decoration:none;vert=
+ical-align:baseline;white-space:pre-wrap"> per richiamare il metodo stati=
+co min(x,y) della classe Math, che calcola il minimo. Includiamo una clas=
+se TestMatita per sperimentare la classe Matita: eseguitela e controllate=
+ che i risultati siano sensati.=C2=A0</span></p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">//Una classe come test della classe Matit=
+a: salvate nel file</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">//TestMatita.java =C2=A0 </span><span sty=
+le=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:=
+rgb(0,102,0);background-color:transparent;font-weight:700;font-style:norm=
+al;font-variant:normal;text-decoration:none;vertical-align:baseline;white=
+-space:pre-wrap"><span style=3D"white-space:pre-wrap">	</span></span></p>=
+
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">//</span><span style=3D"font-size:12pt;fo=
+nt-family:&quot;Courier New&quot;,monospace;color:rgb(0,102,0);background=
+-color:transparent;font-weight:700;font-style:normal;font-variant:normal;=
+text-decoration:underline;vertical-align:baseline;white-space:pre-wrap">N=
+on si compila senza la classe Matita</span></p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">public class TestMatita {</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0public static void main(String[] args=
+){=C2=A0</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0Matita m =3D new Matita(Matita.=
+maxStelo);=C2=A0</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0int s =3D m.getStelo(), p =3D m=
+=2EgetPunta();</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">=C2=A0=C2=A0</span><span style=3D"font-si=
+ze:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);ba=
+ckground-color:transparent;font-weight:700;font-style:normal;font-variant=
+:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap=
+">System.out.println(</span><span style=3D"font-size:12pt;font-family:&qu=
+ot;Courier New&quot;,monospace;color:rgb(192,0,0);background-color:transp=
+arent;font-weight:700;font-style:normal;font-variant:normal;text-decorati=
+on:none;vertical-align:baseline;white-space:pre-wrap">"Matita di stelo " =
+</span><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,=
+monospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;f=
+ont-style:normal;font-variant:normal;text-decoration:none;vertical-align:=
+baseline;white-space:pre-wrap">+ s + </span><span style=3D"font-size:12pt=
+;font-family:&quot;Courier New&quot;,monospace;color:rgb(192,0,0);backgro=
+und-color:transparent;font-weight:700;font-style:normal;font-variant:norm=
+al;text-decoration:none;vertical-align:baseline;white-space:pre-wrap">" e=
+ punta " </span><span style=3D"font-size:12pt;font-family:&quot;Courier N=
+ew&quot;,monospace;color:rgb(0,0,0);background-color:transparent;font-wei=
+ght:700;font-style:normal;font-variant:normal;text-decoration:none;vertic=
+al-align:baseline;white-space:pre-wrap">+ p</span><span style=3D"font-siz=
+e:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,102,0);b=
+ackground-color:transparent;font-weight:700;font-style:normal;font-varian=
+t:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wra=
+p">);=C2=A0</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">=C2=A0=C2=A0</span><span style=3D"font-si=
+ze:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);ba=
+ckground-color:transparent;font-weight:700;font-style:normal;font-variant=
+:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap=
+">System.out.println(</span><span style=3D"font-size:12pt;font-family:&qu=
+ot;Courier New&quot;,monospace;color:rgb(192,0,0);background-color:transp=
+arent;font-weight:700;font-style:normal;font-variant:normal;text-decorati=
+on:none;vertical-align:baseline;white-space:pre-wrap">"Disegno per " </sp=
+an><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,mono=
+space;color:rgb(0,0,0);background-color:transparent;font-weight:700;font-=
+style:normal;font-variant:normal;text-decoration:none;vertical-align:base=
+line;white-space:pre-wrap">+ 2*p + </span><span style=3D"font-size:12pt;f=
+ont-family:&quot;Courier New&quot;,monospace;color:rgb(192,0,0);backgroun=
+d-color:transparent;font-weight:700;font-style:normal;font-variant:normal=
+;text-decoration:none;vertical-align:baseline;white-space:pre-wrap">" vol=
+te:"</span><span style=3D"font-size:12pt;font-family:&quot;Courier New&qu=
+ot;,monospace;color:rgb(0,102,0);background-color:transparent;font-weight=
+:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-=
+align:baseline;white-space:pre-wrap">);=C2=A0</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">=C2=A0=C2=A0</span><span style=3D"font-si=
+ze:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);ba=
+ckground-color:transparent;font-weight:700;font-style:normal;font-variant=
+:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap=
+">System.out.println(</span><span style=3D"font-size:12pt;font-family:&qu=
+ot;Courier New&quot;,monospace;color:rgb(192,0,0);background-color:transp=
+arent;font-weight:700;font-style:normal;font-variant:normal;text-decorati=
+on:none;vertical-align:baseline;white-space:pre-wrap">"dopo " </span><spa=
+n style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;c=
+olor:rgb(0,0,0);background-color:transparent;font-weight:700;font-style:n=
+ormal;font-variant:normal;text-decoration:none;vertical-align:baseline;wh=
+ite-space:pre-wrap">+ p + </span><span style=3D"font-size:12pt;font-famil=
+y:&quot;Courier New&quot;,monospace;color:rgb(192,0,0);background-color:t=
+ransparent;font-weight:700;font-style:normal;font-variant:normal;text-dec=
+oration:none;vertical-align:baseline;white-space:pre-wrap">" volte il dis=
+egno fallisce"</span><span style=3D"font-size:12pt;font-family:&quot;Cour=
+ier New&quot;,monospace;color:rgb(0,102,0);background-color:transparent;f=
+ont-weight:700;font-style:normal;font-variant:normal;text-decoration:none=
+;vertical-align:baseline;white-space:pre-wrap">);</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0for (int i =3D 0; i &lt; 2*p; i=
+++)</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0System.out.println(</span=
+><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monosp=
+ace;color:rgb(192,0,0);background-color:transparent;font-weight:700;font-=
+style:normal;font-variant:normal;text-decoration:none;vertical-align:base=
+line;white-space:pre-wrap">" Successo disegno n."</span><span style=3D"fo=
+nt-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,=
+0);background-color:transparent;font-weight:700;font-style:normal;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre=
+-wrap">+i+</span><span style=3D"font-size:12pt;font-family:&quot;Courier =
+New&quot;,monospace;color:rgb(192,0,0);background-color:transparent;font-=
+weight:700;font-style:normal;font-variant:normal;text-decoration:none;ver=
+tical-align:baseline;white-space:pre-wrap">" =3D "</span><span style=3D"f=
+ont-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0=
+,0);background-color:transparent;font-weight:700;font-style:normal;font-v=
+ariant:normal;text-decoration:none;vertical-align:baseline;white-space:pr=
+e-wrap">+m.disegna());</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0System.out.println(</span><span=
+ style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;co=
+lor:rgb(192,0,0);background-color:transparent;font-weight:700;font-style:=
+normal;font-variant:normal;text-decoration:none;vertical-align:baseline;w=
+hite-space:pre-wrap">"Tempero di 1mm la matita"</span><span style=3D"font=
+-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0)=
+;background-color:transparent;font-weight:700;font-style:normal;font-vari=
+ant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-w=
+rap">); m.tempera();</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0System.out.println(</span><span=
+ style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;co=
+lor:rgb(192,0,0);background-color:transparent;font-weight:700;font-style:=
+normal;font-variant:normal;text-decoration:none;vertical-align:baseline;w=
+hite-space:pre-wrap">" nuova lunghezza punta =3D " </span><span style=3D"=
+font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,=
+0,0);background-color:transparent;font-weight:700;font-style:normal;font-=
+variant:normal;text-decoration:none;vertical-align:baseline;white-space:p=
+re-wrap">+ m.getPunta());</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0System.out.println(</span><span=
+ style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;co=
+lor:rgb(192,0,0);background-color:transparent;font-weight:700;font-style:=
+normal;font-variant:normal;text-decoration:none;vertical-align:baseline;w=
+hite-space:pre-wrap">" nuova lunghezza stelo =3D " </span><span style=3D"=
+font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,=
+0,0);background-color:transparent;font-weight:700;font-style:normal;font-=
+variant:normal;text-decoration:none;vertical-align:baseline;white-space:p=
+re-wrap">+ m.getStelo());</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0System.out.println(</span><span=
+ style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;co=
+lor:rgb(192,0,0);background-color:transparent;font-weight:700;font-style:=
+normal;font-variant:normal;text-decoration:none;vertical-align:baseline;w=
+hite-space:pre-wrap">"Stampo la matita m. Ottengo \"Matita@\" seguito dal=
+l</span><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;=
+,monospace;color:rgb(0,102,0);background-color:transparent;font-weight:70=
+0;font-style:normal;font-variant:normal;text-decoration:none;vertical-ali=
+gn:baseline;white-space:pre-wrap">'</span><span style=3D"font-size:12pt;f=
+ont-family:&quot;Courier New&quot;,monospace;color:rgb(192,0,0);backgroun=
+d-color:transparent;font-weight:700;font-style:normal;font-variant:normal=
+;text-decoration:none;vertical-align:baseline;white-space:pre-wrap">indir=
+izzo dell</span><span style=3D"font-size:12pt;font-family:&quot;Courier N=
+ew&quot;,monospace;color:rgb(0,102,0);background-color:transparent;font-w=
+eight:700;font-style:normal;font-variant:normal;text-decoration:none;vert=
+ical-align:baseline;white-space:pre-wrap">'</span><span style=3D"font-siz=
+e:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(192,0,0);b=
+ackground-color:transparent;font-weight:700;font-style:normal;font-varian=
+t:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wra=
+p">oggetto (in esadecimale): " </span><span style=3D"font-size:12pt;font-=
+family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background-colo=
+r:transparent;font-weight:700;font-style:normal;font-variant:normal;text-=
+decoration:none;vertical-align:baseline;white-space:pre-wrap">+ m);</span=
+></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0}</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">}</span></p>
+                <br>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:14pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">DA LASCIARE AGLI STUDENTI:</span></p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:14pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">La classe Elicottero.</span><span style=3D"=
+font-size:16pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,=
+0,0);background-color:transparent;font-weight:700;font-style:normal;font-=
+variant:normal;text-decoration:none;vertical-align:baseline;white-space:p=
+re-wrap"> </span><span style=3D"font-size:12pt;font-family:&quot;Courier =
+New&quot;,monospace;color:rgb(0,0,0);background-color:transparent;font-we=
+ight:400;font-style:normal;font-variant:normal;text-decoration:none;verti=
+cal-align:baseline;white-space:pre-wrap">Vi chiediamo di scrivere una cla=
+sse Elicottero per rappresentare virtualmente elicotteri. Un elicottero =C3=
+=A8 definito con tre coordinate (intere, in km): </span><span style=3D"fo=
+nt-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,=
+0);background-color:transparent;font-weight:700;font-style:italic;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre=
+-wrap">x,y</span><span style=3D"font-size:12pt;font-family:&quot;Courier =
+New&quot;,monospace;color:rgb(0,0,0);background-color:transparent;font-we=
+ight:400;font-style:normal;font-variant:normal;text-decoration:none;verti=
+cal-align:baseline;white-space:pre-wrap"> e </span><span style=3D"font-si=
+ze:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);ba=
+ckground-color:transparent;font-weight:700;font-style:italic;font-variant=
+:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap=
+">altitude</span><span style=3D"font-size:12pt;font-family:&quot;Courier =
+New&quot;,monospace;color:rgb(0,0,0);background-color:transparent;font-we=
+ight:400;font-style:normal;font-variant:normal;text-decoration:none;verti=
+cal-align:baseline;white-space:pre-wrap"> (</span><span style=3D"font-siz=
+e:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);bac=
+kground-color:transparent;font-weight:400;font-style:normal;font-variant:=
+normal;text-decoration:underline;vertical-align:baseline;white-space:pre-=
+wrap">non negativa</span><span style=3D"font-size:12pt;font-family:&quot;=
+Courier New&quot;,monospace;color:rgb(0,0,0);background-color:transparent=
+;font-weight:400;font-style:normal;font-variant:normal;text-decoration:no=
+ne;vertical-align:baseline;white-space:pre-wrap">), due velocit=C3=A0 (in=
+tere, in hm/h), </span><span style=3D"font-size:12pt;font-family:&quot;Co=
+urier New&quot;,monospace;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:700;font-style:italic;font-variant:normal;text-decoration:none=
+;vertical-align:baseline;white-space:pre-wrap">speed</span><span style=3D=
+"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0=
+,0,0);background-color:transparent;font-weight:400;font-style:normal;font=
+-variant:normal;text-decoration:none;vertical-align:baseline;white-space:=
+pre-wrap"> (orizzontale e </span><span style=3D"font-size:12pt;font-famil=
+y:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background-color:tra=
+nsparent;font-weight:400;font-style:normal;font-variant:normal;text-decor=
+ation:underline;vertical-align:baseline;white-space:pre-wrap">non negativ=
+a</span><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;=
+,monospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">) e </span><span style=3D"font-size:12pt;=
+font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background=
+-color:transparent;font-weight:700;font-style:italic;font-variant:normal;=
+text-decoration:none;vertical-align:baseline;white-space:pre-wrap">vertic=
+alSpeed</span><span style=3D"font-size:12pt;font-family:&quot;Courier New=
+&quot;,monospace;color:rgb(0,0,0);background-color:transparent;font-weigh=
+t:400;font-style:normal;font-variant:normal;text-decoration:none;vertical=
+-align:baseline;white-space:pre-wrap"> (verticale), e una direzione orizz=
+ontale </span><span style=3D"font-size:12pt;font-family:&quot;Courier New=
+&quot;,monospace;color:rgb(0,0,0);background-color:transparent;font-weigh=
+t:700;font-style:italic;font-variant:normal;text-decoration:none;vertical=
+-align:baseline;white-space:pre-wrap">track</span><span style=3D"font-siz=
+e:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);bac=
+kground-color:transparent;font-weight:400;font-style:normal;font-variant:=
+normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap"=
+> (un reale, un angolo in radianti </span><span style=3D"font-size:12pt;f=
+ont-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background-=
+color:transparent;font-weight:400;font-style:normal;font-variant:normal;t=
+ext-decoration:underline;vertical-align:baseline;white-space:pre-wrap">tr=
+a 0 e 2</span><span style=3D"font-size:12pt;font-family:Symbol;color:rgb(=
+0,0,0);background-color:transparent;font-weight:400;font-style:normal;fon=
+t-variant:normal;text-decoration:underline;vertical-align:baseline;white-=
+space:pre-wrap">=CF=80</span><span style=3D"font-size:12pt;font-family:&q=
+uot;Courier New&quot;,monospace;color:rgb(0,0,0);background-color:transpa=
+rent;font-weight:400;font-style:normal;font-variant:normal;text-decoratio=
+n:none;vertical-align:baseline;white-space:pre-wrap">). Il prossimo diseg=
+no riassume i significati degli attributi di un elicottero.</span></p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:center;margin-top:0pt;margin-bottom:=
+0pt"><span style=3D"font-size:11pt;font-family:Calibri,sans-serif;color:r=
+gb(0,0,0);background-color:transparent;font-weight:400;font-style:normal;=
+font-variant:normal;text-decoration:none;vertical-align:baseline;white-sp=
+ace:pre-wrap"><span style=3D"border:medium;display:inline-block;overflow:=
+hidden;width:590px;height:202px"><img alt=3D"Rappresentazione grafica del=
+la posizione di un Elicottero a partire dai suoi attributi." src=3D"https=
+://lh7-qw.googleusercontent.com/docsz/AD_4nXcNIj3zqbF8NLaD7G3tSZRqv5X6p6Z=
+2aQhJock_gNPx9yAtpXVYvMjIr1dymL6Z6oEi0LiYOhCLOA4mwXi3sPOomlh2mkjb9I-nc5pN=
+dvaXpJ-AvIBmwjNETUEtgEBXuEccjxmPvg?key=3DSCUADlaPkCTzQNuDQnQkqOcR" style=3D=
+"margin-left: 0px; margin-top: 0px;" moz-do-not-send=3D"true" width=3D"59=
+0" height=3D"202"></span></span></p>
+                <br>
+                <br>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0La classe ha i seguenti metodi. Usate=
+ degli assert per impedire valori non accettabili degli attributi.</span>=
+</p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0</span><span style=3D"font-size:12pt;=
+font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background=
+-color:transparent;font-weight:700;font-style:italic;font-variant:normal;=
+text-decoration:none;vertical-align:baseline;white-space:pre-wrap">(i)</s=
+pan><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,mon=
+ospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;font=
+-style:normal;font-variant:normal;text-decoration:none;vertical-align:bas=
+eline;white-space:pre-wrap"> Il costruttore di Elicottero definisce un el=
+icottero fermo in cielo, date le coordinate (x, y, altitude), con velocit=
+=C3=A0 nulle e angolo di direzione nullo.=C2=A0</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:italic;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0(ii)</span><span style=3D"font-size:1=
+2pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);backgr=
+ound-color:transparent;font-weight:400;font-style:normal;font-variant:nor=
+mal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap"> L=
+a classe ha i metodi get per ogni attributo e metodi set per velocit=C3=A0=
+ e direzione, ma </span><span style=3D"font-size:12pt;font-family:&quot;C=
+ourier New&quot;,monospace;color:rgb(0,0,0);background-color:transparent;=
+font-weight:400;font-style:normal;font-variant:normal;text-decoration:und=
+erline;vertical-align:baseline;white-space:pre-wrap">non</span><span styl=
+e=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:r=
+gb(0,0,0);background-color:transparent;font-weight:400;font-style:normal;=
+font-variant:normal;text-decoration:none;vertical-align:baseline;white-sp=
+ace:pre-wrap"> per x, y, altitude. Non consentiamo a un elicottero di cam=
+biare la posizione se non spostandosi con lo scorrere del tempo.=C2=A0</s=
+pan></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0</span><span style=3D"font-size:12pt;=
+font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background=
+-color:transparent;font-weight:700;font-style:italic;font-variant:normal;=
+text-decoration:none;vertical-align:baseline;white-space:pre-wrap">(iii)<=
+/span><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap"> Un metodo </span><span style=3D"font-size:=
+12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);backg=
+round-color:transparent;font-weight:700;font-style:italic;font-variant:no=
+rmal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap">v=
+oid elapse(double time)</span><span style=3D"font-size:12pt;font-family:&=
+quot;Courier New&quot;,monospace;color:rgb(0,0,0);background-color:transp=
+arent;font-weight:400;font-style:normal;font-variant:normal;text-decorati=
+on:none;vertical-align:baseline;white-space:pre-wrap"> modifica la posizi=
+one dell=E2=80=99elicottero dato il tempo trascorso, in base alle velocit=
+=C3=A0 e alla direzione, usando le formule della trigonometria. Quando as=
+segnate il risultato a delle coordinate intere dovrete arrotondarlo, scri=
+vendo: </span><span style=3D"font-size:12pt;font-family:&quot;Courier New=
+&quot;,monospace;color:rgb(0,0,0);background-color:transparent;font-weigh=
+t:400;font-style:italic;font-variant:normal;text-decoration:none;vertical=
+-align:baseline;white-space:pre-wrap">(int) espressione</span><span style=
+=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rg=
+b(0,0,0);background-color:transparent;font-weight:400;font-style:normal;f=
+ont-variant:normal;text-decoration:none;vertical-align:baseline;white-spa=
+ce:pre-wrap">.</span></p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0Per richiamare un attributo/metodo st=
+atico pubblico fuori dalla sua classe C scrivete </span><span style=3D"fo=
+nt-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,=
+0);background-color:transparent;font-weight:700;font-style:italic;font-va=
+riant:normal;text-decoration:none;vertical-align:baseline;white-space:pre=
+-wrap">C.attributo, C.metodo</span><span style=3D"font-size:12pt;font-fam=
+ily:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background-color:t=
+ransparent;font-weight:400;font-style:normal;font-variant:normal;text-dec=
+oration:none;vertical-align:baseline;white-space:pre-wrap">. Per esempio =
+scrivete </span><span style=3D"font-size:12pt;font-family:&quot;Courier N=
+ew&quot;,monospace;color:rgb(0,0,0);background-color:transparent;font-wei=
+ght:700;font-style:italic;font-variant:normal;text-decoration:none;vertic=
+al-align:baseline;white-space:pre-wrap">Math.sin, Math.cos</span><span st=
+yle=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color=
+:rgb(0,0,0);background-color:transparent;font-weight:400;font-style:norma=
+l;font-variant:normal;text-decoration:none;vertical-align:baseline;white-=
+space:pre-wrap"> per i metodi statici per seno e coseno della classe Math=
+=2E Includiamo una classe </span><span style=3D"font-size:12pt;font-famil=
+y:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background-color:tra=
+nsparent;font-weight:700;font-style:italic;font-variant:normal;text-decor=
+ation:none;vertical-align:baseline;white-space:pre-wrap">TestElicottero</=
+span><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,mo=
+nospace;color:rgb(0,0,0);background-color:transparent;font-weight:400;fon=
+t-style:normal;font-variant:normal;text-decoration:none;vertical-align:ba=
+seline;white-space:pre-wrap"> per sperimentare la classe Elicottero: eseg=
+uitela (richiede la classe Elicottero) e controllate che i risultati sian=
+o sensati. Pubblicheremo le soluzioni la prossima settimana.</span></p>
+                <br>
+                <br>
+                <p dir=3D"ltr"
+                  style=3D"line-height:1.38;margin-top:0pt;margin-bottom:=
+0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,mo=
+nospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;f=
+ont-style:normal;font-variant:normal;text-decoration:none;vertical-align:=
+baseline;white-space:pre-wrap">//Una classe come test della classe Elicot=
+tero: salvate nel file</span></p>
+                <p dir=3D"ltr"
+                  style=3D"line-height:1.38;margin-top:0pt;margin-bottom:=
+0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,mo=
+nospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;f=
+ont-style:normal;font-variant:normal;text-decoration:none;vertical-align:=
+baseline;white-space:pre-wrap">//TestElicottero.java. </span><span style=3D=
+"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0=
+,102,0);background-color:transparent;font-weight:700;font-style:normal;fo=
+nt-variant:normal;text-decoration:underline;vertical-align:baseline;white=
+-space:pre-wrap">Non si compila senza la classe Elicottero</span></p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">public class TestElicottero {</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">public static void main(String[] args) {</s=
+pan></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">//creo un elicottero collocato all'origin=
+e del sistema di riferimento</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0Elicottero a =3D new Elicottero(0, 0,=
+ 0);</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">// visualizzo le coordinate dell'elicotte=
+ro</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0System.out.println( </span><span styl=
+e=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:r=
+gb(192,0,0);background-color:transparent;font-weight:700;font-style:norma=
+l;font-variant:normal;text-decoration:none;vertical-align:baseline;white-=
+space:pre-wrap">"Elicottero a di coordinate" </span><span style=3D"font-s=
+ize:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);b=
+ackground-color:transparent;font-weight:700;font-style:normal;font-varian=
+t:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wra=
+p">);</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0System.out.println(</span><span style=
+=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rg=
+b(192,0,0);background-color:transparent;font-weight:700;font-style:normal=
+;font-variant:normal;text-decoration:none;vertical-align:baseline;white-s=
+pace:pre-wrap">"("</span><span style=3D"font-size:12pt;font-family:&quot;=
+Courier New&quot;,monospace;color:rgb(0,0,0);background-color:transparent=
+;font-weight:700;font-style:normal;font-variant:normal;text-decoration:no=
+ne;vertical-align:baseline;white-space:pre-wrap">+a.getX()+</span><span s=
+tyle=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;colo=
+r:rgb(192,0,0);background-color:transparent;font-weight:700;font-style:no=
+rmal;font-variant:normal;text-decoration:none;vertical-align:baseline;whi=
+te-space:pre-wrap">","</span><span style=3D"font-size:12pt;font-family:&q=
+uot;Courier New&quot;,monospace;color:rgb(0,0,0);background-color:transpa=
+rent;font-weight:700;font-style:normal;font-variant:normal;text-decoratio=
+n:none;vertical-align:baseline;white-space:pre-wrap">+a.getY()+</span><sp=
+an style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;=
+color:rgb(192,0,0);background-color:transparent;font-weight:700;font-styl=
+e:normal;font-variant:normal;text-decoration:none;vertical-align:baseline=
+;white-space:pre-wrap">","</span><span style=3D"font-size:12pt;font-famil=
+y:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background-color:tra=
+nsparent;font-weight:700;font-style:normal;font-variant:normal;text-decor=
+ation:none;vertical-align:baseline;white-space:pre-wrap">+</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0a.ge=
+tAltitude()+</span><span style=3D"font-size:12pt;font-family:&quot;Courie=
+r New&quot;,monospace;color:rgb(192,0,0);background-color:transparent;fon=
+t-weight:700;font-style:normal;font-variant:normal;text-decoration:none;v=
+ertical-align:baseline;white-space:pre-wrap">")"</span><span style=3D"fon=
+t-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0=
+);background-color:transparent;font-weight:700;font-style:normal;font-var=
+iant:normal;text-decoration:none;vertical-align:baseline;white-space:pre-=
+wrap">);</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">// imposto la velocita' dell'elicottero a=
+ 500 km/h</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0a.setSpeed(500);</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">=C2=A0// imposto la velocita' verticale d=
+ell'elicottero a +10 km/h </span><span style=3D"font-size:12pt;font-famil=
+y:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background-color:tra=
+nsparent;font-weight:700;font-style:normal;font-variant:normal;text-decor=
+ation:none;vertical-align:baseline;white-space:pre-wrap">=C2=A0=C2=A0</sp=
+an></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0a.setVerticalSpeed(10);</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">=C2=A0// imposto la direzione dell'elicot=
+tero a nord-nord-est (in radianti)</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0a.setTrack((double) (3 * Math.PI / 8)=
+);</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0System.out.println(</span><span style=
+=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rg=
+b(192,0,0);background-color:transparent;font-weight:700;font-style:normal=
+;font-variant:normal;text-decoration:none;vertical-align:baseline;white-s=
+pace:pre-wrap">"velocita'=3D"</span><span style=3D"font-size:12pt;font-fa=
+mily:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background-color:=
+transparent;font-weight:700;font-style:normal;font-variant:normal;text-de=
+coration:none;vertical-align:baseline;white-space:pre-wrap">+a.getSpeed()=
++</span><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;=
+,monospace;color:rgb(192,0,0);background-color:transparent;font-weight:70=
+0;font-style:normal;font-variant:normal;text-decoration:none;vertical-ali=
+gn:baseline;white-space:pre-wrap">" velocita' verticale=3D"</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0+ a.=
+getVerticalSpeed()+</span><span style=3D"font-size:12pt;font-family:&quot=
+;Courier New&quot;,monospace;color:rgb(192,0,0);background-color:transpar=
+ent;font-weight:700;font-style:normal;font-variant:normal;text-decoration=
+:none;vertical-align:baseline;white-space:pre-wrap">" angolo=3D"</span><s=
+pan style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace=
+;color:rgb(0,0,0);background-color:transparent;font-weight:700;font-style=
+:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;=
+white-space:pre-wrap">+a.getTrack());</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">=C2=A0// faccio trascorrere mezz'ora</spa=
+n></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0a.elapse(0.5);</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">=C2=A0// visualizzo le nuove coordinate: =
+(95,230,5)</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0System.out.println(</span><span style=
+=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rg=
+b(192,0,0);background-color:transparent;font-weight:700;font-style:normal=
+;font-variant:normal;text-decoration:none;vertical-align:baseline;white-s=
+pace:pre-wrap">"Dopo mezz'ora di volo coordinate: "</span><span style=3D"=
+font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,=
+102,0);background-color:transparent;font-weight:700;font-style:normal;fon=
+t-variant:normal;text-decoration:none;vertical-align:baseline;white-space=
+:pre-wrap">);</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">=C2=A0</span><span style=3D"font-size:12p=
+t;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);backgrou=
+nd-color:transparent;font-weight:700;font-style:normal;font-variant:norma=
+l;text-decoration:none;vertical-align:baseline;white-space:pre-wrap">Syst=
+em.out.println(</span><span style=3D"font-size:12pt;font-family:&quot;Cou=
+rier New&quot;,monospace;color:rgb(192,0,0);background-color:transparent;=
+font-weight:700;font-style:normal;font-variant:normal;text-decoration:non=
+e;vertical-align:baseline;white-space:pre-wrap">"("</span><span style=3D"=
+font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,=
+0,0);background-color:transparent;font-weight:700;font-style:normal;font-=
+variant:normal;text-decoration:none;vertical-align:baseline;white-space:p=
+re-wrap">+a.getX()+</span><span style=3D"font-size:12pt;font-family:&quot=
+;Courier New&quot;,monospace;color:rgb(192,0,0);background-color:transpar=
+ent;font-weight:700;font-style:normal;font-variant:normal;text-decoration=
+:none;vertical-align:baseline;white-space:pre-wrap">","</span><span style=
+=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rg=
+b(0,0,0);background-color:transparent;font-weight:700;font-style:normal;f=
+ont-variant:normal;text-decoration:none;vertical-align:baseline;white-spa=
+ce:pre-wrap">+a.getY()+</span><span style=3D"font-size:12pt;font-family:&=
+quot;Courier New&quot;,monospace;color:rgb(192,0,0);background-color:tran=
+sparent;font-weight:700;font-style:normal;font-variant:normal;text-decora=
+tion:none;vertical-align:baseline;white-space:pre-wrap">","</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(192,0,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0</span><span style=3D"font-size:12pt;font-family:&quot;Courier New&quo=
+t;,monospace;color:rgb(0,0,0);background-color:transparent;font-weight:70=
+0;font-style:normal;font-variant:normal;text-decoration:none;vertical-ali=
+gn:baseline;white-space:pre-wrap">+a.getAltitude()+</span><span style=3D"=
+font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(19=
+2,0,0);background-color:transparent;font-weight:700;font-style:normal;fon=
+t-variant:normal;text-decoration:none;vertical-align:baseline;white-space=
+:pre-wrap">")"</span><span style=3D"font-size:12pt;font-family:&quot;Cour=
+ier New&quot;,monospace;color:rgb(0,0,0);background-color:transparent;fon=
+t-weight:700;font-style:normal;font-variant:normal;text-decoration:none;v=
+ertical-align:baseline;white-space:pre-wrap">);</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0}</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">}</span></p>
+                <p dir=3D"ltr"
+                  style=3D"line-height:1.38;margin-top:0pt;margin-bottom:=
+10pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap"><span style=3D"width:100px;display:inline-b=
+lock"></span></span></p>
+                <p dir=3D"ltr"
+                  style=3D"line-height:1.38;margin-top:0pt;margin-bottom:=
+10pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">Soluzione dell=E2=80=99Esercitazione 01, es=
+=2E 1: la classe pubblica Matita. </span><span style=3D"font-size:12pt;fo=
+nt-family:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background-c=
+olor:transparent;font-weight:400;font-style:normal;font-variant:normal;te=
+xt-decoration:none;vertical-align:baseline;white-space:pre-wrap">Come ese=
+mpio poniamo minStelo, maxStelo, maxPunta uguali a: 5,200,5.</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">// Matita.java</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">public class Matita {</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0public static final int minStelo =3D =
+10;=C2=A0 </span><span style=3D"font-size:12pt;font-family:&quot;Courier =
+New&quot;,monospace;color:rgb(0,102,0);background-color:transparent;font-=
+weight:700;font-style:normal;font-variant:normal;text-decoration:none;ver=
+tical-align:baseline;white-space:pre-wrap">//min. lunghezza matita (mm)</=
+span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0public static final int maxStelo =3D =
+200; </span><span style=3D"font-size:12pt;font-family:&quot;Courier New&q=
+uot;,monospace;color:rgb(0,102,0);background-color:transparent;font-weigh=
+t:700;font-style:normal;font-variant:normal;text-decoration:none;vertical=
+-align:baseline;white-space:pre-wrap">//max. lunghezza matita (mm)</span>=
+</p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0public static final int maxPunta =3D =
+=C2=A0 5; </span><span style=3D"font-size:12pt;font-family:&quot;Courier =
+New&quot;,monospace;color:rgb(0,102,0);background-color:transparent;font-=
+weight:700;font-style:normal;font-variant:normal;text-decoration:none;ver=
+tical-align:baseline;white-space:pre-wrap">//max. lunghezza punta=C2=A0 (=
+mm)</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">//Una matita e' uno stelo seguito da una =
+punta</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0private int stelo; </span><span style=
+=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rg=
+b(0,102,0);background-color:transparent;font-weight:700;font-style:normal=
+;font-variant:normal;text-decoration:none;vertical-align:baseline;white-s=
+pace:pre-wrap">// 0 &lt;=3D stelo &lt;=3D maxStelo=C2=A0</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0private int punta; </span><span style=
+=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rg=
+b(0,102,0);background-color:transparent;font-weight:700;font-style:normal=
+;font-variant:normal;text-decoration:none;vertical-align:baseline;white-s=
+pace:pre-wrap">// 0 &lt;=3D punta &lt;=3D maxPunta=C2=A0</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap"><span style=3D"white-space:pre-wrap">	</spa=
+n></span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0public Matita(int stelo) {</span></p>=
+
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0assert minStelo&lt;=3Dstelo &amp;&amp=
+; stelo&lt;=3DmaxStelo:</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0</span><span style=3D"font-size:12pt;=
+font-family:&quot;Courier New&quot;,monospace;color:rgb(192,0,0);backgrou=
+nd-color:transparent;font-weight:700;font-style:normal;font-variant:norma=
+l;text-decoration:none;vertical-align:baseline;white-space:pre-wrap">"ste=
+lo matita non accettabile:" </span><span style=3D"font-size:12pt;font-fam=
+ily:&quot;Courier New&quot;,monospace;color:rgb(0,0,0);background-color:t=
+ransparent;font-weight:700;font-style:normal;font-variant:normal;text-dec=
+oration:none;vertical-align:baseline;white-space:pre-wrap">+ stelo;</span=
+></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0this.stelo =3D stelo;</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0this.punta =3D maxPunta;</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">}</span></p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">/** disegna restituisce true quando la ma=
+tita ha ancora punta, e ne riduce la punta di 1 mm. Restituisce false se =
+la punta e' finita. */</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0public boolean disegna() {</span></p>=
+
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0if (this.punta &gt; 0) {</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0this.punta--;=
+</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return true;<=
+/span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0}=C2=A0</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0else</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return false;=
+</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0}</span></p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">/** "tempera" riduce di un 1mm la matita,=
+ e allunga di 1mm la punta</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">a meno che la lunghezza della punta sia g=
+ia' il massimo. */</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0=C2=A0public boolean temp=
+era() {</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (this.stel=
+o &gt; minStelo) {</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0t=
+his.stelo--;</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0t=
+his.punta =3D Math.min(this.punta + 1, maxPunta);</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0r=
+eturn true;</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}=C2=A0</span=
+></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0else return f=
+alse;</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0}</span></p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0public int getStelo() {return this.st=
+elo;}</span></p>
+                <p dir=3D"ltr"
+                  style=3D"line-height:1.38;margin-top:0pt;margin-bottom:=
+0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,mo=
+nospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fon=
+t-style:normal;font-variant:normal;text-decoration:none;vertical-align:ba=
+seline;white-space:pre-wrap">=C2=A0public int getPunta() {return this.pun=
+ta;}</span></p>
+                <p dir=3D"ltr"
+                  style=3D"line-height:1.38;margin-top:0pt;margin-bottom:=
+0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,mo=
+nospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fon=
+t-style:normal;font-variant:normal;text-decoration:none;vertical-align:ba=
+seline;white-space:pre-wrap">}</span></p>
+                <br>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">Soluzione dell</span><span style=3D"font-si=
+ze:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,102,0);=
+background-color:transparent;font-weight:700;font-style:normal;font-varia=
+nt:normal;text-decoration:none;vertical-align:baseline;white-space:pre-wr=
+ap">'</span><span style=3D"font-size:12pt;font-family:&quot;Courier New&q=
+uot;,monospace;color:rgb(0,0,0);background-color:transparent;font-weight:=
+700;font-style:normal;font-variant:normal;text-decoration:none;vertical-a=
+lign:baseline;white-space:pre-wrap">Esercitazione 1, es. 2: la classe pub=
+blica Elicottero.</span></p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">//Elicottero.java</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">public class Elicottero {</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0private int x;</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0private int y;</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0private int altitude; </span><s=
+pan style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,monospace=
+;color:rgb(0,102,0);background-color:transparent;font-weight:700;font-sty=
+le:normal;font-variant:normal;text-decoration:none;vertical-align:baselin=
+e;white-space:pre-wrap">// 0 &lt;=3D altitude</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0private int speed;=C2=A0 =C2=A0=
+ </span><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;=
+,monospace;color:rgb(0,102,0);background-color:transparent;font-weight:70=
+0;font-style:normal;font-variant:normal;text-decoration:none;vertical-ali=
+gn:baseline;white-space:pre-wrap">// velocita' orizzontale: 0 &lt;=3D spe=
+ed</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0private int verticalSpeed;</spa=
+n></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0private double track;=C2=A0 </s=
+pan><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,mon=
+ospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">// angolo direzione: 0&lt;=3D track&lt;=3D2=
+pigreco</span></p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">=C2=A0=C2=A0/** Costruiamo un elicottero =
+sospeso nelle coordinate (0,0,altitude) con velocita' nulle e angolo di d=
+irezione 0 */</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0public Elicottero(int x, int y,=
+ int a) {</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0this.x =3D x;</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0this.y =3D y;</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0this.altitude =3D a;</spa=
+n></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0this.speed =3D 0;</span><=
+/p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0this.verticalSpeed =3D 0;=
+</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0this.track =3D 0.0;</span=
+></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0}</span></p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">=C2=A0=C2=A0//Metodi get per ogni attribu=
+to</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0public int getX() =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 {return x;}</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0public int getY() =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 {return y;}</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0public int getAltitude()=C2=A0 =
+=C2=A0 =C2=A0 {return altitude;}</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0public int getSpeed() =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 {return speed;}</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0public int getVerticalSpeed() {=
+return verticalSpeed;}</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0public double getTrack() =C2=A0=
+ =C2=A0 =C2=A0 {return track;}</span></p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">=C2=A0=C2=A0/** Metodi set per speed, ver=
+ticalSpeed e track. Non consento invece di cambiare le coordinate "istant=
+aneamente" */</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0public void setSpeed(int speed)=
+ {</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0assert 0 &lt;=3D speed: <=
+/span><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(192,0,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">"velocita</span><span style=3D"font-size:=
+12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0,102,0);bac=
+kground-color:transparent;font-weight:700;font-style:normal;font-variant:=
+normal;text-decoration:none;vertical-align:baseline;white-space:pre-wrap"=
+>'</span><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot=
+;,monospace;color:rgb(192,0,0);background-color:transparent;font-weight:7=
+00;font-style:normal;font-variant:normal;text-decoration:none;vertical-al=
+ign:baseline;white-space:pre-wrap"> non accettabile:" </span><span style=3D=
+"font-size:12pt;font-family:&quot;Courier New&quot;,monospace;color:rgb(0=
+,0,0);background-color:transparent;font-weight:700;font-style:normal;font=
+-variant:normal;text-decoration:none;vertical-align:baseline;white-space:=
+pre-wrap">+ speed;</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0=C2=A0this.speed =3D speed;</sp=
+an></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0}</span></p>
+                <br>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0public void setVerticalSpeed(int vert=
+icalSpeed)</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0{this.verticalSpeed =3D vertica=
+lSpeed;}</span></p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0public void setTrack(double track) {<=
+/span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0assert 0 &lt;=3D track &amp;&am=
+p; track &lt;=3D 2 * Math.PI: </span><span style=3D"font-size:12pt;font-f=
+amily:&quot;Courier New&quot;,monospace;color:rgb(192,0,0);background-col=
+or:transparent;font-weight:700;font-style:normal;font-variant:normal;text=
+-decoration:none;vertical-align:baseline;white-space:pre-wrap">"angolo no=
+n accettabile:" </span><span style=3D"font-size:12pt;font-family:&quot;Co=
+urier New&quot;,monospace;color:rgb(0,0,0);background-color:transparent;f=
+ont-weight:700;font-style:normal;font-variant:normal;text-decoration:none=
+;vertical-align:baseline;white-space:pre-wrap">+ track;</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0this.track =3D track;</span></p=
+>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0}</span></p>
+                <br>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,102,0);background-color:transparent;font-weight:700;=
+font-style:normal;font-variant:normal;text-decoration:none;vertical-align=
+:baseline;white-space:pre-wrap">=C2=A0=C2=A0/** Consento di cambiare le c=
+oordinate con lo scorrere del tempo */</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0public void elapse(double time) {</sp=
+an></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0int dx =3D (int) (speed * Math.=
+cos(track) * time); </span><span style=3D"font-size:12pt;font-family:&quo=
+t;Courier New&quot;,monospace;color:rgb(0,102,0);background-color:transpa=
+rent;font-weight:700;font-style:normal;font-variant:normal;text-decoratio=
+n:none;vertical-align:baseline;white-space:pre-wrap">//incremento x</span=
+></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0int dy =3D (int) (speed * Math.=
+sin(track) * time); </span><span style=3D"font-size:12pt;font-family:&quo=
+t;Courier New&quot;,monospace;color:rgb(0,102,0);background-color:transpa=
+rent;font-weight:700;font-style:normal;font-variant:normal;text-decoratio=
+n:none;vertical-align:baseline;white-space:pre-wrap">//incremento y</span=
+></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0int dz =3D (int) (verticalSpeed=
+ * time);</span><span style=3D"font-size:12pt;font-family:&quot;Courier N=
+ew&quot;,monospace;color:rgb(0,102,0);background-color:transparent;font-w=
+eight:700;font-style:normal;font-variant:normal;text-decoration:none;vert=
+ical-align:baseline;white-space:pre-wrap"> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 //incremento z</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0x +=3D dx;</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0y +=3D dy;</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0=C2=A0altitude =3D Math.max(0, altitu=
+de + dz);=C2=A0</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">=C2=A0}</span></p>
+                <p dir=3D"ltr"
+style=3D"line-height:1.38;text-align:justify;margin-top:0pt;margin-bottom=
+:0pt"><span style=3D"font-size:12pt;font-family:&quot;Courier New&quot;,m=
+onospace;color:rgb(0,0,0);background-color:transparent;font-weight:700;fo=
+nt-style:normal;font-variant:normal;text-decoration:none;vertical-align:b=
+aseline;white-space:pre-wrap">}</span></p>
+              </blockquote>
+            </blockquote>
+          </div>
+        </blockquote>
+      </div>
+      <br>
+      <div style=3D"font-size:1.3em">------------------------</div>
+      <span style=3D"font-size:small">
+        <div><img src=3D"https://web.unito.it/logofirmastu.png"
+            moz-do-not-send=3D"true"><br>
+        </div>
+        Indirizzo istituzionale di posta elettronica degli studenti e
+        dei laureati dell'Universit=C3=A0 di Torino</span>
+      <div><font size=3D"2">Official=C2=A0University of Turin=C2=A0email =
+address=C2=A0for
+          students and graduates=C2=A0</font></div>
+    </blockquote>
+  </body>
+</html>
+
+--------------b0EHXgniWqd3h3T9KMHSuM2U--

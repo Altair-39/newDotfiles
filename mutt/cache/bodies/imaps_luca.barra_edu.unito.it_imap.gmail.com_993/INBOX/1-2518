@@ -1,0 +1,290 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a54a:0:b0:328:ea4:e135 with SMTP id e10csp1272759ljn;
+        Mon, 19 May 2025 02:05:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCVEmepEnDVTzu5aDXtX3L+C39DEdeSINiDKfs7cGShXKPZuyAZSC3z7pTb0PyLl1VsoDJwx+f1/Yzav@edu.unito.it
+X-Received: by 2002:a17:906:8916:b0:ad5:4dcf:d3f8 with SMTP id a640c23a62f3a-ad54dcfd7e0mr170518166b.10.1747645511885;
+        Mon, 19 May 2025 02:05:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1747645511; cv=none;
+        d=google.com; s=arc-20240605;
+        b=bfniSvDX+tS1NKL4vmy/g9ZERQz0vGnVdbhKbGTrxcw+3nxvN14anvmkiVAX2GCgWY
+         DHS1mWgn56tOIFDIeK68KgNIOIgCOhEA5yd4h4A9GJK9NH0ktDimQBN7OZPcVJ5sd2WR
+         +fHG0l1EcjRsr7KN8R63iWYDx55gZW3gHh2wQ/ZnGk8QjAVxnpk5icfND4Fm8m04j29X
+         GxOORIPgIn8PUzpQAUz4ST7jSuLqrlUHdRBaVLh5JeKgMHAoMG1kh1JL2fL2T33o5yMV
+         PyeKll+OFmgDzR605p4XFUF9pi5jBY//LeR80RMFoP5YJMNQMGxmhs69t/61iJ0MIiuS
+         aOlw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=h1bfOYWb3cQQksIhkSVzRxIgAO/BzA17elzaD9Kwz7M=;
+        fh=6cu3zh2v95OKU1m7E+F/omly7+SFvixu7Y54fvjkjg4=;
+        b=lYTgTWrmc3fQXLsvI51W52uOg58CNVXBxxqICuBvJVMMuFQJBI7D8nQH1oIhuJnNKU
+         gleOFXkd29Mx1EuP6TJ0/Iv+eLqF+uKOWzzEJZyITp+QvxmG3tNIVWoEGnxGsYKGEtFP
+         COTUFrG7joacpBhIp7TlmtiFuJMCdtQqoRKSFLTy2CI54ueSU3g9gzAIvXbmXMeKK86Y
+         Q3aFo7A7IvasHBxg5l0Q8Z+VseTjYgP/ADojOlmR/eHbdTCKBYhXzS2rU0kmtCf5s+qJ
+         Oz45vKt9hOBs2y28fQ7tVJ7RbpuHA2EECMpetZqaVvbUdn8q3bB3sRyGYkOXvDqSMb8p
+         C4fA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=aIcmsXfz;
+       spf=pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.inclusione@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <tutorato.inclusione@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-ad52d371a9dsor323676966b.13.2025.05.19.02.05.11
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Mon, 19 May 2025 02:05:11 -0700 (PDT)
+Received-SPF: pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=aIcmsXfz;
+       spf=pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.inclusione@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1747645511; x=1748250311; darn=edu.unito.it;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=h1bfOYWb3cQQksIhkSVzRxIgAO/BzA17elzaD9Kwz7M=;
+        b=aIcmsXfzrDBQV0qgFqjsyfXcEw/Nt7z6PZEZZbjl+4EyHzMetM/iUViHyIgLt++C7m
+         Spi12+INopSTZl+d9D61cvH6xpZ5C3KS5KOEWp7nWXyZcvM+N9n5U4SAqpkHb+Vtgpxm
+         0kP2rzLbcAvH4kUN1jInEe0Zz0cs1p5sjhxRelBrWHy2EBSPFPooGa8C2kr2aSv0M3si
+         DZYt1dV+Xd0hBDkFT4/jk1VdG/RCAoG0AFDoo7jIbyKDWoovx3kt64CO6ze0gn+jDes/
+         a0vw+bjVRdP1sVPAfXdj8AlNNaTO20g3FCV/PtdQXwrTzfFFNa1cglKNg+XHUVEMb7ny
+         XaeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1747645511; x=1748250311;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=h1bfOYWb3cQQksIhkSVzRxIgAO/BzA17elzaD9Kwz7M=;
+        b=NDaQaedKBDBAtAAYexWlgmkYfdZi0Vxvh1xDqLSNmlgTCU2o0k0m1/4oKBieLq9kfI
+         ZDKpq5G/VhUFNW76zkqc+bUj/Z8TPAJHqZzTMtxpn7yKFwXl3oqLof45ROfyQr7d2Omr
+         GTh7S8n1RZkOPrS/JgvPugoLTKsBrhQGZEpuDkeFabPsmyqW8/vDCrrXO4WOY8qLFG/P
+         NQ1TQTtseWMgkE2zi/lMhylBSC2HShdAdMzf+/ZjQJD4eJkqyP1k0hYG7p70FSOK/XvM
+         Kgwho25dvYAtdGgQpO6MpNNzkq+wQ6kQQOdpjCqzDodu37JDMPyiK5oAuV9PLMXSdil7
+         ayGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWxO/Lmpl+myecUhtZYpO073fHfpR8GH8+bP7gtqFD0sDs0jOlW2xa/fwQdan5qfUrOxQy65H+pAej2@edu.unito.it
+X-Gm-Message-State: AOJu0YxD3WEdUIxEezcoLSiTaqT8MzUN4he4/aKHPEBHN7CeuirXw8i3
+	fQGUt6ADbksDHKbbjl3lyZQeqfHy0Yx7ZxlxcZTh5/nD0LtZvW4TNLmA7F0bF7BGORF/Y87AS3x
+	iUewmb88UFqoy7vJw8JdeEjBtI5+2qqLnqv1sCXgmJ9KO
+X-Gm-Gg: ASbGncv17buaYo0Qt9h1lUiCPgSdvvfVJeQshFp9k/tMqpNeLwMkk+Fw97YCndKwmF8
+	BQaAJPae52vI2yZOld+33wNuCBmeG9Xz6p8TnKM4YsqESdd7oqe4dYUU83YtxJMcZICYSQlQvPy
+	y31vDn/NFu986zZ2JJ8qdKS23xmB+nMlplXw==
+X-Google-Smtp-Source: AGHT+IGVvJardHJKaDXOlP6ehFRwkY64gFFI8vajMA6MM8hln+cJpGTg3/yLrr9+A9tOuuWZlWFY48+0BIXU0AOjwmo=
+X-Received: by 2002:a17:906:c156:b0:acf:15d:2385 with SMTP id
+ a640c23a62f3a-ad536bca939mr1149104566b.16.1747645510752; Mon, 19 May 2025
+ 02:05:10 -0700 (PDT)
+MIME-Version: 1.0
+From: Tutorato Disabili <tutorato.inclusione@unito.it>
+Date: Mon, 19 May 2025 11:04:54 +0200
+X-Gm-Features: AX0GCFuKVYIG4eQ-RBzagFQeqWitE-7zEz7Dxxf79l17LZLOMOPpPT0LODVXylc
+Message-ID: <CAOKF-fVEUF9hG4yqzZ-xDvqT-m-Wsg0byq8LzSybqBdayfcgDg@mail.gmail.com>
+Subject: =?UTF-8?Q?SUPPORTO_Richiesta_disponibilit=C3=A0_collaborazione_200?=
+	=?UTF-8?Q?_ore_con_studenti_disabili_e_DSA?=
+To: undisclosed-recipients:;
+Content-Type: multipart/alternative; boundary="000000000000dcad380635796d04"
+Bcc: luca.barra@edu.unito.it
+
+--000000000000dcad380635796d04
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Gent.mo/a studente/ssa,
+
+data la Sua presenza nella graduatoria per le collaborazioni a tempo
+parziale (200 ore), con la presente si chiede la Sua disponibilit=C3=A0 ad
+effettuare una collaborazione finalizzata all'assistenza didattica a favore
+di uno/a studente con disabilit=C3=A0 e/o con DSA iscritto al CdS in
+*Informatica*
+
+Si precisa che, nel corso dell'anno accademico 2024/25, non deve aver
+sottoscritto un altro contratto di collaborazione a tempo parziale con
+altri Uffici dell'Ateneo e che deve essere regolarmente iscritto/a
+all'Universit=C3=A0.
+
+Nello specifico, si ricerca un tutor per attivit=C3=A0 di *Supporto allo st=
+udio* per
+i seguenti corsi:
+
+
+   - Analisi matematica, prof Seiler, 9 CFU
+   - Analisi matematica, prof Soave, 9 CFU
+   - Architettura degli elaboratori, prof Drago, 6 CFU
+   - Architettura degli elaboratori, prof Gaeta, 6 CFU
+   - Elaborazione di immagini e visione artificiale, prof Cavagnino, 9 CFU
+   - IA Lab, prof Pozzato, 9 CFU
+   - Matematica Discreta I,prof Chen, 6 CFU
+   - Matematica Discreta, Algebra e Geometria, prof Buzano e prof Chen, 12
+   CFU
+   - matematica discreta,prof Mori, 6CFU
+   - Programmazione 2, prof Damiani, 6 CFU
+   - Programmazione II, prof Damiani, 6 CFU
+   - Programmazione II, prof Garretto, 6 CFU
+   - Sicurezza delle reti e dei sistemi, prof Drago, 6 CFU
+   - Sicurezza II(modulo di Complementi di Reti e Sicurezza), prof
+   Bergadano, 6 CFU
+   - Sistemi intelligenti, prof Baroglio, 6 CFU
+   - Sistemi operativi, prof Gunetti, 9 CFU
+   - Sviluppo delle applicazioni software, prof Baldoni, 9 CFU
+   - Verifica dei programmi concorrenti, prof Donatelli, 6 CFU
+
+
+*Specificare:*
+
+   1. *quante ore rimangono disponibili per la collaborazione (AL NETTO DI
+   QUELLE GIA' ASSEGNATE);*
+   2. *per quale/i attivit=C3=A0 ci si rende disponibili;*
+   3. *a quale Corso di Studi si risulta iscritti;*
+   4. *periodo previsto della laurea.*
+
+*Per il supporto allo studio =C3=A8 necessario avere una buona conoscenza d=
+ella
+materia (es. aver sostenuto esami simili/complementari, essersi
+laureati/essere prossimi alla laurea per quella disciplina)*
+
+
+La risposta di disponibilit=C3=A0 alla presente  dovr=C3=A0 pervenire ***en=
+tro 48 ore
+con una mail*** a questo indirizzo SOLO SE INTERESSATI.
+Si precisa che la ricezione di tale email, anche in caso di una sua
+risposta affermativa, non garantisce l'assegnazione dell'incarico, ma
+permette di essere tenuti in considerazione per l'assegnazione
+dell'attivit=C3=A0.
+Nel caso venisse selezionato/a ricever=C3=A0 una mail di richiesta disponib=
+ilit=C3=A0
+per un incontro conoscitivo con lo studente/studentessa.
+Nel caso in cui non si potesse dare disponibilit=C3=A0 alle attivit=C3=A0 p=
+roposte,
+si prega di non rispondere a questa mail.
+
+
+Questa email, viene inviata a pi=C3=B9 studenti,
+*l'assegnazione dell'incarico avverr=C3=A0 sulla base della graduatoria e d=
+elle
+esigenze specifiche dello studente; nel caso non  venisse selezionato/a
+non verranno fatte altre comunicazioni in merito ai temi della presente.*
+
+
+Cordiali saluti
+Ufficio Studenti con Disabilit=C3=A0 e DSA
+Direzione Didattica Servizi agli Studenti
+Via Verdi 25 - 10124 Torino
+tel. 011.6704284
+mail tutorato.inclusione@unito.it <ufficio.dsa@unito.it>
+
+--000000000000dcad380635796d04
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div dir=3D"ltr"><div class=3D"gmail_default" style=
+=3D"font-family:verdana,sans-serif"><div dir=3D"ltr"><div class=3D"gmail_de=
+fault"><div dir=3D"ltr"><div class=3D"gmail_default"><div dir=3D"ltr"><div =
+class=3D"gmail_default"><div dir=3D"ltr"><div class=3D"gmail_default"><div =
+dir=3D"ltr"><div class=3D"gmail_default"><div dir=3D"ltr"><div class=3D"gma=
+il_default"><br></div><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">Gent.mo/a s=
+tudente/ssa,<br></div><div dir=3D"ltr"><div class=3D"gmail_default"><div di=
+r=3D"ltr"><div class=3D"gmail_default"><div dir=3D"ltr"><div class=3D"gmail=
+_default"><div dir=3D"ltr"><div class=3D"gmail_default"><div dir=3D"ltr"><d=
+iv class=3D"gmail_default"><div dir=3D"ltr"><div class=3D"gmail_default"><d=
+iv dir=3D"ltr"><div class=3D"gmail_default"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+class=3D"gmail_quote"><div bgcolor=3D"#FFFFFF"><div bgcolor=3D"#FFFFFF"><br=
+>data la Sua presenza nella graduatoria per le collaborazioni a tempo parzi=
+ale (200 ore), con la presente si chiede la Sua disponibilit=C3=A0 ad effet=
+tuare una collaborazione finalizzata all&#39;assistenza didattica a favore =
+di uno/a studente con disabilit=C3=A0 e/o con DSA iscritto al CdS in=C2=A0<=
+b><u>Informatica</u></b></div><div bgcolor=3D"#FFFFFF"><b><u><br></u></b>Si=
+ precisa che, nel corso dell&#39;anno accademico 2024/25, non deve aver sot=
+toscritto un altro contratto di collaborazione a tempo parziale con altri U=
+ffici dell&#39;Ateneo e che deve essere regolarmente iscritto/a all&#39;Uni=
+versit=C3=A0.<br><br><div bgcolor=3D"#FFFFFF">Nello specifico, si ricerca u=
+n tutor per attivit=C3=A0 di=C2=A0<b><u>Supporto allo studio</u></b>=C2=A0p=
+er i seguenti corsi:=C2=A0</div><div bgcolor=3D"#FFFFFF">=C2=A0</div></div>=
+<div bgcolor=3D"#FFFFFF"><div><ul><li>Analisi matematica, prof Seiler, 9 CF=
+U</li><li>Analisi matematica, prof Soave, 9 CFU</li><li>Architettura degli =
+elaboratori, prof Drago, 6 CFU</li><li>Architettura degli elaboratori, prof=
+ Gaeta, 6 CFU</li><li>Elaborazione di immagini e visione artificiale, prof =
+Cavagnino, 9 CFU</li><li>IA Lab, prof Pozzato, 9 CFU</li><li>Matematica Dis=
+creta I,prof Chen, 6 CFU</li><li>Matematica Discreta, Algebra e Geometria, =
+prof Buzano e prof Chen, 12 CFU</li><li>matematica discreta,prof Mori, 6CFU=
+</li><li>Programmazione 2, prof Damiani, 6 CFU</li><li>Programmazione II, p=
+rof Damiani, 6 CFU</li><li>Programmazione II, prof Garretto, 6 CFU</li><li>=
+Sicurezza delle reti e dei sistemi, prof Drago, 6 CFU</li><li>Sicurezza II(=
+modulo di Complementi di Reti e Sicurezza), prof Bergadano, 6 CFU</li><li>S=
+istemi intelligenti, prof Baroglio, 6 CFU</li><li>Sistemi operativi, prof G=
+unetti, 9 CFU</li><li>Sviluppo delle applicazioni software, prof Baldoni, 9=
+ CFU</li><li>Verifica dei programmi concorrenti, prof Donatelli, 6 CFU</li>=
+</ul></div><div><b><br></b></div><div><u>Specificare:</u></div><div><ol><li=
+><u>quante ore rimangono disponibili per la collaborazione (AL NETTO DI QUE=
+LLE GIA&#39; ASSEGNATE);</u></li><li><u>per quale/i attivit=C3=A0 ci si ren=
+de disponibili;</u></li><li><u>a quale Corso di Studi si risulta iscritti;<=
+/u></li><li><u>periodo previsto della laurea.</u></li></ol></div><div><i>Pe=
+r il=C2=A0<b>supporto allo studio</b>=C2=A0=C3=A8=C2=A0necessario avere una=
+ buona conoscenza della materia (es. aver sostenuto esami simili/complement=
+ari, essersi laureati/essere prossimi alla laurea per quella disciplina)</i=
+></div><div><span style=3D"font-weight:bold"><span style=3D"font-weight:400=
+"><i><br></i></span></span><br>La risposta di disponibilit=C3=A0 alla prese=
+nte=C2=A0 dovr=C3=A0 pervenire **<u>entro 48 ore con una mail</u>** a quest=
+o indirizzo SOLO SE INTERESSATI.<br>Si precisa che la ricezione di tale ema=
+il, anche in caso di una sua risposta affermativa, non garantisce l&#39;ass=
+egnazione dell&#39;incarico, ma permette di essere tenuti in considerazione=
+ per l&#39;assegnazione dell&#39;attivit=C3=A0.</div><div>Nel caso venisse =
+selezionato/a ricever=C3=A0 una mail di richiesta disponibilit=C3=A0 per un=
+ incontro conoscitivo con lo studente/studentessa.</div><div>Nel caso in cu=
+i non si potesse dare disponibilit=C3=A0 alle attivit=C3=A0 proposte, si pr=
+ega di non rispondere a questa mail.</div><div><br><br>Questa email, viene =
+inviata a pi=C3=B9 studenti, <u>l&#39;assegnazione dell&#39;incarico avverr=
+=C3=A0 sulla base della graduatoria e delle esigenze specifiche dello stude=
+nte; nel caso non=C2=A0 venisse selezionato/a=C2=A0 non verranno fatte altr=
+e comunicazioni in merito ai temi della presente.<br></u></div></div><div b=
+gcolor=3D"#FFFFFF"></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div><div><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">=
+<div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div=
+ dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"l=
+tr"><br></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div><div><div =
+dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><font color=3D"#000000"><font co=
+lor=3D"#666666"><font color=3D"#000000" face=3D"verdana, sans-serif"><br></=
+font></font></font></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div><div><div dir=3D"ltr" class=
+=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div><div><div dir=3D"ltr" class=3D"gmail_signature=
+" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div><font face=3D"verdana, sans-serif" style=3D"col=
+or:rgb(34,34,34)">Cordiali saluti</font></div><div dir=3D"ltr"><font face=
+=3D"verdana, sans-serif" style=3D"color:rgb(34,34,34)">Ufficio Studenti con=
+ Disabilit=C3=A0 e DSA</font><div style=3D"color:rgb(34,34,34)"><font face=
+=3D"verdana, sans-serif" color=3D"#666666">Direzione Didattica Servizi agli=
+ Studenti</font></div><div style=3D"color:rgb(34,34,34)"><span style=3D"col=
+or:rgb(102,102,102);font-family:verdana,sans-serif">Via Verdi 25 - 10124 To=
+rino</span><br></div><div style=3D"color:rgb(34,34,34)"><font face=3D"verda=
+na, sans-serif" color=3D"#666666">tel. 011.6704284</font></div><div style=
+=3D"color:rgb(34,34,34)"><font face=3D"verdana, sans-serif"><font color=3D"=
+#666666">mail</font>=C2=A0</font><a href=3D"mailto:ufficio.dsa@unito.it" st=
+yle=3D"color:rgb(17,85,204);font-family:verdana,sans-serif;font-size:12.8px=
+" target=3D"_blank">tutorato.inclusione@unito.it</a></div></div></div></div=
+></div></div></div></div></div></div></div></div></div>
+
+--000000000000dcad380635796d04--

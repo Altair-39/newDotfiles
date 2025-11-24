@@ -1,0 +1,137 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:3614:0:b0:30c:2dd2:a8c1 with SMTP id d20csp5514117lja;
+        Wed, 9 Apr 2025 02:48:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG14Z+ffAYSQZrF/YziAD7jv8ioXmcYYbKKYjcl3YIn3punSJuKSmz2IJfM8ENndhBrUvfe
+X-Received: by 2002:a05:6402:50c6:b0:5de:d986:417 with SMTP id 4fb4d7f45d1cf-5f2f775ca72mr613664a12.10.1744192100322;
+        Wed, 09 Apr 2025 02:48:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1744192100; cv=none;
+        d=google.com; s=arc-20240605;
+        b=hVCPSermp4wsSusmTP6r3KFyxEiUfmW9jIQVUiKUhEnt0rs5IpnEqjexSUFyy6tOTp
+         4VsgVEbPvhp8YJfO7zLpRP80LA1rlwZI8JIftA0WMgqMuD7UID7COFstzUQV501FOAkk
+         2HmEFg0t2OY0dx1Lst2qEOrAk5Fex8IastSyHB20jMRasFNdUoOqj+qm1PPjc8FqMt/l
+         KLXHPPCxVKDwOHShCdjEm/JoZQWhMvvE2tQ6NzIs5zmOZJHTPwfgqRh3C5cGSeXsGgHS
+         4W/QqarSPgugi4R2eXME/kMwFhrDzCRqhl6t/RAq4iYti4WLuL4BQOSUm+N6IsTO49/r
+         xbFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=sK9h8hL0sAFEKO564RYTvj8ij2wkEXJxK19i8AUzwpM=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=O+yKCo3O+2zQTE9DHiXUoshmP78x9c9rPHXcehmpI4hjnDQQQ+fB5IW5V7llq76OS3
+         1duXnmonh4ituTaRIKNixNBjSqaTy4ypI/oece73K9q+CFxkLCqIhTyTjIM0tj2CtTiW
+         Imi1cpncHb2xRxN9wGvBi+4SFPObL8e/TweYm/M2l1TaTcb5x+/MPTsVzyK+cUct2DVY
+         HV8rENawxO0lSPy61X+SWFtce9fpsd1fXfJ8EbukMlha45l3AO4c3VfFjrKE3xwAGiLr
+         n/KHaU018+q4MbPRXEUMCWC6qpdC9OnK5o0553ILZDSMyZ/J78kPvAC3iF0aiY/Ee+u7
+         kIEw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-5f2fbd18df2si520587a12.336.2025.04.09.02.48.19
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Apr 2025 02:48:20 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 5399mJ872428299
+	for <luca.barra@edu.unito.it>; Wed, 9 Apr 2025 11:48:19 +0200
+Date: Wed, 9 Apr 2025 11:48:19 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Geninatti Cossatin Angelo (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: BD-A-24-25: Tutorato
+Message-ID: <e8c82cea08da6554ac79550bfda3f11dda24f3d798ee598467daa243f8fb4d87@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7328@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7328
+X-Course-Id: 2906
+X-Course-Name: BASI DI DATI (A) [Cognomi A-K]
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: BD-A-24-25: Tutorato
+Thread-Index: e8c82cea08da6554ac79550bfda3
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_Ep6OqIj1cAviz0QYVijFvZ6tA482SkH4ypuN3oZ7o"
+
+This is a multi-part message in MIME format.
+
+--b1_Ep6OqIj1cAviz0QYVijFvZ6tA482SkH4ypuN3oZ7o
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+BD-A-24-25 -> Forums -> Annunci -> Tutorato
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44261#p71877
+Tutorato
+by Geninatti Cossatin Angelo - Wednesday, 9 April 2025, 11:32 AM
+---------------------------------------------------------------------
+Buongiorno,
+
+Vi comunico che sono disponibile per rispondere a domande, chiarire dubbi e
+ripassare gli argomenti trattati. Il tutorato si svolge online su
+appuntamento: per prenotare, potete contattarmi a questo indirizzo
+email:=C2=A0angelo.geninatticossatin@unito.it.
+
+Cordialmente,
+
+Angelo Geninatti
+
+---------------------------------------------------------------------
+This is a copy of a message posted in BD-A-24-25.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2906
+
+--b1_Ep6OqIj1cAviz0QYVijFvZ6tA482SkH4ypuN3oZ7o
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2906">BD-A-24-25</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D2906">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+328">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://i=
+nformatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44261">Tutorato</a>=
+=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" cellspacing=3D"0" clas=
+s=3D"forumpost">=0A    <tr class=3D"header">=0A        <td width=3D"35" val=
+ign=3D"top" class=3D"picture left">=0A            <a href=3D"https://inform=
+atica.i-learn.unito.it/user/view.php?id=3D32132&amp;course=3D2906" class=3D=
+"d-inline-block aabtn"><img src=3D"https://informatica.i-learn.unito.it/the=
+me/image.php/_s/lambda/core/1742774192/u/f2" class=3D"userpicture defaultus=
+erpic" width=3D"35" height=3D"35" alt=3D"" /></a>=0A        </td>=0A       =
+ <td class=3D"topic starter">=0A            <div class=3D"subject">=0A     =
+           Tutorato=0A            </div>=0A            <div class=3D"author=
+">=0A                by <a target=3D'_blank' href=3D'https://informatica.i-=
+learn.unito.it/user/view.php?id=3D32132&course=3D2906'>Geninatti Cossatin A=
+ngelo</a> - Wednesday, 9 April 2025, 11:32 AM=0A            </div>=0A      =
+  </td>=0A    </tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"=
+top">=0A                &nbsp;=0A        </td>=0A        <td class=3D"conte=
+nt">=0A            <p dir=3D"ltr" style=3D"text-align:left;">Buongiorno,</p=
+><p dir=3D"ltr" style=3D"text-align:left;">Vi comunico che sono disponibile=
+ per rispondere a domande, chiarire dubbi e ripassare gli argomenti trattat=
+i. Il tutorato si svolge online su appuntamento: per prenotare, potete cont=
+attarmi a questo indirizzo email:=C2=A0angelo.geninatticossatin@unito.it.</=
+p><p dir=3D"ltr" style=3D"text-align:left;">Cordialmente,</p><p dir=3D"ltr"=
+ style=3D"text-align:left;">Angelo Geninatti</p>=0A=0A            <div clas=
+s=3D"commands">=0A            </div>=0A=0A            <div class=3D"link">=
+=0A                <a target=3D"_blank" href=3D"https://informatica.i-learn=
+.unito.it/mod/forum/discuss.php?d=3D44261#p71877">=0A                    Se=
+e this post in context=0A                </a>=0A            </div>=0A      =
+  </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubs=
+cribelink">=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/forum=
+/index.php?id=3D2906">Change your forum digest preferences</a>=0A</div>
+
+--b1_Ep6OqIj1cAviz0QYVijFvZ6tA482SkH4ypuN3oZ7o--
+

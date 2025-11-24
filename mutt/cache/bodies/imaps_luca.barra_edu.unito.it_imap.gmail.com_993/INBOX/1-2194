@@ -1,0 +1,127 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:8e23:0:b0:309:27f0:106e with SMTP id r3csp77790ljk;
+        Tue, 25 Feb 2025 02:24:05 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCWJtfFbeJYaf32wTH+KMBxRzMayYf1Wz467tuoIxsQr/nGmtpP8J/s3bEJuOMA5I91uPHkzjmdgp0ac@edu.unito.it
+X-Google-Smtp-Source: AGHT+IEqUnuJ3/8KmaVK6FMw0VwIj8xGBZIDdhEonk8/l57AYWQsgcIvphoNqNO0L4+fN69h9waD
+X-Received: by 2002:a05:6402:524f:b0:5dc:5ada:e0c7 with SMTP id 4fb4d7f45d1cf-5e44a256c98mr6537737a12.26.1740479044973;
+        Tue, 25 Feb 2025 02:24:04 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1740479044; cv=none;
+        d=google.com; s=arc-20240605;
+        b=lG69YuqwgYltmP0jqkolzjYPhsLLUHGWOB2ugSZnVLIYUEzReB2hi0tLIBx383RLga
+         ih+zf+CH2fFKjKozfgP1yETETKEuMsZTVvo+FD7KqO/mhCyp5cGdzHv59ybDjYreN93n
+         CkJBsG2+6Ctg+C4cyKXdr7rJ532n0yH4InjoWsWspNQ316lqVVFoMjM3ewNT1PzPa8hc
+         GYM5LaeoTakLBtcg84yWHBe7b7js8REKLGYrkk7+xiQgQL+wne9t1dHaqasOnuLRnGTk
+         4bX4QhUXv3Kx7EQ/WvL6B9KGlJg8OtmdI4DU8k7GpDnytqTiFZHoBeuzN1n4/cUuyYId
+         8X1A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=DZ1nKqG7Fg51iDgKeDd+P62ntnsrWWxUS7Bun+lqRWs=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=XrJP2swW1umQ9MaOO3dkrJqsUaoUtdXkCSKXPBRs1joA6KbMgDJATZmyN0sXH0nCgL
+         nagCT56M7FcQZYq7q42vn40K2avcT51EWJSF+vT3DydJ1tIXWq0/RPPb53JIjct56tb3
+         wtG16JaK7v+b04WAZ8h6imHV5ESnWvAY2oL5vUYMN7Q1RrHO6zl59yALm2pC8x9epFJO
+         11WaWgdgsIB+5Wl36ee+yLoFiUxUqGroaiJ9O2bHG5Am4QP4fRNspTmd+wA1ZJaD2g6R
+         2isQBHEkyujmxUNUufv53PGm6dKIRBtM2vjQ7MO+ZcLjE0n/hb9WAgr4UMr9J5ovKyu0
+         yqFA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b="FEmN6/2v";
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id a640c23a62f3a-abed207a7absi108864266b.695.2025.02.25.02.24.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 25 Feb 2025 02:24:04 -0800 (PST)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b="FEmN6/2v";
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 3133A2321B;
+	Tue, 25 Feb 2025 11:24:00 +0100 (CET)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id CbSaWktgZXZ2; Tue, 25 Feb 2025 11:23:59 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 3AFBD22DC3;
+	Tue, 25 Feb 2025 11:23:56 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 3AFBD22DC3
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1740479037;
+	bh=DZ1nKqG7Fg51iDgKeDd+P62ntnsrWWxUS7Bun+lqRWs=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=FEmN6/2vSQnIbCLbhQ2K1N0lHeTOjoDoGplkCSWlPrVCi9IVvucQ+4ThSoZhhGA6I
+	 MMXnC/garzyzDTd4OosAcS+q7idHvut1CSCGoLmBZSGUJvR6T5VHpEDZgjzclgys2g
+	 wLegmiwB1cW0AQXTGJr1PaQcFCmvsJy10DkjJZMR8sFO+zeB3aUl2twU8Vy/bl3gX2
+	 3tiGb5cuNtQTxqO8cgQBd83ExYkfqW56gke3afVECmHduqi+YvekPlQ4QJcYh/Ej96
+	 XLFb1mIrax4JHgPYgUnT5NQQlOOzIdZfLrTmcg5oVVFjYq74PTGsNC8SYhPOwSgOs8
+	 fxcQgS0m91XWw==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id D-SRpsKUFg2b; Tue, 25 Feb 2025 11:23:55 +0100 (CET)
+Received: from esse3appjboss23.private.cineca.it (esse3appjboss23.cineca.it [130.186.5.144])
+	by smtp4.cineca.it (Postfix) with ESMTP id 8C00A23172;
+	Tue, 25 Feb 2025 11:23:51 +0100 (CET)
+Received: from esse3appjboss23.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss23.private.cineca.it (Postfix) with ESMTP id 63A0D32B;
+	Tue, 25 Feb 2025 11:23:49 +0100 (CET)
+Date: Tue, 25 Feb 2025 11:23:49 +0100 (CET)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <1102910222.449.1740479029395@esse3appjboss23.private.cineca.it>
+Subject: Elezioni studentesche 2025 - presentazione liste e candidature
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+To: undisclosed-recipients:;
+
+<p>
+      Si ricorda che la presentazione e la sottoscrizione delle liste (e delle 
+      candidature), per le Elezioni Studentesche 2025, deve avvenire tramite 
+      apposita procedura web, a pena di decadenza, <b>entro e non oltre le ore 
+      12.00 del 4 marzo 2025</b>.
+    </p>
+    <p>
+      Attraverso le proprie credenziali SCU, &#232; possibile accedere alla 
+      procedura presente sul Portale di Ateneo alla pagina dedicata alle <a href="https://www.unito.it/ateneo/organizzazione/elezioni/elezioni-studentesche-2025-rappresentanti-negli-organi-universitari">Elezioni 
+      Studentesche 2025 - Rappresentanti negli organi universitari ed 
+      extra-universitari</a> e nel box Elezioni Studentesche 2025 nell'area 
+      MyUniTO. Per ulteriori dettagli <a href="https://www.unito.it/ateneo/organizzazione/elezioni/elezioni-studentesche-2025-rappresentanti-negli-organi-universitari">Consultare 
+      le modalit&#224; operative</a>.
+    </p>
+    <p>
+      Le votazioni si svolgeranno con procedura e-voting nelle seguenti date:
+    </p>
+    <ul>
+      <li>
+        <b>24 marzo 2025</b>, dalle ore 9.00 alle ore 21.00
+      </li>
+      <li>
+        <b>25 marzo 2025</b>, dalle ore 9.00 alle ore 21.00
+      </li>
+      <li>
+        <b>26 marzo 2025</b>, dalle ore 9.00 alle ore 16.00
+      </li>
+    </ul>
+    <p>
+      Le elettrici/gli elettori sono tenute/i a <b>controllare l'elenco 
+      provvisorio dell'elettorato attivo</b> pubblicato sul Portale di Ateneo 
+      e, qualora il numero della propria matricola non risulta inserito 
+      seppure regolarmente iscritte/i, devono segnalarlo inviando una e-mail a <a href="mailto:votazioni@unito.it">votazioni@unito.it</a> 
+      entro le ore 12.00 del 28 febbraio 2025.
+    </p>
+    <p>
+      In contemporanea con le Elezioni Studentesche Unito, si svolgeranno le <b>Elezioni 
+      dei rappresentanti della UNITA Student Assembly</b>.
+    </p>
+    <p>
+      I documenti di riferimento, i termini e le modalit&#224; per la presentazione 
+      delle liste e delle candidature sono consultabili alla pagina <a href="https://www.unito.it/internazionalita/unita-universitas-montium/student-assembly-di-unita">Student 
+      Assembly di UNITA</a> e sul sito <a href="https://www.ubi.pt/Sites/unita/en/Pagina/student_assembly#student_assembly_elections">UNITA 
+      - Student Assembly elections</a>.
+    </p>

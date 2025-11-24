@@ -1,0 +1,785 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b5b0:0:b0:2fb:4c9b:a38b with SMTP id f16csp441583ljn;
+        Tue, 26 Nov 2024 17:58:17 -0800 (PST)
+X-Received: by 2002:a5d:5f47:0:b0:382:4378:464b with SMTP id ffacd0b85a97d-385c6edcfcbmr270416f8f.10.1732672457724;
+        Tue, 26 Nov 2024 17:54:17 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF8uQslVfS0lNXAU/KGY5LGt3nSHo2OKGu6NivkcpwPyIhot1VzNKdl4rn4UQvw1ibA69cA
+X-Received: by 2002:a5d:5f47:0:b0:382:4378:464b with SMTP id ffacd0b85a97d-385c6edcfcbmr270404f8f.10.1732672456699;
+        Tue, 26 Nov 2024 17:54:16 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1732672456; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ITI0YCn/+MbeCC4NTXmWMvclbb3eMfdjPMYlSu28l4HL+A0vsgFvtKbcs88CAQekmy
+         bPQotR7NIJoWBXNrvnH0YWpVfuyWOTPJSnhjbLiLCEcTVl/m4I3oVzbM1kTnnXWlp9Yx
+         BJg0/UKdJYKOZ2THiL+k84lzSi/U6lNjXfKeMTxixaTdZkPGiIYkmFOsxKnGDnW5s/I0
+         qpNkrV1pjZTBPYlmFmQSRz2jt5YZYRhLyi2fQpIZiQrqotShXEg5VYxHxqdz+vPMcz5o
+         77mahob5eMXBV6uR3o+FI/85+vXrANC/BsmvQz8jNa1xfy42JREtVN5mAUautLn94/ku
+         HmrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:date:content-transfer-encoding:cgre:message-id:subject
+         :to:from;
+        bh=/JKOQCUd/k4WWWRz/HSwREE12XekZafgFi7O5mYH2bY=;
+        fh=kLhlT/zWEv02U8epaJJmtHcXdOj86upx6yqu1QxPdWs=;
+        b=Qk8J8xBk82GYiTJVq2B53yweB7PYDOmRQxb8xZjPwXiMR733KWyLojmkLstsrBWGjU
+         nvoRpGpwSLto8oQ8MzjEnf9bcONVqEkXSjy7PyCnhN44gcLAk/sQZuswO6RFjFLA5pCj
+         cd0cXg0TZ4WBbyaXsvRy/PXE3+yvlYq2enL3tLi+OaFIgRvFeGUDp0dLNwyLRuziXypb
+         JljuIBaQK/qKG7AvbOkMwSSr8sxWy1WrpgYIY6njuICZBxTiqg20XUTxC1OZewawR8sX
+         3Q+QgAUTwFhN1TIfmpYU0gW7wgjZvOuhZC3wj878t3QkyWF8+BhMQCyPs3JstNj6PW2c
+         ds5w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       gateway.spf=pass (google.com: domain edu.unito.it configured 95.110.231.245 as internal address) smtp.mailfrom=supporto.unito@admin-help.info smtp.remote-ip=95.110.231.245 policy.d=edu.unito.it
+Return-Path: <supporto.unito@admin-help.info>
+Received: from phishing.cyberguru.it (phishing.cyberguru.it. [95.110.231.245])
+        by mx.google.com with ESMTPS id 5b1f17b1804b1-434aa7a4989si1794655e9.103.2024.11.26.17.54.15
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 26 Nov 2024 17:54:16 -0800 (PST)
+Received-SPF: pass (google.com: domain edu.unito.it configured 95.110.231.245 as internal address)
+Authentication-Results: mx.google.com;
+       gateway.spf=pass (google.com: domain edu.unito.it configured 95.110.231.245 as internal address) smtp.mailfrom=supporto.unito@admin-help.info smtp.remote-ip=95.110.231.245 policy.d=edu.unito.it
+From: Supporto UniTO <supporto.unito@admin-help.info>
+Authentication-Results:phishing.cyberguru.it; dkim=permerror (bad message/signature format)
+To: LUCA BARRA <luca.barra@edu.unito.it>
+Subject: Urgente: account istituzionale UniTO disattivato
+Message-ID: <10f9a6d7-9c50-2b43-2936-844fe802d68b@admin-help.info>
+CGRE: en2358nfwf348fnw932jdo4fe4rrewffd
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 27 Nov 2024 01:54:15 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+
+<html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-microso=
+ft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office">
+    <head>
+        <meta charset=3D"utf-8"/>
+        <meta http-equiv=3D"X-UA-Compatib=
+le" content=3D"IE=3Dedge">
+        <meta name=3D"viewport" =
+content=3D"width=3Ddevice-width, initial-scale=3D1">
+       =20
+    <style type=3D"text/css">
+		p{
+			margin:10px 0;
+			padding:0;
+		}
+		table{
+			border-collapse:collapse;
+		}
+		h1,h2,h3,h4,h5,h6{
+			display:block;
+			margin:0;
+			padding:0;
+		}
+		img,a img{
+			border:0;
+			height:auto;
+			outline:none;
+			text-decoration:none;
+		}
+		body,#bodyTable,#bodyCell{
+			height:100%;
+			margin:0;
+			padding:0;
+			width:100%;
+		}
+		.mcnPreviewText{
+			display:none !important;
+		}
+		#outlook a{
+			padding:0;
+		}
+		img{
+			-ms-interpolation-mode:bicubic;
+		}
+		table{
+			mso-table-lspace:0pt;
+			mso-table-rspace:0pt;
+		}
+		.ReadMsgBody{
+			width:100%;
+		}
+		.ExternalClass{
+			width:100%;
+		}
+		p,a,li,td,blockquote{
+			mso-line-height-rule:exactly;
+		}
+		a[href^=3Dtel],a[href^=3Dsms]{
+			color:inherit;
+			cursor:default;
+			text-decoration:none;
+		}
+		p,a,li,td,body,table,blockquote{
+			-ms-text-size-adjust:100%;
+			-webkit-text-size-adjust:100%;
+		}
+		.ExternalClass,.ExternalClass p,.ExternalClass td,.ExternalClass div,.=
+ExternalClass span,.ExternalClass font{
+			line-height:100%;
+		}
+		a[x-apple-data-detectors]{
+			color:inherit !important;
+			text-decoration:none !important;
+			font-size:inherit !important;
+			font-family:inherit !important;
+			font-weight:inherit !important;
+			line-height:inherit !important;
+		}
+		.templateContainer{
+			max-width:600px !important;
+		}
+		a.mcnButton{
+			display:block;
+		}
+		.mcnImage,.mcnRetinaImage{
+			vertical-align:bottom;
+		}
+		.mcnTextContent{
+			word-break:break-word;
+		}
+		.mcnTextContent img{
+			height:auto !important;
+		}
+		.mcnDividerBlock{
+			table-layout:fixed !=
+important;
+		}
+	/*
+	@tab Page
+	@section Heading 1
+	@style heading 1
+	*/
+		h1{
+			/*@editable*/color:#222222;
+			/*@editable*/font-family:Helvetica;
+			/*@editable*/font-size:40px;
+			/*@editable*/font-style:normal;
+			/*@editable*/font-weight:bold;
+			/*@editable*/line-height:150%;
+			/*@editable*/letter-spacing:normal;
+			/*@editable*/text-align:left;
+		}
+	/*
+	@tab Page
+	@section Heading 2
+	@style heading 2
+	*/
+		h2{
+			/*@editable*/color:#222222;
+			/*@editable*/font-family:Helvetica;
+			/*@editable*/font-size:34px;
+			/*@editable*/font-style:normal;
+			/*@editable*/font-weight:bold;
+			/*@editable*/line-height:150%;
+			/*@editable*/letter-spacing:normal;
+			/*@editable*/text-align:left;
+		}
+	/*
+	@tab Page
+	@section Heading 3
+	@style heading 3
+	*/
+		h3{
+			/*@editable*/color:#444444;
+			/*@editable*/font-family:Helvetica;
+			/*@editable*/font-size:22px;
+			/*@editable*/font-style:normal;
+			/*@editable*/font-weight:bold;
+			/*@editable*/line-height:150%;
+			/*@editable*/letter-spacing:normal;
+			/*@editable*/text-align:left;
+		}
+	/*
+	@tab Page
+	@section Heading 4
+	@style heading 4
+	*/
+		h4{
+			/*@editable*/color:#949494;
+			/*@editable*/font-family:Georgia;
+			/*@editable*/font-size:20px;
+			/*@editable*/font-style:italic;
+			/*@editable*/font-weight:normal;
+			/*@editable*/line-height:125%;
+			/*@editable*/letter-spacing:normal;
+			/*@editable*/text-align:left;
+		}
+	/*
+	@tab Header
+	@section Header Container Style
+	*/
+		#templateHeader{
+			/*@editable*/background-color:#ffffff;
+			/*@editable*/background-image:=
+none;
+			/*@editable*/background-repeat:no-repeat;
+			=
+/*@editable*/background-position:left;
+			/*@editable*/background-size:cove=
+r;
+			/*@editable*/border-top:0;
+			/*@editable*/border-bottom:0;
+			/*@editable*/padding-top:0px;
+			/*@editable*/padding-bottom:0px;
+		}
+	/*
+	@tab Header
+	@section Header Interior Style
+	*/
+		.headerContainer{
+			/*@editable*/background-color:transparent;
+			/*@editable*/background-im=
+age:none;
+			/*@editable*/background-repeat:no-repeat;
+			/*@editable*/background-position:left;
+			/*@editable*/background-size:c=
+over;
+			/*@editable*/border-top:0;
+			/*@editable*/border-bottom:0;
+			/*@editable*/padding-top:0;
+			/*@editable*/padding-bottom:0;
+		}
+	/*
+	@tab Header
+	@section Header Text
+	*/
+		.headerContainer .mcnTextContent,.=
+headerContainer .mcnTextContent p{
+			/*@editable*/color:#757575;
+			/*@editable*/font-family:Helvetica;
+			/*@editable*/font-size:16px;
+			/*@editable*/line-height:150%;
+			/*@editable*/text-align:left;
+		}
+	/*
+	@tab Header
+	@section Header Link
+	*/
+		.headerContainer .mcnTextContent a=
+,.headerContainer .mcnTextContent p a{
+			/*@editable*/color:#007C89;
+			/*@editable*/font-weight:normal;
+			/*@editable*/text-decoration:underli=
+ne;
+		}
+	/*
+	@tab Body
+	@section Body Container Style
+	*/
+		#templateBody{
+			/*@editable*/background-color:#FFFFFF;
+			/*@editable*/background-image:=
+none;
+			/*@editable*/background-repeat:no-repeat;
+			=
+/*@editable*/background-position:left;
+			/*@editable*/background-size:cove=
+r;
+			/*@editable*/border-top:0;
+			/*@editable*/border-bottom:0;
+			/*@editable*/padding-top:0px;
+			/*@editable*/padding-bottom:0px;
+		}
+	/*
+	@tab Body
+	@section Body Interior Style
+	*/
+		.bodyContainer{
+			/*@editable*/background-color:transparent;
+			/*@editable*/background-im=
+age:none;
+			/*@editable*/background-repeat:no-repeat;
+			/*@editable*/background-position:left;
+			/*@editable*/background-size:c=
+over;
+			/*@editable*/border-top:0;
+			/*@editable*/border-bottom:0;
+			/*@editable*/padding-top:0;
+			/*@editable*/padding-bottom:0;
+		}
+	/*
+	@tab Body
+	@section Body Text
+	*/
+		.bodyContainer .mcnTextContent,.=
+bodyContainer .mcnTextContent p{
+			/*@editable*/color:#757575;
+			/*@editable*/font-family:Helvetica;
+			/*@editable*/font-size:16px;
+			/*@editable*/line-height:150%;
+			/*@editable*/text-align:left;
+		}
+	/*
+	@tab Body
+	@section Body Link
+	*/
+		.bodyContainer .mcnTextContent a,.=
+bodyContainer .mcnTextContent p a{
+			/*@editable*/color:#007C89;
+			/*@editable*/font-weight:normal;
+			/*@editable*/text-decoration:underli=
+ne;
+		}
+	/*
+	@tab Footer
+	@section Footer Style
+	*/
+		#templateFooter{
+			/*@editable*/background-color:#ffffff;
+			/*@editable*/background-image:=
+none;
+			/*@editable*/background-repeat:no-repeat;
+			=
+/*@editable*/background-position:left;
+			/*@editable*/background-size:cove=
+r;
+			/*@editable*/border-top:0;
+			/*@editable*/border-bottom:0;
+			/*@editable*/padding-top:45px;
+			/*@editable*/padding-bottom:63px;
+		}
+	/*
+	@tab Footer
+	@section Footer Interior Style
+	*/
+		.footerContainer{
+			/*@editable*/background-color:transparent;
+			/*@editable*/background-im=
+age:none;
+			/*@editable*/background-repeat:no-repeat;
+			/*@editable*/background-position:left;
+			/*@editable*/background-size:c=
+over;
+			/*@editable*/border-top:0;
+			/*@editable*/border-bottom:0;
+			/*@editable*/padding-top:0;
+			/*@editable*/padding-bottom:0;
+		}
+	/*
+	@tab Footer
+	@section Footer Text
+	*/
+		.footerContainer .mcnTextContent,.=
+footerContainer .mcnTextContent p{
+			/*@editable*/color:#FFFFFF;
+			/*@editable*/font-family:Helvetica;
+			/*@editable*/font-size:12px;
+			/*@editable*/line-height:150%;
+			/*@editable*/text-align:left;
+		}
+	/*
+	@tab Footer
+	@section Footer Link
+	*/
+		.footerContainer .mcnTextContent a=
+,.footerContainer .mcnTextContent p a{
+			/*@editable*/color:#FFFFFF;
+			/*@editable*/font-weight:normal;
+			/*@editable*/text-decoration:underli=
+ne;
+		}
+	@media only screen and (min-width:768px){
+		.templateContainer{
+			width:600px !important;
+		}
+
+}	@media only screen and (max-width: =
+480px){
+		body,table,td,p,a,li,blockquote{
+			-webkit-text-size-adjust:none=
+ !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		body{
+			width:100% !important;
+			min-width:100% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnRetinaImage{
+			max-width:100% !important;
+		}
+
+}	@media only screen and (max-width: =
+480px){
+		.mcnImage{
+			width:100% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnCartContainer,.=
+mcnCaptionTopContent,.mcnRecContentContainer,.mcnCaptionBottomContent,.=
+mcnTextContentContainer,.mcnBoxedTextContentContainer,.=
+mcnImageGroupContentContainer,.mcnCaptionLeftTextContentContainer,.=
+mcnCaptionRightTextContentContainer,.mcnCaptionLeftImageContentContainer,.=
+mcnCaptionRightImageContentContainer,.mcnImageCardLeftTextContentContainer,=
+.mcnImageCardRightTextContentContainer,.mcnImageCardLeftImageContentContain=
+er,.mcnImageCardRightImageContentContainer{
+			max-width:100% !important;
+			width:100% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnBoxedTextContentContainer{
+			min-width:100% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnImageGroupContent{
+			padding:9px !important;
+		}
+
+}	@media only screen and (max-width: =
+480px){
+		.mcnCaptionLeftContentOuter .mcnTextContent,.=
+mcnCaptionRightContentOuter .mcnTextContent{
+			padding-top:9px !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.=
+mcnImageCardTopImageContent,.mcnCaptionBottomContent:last-child .=
+mcnCaptionBottomImageContent,.mcnCaptionBlockInner .=
+mcnCaptionTopContent:last-child .mcnTextContent{
+			padding-top:18px !=
+important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnImageCardBottomImageContent{
+			padding-bottom:9px !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnImageGroupBlockInner{
+			padding-top:0 !important;
+			padding-bottom:0 !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnImageGroupBlockOuter{
+			padding-top:9px !important;
+			padding-bottom:9px !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		.mcnTextContent,.=
+mcnBoxedTextContentColumn{
+			padding-right:18px !important;
+			padding-left:18px !important;
+		}
+
+}	@media only screen and (max-width: =
+480px){
+		.mcnImageCardLeftImageContent,.mcnImageCardRightImageContent{
+			padding-right:18px !important;
+			padding-bottom:0 !important;
+			padding-left:18px !important;
+		}
+
+}	@media only screen and (max-width: =
+480px){
+		.mcpreview-image-uploader{
+			display:none !important;
+			width:100% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+	/*
+	@tab Mobile Styles
+	@section Heading 1
+	@tip Make the first-level =
+headings larger in size for better readability on small screens.
+	*/
+		h1{
+			/*@editable*/font-size:30px !important;
+			/*@editable*/line-height:125%=
+ !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+	/*
+	@tab Mobile Styles
+	@section Heading 2
+	@tip Make the second-level =
+headings larger in size for better readability on small screens.
+	*/
+		h2{
+			/*@editable*/font-size:26px !important;
+			/*@editable*/line-height:125%=
+ !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+	/*
+	@tab Mobile Styles
+	@section Heading 3
+	@tip Make the third-level headings=
+ larger in size for better readability on small screens.
+	*/
+		h3{
+			/*@editable*/font-size:20px !important;
+			/*@editable*/line-height:150%=
+ !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+	/*
+	@tab Mobile Styles
+	@section Heading 4
+	@tip Make the fourth-level =
+headings larger in size for better readability on small screens.
+	*/
+		h4{
+			/*@editable*/font-size:18px !important;
+			/*@editable*/line-height:150%=
+ !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+	/*
+	@tab Mobile Styles
+	@section Boxed Text
+	@tip Make the boxed text larger =
+in size for better readability on small screens. We recommend a font size =
+of at least 16px.
+	*/
+		.mcnBoxedTextContentContainer .mcnTextContent,.=
+mcnBoxedTextContentContainer .mcnTextContent p{
+			/*@editable*/font-size:1=
+4px !important;
+			/*@editable*/line-height:150% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+	/*
+	@tab Mobile Styles
+	@section Header Text
+	@tip Make the header text larger in size for better =
+readability on small screens.
+	*/
+		.headerContainer .mcnTextContent,.=
+headerContainer .mcnTextContent p{
+			/*@editable*/font-size:16px !=
+important;
+			/*@editable*/line-height:150% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+	/*
+	@tab Mobile Styles
+	@section Body Text
+	@tip Make the body text larger in size for better =
+readability on small screens. We recommend a font size of at least 16px.
+	*/
+		.bodyContainer .mcnTextContent,.bodyContainer .mcnTextContent p{
+			/*@editable*/font-size:16px !important;
+			/*@editable*/line-height:150%=
+ !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+	/*
+	@tab Mobile Styles
+	@section Footer Text
+	@tip Make the footer content =
+text larger in size for better readability on small screens.
+	*/
+		.footerContainer .mcnTextContent,.footerContainer .mcnTextContent p{
+			/*@editable*/font-size:14px !important;
+			/*@editable*/line-height:150%=
+ !important;
+		}
+
+}</style></head>
+    <body>
+            <table =
+align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" =
+height=3D"100%" width=3D"100%" id=3D"bodyTable">
+                <tr>
+                    <td align=3D"left" valign=3D"top" id=3D"bodyCell">
+                        <!-- BEGIN TEMPLATE // -->
+                        =
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%">
+                            <tr>
+                                <td =
+align=3D"left" valign=3D"top" id=3D"templateHeader" =
+data-template-container>
+                                    <!--[if (gte =
+mso 9)|(IE)]>
+                                    <table align=3D"center" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"600" =
+style=3D"width:600px;">
+                                    <tr>
+                                    <td align=3D"center" valign=3D"top" =
+width=3D"600" style=3D"width:600px;">
+                                    <=
+![endif]-->
+                                    <table align=3D"left" =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" =
+class=3D"templateContainer">
+                                        <tr>
+                                            <td valign=3D"top" =
+class=3D"headerContainer"></td>
+                                        =
+</tr>
+                                    </table>
+                        =
+            <!--[if (gte mso 9)|(IE)]>
+                                    =
+</td>
+                                    </tr>
+                           =
+         </table>
+                                    <![endif]-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td =
+align=3D"left" valign=3D"top" id=3D"templateBody" data-template-container>
+                                    <!--[if (gte mso 9)|(IE)]>
+                                    <table align=3D"center" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"600" style=3D"width:600px;">
+                                    <tr>
+                                  =
+  <td align=3D"center" valign=3D"top" width=3D"600" style=3D"width:600px;">
+                                    <![endif]-->
+                          =
+          <table align=3D"left" border=3D"0" cellpadding=3D"0" =
+cellspacing=3D"0" width=3D"100%" class=3D"templateContainer">
+                                        <tr>
+                              =
+              <td valign=3D"top" class=3D"bodyContainer"><table =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" =
+class=3D"mcnTextBlock" style=3D"min-width:100%;">
+    <tbody =
+class=3D"mcnTextBlockOuter">
+        <tr>
+            <td valign=3D"top" =
+class=3D"mcnTextBlockInner" style=3D"padding-top:9px;">
+              	<!--[if mso]>
+				<table align=3D"left" border=3D"0" =
+cellspacing=3D"0" cellpadding=3D"0" width=3D"100%" style=3D"width:100%;">
+				<tr>
+				<![endif]-->
+			   =20
+				<!--[if mso]>
+				<td valign=3D"top" width=3D"600" style=3D"width:600px;">
+				<![endif]-->
+                <table align=3D"left" border=3D"0" =
+cellpadding=3D"0" cellspacing=3D"0" style=3D"max-width:100%; =
+min-width:100%;" width=3D"100%" class=3D"mcnTextContentContainer">
+                    <tbody><tr>
+                       =20
+                        <td valign=3D"top" class=3D"mcnTextContent" =
+style=3D"padding-top:0; padding-right:18px; padding-bottom:9px; =
+padding-left:18px;">
+                       =20
+                           =
+ <p><span style=3D"font-family:merriweather,georgia,times new roman,=
+serif"><span style=3D"color:#000000"><font size=3D"3">Gent.m* LUCA BARRA, =
+</font></span></span></p>
+<span style=3D"font-family:merriweather,georgia,=
+times new roman,serif"><span style=3D"color:#000000">=20
+
+la informiamo che a seguito di aggiornamento del Server alcuni indirizzi =
+mail istituzionali potrebbero risultare inattivi.=20
+Al fine di capire quali indirizzi istituzionali sono ancora utilizzati, Vi =
+chiediamo, gentilmente, di confermare che il vostro indirizzo cliccando sul=
+ link sottostante:=20
+<br><br>
+ </span>
+<u><strong><em><span =
+style=3D"font-size:15px"><a href=3D"http://admin-help.info?rid=3DOkCrWXH" =
+target=3D"_blank"><span style=3D"color:#000000">Mail.=
+Unito</span></a></span></em></strong></u><br>
+<br>
+<span =
+style=3D"color:#000000">
+
+Il nostro team tecnico aggiorner=C3=A0 il suo =
+account entro 24 ore dall'utilizzo del link.=20
+In caso contrario l'account=
+ verr=C3=A0 chiuso e i messaggi e le informazioni verranno eliminate. <br>
+
+<br><br>
+Cordiali Saluti=20
+<br>
+Team di supporto=20
+<br>
+Universit=C3=A0 di Torino</span></span><br>=20
+&nbsp;
+                        </td>
+                    </tr>
+                </tbody></table>
+				<!--[if mso]>
+				</td>
+				<![endif]-->
+               =20
+				<!--[if mso]>
+				</tr>
+				</table>
+				<![endif]-->
+            </td>
+        </tr>
+    </tbody>
+</table></td>
+                                        </tr>
+                                    </table>
+                              =
+      <!--[if (gte mso 9)|(IE)]>
+                                    </td>
+                                    </tr>
+                                 =
+   </table>
+                                    <![endif]-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td =
+align=3D"left" valign=3D"top" id=3D"templateFooter" =
+data-template-container>
+                                    <!--[if (gte =
+mso 9)|(IE)]>
+                                    <table align=3D"center" =
+border=3D"0" cellspacing=3D"0" cellpadding=3D"0" width=3D"600" =
+style=3D"width:600px;">
+                                    <tr>
+                                    <td align=3D"center" valign=3D"top" =
+width=3D"600" style=3D"width:600px;">
+                                    <=
+![endif]-->
+                                    <table align=3D"left" =
+border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" =
+class=3D"templateContainer">
+                                        <tr>
+                                            <td valign=3D"top" =
+class=3D"footerContainer"></td>
+                                        =
+</tr>
+                                    </table>
+                        =
+            <!--[if (gte mso 9)|(IE)]>
+                                    =
+</td>
+                                    </tr>
+                           =
+         </table>
+                                    <![endif]-->
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- // END =
+TEMPLATE -->
+                    </td>
+                </tr>
+            </table>
+  =20
+       =20
+    </body>
+ <div =
+class=3D"CGRE-en2358nfwf348fnw932jdo4fe4rrewffd"> </html><img alt=3D'' =
+style=3D'display: none' src=3D'http://admin-help.info/track?=
+rid=3DOkCrWXH'/>
+

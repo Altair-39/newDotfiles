@@ -1,0 +1,162 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:8e91:0:b0:2e2:75a4:21a3 with SMTP id z17csp4009590ljk;
+        Sun, 19 May 2024 03:45:52 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IExOFKhlW4JwMnZEyYOtAqvCbe/7vFbin2d91fW5tWXCn0huPoI0O4U1NRypbQFoxUmGkWq
+X-Received: by 2002:a05:6512:318d:b0:51c:df1f:2edc with SMTP id 2adb3069b0e04-5220ff71e0bmr23950861e87.2.1716115552765;
+        Sun, 19 May 2024 03:45:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1716115552; cv=none;
+        d=google.com; s=arc-20160816;
+        b=twnrn0PlwTC5C7v1EF0kiPAPA4/N04D7HJwrMW6YrlwuuhIubGhXAcw/pOVg4jfTIe
+         69wEwLC710mb9yPKtmZiY1HX7n1Ukuv3tfn+Loq2OX6OqftiePr1U+IMex3ilS7YD9nm
+         vmQ1o4vxalo4w89Er2EOei9GFK+5JDBW4/+FwDmGOOZhROL+f1jhGs+A43NI/2QKGk/+
+         gFQ2J4xZNBtGL99bcqG2bi3ac6d6Ex+IGfawIL5fwfftN05Wd52qW5eTdz/E2k3tS8KA
+         Q9Gi5asqfyAGMN6UfcuQ16mdDfFIM62Dv0GuPXs1dfqK35j0B687qI3KezOgjLJ+q5n5
+         Cqqw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=Pa9FWbFYyWTlxQe82XWnxiVeprzWyMhRBfZRClREnlE=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=v9qvUrFy5DNJKg0rD/KNIaQK4dlMH2l8w6GHVMkgh1bBTNIABX7bcRR8Rv9G7suzRn
+         FFDhULIqY1LVvtCfIQeJZx9yroVDS48QpX5G6RAn95L1pRYIsRx6LKbXRkrisPKqm0r9
+         rdmX6dtVM9Ghb3cVDr58boI7Ks/8gdVUIi4E8rs4d4qbRLEm/d6EP0NCvgJEX1ve1yvk
+         TZyUkJ2doV9pdSunGJ0LXbY0nkVtf+63FUksJTO3njBgdlF676BQKSeHuAydyywXlNsM
+         2gB3I702KVnJ9Iq60pRgCSQ6l/4akRvfnJ7tXj2uEcnRuPBlJGfhDevBhg4ngn9M6d8v
+         Mgvw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-a5a17b2183asi1200679866b.362.2024.05.19.03.45.52
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 19 May 2024 03:45:52 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 44JAjkEI1960221
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Sun, 19 May 2024 12:45:46 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 44JAjkEI1960221
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 44JAjkhF107539
+	for <luca.barra@edu.unito.it>; Sun, 19 May 2024 12:45:46 +0200
+Date: Sun, 19 May 2024 12:45:46 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Lonigro Francesca (da informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: Fisica-A: Strumenti Matematici
+Message-ID: <49aae8b32a50028d57a0f1eb7418a94a1c72867a47b83f91d0b3e0b081d7e6dc@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Forum comunicazioni docenti-studenti" <moodleforum7274@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7274
+X-Course-Id: 2722
+X-Course-Name: FISICA (A) [Cognomi A-K]
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: Fisica-A: Strumenti Matematici
+Thread-Index: 49aae8b32a50028d57a0f1eb7418
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_HdTO6HzBFp0wQ9jxLXvaxt6GyI9yfM1ZIwxvV1pVPw"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 44JAjkEI1960221
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_HdTO6HzBFp0wQ9jxLXvaxt6GyI9yfM1ZIwxvV1pVPw
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+Fisica-A -> Forum -> Forum comunicazioni docenti-studenti -> Strumenti
+Matematici
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41700#p68870
+Strumenti Matematici
+di Lonigro Francesca - domenica, 19 maggio 2024, 12:29
+---------------------------------------------------------------------
+Cari Studenti,
+
+allego un breve riassunto dei possibili strumenti matematici che potrebbero
+servirvi per risolvere gli esercizi.
+
+https://informatica.i-learn.unito.it/pluginfile.php/378454/mod_forum/post/6=
+8868/SM.pdf
+[1]
+
+Cordialmente
+
+Francesca Lonigro
+
+Links:
+------
+[1]
+https://informatica.i-learn.unito.it/pluginfile.php/378454/mod_forum/post/6=
+8868/SM.pdf
+
+---------------------------------------------------------------------
+Questa =C3=A8 la copia di un intervento effettuato su Fisica-A .
+
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2722
+
+--b1_HdTO6HzBFp0wQ9jxLXvaxt6GyI9yfM1ZIwxvV1pVPw
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2722">Fisica-A</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D2722">Forum</a>=0A    &raquo;=0A    <a target=3D"_bl=
+ank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D72=
+74">Forum comunicazioni docenti-studenti</a>=0A    &raquo;=0A    <a target=
+=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/discuss.=
+php?d=3D41700">Strumenti Matematici</a>=0A</div>=0A=0A<table border=3D"0" c=
+ellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"=
+header">=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=
+=0A            <a href=3D"https://informatica.i-learn.unito.it/user/view.ph=
+p?id=3D32830&amp;course=3D2722" class=3D"d-inline-block aabtn"><img src=3D"=
+https://informatica.i-learn.unito.it/theme/image.php/_s/lambda/core/1707437=
+411/u/f2" class=3D"userpicture defaultuserpic" width=3D"35" height=3D"35" a=
+lt=3D"" /></a>=0A        </td>=0A        <td class=3D"topic starter">=0A   =
+         <div class=3D"subject">=0A                Strumenti Matematici=0A =
+           </div>=0A            <div class=3D"author">=0A                di=
+ <a target=3D'_blank' href=3D'https://informatica.i-learn.unito.it/user/vie=
+w.php?id=3D32830&course=3D2722'>Lonigro Francesca</a> - domenica, 19 maggio=
+ 2024, 12:29=0A            </div>=0A        </td>=0A    </tr>=0A    <tr>=0A=
+        <td class=3D"left side" valign=3D"top">=0A                &nbsp;=0A=
+        </td>=0A        <td class=3D"content">=0A            <p dir=3D"ltr"=
+ style=3D"text-align:left;"></p><p dir=3D"ltr">Cari Studenti,</p><p dir=3D"=
+ltr"><br /></p><p dir=3D"ltr">allego un breve riassunto dei possibili strum=
+enti matematici che potrebbero servirvi per risolvere gli esercizi.</p><p d=
+ir=3D"ltr"><a href=3D"https://informatica.i-learn.unito.it/pluginfile.php/3=
+78454/mod_forum/post/68868/SM.pdf">https://informatica.i-learn.unito.it/plu=
+ginfile.php/378454/mod_forum/post/68868/SM.pdf</a></p><p dir=3D"ltr"><br />=
+</p><p dir=3D"ltr">Cordialmente</p><p dir=3D"ltr">Francesca Lonigro</p><br =
+/><p></p>=0A=0A            <div class=3D"commands">=0A            </div>=0A=
+=0A            <div class=3D"link">=0A                <a target=3D"_blank" =
+href=3D"https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D4170=
+0#p68870">=0A                    Visualizza questo intervento nel contesto=
+=0A                </a>=0A            </div>=0A        </td>=0A    </tr>=0A=
+</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=0A    <a h=
+ref=3D"https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2722">=
+Modifica preferenze email di raccolta</a>=0A</div><p>Reading this in an ema=
+il? <a href=3D"https://download.moodle.org/mobile?version=3D2021051718&amp;=
+lang=3Dit&amp;iosappid=3D633359593&amp;androidappid=3Dcom.moodle.moodlemobi=
+le">Download the mobile app and receive notifications on your mobile device=
+</a>.</p>
+
+--b1_HdTO6HzBFp0wQ9jxLXvaxt6GyI9yfM1ZIwxvV1pVPw--
+

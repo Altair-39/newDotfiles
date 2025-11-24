@@ -1,0 +1,262 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:c52:0:b0:2e9:7e04:4641 with SMTP id o18csp186121ljd;
+        Mon, 27 May 2024 04:27:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHKujmoZ5gvPFXV+lhmVTWdLcHE70XQY9RjPT6YArhV5fTmLoGWfm4FVHIof4/dxhprUlfQ
+X-Received: by 2002:a17:906:958f:b0:a59:c0a6:25d3 with SMTP id a640c23a62f3a-a62641c81bamr538099566b.12.1716809274411;
+        Mon, 27 May 2024 04:27:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1716809274; cv=none;
+        d=google.com; s=arc-20160816;
+        b=h8MA0p5REJxXq9TNouQRFZcLGxOGEeI6ClZIxemDiXpg8jSqPLzrKL2HS8bwZhwRNt
+         i+rDdWo9aRi4fQVDXIGCw74RQAhVhtccwvwaSETxlhwRFr8nzeTXSwgnTYkdVzLCV60S
+         DRTiJMdmmZifAm+8lM/kur3z9Yfp2oxtSKQjrB71m8WkWYlagM2VIkSNrGHwqLh4SkGp
+         R0gbSC287EzF9YAZ2LSNlxn7qKy1ji18x5qvWrorIKfMuaKJzpWJq9ZLaePAR5Jg0eb3
+         UXqBOuVgXJtWvYbbwppYux7ndiNbYKDfI93QQy4080uStyGFZFW/9Lw4fL+TmH9VoonA
+         yYDQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=JZNai0++78DZ5T9ToGUSkQJyX19WJGay52mvqzYE5M8=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=auyVbYFgOnu8Zlurcw0egzQAOvcXeue3SiXxHiJ5Wks4FW+gXj8Rs7N2GYF8DJidBw
+         gjSIHSOzcaxHMDv0A6wO+ktRQ4jssjwwZU8OTESvAwrUHfhEN+xCLN1sSkHJ0lsf0N4X
+         8U/75sWVGrO8XMQiX0u1lxLK//i2mgRMpADmAGbuynVk+SzwCsn84ejpKjUU5qGVDBXd
+         tCNr7Sb+/hr7/IR+aEC0xzzS1JWeRWxHK+dORgarssPApQnNoLpHuLI6ZS0IeUvRfW90
+         5wJJs1/wKb9AGloiIJhOSZ9dAm9qL0hfguMf+4kN7eVAicziS1xAZK8ukL1FSqIHx1nz
+         Ai+Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-a626c800ea7si372283666b.14.2024.05.27.04.27.53
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 May 2024 04:27:54 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 44RBRjgX2819633
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Mon, 27 May 2024 13:27:45 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 44RBRjgX2819633
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 44RBRjpS021815
+	for <luca.barra@edu.unito.it>; Mon, 27 May 2024 13:27:45 +0200
+Date: Mon, 27 May 2024 13:27:45 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Migliore Ernesto (da informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: =?utf-8?B?RmlzaWNhLUE6IEluZm9ybWF6aW9uaSBzdWxsZSBtb2RhbGl0w6AgZCdlc2E=?=
+ =?utf-8?B?bWUu?=
+Message-ID: <8a2c30322510e0d22b225cb41b168a0f3d0f84cabf5d54e1caef33ea8a9f6de9@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Forum comunicazioni docenti-studenti" <moodleforum7274@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7274
+X-Course-Id: 2722
+X-Course-Name: FISICA (A) [Cognomi A-K]
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: =?utf-8?B?RmlzaWNhLUE6IEluZm9ybWF6aW9uaSBzdWxsZSBtb2RhbGl0w6AgZCdlc2E=?=
+ =?utf-8?B?bWUu?=
+Thread-Index: 8a2c30322510e0d22b225cb41b16
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_rz6CXyeGdBoc5HVebUXQpB1ObwOeDnNWL7SrMnuCoU"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 44RBRjgX2819633
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_rz6CXyeGdBoc5HVebUXQpB1ObwOeDnNWL7SrMnuCoU
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+Fisica-A -> Forum -> Forum comunicazioni docenti-studenti -> Informazioni
+sulle modalit=C3=A0 d'esame.
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41880#p69088
+Informazioni sulle modalit=C3=A0 d'esame.
+di Migliore Ernesto - luned=C3=AC, 27 maggio 2024, 13:14
+---------------------------------------------------------------------
+Cari studenti,
+trovate qui sotto alcune informazioni relative prove d'esame di quest'anno.
+
+Saluti
+Ernesto Migliore
+
+MODALIT=C3=80 D'ESAME
+Gli esami si svolgono in modalit=C3=A0 informatizzata tramite moodle
+piattaforma esami: https://esami.i-learn.unito.it/course/view.php?id=3D1678
+presso le aule informatiche del Dipartimento di Fisica, via P. Giuria 1.
+
+STRUTTURA DELLA PROVA
+La prova =C3=A8 la stessa per corso A e corso B.
+
+L'esame consiste di due parti:
+
+* I parte: due esercizi (1 elettromagnetismo + 1 circuiti) con quesiti a
+risposta multipla o numerica.
+Totale: 18 punti.
+Durata indicativa 35 min.
+* II parte: quesiti di teoria a partire dalla lista dei 18 argomenti
+possibili indicata in
+http://personalpages.to.infn.it/~migliore/didattica/fisica_informatica/List=
+aTemiScritto.pdf
+Quesiti di teoria espressi come domande a risposta multipla o numerica.
+Totale 12 punti.
+Durata indicativa 20 min.
+
+VALUTAZIONE
+
+Il punteggio complessivo dell'esame =C3=A8 la somma dei punteggi ottenuti n=
+elle
+due prove.
+Per superare l'esame occorre avere un punteggio complessivo di 18/30,
+avendo ottenuto almeno il 50% dei punti nelle due singole parti.=C2=A0
+
+NB: la valutazione della prova =C3=A8 quella effettuata dai docenti, e.g. n=
+on
+quella fornita in automatico dalla pitattaforma moodle.
+
+Coloro che hanno totalizzato 30/30 possono sottoporsi a un orale per la
+lode, ma se l'esito dell'orale =C3=A8 negativo il voto finale sar=C3=A0 inf=
+eriore a
+30/30.
+
+ISCRIZIONE E SVOLGIMENTO
+Iscrizione su esse3 entro 7 giorni dall'esame.
+
+Provvediamo noi a iscrivervi successivamente alla piattaforma esami e
+assegnarvi al "turno" corrispondente.
+Riceverete i dettagli (orario di convocazione) tramite messaggio dalla
+piattaforma esami al vostro indirizzo istituzionale (@edu.unito.it).
+
+E`=C2=A0 consentito l'uso del seguente formulario
+http://personalpages.to.infn.it/~migliore/didattica/fisica_informatica/form=
+ulario.pd
+[1]f
+e di una calcolatrice non programmabile (ma non di smartphone/smartwatch
+etc).
+Si consiglia di stampare una copia del formulario da portare all=E2=80=
+=99esame.
+
+Studenti con DSA usufruiscono di un maggior tempo a disposizione secondo le
+indicazioni degli uffici.
+
+PROVE D=E2=80=98ESAME ASSEGNATE IN PASSATO
+Una raccolta di prove d=E2=80=99esame assegnate in passato con relative sol=
+uzioni
+=C3=A8 disponibile al link:
+http://personalpages.to.infn.it/~migliore/didattica/fisica_informatica/
+
+Links:
+------
+[1]
+http://personalpages.to.infn.it/~migliore/didattica/fisica_informatica/form=
+ulario.pdf
+
+---------------------------------------------------------------------
+Questa =C3=A8 la copia di un intervento effettuato su Fisica-A .
+
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2722
+
+--b1_rz6CXyeGdBoc5HVebUXQpB1ObwOeDnNWL7SrMnuCoU
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2722">Fisica-A</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D2722">Forum</a>=0A    &raquo;=0A    <a target=3D"_bl=
+ank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D72=
+74">Forum comunicazioni docenti-studenti</a>=0A    &raquo;=0A    <a target=
+=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/discuss.=
+php?d=3D41880">Informazioni sulle modalit=C3=A0 d'esame.</a>=0A</div>=0A=0A=
+<table border=3D"0" cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost"=
+>=0A    <tr class=3D"header">=0A        <td width=3D"35" valign=3D"top" cla=
+ss=3D"picture left">=0A            <a href=3D"https://informatica.i-learn.u=
+nito.it/user/view.php?id=3D12205&amp;course=3D2722" class=3D"d-inline-block=
+ aabtn"><img src=3D"https://informatica.i-learn.unito.it/theme/image.php/_s=
+/lambda/core/1707437411/u/f2" class=3D"userpicture defaultuserpic" width=3D=
+"35" height=3D"35" alt=3D"" /></a>=0A        </td>=0A        <td class=3D"t=
+opic starter">=0A            <div class=3D"subject">=0A                Info=
+rmazioni sulle modalit=C3=A0 d'esame.=0A            </div>=0A            <d=
+iv class=3D"author">=0A                di <a target=3D'_blank' href=3D'http=
+s://informatica.i-learn.unito.it/user/view.php?id=3D12205&course=3D2722'>Mi=
+gliore Ernesto</a> - luned=C3=AC, 27 maggio 2024, 13:14=0A            </div=
+>=0A        </td>=0A    </tr>=0A    <tr>=0A        <td class=3D"left side" =
+valign=3D"top">=0A                &nbsp;=0A        </td>=0A        <td clas=
+s=3D"content">=0A            <p dir=3D"ltr" style=3D"text-align:left;"></p>=
+<div>Cari studenti,</div><div>trovate qui sotto alcune informazioni relativ=
+e prove d'esame di quest'anno.<br /></div><div>Saluti<br />Ernesto Migliore=
+</div><div><br /></div><strong>Modalit=C3=A0 d'esame</strong><br />Gli esam=
+i si svolgono in modalit=C3=A0 informatizzata tramite moodle <br />piattafo=
+rma esami: <a href=3D"https://esami.i-learn.unito.it/course/view.php?id=3D1=
+378">https://esami.i-learn.unito.it/course/view.php?id=3D1678<br /></a>pres=
+so le aule informatiche del Dipartimento di Fisica, via P. Giuria 1.<br /><=
+br /><p dir=3D"ltr"><strong>Struttura della prova </strong><br /> La prova =
+=C3=A8 la stessa per corso A e corso B.<br /><br /> L'esame consiste di due=
+ parti:<br /></p><ul><li>I parte: due esercizi (1 elettromagnetismo + 1 cir=
+cuiti) con quesiti a risposta multipla o numerica.<br />Totale: 18 punti.<b=
+r />Durata indicativa 35 min.</li><li>II parte: quesiti di teoria a partire=
+ dalla lista dei 18 argomenti possibili indicata in<br /><a href=3D"http://=
+personalpages.to.infn.it/~migliore/didattica/fisica_informatica/ListaTemiSc=
+ritto.pdf">http://personalpages.to.infn.it/~migliore/didattica/fisica_infor=
+matica/ListaTemiScritto.pdf<br /></a>Quesiti di teoria espressi come domand=
+e a risposta multipla o numerica.<br />Totale 12 punti.<br />Durata indicat=
+iva 20 min.<br /><br /></li></ul><p dir=3D"ltr"><strong>Valutazione</strong=
+><br /><br />Il punteggio complessivo dell'esame =C3=A8 la somma dei punteg=
+gi ottenuti nelle due prove.<br />Per
+ superare l'esame occorre avere un punteggio complessivo di 18/30,=20
+avendo ottenuto almeno il 50% dei punti nelle due singole parti.=C2=A0</p><=
+p dir=3D"ltr"><span>NB</span><strong>:</strong> la valutazione della prova =
+=C3=A8 quella effettuata dai docenti, e.g. non quella fornita in automatico=
+ dalla pitattaforma moodle.<br /><br />Coloro
+ che hanno totalizzato 30/30 possono sottoporsi a un orale per la lode,
+ ma se l'esito dell'orale =C3=A8 negativo il voto finale sar=C3=A0 inferior=
+e a=20
+30/30.<br /><br /></p><strong>Iscrizione e svolgimento</strong><br />Iscriz=
+ione su esse3 entro 7 giorni dall'esame.<br /><br />Provvediamo noi a iscri=
+vervi successivamente alla piattaforma esami e assegnarvi al "turno" corris=
+pondente.<br />Riceverete
+ i dettagli (orario di convocazione) tramite messaggio dalla piattaforma
+ esami al vostro indirizzo istituzionale (@edu.unito.it).<br /><br />E`=
+=C2=A0 consentito l'uso del seguente formulario<a href=3D"http://personalpa=
+ges.to.infn.it/~migliore/didattica/fisica_informatica/formulario.pdf"> http=
+://personalpages.to.infn.it/~migliore/didattica/fisica_informatica/formular=
+io.pd</a>f<br />e di una calcolatrice non programmabile (ma non di smartpho=
+ne/smartwatch etc).<br />Si consiglia di stampare una copia del formulario =
+da portare all=E2=80=99esame.<br /><br />Studenti con DSA usufruiscono di u=
+n maggior tempo a disposizione secondo le indicazioni degli uffici. <br /><=
+br /><p dir=3D"ltr"><strong>Prove d=E2=80=98esame assegnate in passato</str=
+ong><br />Una raccolta di prove d=E2=80=99esame assegnate in passato con re=
+lative soluzioni =C3=A8 disponibile al link<a href=3D"http://personalpages.=
+to.infn.it/~migliore/didattica/fisica_informatica/">:<br />http://personalp=
+ages.to.infn.it/~migliore/didattica/fisica_informatica/</a></p><br /><p></p=
+>=0A=0A            <div class=3D"commands">=0A            </div>=0A=0A     =
+       <div class=3D"link">=0A                <a target=3D"_blank" href=3D"=
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41880#p69088=
+">=0A                    Visualizza questo intervento nel contesto=0A      =
+          </a>=0A            </div>=0A        </td>=0A    </tr>=0A</table>=
+=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=0A    <a href=3D"h=
+ttps://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2722">Modifica=
+ preferenze email di raccolta</a>=0A</div><p>Reading this in an email? <a h=
+ref=3D"https://download.moodle.org/mobile?version=3D2021051718&amp;lang=3Di=
+t&amp;iosappid=3D633359593&amp;androidappid=3Dcom.moodle.moodlemobile">Down=
+load the mobile app and receive notifications on your mobile device</a>.</p=
+>
+
+--b1_rz6CXyeGdBoc5HVebUXQpB1ObwOeDnNWL7SrMnuCoU--
+

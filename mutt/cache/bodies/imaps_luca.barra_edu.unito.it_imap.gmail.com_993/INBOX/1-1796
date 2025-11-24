@@ -1,0 +1,113 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:1202:b0:2ec:5b2a:eaf4 with SMTP id i2csp1505179lja;
+        Mon, 15 Jul 2024 02:13:22 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCVhlqZx1xLuLey/Vv5Fv1WXGTAxDPhIy9kb98CHOJqyId6P4IKgE14fPTn1PQCNQY+wSSmvpdHSVDqo48MNKQYRl1p8TEMuSA==
+X-Google-Smtp-Source: AGHT+IFMgAE/UOHcrKDdubVPuh6OouqVpCpv6Ma5oseUFXHNNuqDnvv07I5c60Kw3NSRHI+7gvqa
+X-Received: by 2002:a05:651c:198c:b0:2ee:9446:9f58 with SMTP id 38308e7fff4ca-2eeb30ba7c8mr191506191fa.10.1721034802460;
+        Mon, 15 Jul 2024 02:13:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1721034802; cv=none;
+        d=google.com; s=arc-20160816;
+        b=mx6BdbrHF9/j+EEsKCcy6TSiZCBoHFXqAeNMXbGGWXbDn8fxFenihw6fixZMYzeJLF
+         E+isya/j/W7wceLHeNToKMja1y2dBMgMNxmd3dIVz+84D+QD2UH1TRHMQWaqdtrRtB7b
+         zPrrsGJu2g5MzIAYEVjRepvtqtWjyaf2sImtmvmi2K3JSj/XqWoeXocR5TTxz/1VmdDQ
+         6aFXvNJ8LsmGp6lbsJyu0Ga9Y6CsziflFLMJXx7m/4nB1AewJvnusrZDCUHh/jyOliy4
+         aDcNdn8phOkfvXiJ8hthR1VBbytEna3D1rgGCypde1WVpyzXhuYSszdr2K0e4HsZSaWt
+         dEtw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=js43v3DnLINB/zklh/FCrto3snQBMZ8HaP3BmKBOqpM=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=zlMU+NCmh1/In53NWt9dt3DaUKgGcEHqeESedlI8n0hF/s7Ye1MVGwYou6O662F3sx
+         zruMbLaEfJHxulzcFT6Dgz1MG9XPNBaqODFo6oQib7oxiiIINDmnQ0+xTfijlD3uZEm+
+         uNN+TsVDw4YILYVJtztrTL1X9THiWiU81+FcDCJZn6jJeLLDBlP4izO+0s0YiLi2+jP+
+         GJqc1VT4WBINzqWuuKgfQe04US8Y8zQwJq9ubgNrOXl8hPHk9HQZI0WmJ4ylrHrUuB7R
+         XElQEqBlYa0dg02mOkcrktIoUGpWSk/MtQ9DTzHhOCWqwqlzJ0mMEqPKitbB6ZijRzDd
+         8KVQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=Jw3ffhzI;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id ca18e2360f4ac-80e1131eb78si197072539f.34.2024.07.15.02.13.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Jul 2024 02:13:22 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=Jw3ffhzI;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 520B431403;
+	Mon, 15 Jul 2024 11:13:19 +0200 (CEST)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id TVs2g8gLhkKx; Mon, 15 Jul 2024 11:13:19 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 7B4A42E387;
+	Mon, 15 Jul 2024 11:13:17 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 7B4A42E387
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1721034798;
+	bh=js43v3DnLINB/zklh/FCrto3snQBMZ8HaP3BmKBOqpM=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=Jw3ffhzIP/LfiVCHSwFdjM1pJ4rE9ENs44jxwm1Mjdiw5HJG5m849JVPSnK1o9w20
+	 HrrCsttV5chYV3fHOZq99U+7jeAq9elSfCtkrYl+qIBGJmj+NVKe+ORbiMOVC6ri7i
+	 XUHejGIypAC4+TfgugGeoo4ZL6p+GrEzmsJTXj5gA1ae7YSNT4ISF7ffOTWx2ZVy/i
+	 63ajQpGrNwotqGnr9EWFc7L+LsvVS5SvrHrH7A9X9cV59wjqabSL/wsBh/55baPj4M
+	 2pu1AgES97GdsnZruwoOyWOW844SX+GqSgVQp1y0En3o5hWD4ClskRHYbvFVy1RJHr
+	 J6tl6KY3F90vA==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id sx7L40mSpXWu; Mon, 15 Jul 2024 11:13:17 +0200 (CEST)
+Received: from esse3appjboss26.private.cineca.it (esse3appjboss26.cineca.it [130.186.5.161])
+	by smtp4.cineca.it (Postfix) with ESMTP id 6F2972FA41;
+	Mon, 15 Jul 2024 11:13:14 +0200 (CEST)
+Received: from esse3appjboss26.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss26.private.cineca.it (Postfix) with ESMTP id 57D28892;
+	Mon, 15 Jul 2024 11:13:12 +0200 (CEST)
+Date: Mon, 15 Jul 2024 11:13:12 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <1468638453.41.1721034792350@esse3appjboss26.private.cineca.it>
+Subject: Seduta del Consiglio di Amministrazione del 19 luglio 2024, ore
+ 9.00 - Diretta Streaming.
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+A tutte le studentesse e a tutti gli studenti dell=E2=80=99Universit=C3=A0 =
+degli Studi di Torino.
+
+Si comunica che la Seduta del Consiglio di Amministrazione del 19 luglio 20=
+24, alle ore 9,00, con il supporto della Direzione Servizi Informativi, Por=
+tale, E-learning, sar=C3=A0 pubblica sul portale di Ateneo.
+
+Si informa, pertanto, che la seduta sar=C3=A0 visibile online in diretta st=
+reaming su Unito Media a tutta la Comunit=C3=A0 Accademica, previa autentic=
+azione con credenziali SCU, all=E2=80=99indirizzo www.unito.it/media.
+
+Si precisa tuttavia che, ai sensi dell=E2=80=99art. 33, comma 2, del =E2=80=
+=9CRegolamento in materia di protezione dei dati personali (DR n. 870 del 4=
+ marzo 2019), la diretta streaming sar=C3=A0 sospesa in occasione della tra=
+ttazione di proposte inerenti: lo sviluppo strategico dell=E2=80=99Ateneo, =
+i rapporti con gli operatori economici e altri soggetti privati e la tutela=
+ della riservatezza dei dati personali.
+La Convocazione della seduta, contenente l=E2=80=99ordine del giorno, =C3=
+=A8 consultabile sul portale di Ateneo al seguente percorso: https://www.un=
+ito.it/sites/default/files/odg_cda_19_07_2024.pdf
+La diretta =C3=A8 fruibile da una versione aggiornata dei pi=C3=B9 diffusi =
+browser per computer desktop, per tablet e smartphone.
+Si invitano quindi tutti i destinatari della presente, se interessati, a ve=
+rificare per tempo la corretta installazione e/o l=E2=80=99aggiornamento de=
+lle componenti sovraesposte semplicemente mediante un primo accesso www.uni=
+to.it/media. Nell'impossibilit=C3=A0 di effettuare in autonomia gli aggiorn=
+amenti necessari e per ogni ulteriore esigenza tecnica contattare la Strutt=
+ura o il tecnico informatico di riferimento.
+
+Cordiali saluti.

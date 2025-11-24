@@ -1,0 +1,135 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b6d4:0:b0:2eb:f1cf:4407 with SMTP id m20csp139544ljo;
+        Wed, 12 Jun 2024 00:33:22 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCXkQI8lW7joR4IMEmdTelQR+Wn3XNY3zO8QRlhn8oxrE9g5ubbCnfedpNIO0AIJVlauc23VrOrw2u3y0dHMUrQ2poVbnZMCZg==
+X-Google-Smtp-Source: AGHT+IHf/MUby62cyx+O3AYeNcTW2n/5dIGyAnXNR2YdvLtabHytKBLYguy0Bq7Umb6p5MGyfRZ1
+X-Received: by 2002:a2e:b94d:0:b0:2ea:ed28:6057 with SMTP id 38308e7fff4ca-2ebfc9061bdmr7739041fa.18.1718177602001;
+        Wed, 12 Jun 2024 00:33:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1718177601; cv=none;
+        d=google.com; s=arc-20160816;
+        b=DP8Z2tK/aRCOXvSbeOUzzDDeYyc03rOc7zKEVNek8aM0CNOu34IqUR5f4qobzH3hB5
+         DI1gQvtGhv3JcH5hucWL8ep9Lmi8FlRUHJNyuMEhGWevaq83EO5yRFF7brDkIr4agdU2
+         qtrG6j0CCeDXtCiQ4ly7GFnXNKHYD4mBsyauDQ/BJ3YwPSBGvms5qaPUFHk+BsSgoRGq
+         UUME6wFhSXd2ZbAO43x2nI4DZd5FKcYml5xMfkBKG/RcJCOpYzXhr2pr00h2RsFDRWGg
+         PVWg1AV6EWBhOq3Qhj6eZHEx5H9eTUGLhjNaZb4+QPMVDWcxRORjC51U1pzChfbavBEp
+         dyiw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=yPLikPkYRUBS69d8WwsVXawbd9W91Rwa/ouYEv4Bdg8=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=VJip48Qcp16pwXKznE0CL/MJZfJpHseDfn7Wxd6yn3HZiWjLEKK6wSH/zHY+VdZUbm
+         uiH1aXYLuLVE/ZNRPdKadtzBOiWjcZbhtWXnt4S2BjGoOpRLyGY4kigXPBISv9NvskPP
+         fYrMWpu/s4BEEM+lW1vIu06/yvqvMX8Qmqqa/J3wf3gDqH3eTiuakGvguWWrdJrhbVyw
+         UhcUBBv4XRNkBy13v6msSI85KIVv6tbJhkQLk8/YwnUDPYF7L8sdcZjBOsc/DQYJ/xhG
+         SgsH9QlOJdAhv/lKQ/erB7zfpDwGNsT+uejJfwXRTB1Ok1eZH862qidH0SkHun39TIdy
+         IjSA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=ZW0BgYt7;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-4b93ce9d6f0si668163173.57.2024.06.12.00.33.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Jun 2024 00:33:21 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=ZW0BgYt7;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 7EB2422106;
+	Wed, 12 Jun 2024 09:33:17 +0200 (CEST)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id inFxeeBGNqdn; Wed, 12 Jun 2024 09:33:17 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id C0BB621EC1;
+	Wed, 12 Jun 2024 09:33:12 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it C0BB621EC1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1718177593;
+	bh=yPLikPkYRUBS69d8WwsVXawbd9W91Rwa/ouYEv4Bdg8=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=ZW0BgYt7fvGqVy0ducI7uFyumWiLV5s3TKcTApNXkNcYbBFx/1qK5GTdRT6Vf4vrj
+	 D8RG054p0LJbikxksDX2UYPnIGJAd7RKY+IUZJDpxXjrync8y7C17UyOJshp74iBEZ
+	 Xap7exonFeHaD/hfdpx/Qsf873yN+mokd/6B5rC4yNxaEAkqSprvKy5qfJ22IbbC1+
+	 HA0RQ5KlbVWrXIxtfQ4krru6T5sSaN7lDJpCACKQiwaexDVIE/jpHNTnltyPyGAMhO
+	 9q7RUXLK31xNLNo/dyxZHphH00lVfN5WCvFvknbW8v+hi5lRKQ2hk/lYP86YM5hrkH
+	 /PpoYRP/zELYA==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id K8N-zMhDM1Du; Wed, 12 Jun 2024 09:33:12 +0200 (CEST)
+Received: from esse3appjboss26.private.cineca.it (esse3appjboss26.cineca.it [130.186.5.161])
+	by smtp4.cineca.it (Postfix) with ESMTP id 24FC82268E;
+	Wed, 12 Jun 2024 09:33:06 +0200 (CEST)
+Received: from esse3appjboss26.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss26.private.cineca.it (Postfix) with ESMTP id 0691FDA;
+	Wed, 12 Jun 2024 09:33:04 +0200 (CEST)
+Date: Wed, 12 Jun 2024 09:33:04 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <448576024.19.1718177584020@esse3appjboss26.private.cineca.it>
+Subject: =?UTF-8?Q?Invito:_Challenge_di_Sostenib?=
+ =?UTF-8?Q?ilit=C3=A0_Ambientale_Universitaria?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+Gentili studenti e studentesse,
+
+=20
+
+Edisu Piemonte =C3=A8 capofila del progetto =E2=80=9CBe a changemaker for a=
+ sustainable campus=E2=80=9D, finanziato dall=E2=80=99Unione Europea nell=
+=E2=80=99ambito del programma Erasmus+ e in partnership con Crous de Versai=
+lles ed Erasmus Student Network Torino.
+
+=20
+
+Si tratta di un'opportunit=C3=A0 unica per partecipare a un'iniziativa inno=
+vativa volta a promuovere la consapevolezza sulla sostenibilit=C3=A0 ambien=
+tale e sociale nei campus universitari europei.
+
+=20
+
+Il progetto prevede una Challenge che consiste nel creare un logo che rappr=
+esenti e comunichi l'impegno dei campus universitari verso la sostenibilit=
+=C3=A0, aderendo a linee guida specifiche per diventare un "Sustainable Cam=
+pus".
+
+=20
+
+La partecipazione =C3=A8 aperta a tutti gli studenti e studentesse iscritti=
+ a qualsiasi corso di laurea presso le universit=C3=A0 italiane, singolarme=
+nte o in gruppo fino a un massimo di 3 componenti.
+
+=20
+
+Il miglior progetto, selezionato da una giuria esperta, sar=C3=A0 premiato =
+con un viaggio esperienziale di 3 giorni presso il Campus Universitario Cro=
+us De Versailles.=20
+
+I vincitori avranno inoltre l'opportunit=C3=A0 di perfezionare il proprio p=
+rogetto attraverso attivit=C3=A0 di mentoring condotte da esperti di Design=
+.
+
+=20
+
+Non perdete l'occasione di partecipare a questa stimolante sfida che potr=
+=C3=A0 anche essere utilizzata come tema per la vostra tesi di laurea.
+
+=20
+
+Per iscrivervi e per ulteriori dettagli, vi invitiamo a visitare il seguent=
+e link: https://www.campuspiemonte.com/regolamento-contest-be-a-change-make=
+r-for-sustainable-campus/
+
+=20
+
+Cordiali saluti

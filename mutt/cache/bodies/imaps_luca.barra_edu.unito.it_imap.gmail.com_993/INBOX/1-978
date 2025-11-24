@@ -1,0 +1,107 @@
+X-Google-Smtp-Source: AGHT+IE4YtMfRRjMvbD6tQnStm9UTFXCd+q8UXoi3rtrKka/xggriXBtqhPpZ6hudCrqbgibofLHQpudjgBKoetFjA==
+X-Received: by 2002:a05:6358:914:b0:13c:d9d4:e911 with SMTP id r20-20020a056358091400b0013cd9d4e911mr6037821rwi.12.1693120488932;
+        Sun, 27 Aug 2023 00:14:48 -0700 (PDT)
+Received: from 292831042739
+	named unknown
+	by gmailapi.google.com
+	with HTTPREST;
+	Sun, 27 Aug 2023 03:14:48 -0400
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a59:ba04:0:b0:2ee:df9b:24e5 with SMTP id n4csp1524228vqh;
+        Mon, 16 Jan 2023 07:04:38 -0800 (PST)
+X-Received: by 2002:a17:906:fcb5:b0:86e:bbdf:95c5 with SMTP id qw21-20020a170906fcb500b0086ebbdf95c5mr6517709ejb.26.1673881478364;
+        Mon, 16 Jan 2023 07:04:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1673881478; cv=none;
+        d=google.com; s=arc-20160816;
+        b=r9EIBXfkC9PSDeXh7TAl+XhmzdxbQ4eGk+85SD1pd8AyLbpTWed5AVBuu23zfP/dXk
+         84BRf6/lnoLTXvsSTXA4+/bDEAk3Xg7Q5VjMdyjhQNBl8imaLEVBOVLbHdoOR5OKZFBM
+         TRxRI03Hm4hOX7/E5sF367PrNB0qopveUl/bk7e9DyLQhA/DSoGImdvrqlwgC3jIhQVS
+         y0XYfRG3uszwUgutSO6XkIVlC53DPDVfu4PQHZkEE13HTdM+2B9p+Tz05qaOVgTpAAtv
+         WdGsGDF5JacvRxG3lfs9Zsd3uNLY1Wz0QZjPDaj3NtO+rWnIM7/XJmHnVaz+gyDMM+Zg
+         V2Fg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:message-id:subject:reply-to:from:to:date:dkim-filter;
+        bh=rkI9+2RnQrDTQ4QdbWZdKrcLFbTZJmDsMLzVXTcudJ0=;
+        b=gmgWjj5u5W9N6DvIQmTW/8h2XGFxoc343SKW6IW+8/RvvHDao6bZP4Ii9HHQO9monc
+         h2PIA870bp9IFGfzQ3vTb4+U1Q1qnu9w+EXkiPh4+YtiLVU5SGUCQHtf9OifTZBC+Sz+
+         mVl9Go7ksQ17Wt8f7kA0e1gUvrDMzL/XkDzFxAQv70vkHXm0cRGjylsfGVjyYMHWa4R3
+         xBd+s+9O+jgxRaiD/iOptkDuB8ltiXJxvC/R4cjMjcG/2VVbC1SLoUvHeFYm4y37i4WQ
+         VrD77AiGllmI4bVwvh3OX7hHY9VPNTzzFt2ecfXSYpYR3xu5MbqCjfA2me3UGNMCdBw9
+         MTTg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id xj4-20020a170906db0400b0084c3ce2f3dasi31506861ejb.738.2023.01.16.07.04.37
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Jan 2023 07:04:38 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it [130.192.157.4])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 30GF4ZfU1469458
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Mon, 16 Jan 2023 16:04:35 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 30GF4ZfU1469458
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 30GF4YBh124329
+	for <luca.barra@edu.unito.it>; Mon, 16 Jan 2023 16:04:34 +0100
+Date: Mon, 16 Jan 2023 16:04:34 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Non rispondere a questa email (da informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: Hai consegnato il compito  Consegna file progetto laboratorio LFT (27 gennaio 2023)
+Message-ID: <63c56782e8bae5.79207314@informatica.i-learn.unito.it>
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/assign/locallib.php:6461
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_8ieFCKkA4Zm3YPYeD0iIdqbPrr50sEMRPKW0VzpQ"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 30GF4ZfU1469458
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_8ieFCKkA4Zm3YPYeD0iIdqbPrr50sEMRPKW0VzpQ
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+LFTLabT1-2223 -> Compito -> Consegna file progetto laboratorio LFT (27
+gennaio 2023)
+---------------------------------------------------------------------
+Hai consegnato il compito ' Consegna file progetto laboratorio LFT (27
+gennaio 2023)'
+
+Per vedere lo stato della tua consegna:
+
+https://informatica.i-learn.unito.it/mod/assign/view.php?id=3D209704
+
+---------------------------------------------------------------------
+
+--b1_8ieFCKkA4Zm3YPYeD0iIdqbPrr50sEMRPKW0VzpQ
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p><font face=3D"sans-serif"><a href=3D"https://informatica.i-learn.unito.i=
+t/course/view.php?id=3D2582">LFTLabT1-2223</a> -><a href=3D"https://informa=
+tica.i-learn.unito.it/mod/assign/index.php?id=3D2582">Compito</a> -><a href=
+=3D"https://informatica.i-learn.unito.it/mod/assign/view.php?id=3D209704">C=
+onsegna file progetto laboratorio LFT (27 gennaio 2023)</a></font></p><hr /=
+><font face=3D"sans-serif"><p><p>Hai effettuato una consegna per il compito=
+ '<i>Consegna file progetto laboratorio LFT (27 gennaio 2023)</i>'.</p>=0A<=
+p>Per visualizzare lo stato della consegna:=0A<a>https://informatica.i-lear=
+n.unito.it/mod/assign/view.php?id=3D209704</a>.</p></p></font><hr /><p>Read=
+ing this in an email? <a href=3D"https://download.moodle.org/mobile?version=
+=3D2021051711&amp;lang=3Dit&amp;iosappid=3D633359593&amp;androidappid=3Dcom=
+.moodle.moodlemobile">Download the mobile app and receive notifications on =
+your mobile device</a>.</p>
+
+--b1_8ieFCKkA4Zm3YPYeD0iIdqbPrr50sEMRPKW0VzpQ--
+

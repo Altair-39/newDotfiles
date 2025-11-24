@@ -1,0 +1,180 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:8e91:0:b0:2e2:75a4:21a3 with SMTP id z17csp4864465ljk;
+        Tue, 21 May 2024 06:15:23 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGjNKCAm+ALdfNel2nTwLSyNq84v8CTfidc2TaMegNYGSj8h+bCpF/ixg89wZ/eX6C1ynX7
+X-Received: by 2002:a17:906:bc90:b0:a59:c52b:9939 with SMTP id a640c23a62f3a-a5a2d57acd4mr2106782166b.32.1716297323504;
+        Tue, 21 May 2024 06:15:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1716297323; cv=none;
+        d=google.com; s=arc-20160816;
+        b=0xYRD/CKtrl0Rb5FjVr8lxRT/x7XdevwloCQWNTEha3lfHLAmlCEBEkRThMdpYnBqJ
+         F8W8FEZJBZzjqVJYP14SmIe3X+9YnD8wSdWezoLhwF4hnVR+BBApYUfTcP20gGE5Yo1C
+         JORIEYkjcW0MA8WeGGa/7ty5JoBXsnwoQpXWGZwKBXukLPYWiF77jd9NH6fqXmRe1ybP
+         na6vDTk7SsCenzuPV1LkggI23VksuAt6gbQI/druAElcb1Nk9azqlT9ZpKSP4eFHBPt0
+         YAhBvEdm8ZvtY0nd8iggKMsuB0RiovOdGfgw+0l8jh5Isn0tM77LNWaih3x0iqKoZwz4
+         MhPw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=1EpF85vPMmO1kmwdLueXipxtXM7dcVNIvdRbwUfGglM=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=xgN+arbsymcYj7tnIDDVOxy0p63ybGwvNZkMC5DJiaEy6jKRqlxu1Gx0D7TCV+rj+d
+         yQK80YATIYDvclON2Ly0i/2/qnfFIonjP/kPpuAsalcgpYW5Ibux5S4azeiM33x9cVyv
+         g3SkihV0MXceLMvoZ8IUK55y+yiMSQEpEP/PmOPtg5zZNeBW9tAJBl2wVWlhZCPIuQ/6
+         XN48CdNvLfnCz3t4Qyr8o3fxfpeDX5W8kmnHL6cDXDI0Raavu77IJPuIiXT2Jf44JMnm
+         DATZfgLUY2X4+0hhuCO0WYFEFBSjWXBsqnKinkVEB7etFr/IR9bcCd6W8Lt7bLSxe437
+         b8Pw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-a5a17ba5619si1453698866b.613.2024.05.21.06.15.22
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 May 2024 06:15:23 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 44LDFKsO2196686
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Tue, 21 May 2024 15:15:20 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 44LDFKsO2196686
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 44LDFK1x009871
+	for <luca.barra@edu.unito.it>; Tue, 21 May 2024 15:15:20 +0200
+Date: Tue, 21 May 2024 15:15:20 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Trogolo Stefano (da informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: Fisica-A: Esercitazioni conclusive di Fisica
+Message-ID: <fe7ebd5d6c0f4ab1c02bed933aabd926365bc27d8a3a489cdc490c3dc71dfc7e@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Forum comunicazioni docenti-studenti" <moodleforum7274@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7274
+X-Course-Id: 2722
+X-Course-Name: FISICA (A) [Cognomi A-K]
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: Fisica-A: Esercitazioni conclusive di Fisica
+Thread-Index: fe7ebd5d6c0f4ab1c02bed933aab
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_zrLUzup3lih8w99gBRUCR6dBFDvqq32NCQxXJ4vaD8"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 44LDFKsO2196686
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_zrLUzup3lih8w99gBRUCR6dBFDvqq32NCQxXJ4vaD8
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+Fisica-A -> Forum -> Forum comunicazioni docenti-studenti -> Esercitazioni
+conclusive di Fisica
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41742#p68922
+Esercitazioni conclusive di Fisica
+di Trogolo Stefano - marted=C3=AC, 21 maggio 2024, 14:59
+---------------------------------------------------------------------
+Cari/e studenti/esse,
+
+vi informo che la prossima settimana si terranno le ultime due
+esercitazioni del corso di Fisica.=C2=A0
+
+Nello specifico:
+
+- luned=C3=AC 27 maggio, ore 9-11 --> Esercitazione 9+10 (esauriremo gli
+esercizi su RC, RL, ed RLC)
+
+- marted=C3=AC 28 maggio, ore 11-13 --> ESERCITAZIONE DI RIPASSO
+
+Per l'ESERCITAZIONE DI RIPASSO siete incoraggiati ad esporre sia via mail
+che direttamente in aula dubbi e/o richieste di chiarimento su
+argomenti/esercizi che non avete ben compreso e che verranno ripresi
+durante le due ore. L'idea di questa esercitazione =C3=A8 di offrirvi un
+momento di confronto in cui affrontare ancora una volta insieme
+argomenti/esercizi che vi sono risultati poco chiari durante lo svolgimento
+delle esercitazioni.
+
+Non esitate, quindi, a contattarmi via mail.
+
+Cordiali saluti,
+
+Stefano Trogolo
+
+---------------------------------------------------------------------
+Questa =C3=A8 la copia di un intervento effettuato su Fisica-A .
+
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2722
+
+--b1_zrLUzup3lih8w99gBRUCR6dBFDvqq32NCQxXJ4vaD8
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2722">Fisica-A</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D2722">Forum</a>=0A    &raquo;=0A    <a target=3D"_bl=
+ank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D72=
+74">Forum comunicazioni docenti-studenti</a>=0A    &raquo;=0A    <a target=
+=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/discuss.=
+php?d=3D41742">Esercitazioni conclusive di Fisica</a>=0A</div>=0A=0A<table =
+border=3D"0" cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A   =
+ <tr class=3D"header">=0A        <td width=3D"35" valign=3D"top" class=3D"p=
+icture left">=0A            <a href=3D"https://informatica.i-learn.unito.it=
+/user/view.php?id=3D32832&amp;course=3D2722" class=3D"d-inline-block aabtn"=
+><img src=3D"https://informatica.i-learn.unito.it/theme/image.php/_s/lambda=
+/core/1707437411/u/f2" class=3D"userpicture defaultuserpic" width=3D"35" he=
+ight=3D"35" alt=3D"" /></a>=0A        </td>=0A        <td class=3D"topic st=
+arter">=0A            <div class=3D"subject">=0A                Esercitazio=
+ni conclusive di Fisica=0A            </div>=0A            <div class=3D"au=
+thor">=0A                di <a target=3D'_blank' href=3D'https://informatic=
+a.i-learn.unito.it/user/view.php?id=3D32832&course=3D2722'>Trogolo Stefano<=
+/a> - marted=C3=AC, 21 maggio 2024, 14:59=0A            </div>=0A        </=
+td>=0A    </tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top"=
+>=0A                &nbsp;=0A        </td>=0A        <td class=3D"content">=
+=0A            <p dir=3D"ltr" style=3D"text-align:left;">Cari/e studenti/es=
+se,</p><p dir=3D"ltr" style=3D"text-align:left;">vi informo che la prossima=
+ settimana si terranno le ultime due esercitazioni del corso di Fisica.=
+=C2=A0</p><p dir=3D"ltr" style=3D"text-align:left;">Nello specifico:</p><p =
+dir=3D"ltr" style=3D"text-align:left;">- luned=C3=AC 27 maggio, ore 9-11 --=
+&gt; Esercitazione 9+10 (esauriremo gli esercizi su RC, RL, ed RLC)</p><p d=
+ir=3D"ltr" style=3D"text-align:left;">- marted=C3=AC 28 maggio, ore 11-13 -=
+-&gt; <strong>Esercitazione di ripasso</strong></p><p dir=3D"ltr" style=3D"=
+text-align:left;"><span>Per l'<strong>Esercitazione di ripasso</strong> sie=
+te incoraggiati ad esporre sia via mail che direttamente in aula dubbi e/o =
+richieste di chiarimento</span><strong> </strong><span>su argomenti/eserciz=
+i che non avete ben compreso e che verranno ripresi durante le due ore. L'i=
+dea di questa esercitazione =C3=A8 di offrirvi un momento di confronto in c=
+ui affrontare ancora una volta insieme argomenti/esercizi che vi sono risul=
+tati poco chiari durante lo svolgimento delle esercitazioni.</span></p><p d=
+ir=3D"ltr" style=3D"text-align:left;"><span>Non esitate, quindi, a contatta=
+rmi via mail.</span></p><p dir=3D"ltr" style=3D"text-align:left;"><span>Cor=
+diali saluti,</span></p><p dir=3D"ltr" style=3D"text-align:left;"><span>Ste=
+fano Trogolo<br /></span><strong></strong> </p>=0A=0A            <div class=
+=3D"commands">=0A            </div>=0A=0A            <div class=3D"link">=
+=0A                <a target=3D"_blank" href=3D"https://informatica.i-learn=
+.unito.it/mod/forum/discuss.php?d=3D41742#p68922">=0A                    Vi=
+sualizza questo intervento nel contesto=0A                </a>=0A          =
+  </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D=
+"mdl-align unsubscribelink">=0A    <a href=3D"https://informatica.i-learn.u=
+nito.it/mod/forum/index.php?id=3D2722">Modifica preferenze email di raccolt=
+a</a>=0A</div><p>Reading this in an email? <a href=3D"https://download.mood=
+le.org/mobile?version=3D2021051718&amp;lang=3Dit&amp;iosappid=3D633359593&a=
+mp;androidappid=3Dcom.moodle.moodlemobile">Download the mobile app and rece=
+ive notifications on your mobile device</a>.</p>
+
+--b1_zrLUzup3lih8w99gBRUCR6dBFDvqq32NCQxXJ4vaD8--
+

@@ -1,0 +1,105 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b5b0:0:b0:2fb:4c9b:a38b with SMTP id f16csp1366964ljn;
+        Thu, 28 Nov 2024 09:52:16 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHXprCViEYgBTShNqR/kIWDDfmfeDjxkcIZB5J5H25S8M7SbB/2Ste5Uc3yukFb+djYw5YP
+X-Received: by 2002:a5d:6da7:0:b0:382:5351:5bb5 with SMTP id ffacd0b85a97d-385c6ee20abmr2370075f8f.12.1732816336397;
+        Thu, 28 Nov 2024 09:52:16 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1732816336; cv=none;
+        d=google.com; s=arc-20240605;
+        b=k4qvQJRpUN8pXCYnWY+eyiqHcnUuSPxtGf1hdKWKTG1nursiHcj6mNFKS8cMII+y/N
+         +UE9T6qTwJxtp5IUzcImH0BvlJwnurLpnhINcxsjy8YlAnRAIt0Ay/jNxO1QVaEHcpcK
+         PHTBIN9dx7IElHwvdHt3qOz0Y3VVA9WwiK9kLSM4Zz9EU8JS05xrhVOwTTq+Mdhlsai+
+         6b9vF0aYz7mw6uX8sIWL6ptqy0iwAIJM2dhaIhxEH3kQMWwqcIIxAlr3CNmjsT574Jdg
+         P21xsELWZdThKINLfiGvSp6Los59wNHbmhZXJ2iVGzhKQQ5HvltWpvMcKs4iRyinx2/m
+         F85Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:message-id:subject:reply-to:from:to:date:dkim-filter;
+        bh=0hpU95PmX0Nz2Gc1CXndXz/MWSVtZGQDwrdeA4vnhE0=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=i/JthT2BUy2Y9iVensVxWcFpqMI/0U2Xp0goAPGQHRy8blv+Noaym+u2NwJiw2wiFR
+         A1Xb2sZyi7s4cDLu7MV/0t1e/pGROr7ohXKEt4o/pA+XWf1x2WY62/r6v/2q2c6jMHCs
+         LJK6ilIylCMdEMVpvc/d8daejNVRZqeOByhJ+Qg50rvSh+1wdjCFUXuMURsaFIcDfcQI
+         UfnX04TeM5eXnhkU8KrVv336qilM3dFlNvemwH+EN4S1Oa/XABH5oXYevAfH6hF3/2rF
+         dvIaphCxtWgkKN9EXSPXsrIINBD3i215WVhSKr9c5i0a3MgXw7TnaBypCcsW8pLF4eYN
+         ENfA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id e9e14a558f8ab-3a7ccbe9f61si11323205ab.50.2024.11.28.09.52.15
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Nov 2024 09:52:16 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 4ASHqDo32492767
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Thu, 28 Nov 2024 18:52:13 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 4ASHqDo32492767
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 4ASHqD1h077277
+	for <luca.barra@edu.unito.it>; Thu, 28 Nov 2024 18:52:13 +0100
+Date: Thu, 28 Nov 2024 18:52:13 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Notarangelo Incoronata (da informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: New message from Notarangelo Incoronata
+Message-ID: <6748adcce24ea1.02442214@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:message/lib.php:373
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_TBgjwqdmFfUKRvIIjWXqVE6AgnKqhWoJW4i38LEKM"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 4ASHqDo32492767
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_TBgjwqdmFfUKRvIIjWXqVE6AgnKqhWoJW4i38LEKM
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+Gentili studenti,
+
+Vi ricordo che la lezione del 29 novembre =C3=A8 annullata causa sciopero.
+Le lezioni del 5, 6, 12 e 13 dicembre si svolgeranno tutte dalle 14 alle 17
+in laboratorio von Neumann.
+
+Cordiali saluti,
+Incoronata Notarangelo
+
+---------------------------------------------------------------------
+This is a copy of a message sent to you on the site informatica. Go to
+https://informatica.i-learn.unito.it/message/index.php?id=3D25323 [1] to
+reply.
+
+Links:
+------
+[1] https://informatica.i-learn.unito.it/message/index.php?id=3D25323
+
+--b1_TBgjwqdmFfUKRvIIjWXqVE6AgnKqhWoJW4i38LEKM
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"text_to_html"><p>Gentili studenti,<br />=0A<br />=0AVi ricord=
+o che la lezione del 29 novembre =C3=A8 annullata causa sciopero.<br />=0AL=
+e lezioni del 5, 6, 12 e 13 dicembre si svolgeranno tutte dalle 14 alle 17 =
+in laboratorio von Neumann.<br />=0A<br />=0ACordiali saluti,<br />=0AIncor=
+onata Notarangelo  </p> <br />=0A------------------------------------------=
+---------------------------<br />=0AThis is a copy of a message sent to you=
+ on the site informatica. Go to <a href=3D"https://informatica.i-learn.unit=
+o.it/message/index.php?id=3D25323">https://informatica.i-learn.unito.it/mes=
+sage/index.php?id=3D25323</a> to reply.</div>
+
+--b1_TBgjwqdmFfUKRvIIjWXqVE6AgnKqhWoJW4i38LEKM--
+

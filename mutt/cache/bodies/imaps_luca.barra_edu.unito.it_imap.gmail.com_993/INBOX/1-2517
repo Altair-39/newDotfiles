@@ -1,0 +1,116 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a54a:0:b0:328:ea4:e135 with SMTP id e10csp1266874ljn;
+        Mon, 19 May 2025 01:46:11 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCWq7OjMJVK3cLVFNnP/9y5wGZU53IsExwTqTrrAvuaImXXwXhO+otqQTQzCLn9c8xj+5cetDGgLBKmI@edu.unito.it
+X-Google-Smtp-Source: AGHT+IFt3O4TOWXSFxByrZipwotrS41zUsV8mMTcxHUOJyZ+mv4NF0RiA6Mn38Pud7Z68bt8r8Q2
+X-Received: by 2002:a17:907:7d89:b0:ad2:4785:c4ac with SMTP id a640c23a62f3a-ad52d575a9fmr1218627866b.40.1747644371062;
+        Mon, 19 May 2025 01:46:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1747644371; cv=none;
+        d=google.com; s=arc-20240605;
+        b=KP8/m6RNtJuhV28EDNL05jH/pQpjFD+8zDfvTbYp7t0Ks1Ow3rwYPeJWPvBkJs+tPN
+         8Aioy+jIpT4GJhWhDaXSz+tsesVDcdSMaMolF4IXTYJAT4ZO0KZjwhJX7pwKQ/dCZk+r
+         V9D+FJlw2TNcEFFSEI+XI71BleBzAKBT/GLf9xsR3ueAgLca9NxD7mCPh6elI2rBBugX
+         43HE34qEhchJLOeiQAIIcyly+od/p9ZR1LRE+l5yg2HEl0W4GrGOyeTZxT87zrcs9x7r
+         OtKeGCkgz6xbRF8BunLV4u9hEk8fsarEBViQzWYiGLQuS1uPRC3L5IIenWNgWvOFOl+t
+         ekLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:mime-version:subject:message-id:from:date
+         :dkim-signature:dkim-filter;
+        bh=CVHoSS14cpYaWmxPGkTKG3p9PLUyLjkNE/UWv3cYpNE=;
+        fh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+        b=IhTad9Rt1tXMB+4zUci3clSw9/aJPTuW9i/Os8WuAsLl7+mM05GOo7kmnIIw9z/KWV
+         x+qtI0SUER4FoUhbF1VseiB6HLR4jra1cTeUHeedzpfu+xrrciqcX6tIjw6IhdgSfYUc
+         ZndEVHU1kzhgkvJlzpKEufaMjwVaQ/kDATtDSiJF/CUbVZKPNWrOLpQ+zaL/G1X3+Xzf
+         AJgnUZgfc/mxJlLc/3jkpOjhYT8Wura/lXpt80N3T3CtUAsspVGSRgyEkfUjx7+13/zd
+         Z5OObNdgEl/orGcdPMyKTcKh3HHh7TNMJ/uojKguZYwCwLY2clC1sRiejLfQSHZH04Pb
+         Ib0g==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=q5DDtJw1;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ad52d515c32si530312066b.644.2025.05.19.01.46.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 May 2025 01:46:11 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=q5DDtJw1;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 2BD6830154;
+	Mon, 19 May 2025 10:46:09 +0200 (CEST)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id 8_5PnOj48a60; Mon, 19 May 2025 10:46:08 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 670912F93B;
+	Mon, 19 May 2025 10:46:00 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 670912F93B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1747644365;
+	bh=CVHoSS14cpYaWmxPGkTKG3p9PLUyLjkNE/UWv3cYpNE=;
+	h=Date:From:Message-ID:MIME-Version;
+	b=q5DDtJw19Wt9cZUJ1p62CK1/qOmnMjwirERBX1CeaxrpsTUy3f9EkV+iyNvWrq20y
+	 q+l65OwRJfmj+Cr78pKTwmoEjxVeNWQujVpS092ER3+6lWYxM2BciDiKunn5RsQTc+
+	 2F+VYs9WecylSDImBee27cLpawTZgoGkpJLGXV/CfdmVZcOwMQ+AbU81qp3rFf4rHw
+	 yPzRAM4ycvrtTNwrwUzim2hZDe6+SuZOcRullyRVpn1erlwTdQV9NYmH/nMgaA81Fh
+	 X9B7FahRbNMzszp0Fo+ZgXULckZntekb8MJAvMeHE3jbUKRHqPG95F1Nxiuu+xMfV4
+	 BCGmb1I/tZypA==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id iCBXIYmEVG6n; Mon, 19 May 2025 10:46:00 +0200 (CEST)
+Received: from esse3be408.private.cineca.it (esse3be408.private.cineca.it [10.100.48.130])
+	by smtp4.cineca.it (Postfix) with ESMTP id AA6A42EF78;
+	Mon, 19 May 2025 10:45:48 +0200 (CEST)
+Received: from esse3be408.private.cineca.it (localhost [127.0.0.1])
+	by esse3be408.private.cineca.it (Postfix) with ESMTP id B246E20075;
+	Mon, 19 May 2025 10:45:40 +0200 (CEST)
+Date: Mon, 19 May 2025 10:45:40 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <2123870579.187.1747644340727@esse3be408.private.cineca.it>
+Subject: =?UTF-8?Q?Bando_universit=C3=A0_2025_della_Fondazione_Cecilia_Gilardi?=
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p style="margin-top: 0">
+      &#200; aperto il <b>bando</b> per l&#8217;<b>assegnazione di sostegni 
+      economici</b>, sotto forma di <b>borse di studio</b>, a favore di <b>s</b>tudenti 
+      delle <b>Universit&#224; del Piemonte</b>, della <b>Liguria</b> e della <b>Valle 
+      d&#8217;Aosta</b> (triennale, magistrale, ciclo unico). Il sostegno &#232; 
+      pensato per finanziare progetti volti a perfezionare il percorso 
+      formativo e favorire la crescita professionale.
+    </p>
+    <p style="margin-top: 0">
+      
+    </p>
+    <p style="margin-top: 0">
+      Scadenza candidature: <b>26 maggio 2025</b>
+    </p>
+    <p style="margin-top: 0">
+      
+    </p>
+    <p style="margin-top: 0">
+      <b>Come partecipare?</b>
+    </p>
+    <p style="margin-top: 0">
+      
+    </p>
+    <p style="margin-top: 0">
+      Le<b> borse di studio</b> sono <b>assegnate sulla base di un progetto</b>, 
+      che va presentato seguendo le indicazioni e le modalit&#224; previste nel <a href="https://fondazionececiliagilardi.org/wp-content/uploads/2025/04/Bando-Universita-2025-Fondazione-Cecilia-Gilardi.pdf"><b>bando</b></a>.
+    </p>
+    <p style="margin-top: 0">
+      
+    </p>
+    <p style="margin-top: 0">
+      Tutte le informazioni e il bando con i requisiti e la documentazione 
+      richiesta sono disponibili sul sito della <a href="https://fondazionececiliagilardi.org/bandi/bando-universita-2025/">Fondazione 
+      Cecilia Gilardi</a>.
+    </p>

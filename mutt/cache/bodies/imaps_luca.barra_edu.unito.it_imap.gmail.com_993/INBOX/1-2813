@@ -1,0 +1,112 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:bc1b:0:b0:361:9897:9696 with SMTP id b27csp109729ljf;
+        Mon, 22 Sep 2025 05:31:45 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCXtykAmiAzBuAx4GoA/xADxmzd+7abBCjFLTTkQX7RjR2FEaQ9X5kbaBYqSkvPlREshIUVBxIvYM8KU@edu.unito.it
+X-Google-Smtp-Source: AGHT+IFBSj5uWRREGhHjXI38yfyPAwirIrx3ex6nkYtq9esn9ypey2XT6CLraICQyF08AwYFVywx
+X-Received: by 2002:a05:6402:2744:b0:633:7017:fcbc with SMTP id 4fb4d7f45d1cf-63370180966mr3212800a12.15.1758544305221;
+        Mon, 22 Sep 2025 05:31:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1758544305; cv=none;
+        d=google.com; s=arc-20240605;
+        b=kDbY1aKkHsZABDht6dvdfIgVeJO1UfAOfAi16Vn2t4bQyEJ5nY6CZtd1Su0NG4H2+M
+         0lzFE6q9AalyPsRHfFzzDuXozGxSLiHamCi32/yjhwu+AkX72CKhxCUUNH59p9b32HWP
+         0wN6pXP14OFvUe5x1VizWqlNbC83KIks5YRa873h6bFt83PqctpuubJhtCNlOzcKenP0
+         xO9ajU5vAaSkB9HCahA3prb76RGk0uLyNAUi6aX9GrKMipWp9kFiD9YfHD+/As+JrT0c
+         WasDCqAcLQzmmc+LvUPiAWF9s+Vstg93oNpdVEQdfR/PNPdiI/fyM4yrToyPq5Pp4wSt
+         skNQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:mime-version:subject:message-id:from:date
+         :dkim-signature:dkim-filter;
+        bh=wPSTa52QLiAU6qRtQDdC4yZtS6/bjaqW6fDsXU95u5U=;
+        fh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+        b=L5hYQKrZVPlvRkQ4+QDvnwYx2iAOpItRPgq8GLOVyAggfJ55FGIGFYSzWWqt+C7SJy
+         HEjIRYIgA9EVSdh2Xdz7L9RyFxfatpZao8FqS0pqTl+0OUrurEGN47kGrEDbJkxTSptT
+         Tvllokf3clnb5R+pEOMZzIjcM4U6rl8SXRBavEHFG661DzYWrnHq7am/GNJpF4h9Wrz5
+         DkPMzNMSEyX5uuBg2IWMMmCGafr5mIOY35RSJPJvsyryq2faVOtUhVOjHiy8Z5cNdTh0
+         yGTBzmrsz51Umz08UXrnmps1me3vCWP9bRhZzBhmzwuvxJQh4VB/tyu025JFxHIgihAx
+         K4LA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=N9W+aTHW;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-6345e171467si96340a12.200.2025.09.22.05.31.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Sep 2025 05:31:45 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=N9W+aTHW;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 03D1E215A3;
+	Mon, 22 Sep 2025 14:31:41 +0200 (CEST)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id HyWfHdUW3laL; Mon, 22 Sep 2025 14:31:40 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 4CAD5210BB;
+	Mon, 22 Sep 2025 14:31:40 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 4CAD5210BB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1758544300;
+	bh=wPSTa52QLiAU6qRtQDdC4yZtS6/bjaqW6fDsXU95u5U=;
+	h=Date:From:Message-ID:MIME-Version;
+	b=N9W+aTHWt961xHXjBA0b7iq0h8T8UPJnvw7go/XqJ2d5R0eC1ucdy2ZyB9u9j8O99
+	 z4JqYj4Kis3rm/g3M/BZEAaioTW0GdhsEkCvnxtKvgu54s64zvVHy8QTkt8IfAMZ2e
+	 X0gfh1aD/jVQmLGc9Pp2bEYYjjh6dJ/1tpoj4jQlSxN3GCfdBvnkUW3EBu4VEAnrtR
+	 jClsZYE4zapynaZnLgV5ubVNNOYOuyiN3spZkjuGJcrdjGcs2TQfvMLSqWoaCWHPY1
+	 lDAh57SNemuoHuLgPoKi4XyHb2RVr3Wi7s/DKo6yzH+i2nYloQVu88Sp4EVPibpHWv
+	 GYG1e6WplaKlg==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id JyHUBhdhWvGF; Mon, 22 Sep 2025 14:31:40 +0200 (CEST)
+Received: from esse3be407.private.cineca.it (esse3be407.private.cineca.it [10.100.48.129])
+	by smtp4.cineca.it (Postfix) with ESMTP id 6383120F7C;
+	Mon, 22 Sep 2025 14:31:38 +0200 (CEST)
+Received: from esse3be407.private.cineca.it (localhost [127.0.0.1])
+	by esse3be407.private.cineca.it (Postfix) with ESMTP id 89CA120068;
+	Mon, 22 Sep 2025 14:31:36 +0200 (CEST)
+Date: Mon, 22 Sep 2025 14:31:36 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <1251772388.187.1758544296561@esse3be407.private.cineca.it>
+Subject: Seduta del Consiglio di Amministrazione del 25 Settembre 2025, ore
+ 9.00 - Diretta Streaming.
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+A tutte le studentesse e a tutti gli studenti dell=E2=80=99Universit=C3=A0 =
+degli Studi di Torino.
+
+Si comunica che la Seduta del Consiglio di Amministrazione del 25 Settembre=
+ 2025, alle ore 9,00, con il supporto della Direzione Servizi Informativi, =
+Portale, E-learning, sar=C3=A0 pubblica sul portale di Ateneo.
+
+Si informa, pertanto, che la seduta sar=C3=A0 visibile online in diretta st=
+reaming su Unito Media a tutta la Comunit=C3=A0 Accademica, previa autentic=
+azione con credenziali SCU, all=E2=80=99indirizzo www.unito.it/media.
+
+Si precisa tuttavia che, ai sensi dell=E2=80=99art. 33, comma 2, del =E2=80=
+=9CRegolamento in materia di protezione dei dati personali (DR n. 870 del 4=
+ marzo 2019), la diretta streaming sar=C3=A0 sospesa in occasione della tra=
+ttazione di proposte inerenti: lo sviluppo strategico dell=E2=80=99Ateneo, =
+i rapporti con gli operatori economici e altri soggetti privati e la tutela=
+ della riservatezza dei dati personali.
+La Convocazione della seduta, contenente l=E2=80=99ordine del giorno, =C3=
+=A8 consultabile sul portale di Ateneo al seguente percorso: https://www.un=
+ito.it/sites/default/files/2025-09/odg_cda_25_09_2025.pdf
+La diretta =C3=A8 fruibile da una versione aggiornata dei pi=C3=B9 diffusi =
+browser per computer desktop, per tablet e smartphone.
+Si invitano quindi tutti i destinatari della presente, se interessati, a ve=
+rificare per tempo la corretta installazione e/o l=E2=80=99aggiornamento de=
+lle componenti sovraesposte semplicemente mediante un primo accesso www.uni=
+to.it/media. Nell'impossibilit=C3=A0 di effettuare in autonomia gli aggiorn=
+amenti necessari e per ogni ulteriore esigenza tecnica contattare la Strutt=
+ura o il tecnico informatico di riferimento.
+
+Cordiali saluti.

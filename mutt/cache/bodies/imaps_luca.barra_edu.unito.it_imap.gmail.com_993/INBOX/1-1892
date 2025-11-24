@@ -1,0 +1,150 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b16c:0:b0:2f3:ec6d:e6a7 with SMTP id a12csp240118ljm;
+        Wed, 25 Sep 2024 05:37:25 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCX8lvFaTGW2BpvIMGT3JSMKTQN0FH8UbgNilQYkcu7K5V7D9iM947V2KrQvVMSiEcKDWpMHOlvycAfX@edu.unito.it
+X-Google-Smtp-Source: AGHT+IHl+RWvDEJBYg3j5HBeOUuZgrk4hiw0dh7/JXRpqTsvyeqBqCZTrvfaNQwNQaIS4ieL9G1M
+X-Received: by 2002:a17:907:6d1e:b0:a8d:6372:2d38 with SMTP id a640c23a62f3a-a92c4858531mr660402366b.18.1727267845639;
+        Wed, 25 Sep 2024 05:37:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727267845; cv=none;
+        d=google.com; s=arc-20240605;
+        b=GAEae8gcdkNiWsTW0fFPR8SGOMjDtNWzZvgYqToEVHGnP1ax2YCChB5RMYOWxa0l5j
+         EDS0r1fO7UE8UOniDyQ7oMFO5nB5+hMS2mC6aWwt/Kv26cfK7Bdmtppq2hbt2C4LSORy
+         +LHXuM03jXpmqUP0GwLCH8joLRMnUubXeEkV1l+FWeCCLGVLg98axeCB9A7incgi7aoH
+         Ac3MuIRlJeERz/tm1g4Qx/rhHbN5zTGKg04Ky/Z1hvp60i+/nQcWmnfOXARvTbYz6rGC
+         0OdOUG74WpisJznpLuAJWoNdyUNAB3NEHG+4E8W4cpZp7Q+ahz7VeDUCMu59yfE4LoOC
+         WZYg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=gZCtreSL0v6/mxS5pM0bgH+mimA2I8qnMm2RjD4TuhU=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=YwjM4Ss6C5HY7DuaHJEn7Bt46BLy619kjRSv4wmkrmzr+aKyzhkB/NXDT6IbCvhPOp
+         dA8eeBXAs8Nj0bxfOA5poDawWOwnZytS6Zzl2jX0gTkHbb7stp3sf3c98YCTj+a2cneF
+         mS34CTDbtYvoJc6fwcdJCExekvIufJ0AvS17pM6eYHDux0aRf1UpbeS/+NX1sXNm9YSL
+         OwoEJp+v+spuj7lQaOo1oODIVke39ixK70sWcAVwBeZY9YaUjZuSIBMiMbraW2W7ewvk
+         gfmDieho/L5QtnMioveS+3hs8LuROfER1ZAdszp/cBYO8fgSbgjofk/2HkGhSXQ0AxE5
+         N94w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=akl6bx9U;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id ca18e2360f4ac-8323f662f82si159401139f.132.2024.09.25.05.37.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 25 Sep 2024 05:37:25 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=akl6bx9U;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id DE995242F4;
+	Wed, 25 Sep 2024 14:37:22 +0200 (CEST)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id fDSdJz3ZWvcX; Wed, 25 Sep 2024 14:37:22 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 4B45D23D68;
+	Wed, 25 Sep 2024 14:37:22 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 4B45D23D68
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1727267842;
+	bh=gZCtreSL0v6/mxS5pM0bgH+mimA2I8qnMm2RjD4TuhU=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=akl6bx9UkvRExqsNP3STJA7qmGMsixJP8Ogy7xtHGNnpAGNBQmcnMox6+s7o0xSHj
+	 uIBcWZB9pNlQ0ioMvKdxC1JnKtccq3Z+vXz8/vRDkn0ZGkHmgLqQfrDUzXH/iBnE4c
+	 1oQSHIHr3zpV/ttj1IbnFz+SotAVsLKa+XOjVi/a12M8QmOSTIpeNieiNcLPP5/5kz
+	 fE8gHOjK4OKh0Ndc9dCdJ7ArmPhFpuxvKMClnUn8ZbeTm0PFcsL4GwkF015J+C7GHe
+	 lJqvj652Nx9BOx/rukrVeH8EwYmNHUxvnowlfzlsD9w1eY5v+B2+I8OqYfTpGhksin
+	 /eSMXh8XAcPnA==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id NkD93FHmlIo9; Wed, 25 Sep 2024 14:37:22 +0200 (CEST)
+Received: from esse3appjboss27.private.cineca.it (esse3appjboss27.cineca.it [130.186.5.162])
+	by smtp4.cineca.it (Postfix) with ESMTP id 2056523D02;
+	Wed, 25 Sep 2024 14:37:20 +0200 (CEST)
+Received: from esse3appjboss27.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss27.private.cineca.it (Postfix) with ESMTP id 3CE5511F9;
+	Wed, 25 Sep 2024 14:37:18 +0200 (CEST)
+Date: Wed, 25 Sep 2024 14:37:18 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <1251846710.27.1727267838241@esse3appjboss27.private.cineca.it>
+Subject: =?UTF-8?Q?UNITA_for_UNIGHT_2024_=E2=80=93_Segui_?=
+ =?UTF-8?Q?su_@universitasmontium_i_reel_I?=
+ =?UTF-8?Q?nstagram_/_follow_on_@universitasmontium_the_Instagram_reels_?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+ENGLISH VERSION BELOW
+
+Studi o fai ricerca in UniTO? Scopri le opportunit=C3=A0 di mobilit=C3=A0 i=
+nternazionale con l'Alleanza europea UNITA.=20
+Collegati al canale Instagram di UNITA (@universitasmontium) e segui i reel=
+ che saranno pubblicati nella serata di venerd=C3=AC 27 settembre e nel pom=
+eriggio di sabato 28 settembre in occasione della U*Night - Notte Europea d=
+elle Ricercatrici e dei Ricercatori per scoprire le iniziative e i progetti=
+ dell'Alleanza per la ricerca, conoscere la Student Assembly di UNITA e le =
+elezioni dei suoi rappresentanti, ascoltare le testimonianze di studenti e =
+studentesse che hanno svolto mobilit=C3=A0 internazionale con UNITA.
+E se ti trovi a Torino, vieni a trovarci venerd=C3=AC 27 settembre dalle 17=
+ alle 24 allo stand In Europa con UNITA in Piazzetta Reale a Torino: partec=
+ipa al quiz a premi su UNITA, scopri le foto che hanno vinto i contest foto=
+grafici di UNITA sulla sostenibilit=C3=A0 e sulla cittadinanza europea e ve=
+di in anteprima uno dei calchi che saranno esposti nel 2025 alla mostra iti=
+nerante UNITA I primi custodi della memoria. Le sepolture nel Paleolitico.
+Ma Il programma di UNITA per la Notte non finisce qui:
+=E2=80=A2=09Venerd=C3=AC 27 alle ore 18 in Area Lounge (Piazzetta Reale) se=
+gui il caff=C3=A8 scientifico =E2=80=9CSocietal Impact Report di UNITA: com=
+e si misura l'impatto di un'Alleanza Universitaria Europea?"
+=E2=80=A2=09Sabato 28 alle ore 16 in Area caff=C3=A8 C3 (Piazzetta Reale) s=
+egui il caff=C3=A8 scientifico "My 3-minute PhD thesis: il contest di comun=
+icazione della ricerca per le Universit=C3=A0 di UNITA" e conosci le dottor=
+ande di UniTo che hanno vinto la competizione di comunicazione scientifica =
+di UNITA
+=E2=80=A2=09Sabato 28 alle ore 18 in Area caff=C3=A8 C2 segui il caff=C3=A8=
+ scientifico =E2=80=9CCelle solari da primo posto!=E2=80=9D e conosci i vin=
+citori del premio UNITA open Innovation Prize 2024 e le loro innovative cel=
+le solari=20
+
+Ufficio UNITA, Universit=C3=A0 di Torino=20
+unita.communication@unito.it
+
+---------------------------------------------------------------------------=
+--
+
+Studying or doing research at UniTO? Discover international mobility opport=
+unities with the UNITA European Alliance.=20
+Follow the UNITA's Instagram channel (@universitasmontium) and discover the=
+ reels on the evening of Friday, September 27, and on the afternoon of Satu=
+rday, September 28 during U*Night - European Researchers' Night to discover=
+ the research opportunities through the Alliance, learn about UNITA's Stude=
+nt Assembly and the elections of its representatives, and listen to the tes=
+timonies of students who have done international mobility with UNITA.
+And if you are in Turin, come visit us on Friday, September 27 from 5 p.m. =
+to midnight at the UNITA booth In Europe with UNITA in Turin's Piazzetta Re=
+ale: take the UNITA quiz with prizes, discover the photos that won UNITA's =
+photo contests on sustainability and European citizenship, and preview one =
+of the casts that will be on display in 2025 at the UNITA traveling exhibit=
+ion =E2=80=9CEarly memory keepers. Burials in the Paleolithic=E2=80=9D.
+UNITA's program for the Night is much more:
+=E2=80=A2=09Friday 27 at 6 p.m. in the Lounge Area (Piazzetta Reale) follow=
+ the scientific caf=C3=A9 =E2=80=9CUNITA's Societal Impact Report: how do w=
+e measure the impact of a European University Alliance?=E2=80=9D
+=E2=80=A2=09Saturday 28 at 4 p.m. in Coffee Area C3 (Piazzetta Reale) follo=
+w the scientific caf=C3=A9 =E2=80=9CMy 3-minute PhD thesis: the research co=
+mmunication contest for UNITA universities=E2=80=9D and meet the UniTo PhD =
+students who won UNITA's science communication competition
+=E2=80=A2=09Saturday 28 at 6 p.m. in Coffee Area C2 follow the scientific c=
+af=C3=A9 =E2=80=9CFirst-place Solar Cells!=E2=80=9D and get to know the win=
+ners of the UNITA open Innovation Prize 2024 and their innovative solar cel=
+ls=20
+
+UNITA office, University of Turin
+unita.communication@unito.it

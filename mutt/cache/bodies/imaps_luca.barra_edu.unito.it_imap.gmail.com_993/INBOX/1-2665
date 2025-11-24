@@ -1,0 +1,127 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:be92:0:b0:32a:7f76:203e with SMTP id a18csp98817ljr;
+        Wed, 18 Jun 2025 23:24:49 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCWeg5nXyelDve9IyYjLUR9YX+E+cwWPyS4+IO94Ub2GlIPjZggIVHYZwgSkgJXaUiRh6padXSieyIwa@edu.unito.it
+X-Google-Smtp-Source: AGHT+IEozfStR0rkPIp0pBMm7EPURTRWPgqYpHVdw4alrFNUrOvgkF0xUzlVn0L+GXuBsCsFEsJT
+X-Received: by 2002:a05:6402:2108:b0:607:1c09:b0d6 with SMTP id 4fb4d7f45d1cf-608d0861692mr18610485a12.8.1750314288969;
+        Wed, 18 Jun 2025 23:24:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1750314288; cv=none;
+        d=google.com; s=arc-20240605;
+        b=LfzX4KH21l+LIKhg61QjB5UXOqueEo2+SNMJBOEC7Mtt6W2DWcJCOhdqNzbTzPZU70
+         UEI0mtw/7H3Zv4w0VciM0GmyjLfHowC2N/10MEVsfyDI90n08hm9A+rdMLjm/bVmtuFR
+         a+K7PnzSIlUaeFNOCWEE6TkTNF9E39OH+MDaFu1uXrXqIFRAkdzaEI8jVggGaZKhxHlf
+         Mtyes00XMfxbrVvrC5Mb8Hs/Gmx9QEDjwMZNq8pzHCOwe0nKohjOxi/+uhcWpMKjybk8
+         7XfuifJGJ+ExRDl7PBQ7aq17/5Yt2uJzCeRNshbOfdJlRYvAqx8Jhoh2BjMK134AVYOe
+         NZGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:mime-version:subject:message-id:from:date
+         :dkim-signature:dkim-filter;
+        bh=ImHTUj7XUamGnzMxRYWIXJAfk7ROCBTOZQTwY0RJEUI=;
+        fh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+        b=c8SQnRb+skZqZX+H/kPhd8cL6/tp3UQmv+S8HcESLZtule8ktPiKoI0ZxoN8KpltBp
+         OZZdgiUnrpAibCTtYSTPVvA1Fk01WMn0XhZyl4Is7nMK6+0UlUgH1aXVaxeEAYfl7Bqs
+         LRoXvxCcgRk5odq/HmbG7xJRAKUbG7MF+ikBMedYUA3EzNkR/o8VmnprXrhJYg7XC3cY
+         whPiMMcIM8LcCdhkDQiLNrSiPoevvxS0HSoU20V/2MDyQ8HTH+Z8SXXSxtmVOsKA68iT
+         wdLib0vgB2LtLCUo01v35grQfuDQdC1ZJ94c2rfzAzJFpiO5Qnm5tVjtqzHCaRJwJ6KM
+         gZkw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=Ywly32RE;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-608b4987bcesi11194063a12.220.2025.06.18.23.24.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Jun 2025 23:24:48 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=Ywly32RE;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id E313D257B2;
+	Thu, 19 Jun 2025 08:24:46 +0200 (CEST)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id 1NsRHCTp7PjF; Thu, 19 Jun 2025 08:24:46 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 26D81275CB;
+	Thu, 19 Jun 2025 08:24:46 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 26D81275CB
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1750314286;
+	bh=ImHTUj7XUamGnzMxRYWIXJAfk7ROCBTOZQTwY0RJEUI=;
+	h=Date:From:Message-ID:MIME-Version;
+	b=Ywly32REEe7rxcpGo/7ugQrJjtor/dyzfNACGNNat9mPG/lV305sw62cDl0RCRIt9
+	 HLpxFpPq8bsYMhu+QKWxDD7CRtLlOPa8tYiJd6BYOtkOBfVwKchQ4ZMhYEhySV6S4u
+	 J4mjkYt/LKzB2idXyyjeBl2huXerYuPzlZEv1WC8ogrgmmJr+Rk/cHO5FzS3uV//7U
+	 i4eTSCeKa3I7t8CceYPcFi4TDOK9/bLYjraHATlsCDYvM9USh4PnGtpYak/8JUoLo/
+	 3FnS3Qs1q7gtz+8qFKji1v8xKs3x/1Poq55SdDW3w2HbkQ7ZM65zqlGOJXD95LEcVO
+	 zQalMxsKp/zQA==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id W1p59C03q7dV; Thu, 19 Jun 2025 08:24:45 +0200 (CEST)
+Received: from esse3be408.private.cineca.it (esse3be408.private.cineca.it [10.100.48.130])
+	by smtp4.cineca.it (Postfix) with ESMTP id BB10026194;
+	Thu, 19 Jun 2025 08:24:42 +0200 (CEST)
+Received: from esse3be408.private.cineca.it (localhost [127.0.0.1])
+	by esse3be408.private.cineca.it (Postfix) with ESMTP id 0960120027;
+	Thu, 19 Jun 2025 08:24:41 +0200 (CEST)
+Date: Thu, 19 Jun 2025 08:24:41 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <1624828533.93.1750314281036@esse3be408.private.cineca.it>
+Subject: Cittadinanza Europea, Lingue e corsi specialistici: aperto il bando
+ UNITA Virtual Mobility 2025-2026
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+English version below
+Vuoi seguire il corso di cittadinanza europea e altri corsi specialistici o=
+fferti un=E2=80=99Universit=C3=A0 internazionale, ma non puoi andare all=E2=
+=80=99estero?
+Hai fatto domanda di borsa Erasmus per il prossimo anno e ti interessa segu=
+ire un corso di lingua francese, spagnola o romena e ottenere dei CFU?
+=C3=88 aperto il bando UNITA Virtual Mobility a.a. 2025-26, che permette a =
+chi studia presso l=E2=80=99Universit=C3=A0 degli Studi di Torino di seguir=
+e fino a due corsi =E2=80=93 di cittadinanza europea, di lingua o specialis=
+tici =E2=80=93 in modalit=C3=A0 virtuale in uno degli Atenei partner dell=
+=E2=80=99Alleanza UNITA e del progetto Geminae, di sostenere l=E2=80=99esam=
+e finale e di ottenere il riconoscimento dei CFU nella carriera di UniTO.
+ Il bando, il catalogo digitale dei corsi e il modulo di candidatura sono d=
+isponibili al seguente link:
+ https://www.unito.it/internazionalita/unita-universitas-montium/unita-virt=
+ual-mobility
+ Scadenza per la presentazione della domanda di candidatura: entro mercoled=
+=C3=AC 2 luglio alle ore 12:00.
+ Per maggiori informazioni: unita.students@unito.it
+Vuoi conoscere tutte le opportunit=C3=A0 di UNITA?
+ Seguici su Instagram: @universitasmontium
+Un cordiale saluto,
+Sezione UNITA
+---
+Would you like to take courses in European Citizenship and other subject-sp=
+ecific courses offered by an international university, but can't go abroad?
+Have you applied for an Erasmus grant for next year and are interested in t=
+aking a French, Spanish, or Romanian language course and earning credits?
+The UNITA Virtual Mobility call for applications =E2=80=93 a.y. 2025-26 is =
+now open! It allows students enrolled at the University of Turin to take up=
+ to two courses =E2=80=93 European Citizenship, language or subject-specifi=
+c =E2=80=93 online at one of the partner universities of the UNITA Alliance=
+ and the Geminae project. You will be able to take the final exam and recei=
+ve ECTS credit recognition in your UniTO transcript.
+ The call for applications, the digital course catalogue, and the applicati=
+on form are available at the following link:
+ https://www.unito.it/internazionalita/unita-universitas-montium/unita-virt=
+ual-mobility
+ Application deadline: by Wednesday, July the 2nd at 12:00 noon (CET).
+ For more information: unita.students@unito.it
+
+Want to discover all UNITA opportunities?
+ Follow us on Instagram: @universitasmontium
+Kind regards,
+UNITA Office

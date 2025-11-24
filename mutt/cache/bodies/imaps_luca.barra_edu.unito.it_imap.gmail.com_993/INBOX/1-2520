@@ -1,0 +1,175 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a54a:0:b0:328:ea4:e135 with SMTP id e10csp1400273ljn;
+        Mon, 19 May 2025 07:07:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEYhAZy00qX9/OOz5bLBR9OuvsttZ9LxW1/PEyuKb8GDOHRu9fuzwohsmdcg43/vOFH0ZAx
+X-Received: by 2002:a17:906:cc5e:b0:ad5:2473:9883 with SMTP id a640c23a62f3a-ad52d6a63f5mr352993266b.14.1747663621829;
+        Mon, 19 May 2025 07:07:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1747663621; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Aphnt7tgMPusZeKOx896vXmNRvc7opn0yNOD7E6ufnq+/ofcyBS+u5Ny1D7djKmFfx
+         oY7DYm2V71MH6GTslwLZydiYXYyB7BLAkNG6eHpMEBH5nEGaJFqDZ6l2Jhdly41lNIUF
+         DaaxVsrEWC5XyLTyvhdJ8T+W17rM1+hETkhsNdbPaeI3sNJggplSNV+/37AnnS4u11/L
+         4/6BgWHQs3tDuhtXwERrQ9KlEvnY+5V1lUWdvj59Hk/F7RpmYhMctTG4GTXdG0cqPYlR
+         dvbZU7ran5Mwg6wdCdi/GusnpKDoTdZs1YSbGoJOAFAoxQsNEG7LQstVoGKAyLyaC8lu
+         AzAQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=S0HTTteEOt0w27aPeNMtQAhu8zWnXsr5XJpCQwLGI7Q=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=Eao/2sEjb122Qyjbp3rN6upWfMp+2y5EwJeJ8xg0UFZUq9TLnD1GkWa+/pOhFe3rE6
+         /Gjle+0e6rQhEZNAnwnSgV48Wy7X2UizHvTqWgOVzeE2tI771s7JjLkOL3p7ZetvQoHs
+         ERyYI0JyYNRL6Jae3KzGuSDFllGjRWMxW0GtdP5gMGD9UNzj/HFE88hK8myGJHP7ug1x
+         TLK66IHv4zgaL5poaq90W6ge7efm5SQwCtjXx5r6ovHVk6aDCoi+mfveXIbs7cS4BYDB
+         dt30AiURBrIHOxkGQLYwbTktseL5vgTjzurg6iN4ZxK7CJ6dvfT3G0rfHO87K82wxWsU
+         l/yQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ad52d4df3b0si575420766b.512.2025.05.19.07.07.01
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 May 2025 07:07:01 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 54JE71ls2726413
+	for <luca.barra@edu.unito.it>; Mon, 19 May 2025 16:07:01 +0200
+Date: Mon, 19 May 2025 16:07:01 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Pensa Ruggero Gaetano (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: =?utf-8?B?TUFBREIyNTogTW9kYWxpdMOgIGRpIHByZW5vdGF6aW9uZSBlc2FtaSBlIGQ=?=
+ =?utf-8?B?aXNjdXNzaW9uZSBwcm9nZXR0byBOb1NRTA==?=
+Message-ID: <7639f1515b4e2ae1db41b2ebc32bc976304eb0edade14f8a7fa25503eb23b561@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7656@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7656
+X-Course-Id: 3078
+X-Course-Name: Modelli e Architetture Avanzati di Basi di Dati
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: =?utf-8?B?TUFBREIyNTogTW9kYWxpdMOgIGRpIHByZW5vdGF6aW9uZSBlc2FtaSBlIGQ=?=
+ =?utf-8?B?aXNjdXNzaW9uZSBwcm9nZXR0byBOb1NRTA==?=
+Thread-Index: 7639f1515b4e2ae1db41b2ebc32b
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_OzHX7mCc5rG9CV407hF9rCzqPsuLWIW0WhO81VI3Q"
+
+This is a multi-part message in MIME format.
+
+--b1_OzHX7mCc5rG9CV407hF9rCzqPsuLWIW0WhO81VI3Q
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+MAADB25 -> Forums -> Annunci -> Modalit=C3=A0 di prenotazione esami e
+discussione progetto NoSQL
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44701#p72459
+Modalit=C3=A0 di prenotazione esami e discussione progetto NoSQL
+by Pensa Ruggero Gaetano - Monday, 19 May 2025, 4:06 PM
+---------------------------------------------------------------------
+Gentili studentesse e studenti,
+
+Riporto di seguito le indicazioni per sostenere l'orale di MAADB, VALIDE
+PER TUTTI GLI APPELLI DELL'A.A. 2024/25.
+
+* Una volta completato il progetto, una persona del gruppo invia una email
+a ruggero.pensa@unito.it con il subject "Prenotazione Orale MAADB",
+mettendo gli altri componenti del gruppo in cc. Nella corpo della email,
+vanno indicati i componenti del gruppo (Matricola, Cognome e Nome).
+* Insieme al docente, verr=C3=A0 concordata una data e un luogo per l'esame=
+ in
+presenza.
+* Le persone del gruppo che intendono sostenere scritto e orale di
+progetto nella stessa sessione, DEVONO PRENOTARSI SU ESSE3 SIA PER LO
+SCRITTO CHE PER L'ORALE.
+* Le persone del gruppo che, in una data sessione, intendono sostenere
+solo l'orale di progetto, NON DEVONO ISCRIVERSI SU ESSE3.
+* Le persone che hanno conseguito il voto di progetto in una precedente
+sessione e che intendono sostenere lo scritto, DEVONO PRENOTARSI SU ESSE3
+SIA PER LO SCRITTO CHE PER L'ORALE.
+* Le persone che hanno conseguito il voto dell'esame scritto in una
+precedente sessione e che intendono sostenere l'orale del progetto, DEVONO
+PRENOTARSI SU ESSE3 SOLO PER L'APPELLO ORALE.
+
+Cordiali saluti
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Maria Luisa Sapino e Ruggero Pen=
+sa
+
+---------------------------------------------------------------------
+This is a copy of a message posted in MAADB25.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3078
+
+--b1_OzHX7mCc5rG9CV407hF9rCzqPsuLWIW0WhO81VI3Q
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3078">MAADB25</a>=0A    &raquo;=0A=
+    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/f=
+orum/index.php?id=3D3078">Forums</a>=0A    &raquo;=0A    <a target=3D"_blan=
+k" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7656=
+">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://info=
+rmatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44701">Modalit=C3=A0 di =
+prenotazione esami e discussione progetto NoSQL</a>=0A</div>=0A=0A<table bo=
+rder=3D"0" cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <=
+tr class=3D"header">=0A        <td width=3D"35" valign=3D"top" class=3D"pic=
+ture left">=0A            <a href=3D"https://informatica.i-learn.unito.it/u=
+ser/view.php?id=3D15799&amp;course=3D3078" class=3D"d-inline-block aabtn"><=
+img src=3D"https://informatica.i-learn.unito.it/pluginfile.php/57623/user/i=
+con/lambda/f2?rev=3D674923" class=3D"userpicture" width=3D"35" height=3D"35=
+" alt=3D"" /></a>=0A        </td>=0A        <td class=3D"topic starter">=0A=
+            <div class=3D"subject">=0A                Modalit=C3=A0 di pren=
+otazione esami e discussione progetto NoSQL=0A            </div>=0A        =
+    <div class=3D"author">=0A                by <a target=3D'_blank' href=
+=3D'https://informatica.i-learn.unito.it/user/view.php?id=3D15799&course=3D=
+3078'>Pensa Ruggero Gaetano</a> - Monday, 19 May 2025, 4:06 PM=0A          =
+  </div>=0A        </td>=0A    </tr>=0A    <tr>=0A        <td class=3D"left=
+ side" valign=3D"top">=0A                &nbsp;=0A        </td>=0A        <=
+td class=3D"content">=0A            <p dir=3D"ltr" style=3D"text-align:left=
+;">Gentili studentesse e studenti,</p><p dir=3D"ltr" style=3D"text-align:le=
+ft;">Riporto di seguito le indicazioni per sostenere l'orale di MAADB, <str=
+ong>valide per tutti gli appelli dell'A.A. 2024/25</strong>.</p><ul dir=3D"=
+ltr"><li style=3D"text-align:left;">Una volta completato il progetto, una p=
+ersona del gruppo invia una email a <a href=3D"mailto:ruggero.pensa@unito.i=
+t">ruggero.pensa@unito.it</a> con il subject "Prenotazione Orale MAADB", me=
+ttendo gli altri componenti del gruppo in cc. Nella corpo della email, vann=
+o indicati i componenti del gruppo (Matricola, Cognome e Nome).</li><li sty=
+le=3D"text-align:left;">Insieme al docente, verr=C3=A0 concordata una data =
+e un luogo per l'esame in presenza.</li><li style=3D"text-align:left;">Le p=
+ersone del gruppo che intendono sostenere scritto e orale di progetto nella=
+ stessa sessione, <strong>devono prenotarsi su ESSE3 sia per lo scritto che=
+ per l'orale</strong>.</li><li style=3D"text-align:left;">Le persone del gr=
+uppo che, in una data sessione, intendono sostenere solo l'orale di progett=
+o, <strong>non devono iscriversi su ESSE3</strong>.</li><li style=3D"text-a=
+lign:left;">Le persone che hanno conseguito il voto di progetto in una prec=
+edente sessione e che intendono sostenere lo scritto, <strong>devono prenot=
+arsi su ESSE3 sia per lo scritto che per l'orale</strong>.</li><li style=3D=
+"text-align:left;">Le persone che hanno conseguito il voto dell'esame scrit=
+to in una precedente sessione e che intendono sostenere l'orale del progett=
+o, <strong>devono prenotarsi su ESSE3 solo per l'appello orale</strong>.</l=
+i></ul><div>Cordiali saluti</div><div>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 Maria Luisa Sapino e Ruggero Pensa</div>=0A=0A            <div cl=
+ass=3D"commands">=0A            </div>=0A=0A            <div class=3D"link"=
+>=0A                <a target=3D"_blank" href=3D"https://informatica.i-lear=
+n.unito.it/mod/forum/discuss.php?d=3D44701#p72459">=0A                    S=
+ee this post in context=0A                </a>=0A            </div>=0A     =
+   </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsub=
+scribelink">=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/foru=
+m/index.php?id=3D3078">Change your forum digest preferences</a>=0A</div>
+
+--b1_OzHX7mCc5rG9CV407hF9rCzqPsuLWIW0WhO81VI3Q--
+

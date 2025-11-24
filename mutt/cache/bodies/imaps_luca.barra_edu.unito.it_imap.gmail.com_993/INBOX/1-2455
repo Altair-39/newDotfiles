@@ -1,0 +1,215 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:511a:0:b0:326:dd0e:fb84 with SMTP id f26csp279572ljb;
+        Sun, 11 May 2025 06:57:19 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE0Hzkd2qwuDpk6jMCH2K23TJtV+0ExB5DLvD8l0qLaZ/1m1SZZmuI379mnYIKHdIDNPbiM
+X-Received: by 2002:a17:906:8a6e:b0:ace:e315:7d5d with SMTP id a640c23a62f3a-ad2187b7261mr258903666b.0.1746971839617;
+        Sun, 11 May 2025 06:57:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1746971839; cv=none;
+        d=google.com; s=arc-20240605;
+        b=fV9VxFSvkNGX+3HVj5USKzXZEPk1sgMDbArL8dVsLAhV+py8yYQ+agDMmX4XCVGREP
+         X1jzNPI3tuVQ2YW2iFhdvijcXKOTHzyS4wJiqSjsJXsXcFSnMGTnpEycoqwYajdXC9jT
+         a4EObATb9UKHUhdF3WlhZo6ust9H4u8jFqjZutFu8yNINs7ugPkhPWcMHAzImigC5k1N
+         T1y6mAt/CekEO1UU6LEplZNoZ2ngoQ1BYY1Pic52yOmds36tYL9nuRUeh7zQdOSVv5H1
+         g61XBSGW/bEo3U6RRDFdHekLx1i1lai8RC62LHQeb2DKBKTZDGk54uBumT6A01m8RzOj
+         Qi9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=4cDo+7+sJCIQtgwkomvadR8VK2NLb4pIaRe4uvb02zg=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=j5CcCA8be7z/+/g9BYBhjCBAJRT5y9v/rUBUW9hN+pTJCcdwapdhvUYiauyj7jP2cK
+         7aLbGfHeF8zWxZuuG53qle5B2Y4M/TFPdlzxU+aG5kyEPEqEFQVTSE9+iasI/izro9Q9
+         AAItGYhq9OSL0zAqwGEbmfRlMwYB2TZ5mt0Z1hdmpYmS450jBzjX1y5O/eCrizObpHdc
+         JJhXP3C1ec7bNnZEmoc1gEYf1Qz/SNIFjZsjqjFoPJdWhWNkU2dYoy6LjdzyJ3DViGki
+         J5/0CLI4sAokV3iAKeFJFwB32DgXx6bKIlZO2D5oAGF1n3peR0qSt7qWpLJkIs/oCSjG
+         WSBQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ad219c6abe7si441280166b.832.2025.05.11.06.57.19
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 May 2025 06:57:19 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 54BDvJfG1833618
+	for <luca.barra@edu.unito.it>; Sun, 11 May 2025 15:57:19 +0200
+Date: Sun, 11 May 2025 15:57:19 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Braggio Amedeo (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: SisInt2425: Reinforcement Learning: un nuovo strumento per valutarne i progressi (IntersectionZoo)
+Message-ID: <d7814177f19163dd50d30b5f1a5728e3601866cf6a81ff8c00d399bc35aa9865@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Segnalazioni" <moodleforum7706@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7706
+X-Course-Id: 3092
+X-Course-Name: Sistemi Intelligenti
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=7706&d=44565>
+Thread-Topic: SisInt2425: Reinforcement Learning: un nuovo strumento per valutarne i progressi (IntersectionZoo)
+Thread-Index: d7814177f19163dd50d30b5f1a57
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_CSX8QhoXZzO69UgNs939M0EnUdORY1pA3i6VPCUVuA"
+
+This is a multi-part message in MIME format.
+
+--b1_CSX8QhoXZzO69UgNs939M0EnUdORY1pA3i6VPCUVuA
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SisInt2425 -> Forums -> Segnalazioni -> Reinforcement Learning: un nuovo
+strumento per valutarne i progressi (IntersectionZoo)
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44565#p72297
+Reinforcement Learning: un nuovo strumento per valutarne i progressi
+(IntersectionZoo)
+by Braggio Amedeo - Sunday, 11 May 2025, 3:41 PM
+---------------------------------------------------------------------
+Riferimento:
+https://news.mit.edu/2025/new-tool-evaluate-progress-reinforcement-learning=
+-0505
+
+Tipologia: articolo
+
+Tono: Informativo, ottimistico
+
+Riassunto:
+
+Un gruppo di ricercatori del MIT ha sviluppato IntersectionZoo, uno
+strumento open source che simula scenari di traffico urbano per valutare
+l=E2=80=99efficacia degli algoritmi di deep reinforcement learning (DRL).
+
+Il traffico cittadino comporta di fermarsi (per un semaforo, pedone ecc) e
+ripartire molto frequentemente, e questo porta a un inefficienza del
+consumo, una soluzione pu=C3=B2 essere il cosiddetto eco-driving, uno strum=
+ento
+che pu=C3=B2 essere installato sulle auto autonome per migliorarne il consu=
+mo,
+ad esempio, un'auto che rallenta gradualmente prima di un semaforo rosso,
+invece di frenare bruscamente all=E2=80=99ultimo, consuma meno carburante. =
+Se
+questa guida viene applicata da veicoli autonomi, anche quelli dietro di
+loro ne beneficiano, perch=C3=A9 sono costretti a rallentare anche loro in =
+modo
+simile.IntersectionZoo permette di testare in maniera realistica quanto gli
+algoritmi DRL siano in grado di adattarsi a diversi scenari di traffico e a
+piccole modifiche nel contesto urbano (testa algoritmi DRL e la loro
+capacit=C3=A0 di generalizzazione).
+
+Motivo per cui mi ha colpito:
+
+Sono stato interessato dall'applicazione dell'IA applicata alla
+sostenibilit=C3=A0 ambientale, tema a cui sono molto appassionato.
+
+In oltre =C3=A8 open-source.
+
+Legame con temi visti a lezione:
+
+Si parla di agenti (diversi tra loro) in un mondo molto complesso che
+devono interagire tra di loro. E' un sistema multi-agente.
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SisInt2425.
+
+To reply click on this link:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D72297
+Unsubscribe from this forum:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706
+Unsubscribe from this discussion:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D=
+44565
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092
+
+--b1_CSX8QhoXZzO69UgNs939M0EnUdORY1pA3i6VPCUVuA
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3092">SisInt2425</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3092">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+706">Segnalazioni</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44565">Reinforce=
+ment Learning: un nuovo strumento per valutarne i progressi (IntersectionZo=
+o)</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" cellspacing=3D"0=
+" class=3D"forumpost">=0A    <tr class=3D"header">=0A        <td width=3D"3=
+5" valign=3D"top" class=3D"picture left">=0A            <a href=3D"https://=
+informatica.i-learn.unito.it/user/view.php?id=3D30100&amp;course=3D3092" cl=
+ass=3D"d-inline-block aabtn"><img src=3D"https://informatica.i-learn.unito.=
+it/theme/image.php/_s/lambda/core/1745224313/u/f2" class=3D"userpicture def=
+aultuserpic" width=3D"35" height=3D"35" alt=3D"" /></a>=0A        </td>=0A =
+       <td class=3D"topic starter">=0A            <div class=3D"subject">=
+=0A                Reinforcement Learning: un nuovo strumento per valutarne=
+ i progressi (IntersectionZoo)=0A            </div>=0A            <div clas=
+s=3D"author">=0A                by <a target=3D'_blank' href=3D'https://inf=
+ormatica.i-learn.unito.it/user/view.php?id=3D30100&course=3D3092'>Braggio A=
+medeo</a> - Sunday, 11 May 2025, 3:41 PM=0A            </div>=0A        </t=
+d>=0A    </tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=
+=0A                &nbsp;=0A        </td>=0A        <td class=3D"content">=
+=0A            <p dir=3D"ltr" style=3D"text-align:left;">Riferimento: https=
+://news.mit.edu/2025/new-tool-evaluate-progress-reinforcement-learning-0505=
+</p><p dir=3D"ltr" style=3D"text-align:left;">Tipologia: articolo</p><p dir=
+=3D"ltr" style=3D"text-align:left;">Tono: <span><span><span>Informativo</sp=
+an></span>, ottimistico</span></p><p dir=3D"ltr" style=3D"text-align:left;"=
+><span><br /></span></p><p dir=3D"ltr" style=3D"text-align:left;">Riassunto=
+: <br /></p><p dir=3D"ltr" style=3D"text-align:left;">Un gruppo di ricercat=
+ori del MIT ha sviluppato <span>IntersectionZoo</span>, uno strumento open =
+source che simula scenari di traffico urbano per valutare l=E2=80=99efficac=
+ia degli algoritmi di <span>deep reinforcement learning (DRL)</span>. <br /=
+></p><p dir=3D"ltr" style=3D"text-align:left;">Il traffico cittadino compor=
+ta di fermarsi (per un semaforo, pedone ecc) e ripartire molto frequentemen=
+te, e questo porta a un <span><span>inefficienza</span> del consumo, una so=
+luzione pu=C3=B2 essere il cosiddetto eco-driving, uno strumento che pu=
+=C3=B2 essere installato sulle auto autonome per migliorarne il consumo, ad=
+ esempio, un'auto che rallenta gradualmente prima di un semaforo rosso, inv=
+ece di frenare bruscamente all=E2=80=99ultimo, consuma meno carburante. Se =
+questa guida viene applicata da veicoli <span>autonomi</span>, anche quelli=
+ dietro di loro ne beneficiano, perch=C3=A9 sono costretti a rallentare anc=
+he loro in modo simile.<span>IntersectionZoo</span> permette di testare in =
+maniera realistica quanto gli algoritmi DRL siano in grado di adattarsi a d=
+iversi scenari di traffico e a piccole modifiche nel contesto urbano (testa=
+ algoritmi DRL e la loro capacit=C3=A0 di generalizzazione).</span></p><p d=
+ir=3D"ltr" style=3D"text-align:left;"><span><br /></span></p><p dir=3D"ltr"=
+ style=3D"text-align:left;"><span>Motivo per cui mi ha colpito: <br /></spa=
+n></p><p dir=3D"ltr" style=3D"text-align:left;"><span>Sono stato interessat=
+o dall'applicazione dell'IA applicata alla sostenibilit=C3=A0 ambientale, t=
+ema a cui sono molto appassionato.</span></p><p dir=3D"ltr" style=3D"text-a=
+lign:left;"><span>In oltre =C3=A8 open-source.</span></p><p dir=3D"ltr" sty=
+le=3D"text-align:left;"><span><br /></span></p><p dir=3D"ltr" style=3D"text=
+-align:left;"><span>Legame con temi visti a lezione: <br /></span></p><p di=
+r=3D"ltr" style=3D"text-align:left;"><span>Si parla di agenti (diversi tra =
+loro) in un mondo molto complesso che devono interagire tra di loro. E' un =
+sistema multi-agente. <br /></span></p><p dir=3D"ltr" style=3D"text-align:l=
+eft;"><span><br /></span></p><p dir=3D"ltr" style=3D"text-align:left;"><br =
+/></p>=0A=0A            <div class=3D"commands">=0A                    <a t=
+arget=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/pos=
+t.php?reply=3D72297">=0A                        Reply=0A                   =
+ </a>=0A            </div>=0A=0A            <div class=3D"link">=0A        =
+        <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/m=
+od/forum/discuss.php?d=3D44565#p72297">=0A                    See this post=
+ in context=0A                </a>=0A            </div>=0A        </td>=0A =
+   </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=
+=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/forum/subscribe.=
+php?id=3D7706">Unsubscribe from this forum</a>&nbsp;=0A    <a href=3D"https=
+://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D44565=
+">Unsubscribe from this discussion</a>&nbsp;=0A    <a href=3D"https://infor=
+matica.i-learn.unito.it/mod/forum/index.php?id=3D3092">Change your forum di=
+gest preferences</a>=0A</div>
+
+--b1_CSX8QhoXZzO69UgNs939M0EnUdORY1pA3i6VPCUVuA--
+

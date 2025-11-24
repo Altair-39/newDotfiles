@@ -1,0 +1,347 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:8e91:0:b0:2e2:75a4:21a3 with SMTP id z17csp3199024ljk;
+        Thu, 16 May 2024 23:57:21 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCXsFcmwrIiYtNYQ4Wmq9qiOB0IeRmdf3DlLwerfJcE0BQNh/MgaX920+2PNVWdtYHk0OSHwYujt/M23jw++36ndlE8T0JI9Rg==
+X-Google-Smtp-Source: AGHT+IG8HYS0sp04towaWJ4FlgjjN4AiDhjTmXnhve03vKpCbAIA2b2f/mrX0triqMmle+E3frh3
+X-Received: by 2002:a05:6512:1056:b0:523:aeaa:7df1 with SMTP id 2adb3069b0e04-523aeaa7f0cmr4233845e87.34.1715929041467;
+        Thu, 16 May 2024 23:57:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1715929041; cv=none;
+        d=google.com; s=arc-20160816;
+        b=W+bew5qBi5fHIPTV7L5sFN/WXv+JF8XQMSzuzIT2/GpqbEgCwPhSvjjhSiIR1+Y1BR
+         V9AHFSZMYelO3mdZMc6rvcZXQL7imV4tTd9zTujHaoh38lwobbKN8TSI1I2nEC1SIDt1
+         AsO58D33Dd6yNy77tMlj/s1fq5lWd0rGvTxsMIqHukwUM0xLxuxdi9VJO9qevzpcoc7o
+         3PL0hXvrlpGRQ053xw2RdQNlYehAj5rHNTQ2IUnnQxt2K5yDrGPchGCZ+L79NVva7WC+
+         +OnMrYQ/j59+1bLuEM7F3QmfNSrw2DzKgb+xQHw2R/InOsuNlSyivZZ/CCXj6uK4M/3s
+         aAPw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:subject:message-id:to:from
+         :date;
+        bh=/Nk7BEyx+SqHG4i5rYVQ2AOcMkkY+0tWLtq232GzLv4=;
+        fh=qykyJ9uXQj3QVQjxGW5pAC9O7VmcteOmxEe6x+dL5e8=;
+        b=UA9kbv6BTcYFcuylGB2U4h5B3T4MNKrozLk/+D9KWXLW49eIo5OxaXdHGXYJRRdoVC
+         nj03SsvRwj47KEUgZ0+t97XD7nDUZmOP6vqKGL7eEf3eoXsIJYMsK2zPy7CAGU8XNdEg
+         8P/OPRxt3kk7/fwSZRnjsoPrqusb72PgIQvO1hhZZ45O6oj/y+hD3yu7/ateNDcFQwHa
+         SjV/I8MLrwr9lyjMyL3QByAACsti6qYXWTtI0Zqx3ChMOlLVjRFz0Hs9IYv9jEfezVzD
+         4d+PmBDj6m8QW4fx8k/u559k0WZltQ1TMfNLoZwRf2Slwwtzdpg5CmEsvsH3iGMJyIgJ
+         uVkw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id ca18e2360f4ac-7e1d2b7318esi549339339f.76.2024.05.16.23.57.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 May 2024 23:57:21 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 2BAD82A14D;
+	Fri, 17 May 2024 08:57:18 +0200 (CEST)
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id NyiZHcM9MZOy; Fri, 17 May 2024 08:57:18 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id A1B8C2A18D;
+	Fri, 17 May 2024 08:57:17 +0200 (CEST)
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id uS-TW5U7wdu1; Fri, 17 May 2024 08:57:17 +0200 (CEST)
+Received: from esse3appjboss27.private.cineca.it (esse3appjboss27.cineca.it [130.186.5.162])
+	by smtp4.cineca.it (Postfix) with ESMTP id 81CAA2A0C5;
+	Fri, 17 May 2024 08:57:13 +0200 (CEST)
+Received: from esse3appjboss27.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss27.private.cineca.it (Postfix) with ESMTP id B188E1C9;
+	Fri, 17 May 2024 08:57:08 +0200 (CEST)
+Date: Fri, 17 May 2024 08:57:08 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+To: giorgia.chiappa@edu.unito.it, marina.flaccovio@edu.unito.it,
+	gaia.crepaldi60@edu.unito.it, lorenzo.vitali886@edu.unito.it,
+	sofia.veronesi@edu.unito.it, martina.arricale@edu.unito.it,
+	nemo.fiocchi@edu.unito.it, sylwia.kolibska@edu.unito.it,
+	gilda.soave@edu.unito.it, federico.palmieri279@edu.unito.it,
+	ersilia.dileo@edu.unito.it, chiara.oriato@edu.unito.it,
+	beatrice.vergano@edu.unito.it, alessandra.giometti@edu.unito.it,
+	valentina.cioffi@edu.unito.it, federica.pancani@edu.unito.it,
+	mohammadreza.shohani@edu.unito.it, matteo.rossi104@edu.unito.it,
+	michela.cumerlato@edu.unito.it, leonardo.occhipinti@edu.unito.it,
+	chiara.luongo@edu.unito.it, lorenzo.loverde@edu.unito.it,
+	andrea.delmastro468@edu.unito.it, alessandro.monichino@edu.unito.it,
+	giorgio.tron@edu.unito.it, simone.boscarino@edu.unito.it,
+	matilda.marovelli@edu.unito.it, giulia.cometto524@edu.unito.it,
+	claudia.martinelli@edu.unito.it, ipek.ozgen@edu.unito.it,
+	mauro.piscitello@edu.unito.it, lorenzo.squarcio@edu.unito.it,
+	278260@edu.unito.it, beatrice.gaggero@edu.unito.it,
+	elisa.duo893@edu.unito.it, francesca.menegazzi@edu.unito.it,
+	alessia.brandolese@edu.unito.it, ester.pejrani@edu.unito.it,
+	beatrice.lomello@edu.unito.it, carlotta.demartini@edu.unito.it,
+	zoe.leoni@edu.unito.it, matteo.burico@edu.unito.it,
+	simone.gazzano@edu.unito.it, stefano.abbona@edu.unito.it,
+	vittorio.mazza@edu.unito.it, marta.milanese615@edu.unito.it,
+	toghrul.mahmudov@edu.unito.it, matilda.magri@edu.unito.it,
+	valentina.santoro440@edu.unito.it, aurora.galbenu@edu.unito.it,
+	olha.partyka@edu.unito.it, I01168@edu.unito.it,
+	alessandro.martin617@edu.unito.it, ionut.todarca@edu.unito.it,
+	marco.bernocco872@edu.unito.it, domenico.bellistri@edu.unito.it,
+	alice.lomonte@edu.unito.it, alessia.donadio@edu.unito.it,
+	giovanni.matis@edu.unito.it, lorenzo.masoero874@edu.unito.it,
+	giulia.osella366@edu.unito.it, riccardo.annis@edu.unito.it,
+	cristiana.biondi@edu.unito.it, ayla.vitello@edu.unito.it,
+	anna.schiavello@edu.unito.it, fabiana.panetti@edu.unito.it,
+	jessica.civalleri@edu.unito.it, roneta.budryte@edu.unito.it,
+	erika.verlezza@edu.unito.it, fabio.sciandra@edu.unito.it,
+	chiara.poli@edu.unito.it, omar.elfarouqui@edu.unito.it,
+	katia.giordano@edu.unito.it, nicoleta.bulgac@edu.unito.it,
+	martina.casetta@edu.unito.it, martina.onorino@edu.unito.it,
+	laura.santosribeiro@edu.unito.it, filippo.casali@edu.unito.it,
+	federico.pizzo429@edu.unito.it, sara.oderda@edu.unito.it,
+	letizia.gelli@edu.unito.it, chantal.iellimo@edu.unito.it,
+	giorgia.cabascia@edu.unito.it, elena.boffito@edu.unito.it,
+	maria.reina@edu.unito.it, lisa.panero328@edu.unito.it,
+	eleonora.lorino@edu.unito.it, leandra.marino@edu.unito.it,
+	clarissarosa.bona@edu.unito.it, omar.altaweel@edu.unito.it,
+	leonardo.marconi@edu.unito.it, alice.manavella@edu.unito.it,
+	jasmine.pinna@edu.unito.it, jacopo.giacobino@edu.unito.it,
+	251659@edu.unito.it, simone.toro@edu.unito.it,
+	isabella.tarricon101@edu.unito.it, 234719@edu.unito.it,
+	aurora.stevanato@edu.unito.it, carlotta.triban@edu.unito.it,
+	deycire.dejesustusen@edu.unito.it, chiara.massari@edu.unito.it,
+	lorenzo.fiocco@edu.unito.it, arian.avdullahu@edu.unito.it,
+	sara.cane@edu.unito.it, gabriele.franchin572@edu.unito.it,
+	elisa.centemeri@edu.unito.it, anna.cattaneo@edu.unito.it,
+	marco.calavita@edu.unito.it, faezeh.karimpour@edu.unito.it,
+	lucia.lerda469@edu.unito.it, ilaria.loiodice@edu.unito.it,
+	giulia.monteleone961@edu.unito.it, claudia.bellino@edu.unito.it,
+	vincenzo.verteramo@edu.unito.it, federica.penna124@edu.unito.it,
+	irene.fusaro@edu.unito.it, simone.vasa@edu.unito.it,
+	alisea.salzano@edu.unito.it, gaia.scoffone@edu.unito.it,
+	serena.giordano430@edu.unito.it, guglielmo.ferroni@edu.unito.it,
+	alejandra.francocoar@edu.unito.it, giulia.curiale@edu.unito.it,
+	stefano.bosticco@edu.unito.it, alain.pokam@edu.unito.it,
+	ester.derosa@edu.unito.it, angela.niro@edu.unito.it,
+	eva.vallesicalvari@edu.unito.it, matteo.dallalibera@edu.unito.it,
+	agnese.pagliarino@edu.unito.it, francesco.bertolo@edu.unito.it,
+	pietro.sangermano@edu.unito.it, federica.berardi367@edu.unito.it,
+	rocco.pignataro@edu.unito.it, alessia.scarangella@edu.unito.it,
+	erik.moccia@edu.unito.it, arianna.previdelli@edu.unito.it,
+	alessia.rua529@edu.unito.it, aurora.eremita@edu.unito.it,
+	alessandra.solinas@edu.unito.it, francesca.clingo@edu.unito.it,
+	ekaterina.kondratenk@edu.unito.it, 250103@edu.unito.it,
+	arturo.maio@edu.unito.it, alessandro.lomonte@edu.unito.it,
+	mahdieh.ousatiashtia@edu.unito.it, cagla.aslanyuerek@edu.unito.it,
+	daniele.amedeo@edu.unito.it, sara.pelosini@edu.unito.it,
+	cristiana.caffiero@edu.unito.it, andrea.centinaro@edu.unito.it,
+	207513@edu.unito.it, alessio.sebastiano@edu.unito.it,
+	maria.perrone125@edu.unito.it, margherita.matta@edu.unito.it,
+	ilaria.casapullo@edu.unito.it, alireza.rajabi@edu.unito.it,
+	marta.kurtovic@edu.unito.it, mohamed.shahein@edu.unito.it,
+	sara.negri119@edu.unito.it, amedeo.giacomini@edu.unito.it,
+	ginevra.ghirlanda@edu.unito.it, margherita.bertaina@edu.unito.it,
+	federico.golin@edu.unito.it, ilham.sanassi@edu.unito.it,
+	ayyoub.elkabbouri@edu.unito.it, piergiorgio.leonardi@edu.unito.it,
+	071114@edu.unito.it, eleonora.maranto@edu.unito.it,
+	065592@edu.unito.it, livia.dumitru@edu.unito.it,
+	matteo.cocco828@edu.unito.it, elham.gholamhosseinz@edu.unito.it,
+	338653@edu.unito.it, matteo.panico@edu.unito.it,
+	alessandro.gabrie660@edu.unito.it, viviana.chiantia@edu.unito.it,
+	luca.frongillo@edu.unito.it, xin.zheng@edu.unito.it,
+	lucia.giletta@edu.unito.it, arianna.lamberti@edu.unito.it,
+	morgana.spina@edu.unito.it, 280757@edu.unito.it,
+	darko.stjepanovic@edu.unito.it, sveva.mazzarri@edu.unito.it,
+	alberto.musu@edu.unito.it, lucia.tiberio@edu.unito.it,
+	romina.saghafi@edu.unito.it, 294459@edu.unito.it,
+	irene.tuccillo@edu.unito.it, andrea.delcarrettodi@edu.unito.it,
+	eleonora.ferrero586@edu.unito.it, erisa.tusha@edu.unito.it,
+	federico.gallo947@edu.unito.it, amanda.impalea@edu.unito.it,
+	giorgia.iberti@edu.unito.it, elisa.barbera@edu.unito.it,
+	gabriele.pugnetti@edu.unito.it, 184515@edu.unito.it,
+	michela.gioia@edu.unito.it, samuele.pasero@edu.unito.it,
+	alice.iuni@edu.unito.it, alice.loiaconi@edu.unito.it,
+	daniela.shytaj@edu.unito.it, alessandro.colleoni@edu.unito.it,
+	edoardo.frau@edu.unito.it, sofia.pietrosanti@edu.unito.it,
+	andrea.daga@edu.unito.it, gaia.monteamaro@edu.unito.it,
+	alessandro.giovannin@edu.unito.it, crystal.dinunno@edu.unito.it,
+	simone.romano340@edu.unito.it, beatrice.michieli@edu.unito.it,
+	giada.scarrico@edu.unito.it, gabriele.odetto@edu.unito.it,
+	silvia.mollo@edu.unito.it, tepes.georgeta@edu.unito.it,
+	emanuele.grivetchin@edu.unito.it, C19224@edu.unito.it,
+	virginia.pentore@edu.unito.it, bruno.bertoli@edu.unito.it,
+	andrea.ruberi@edu.unito.it, alessia.crea@edu.unito.it,
+	omar.laayali@edu.unito.it, 306258@edu.unito.it,
+	fabrizio.antonucci@edu.unito.it, denise.laise@edu.unito.it,
+	marioara.militaru235@edu.unito.it, miriam.martin@edu.unito.it,
+	giulia.giraudo298@edu.unito.it, nicolo.lonigro@edu.unito.it,
+	annalaura.zerino@edu.unito.it, chiara.lapomarda@edu.unito.it,
+	riccardo.rafti@edu.unito.it, lorenzo.isaia721@edu.unito.it,
+	andrea.arfinengo@edu.unito.it, virginia.barone747@edu.unito.it,
+	mohamed.eddahir@edu.unito.it, chiara.ortu@edu.unito.it,
+	alessandro.negro870@edu.unito.it, norman.gontier@edu.unito.it,
+	paolo.giorgini@edu.unito.it, pin.tung@edu.unito.it,
+	sara.maisano@edu.unito.it, camilla.botta@edu.unito.it,
+	boom.tio@edu.unito.it, michela.tramontini@edu.unito.it,
+	245411@edu.unito.it, veronica.manzo521@edu.unito.it,
+	tracy.nyembokamwanya@edu.unito.it, luigi.biscia@edu.unito.it,
+	marta.sirigu@edu.unito.it, oumaima.charmane@edu.unito.it,
+	marta.gavazzi@edu.unito.it, martina.noccetti@edu.unito.it,
+	federica.favara@edu.unito.it, jacopo.tealdi@edu.unito.it,
+	bernard.appiah225@edu.unito.it, fabio.lanza4@edu.unito.it,
+	sofia.sciuto@edu.unito.it, sara.mangione@edu.unito.it,
+	alessandro.bartolini@edu.unito.it, soufiane.elbaz@edu.unito.it,
+	aurora.muraglia@edu.unito.it, anna.palazzi@edu.unito.it,
+	giulia.tres@edu.unito.it, arianna.accomo@edu.unito.it,
+	ibrahim.chanbi@edu.unito.it, massimo.scutari@edu.unito.it,
+	giacomo.abellonio@edu.unito.it, lina.delbuono@edu.unito.it,
+	francesca.usai792@edu.unito.it, mia.morabito@edu.unito.it,
+	valeria.palma426@edu.unito.it, serena.totino@edu.unito.it,
+	yassine.elataoui@edu.unito.it, caterina.monni@edu.unito.it,
+	riccardo.frasca@edu.unito.it, chiara.colasberna@edu.unito.it,
+	nicolo.maccioni@edu.unito.it, lorenzo.riggio12@edu.unito.it,
+	ilaria.zaccone@edu.unito.it, lorenzo.allasia@edu.unito.it,
+	giulia.castelli924@edu.unito.it, nicolo.pelosini@edu.unito.it,
+	lorenzo.marocco@edu.unito.it, paraskevi.lagkada@edu.unito.it,
+	thomas.alemann@edu.unito.it, camilla.musso@edu.unito.it,
+	chiara.canino@edu.unito.it, filippo.feroggio@edu.unito.it,
+	chiara.dademo@edu.unito.it, helena.latronico@edu.unito.it,
+	sila.cipriani@edu.unito.it, marco.demuri@edu.unito.it,
+	valentina.bonesso@edu.unito.it, mara.biondo@edu.unito.it,
+	chiara.naglieri@edu.unito.it, giulia.grieco98@edu.unito.it,
+	letizia.sabbadini@edu.unito.it, gabriele.galaverna@edu.unito.it,
+	185595@edu.unito.it, faraz.hajidokhtkhali@edu.unito.it,
+	manuela.introna@edu.unito.it, elena.fiorella@edu.unito.it,
+	gianmarco.gottardo@edu.unito.it, riccardo.moretto67@edu.unito.it,
+	filippo.romei@edu.unito.it, martina.francese262@edu.unito.it,
+	alice.resta@edu.unito.it, giulia.faiella559@edu.unito.it,
+	orgeta.celepija@edu.unito.it, martha.karimi@edu.unito.it,
+	lorenzo.garnero138@edu.unito.it, lisa.slobbe@edu.unito.it,
+	omar.emara@edu.unito.it, jacopo.tine@edu.unito.it,
+	francesca.quiese@edu.unito.it, letizia.pierucci@edu.unito.it,
+	filippo.caretta@edu.unito.it, camilla.americo@edu.unito.it,
+	stefano.bosio423@edu.unito.it, martina.giribaldi922@edu.unito.it,
+	eduard.gainaru@edu.unito.it, erika.mihaila@edu.unito.it,
+	federica.barsotti@edu.unito.it, sahand.jabbari@edu.unito.it,
+	matteo.nicolino@edu.unito.it, rocco.panebianco@edu.unito.it,
+	fabio.lineo@edu.unito.it, anna.donnarumma@edu.unito.it,
+	veronica.paonessa@edu.unito.it, daniele.balducci@edu.unito.it,
+	saskia.levorato@edu.unito.it, vittoria.convertini@edu.unito.it,
+	rebecca.bernardini@edu.unito.it, sara.tortorelli@edu.unito.it,
+	giulia.lequio@edu.unito.it, dario.baldereschi@edu.unito.it,
+	alice.aloia@edu.unito.it, chiara.salerno848@edu.unito.it,
+	raoul.cappe@edu.unito.it, martina.secci@edu.unito.it,
+	jihan.aslaoui@edu.unito.it, 143383@edu.unito.it,
+	francesca.braja@edu.unito.it, adele.salvaguardia@edu.unito.it,
+	vladimir.martirosian@edu.unito.it, gaja.sacco@edu.unito.it,
+	akram.ouahbi@edu.unito.it, eleonora.bossolasco@edu.unito.it,
+	amira.grimaldi@edu.unito.it, melissa.brizio@edu.unito.it,
+	amirali.salekroshani@edu.unito.it, valerie.gbedey@edu.unito.it,
+	matteo.salvato@edu.unito.it, matilda.biancodolino@edu.unito.it,
+	andrea.sannino@edu.unito.it, michela.arena252@edu.unito.it,
+	sara.ramonda@edu.unito.it, gloria.paschetta@edu.unito.it,
+	alessio.fruttero@edu.unito.it, cecilia.savio@edu.unito.it,
+	arianna.tettamanti@edu.unito.it, alice.ollargiu@edu.unito.it,
+	maria.sainato@edu.unito.it, martina.marchese208@edu.unito.it,
+	francesca.destro@edu.unito.it, desire.marchetto@edu.unito.it,
+	ramiro.calo@edu.unito.it, ilaria.festanio@edu.unito.it,
+	292646@edu.unito.it, niccolo.castiglione@edu.unito.it,
+	teresa.malara@edu.unito.it, giovanni.goia@edu.unito.it,
+	gabriele.sala@edu.unito.it, gabriele.favara@edu.unito.it,
+	giulia.diotto@edu.unito.it, anna.stival@edu.unito.it,
+	martina.denicolo996@edu.unito.it, reshan.nanayakkara@edu.unito.it,
+	xiangbin.min@edu.unito.it, meghi.mema@edu.unito.it,
+	andrea.valcavi@edu.unito.it, ilaria.manfreda@edu.unito.it,
+	veronica.sechi903@edu.unito.it, fatemeh.kianpisheh@edu.unito.it,
+	martina.peretti320@edu.unito.it, stefano.benedetti354@edu.unito.it,
+	francesca.calvo281@edu.unito.it, yvonne.lagou@edu.unito.it,
+	pietro.delodi@edu.unito.it, alessandro.torell177@edu.unito.it,
+	roberta.donato339@edu.unito.it, samira.aboutaoufik@edu.unito.it,
+	federica.mancuso451@edu.unito.it, alizia.galetto@edu.unito.it,
+	ferdinand.ilucas@edu.unito.it, 600664@edu.unito.it,
+	vittorio.vietti@edu.unito.it, alessandra.quarato@edu.unito.it,
+	silvia.santus@edu.unito.it, leonardo.lacarbonara@edu.unito.it,
+	giulia.franzero@edu.unito.it, beatrice.barosso@edu.unito.it,
+	beatrice.giustetto@edu.unito.it, elena.franceschin285@edu.unito.it,
+	laura.raiola@edu.unito.it, pietro.fiorelli@edu.unito.it,
+	luca.barra@edu.unito.it, mattia.bocale@edu.unito.it,
+	roberta.paione@edu.unito.it, leonardo.miceli@edu.unito.it,
+	229448@edu.unito.it, chiara.ruga@edu.unito.it,
+	giada.dattilo@edu.unito.it, filippo.cerchio@edu.unito.it,
+	sara.colace@edu.unito.it, mahsa.alizadeh@edu.unito.it,
+	eliana.giraudo@edu.unito.it, bleona.bardhi@edu.unito.it,
+	sofia.ughetto@edu.unito.it, vlad.ciocanaru@edu.unito.it,
+	francesco.surfaro@edu.unito.it, raffaele.dagosto@edu.unito.it,
+	giulia.bordin541@edu.unito.it, giada.greco791@edu.unito.it,
+	eleonora.grossi@edu.unito.it, selene.giovanniello@edu.unito.it,
+	francesca.mei@edu.unito.it, bartolomeo.teruggi@edu.unito.it,
+	andrea.baldi900@edu.unito.it, federico.urgo@edu.unito.it,
+	anisia.nan@edu.unito.it, nicolas.glorioso@edu.unito.it,
+	claudia.dalpra@edu.unito.it, giulia.gambino590@edu.unito.it,
+	maryla.staniszewska@edu.unito.it, simone.corrao@edu.unito.it,
+	cecilia.budriesi@edu.unito.it, federico.mina@edu.unito.it,
+	clara.taccarelli@edu.unito.it, denise.debenedictis@edu.unito.it,
+	giada.perino@edu.unito.it, giorgia.cordioli@edu.unito.it,
+	davide.scarano@edu.unito.it, sepehr.kamali@edu.unito.it,
+	roberto.comi@edu.unito.it, jofta.timanywa@edu.unito.it,
+	laura.racca282@edu.unito.it, alessia.fasano415@edu.unito.it,
+	matteo.marra639@edu.unito.it, giulia.masera@edu.unito.it,
+	annarita.perri@edu.unito.it, mariasole.fabbian@edu.unito.it,
+	alessandro.cordima@edu.unito.it, dennis.schouten@edu.unito.it,
+	maria.abbatiello@edu.unito.it, melissa.ortolan@edu.unito.it,
+	lorenzo.cuccu@edu.unito.it, ludovica.bargilligra@edu.unito.it,
+	241538@edu.unito.it, giorgia.bellocchi611@edu.unito.it,
+	martina.moretta@edu.unito.it, giulia.condotta@edu.unito.it,
+	sofia.forte@edu.unito.it, mariagrazia.castagna@edu.unito.it,
+	alex.agliuzza@edu.unito.it, paola.burzio414@edu.unito.it,
+	andrea.castriciano@edu.unito.it, alex.ganzerli@edu.unito.it,
+	fabio.benin@edu.unito.it, elisa.tavernese@edu.unito.it,
+	stefano.peroni@edu.unito.it, giulia.echinoppeangl@edu.unito.it,
+	francesco.ceretti@edu.unito.it, ludovica.suriano@edu.unito.it,
+	khalid.akkaoui@edu.unito.it, andrea.borio579@edu.unito.it,
+	jelena.knezevic@edu.unito.it, lorenzo.marchetti@edu.unito.it,
+	francesca.angelin861@edu.unito.it, gabriele.inzitari@edu.unito.it,
+	francesca.iacontino@edu.unito.it, giorgia.tiberi@edu.unito.it,
+	elena.chimera@edu.unito.it, gaia.speranza@edu.unito.it,
+	nicolo.plumeri@edu.unito.it, giorgia.meli@edu.unito.it,
+	sara.quaranta@edu.unito.it, giorgia.casalegno@edu.unito.it,
+	matteo.minuto@edu.unito.it, mattia.borsella@edu.unito.it,
+	maddalena.rossa@edu.unito.it, marco.filippi796@edu.unito.it,
+	diego.milani@edu.unito.it, mario.tortoreti@edu.unito.it,
+	alessandro.sanna137@edu.unito.it, cristiana.falconieri@edu.unito.it
+Message-ID: <36116960.31.1715929028719@esse3appjboss27.private.cineca.it>
+Subject: Seduta Senato Accademico 21 maggio 2024 - Diretta streaming su
+ Unito Media
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+A  tutte le studentesse e a tutti gli studenti dell'Universit=C3=A0 di Tori=
+no
+
+Si comunica che la seduta del Senato Accademico del 21 maggio 2024, ore 9.0=
+0 con il supporto della Direzione Servizi Informativi, Portale, E-learning,=
+ sar=C3=A0 pubblica sul portale di Ateneo.
+
+Si informa, pertanto, che la seduta sar=C3=A0 visibile online in diretta st=
+reaming su Unito Media a tutta la Comunit=C3=A0 Accademica, previa autentic=
+azione con credenziali SCU, all=E2=80=99indirizzo www.unito.it/media.
+
+Si precisa tuttavia che, ai sensi dell=E2=80=99art. 33, comma 2, del =E2=80=
+=9CRegolamento in materia di protezione dei dati personali (DR n. 870 del 4=
+ marzo 2019), la diretta streaming sar=C3=A0 sospesa in occasione della tra=
+ttazione di proposte inerenti: lo sviluppo strategico dell=E2=80=99Ateneo, =
+i rapporti con gli operatori economici e altri soggetti privati e la tutela=
+ della riservatezza dei dati personali.
+La Convocazione della seduta, contenente l=E2=80=99ordine del giorno, =C3=
+=A8 consultabile sul portale di Ateneo al seguente percorso https://www.uni=
+to.it/sites/default/files/odg_sa_21_maggio_2024.pdf
+La diretta =C3=A8 fruibile da una versione aggiornata dei pi=C3=B9 diffusi =
+browser per computer desktop, per tablet e smartphone.
+Si invitano quindi tutti i destinatari della presente, se interessati, a ve=
+rificare per tempo la corretta installazione e/o l=E2=80=99aggiornamento de=
+lle componenti sovra esposte semplicemente mediante un primo accesso a www.=
+unito.it/media. Nell'impossibilit=C3=A0 di effettuare in autonomia gli aggi=
+ornamenti necessari e per ogni ulteriore esigenza tecnica contattare la Str=
+uttura o il tecnico informatico di riferimento.
+
+Cordiali saluti

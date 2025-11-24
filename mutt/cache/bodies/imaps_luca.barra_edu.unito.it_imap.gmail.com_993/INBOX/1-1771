@@ -1,0 +1,146 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:22c:b0:2eb:f1cf:4407 with SMTP id z12csp380338ljn;
+        Fri, 21 Jun 2024 08:45:25 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEsWjLEjBIn1IVAa/nc/MCUkF27be2oxA5G2HMDtRAWZsmcJg4nAEjPzv3a9jUKspozXaa0
+X-Received: by 2002:a17:906:1359:b0:a6f:5f26:4d91 with SMTP id a640c23a62f3a-a6fab7d14f7mr575076966b.69.1718984724939;
+        Fri, 21 Jun 2024 08:45:24 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1718984724; cv=none;
+        d=google.com; s=arc-20160816;
+        b=WzRxHxIevks42TwlBfbOd8tMWgm4+kkri0nZF3Dhe7wG3K8cL7pOlC+WH2hmeWqwDO
+         9GA5qjmVzejDzfRKP56ZaFtcdOHwiYIyim7VL+5pfSvS4SAfgK+KT+OVzOgEOJ5onl9/
+         P5NgISHpKZh4h1crtASQbJ1Rqprsr/Y5NHTtmCQW1Xl0PF9FsG0h9juNkQi2Wbcx56GE
+         bbSaJ8mVv7bQJU8lAvUWttev/qQWP6cCgU4OczLMiroGddNYdpZxdlf9jqWowJbo/Ykb
+         Rty7wSzuo6EpcuqHhksSNgN5TdbNv6TLJHqjU+re059w6jgWqPNweRpVRnvKIG7lyNXR
+         +tHw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=HTpnXe8yMbh2Y7dODe9tteJKt8t+bH5in9XJdYjQubs=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=WPKsu1gXdNocBzLhMkoIF1F6fjhnN2uWsQQdUhQeqGHvVFDWMvAQWOBQaWo5JBoVC1
+         nvgcX1TVShO4yqIPkvrqEVO/UxrjjRj+NSbkoufVAGIz8szyrRx1SHGGB1+4ExjwxMpB
+         wxeAz/kCgDs2eMZN8LUtcd7qtS3F2pxgFKk9M2IHkG2WX9K5BbZeMPaF99mkqpQr4S8I
+         z81yzGsceHp9Moq40oqMi5vR8BfWvL0fwmVyUyUfMNeWo10kfiGNCxLyJaQaJbs6gEMu
+         Lip1SKIBoG5T9yMT6pV/wUOOH2HxaJLyF32DnwmI3zHaiEDfolC9gtsFxwiFr8Sbm616
+         AB5A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-a6fcf595349si99663366b.878.2024.06.21.08.45.24
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Jun 2024 08:45:24 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 45LFjNvJ857957
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Fri, 21 Jun 2024 17:45:23 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 45LFjNvJ857957
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 45LFjNRC062162
+	for <luca.barra@edu.unito.it>; Fri, 21 Jun 2024 17:45:23 +0200
+Date: Fri, 21 Jun 2024 17:45:23 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Bracciali Andrea (da informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: SAS-Lab-2324: Consegna progetto gruppo T2
+Message-ID: <359e913b1706478467d6a5196ff1dad6e010734ae52b3807dccf7fc4b6fcf90f@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7124@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7124
+X-Course-Id: 2832
+X-Course-Name: Sviluppo delle Applicazioni Software - LABORATORIO T* - 2023/24
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: SAS-Lab-2324: Consegna progetto gruppo T2
+Thread-Index: 359e913b1706478467d6a5196ff1
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_SRluaLFd1CMgN2baxEfC1qrMX7UWD4t6gjOTRdZbss"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 45LFjNvJ857957
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_SRluaLFd1CMgN2baxEfC1qrMX7UWD4t6gjOTRdZbss
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SAS-Lab-2324 -> Forum -> Annunci -> Consegna progetto gruppo T2
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D42188#p69436
+Consegna progetto gruppo T2
+di Bracciali Andrea - venerd=C3=AC, 21 giugno 2024, 17:29
+---------------------------------------------------------------------
+Buongiorno,=C2=A0
+
+La consegna del progetto per il gruppo T2 per Luglio e' stata aperta con
+deadline 11 luglio e orali nella settimana successiva.=C2=A0
+
+Buon lavoro.=C2=A0
+
+Andrea Bracciali
+
+---------------------------------------------------------------------
+Questa =C3=A8 la copia di un intervento effettuato su SAS-Lab-2324 .
+
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2832
+
+--b1_SRluaLFd1CMgN2baxEfC1qrMX7UWD4t6gjOTRdZbss
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2832">SAS-Lab-2324</a>=0A    &raqu=
+o;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/index.php?id=3D2832">Forum</a>=0A    &raquo;=0A    <a target=3D"_=
+blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D=
+7124">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://=
+informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D42188">Consegna prog=
+etto gruppo T2</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" cell=
+spacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=0A        <t=
+d width=3D"35" valign=3D"top" class=3D"picture left">=0A            <a href=
+=3D"https://informatica.i-learn.unito.it/user/view.php?id=3D32852&amp;cours=
+e=3D2832" class=3D"d-inline-block aabtn"><img src=3D"https://informatica.i-=
+learn.unito.it/pluginfile.php/394008/user/icon/lambda/f2?rev=3D2325966" cla=
+ss=3D"userpicture" width=3D"35" height=3D"35" alt=3D"" /></a>=0A        </t=
+d>=0A        <td class=3D"topic starter">=0A            <div class=3D"subje=
+ct">=0A                Consegna progetto gruppo T2=0A            </div>=0A =
+           <div class=3D"author">=0A                di <a target=3D'_blank'=
+ href=3D'https://informatica.i-learn.unito.it/user/view.php?id=3D32852&cour=
+se=3D2832'>Bracciali Andrea</a> - venerd=C3=AC, 21 giugno 2024, 17:29=0A   =
+         </div>=0A        </td>=0A    </tr>=0A    <tr>=0A        <td class=
+=3D"left side" valign=3D"top">=0A                &nbsp;=0A        </td>=0A =
+       <td class=3D"content">=0A            <p dir=3D"ltr" style=3D"text-al=
+ign:left;">Buongiorno,=C2=A0</p><p dir=3D"ltr" style=3D"text-align:left;">L=
+a consegna del progetto per il gruppo T2 per Luglio e' stata aperta con dea=
+dline 11 luglio e orali nella settimana successiva.=C2=A0</p><p dir=3D"ltr"=
+ style=3D"text-align:left;"><br /></p><p dir=3D"ltr" style=3D"text-align:le=
+ft;">Buon lavoro.=C2=A0</p><p dir=3D"ltr" style=3D"text-align:left;"><br />=
+</p><p dir=3D"ltr" style=3D"text-align:left;">Andrea Bracciali</p>=0A=0A   =
+         <div class=3D"commands">=0A            </div>=0A=0A            <di=
+v class=3D"link">=0A                <a target=3D"_blank" href=3D"https://in=
+formatica.i-learn.unito.it/mod/forum/discuss.php?d=3D42188#p69436">=0A     =
+               Visualizza questo intervento nel contesto=0A                =
+</a>=0A            </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr /=
+>=0A<div class=3D"mdl-align unsubscribelink">=0A    <a href=3D"https://info=
+rmatica.i-learn.unito.it/mod/forum/index.php?id=3D2832">Modifica preferenze=
+ email di raccolta</a>=0A</div>
+
+--b1_SRluaLFd1CMgN2baxEfC1qrMX7UWD4t6gjOTRdZbss--
+

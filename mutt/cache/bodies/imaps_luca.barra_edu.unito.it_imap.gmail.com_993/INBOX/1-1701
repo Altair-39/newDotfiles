@@ -1,0 +1,159 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:8e91:0:b0:2e2:75a4:21a3 with SMTP id z17csp4081346ljk;
+        Sun, 19 May 2024 07:52:35 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFQv+MrixxLxNMT1KQ3Qk8Kv8ErmDdCv4BVk1upxR5eJtaFEqYO0qxd0NVkMhoo1MEm0K+G
+X-Received: by 2002:a2e:7d09:0:b0:2e2:1647:f671 with SMTP id 38308e7fff4ca-2e5205c817emr227588421fa.47.1716130355394;
+        Sun, 19 May 2024 07:52:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1716130355; cv=none;
+        d=google.com; s=arc-20160816;
+        b=xKcyK2QZ+KkEz485T23rPin/zIwZGEKDIG73ueUbH+YbHZ82v8Xytg6qO4p0AxziML
+         llYt2hFOyQ5dDjqclEYBRKppAO0n57/Y2BGGUQBg9O+Kib52qf49rJb4IUXx/RRrIl67
+         R3iptAXKxLHzZ6WsdMp9fOFMbXJf7I/TUghS3Dbnuj63SBdW5WnXdsZr6wiaBXwSDSc6
+         3rMOpZglK0sRSHXdoy1VoX9jOfGfnPGS5yLHFV3+49PyvDZIrpQc6d1zbAXPUCDaDcQV
+         /Jn3cuGCRC2VH2hyJk3h6S5MRAyocqVcenU4AQ50OvzAn1AzWta0WiHTigQhY7yYlbno
+         4jvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=gFPGuJ7KjLoAli+VZ10LTG0gaBl4h0I7ZljMnbe4iWU=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=LGGjlr0O3qd5XWqzH4ZjbKE6H6vZcAoliEWOWjO1ptYLDZKa8otQwIgQnoft8xqCt+
+         VOlo2Rcg/qiMEmES0z5YPWMBEC2//TkWiEYoMMLGRTSTGwvNMLVt0iNo8X2Hi3omywwG
+         nIKoY2WzHmT4iNQ+whJtuFJnLAUYC1Ms2q1ytWaQn3a4+LlvdPr7pjFYSwxoNZMxrS1y
+         w0r3tYCEitWhIQZoqgQZZu/RjEx7/TD3QW9MHy0tyQyfGykff+GjCeCvmBOhGEfC68v+
+         Q4QwOUX9h1GZhiDHN7M9nSWu04w+039Mig+dkI3DThZBWh/2G2GlbUrpbWBJRN92yP/3
+         HH/Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-5733beacdc1si11897565a12.61.2024.05.19.07.52.34
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 19 May 2024 07:52:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 44JEqQI31973014
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Sun, 19 May 2024 16:52:26 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 44JEqQI31973014
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 44JEqQNN023344
+	for <luca.barra@edu.unito.it>; Sun, 19 May 2024 16:52:26 +0200
+Date: Sun, 19 May 2024 16:52:26 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Schifanella Rossano (da informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: SAS-Lab-2324: [T1] Lezione del 20 maggio 2024: 2+2 ore (14-18)
+Message-ID: <424dafbfb058518d2cd9e4aae06b71117d559bcb14f23bb51b7baf938c6765bb@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7124@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7124
+X-Course-Id: 2832
+X-Course-Name: Sviluppo delle Applicazioni Software - LABORATORIO T* - 2023/24
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: SAS-Lab-2324: [T1] Lezione del 20 maggio 2024: 2+2 ore (14-18)
+Thread-Index: 424dafbfb058518d2cd9e4aae06b
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_FWbKR0eSrLpcvCoJU315hdpZfoAD4ONCEbJopYt4x8"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 44JEqQI31973014
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_FWbKR0eSrLpcvCoJU315hdpZfoAD4ONCEbJopYt4x8
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SAS-Lab-2324 -> Forum -> Annunci -> [T1] Lezione del 20 maggio 2024: 2+2
+ore (14-18)
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41704#p68876
+[T1] Lezione del 20 maggio 2024: 2+2 ore (14-18)
+di Schifanella Rossano - domenica, 19 maggio 2024, 16:35
+---------------------------------------------------------------------
+Cari studenti e studentesse,=C2=A0
+volevo ricordavi che domani 20 maggio 2024 la lezione per il turno T1 =
+=C3=A8
+divisa in due moduli:
+
+ore 14:00-16:00 aula B
+
+ore 16:00-18:00 aula F
+
+In particolare, entreremo nei dettagli della parte di implementazione
+(sezione gi=C3=A0 presente su Moodle se volete avere una preview del materi=
+ale
+prima della lezione)
+
+A presto,
+
+Rossano=C2=A0
+
+---------------------------------------------------------------------
+Questa =C3=A8 la copia di un intervento effettuato su SAS-Lab-2324 .
+
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2832
+
+--b1_FWbKR0eSrLpcvCoJU315hdpZfoAD4ONCEbJopYt4x8
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2832">SAS-Lab-2324</a>=0A    &raqu=
+o;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/index.php?id=3D2832">Forum</a>=0A    &raquo;=0A    <a target=3D"_=
+blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D=
+7124">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://=
+informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41704">[T1] Lezione =
+del 20 maggio 2024: 2+2 ore (14-18)</a>=0A</div>=0A=0A<table border=3D"0" c=
+ellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"=
+header">=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=
+=0A            <a href=3D"https://informatica.i-learn.unito.it/user/view.ph=
+p?id=3D2031&amp;course=3D2832" class=3D"d-inline-block aabtn"><img src=3D"h=
+ttps://informatica.i-learn.unito.it/pluginfile.php/19199/user/icon/lambda/f=
+2?rev=3D1486562" class=3D"userpicture" width=3D"35" height=3D"35" alt=3D"" =
+/></a>=0A        </td>=0A        <td class=3D"topic starter">=0A           =
+ <div class=3D"subject">=0A                [T1] Lezione del 20 maggio 2024:=
+ 2+2 ore (14-18)=0A            </div>=0A            <div class=3D"author">=
+=0A                di <a target=3D'_blank' href=3D'https://informatica.i-le=
+arn.unito.it/user/view.php?id=3D2031&course=3D2832'>Schifanella Rossano</a>=
+ - domenica, 19 maggio 2024, 16:35=0A            </div>=0A        </td>=0A =
+   </tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=0A   =
+             &nbsp;=0A        </td>=0A        <td class=3D"content">=0A    =
+        Cari studenti e studentesse,=C2=A0<p>volevo ricordavi che domani 20=
+ maggio 2024 la lezione per il turno T1 =C3=A8 divisa in due moduli:<br /><=
+/p><p></p><p>ore 14:00-16:00 aula B</p><p>ore 16:00-18:00 aula F</p><p>In p=
+articolare, entreremo nei dettagli della parte di implementazione (sezione =
+gi=C3=A0 presente su Moodle se volete avere una preview del materiale prima=
+ della lezione)</p><p>A presto,</p><p>Rossano=C2=A0</p><p><br /></p>=0A=0A =
+           <div class=3D"commands">=0A            </div>=0A=0A            <=
+div class=3D"link">=0A                <a target=3D"_blank" href=3D"https://=
+informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41704#p68876">=0A   =
+                 Visualizza questo intervento nel contesto=0A              =
+  </a>=0A            </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr=
+ />=0A<div class=3D"mdl-align unsubscribelink">=0A    <a href=3D"https://in=
+formatica.i-learn.unito.it/mod/forum/index.php?id=3D2832">Modifica preferen=
+ze email di raccolta</a>=0A</div><p>Reading this in an email? <a href=3D"ht=
+tps://download.moodle.org/mobile?version=3D2021051718&amp;lang=3Dit&amp;ios=
+appid=3D633359593&amp;androidappid=3Dcom.moodle.moodlemobile">Download the =
+mobile app and receive notifications on your mobile device</a>.</p>
+
+--b1_FWbKR0eSrLpcvCoJU315hdpZfoAD4ONCEbJopYt4x8--
+

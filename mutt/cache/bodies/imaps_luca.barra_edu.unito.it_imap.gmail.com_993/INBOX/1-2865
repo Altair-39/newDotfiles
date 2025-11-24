@@ -1,0 +1,245 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a781:0:b0:361:9897:9696 with SMTP id c1csp3853882ljf;
+        Fri, 3 Oct 2025 08:21:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUOQKgmVfWPNiJTD/FmPcW9o2DHu7+QKJM2HzaIpAbEGn63dQVV74vxmzt40YRuimY53cHisxeXWNu1@edu.unito.it
+X-Google-Smtp-Source: AGHT+IGI+9uuYj70CskhBQIj0zfA8QkJ7g8BDcMaC/pjn2rUN6ct1rJuIkgTythpe8I+3BA/XF0F
+X-Received: by 2002:a17:907:25c5:b0:afe:b131:1820 with SMTP id a640c23a62f3a-b49c3b543d2mr209973966b.6.1759504886173;
+        Fri, 03 Oct 2025 08:21:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1759504886; cv=none;
+        d=google.com; s=arc-20240605;
+        b=YHEviRYW9kY1bxk6ki44ihSX1EUctgijwBxDrx7GUi7EyZhlGPTCQn6V1zgCml9D56
+         UNKqhwn9NEJXrc86sakOur7yJYj9W5k5TuCA/MzSu0271i2jgWBqgZixKJlKcAZgXMOI
+         /ZVveU4Luk9v4r5qhxZOblH/X/HJs48CK7C5PaR/p6S+YjocooMcORnHcwcrBMg7cRdK
+         NvaGGi4fsEG+R4cB3o7/YExWk1zSJSD2XSGNdJ3RjX+5gtn+VND/OFtZKqNAIoIoGwNC
+         N7P9guL6FWrg874f1vwXit2zHhsSU4bnfsj2d6KqCaostz503ii/cpZ2NeCdwy2hQ4fi
+         ufZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:mime-version:subject:message-id:from:date
+         :dkim-signature:dkim-filter;
+        bh=fdSYBVfXcHwZ+zUiiS2ZwgHU/sCN8IFfG1oDc0HFjPA=;
+        fh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+        b=ad1CVTxLbvXrydgef5C/GE7ikMbxPxL8Otl6CEn+iNcYRIPpF+PVD71C5uM9cEIiJX
+         SVnNK3ex1p6sVJRTvEjam61ayOaHRnuBm8OAc+aPtLOxlUXgo76Up91BEL29/hTHQcaH
+         sRxdHme8jTsXVIuoYZOyQgGMT/ELLv85MnfiloHgkaaMisBYX5C+EU+30zrB/GfAwqwU
+         XfE65QUCtXVd8s8fh0a0WGXLdbs6gjAZv6h574J3Ofo1/k0WjFwJMkQ1Z6q8xhxJL3Q0
+         g5vS9PRAlP/S0kpN/rDm2+nWQHHo0b0An5pEu4P3uNlfZJotxuFqIx6Juv8y6qbgqVUL
+         iMxQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=ob05dcNk;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id a640c23a62f3a-b48650b0182si342919066b.150.2025.10.03.08.21.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Oct 2025 08:21:26 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=ob05dcNk;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 6BC492A429;
+	Fri,  3 Oct 2025 17:21:23 +0200 (CEST)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id PHpTjMYR2gwX; Fri,  3 Oct 2025 17:21:23 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 64FF82A3D9;
+	Fri,  3 Oct 2025 17:21:22 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 64FF82A3D9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1759504882;
+	bh=fdSYBVfXcHwZ+zUiiS2ZwgHU/sCN8IFfG1oDc0HFjPA=;
+	h=Date:From:Message-ID:MIME-Version;
+	b=ob05dcNkvPJ58ck4JMd4cfaJY6wEktFLralp3BUbPZh9crdRY0nqbO+TPbyFIHF5w
+	 1WATuhDXrG4AgzSdAvm2MlsRzjKn5KEHrUAAI68jS0qzywFuxDmPosu2ege4m3R4AN
+	 MGbifw82ILWS+id9noeLg3YmnuiAmO6rLJTEFm+e/pH1mhyezvUB4CeAgAcl47NpA+
+	 tRN4YX2T0iA0m2vLziHD9LeoqCi1PW0vjg+OFYRmeNN5yrth3aPnBaHJhRyHcHTY9h
+	 1jY6sJ0tOrHisJ+9ZvAGdAuJ+iYtSYpE5rJEmGv5ONvc1jLaKGJOx99w3NbfQmVPwe
+	 OqU1ZKlK6uVFA==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id vVLbazo9syD9; Fri,  3 Oct 2025 17:21:22 +0200 (CEST)
+Received: from esse3be408.private.cineca.it (esse3be408.private.cineca.it [10.100.48.130])
+	by smtp4.cineca.it (Postfix) with ESMTP id 807DF2A3C3;
+	Fri,  3 Oct 2025 17:21:20 +0200 (CEST)
+Received: from esse3be408.private.cineca.it (localhost [127.0.0.1])
+	by esse3be408.private.cineca.it (Postfix) with ESMTP id DC07420060;
+	Fri,  3 Oct 2025 17:21:18 +0200 (CEST)
+Date: Fri, 3 Oct 2025 17:21:18 +0200 (CEST)
+From: "SAMBA - Salute, Movimento e Benessere" <avvisi@unito.it>
+Message-ID: <2056690301.201.1759504878873@esse3be408.private.cineca.it>
+Subject: Partecipa alle iniziative SAMBA dal 6 al 10 ottobre
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p align="center" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+      <a href="https://www.samba.unito.it"><img src="https://samba.unito.it/sites/default/files/2025-07/logo%20samba.png" alt="Logo SAMBA">
+      </a>
+    </p>
+    <p style="line-height: 1.5">
+      <strong>SAMBA</strong> &#232; un progetto che si pone come obiettivo la <strong>promozione 
+      del benessere psicofisico e contrasto ai fenomeni di disagio psicologico 
+      ed emotivo</strong> della popolazione studentesca attraverso <strong>iniziative 
+      gratuite rivolte a studenti</strong> degli Atenei e degli istituti AFAM 
+      partner del progetto.<br>Scopri di pi&#249; sulle iniziative e sul progetto 
+      all&#8217;indirizzo <a href="https://www.samba.unito.it">www.samba.unito.it</a>
+    </p>
+    <h1 align="left" style="padding-top: 30px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px">
+      <strong><font size="6">Iniziative dal 6 al 10 ottobre 2025</font></strong>
+    </h1>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 30px">
+      <tr>
+        <td colspan="2" style="background-color: #ff7f00; padding-top: 10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <strong><font size="5">6 ottobre</font></strong> - Via Verdi 12
+        </td>
+      </tr>
+      <tr>
+        <td width="40%" valign="top" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px">
+          <img src="https://samba.unito.it/sites/default/files/2025-09/somatizzazioni.jpg" alt="" style="display: block; width: 100%">
+          
+        </td>
+        <td width="60%" valign="top" style="padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px">
+          <p style="margin-top: 0; margin-right: 0; margin-bottom: 10px; margin-left: 0">
+            <strong><font size="4">ANSIA E SOMATIZZAZIONI</font></strong><br>Incontri 
+            per condividere e rielaborare pensieri, sentimenti e comportamenti 
+            spesso correlati ai sintomi somatici, per imparare a rendere pi&#249; 
+            &#8220;digeribili&#8221; emozioni negative.
+          </p>
+          <p align="left">
+            <a href="https://www.samba.unito.it/it/aree/ans" style="background-color: #ff00ff; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; display: inline-block"><font color="#ffffff" size="4"><b>PARTECIPA</b></font></a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 30px">
+      <tr>
+        <td colspan="2" style="background-color: #ff00ff; padding-top: 10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <strong><font size="5" color="#ffffff">6 ottobre</font></strong><font color="#ffffff"> 
+          - Orto botanico - ingresso, Viale Pier Andrea Mattioli 25</font><br><strong><font size="5" color="#ffffff">8 
+          ottobre</font></strong><font color="#ffffff"> - Ponte Isabella, 
+          Fiume Po, lato Corso Dogliotti</font><br><strong><font size="5" color="#ffffff">10 
+          ottobre</font></strong><font color="#ffffff"> - Parco della 
+          Tesoriera - ingresso del parco, corso Francia</font>
+        </td>
+      </tr>
+      <tr>
+        <td width="40%" valign="top" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px">
+          <img src="https://samba.unito.it/sites/default/files/2025-06/Cultura-in-movimento.jpg" alt="" style="display: block; width: 100%">
+          
+        </td>
+        <td width="60%" valign="top" style="padding-top: 10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <p style="margin-bottom: 10px">
+            <strong><font size="4">CULTURA IN MOVIMENTO</font></strong><br>&#8220;One 
+            Health: Noi, gli Animali e l&#8217;Ambiente&#8221; (6/10), &#8220;Cado e mi rialzo: 
+            disabilit&#224; e benessere&#8221; (8/10), &quot;Ormoni e Neuroregolazione dello 
+            stress&quot; (10/10): camminate tematiche per staccare la spina, 
+            camminare, chiacchierare e scoprire qualcosa di utile per la tua 
+            salute e per la vita.
+          </p>
+          <p align="left">
+            <a href="https://www.samba.unito.it/it/aree/sport" style="background-color: #ff00ff; padding-top: 10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px; display: inline-block"><font color="#ffffff" size="4"><b>PARTECIPA</b></font></a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 30px">
+      <tr>
+        <td colspan="2" style="background-color: #ff7f00; padding-top: 10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <strong><font size="5">7 ottobre</font></strong> &#8211; Palazzo Badini, 
+          Via Verdi 10
+        </td>
+      </tr>
+      <tr>
+        <td width="40%" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px">
+          <img src="https://samba.unito.it/sites/default/files/2025-06/SupportoDipendenze.jpg" style="display: block; width: 100%">
+          
+        </td>
+        <td width="60%" valign="top" style="padding-top: 10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <p style="margin-bottom: 10px">
+            <strong><font size="4">SUPPORTO DIPENDENZE</font></strong><br>Incontri 
+            individuali con uno/a psicologo/a, in modo riservato, aperto e non 
+            giudicante, con cui comprendere come lavorare sulle difficolt&#224;.
+          </p>
+          <p align="left">
+            <a href="https://samba.unito.it/it/aree/dip" style="background-color: #ff00ff; padding-top: 10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px; display: inline-block"><font color="#ffffff" size="4"><b>PARTECIPA</b></font></a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 30px">
+      <tr>
+        <td colspan="2" style="background-color: #6CE6E9; padding-top: 10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <strong><font size="5">7 ottobre</font></strong> - Conservatoire de 
+          la Vall&#233;e D&#8217;Aoste, Via Guido Rey, Aosta
+        </td>
+      </tr>
+      <tr>
+        <td width="40%" valign="top" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px">
+          <img src="https://samba.unito.it/sites/default/files/2025-09/bootcamp-musicisti.jpg" alt="" style="display: block; width: 100%">
+          
+        </td>
+        <td width="60%" valign="top" style="padding-top: 10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <p style="margin-bottom: 10px">
+            <strong><font size="4">PREVENZIONE E STRATEGIE PER STAR BENE E FAR 
+            MUSICA</font></strong><br>Corso per approfondire i principi di 
+            ergonomia e di consapevolezza delle potenzialit&#224; biodinamiche 
+            correlate allo strumento di studio.
+          </p>
+          <p align="left">
+            <a href="https://www.samba.unito.it/it/aree/lab" style="background-color: #ff00ff; padding-top: 10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px; display: inline-block"><font color="#ffffff" size="4"><b>PARTECIPA</b></font></a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 30px">
+      <tr>
+        <td colspan="2" style="background-color: #00f42b; padding-top: 10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <strong><font size="5">10 ottobre</font></strong> - Via Verdi 12
+        </td>
+      </tr>
+      <tr>
+        <td width="40%" valign="top" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px">
+          <img src="https://samba.unito.it/sites/default/files/2025-06/Gestione-dellansia-e-regolazione-emotiva.jpg" alt="" style="display: block; width: 100%">
+          
+        </td>
+        <td width="60%" valign="top" style="padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px">
+          <p style="margin-top: 0; margin-right: 0; margin-bottom: 10px; margin-left: 0">
+            <strong><font size="4">GESTIONE DELL'ANSIA E REGOLAZIONE EMOTIVA</font></strong><br>Corso 
+            per sentire e identificare cosa accade dentro di s&#233;: un percorso 
+            pratico per riconoscere i tuoi pattern di attivazione e sviluppare 
+            risorse di regolazione emotiva.
+          </p>
+          <p align="left">
+            <a href="https://www.samba.unito.it/it/aree/ans" style="background-color: #ff00ff; padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; display: inline-block"><font color="#ffffff" size="4"><b>PARTECIPA</b></font></a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <hr style="height: 2px">
+    
+
+    <p>
+      Sono sempre disponibili su appuntamento:<br><strong>Consulenza 
+      psicologica</strong> per usufruire del servizio visita la pagina <a href="https://www.samba.unito.it/it/aree/psic">Supporto 
+      psicologico individuale</a><br><strong>Gestione dell&#8217;ansia relativa allo 
+      studio</strong> per partecipare visita la pagina <a href="https://www.samba.unito.it/it/aree/stud">Supporto 
+      per studenti con difficolt&#224; nello studio e con bisogni educativi 
+      speciali (BES)</a>
+    </p>
+    <br>
+    
+
+    <p>
+      Gli EVENTI proseguono le PROSSIME SETTIMANE con:<br>14 ottobre, <strong>Supporto 
+      alle dipendenze</strong>
+    </p>
+    <p>
+      <i>Alla prossima settimana, con una nuova newsletter SAMBA!</i>
+    </p>

@@ -1,0 +1,207 @@
+X-Google-Smtp-Source: APBJJlH4z2vDgeeTdBzShQwhwXv1+oPQjTCSnuORahvA345FtFV8yiBMsmHiZ247gcAOfDtz7U38UUJWl7yQPyXjWg==
+X-Received: by 2002:a17:902:ec88:b0:1af:e4e8:6847 with SMTP id x8-20020a170902ec8800b001afe4e86847mr11286650plg.1.1688991678604;
+        Mon, 10 Jul 2023 05:21:18 -0700 (PDT)
+Received: from 292831042739
+	named unknown
+	by gmailapi.google.com
+	with HTTPREST;
+	Mon, 10 Jul 2023 05:21:18 -0700
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a17:90a:8b95:0:0:0:0 with SMTP id z21csp283006pjn;
+        Wed, 6 Oct 2021 02:15:46 -0700 (PDT)
+X-Received: by 2002:a67:e192:: with SMTP id e18mr13593724vsl.26.1633511746702;
+        Wed, 06 Oct 2021 02:15:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1633511746; cv=none;
+        d=google.com; s=arc-20160816;
+        b=z90hnk832TZepQnsiOqOclrU/x+aW6W4bTfYpoin4hRBSicBkHeO51ltMfUOJ52h5l
+         2/UZy72VqA2ut93wIPpqVJaSziPlAFLpicpB9fUD9lDhuDqw0xhWFbFngtjtWrGXmg2Z
+         4htdouLF1+mrmbSm9Vfqrz5d/RT6gBcE5P3tgDGoxlNHcD2Iz8tSOeOxZjAr2WkjsvTp
+         QtoEHo12TPFQX2PRL/GBtnmqbHBpHg7vrV3qz8z4OxhMgMVTx4gkHqM0scDfvbvHP2gh
+         AGtE8abSZNYF9ffN+Yq4ZRHYFqzi1sVUi39AMLll1/SF4X9KMvL9AbL9jTKvd1ZrToJP
+         pBPA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:message-id:subject:from:to:date:dkim-filter;
+        bh=b6RyPdNkNWzfeVW8Gys2lbMk3OejcXU5TLYfoSW7VjQ=;
+        b=Fq/+lOiE8aawHuQpPQP2wIhzMqCrehCsedMRCAoJcOSgwtIbXXQ8U0IL0MvQaBYdnY
+         s+Z9Rj9ErRL/Bm3mEoX3O7klMfjmTPfVffCdz3jXnnlhhsZcP2GgPXT0Qylcyn9u1wJx
+         kn9N8VspNOhm7bYqg9ULja74l7io5KogWpG+ykGzKSvIRzEMfI4zJyjvkQjptwExPKua
+         3vPzOivkA6O0VxMVgi+yuk0KlaYoYVJIej2u50PULBJWfziOuUIsf86wWTG7A8Fa6Pa7
+         +JSRmxmUqHZKyJkPBY+caeZS31R2jPyiIHTJ+24QzogALARUPm1P6tuQggAYN2e99U/v
+         V+qg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of learnadmin@di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=learnadmin@di.unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+Return-Path: <learnadmin@di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id f26si3496015vsa.462.2021.10.06.02.15.45
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 06 Oct 2021 02:15:46 -0700 (PDT)
+Received-SPF: pass (google.com: domain of learnadmin@di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of learnadmin@di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=learnadmin@di.unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.14.4/8.14.4) with ESMTP id 1969FneN025786
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Wed, 6 Oct 2021 11:15:49 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 1969FneN025786
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 1969Fi2Q099158
+	for <luca.barra@edu.unito.it>; Wed, 6 Oct 2021 11:15:44 +0200
+Date: Wed, 6 Oct 2021 11:15:44 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Mazzei Alessandro" <alessandro.mazzei@unito.it>
+Subject: Nuovo messaggio da Mazzei Alessandro
+Message-ID: <615d69400a8d01.20246665@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer Moodle 2016052318 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="b1_afde0681a22c948348ed52c5c4c57f27"
+
+This is a multi-part message in MIME format.
+
+--b1_afde0681a22c948348ed52c5c4c57f27
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+Buongiorno,
+
+=C2=A0 =C2=A0 Venerd=C3=AC 8 Ottobre dalle ore 14:00 alle ore 17:00 si svol=
+ger=C3=A0 la
+prima lezione del Laboratorio di Programmazione 1 - Gruppo A (Turno 2),
+come da calendario. Gli studenti di questo turno di laboratorio hanno il
+cognome che inizia con una lettera tra A e D e hanno nella matricola la
+penultima cifra PARI. La lezione si svolger=C3=A0 in modalit=C3=A0 ibrida, =
+sia
+online via WebEx che in presenza in laboratorio Turing.
+
+Trovate sulla pagina del laboratorio il materiale della prima lezione.
+
+Vi ricordo che il link per la pagina del laboratorio =C3=A8 il seguente:=C2=
+=A0
+
+=C2=A0 =C2=A0 https://informatica.i-learn.unito.it/course/view.php?id=3D234=
+4
+
+Per poter seguire la lezione da remoto, accedete alla sessione WebEx con il
+link:
+
+=C2=A0 =C2=A0
+https://unito.webex.com/unito/j.php?MTID=3Dm6453354245bf351dd4a4e082d40a25a=
+5
+
+=C2=A0 =C2=A0 password di accesso: =C2=A0 prog1labAT2
+
+Nel frattempo potete gi=C3=A0 iniziare ad installare il Java JDK (Java SE
+Development Kit 17) e l'editor Notepad++.=C2=A0
+
+Trovate i link ad entrambi sempre sulla pagina del laboratorio, sezione
+SOFTWARE.
+
+La lezione avr=C3=A0 come argomenti:
+
+- La preparazione dell'ambiente per la programmazione in linguaggio Java
+
+- Introduzione alla linea di comando
+
+- Comandi per la compilazione e l'esecuzione dei programmi Java
+
+Per chi accede alla lezione via WebEx:
+
+Durante la lezione saranno previste delle Sessioni Interattive dove si
+avr=C3=A0 modo di risolvere gli eventuali problemi individuali che avrete
+riscontrato.
+
+Nel caso aveste problemi a collegarvi dal vostro computer, potete anche
+provare a collegarvi via cellulare usando l'applicazione WebEx mobile
+(Android/iOS).
+
+Quando avviate WebEx, entrate nell'aula virtuale con il vostro NOME e
+COGNOME, non con un nickname. Durante la lezione mantenete spenti i
+microfoni e le webcam, per evitare rumori e disturbi. Per intervenire,
+scrivete nella chat di WebEx.=C2=A0
+
+Durante le Sessioni interattive prenotatevi nella chat: quando venite
+chiamati abilitate il microfono e, se serve, la condivisione del vostro
+schermo per provare a risolvere i problemi o per rispondere alle vostre
+domande.
+
+Per chi segue la lezione in presenza:
+
+Si ricorda che l'accesso alle strutture dell'Universit=C3=A0 richiede il
+possesso di un GreenPass valido.
+
+La presenza deve essere prenotata prima via Student Booking, che trovate
+sia sull'app Myunito che sul portale di Ateneo https://www.unito.it/
+
+Potete usare sia i terminali a disposizione (52 postazioni) sia il vostro
+portatile. Per accedere ai terminali, si usa lo stesso login/password che
+utilizzate per accedere al portale di Ateneo https://www.unito.it/ (il
+login via SPID non =C3=A8 previsto).
+
+Alessandro Mazzei
+
+
+
+---------------------------------------------------------------------
+Questa email contiene una copia del messaggio ricevuto su "informatica". Pe=
+r
+rispondere recati su
+https://informatica.i-learn.unito.it/message/index.php?user=3D28042&id=3D12=
+62.
+
+
+--b1_afde0681a22c948348ed52c5c4c57f27
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p>Buongiorno,<br /></p><p><br /></p><p>=C2=A0 =C2=A0 Venerd=C3=AC 8 Ottobr=
+e dalle ore 14:00 alle ore 17:00 si svolger=C3=A0 la prima lezione del Labo=
+ratorio di Programmazione 1 - Gruppo A (Turno 2), come da calendario. Gli s=
+tudenti di questo turno di laboratorio hanno il cognome che inizia con una =
+lettera tra A e D e hanno nella matricola la penultima cifra PARI. La lezio=
+ne si svolger=C3=A0 in modalit=C3=A0 ibrida, sia online via WebEx che in pr=
+esenza in laboratorio Turing.</p><p><br /></p><p>Trovate sulla pagina del l=
+aboratorio il materiale della prima lezione.</p><p>Vi ricordo che il link p=
+er la pagina del laboratorio =C3=A8 il seguente:=C2=A0</p><p>=C2=A0 =C2=A0 =
+https://informatica.i-learn.unito.it/course/view.php?id=3D2344</p><p><br />=
+</p><p>Per poter seguire la lezione da remoto, accedete alla sessione WebEx=
+ con il link:</p><p>=C2=A0 =C2=A0 https://unito.webex.com/unito/j.php?MTID=
+=3Dm6453354245bf351dd4a4e082d40a25a5</p><p>=C2=A0 =C2=A0 password di access=
+o: =C2=A0 prog1labAT2</p><p><br /></p><p>Nel frattempo potete gi=C3=A0 iniz=
+iare ad installare il Java JDK (Java SE Development Kit 17) e l'editor Note=
+pad++.=C2=A0</p><p>Trovate i link ad entrambi sempre sulla pagina del labor=
+atorio, sezione SOFTWARE.</p><p>La lezione avr=C3=A0 come argomenti:</p><p>=
+- La preparazione dell'ambiente per la programmazione in linguaggio Java</p=
+><p>- Introduzione alla linea di comando</p><p>- Comandi per la compilazion=
+e e l'esecuzione dei programmi Java</p><p><br /></p><p>Per chi accede alla =
+lezione via WebEx:</p><p>Durante la lezione saranno previste delle Sessioni=
+ Interattive dove si avr=C3=A0 modo di risolvere gli eventuali problemi ind=
+ividuali che avrete riscontrato.</p><p>Nel caso aveste problemi a collegarv=
+i dal vostro computer, potete anche provare a collegarvi via cellulare usan=
+do l'applicazione WebEx mobile (Android/iOS).</p><p>Quando avviate WebEx, e=
+ntrate nell'aula virtuale con il vostro NOME e COGNOME, non con un nickname=
+=2E Durante la lezione mantenete spenti i microfoni e le webcam, per evitare =
+rumori e disturbi. Per intervenire, scrivete nella chat di WebEx.=C2=A0</p>=
+<p>Durante le Sessioni interattive prenotatevi nella chat: quando venite ch=
+iamati abilitate il microfono e, se serve, la condivisione del vostro scher=
+mo per provare a risolvere i problemi o per rispondere alle vostre domande.=
+</p><p><br /></p><p>Per chi segue la lezione in presenza:</p><p>Si ricorda =
+che l'accesso alle strutture dell'Universit=C3=A0 richiede il possesso di u=
+n GreenPass valido.</p><p>La presenza deve essere prenotata prima via Stude=
+nt Booking, che trovate sia sull'app Myunito che sul portale di Ateneo http=
+s://www.unito.it/</p><p>Potete usare sia i terminali a disposizione (52 pos=
+tazioni) sia il vostro portatile. Per accedere ai terminali, si usa lo stes=
+so login/password che utilizzate per accedere al portale di Ateneo https://=
+www.unito.it/ (il login via SPID non =C3=A8 previsto).</p><p><br /></p><p>A=
+lessandro Mazzei</p><p><br /></p><br /><br />------------------------------=
+---------------------------------------<br />Questa email contiene una copi=
+a del messaggio ricevuto su "informatica". Per rispondere recati su https:/=
+/informatica.i-learn.unito.it/message/index.php?user=3D28042&id=3D1262.
+
+
+--b1_afde0681a22c948348ed52c5c4c57f27--
+

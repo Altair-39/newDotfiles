@@ -1,0 +1,165 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:9e10:0:b0:2ea:83d6:7f34 with SMTP id e16csp118952ljk;
+        Wed, 5 Jun 2024 02:35:28 -0700 (PDT)
+X-Received: by 2002:a05:6512:695:b0:521:9315:670 with SMTP id 2adb3069b0e04-52bab4b804amr1569427e87.9.1717580128687;
+        Wed, 05 Jun 2024 02:35:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1717580128; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Ix3X/pzSlvfXxHeXeUSgAzXb1+nKULtdW60Q+qBYgFR0v8chekODqN3coGGn12C0t4
+         QTs6EHrYncCtoeIpjb/ojjB4hBWwi/RgJa4jMKJg2TzNz9qIz+lNGQGlNoXOr7ru+quL
+         rtbgKtLEm3CWx4DZoide+M93z4WAZuj/MXfuZhl8dZJwSIX+GpvydPaLB2GrtDiHq4nR
+         w7CW+ucQhOHB2o6dob5UZNl4jIrQnznnzDD8nMv/GDT21As/+JwzYRTTqfv/XE5rN90+
+         lESvo3kbcHnU2Fm2iM3GnxLJK67RPq6bPdnInci65j9tbTF8r2PBdjjk/OimdVqPZY0Q
+         p0Og==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=in-reply-to:organization:from:references:to:content-language
+         :subject:user-agent:mime-version:date:message-id:dkim-signature;
+        bh=H1gOY31hLXKxrZX8bPnH/UC3nQUd+8xNm0+OwRZb35A=;
+        fh=wnoTQjHgWz4kRW5W3Yv210Aj9LolbdJ/Lvc/uyAoO3M=;
+        b=x7ckxgc9KS0WD34C8v32TbjI3FdaQ1KhCgUa2Z8s8AzOJ4/3EJW8tAg7M72iTsOa5O
+         kzygup4LJVZ4wc6klsUEZ98Zt/YV6BX7XhfX0B5SPR81im4Lmk7fTznr8HR0eGaoSHI7
+         3zs6afgonvwcSfjndG0mQ6d+M720oGOuvMmVvjaYqrJaqPo2pLAvC26KF1aXQDpJ4ZUz
+         FpUGoDPwZaMH7PKdstknN2yY19IqAwO08xm+RnbHl9UNdyP23MsHXvDLcT9+/sc/RVTS
+         Y/GtYbh7XUVkY30dunvFQX8TzaSCHgrWD3ayziojCMa67yMTuhgHCEC3zU2fpErwi9wb
+         0UmA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=Ge7KcK5x;
+       spf=pass (google.com: domain of liliana.ardissono@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=liliana.ardissono@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <liliana.ardissono@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 2adb3069b0e04-52b84d35c1csor2870806e87.1.2024.06.05.02.35.28
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Wed, 05 Jun 2024 02:35:28 -0700 (PDT)
+Received-SPF: pass (google.com: domain of liliana.ardissono@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=Ge7KcK5x;
+       spf=pass (google.com: domain of liliana.ardissono@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=liliana.ardissono@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1717580127; x=1718184927; darn=edu.unito.it;
+        h=in-reply-to:organization:from:references:to:content-language
+         :subject:user-agent:mime-version:date:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=H1gOY31hLXKxrZX8bPnH/UC3nQUd+8xNm0+OwRZb35A=;
+        b=Ge7KcK5xOf9upts1yOhD0pd2f9+4gdNq35PNDU01Q0htp/+VJo6fwsD6DZ33fSpHPk
+         Hh+WQm3XXUoWkRIgNqNBdyLOtwuFy0Hg/aQKo1HUlF3xTgWNCvHiUpzo08XlteyzgZgc
+         kqrUq52ZDGF6rar5a2/qrNV0yUd/HlYj/3Vjc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717580127; x=1718184927;
+        h=in-reply-to:organization:from:references:to:content-language
+         :subject:user-agent:mime-version:date:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=H1gOY31hLXKxrZX8bPnH/UC3nQUd+8xNm0+OwRZb35A=;
+        b=cxfcHjOyOSNcxBG9aiZflABllYZVx5w2ZQJrhVafuMT4y+kF0FKpqGYjONjVIv/+St
+         X4WHyjRazHbsH7qtB6my1IqpIcGudad3tYy7zBFNtXKknqnli1qP+FOE4f24PgBTDNKG
+         nh6mMYs+Dv+GowziKYkn5hcfIH5C9ko4inkSZ0VkQB05IJ2fn/S+fhfMtZFQ2a2U2nNq
+         JW0sCziJUsXCaVCgI/gPMnaFFIc9tPmuwqVToIVkSqko9enkmUqSxwRhyexNJtfGiwb/
+         w5mY4dKKxqqbWbzeEctrgJNEKLXNsCvF0cwgGPpksj+oNfKCZS8jcEJaM5rmPNP3lH8t
+         A33Q==
+X-Gm-Message-State: AOJu0YzTfdwrEfvSKlvEv9cN5/itQxl1+gpHm/nJ4TlzXcTK1iwbwxam
+	4y9/qkzPGoeQBZT4pQvOPC/EhIxfx6zQxpidlTwu6Fk1p51A5b+ps2ugHaqKLxV4I9qOuyuxKvr
+	OGmU=
+X-Google-Smtp-Source: AGHT+IH0I8f/tLCdkF9EYFRFswWAbT+C45fYyKildaVzWHAwsCLQRaqAygOJpHy/ZMpV9kun1BqfZg==
+X-Received: by 2002:ac2:46da:0:b0:52a:d87f:60e3 with SMTP id 2adb3069b0e04-52bab507df2mr1021683e87.57.1717580126982;
+        Wed, 05 Jun 2024 02:35:26 -0700 (PDT)
+Return-Path: <liliana.ardissono@unito.it>
+Received: from [10.0.12.34] (nat3.di.unito.it. [130.192.156.246])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6ae4a5964f1sm47061656d6.0.2024.06.05.02.35.25
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Jun 2024 02:35:26 -0700 (PDT)
+Content-Type: multipart/alternative;
+ boundary="------------D6UGis982CJqUTc5judJp53d"
+Message-ID: <fedb649e-f3c7-4166-8b91-cff8137ceb7a@unito.it>
+Date: Wed, 5 Jun 2024 11:35:25 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: Verbalizzazione voto "Programmazione III"
+Content-Language: en-US
+To: Luca Barra <luca.barra@edu.unito.it>
+References: <CAAhooxsMnXMm_iz6gQxOy7owsA4-MQyHRAQHgL1g55FmFytHKQ@mail.gmail.com>
+From: Liliana Ardissono <liliana.ardissono@unito.it>
+Organization: Computer Science Department - University of Torino
+In-Reply-To: <CAAhooxsMnXMm_iz6gQxOy7owsA4-MQyHRAQHgL1g55FmFytHKQ@mail.gmail.com>
+
+This is a multi-part message in MIME format.
+--------------D6UGis982CJqUTc5judJp53d
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Grazie per la segnalazione, in giornata aggiorno. Ricontrolli il 
+libretto stasera o domani.
+
+LA
+
+Il 05/06/2024 11:04, Luca Barra ha scritto:
+> Buongiorno,
+> Le scrivo perché il voto di "Programmazione III" non è stato 
+> verbalizzato. Ho superato lo scritto nell'appello di Gennaio e la 
+> discussione di progetto nell'appello di Maggio, attualmente ho solo il 
+> voto del progetto nella bacheca esiti.
+> Distinti saluti,
+> LB
+>
+> ------------------------
+>
+> Indirizzo istituzionale di posta elettronica degli studenti e dei 
+> laureati dell'Università di Torino
+> Official University of Turin email address for students and graduates
+
+-- 
+Liliana Ardissono
+Dipartimento di Informatica - Università di Torino
+Stanza WebEx:https://unito.webex.com/meet/liliana.ardissono
+
+--------------D6UGis982CJqUTc5judJp53d
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Grazie per la segnalazione, in giornata aggiorno. Ricontrolli il
+      libretto stasera o domani.</p>
+    <p>LA<br>
+    </p>
+    <div class="moz-cite-prefix">Il 05/06/2024 11:04, Luca Barra ha
+      scritto:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAAhooxsMnXMm_iz6gQxOy7owsA4-MQyHRAQHgL1g55FmFytHKQ@mail.gmail.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div dir="auto">Buongiorno,
+        <div dir="auto">Le scrivo perché il voto di "Programmazione III"
+          non è stato verbalizzato. Ho superato lo scritto nell'appello
+          di Gennaio e la discussione di progetto nell'appello di
+          Maggio, attualmente ho solo il voto del progetto nella bacheca
+          esiti.</div>
+        <div dir="auto">Distinti saluti, </div>
+        <div dir="auto">LB </div>
+      </div>
+      <br>
+      <div style="font-size:1.3em">------------------------</div>
+      <span style="font-size:small">
+        <div><img src="https://web.unito.it/logofirmastu.png"
+            moz-do-not-send="true"><br>
+        </div>
+        Indirizzo istituzionale di posta elettronica degli studenti e
+        dei laureati dell'Università di Torino</span>
+      <div><font size="2">Official University of Turin email address for
+          students and graduates </font></div>
+    </blockquote>
+    <pre class="moz-signature" cols="72">-- 
+Liliana Ardissono
+Dipartimento di Informatica - Università di Torino
+Stanza WebEx: <a class="moz-txt-link-freetext" href="https://unito.webex.com/meet/liliana.ardissono">https://unito.webex.com/meet/liliana.ardissono</a></pre>
+  </body>
+</html>
+
+--------------D6UGis982CJqUTc5judJp53d--

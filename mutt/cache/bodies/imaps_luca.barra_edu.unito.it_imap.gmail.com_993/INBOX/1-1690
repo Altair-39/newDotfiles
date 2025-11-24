@@ -1,0 +1,96 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:8e91:0:b0:2e2:75a4:21a3 with SMTP id z17csp2846738ljk;
+        Thu, 16 May 2024 06:03:35 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCWOmk2UVG4Zz9syvVRWH5zdtv1hKRqWqsSHi6DZi1EaO0TT6k9DzUX55PERG/lPAkhf95+DeerXEvw3+QTVwfTzDOvOclA6aw==
+X-Google-Smtp-Source: AGHT+IE+uFl62rG+qkNnNihzYpdDJpBqoV1fNU6dkzkq8gkyVv1JUusjbBPnqRyGrHLjzyNBAVdP
+X-Received: by 2002:a17:907:7b8a:b0:a59:9b8e:aa61 with SMTP id a640c23a62f3a-a5a2d5c9303mr1690471366b.35.1715864615246;
+        Thu, 16 May 2024 06:03:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1715864615; cv=none;
+        d=google.com; s=arc-20160816;
+        b=I/fftTvA+OcMazheSGolcMHtJxxVPGiDMUdQilVGLLQsnqDWdotqOVPaanzIVqBvKG
+         zlYxndBAOsRZ+hYzabMcEr1ATlxWjHGQXs6jXqDBNI9BhucPnPmg2BxQzyZ1BTkgf5Za
+         7pFfAe69qzZN39q4zwXd/QtSb3iMl7bkuUBIrSFr2rxyC9WosxeigBKnOc7GwUrWs5U9
+         5+gSIXo8TGR9lL2BOTykb9G7myz235v1eId1MiN4zQ2EkE/CowHRyITQ4xD0y7JqEtfV
+         8owRKBRx520wmj1oyi3cpmYXAcbTjDP1d6aFf7pEpbR39hEm/FTn8rVcE8DZIiWxRgYS
+         Ht3w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date;
+        bh=9OLrXFyyNTRZaFIjnjI7aVSfNPPa/yQjYA9+e0F9uh8=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=Ad7JP4DiV9nttGr3qxCKWsRvFAjNq6LmepyO9bolW6VJ+Qo/2jlGvPXgfJtOItAu6J
+         Hf+GoSVRCLFuIGZznqHZTILYEz7KsUlalpqitJGglKxrTBbV9dJex+3kvslCpaYh3T1m
+         m/6BKoEbUI8CZikR4CURnAOUyM3kDQj8cbvr2ZSWn4TqxyqIqUMnPEULVKSlVTeHIH5V
+         Dd5ehcfzl+yvXuBa+tTVECAfLmYeHT4BQDeYaaeQBFq75rTnia62FTFVwgDPk/22YGMa
+         tBPRgNpq81C6T5iNPeYAksm/4nEo0RBwW/iwlOapQnyK5zGS5tS5sqQKVyT88QQYU691
+         u77A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id a640c23a62f3a-a5a17b21b93si834152366b.364.2024.05.16.06.03.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 May 2024 06:03:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 834102BFFF;
+	Thu, 16 May 2024 15:03:32 +0200 (CEST)
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id qPHQwbHYX3vp; Thu, 16 May 2024 15:03:32 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 8F5F82BF82;
+	Thu, 16 May 2024 15:02:47 +0200 (CEST)
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id 2j3x8u7fi2NT; Thu, 16 May 2024 15:02:47 +0200 (CEST)
+Received: from esse3appjboss26.private.cineca.it (esse3appjboss26.cineca.it [130.186.5.161])
+	by smtp4.cineca.it (Postfix) with ESMTP id 9A7B62BF7D;
+	Thu, 16 May 2024 15:02:43 +0200 (CEST)
+Received: from esse3appjboss26.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss26.private.cineca.it (Postfix) with ESMTP id 97662EF7;
+	Thu, 16 May 2024 15:02:41 +0200 (CEST)
+Date: Thu, 16 May 2024 15:02:41 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <275121868.53.1715864561611@esse3appjboss26.private.cineca.it>
+Subject: =?UTF-8?Q?Pubblicazione_Bando_=E2=80=9CProgetto_Buddy_=E2=80=93_?=
+ =?UTF-8?Q?Do_you_need_suppor-TO=3F=E2=80=9D_a.a._2024/2025?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+Gentile Studente,
+
+=C3=A8 stato pubblicato il Bando per il conferimento di n. 69 contratti di =
+collaborazione a tempo parziale nell=E2=80=99ambito del =E2=80=9CProgetto B=
+uddy - Do you need suppor-TO?=E2=80=9D anno accademico 2024/2025.
+
+Con il =E2=80=9CProgetto Buddy =E2=80=93 Do you need suppor-TO?=E2=80=9D, l=
+'Universit=C3=A0 di Torino promuove un sistema di accoglienza e assistenza,=
+ rivolto a studenti internazionali che si iscrivono a un Corso di Studio o =
+che svolgono presso l=E2=80=99Ateneo un periodo di mobilit=C3=A0 internazio=
+nale. L=E2=80=99attivit=C3=A0 si avvale di studenti, regolarmente iscritte/=
+i e con adeguate competenze linguistiche, che affiancano le colleghe e i co=
+lleghi internazionali in una logica di peer tutoring. =20
+Lo scopo =C3=A8 permettere agli/alle studenti internazionali di familiarizz=
+are con il nuovo contesto accademico culturale e linguistico, offrendo al c=
+ontempo agli/alle studenti UniTo la possibilit=C3=A0 di internazionalizzare=
+ la loro esperienza formativa direttamente in Ateneo. L'esperienza Buddy =
+=C3=A8 infatti sinonimo di scambio e di collaborazione e rappresenta una ve=
+ra e propria esperienza di cittadinanza globale.=20
+
+Se ti interessa diventare Buddy di UniTo, ti invitiamo a leggere attentamen=
+te il Bando e a presentare domanda entro le ore 12.00 (mezzogiorno) del 4 g=
+iugno 2024.=20
+Aspettiamo la tua candidatura!
+
+Area Internazionalizzazione
+Direzione Innovazione e Internazionalizzazione=20
+Universit=C3=A0 degli Studi di Torino

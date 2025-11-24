@@ -1,0 +1,1092 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a40c:0:b0:30c:2dd2:a8c1 with SMTP id p12csp558438ljn;
+        Thu, 8 May 2025 12:07:51 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGRs2cwvINEHYV4vO7aiY8KiA03i4tgCavAeSpkOKB9GYRkMYXJ8Kqivokf8JtJb5atwbre
+X-Received: by 2002:a05:6000:2410:b0:3a0:678f:8023 with SMTP id ffacd0b85a97d-3a1f6432c0cmr213458f8f.4.1746731271307;
+        Thu, 08 May 2025 12:07:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1746731271; cv=none;
+        d=google.com; s=arc-20240605;
+        b=euzi8UsrJhNCDlRuA8JQhuhBV3FDf3gyO+8Od9nQVpoWHxnm9qoyhL88sUqWuzOC8V
+         847WVtCWvPqr3inuHVdisQvmJJ/LCeTHj3yLCZGHl9TZ9waqCWkMoOPCn0MmCjkhU85C
+         5/ykjqlDEfO7M3nuwO3/2pHwBwEZi5cVFCzfXPv+j77eKZ1gt4PkeyYHgLOnQdSOrNAp
+         NTeIhOkByHlllQJhru+L3R8pL8ULJ9hI3rwF038bX8HLHqV4WYC0De5/J/KEzvZjJL2L
+         CZBy30N9Me0E0Flek2fmDsTgXh+zkyS35XeARHvdSdFVQWhaozVzVJc+ZQ4j+VKaLh6u
+         6StA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:list-unsubscribe-post:list-unsubscribe:reply-to:subject
+         :message-id:mime-version:from:date:dkim-signature;
+        bh=DBUR5etg6KKmDzyh6IX1KJycyU7nyYLvIwbtfoIE9Zg=;
+        fh=IxM04YauqXzCozmF/ngeXvaWuWeW7uONbHgj9jmZsgE=;
+        b=fMoIRkvN85LZCBzSJuj5imD6OKJPZJwoN7ezqeJJ0vYqGebrJR3CEYyRnzKFGppeQY
+         9M8AYLwgN0sBYOcJkfr04zomC1djLKfxwRgRNgH7NHhpRNSuCnjRj7MVDYo9unPaEQ4V
+         oJ/gO5rcrpPl+H8QoLCiAt3XKuoKqnf3kMShU1UbaCsYqtfYtgcreQrCLA/g6HlS6MZS
+         cIAbgfMgLABfh1hfWtlzQkRTYfy1fONaiahfuNKpQp/EOFXfqgxU1z1YIKIP936mlP3b
+         0uxRZy0Kn0UxSkoFl79aFA5+0wM8Xg3mKF4K8Glzq9wYU4A2F9de5vt7U0XS3qYbBlUk
+         +Qbw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@github.com header.s=smtpapi header.b=du6YEkdz;
+       spf=pass (google.com: domain of bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com designates 167.89.8.226 as permitted sender) smtp.mailfrom="bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Return-Path: <bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com>
+Received: from xtrwhvzn.outbound-mail.sendgrid.net (xtrwhvzn.outbound-mail.sendgrid.net. [167.89.8.226])
+        by mx.google.com with ESMTPS id ca18e2360f4ac-867635524a7si67070239f.10.2025.05.08.12.07.50
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 08 May 2025 12:07:51 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com designates 167.89.8.226 as permitted sender) client-ip=167.89.8.226;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@github.com header.s=smtpapi header.b=du6YEkdz;
+       spf=pass (google.com: domain of bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com designates 167.89.8.226 as permitted sender) smtp.mailfrom="bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	h=content-type:from:mime-version:subject:reply-to:list-unsubscribe:
+	list-unsubscribe-post:to:cc:content-type:from:subject:to;
+	s=smtpapi; bh=DBUR5etg6KKmDzyh6IX1KJycyU7nyYLvIwbtfoIE9Zg=;
+	b=du6YEkdzTcwn4X1LATiyJOnR3o5p3yYWzG01i4kdHOhDUOSK5HewMkxdWhIprfV/DWpj
+	XJ5WQCtGaRZAdzASHQu9IwhUuvIjpqa9kH/GTLD1xAn/r3or3buKPShdYRhCAcTRbkYoHR
+	197wUKiJXMR95mZQsY6cZm+PFemPmNUXg=
+Received: by recvd-canary-84cdfc4f85-cxq4s with SMTP id recvd-canary-84cdfc4f85-cxq4s-1-681D0105-40
+	2025-05-08 19:07:49.500327035 +0000 UTC m=+2581197.535522746
+Received: from NDY3MDE5MjI (unknown)
+	by geopod-ismtpd-16 (SG) with HTTP
+	id Dnrrv_FMRN-bJK8fYwXoxw
+	Thu, 08 May 2025 19:07:49.476 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=9065ff41dbda570043508991c07ebd8ad12f1af61700a077d8aa28dfd260
+Date: Thu, 08 May 2025 19:07:50 +0000 (UTC)
+From: GitHub Education <githubeducation@github.com>
+Mime-Version: 1.0
+Message-ID: <Dnrrv_FMRN-bJK8fYwXoxw@geopod-ismtpd-16>
+Subject: GitHub invites you to SF + Boston island + hardware
+Reply-To: githubeducation@github.com
+List-Unsubscribe: 
+ =?us-ascii?Q?=3Chttps=3A=2F=2Fmailing=2Egithub=2Ecom=2Flu=2Funsubscribe=3Foc=3Du001=2Eor7q--1Ll4a?=
+ =?us-ascii?Q?IdZchoIagBoikICI9UYP7-OIYHjWc8OiS8-A52w?=
+ =?us-ascii?Q?d83kxwIRhFkwaTwkTamEYwTVWgFber=5F2ubyL-cT?=
+ =?us-ascii?Q?HECpOIewEvWeq43S-p9Wp0p8PQe8H0SitgCvqVZ?=
+ =?us-ascii?Q?wzqc87ZSZzdQl8vQVPTn1InH9XTLAnGabQYrPvC?=
+ =?us-ascii?Q?c75-CHsKOgoJLqUm8egFo49vZU3RQHeNjiJw=5FGp?=
+ =?us-ascii?Q?MNYbTT=5Fpn-AgZeW88-dnloMbBlI16UQ-MZHqXgb?=
+ =?us-ascii?Q?W-=5FCLONCNcZIkYUR-BcN8=5FLmrwfh1Jor6RRuAMn?=
+ =?us-ascii?Q?GaoHMQlE=5FnsW5=5F1vlujtjLtZSr59Wv8Lk=5F3c3Z8?=
+ =?us-ascii?Q?BYsRkTrYx7o-ccXPPyS1LLF6F2ClNWCUYGLezCT?=
+ =?us-ascii?Q?KS2aPctNV6f9JonsIEc5L6htemIl6t2Lh=5FjLJrW?=
+ =?us-ascii?Q?oM9Ql7Msc15xLARJ8Ch0aozYfHye=5FnctyzKOsb1?=
+ =?us-ascii?Q?jxkByS67bBZz3rseCkrfGJH9XqXNs=5FTSB6DXdHw?=
+ =?us-ascii?Q?Fi6332yQpk7N-NIJzr6kc6xc1VGdq9xg9T5jJS9?=
+ =?us-ascii?Q?ILf3Fy3DuW7dKBZTXIvFj=5FC1PKpTydk2bm95-=5Fn?=
+ =?us-ascii?Q?vEvHlN48a=5FWHXYpkhNEH69ZN5gct=5FZDS40Z6CuZ?=
+ =?us-ascii?Q?qavIhYyiwJ08lX=5F=5FmTKXDAUx1aI4DMtTM769iSp?=
+ =?us-ascii?Q?QJfc1q-p4gQwz=5FSffapQCS=5FjPEOo34c2kgyFW99?=
+ =?us-ascii?Q?13C7Hkj7LkOLS094GyoXxoHqzQICMlMIfh3ovkj?=
+ =?us-ascii?Q?RCAPfs0jy=5FndFhC23OGWkMxixX6fHrY2pPpJxZJ?=
+ =?us-ascii?Q?3=5FouESBgMq-haPFhv1O3eME6PgXkwfbsR5wGmaJ?=
+ =?us-ascii?Q?OLy7ja7bNAn=5FHLdhRrTfklU4BtNzJg06zPSxMLu?=
+ =?us-ascii?Q?QeMf2jriRY-ZodQKpX3KW3j1ykvn3ixV9NW9AU3?=
+ =?us-ascii?Q?Jk5L8G4hYp8gQvwzFUVKXWbvq5XLm1zxFPyi0KA?=
+ =?us-ascii?Q?Zso9e7xonlAUdRx7ZtUbetFUTVHiikB6I7alBam?=
+ =?us-ascii?Q?YzizJvJqxpl30=5F0OnlBfDA7SkEWGM6FhqK=5FxgUt?=
+ =?us-ascii?Q?vQ=5F6pY0mIis=5FwRc2mffQCKWXGC8sPJDa0qCmMay?=
+ =?us-ascii?Q?DwRcH9R0s=5Fe5-LC3jUwKGH1MrfVjwnPd-oNks-J?=
+ =?us-ascii?Q?SgpyJ0P7Z9gLE2ntSya3VrAIqAtW2TGBQ8oLlhw?=
+ =?us-ascii?Q?2zG1etmyn-JoF=5FmlPfY60FIEzL9TQYPsj9WQ8qG?=
+ =?us-ascii?Q?ON7IurZs8HRMauaXsZ6cF0r4d16iA3QD-KAcUTf?=
+ =?us-ascii?Q?S7kZdcrDdvUG0RRouaJL-=5Fj3-ra3ljb9wLygyEq?=
+ =?us-ascii?Q?XGwN5N3TtAiLLZXt2Q6xlhLdlLwe2cIwQuXKMUM?=
+ =?us-ascii?Q?L-7mwdkqUQ-Ecca7bMos=5F26ECn8bzsZ=5F4axlq8L?=
+ =?us-ascii?Q?oX8jV4sSATffyQtmoaYn9PHeV69Wq3nFIsv50kt?=
+ =?us-ascii?Q?KdRCcpzP7wnPQO6ihTe5CocJYp8U-OmqYsuKOMT?=
+ =?us-ascii?Q?y6669ADFCZzxkUQZ-HOvq1lNZvdB56BmlxU1FA2?=
+ =?us-ascii?Q?VEAdjPy4Y0X0HhyTMJul87cRXRy3ILKX2U6k=3E=2C=3C?=
+ =?us-ascii?Q?mailto=3Aunsubscribe=40sgmail=2Egithub=2Ecom=3Fsu?=
+ =?us-ascii?Q?bject=3Dhttps=3A=2F=2Fmailing=2Egithub=2Ecom=2Fmt=2Fu=2Fu?=
+ =?us-ascii?Q?001=2EralsfbMxOiOxCwaFzXWGEQG67NZAjfaq4SV?=
+ =?us-ascii?Q?dguUnxzg=2F4gb=2Fu001=2Ed3=5FZimLO=2Fu001=2ES8HYypS?=
+ =?us-ascii?Q?D1x7cZbKSqbc4QsHlrkIL82FpifvXOrlvs2PUIp?=
+ =?us-ascii?Q?pmG0vrupfc3-2B4QeW-2FM3OgDdDkzeqGRSHHAj?=
+ =?us-ascii?Q?w-2F8LVhXT8jB2G5yJ3Y1j0bcl1hLpwN6ty1KEV?=
+ =?us-ascii?Q?RQO2i9nW54Bg-2Bk1kf8MPd6c2z5gsMBaupxdMZ?=
+ =?us-ascii?Q?pyXuwTkPcI0HEzc1bvlmXqBSR0QbI7lQYTEZU6v?=
+ =?us-ascii?Q?dlGu7-2Bme1lBwmVi7xu2s6Wr-2BYyda3L0rJ0d?=
+ =?us-ascii?Q?TaSpamP-2BbqERDPf0bSM7t89vnz0liqvOzUaKW?=
+ =?us-ascii?Q?LXiE2c-2FMIGXMsEEtzSVzrgqsd4R7OhNaGw2-2?=
+ =?us-ascii?Q?BEkY7orQ5-2FxfFXmiSIRpN92MW0t9Ri5XJ-2Fw?=
+ =?us-ascii?Q?xDoaDFqzrJnmfLkCr4-2F83WLhhqsnd0y2YM5wb?=
+ =?us-ascii?Q?jv5Dh4kcJ7EB0bEOa5YEh-2BmqfxGs0Cq7gjiOV?=
+ =?us-ascii?Q?C0YTNZyXgNaUeaFpasCQ1cgYZcBj6RYLyyvD1zs?=
+ =?us-ascii?Q?Mrpa-2BRIYQVdc5Xea-2B26Ov-2F2B1X80f7Ra9?=
+ =?us-ascii?Q?u-2Fw-2FCTkXnOXr-2Bm6lqU3ny1yU6a2mNh4QR?=
+ =?us-ascii?Q?GsrH0ofGeatAkIqQlDu0fw-2F-2FyhnRFW3LIfz?=
+ =?us-ascii?Q?-2BdEbPoQ6F-2Ffh1zYpuCCBTj05Yj8go3iJYzX?=
+ =?us-ascii?Q?CzlU6beh9VfBofBubOuGUMgnSvLfWJz5MGeBg19?=
+ =?us-ascii?Q?IiU4j1CwRrmgs-2FHBzojK-2FGspuf7KskiuPek?=
+ =?us-ascii?Q?PW7SuZJPTyvWsEuS0af-2FVK-2FQDU-2B-2BG6g?=
+ =?us-ascii?Q?tCEBT-2BxHSMftBjErbSKhTyDrXo-2BXI-2F-2F?=
+ =?us-ascii?Q?SsFNAABr3H8AQakFcTFdmEMzxBVlrMEZQuiAeVw?=
+ =?us-ascii?Q?fjEYpwS-2FAA3-2B75fM2lrQzCee4cHIuaKkPxH?=
+ =?us-ascii?Q?YpHuu7TsgOJmV6Q0mDPTjdG5dn-2BboFkLUuqB2?=
+ =?us-ascii?Q?Mz9yxgvCPXYQC8aOXGFTwb01wcXLB4Yzn2PTjhk?=
+ =?us-ascii?Q?bfeDamVNGNzbJEImlaQe1OUFNOGM44R-2B8VsWy?=
+ =?us-ascii?Q?s58Rlo-2FEinsLMjcotDE2gADCgThfRgw-3D=2Fu0?=
+ =?us-ascii?Q?01=2EVN9HmZnD=3E?=
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-SG-EID: 
+ =?us-ascii?Q?u001=2ElNcmDc+hNZCEz2pmfZvb7Xgb9JADEib7wUaiAfZvyvpnXoHDGKB+UZmxR?=
+ =?us-ascii?Q?cbcA6LEkHq3NVfZpL5Oyz47TDCdIfgVRzq5UYhW?=
+ =?us-ascii?Q?x2u2QUyl3B3TtdaFPvsDwQkvNI4V=2FHK=2F0eoQHz7?=
+ =?us-ascii?Q?7kOUB2DOBYKD2jqfEVYZWYpk7STB1aoRQbuRW1+?=
+ =?us-ascii?Q?uG7sza24YEK6gUMohjyKgy1u9scW9dl4YQ9I6xy?=
+ =?us-ascii?Q?B2pXJotau=2FVZY8iAqp7BakXsfFVi9BUYdppT26q?=
+ =?us-ascii?Q?149R1WH0XtrcYiHXCbL0inKuvQ=3D=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2EXwhBPNhCejkv4+fVosb2QVfR16Qxp9CrA7PjDe5zzeI=2F0IZCBsPXtgHbA?=
+ =?us-ascii?Q?oGIj+RskLxA4N2rJjSWrHfgX07tLOm0v5BUQcd6?=
+ =?us-ascii?Q?w3knjorGi7Hwu0WCOA5AFSvy0=2FwlG32=2FQUncir6?=
+ =?us-ascii?Q?OCv1hdJNx5SrxCKVmAus+L6VGs0YuF0DZcI=2F+Zc?=
+ =?us-ascii?Q?8iSVSiyUROg48voqRzK0V=2FRf9N1IbiRFZcTpMqK?=
+ =?us-ascii?Q?aAlPrVCHF2=2FE3p73lw+8tXBJe96+JYFHnwGCr1h?=
+ =?us-ascii?Q?YvzCKTJdkDA=2FR+gOrF1aLKeshs9RyGTp0J0c2TV?=
+ =?us-ascii?Q?zF70oJzIeeerUR4psobFBC+Vfw8xZFT5+4kxIPj?=
+ =?us-ascii?Q?wAdNACf33EpTmOTZ8aVyPJxrvHy6tBSdU97SAFD?=
+ =?us-ascii?Q?qqlbn+GucMXvREnMFgjeKxqFjCkT0mil4BAebbc?=
+ =?us-ascii?Q?HsDPnjB8ed8njHV71NNbMPjtkfaf97tWQh8C2nJ?=
+ =?us-ascii?Q?kgc+P1fCfX6IehgJ7nByGHv=2FZcQVvEjfEDWcvQf?=
+ =?us-ascii?Q?R3xjUydU8SS7E7a5Ok38tpt7XqzCkQNdxHD=2FFn1?=
+ =?us-ascii?Q?LA60nfoQgWNTihLS0WN3ooikqeyVSiBqtmfV=2Fp9?=
+ =?us-ascii?Q?qPyu=2F7TqhmPIjTK5xyw3Az3CReFNF7lqorCgP69?=
+ =?us-ascii?Q?JpkA02tJWhL+gk7wkDr1FLrjOs9MKeo8HecBUfq?=
+ =?us-ascii?Q?cafL7eRF129cmjGpfaC+CHutuULkmRtNddD=2FT=2Fd?=
+ =?us-ascii?Q?GZucKjjYIC3HVl=2FNdYYIvhUjRgiSjOQrCMpS4DM?=
+ =?us-ascii?Q?wwWB416fW7K7EQetS2jz95Kx5ds=3D?=
+To: luca.barra@edu.unito.it
+X-Entity-ID: u001.B+egv976VsnFPzNwqP101Q==
+
+--9065ff41dbda570043508991c07ebd8ad12f1af61700a077d8aa28dfd260
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+
+View this email in your browser ( https://cdn.mc-weblink.sg-mktg.com/weblin=
+k/MTc0NjczMTI2OXxEMl9keWlSX1djS1JvVzlSOFQyTEtocUk3blZQMEFyeTBsWUJlQlhIengxT=
+25MUDVQMVJETTBleHpzS3Z5bGxoc3ZFbW53bGlRa3VRMXhPNmJLMWp6YzdCaXVWWnZ3VzIzSEtX=
+NEFmWElUcl80X0NzREIzaGNvbUhQNmp0UzhSX0hkaGh5UmoyLXNtZ1l2VGx1Q2RCMVFia05vbGJ=
+rTGM5TFNjdzM4WDVQbW9oa1E4QmNwSkVWaC1fSU9GRjVOX21aWHhyazlUMUU2SHB3SDBSWGtfMU=
+50QWFrMTlmQmV0UlpyTlhXS0ZEQ3c5ejduS2dpbHd4VWpxdWxqUHFNcjFjRXItWWhZRm5QQXJ3b=
+lFsTmpZbWl2RmZVQVF0THllNzFkRlBUX1VTbXlWek1EcGd1Sl9STmlnOWlHaEhTQS1haFdVSjlV=
+SEhlczRKWjNKdGJURUEzQ1E4emJJTVdtdz09fCT53bflEmdPFT8K8q2tPpFfoTv8XxE-qdmjaJY=
+s_2W4 )
+
+From Nov 2024 =E2=80=93 Jan 2025, GitHub & Hack Club ( https://hackclub.com=
+ ) challenged you to build epic projects for prizes in Hack Club High Seas =
+( https://highseas.hackclub.com/ ).
+
+You blew us away with DoomPDF ( https://github.com/ading2210/doompdf ) , Bl=
+ueprint ( https://github.com/blueprintframework/framework ) , scratch=E2=80=
+=91built 3D printers ( https://infill.hackclub.com/printers/eos3d/ ) , and =
+so ( https://github.com/snej55/paper-world ) much ( https://github.com/liam=
+charger/live-lyrics-iOS ) more ( https://github.com/ferrumc-rs/ferrumc ).
+
+*Now, three new challenges:*
+
+* Code 100 hours on GitHub and live in San Francisco this summer =E2=80=94 =
+neighborhood.hackclub.com ( https://neighborhood.hackclub.com/ )
+* Ship a project that hits 150 stars and hack on a private Boston island in=
+ August =E2=80=94 shipwrecked.hackclub.com ( https://shipwrecked.hackclub.c=
+om/ )
+* (Top secret) Our boldest open=E2=80=91source hardware challenge yet =E2=
+=80=94 hack.club/highway ( https://hack.club/highway )
+
+All open to ages 18 and under worldwide.
+
+Imagine waking up in 30 days in your own two=E2=80=91bedroom apartment in S=
+F=E2=80=A6
+
+( https://neighborhood.hackclub.com )
+
+-----------------------------------------
+Neighborhood =E2=80=94 3=E2=80=91month SF housing program
+-----------------------------------------
+
+* Ship a playful web or mobile app (100 coding hours) this May.
+* Move to San Francisco in June =E2=80=94 flight, food & housing included.
+
+Move to Neighborhood =E2=86=92 ( https://neighborhood.hackclub.com )
+
+No capacity limit or selection process: if you code, you move to SF.
+
+Also enjoy the music video ( https://youtu.be/ehH_52fzStw ).
+
+( https://shipwrecked.hackclub.com )
+
+------------------------------------------
+Shipwrecked =E2=80=94 hackathon on a Boston island
+------------------------------------------
+
+* Hack Club is renting an island.
+* We're hosting a hackathon.
+* Ship 4 projects =E2=80=94 one with 150 stars =E2=80=94 and you're in (fli=
+ght stipends available).
+* 8=E2=80=9311 Aug =C2=B7 Boston, USA
+
+Sign Up: Shipwrecked =E2=86=92 ( https://shipwrecked.hackclub.com )
+
+( https://hack.club/highway )
+
+-------------------------------------------------
+Highway / Undercity =E2=80=94 open=E2=80=91source hardware grants
+-------------------------------------------------
+
+An upcoming open=E2=80=91source hardware grant program + in=E2=80=91person =
+hackathon at GitHub HQ in San Francisco.
+
+RSVP first in line =E2=86=92 ( https://hack.club/highway )
+
+-----------------------------
+Recent teen hardware projects
+-----------------------------
+
+( https://github.com/se1yu/NigiriPad )
+
+NigiriPad ( https://github.com/se1yu/NigiriPad ) by Jeslyn C, age 17
+
+( https://github.com/ading2210/ender-x4 )
+
+Ender X4 ( https://github.com/ading2210/ender-x4 ) by Allen D, age 16
+
+Thanks for building so many amazing projects,
+The GitHub Education Team
+
+( https://github.com/education ) ( https://www.instagram.com/githubeducatio=
+n/ ) ( https://www.facebook.com/GitHubEducation/ ) ( https://www.threads.co=
+m/@githubeducation ) ( https://x.com/githubeducation ) ( https://bsky.app/p=
+rofile/githubeducation.bsky.social ) ( https://www.linkedin.com/showcase/gi=
+thub-education/ ) ( https://www.youtube.com/@githubeducation4427 ) ( https:=
+//www.twitch.tv/githubeducation ) GitHub Education =C2=B7 88 Colin P Kelly =
+Jr, San Francisco, CA 94107
+Unsubscribe ( https://mailing.github.com/wf/unsubscribe?upn=3Du001.Ee8VvrA6=
+tfmzNDWChM5C8SKvgqLD0rqjKbwLddWAmtVHTRqjXrQXOxjrcLr6ABC1bf3-2BWaLHXRg6-2BvL=
+iwRhG-2BaN0jkqZ1o-2FbIKclAPw3J9qtYg4nGcqx-2FLwQGRuMBoSnBBFMvfUR7ouNbpHhUU8L=
+dgfsZmfs7OVdKU3Ox-2BMJODBnn2dg5CeXcWWlSoxpr90WuWUCLY6ZvoJRbJ2u1LG0GhRwJffui=
+KNRYqWFBJ8UqBY9dnipHd4sO4NZrwv13Qz-2BIIocJB0a1Y-2BmCH5kc4fn-2Fmlq2PXQeeWpZk=
+XJZo0oB961foxRIkLFj23NUgd3h-2BFUTIPgWWtJuDD-2FhMdSh5NNorjjTz9IF4txCwwb-2BVt=
+wvvzjZv6h9z5TIwN-2BUl9NXGmJvhbA57lJA4PWO9HB3rUh-2BZwmMQD6Q5k42te2OZUcQIOHlO=
+HkJl31vNF44lz4h4wvAniV6lgmG9E5CueRXjPmx9em-2B8ZIM3-2F7wYYOcnk9lu-2B0Ns-2BNa=
+BZQ-2F1QhC-2BRo-2FDcw9Kumn75kQU00SMFW-2BsQvkJRgAUHgRhExSi61XFYW9Jl6h4B9-2FS=
+b6n42l-2BOtEDSY-2F4nAQqwm4jeYbCXugbp71gVj1OuCgIIPuGrVw0CP5-2B2tqPOomuZ-2Fi8=
+2nzMXsFiAwAGGzu2Z8psElschJ4HwaDn3Lk0wvvQIGAl-2Fr9VHEOtTTtNTkC6Rk7hPASykpxf3=
+t0rOJYEV8tFGg3NWUJyKhDQNC6L022U5uWb5vKvB03XqtTvrOWGYC4bYZv-2F3pRt45IzCxlJsH=
+36HqSsVoD9-2FZD1-2FhErPLhNZNYPheSg7aSVH6SPhiX7jBvfUK5nIrKe8oIynilX5VNK0ykMS=
+ce4XRXHAZaaHDsFhndfCtwO8MjSrgQ87c15vpxFRTCiP5imru1qKer1WUOwkYSOxu-2FEj4ibMd=
+t8b4EXXS3UcTs5BaU9hw-3D )
+--9065ff41dbda570043508991c07ebd8ad12f1af61700a077d8aa28dfd260
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+<!doctype html>
+<html lang=3D"en">
+<head>
+  <meta charset=3D"utf-8">
+  <meta http-equiv=3D"x-ua-compatible" content=3D"ie=3Dedge">
+  <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D=
+1">
+  <title>GitHub invites you =E2=80=93 SF =E2=80=A2 Boston island =E2=80=A2 =
+hardware</title>
+
+  <!-- Google font =E2=80=93 graceful fallback where unsupported -->
+  <link href=3D"https://fonts.googleapis.com/css2?family=3DInter:wght@400;6=
+00&display=3Dswap" rel=3D"stylesheet">
+
+  <style>
+    /* =E2=80=94=E2=80=94=E2=80=94 Resets =E2=80=94=E2=80=94=E2=80=94 */
+    body,table,td,p,a{margin:0;padding:0;font-family:Inter,Roboto,Helvetica=
+,Arial,sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
+    table,td{border-collapse:collapse;mso-table-lspace:0;mso-table-rspace:0=
+}
+    img{border:0;outline:none;text-decoration:none;-ms-interpolation-mode:b=
+icubic;height:auto;} /* Added height:auto */
+    body{width:100%!important;background:#ffffff;color:#000000}
+
+    /* =E2=80=94=E2=80=94=E2=80=94 Layout / utilities =E2=80=94=E2=80=94=E2=
+=80=94 */
+    .inner{width:100%;max-width:600px;margin:0 auto}
+    .p{margin:0 0 16px;font-size:14px;line-height:21px}
+    h1{margin:0 0 16px;font-size:28px;line-height:35px}
+    h2{margin:24px 0 12px;font-size:20px;line-height:25px}
+    ol{padding:0 0 0 20px;margin:0 0 16px}
+    li{margin:0 0 8px}
+    .btn{display:inline-block;text-decoration:none;border-radius:5px;paddin=
+g:12px 16px;font-size:16px;line-height:16px;font-weight:600;margin:24px 0}
+    .btn-yellow{background:#ffbb1b;color:#4a1d02!important}
+    .btn-blue{background:#2488a9;color:#ffffff!important}
+    .btn-carbon{background:#2c2c2d;color:#ffffff!important;border:3px solid=
+ #ff915c}
+    .center{text-align:center}
+    .small{font-size:12px;line-height:18px}
+    .divider{border-top:1px solid #000;margin:24px 0}
+    /* spacing helpers */
+    .logo{margin:0 0 24px}
+    .hero{margin:24px 0}
+    .footer-logo{margin:24px 0 16px}
+    .social-icons-row{margin-bottom:24px}
+    .footer-address{margin-top:24px;margin-bottom:32px}
+
+    @media(max-width:600px){
+      .inner-content-cell{padding-left:12px; padding-right:12px;}
+      .stack{display:block!important;width:100%!important}
+      .center-on-mobile{text-align:center!important}
+    }
+  </style>
+</head>
+
+<body>
+  <table role=3D"presentation" width=3D"100%" cellspacing=3D"0" cellpadding=
+=3D"0"><tr><td>
+    <table role=3D"presentation" class=3D"inner" width=3D"100%" cellspacing=
+=3D"0" cellpadding=3D"0">
+      <tr><td class=3D"inner-content-cell">
+
+        <!-- View in browser -->
+        <p class=3D"small center" style=3D"margin:0 0 16px"><a href=3D"http=
+s://mailing.github.com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo09vcCl7PP=
+qDILZt-2FGoACYbV4L-2FcOcvMOi5mEz0MDuAd4Teh889OGjQ1kZPmcjSCZ99NKJr52cJlng-2B=
+YXa6ZkWmotQyb9HUf-2BKwEE8kxUQlCQCyprSE-2B1gGGQz7NB1HHvApqlJMTD9N7-2FNuQry-2=
+Bq-2BqIHDJ7CVm7f17HvpK30TCGbaoQL6wO-2FVBR-2BxAjx89qYLKdKuBHyoh-2BjdD3vvFgoY=
+iRr7iXKGoHC6SfmVAol7BL1PrS76WIX4WECsErva7EHxIfMLXevBbtw-2Fhv-2F5WTd-2FNlJsT=
+TuXJy9lQhf9C8TxL7bGDyX-2F2qNBuyVJ8LqmMWGa4MSGTV8trgEx8IpdCaVm5CoNifhCf8A33N=
+zHUThovqrC0a48NFfEjIwY2sjlav9nSd0Th6Rj-2FNEEmIoMMLvkuSTHc-2B-2BhC3wO-2B1jv-=
+2BlKdj6oDzj04KMOb9QkWz4F4ZhLkPvbUxkm47LeNVn-2FQgGP5DjyLzCy6PKe615QLNREFZSP-=
+2Bn4reVKeUvviIOG4oL-2B-2FDv0sxn60drQF8wHv1d8HpcfWfetZWn-2Fe0zkL91XATo-2FWN7=
+nqO51qSnNEqG-2FOzweOQUOtPfejj4n3YWfCCTrxgh-2FvEVhmzycpJRWSQBDuSE-2BvZNTEwIB=
+7-2FzOwr5AMxJFSBCJ77xpNebyzCrzG-2FDxiP2J-2BypQDeBVNV-2FltWHVix8ssD4BRwEWueq=
+0GjfwFKV8noeP0QW1jDE9NG5PSW3Va38P-2BAPtJpcifH-2F8XvtVOMWfW6h3s7EUPAlfCUZeUI=
+kGoBA-3D-3D1gpN_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2=
+sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2=
+BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3UHeNIgxp=
+m5VIhyX8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4HWWsOYC=
+VdoidbWIdHRsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2tyVmvEom=
+7GTr1vLn6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUGieSbHml=
+TLnAqPL-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQuntuvqhUq=
+l8-2BMYuVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQEgeE0duS=
+CbMyswBVTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2pewLgGb=
+PIieFtdzu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskxs-2FMF1=
+OHOJqo6EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1ug8c0dA0-2F-=
+2F5XULmT6HJskgBt12ZxpkGGGTtefbSBGS1lVrgky5WQ6QaS8qyNUoTzGiZAB9tgyUh6RQn1sre=
+YhHYRXZAcEUHydx5owboMrzBCnpG-2BWqcn1jfInfcYQJqfja6cD-2BU-2BFJe7FMtbYCsQjw-2=
+FqjDiX1SGTEbNSe8KXo4c0-3D" style=3D"color:#9ca3af;text-decoration:none">Vie=
+w this email in your browser</a></p>
+
+        <!-- Top logo -->
+        <p class=3D"center logo"><img src=3D"https://d3b9kr64nievew.cloudfr=
+ont.net/cmaffq9aq07w3dqpw4y302qp8/cmafgbtjp0n8swmcnjo8rxvw7.png" alt=3D"Git=
+Hub Education" style=3D"max-width:150px; width:100%; display:block; margin:=
+0 auto;"></p>
+
+        <!-- Lead =E2=86=92 High Seas recap -->
+        <p class=3D"p">From Nov 2024 =E2=80=93 Jan 2025, GitHub & <a href=
+=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODow=
+ZQAWspueFtllY2QTBfpdI-3DHy6Y_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6=
+N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcs=
+ohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAe=
+Hj3w3UHeNIgxpm5VIhyX8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-=
+2FXsS4HWWsOYCVdoidbWIdHRsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60=
+lhrD2tyVmvEom7GTr1vLn6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BO=
+dXkiUGieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTW=
+POgQuntuvqhUql8-2BMYuVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0Es=
+hpZhQEgeE0duSCbMyswBVTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1ed=
+GUghR2pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2=
+Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY=
+1uz2DeN4VDS3o4OjzbpWu-2BiUfugXt1TjQDlc54dp7vIxhFjsIuYWNEkGRGwxkLVMLqtjprwwj=
+sb6AQIo0oatiw6Q0-2BoSOtnleCG-2FTm9s7pL-2BtpKwGSOFjSxIorPc60mZlWdAYQXqEUYtm5=
+uF-2FTX84dxLoULTCr0S-2Bdsamv7y8gAz0-3D" style=3D"text-decoration:underline"=
+>Hack Club</a> challenged you to build epic projects for prizes in <a href=
+=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo4=
+eEK7butz-2FLbPMFOXoNt9qSPhb86wV6H7NRn4M2bGlX4Zcf_1h5T79IcqJTdevtx-2B4hcgZLL=
+MQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1=
+IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOu=
+mkF4kF4Ri23Zz16nrRAeHj3w3UHeNIgxpm5VIhyX8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeU=
+oGJ6S2khYd1K3jix53I-2FXsS4HWWsOYCVdoidbWIdHRsBlzenJrp-2BP32r0dn2udmk9dn3Qha=
+GCsoKjehck-2BqpFHG60lhrD2tyVmvEom7GTr1vLn6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigo=
+v0XflahMyfYI9BkHT6BOdXkiUGieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52B=
+taXkd0JycHBXVCYSpfTWPOgQuntuvqhUql8-2BMYuVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9=
+nMgQvO1BuCPqbQ9nA0EshpZhQEgeE0duSCbMyswBVTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZ=
+NINjLR4x3qyoBDkjy1edGUghR2pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdU=
+Gk8jEBdoR2I0dmDKxKP2Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-=
+2FcC8RiQ9rs9uM8VVOBY1uTLOoMQbsoQzBiMMaUUZs8nLMt-2FmFzTIbc9tQp8-2FaZfUJa480M=
+pMlBQ4YOU9YgNcxsk66wYefBG6EJyVPUAXPhyOVo-2FnWf1mVG5ZoMMDb7acTiMMSw1-2Fb1TVW=
+PWjvTDt8GVK-2FM0BCfLT2WCCXhlHhtPuAo6kt5hFkh4k5IQXDS3k-3D" style=3D"text-dec=
+oration:underline">Hack Club High Seas</a>.</p>
+        <p class=3D"p">You blew us away with <a href=3D"https://mailing.git=
+hub.com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODozz-2Fv45aaOYwQApRAkvcU9J=
+ALm6y98OeYmQDDrCEV76i_Ik-_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j=
+9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv=
+2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3=
+w3UHeNIgxpm5VIhyX8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FX=
+sS4HWWsOYCVdoidbWIdHRsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhr=
+D2tyVmvEom7GTr1vLn6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXk=
+iUGieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOg=
+QuntuvqhUql8-2BMYuVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZ=
+hQEgeE0duSCbMyswBVTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUg=
+hR2pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kub=
+skxs-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uF=
+G0605DGgkoqUgK5xeHZdJj-2B8nLrxCxdNpsO4BaiBZFGyyXXZ-2BlIai3DWMascmd-2BdD3yi1=
+MiBcAequAWc59Vw597IMTQHOiGIhACvLcDaVZk1XoS2dnzPvPf-2FcKd-2F-2BUVo8FIRuPX6gR=
+yd64YUx-2B-2F5cn-2F6dMF-2BjxFMHsN-2FTdbQIQ-3D" style=3D"text-decoration:und=
+erline">DoomPDF</a>, <a href=3D"https://mailing.github.com/ls/click?upn=3Du=
+001.bO3G-2FaeMIVe5lSdMnGODo19W6VimmpeSxCywisJrXYlx5KFsTYdIcYDiDn8ZaP2Ur3LgW=
+741bsKmUDKQ7p1Ynw-3D-3DEBaQ_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N=
+2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcso=
+hv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeH=
+j3w3UHeNIgxpm5VIhyX8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2=
+FXsS4HWWsOYCVdoidbWIdHRsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60l=
+hrD2tyVmvEom7GTr1vLn6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOd=
+XkiUGieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWP=
+OgQuntuvqhUql8-2BMYuVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0Esh=
+pZhQEgeE0duSCbMyswBVTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edG=
+UghR2pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2K=
+ubskxs-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1=
+ud-2B9fW43-2BhhKsFM1YzIjBAhKsKE0MBu35TjKAtos09DAbbtSbY1-2FuUhbiepEWUJHjAPY3=
+e9y8njBzT4zLl54tL-2FrqG51YNqwbudlxm22dKPpVfrNd-2BRDtzANqh5pTRi5nt3-2B-2FZ3x=
+f8E25nUDdiTSeDUoMZoj2gECuoTGeWollrcg-3D" style=3D"text-decoration:underline=
+">Blueprint</a>, <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.=
+bO3G-2FaeMIVe5lSdMnGODo-2Bs3hxG4XSLSaGgJ8TCrrVt2KbFu7khdomgQI0fCwFwoYU6M5q6=
+YprFiREYT0hXRhg-3D-3D0j1e_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j=
+9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv=
+2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3=
+w3UHeNIgxpm5VIhyX8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FX=
+sS4HWWsOYCVdoidbWIdHRsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhr=
+D2tyVmvEom7GTr1vLn6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXk=
+iUGieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOg=
+QuntuvqhUql8-2BMYuVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZ=
+hQEgeE0duSCbMyswBVTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUg=
+hR2pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kub=
+skxs-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uQ=
+mGL4efk7yhGWd5-2FIYW3UEQ1hhVX7EPy0nIBTTsttZlhBr1R6TnEVKQ3SNPiHxdUpDgITFhk5O=
+bFazZkOKM-2F6vyukN055fIT2PwDbKSLtwoapRG9gO9cHIx3085pD6LB6Spe54OI-2B0WJDXRhp=
+F6vwpkuibsMAMlR-2FwhA-2F-2Fv4UMc-3D" style=3D"text-decoration:underline">sc=
+ratch=E2=80=91built 3D printers</a>, and <a href=3D"https://mailing.github.=
+com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODoypyWi8lBniz0CJ12hhRxxWKpXvE6=
+NXcl3UqOXl9yX31l3nX_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD=
+61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xs=
+H0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3UHeN=
+Igxpm5VIhyX8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4HWW=
+sOYCVdoidbWIdHRsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2tyVm=
+vEom7GTr1vLn6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUGieS=
+bHmlTLnAqPL-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQuntuv=
+qhUql8-2BMYuVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQEgeE=
+0duSCbMyswBVTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2pew=
+LgGbPIieFtdzu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskxs-2=
+FMF1OHOJqo6EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uOweX1YY=
+QSLMSDiUBZH1aiHthCrJqn-2FRkTnBaAYyGH0eIqbGrTakXAOdv1Sf-2FtmyvczrGJIa29sPp-2=
+BiZsVY0fGUY5aDRLTKIGMOi0ywpnnhZjGn-2FXAqdxqMZK3PhVlKAB0s2X-2F45hoGfdvaz9hy5=
+soN6oRGImxooDgSwrA3V0hWs-3D" style=3D"text-decoration:underline">so</a> <a =
+href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnG=
+ODo3T-2FnPPD68G58txF3fbZC09QYnip2DeizZDqM4KBOm8rqktTXRjiw5E5F0dZV8xlLg-3D-3=
+DOpa8_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiC=
+ZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7=
+eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3UHeNIgxpm5VIhyX8dF=
+mQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4HWWsOYCVdoidbWIdH=
+RsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2tyVmvEom7GTr1vLn6A=
+V4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUGieSbHmlTLnAqPL-2F=
+u-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQuntuvqhUql8-2BMYuVn=
+ShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQEgeE0duSCbMyswBVTM=
+vZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2pewLgGbPIieFtdzu6=
+G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskxs-2FMF1OHOJqo6EK3=
+YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uONBm-2BHh4sYZ65EhFRBP=
+rxiyRGXsng8og4FsrnsWFJeJFVmjDzp4uFkXbP19R6gkO64Bh0X90GituD5zio8f2PpYHHVNllp=
+smsQk1w9sNnQogJPtArRJPO8IkA8gV3zi6hhmVM3BJS3FvGHbb-2FGHkq6B451ycn7xAKireZJT=
+E-2FWg-3D" style=3D"text-decoration:underline">much</a> <a href=3D"https://=
+mailing.github.com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo-2BtSap-2FgLl=
+djd0Jn6IDjOqFSWJy6yklvtOJrLxmxo7vcLUK7_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzv=
+XzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7=
+Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri2=
+3Zz16nrRAeHj3w3UHeNIgxpm5VIhyX8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd=
+1K3jix53I-2FXsS4HWWsOYCVdoidbWIdHRsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck=
+-2BqpFHG60lhrD2tyVmvEom7GTr1vLn6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyf=
+YI9BkHT6BOdXkiUGieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycH=
+BXVCYSpfTWPOgQuntuvqhUql8-2BMYuVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuC=
+PqbQ9nA0EshpZhQEgeE0duSCbMyswBVTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3q=
+yoBDkjy1edGUghR2pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2=
+I0dmDKxKP2Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9r=
+s9uM8VVOBY1ulQ-2B5b6SuD5RbQBN4xJAedt4KsFSdcPa2lb5-2F4IbqwSEt2FDgf4H0WDieAjc=
+qt8eba8bqlc-2FR5LZx3mAvXMl7CK1uzIWiX6yTt0WaTn-2FY4k6PCqZ2PKBm5x28G2zE6x1SfT=
+JQnPexA0TzHMijmkQUikHsDZm7wG7yuoqRT-2BavWyQ-3D" style=3D"text-decoration:un=
+derline">more</a>.</p>
+
+        <!-- 3 challenges summary -->
+        <p class=3D"p"><strong>Now, three new challenges:</strong></p>
+        <ol class=3D"p">
+          <li>Code 100 hours on GitHub and live in San Francisco this summe=
+r =E2=80=94 <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3G-=
+2FaeMIVe5lSdMnGODo1iNAbXMZsvNhksezaaHOVrBl22wDdMyzfr80iGG6m31jwqV_1h5T79Icq=
+JTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRG=
+QqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0F=
+e1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3UHeNIgxpm5VIhyX8dFmQbEygaucXg4dPV=
+goeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4HWWsOYCVdoidbWIdHRsBlzenJrp-2BP3=
+2r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2tyVmvEom7GTr1vLn6AV4AonsS4dJXkJGd=
+R75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUGieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5=
+yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQuntuvqhUql8-2BMYuVnShfYcO6yugAk9-2=
+FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQEgeE0duSCbMyswBVTMvZuLJ8vrVrJw2z4=
+NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-=
+2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0=
+X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uqD-2BZjyq4r9VLAYUTNYaLkv3EvaIy4LsRZE=
+yUvV-2BKsG7ieVBEhqwhygL6ennSjocZzK2rdRnvjUd0-2FWhKS8ieJRjXXQq8RENm9EWgIpH3S=
+8eS5YD3orwg-2B7Ku5H55iFf-2BCnJR69gr0cTdB32gMrgTPSCMlgISMLaD679Qxjg7ydQ-3D" =
+style=3D"text-decoration:underline">neighborhood.hackclub.com</a></li>
+          <li>Ship a project that hits 150 stars and hack on a private Bost=
+on island in August =E2=80=94 <a href=3D"https://mailing.github.com/ls/clic=
+k?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo7SvwnYlbLvKFv4aJS7O7Chc4HunqCcgnq1lSZOk=
+OqiM6UA__1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncW=
+EiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8z=
+Ce7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3UHeNIgxpm5VIhyX=
+8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4HWWsOYCVdoidbW=
+IdHRsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2tyVmvEom7GTr1vL=
+n6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUGieSbHmlTLnAqPL=
+-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQuntuvqhUql8-2BMY=
+uVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQEgeE0duSCbMyswB=
+VTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2pewLgGbPIieFtd=
+zu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskxs-2FMF1OHOJqo6=
+EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uz2DeN4VDS3o4OjzbpW=
+u-2BiUri-2FLLqRgaW4z9ZAf9g7xJic-2FPFMFy1leUK84qpF1XP1-2BLwzqRE1khQJo1Qmchmn=
+dqzkwRnebFVAroLOvUgZYYTNnay9Plb4pvCqUr7daK8xFxDLakWHPwIeG-2FR2w4HxOX0ASNgFv=
+ZHlVr4CnlRoeo-3D" style=3D"text-decoration:underline">shipwrecked.hackclub.=
+com</a></li>
+          <li>(Top secret) Our boldest open=E2=80=91source hardware challen=
+ge yet =E2=80=94 <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.=
+bO3G-2FaeMIVe5lSdMnGODoyYhZimhukj6Pr10o-2BmLsD78L3GMcjcE08y8kDU0ENyBEKc2_1h=
+5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG8=
+8odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvj=
+rYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3UHeNIgxpm5VIhyX8dFmQbEygau=
+cXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4HWWsOYCVdoidbWIdHRsBlzenJ=
+rp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2tyVmvEom7GTr1vLn6AV4AonsS4=
+dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUGieSbHmlTLnAqPL-2Fu-2FX-2B=
+PcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQuntuvqhUql8-2BMYuVnShfYcO6y=
+ugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQEgeE0duSCbMyswBVTMvZuLJ8vr=
+VrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2pewLgGbPIieFtdzu6G4cXgc2b=
+YNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1=
+mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uz2DeN4VDS3o4OjzbpWu-2BiR4ANFQ=
+gum5QwYhwmr00FPcXVCtTQ8f8iP5-2F-2BDtfbCqOxjpILQbvyt8Hf-2BIz4oR9ZTWO82b6ojYM=
+GGzhh6iwE914frzdWMY0H71fPaE4dp6vQ1uYCYp4j0ju5pn1FmW2foVTblLwYGQvvFw-2FEfs2e=
+kI-3D" style=3D"text-decoration:underline">hack.club/highway</a></li>
+        </ol>
+        <p class=3D"p">All open to ages 18 and under worldwide.</p>
+        <p class=3D"small center"><em>Imagine waking up in 30 days in your =
+own two=E2=80=91bedroom apartment in SF=E2=80=A6</em></p>
+        <p class=3D"center hero">
+          <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3G-2F=
+aeMIVe5lSdMnGODo1iNAbXMZsvNhksezaaHOVqlo5H4gtl-2B9JWmWdhfAkOZ9WaK_1h5T79Icq=
+JTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRG=
+QqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0F=
+e1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3UHeNIgxpm5VIhyX8dFmQbEygaucXg4dPV=
+goeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4HWWsOYCVdoidbWIdHRsBlzenJrp-2BP3=
+2r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2tyVmvEom7GTr1vLn6AV4AonsS4dJXkJGd=
+R75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUGieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5=
+yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQuntuvqhUql8-2BMYuVnShfYcO6yugAk9-2=
+FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQEgeE0duSCbMyswBVTMvZuLJ8vrVrJw2z4=
+NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-=
+2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0=
+X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uz2DeN4VDS3o4OjzbpWu-2BieCorSz8DZ6IHx=
+fQdJll8CWobhAOy7qIZTxXGXeBh87vl5eGI2R3o2MSaKG-2Bt5ia9nwsbrqXWIFiXhGHn4lsOmn=
+oprNL7sr95XW57-2Bk-2BreopOXRehOLqCqDk0CJSPRT90gKyBvyKxNAZhFUcUX-2FKSM0-3D" =
+style=3D"text-decoration:none;">
+            <img src=3D"https://d3b9kr64nievew.cloudfront.net/cmaffq9aq07w3=
+dqpw4y302qp8/cmafh2uhl39ujkxfa6bxxnaxd.png" alt=3D"Neighborhood program" st=
+yle=3D"max-width:300px; width:100%; border:0; display:block; margin:0 auto;=
+">
+          </a>
+        </p>
+
+        <!-- Neighborhood details -->
+        <h2>Neighborhood =E2=80=94 3=E2=80=91month SF housing program</h2>
+        <ol class=3D"p">
+          <li>Ship a playful web or mobile app (100 coding hours) this May.=
+</li>
+          <li>Move to San Francisco in June =E2=80=94 flight, food & housin=
+g included.</li>
+        </ol>
+        <p class=3D"center"><a class=3D"btn btn-yellow" href=3D"https://mai=
+ling.github.com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo1iNAbXMZsvNhksez=
+aaHOVqlo5H4gtl-2B9JWmWdhfAkOZwNGU_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7=
+TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AH=
+eekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16=
+nrRAeHj3w3UHeNIgxpm5VIhyX8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3ji=
+x53I-2FXsS4HWWsOYCVdoidbWIdHRsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2Bqp=
+FHG60lhrD2tyVmvEom7GTr1vLn6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9Bk=
+HT6BOdXkiUGieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCY=
+SpfTWPOgQuntuvqhUql8-2BMYuVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9=
+nA0EshpZhQEgeE0duSCbMyswBVTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDk=
+jy1edGUghR2pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmD=
+KxKP2Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8=
+VVOBY1uz2DeN4VDS3o4OjzbpWu-2BiQl8Cb7Bb4qXmcPlWbTiwz-2B6M-2FsnK5p-2BGLR-2Bpq=
+0LR-2FF-2F2LQw1MCMTDbwZkPHqh4rIGvuf99dHylsnx1ItSw-2FFs-2BQsDbdDckAIizV8QR-2=
+BI-2BMnlkBIPtTgC7UjZlBO-2BvtNK7EvtSrK0U5myCESkoZ9VHY-3D">Move to Neighborho=
+od =E2=86=92</a></p>
+        <p class=3D"p">No capacity limit or selection process: if you code,=
+ you move to SF.</p>
+        <p class=3D"small center">Also enjoy <a href=3D"https://mailing.git=
+hub.com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo9MOQ0ZHU-2B9vLbQaq6lpEI5=
+gjiKgiAW9-2Bp7Qi-2F6Lm6oxmgNT_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ=
+6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekc=
+sohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRA=
+eHj3w3UHeNIgxpm5VIhyX8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I=
+-2FXsS4HWWsOYCVdoidbWIdHRsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG6=
+0lhrD2tyVmvEom7GTr1vLn6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6B=
+OdXkiUGieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfT=
+WPOgQuntuvqhUql8-2BMYuVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0E=
+shpZhQEgeE0duSCbMyswBVTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1e=
+dGUghR2pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP=
+2Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOB=
+Y1uz2DeN4VDS3o4OjzbpWu-2BiUxYy0bclj9e-2BkR7ofF1JnQ2Ig-2BgE2-2BQioDfio5Eyjvw=
+fcoXySX7EZe-2FFtO78y1hJfZc0p0HiXZhXjgf0ZJi8HyD1p0u-2BOL982-2BBbI32bUJ9e-2Bt=
+X3KipXdCkys4Ahgp4jPMTXxylmZS736e5Jx3xj8Y-3D" style=3D"text-decoration:under=
+line">the music video</a>.</p>
+
+        <div class=3D"divider"></div>
+
+        <!-- Shipwrecked -->
+        <p class=3D"center hero">
+          <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3G-2F=
+aeMIVe5lSdMnGODo7SvwnYlbLvKFv4aJS7O7Chew2LaUx9rOblW-2FhPOtXzY1AmF_1h5T79Icq=
+JTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRG=
+QqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0F=
+e1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3UHeNIgxpm5VIhyX8dFmQbEygaucXg4dPV=
+goeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4HWWsOYCVdoidbWIdHRsBlzenJrp-2BP3=
+2r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2tyVmvEom7GTr1vLn6AV4AonsS4dJXkJGd=
+R75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUGieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5=
+yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQuntuvqhUql8-2BMYuVnShfYcO6yugAk9-2=
+FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQEgeE0duSCbMyswBVTMvZuLJ8vrVrJw2z4=
+NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-=
+2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0=
+X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uz2DeN4VDS3o4OjzbpWu-2BiTXrfEvTTOHNJp=
+PSVVweksgjNL2hOKjIoC8KTYKSDOejHQXw5q2NgpgwM1jqWT75yP6BRxJks9fJ2dWSBT7-2FZP8=
+bkV-2F4NbErb6gRl5ZzBmkuvX2zVzt2rFsF2-2FUFllqDxI-2BiHTPBb9sRF6kIXUogT-2FQ-3D=
+" style=3D"text-decoration:none;">
+            <img src=3D"https://d3b9kr64nievew.cloudfront.net/cmaffq9aq07w3=
+dqpw4y302qp8/cmafhjcx3465sztt258meh924.jpg" alt=3D"Shipwrecked hackathon" s=
+tyle=3D"max-width:350px; width:100%; border:0; display:block; margin:0 auto=
+;">
+          </a>
+        </p>
+        <h2>Shipwrecked =E2=80=94 hackathon on a Boston island</h2>
+        <ol class=3D"p">
+          <li>Hack Club is renting an island.</li>
+          <li>We're hosting a hackathon.</li>
+          <li>Ship 4 projects =E2=80=94 one with 150 stars =E2=80=94 and yo=
+u're in (flight stipends available).</li>
+          <li>8=E2=80=9311 Aug =C2=B7 Boston, USA</li>
+        </ol>
+        <p class=3D"center"><a class=3D"btn btn-blue" href=3D"https://maili=
+ng.github.com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo7SvwnYlbLvKFv4aJS7=
+O7Chew2LaUx9rOblW-2FhPOtXzYXAJM_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TT=
+NJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHee=
+kcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nr=
+RAeHj3w3UHeNIgxpm5VIhyX8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix5=
+3I-2FXsS4HWWsOYCVdoidbWIdHRsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFH=
+G60lhrD2tyVmvEom7GTr1vLn6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT=
+6BOdXkiUGieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSp=
+fTWPOgQuntuvqhUql8-2BMYuVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA=
+0EshpZhQEgeE0duSCbMyswBVTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy=
+1edGUghR2pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKx=
+KP2Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VV=
+OBY1uz2DeN4VDS3o4OjzbpWu-2BicZCyFJFpKWLUfx4w03EMV3xQgaaUTOF-2FYD5LISwYq5oPn=
+ahNu54cG51Lu5eYVjONEdfEdk4hmDjQv0sHept-2BVnDlow0Z59uIYTFaSxV5rb95pqr2Uc1VVH=
+mn45J1oaFArFSJhX-2Fpn885YTC8eJ5-2BfQ-3D">Sign Up: Shipwrecked =E2=86=92</a>=
+</p>
+
+        <div class=3D"divider"></div>
+
+        <!-- Highway / Undercity -->
+        <p class=3D"center hero">
+          <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3G-2F=
+aeMIVe5lSdMnGODoyYhZimhukj6Pr10o-2BmLsD78L3GMcjcE08y8kDU0ENyBaQXd_1h5T79Icq=
+JTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRG=
+QqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0F=
+e1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3UHeNIgxpm5VIhyX8dFmQbEygaucXg4dPV=
+goeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4HWWsOYCVdoidbWIdHRsBlzenJrp-2BP3=
+2r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2tyVmvEom7GTr1vLn6AV4AonsS4dJXkJGd=
+R75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUGieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5=
+yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQuntuvqhUql8-2BMYuVnShfYcO6yugAk9-2=
+FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQEgeE0duSCbMyswBVTMvZuLJ8vrVrJw2z4=
+NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-=
+2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0=
+X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uz2DeN4VDS3o4OjzbpWu-2BiapNEN7IWxfMu4=
+Nq2iGtvd6tUaXogM8YMTAFC8UXtXiFoI7Xu8LsDiUHqskR-2BUtO65hZ-2BtydJFPcEOksvmWLj=
+Q6Ru8Pywf-2BMa9E5-2BNaFeNhPWT3TDpAqES0Rk3Q43Ebpd1uneZhzHwBpU28zyjAL1GM-3D" =
+style=3D"text-decoration:none;">
+            <img src=3D"https://d3b9kr64nievew.cloudfront.net/cmaffq9aq07w3=
+dqpw4y302qp8/cmafgwl4d0sp8cl6lzaefxi6l.png" alt=3D"Highway open=E2=80=91sou=
+rce hardware" style=3D"max-width:350px; width:100%; border:0; display:block=
+; margin:0 auto;">
+          </a>
+        </p>
+        <h2>Highway / Undercity =E2=80=94 open=E2=80=91source hardware gran=
+ts</h2>
+        <p class=3D"p">An upcoming open=E2=80=91source hardware grant progr=
+am + in=E2=80=91person hackathon at GitHub HQ in San Francisco.</p>
+        <p class=3D"center"><a class=3D"btn btn-carbon" href=3D"https://mai=
+ling.github.com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODoyYhZimhukj6Pr10o=
+-2BmLsD78L3GMcjcE08y8kDU0ENyB4HBD_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7=
+TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AH=
+eekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16=
+nrRAeHj3w3UHeNIgxpm5VIhyX8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3ji=
+x53I-2FXsS4HWWsOYCVdoidbWIdHRsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2Bqp=
+FHG60lhrD2tyVmvEom7GTr1vLn6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9Bk=
+HT6BOdXkiUGieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCY=
+SpfTWPOgQuntuvqhUql8-2BMYuVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9=
+nA0EshpZhQEgeE0duSCbMyswBVTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDk=
+jy1edGUghR2pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmD=
+KxKP2Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8=
+VVOBY1uz2DeN4VDS3o4OjzbpWu-2BidylGuhneGyn7NtSM5s9J3jG6UdHSzqwa1gwWmezmpFcSg=
+REjEMXFq5huTgVV0Yq8kjYUmIufIXQLFK5H4eRDRPrgN2LiJ1bqO-2FoWEUy5ggFZZXmjtD51u1=
+D2lYP6Vm5us45BZPQ3TBFmeRr-2FMyIVoI-3D">RSVP first in line =E2=86=92</a></p>
+
+        <h2 class=3D"center" style=3D"margin-top:40px">Recent teen hardware=
+ projects</h2>
+        <table role=3D"presentation" class=3D"hero" width=3D"100%" cellspac=
+ing=3D"0" cellpadding=3D"0">
+          <tr>
+            <td class=3D"stack center-on-mobile" style=3D"padding-right:4px=
+; vertical-align:top;">
+              <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3=
+G-2FaeMIVe5lSdMnGODo-2FqRo4CGNM0DBkWkNPyiwEIFwj8jrzQJdMza1QUPuomqqepo_1h5T7=
+9IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88od=
+WKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYD=
+TZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3UHeNIgxpm5VIhyX8dFmQbEygaucXg=
+4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4HWWsOYCVdoidbWIdHRsBlzenJrp-=
+2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2tyVmvEom7GTr1vLn6AV4AonsS4dJX=
+kJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUGieSbHmlTLnAqPL-2Fu-2FX-2BPcn=
+Vwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQuntuvqhUql8-2BMYuVnShfYcO6yugA=
+k9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQEgeE0duSCbMyswBVTMvZuLJ8vrVrJ=
+w2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2pewLgGbPIieFtdzu6G4cXgc2bYNo=
+2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1mPZ=
+Pvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uz2DeN4VDS3o4OjzbpWu-2BiULxGEkG2Y=
+YH7Ckm-2BV8UME7hNkxZidXCi8OsOYBt4lNlN-2BbPFNLuY5fpX5Tbe7gdFGGzcJUc16udhUenQ=
+KhxnRreROTDcS7J5yFxMMK6qH-2BBHhoua8XZereDJmx0kPP2uwS11Q4JqVyUlF-2B98o6P8NY-=
+3D" style=3D"text-decoration:none;">
+                <img src=3D"https://d3b9kr64nievew.cloudfront.net/cmaffq9aq=
+07w3dqpw4y302qp8/cmafhsfpu11eacl6l46xwrgxr.jpg" alt=3D"NigiriPad by Jeslyn =
+C" style=3D"max-width:276px; width:100%; border:0; display:block; margin:0 =
+auto 12px auto;">
+              </a>
+              <p class=3D"p center">
+                <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.b=
+O3G-2FaeMIVe5lSdMnGODo-2FqRo4CGNM0DBkWkNPyiwEIFwj8jrzQJdMza1QUPuomqzYvS_1h5=
+T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88=
+odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjr=
+YDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3UHeNIgxpm5VIhyX8dFmQbEygauc=
+Xg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4HWWsOYCVdoidbWIdHRsBlzenJr=
+p-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2tyVmvEom7GTr1vLn6AV4AonsS4d=
+JXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUGieSbHmlTLnAqPL-2Fu-2FX-2BP=
+cnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQuntuvqhUql8-2BMYuVnShfYcO6yu=
+gAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQEgeE0duSCbMyswBVTMvZuLJ8vrV=
+rJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2pewLgGbPIieFtdzu6G4cXgc2bY=
+No2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1m=
+PZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uTLOoMQbsoQzBiMMaUUZs8mPSzE5VC3=
+7rhlZ7OgIclwDzx1nBJ4JjoGGYRIbY68D5BDdl9N2Kp-2BJ1MwbGzionaIih98yslpIfQhft6RI=
+qtClJgKIUXattzV-2BvacWlSSM2bX4uxIp-2FHnzgt-2F5CMdCRSlGCbJIvVCJaR-2FBH7jYZBD=
+E-3D" style=3D"text-decoration:underline;">NigiriPad</a> by Jeslyn C, age 1=
+7
+              </p>
+            </td>
+            <td class=3D"stack center-on-mobile" style=3D"padding-left:4px;=
+ vertical-align:top;">
+              <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3=
+G-2FaeMIVe5lSdMnGODozz-2Fv45aaOYwQApRAkvcU9JacqST8ecxGXP-2BVaK8TNNEi2d4_1h5=
+T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88=
+odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjr=
+YDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3UHeNIgxpm5VIhyX8dFmQbEygauc=
+Xg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4HWWsOYCVdoidbWIdHRsBlzenJr=
+p-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2tyVmvEom7GTr1vLn6AV4AonsS4d=
+JXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUGieSbHmlTLnAqPL-2Fu-2FX-2BP=
+cnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQuntuvqhUql8-2BMYuVnShfYcO6yu=
+gAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQEgeE0duSCbMyswBVTMvZuLJ8vrV=
+rJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2pewLgGbPIieFtdzu6G4cXgc2bY=
+No2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1m=
+PZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uTLOoMQbsoQzBiMMaUUZs8rdO5lgYj2=
+RKIGGUNmimfir9H1682mueMhTxTAKhPgVIPp96REBReR1HejoSliAFjLTtWjhPIXxPh20WuTJuM=
+c6GB46YZTrO31xoBAQ-2FWzRtAc9hyZw505DYZOr6eCZJqNYZKq9RNJtWfSVgKCUIoYI-3D" st=
+yle=3D"text-decoration:none;">
+                <img src=3D"https://d3b9kr64nievew.cloudfront.net/cmaffq9aq=
+07w3dqpw4y302qp8/cmafhsnpd711191q34yt6u23b.jpg" alt=3D"Ender X4 by Allen D"=
+ style=3D"max-width:276px; width:100%; border:0; display:block; margin:0 au=
+to 12px auto;">
+              </a>
+              <p class=3D"p center">
+                <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.b=
+O3G-2FaeMIVe5lSdMnGODozz-2Fv45aaOYwQApRAkvcU9JacqST8ecxGXP-2BVaK8TNNEkeTz_1=
+h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG=
+88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhv=
+jrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3UHeNIgxpm5VIhyX8dFmQbEyga=
+ucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4HWWsOYCVdoidbWIdHRsBlzen=
+Jrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2tyVmvEom7GTr1vLn6AV4AonsS=
+4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUGieSbHmlTLnAqPL-2Fu-2FX-2=
+BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQuntuvqhUql8-2BMYuVnShfYcO6=
+yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQEgeE0duSCbMyswBVTMvZuLJ8v=
+rVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2pewLgGbPIieFtdzu6G4cXgc2=
+bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskxs-2FMF1OHOJqo6EK3YZHaNFj=
+1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uTLOoMQbsoQzBiMMaUUZs8qBLZJMX=
+pfrlWCJ9JkrLrmUJ-2F9g2gwYhbm4bsNkpAF8EDe41Q9bfZ5SGPrZxGkAHcYj4tuXlYqHskZ9qM=
+f97xwZUTMygAIjIRrCjS6xRBY41YWZqzMfVXdA13Q-2B7DriRXx5xx-2FS2eR-2FhCYMtGLoP-2=
+FpY-3D" style=3D"text-decoration:underline;">Ender X4</a> by Allen D, age 1=
+6
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <p class=3D"p">Thanks for building so many amazing projects,<br>The=
+ GitHub Education Team</p>
+
+        <div class=3D"divider"></div>
+
+        <!-- Footer -->
+        <table role=3D"presentation" width=3D"100%" cellspacing=3D"0" cellp=
+adding=3D"0">
+         <!-- GitHub Education logo (linked) -->
+          <tr>
+            <td class=3D"center" style=3D"padding:0 0 24px">
+              <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3=
+G-2FaeMIVe5lSdMnGODo4Ud11AqjVhW6cg4WddgB2qsGjLhgfZy3MaBCWeS5iPNilJz_1h5T79I=
+cqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWK=
+RGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ=
+0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3UHeNIgxpm5VIhyX8dFmQbEygaucXg4d=
+PVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4HWWsOYCVdoidbWIdHRsBlzenJrp-2B=
+P32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2tyVmvEom7GTr1vLn6AV4AonsS4dJXkJ=
+GdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUGieSbHmlTLnAqPL-2Fu-2FX-2BPcnVw=
+h5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQuntuvqhUql8-2BMYuVnShfYcO6yugAk9=
+-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQEgeE0duSCbMyswBVTMvZuLJ8vrVrJw2=
+z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2pewLgGbPIieFtdzu6G4cXgc2bYNo2A=
+N-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1mPZPv=
+v0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uTLOoMQbsoQzBiMMaUUZs8uCoDrFsw0CLez=
+-2BqmYb833KvUXIKBdfAvwcVV9zIe804XjmEmlabtGgeXlvg-2F5rruRXxY3MRrw9aCJ-2BMKza=
+RrTAGmp1D-2BdO8do2C47uQpZorWNgYdBKG8dJgjPWKiarr6kp5EQiJZu09nYv6jp1b4l8-3D" =
+style=3D"text-decoration:none;">
+                <img src=3D"https://d3b9kr64nievew.cloudfront.net/cmaffq9aq=
+07w3dqpw4y302qp8/cmafi5iwq0vfwdqpwyhqdkrc7.png" width=3D"150" alt=3D"GitHub=
+ Education" style=3D"display:block;margin:0 auto 24px">
+              </a>
+            </td>
+          </tr>
+
+          <!-- Social icons -->
+          <tr>
+            <td class=3D"center" style=3D"padding:0 0 32px">
+              <!-- 8 px margin between icons keeps them readable without bl=
+oating size -->
+              <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3=
+G-2FaeMIVe5lSdMnGODo4CwL8Dgg1QUklEBnHSTz8R3LMNKugae8Lgl20rNSNnCJusr8lKMEuu3=
+N2V9Yhl-2BLg-3D-3DjLIq_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QR=
+qVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy=
+3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3U=
+HeNIgxpm5VIhyX8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4=
+HWWsOYCVdoidbWIdHRsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2t=
+yVmvEom7GTr1vLn6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUG=
+ieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQun=
+tuvqhUql8-2BMYuVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQE=
+geE0duSCbMyswBVTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2=
+pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskx=
+s-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uTLOo=
+MQbsoQzBiMMaUUZs8vpvqWG7Ta-2F55hyV3bnJiHFcGKjd3XabkDtTo-2Ffb9mQ5dWjgF6jIl5R=
+5lbRoskkw8OVrrZoiNmS-2FsrwJ4ZgOHERyRH95pX91RpMJJ6sGyWDUCyVbBg9UXNzP-2FNZmNQ=
+b3M4K4Nbv6ZEtrxSk0kMALsWs-3D" style=3D"margin:0 8px;text-decoration:none">
+                <img src=3D"https://d3b9kr64nievew.cloudfront.net/social-ic=
+ons/000000/faInstagram.png" alt=3D"Instagram" style=3D"max-width:26px; widt=
+h:100%;">
+              </a>
+              <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3=
+G-2FaeMIVe5lSdMnGODozgoAQD6jwHlE9yz6w0v3-2FKBwgrTJU-2BtbBmk1-2B2b2R-2Bjoa8p=
+M71iL6ikgBAAClFPvA-3D-3D8SqB_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6=
+N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcs=
+ohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAe=
+Hj3w3UHeNIgxpm5VIhyX8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-=
+2FXsS4HWWsOYCVdoidbWIdHRsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60=
+lhrD2tyVmvEom7GTr1vLn6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BO=
+dXkiUGieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTW=
+POgQuntuvqhUql8-2BMYuVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0Es=
+hpZhQEgeE0duSCbMyswBVTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1ed=
+GUghR2pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2=
+Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY=
+1uTLOoMQbsoQzBiMMaUUZs8lB3u5ICuUP6EEqexJAkOJKCJ6o1MO5FTTh88oKGbIb1rJI5kZl4R=
+5su94YkeA6v1L-2Fjir8Wjb0NCicBIVVFBfZnGE2M4rx-2BioYDbQ4-2BdVm-2B0D90LkLslK50=
+2BbULGC1X6x8edXMUgyb922S2MqGYzM-3D" style=3D"margin:0 8px;text-decoration:n=
+one">
+                <img src=3D"https://d3b9kr64nievew.cloudfront.net/social-ic=
+ons/000000/faFacebook.png" alt=3D"Facebook" style=3D"max-width:26px; width:=
+100%;">
+              </a>
+              <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3=
+G-2FaeMIVe5lSdMnGODozKkZTe-2FK-2FtIL4kGKDfrKHgZghAlPswdrby-2F9sjCVQoKenhG8N=
+Z0EE7htGY2gbrDTQ-3D-3DnWg8_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2=
+j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsoh=
+v2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj=
+3w3UHeNIgxpm5VIhyX8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2F=
+XsS4HWWsOYCVdoidbWIdHRsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lh=
+rD2tyVmvEom7GTr1vLn6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdX=
+kiUGieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPO=
+gQuntuvqhUql8-2BMYuVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0Eshp=
+ZhQEgeE0duSCbMyswBVTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGU=
+ghR2pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Ku=
+bskxs-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1u=
+TLOoMQbsoQzBiMMaUUZs8p936zWE9IEB3fVl0oibybH51z0vqP7AlO-2B-2BHQf-2BbDN-2Blmf=
+URMH4qpGE9P0j0-2BUXErzyJeHTf9zNneVlUPnn2BF-2BEwpccNHRD34KveoNx-2FubXzs13F-2=
+FC-2FQcaK2dNdqsCMMMXnRVG6TEz-2FlmmGDfheaM-3D" style=3D"margin:0 8px;text-de=
+coration:none">
+                <img src=3D"https://d3b9kr64nievew.cloudfront.net/social-ic=
+ons/000000/faThreads.png" alt=3D"Threads" style=3D"max-width:26px; width:10=
+0%;">
+              </a>
+              <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3=
+G-2FaeMIVe5lSdMnGODo0kGm8iGiYw1RJqVywP9ghGe-2FPsd6IBGyOSs7d6CqEFV7gcQ_1h5T7=
+9IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88od=
+WKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYD=
+TZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3UHeNIgxpm5VIhyX8dFmQbEygaucXg=
+4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4HWWsOYCVdoidbWIdHRsBlzenJrp-=
+2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2tyVmvEom7GTr1vLn6AV4AonsS4dJX=
+kJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUGieSbHmlTLnAqPL-2Fu-2FX-2BPcn=
+Vwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQuntuvqhUql8-2BMYuVnShfYcO6yugA=
+k9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQEgeE0duSCbMyswBVTMvZuLJ8vrVrJ=
+w2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2pewLgGbPIieFtdzu6G4cXgc2bYNo=
+2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1mPZ=
+Pvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uTLOoMQbsoQzBiMMaUUZs8qqDQ3JSkD5r=
+dH4vYZZXgVotrN-2BTqzuDYcsjE0Yf64GrxIQl-2Bg13aoAR0tKBujbJCmIPhnGcag6JkhL8Mx8=
+bcIuZf6molKx9kHyVu0BeZnXHQrFaScbcd2og7-2FrlQPd0Z1uo3zrd9joavNXt42LTK5g-3D" =
+style=3D"margin:0 8px;text-decoration:none">
+                <img src=3D"https://d3b9kr64nievew.cloudfront.net/social-ic=
+ons/000000/faSquareXTwitter.png" alt=3D"X (Twitter)" style=3D"max-width:26p=
+x; width:100%;">
+              </a>
+              <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3=
+G-2FaeMIVe5lSdMnGODo2dVGx1b-2BEeSRYGdTRBAbKctIVR22mrkc3ehURL4mbEFpr7Y26tGVf=
+JNw5xoyaAKow-3D-3DCJK-_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QR=
+qVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy=
+3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3U=
+HeNIgxpm5VIhyX8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4=
+HWWsOYCVdoidbWIdHRsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2t=
+yVmvEom7GTr1vLn6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUG=
+ieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQun=
+tuvqhUql8-2BMYuVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQE=
+geE0duSCbMyswBVTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2=
+pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskx=
+s-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uTLOo=
+MQbsoQzBiMMaUUZs8ih7cHC5HOyNFATKkRe8M2Fi24gCmXA0hQ4npoPxvq8qZWfZmCLvrUf7ihI=
+y9IJs-2BJmZVjDnf37wja9g2hjcMK-2BOPr9F4-2BnKX3ABB3RjYMD-2BBse06kXsrdR4RdwKKk=
+xZMLMdxPbus5ozURSnreby3H4-3D" style=3D"margin:0 8px;text-decoration:none">
+                <img src=3D"https://d3b9kr64nievew.cloudfront.net/social-ic=
+ons/000000/faBluesky.png" alt=3D"Bluesky" style=3D"max-width:26px; width:10=
+0%;">
+              </a>
+              <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3=
+G-2FaeMIVe5lSdMnGODo5kXsF-2BAY3pqNDPNf3FfJxAWN2WDKCotnbDDLNWq9EpF1A-2B0xG-2=
+FtooK9-2BbaH4r9wFQ-3D-3DYKgQ_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6=
+N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcs=
+ohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAe=
+Hj3w3UHeNIgxpm5VIhyX8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-=
+2FXsS4HWWsOYCVdoidbWIdHRsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60=
+lhrD2tyVmvEom7GTr1vLn6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BO=
+dXkiUGieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTW=
+POgQuntuvqhUql8-2BMYuVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0Es=
+hpZhQEgeE0duSCbMyswBVTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1ed=
+GUghR2pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2=
+Kubskxs-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY=
+1uTLOoMQbsoQzBiMMaUUZs8pAuLY-2BvpY0j4r-2BjRJUyMUK9J9spYyY6Ha6ODjhDj8oi5IzrS=
+gKZpWVkbAaupAGlm3REtR-2FoNGvnIvGbTP7-2FBPCI-2FGTh9PAsyADVZvA4qA1PIQWaZ3ihsc=
+PBI3NoN1gP7N0iR0vtk75ODSnCaIb-2FW9I-3D" style=3D"margin:0 8px;text-decorati=
+on:none">
+                <img src=3D"https://d3b9kr64nievew.cloudfront.net/social-ic=
+ons/000000/faLinkedin.png" alt=3D"LinkedIn" style=3D"max-width:26px; width:=
+100%;">
+              </a>
+              <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3=
+G-2FaeMIVe5lSdMnGODo3-2FQ6ALJoZReZPpMLK6cEoUG2KBCa8E4ucxjcmXFCYmk9lLyMyqioF=
+LdmyTjj6xj7Q-3D-3Dibum_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QR=
+qVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy=
+3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3U=
+HeNIgxpm5VIhyX8dFmQbEygaucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4=
+HWWsOYCVdoidbWIdHRsBlzenJrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2t=
+yVmvEom7GTr1vLn6AV4AonsS4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUG=
+ieSbHmlTLnAqPL-2Fu-2FX-2BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQun=
+tuvqhUql8-2BMYuVnShfYcO6yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQE=
+geE0duSCbMyswBVTMvZuLJ8vrVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2=
+pewLgGbPIieFtdzu6G4cXgc2bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskx=
+s-2FMF1OHOJqo6EK3YZHaNFj1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uFG06=
+05DGgkoqUgK5xeHZdD1KNy-2BoCuPe6t8OBxHh6WW4TgCyaUaw4gCi0zaf0mEgr4AozWWkW0hxw=
+w53W9FmEh-2BUNup7D3qiRV1hUFmT0dI5trVXiR-2FS7-2FQ2nUbLoHQZ1fvwbCh4-2Fp938Zvn=
+mlncxolIlEkylGyzqtfAk454esM-3D" style=3D"margin:0 8px;text-decoration:none"=
+>
+                <img src=3D"https://d3b9kr64nievew.cloudfront.net/social-ic=
+ons/000000/faYoutube.png" alt=3D"YouTube" style=3D"max-width:26px; width:10=
+0%;">
+              </a>
+              <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3=
+G-2FaeMIVe5lSdMnGODo2gvddZ8656ATSl5-2BTEB98YabS5KKljl5Ypv-2Bi-2FJC05ygPcN_1=
+h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG=
+88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhv=
+jrYDTZ0Fe1S6h96qa16lGYjOumkF4kF4Ri23Zz16nrRAeHj3w3UHeNIgxpm5VIhyX8dFmQbEyga=
+ucXg4dPVgoeip5qUDdkdknxeUoGJ6S2khYd1K3jix53I-2FXsS4HWWsOYCVdoidbWIdHRsBlzen=
+Jrp-2BP32r0dn2udmk9dn3QhaGCsoKjehck-2BqpFHG60lhrD2tyVmvEom7GTr1vLn6AV4AonsS=
+4dJXkJGdR75Gu1h4S7eboLigov0XflahMyfYI9BkHT6BOdXkiUGieSbHmlTLnAqPL-2Fu-2FX-2=
+BPcnVwh5yG016Q4Sx1bmEi52BtaXkd0JycHBXVCYSpfTWPOgQuntuvqhUql8-2BMYuVnShfYcO6=
+yugAk9-2FJ4KP7BXnMFL3Fvw9nMgQvO1BuCPqbQ9nA0EshpZhQEgeE0duSCbMyswBVTMvZuLJ8v=
+rVrJw2z4NqDIT8XVmbzUJXplZNINjLR4x3qyoBDkjy1edGUghR2pewLgGbPIieFtdzu6G4cXgc2=
+bYNo2AN-2FOWD9NdRXVTkofdUGk8jEBdoR2I0dmDKxKP2Kubskxs-2FMF1OHOJqo6EK3YZHaNFj=
+1mPZPvv0X7WTyoVD-2F5Iif7-2FcC8RiQ9rs9uM8VVOBY1uFG0605DGgkoqUgK5xeHZdEmI9bRz=
+d4U9W06n1NkTUtvAoKBHT122-2FSd-2BZZmJn-2BOSPgY6CqlVI8BH7k2FUG2p5xXF7HximYyg-=
+2FjXiHNUo8gTigOA-2F4mpSX2i6xdHxyYAqyLebMH-2FQtgQdYz4net5MB4d0Zlb2aQSYpHbjiL=
+UNj1E-3D" style=3D"margin:0 8px;text-decoration:none">
+                <img src=3D"https://d3b9kr64nievew.cloudfront.net/social-ic=
+ons/000000/faTwitch.png" alt=3D"Twitch" style=3D"max-width:26px; width:100%=
+;">
+              </a>
+            </td>
+          </tr>
+
+          <!-- Address + unsubscribe -->
+          <tr>
+            <td class=3D"center small" style=3D"color:#000000;padding:0 0 4=
+0px">
+              GitHub Education =C2=B7 88 Colin P Kelly Jr, San Francisco, C=
+A 94107<br>
+              <a href=3D"https://mailing.github.com/wf/unsubscribe?upn=3Du0=
+01.Ee8VvrA6tfmzNDWChM5C8SKvgqLD0rqjKbwLddWAmtVHTRqjXrQXOxjrcLr6ABC1bf3-2BWa=
+LHXRg6-2BvLiwRhG-2BaN0jkqZ1o-2FbIKclAPw3J9qtYg4nGcqx-2FLwQGRuMBoSnBBFMvfUR7=
+ouNbpHhUU8LdgfsZmfs7OVdKU3Ox-2BMJODBnn2dg5CeXcWWlSoxpr90WuWUCLY6ZvoJRbJ2u1L=
+G0GhRwJffuiKNRYqWFBJ8UqBY9dnipHd4sO4NZrwv13Qz-2BIIocJB0a1Y-2BmCH5kc4fn-2Fml=
+q2PXQeeWpZkXJZo0oB961foxRIkLFj23NUgd3h-2BFUTIPgWWtJuDD-2FhMdSh5NNorjjTz9IF4=
+txCwwb-2BVtwvvzjZv6h9z5TIwN-2BUl9NXGmJvhbA57lJA4PWO9HB3rUh-2BZwmMQD6Q5k42te=
+2OZUcQIOHlOHkJl31vNF44lz4h4wvAniV6lgmG9E5CueRXjPmx9em-2B8ZIM3-2F7wYYOcnk9lu=
+-2B0Ns-2BNaBZQ-2F1QhC-2BRo-2FDcw9Kumn75kQU00SMFW-2BsQvkJRgAUHgRhExSi61XFYW9=
+Jl6h4B9-2FSb6n42l-2BOtEDSY-2F4nAQqwm4jeYbCXugbp71gVj1OuCgIIPuGrVw0CP5-2B2tq=
+POomuZ-2Fi82nzMXsFiAwAGGzu2Z8psElschJ4HwaDn3Lk0wvvQIGAl-2Fr9VHEOtTTtNTkC6Rk=
+7hPASykpxf3t0rOJYEV8tFGg3NWUJyKhDQNC6L022U5uWb5vKvB03XqtTvrOWGYC4bYZv-2F3pR=
+t45InMIKUpq28rsiUPMGLA-2FQdCRHD42Rj21v3fmPUWMaCCghm5-2F5grmoaf5a62MgyhgWV4h=
+Snyz3HW4Nfwq-2FNpl6iyXG9NrZ1Y8B4-2BgCqxAii6000J7vkJ1sZECZZ5nwtMIS4HVZHRf0w-=
+2FLFXd4O5MVubAbRvVYOyP5sgsKEl7x8rRA-3D" style=3D"font-weight:600;color:#9ca=
+3af;text-decoration:none">Unsubscribe</a>
+            </td>
+          </tr>
+        </table>
+
+      </td></tr>
+    </table>
+  </td></tr></table>
+<img src=3D"https://mailing.github.com/wf/open?upn=3Du001.Ee8VvrA6tfmzNDWCh=
+M5C8SKvgqLD0rqjKbwLddWAmtVHTRqjXrQXOxjrcLr6ABC1bf3-2BWaLHXRg6-2BvLiwRhG-2Ba=
+N0jkqZ1o-2FbIKclAPw3J9qtYg4nGcqx-2FLwQGRuMBoSnBBFMvfUR7ouNbpHhUU8LdgfsZmfs7=
+OVdKU3Ox-2BMJODBnn2dg5CeXcWWlSoxpr90WuWUCLY6ZvoJRbJ2u1LG0GhRwJffuiKNRYqWFBJ=
+8UqBY9dnipHd4sO4NZrwv13Qz-2BIIocJB0a1Y-2BmCH5kc4fn-2Fmlq2PXQeeWpZkXJZo0oB96=
+1foxRIkLFj23NUgd3h-2BFUTIPgWWtJuDD-2FhMdSh5NNorjjTz9IF4txCwwb-2BVtwvvzjZv6h=
+9z5TIwN-2BUl9NXGmJvhbA57lJA4PWO9HB3rUh-2BZwmMQD6Q5k42te2OZUcQIOHlOHkJl31vNF=
+44lz4h4wvAniV6lgmG9E5CueRXjPmx9em-2B8ZIM3-2F7wYYOcnk9lu-2B0Ns-2BNaBZQ-2F1Qh=
+C-2BRo-2FDcw9Kumn75kQU00SMFW-2BsQvkJRgAUHgRhExSi61XFYW9Jl6h4B9-2FSb6n42l-2B=
+OtEDSY-2F4nAQqwm4jeYbCXugbp71gVj1OuCgIIPuGrVw0CP5-2B2tqPOomuZ-2Fi82nzMXsFiA=
+wAGGzu2Z8psElschJ4HwaDn3Lk0wvvQIGAl-2Fr9VHEOtTTtNTkC6Rk7hPASykpxf3t0rOJYEV8=
+tFGg3NWUJyKhDQNC6L022U5uWb5vKvB03XqtTvrOWGYC4bYZv-2F3pRt45Ibtar-2Btb1GUmAqZ=
+CLy34NmgCbqK9QQC7kso3dnXtoUnvExpbr6T9tGoz68VNlqTeP85l0pz-2F5mnsTwrKU0xY3MZB=
+MtdlNLOVUJnqYklcKDOAT-2FUXAETKR-2FGC2-2FzJP-2Ft-2FB7skTAGPmH7HnEslv9vS2GMEd=
+-2FbqN-2Bu-2ByM10iy4wQkm4-3D" alt=3D"" width=3D"1" height=3D"1" border=3D"0=
+" style=3D"height:1px !important;width:1px !important;border-width:0 !impor=
+tant;margin-top:0 !important;margin-bottom:0 !important;margin-right:0 !imp=
+ortant;margin-left:0 !important;padding-top:0 !important;padding-bottom:0 !=
+important;padding-right:0 !important;padding-left:0 !important;"/></body>
+</html>
+--9065ff41dbda570043508991c07ebd8ad12f1af61700a077d8aa28dfd260--

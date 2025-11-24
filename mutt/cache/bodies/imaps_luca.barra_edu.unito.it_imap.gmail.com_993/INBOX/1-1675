@@ -1,0 +1,173 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:339:b0:2e2:75a4:21a3 with SMTP id b25csp792261ljp;
+        Thu, 9 May 2024 05:33:26 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHwLskri5vYRQ62A8Kd5QxlEcrpJCLItyDvJ5f4B2pf+GP9uodiWCpukYhUFyd2CnIB9WcV
+X-Received: by 2002:a50:d78b:0:b0:568:32cc:f808 with SMTP id 4fb4d7f45d1cf-5731d9b5872mr3795546a12.15.1715258005901;
+        Thu, 09 May 2024 05:33:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1715258005; cv=none;
+        d=google.com; s=arc-20160816;
+        b=LpQs05341eb64zGsLqO0kXWTOlOXRUBEImduv8hFKwv9FXjRQJnM59gKaGwS6UYUqy
+         zwpoECyqgM4z8hqiRMdFkiYL9nC3/lPTfiGJszqc9AUJRIFe1Jua9S1d6iyHqb2pRjh4
+         J62Bz/tudddrOY2tCUof5qpvMiepF7u3M4CCtBhgPwhlGqV/tcOsfKG+UsUueJ/pgEx3
+         FBGOYVFWuLZA83mKADNk0DXgNVPUGl4LWIU1Rc3NmCTa22hj5gxKJOUeM+QNJ9nTZHJ9
+         DCXj6YgJ8o7+s6TtEOq60i2vWye4sDSYL3N3hXzTsY3mpeyh5LzNq+eSY/y3Oo/2aXWD
+         KE2g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=buNoZGI6ofX4Uunp3RWySUdALvp58oS8uNvxfcVEEm4=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=y41DBoZvJKNRD0LCQKc9KrCH0mkZqVptJS2vQVgMCXUza7+bjMwtN00vvMN/f1bqef
+         axmIu5c6u+ZCvsqdBw/rNmopr5jMjtA/YIm4VSxWEHDAXXYcHd6Duy1Ey7w9GFyzpHZ8
+         TxeL9S3th30cZCAI+cR6zBktjEUM5pVH8hvzy5fEVxfTrzV6Jg++hQSz3mYBOuMTq36N
+         sWDvbTH17E4Ez395OvmNaKiT6XzgkicyOacRIcNQE4dLFQuctlynH2nBY15RHH0HFkro
+         KIuc4lsA6/UHnaHkblYnztfLBPMpvhPxv/FGqQRLac/h+QFdh9vCnMT5E2nVQ/XsX/Ur
+         1vTA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-5733c378359si755998a12.630.2024.05.09.05.33.25
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 May 2024 05:33:25 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 449CXMLM1200002
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Thu, 9 May 2024 14:33:22 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 449CXMLM1200002
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 449CXMs0128671
+	for <luca.barra@edu.unito.it>; Thu, 9 May 2024 14:33:22 +0200
+Date: Thu, 9 May 2024 14:33:22 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Schifanella Rossano (da informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: SAS-Lab-2324: Iscrizioni al Torneo SAS - Call for participation!
+Message-ID: <89852fc121f9c1312c468a0344178fdabb0366b54ccb452195353605a98ee036@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7124@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7124
+X-Course-Id: 2832
+X-Course-Name: Sviluppo delle Applicazioni Software - LABORATORIO T* - 2023/24
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: SAS-Lab-2324: Iscrizioni al Torneo SAS - Call for participation!
+Thread-Index: 89852fc121f9c1312c468a034417
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_KTZbGfjIIdpOUXWFBlNWY6IHeatwbcWCqXDwR4A2c0"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 449CXMLM1200002
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_KTZbGfjIIdpOUXWFBlNWY6IHeatwbcWCqXDwR4A2c0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SAS-Lab-2324 -> Forum -> Annunci -> Iscrizioni al Torneo SAS - Call for
+participation!
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41580#p68728
+Iscrizioni al Torneo SAS - Call for participation!
+di Schifanella Rossano - gioved=C3=AC, 9 maggio 2024, 14:19
+---------------------------------------------------------------------
+Cari studenti e care studentesse,=C2=A0
+
+vi contattiamo per ricordarvi di iscrivervi al torneo SAS che si terr=C3=
+=A0
+nelle lezioni finali del corso attraverso il modulo=C2=A0
+
+https://docs.google.com/forms/d/e/1FAIpQLScqLYj9zlOe2OtBmAJ2NXSTQybP7S5klmF=
+t1NP_O0QGZEug6A/viewform
+
+Come accennavamo a lezione =C3=A8 un'opportunit=C3=A0 di presentare la vost=
+ra
+soluzione per il caso di studio "Gestire i Turni" e discutere di soluzioni
+di altri gruppi, rispondendo a domande che sono molto simili a quelle a cui
+vi troverete di fronte all'esame.=C2=A0=C2=A0
+
+Partecipate numerosi e siamo a disposizione attraverso i consueti canali
+per qualsiasi dubbio abbiate.=C2=A0=C2=A0
+
+A presto,=C2=A0
+
+I docenti dei turni T1-T4 di SAS
+
+---------------------------------------------------------------------
+Questa =C3=A8 la copia di un intervento effettuato su SAS-Lab-2324 .
+
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2832
+
+--b1_KTZbGfjIIdpOUXWFBlNWY6IHeatwbcWCqXDwR4A2c0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2832">SAS-Lab-2324</a>=0A    &raqu=
+o;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/index.php?id=3D2832">Forum</a>=0A    &raquo;=0A    <a target=3D"_=
+blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D=
+7124">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://=
+informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41580">Iscrizioni al=
+ Torneo SAS - Call for participation!</a>=0A</div>=0A=0A<table border=3D"0"=
+ cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=
+=3D"header">=0A        <td width=3D"35" valign=3D"top" class=3D"picture lef=
+t">=0A            <a href=3D"https://informatica.i-learn.unito.it/user/view=
+.php?id=3D2031&amp;course=3D2832" class=3D"d-inline-block aabtn"><img src=
+=3D"https://informatica.i-learn.unito.it/pluginfile.php/19199/user/icon/lam=
+bda/f2?rev=3D1486562" class=3D"userpicture" width=3D"35" height=3D"35" alt=
+=3D"" /></a>=0A        </td>=0A        <td class=3D"topic starter">=0A     =
+       <div class=3D"subject">=0A                Iscrizioni al Torneo SAS -=
+ Call for participation!=0A            </div>=0A            <div class=3D"a=
+uthor">=0A                di <a target=3D'_blank' href=3D'https://informati=
+ca.i-learn.unito.it/user/view.php?id=3D2031&course=3D2832'>Schifanella Ross=
+ano</a> - gioved=C3=AC, 9 maggio 2024, 14:19=0A            </div>=0A       =
+ </td>=0A    </tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"t=
+op">=0A                &nbsp;=0A        </td>=0A        <td class=3D"conten=
+t">=0A            <p dir=3D"ltr" style=3D"text-align:left;">Cari studenti e=
+ care studentesse,=C2=A0</p><p dir=3D"ltr" style=3D"text-align:left;">vi co=
+ntattiamo per ricordarvi di iscrivervi al torneo SAS che si terr=C3=A0 nell=
+e lezioni finali del corso attraverso il modulo=C2=A0</p><p dir=3D"ltr" sty=
+le=3D"text-align:left;"><a href=3D"https://docs.google.com/forms/d/e/1FAIpQ=
+LScqLYj9zlOe2OtBmAJ2NXSTQybP7S5klmFt1NP_O0QGZEug6A/viewform">https://docs.g=
+oogle.com/forms/d/e/1FAIpQLScqLYj9zlOe2OtBmAJ2NXSTQybP7S5klmFt1NP_O0QGZEug6=
+A/viewform<br /></a></p><p dir=3D"ltr" style=3D"text-align:left;">Come acce=
+nnavamo a lezione =C3=A8 un'opportunit=C3=A0 di presentare la vostra soluzi=
+one per il caso di studio "Gestire i Turni" e discutere di soluzioni di alt=
+ri gruppi, rispondendo a domande che sono molto simili a quelle a cui vi tr=
+overete di fronte all'esame.=C2=A0=C2=A0<br /></p><p dir=3D"ltr" style=3D"t=
+ext-align:left;">Partecipate numerosi e siamo a disposizione attraverso i c=
+onsueti canali per qualsiasi dubbio abbiate.=C2=A0=C2=A0</p><p dir=3D"ltr" =
+style=3D"text-align:left;">A presto,=C2=A0</p><p dir=3D"ltr" style=3D"text-=
+align:left;">I docenti dei turni T1-T4 di SAS</p>=0A=0A            <div cla=
+ss=3D"commands">=0A            </div>=0A=0A            <div class=3D"link">=
+=0A                <a target=3D"_blank" href=3D"https://informatica.i-learn=
+.unito.it/mod/forum/discuss.php?d=3D41580#p68728">=0A                    Vi=
+sualizza questo intervento nel contesto=0A                </a>=0A          =
+  </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D=
+"mdl-align unsubscribelink">=0A    <a href=3D"https://informatica.i-learn.u=
+nito.it/mod/forum/index.php?id=3D2832">Modifica preferenze email di raccolt=
+a</a>=0A</div><p>Reading this in an email? <a href=3D"https://download.mood=
+le.org/mobile?version=3D2021051718&amp;lang=3Dit&amp;iosappid=3D633359593&a=
+mp;androidappid=3Dcom.moodle.moodlemobile">Download the mobile app and rece=
+ive notifications on your mobile device</a>.</p>
+
+--b1_KTZbGfjIIdpOUXWFBlNWY6IHeatwbcWCqXDwR4A2c0--
+

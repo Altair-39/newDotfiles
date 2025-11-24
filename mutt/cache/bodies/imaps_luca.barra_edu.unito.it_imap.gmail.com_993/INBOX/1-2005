@@ -1,0 +1,308 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:7c07:0:b0:2fb:4c9b:a38b with SMTP id x7csp308523ljc;
+        Wed, 13 Nov 2024 05:27:07 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IH7jWGluPLgRMX7MeGclpoBJDaF2SbFZ/lpPtZJoCsvTY9MDEGa3wYeuKfh9A8xP91GGZ7k
+X-Received: by 2002:a5d:64cc:0:b0:37d:4ca3:310f with SMTP id ffacd0b85a97d-381f18286famr7311529f8f.12.1731504426869;
+        Wed, 13 Nov 2024 05:27:06 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1731504426; cv=none;
+        d=google.com; s=arc-20240605;
+        b=UwJoone1jO+xVQ4hkmdov1hWP0mt3TX74QjTFa6WlwU4Nlzbu1CSEOVRk12PoZ6mdJ
+         M1NILGaYfec1/8z6+sJiHSb1vqReyzfVxhxqXWLQCt/gm2e71YLBIAX7hKyksz6chb96
+         OoA/xxV6ioVDa/VxIfWX0eXKcB81UknlDdTeEMkpvEALwYMALXcaX26EnLN/7IFCWrXO
+         qVgFdtISfjpXAGIrN6tv7inntCaqLsov6UOc8CKsy5wEybmDYKJqKI6u+U9dqiU9MutB
+         rD5OJrkdE6ny8v2ZgLeaS1l5DQ7OYURnh2/FC3Ofgm4QcVp41KDKVG63qrs/Bz4cacl9
+         xxWQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=+II/cSRlUK9j7kYE5Zbl9LRoX1vVmRyyLNOAN5S2AX0=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=dj8HzqJ4Zoc7EEiOeYQk1V9L44qSC2XBlSSTf7mbV/h9Lb0Rx59L4jz0Hml3xa3DaO
+         gpDyw8fZ7hon1v7yKmVTVwciL/1lm8oqtKWlbtZRp/9CahqZi47IV3Nkkt3LDz4i4sEo
+         F7zTsRg6NMQD4n3obIl7vH0LmcDjMmHV6A1IUOVsXhSP3qhg+/CVVQNxQvjjgxrB8Fup
+         ncTXe5N2N0tpUqBgnQsBShTPNSZz3i6fQ604/nxn7+n71LoBwm0IjGh9qyIuIC3gtr4e
+         UrPeDCohmCHZtA7A8b5uy4KpDlR6RTT2v5lHHviBcUw//kZAzeNmjTG1b/Uy8SZECvlj
+         c4hg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-4de787d49d7si1365924173.107.2024.11.13.05.27.06
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Nov 2024 05:27:06 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 4ADDR4W7660082
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Wed, 13 Nov 2024 14:27:04 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 4ADDR4W7660082
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 4ADDR4D5000967
+	for <luca.barra@edu.unito.it>; Wed, 13 Nov 2024 14:27:04 +0100
+Date: Wed, 13 Nov 2024 14:27:04 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Gunetti Daniele (via informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Do not reply to this email" <noreply@educ.di.unito.it>
+Subject: archII-24/25: Periodi di studio in Giappone
+Message-ID: <6e3e1d8825fca94e4af72c686fdd6555a0ffb6bb8f173f733192f616820fed11@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7314@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7314
+X-Course-Id: 2898
+X-Course-Name: Architettura degli Elaboratori II 24/25
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: archII-24/25: Periodi di studio in Giappone
+Thread-Index: 6e3e1d8825fca94e4af72c686fdd
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_JQyyMEFYspaHqUhp5qyTEISepPEJQlqROm9nZJXow8"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 4ADDR4W7660082
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_JQyyMEFYspaHqUhp5qyTEISepPEJQlqROm9nZJXow8
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+archII-24/25 -> Forums -> Annunci -> Periodi di studio in Giappone
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D42988#p70332
+Periodi di studio in Giappone
+by Gunetti Daniele - Wednesday, 13 November 2024, 2:11 PM
+---------------------------------------------------------------------
+Ricevo e inoltro:
+
+il giorno 20/11/2024 alle ore 14:00 presso la sala seminari al terzo piano
+il Dipartimento di Informatica ospiter=C3=A0 Emmanuel Planas, Deputy Direct=
+or
+del National Institute of Informatics, Tokyo per conoscere meglio le
+opportunit=C3=A0 di collaborazione. Vi ricordo che il nostro dipartimento d=
+a
+molti anni partecipa al =C2=A0programma=C2=A0NII International Internship P=
+rogram
+[1]=C2=A0aperto a livello dottorato di ricerca e laurea magistrale.
+
+ABSTRACT:
+This seminar introduces the=C2=A0National Institute of Informatics (NII)
+[2]=C2=A0and opportunities for international cooperation with NII.
+
+NII is the Inter-University Research Institute (ROIS) for advanced Computer
+Science Research and Global Science Data Infrastructure support, situated
+in the heart of Tokyo, Japan. NII is ranked=C2=A0top 2 [3]=C2=A0for publica=
+tions in
+Computer Science in Japan.=C2=A0Research activity [4]=C2=A0is divided in fo=
+ur
+Departments:=C2=A01.Principles of Informatics [5]=C2=A0including Mathematic=
+al
+Informatics, Intelligent Informatics, Quantum Information, Mathematical
+Logics;=C2=A02.Information Systems Architecture Science [6]=C2=A0including =
+Network
+Architecture, Computer Architecture, Information Network, Software
+Architecture, Software Engineering;=C2=A03. Digital Content and Media Scien=
+ces
+[7]=C2=A0including Text and Language Media, Human and Knowledge Media, Patt=
+ern
+Media, Image processing, Fondations of Content Management:=C2=A0Information=
+ and
+Society [8]=C2=A0including Information Use, Human and Knowledge Media, Scie=
+nce
+Information, Information Public Policy.
+
+The=C2=A0Global Liaison Office (GLO) [9]=C2=A0at NII has established partne=
+rships
+with=C2=A0more than 100 MOU partners [10]. GLO supports international excha=
+nges
+via the =E2=80=9CMOU Grant Program=E2=80=9D under which a NII researcher ca=
+n invite a
+colleague from overseas for a stay, or send some member of his team for a
+research visit (up to 2 months, around 40 researches a year supported). GLO
+also offers the =E2=80=9CNII International Internship Program=E2=80=9D in w=
+hich we
+welcome and fund MOU partners Master=E2=80=99s and PhD. students for a rese=
+arch
+stay in one of our teams (3 to 6 months, around 140 students per year).
+
+Links:
+------
+[1]
+https://www.google.com/url?q=3Dhttps://www.nii.ac.jp/en/about/international=
+/mouresearch/internship2024-2/index.html&source=3Dgmail-imap&ust=3D17250086=
+61000000&usg=3DAOvVaw0CwLp85xaEsbAG6nTa67uC
+[2]
+https://www.google.com/url?q=3Dhttps://www.nii.ac.jp/en/&source=3Dgmail-ima=
+p&ust=3D1729768718000000&usg=3DAOvVaw1RZMZ4tBjc5SGi_rk2Eqot
+[3]
+https://www.google.com/url?q=3Dhttps://csrankings.org/%23/index?all%26jp&so=
+urce=3Dgmail-imap&ust=3D1729768718000000&usg=3DAOvVaw2eQ8YsEfNNjYDKyZtGrEMX
+[4]
+https://www.google.com/url?q=3Dhttps://www.nii.ac.jp/en/faculty/&source=3Dg=
+mail-imap&ust=3D1729768718000000&usg=3DAOvVaw0gTmtW_vbO9D2ZwlpvjFE2
+[5]
+https://www.google.com/url?q=3Dhttps://www.nii.ac.jp/en/faculty/informatics=
+/&source=3Dgmail-imap&ust=3D1729768718000000&usg=3DAOvVaw3gKVhTbu9Vy6EwMUTp=
+iPO4
+[6]
+https://www.google.com/url?q=3Dhttps://www.nii.ac.jp/en/faculty/architectur=
+e/&source=3Dgmail-imap&ust=3D1729768718000000&usg=3DAOvVaw2Om608atf0WeYaz-5=
+7NWDx
+[7]
+https://www.google.com/url?q=3Dhttps://www.nii.ac.jp/en/faculty/digital_con=
+tent/&source=3Dgmail-imap&ust=3D1729768718000000&usg=3DAOvVaw1jN8M4qerJbl_U=
+ks7TgzAx
+[8]
+https://www.google.com/url?q=3Dhttps://www.nii.ac.jp/en/faculty/society/&so=
+urce=3Dgmail-imap&ust=3D1729768718000000&usg=3DAOvVaw3c3DlmIUB4T5qWr4JiCHpp
+[9]
+https://www.google.com/url?q=3Dhttps://www.nii.ac.jp/en/about/international=
+/&source=3Dgmail-imap&ust=3D1729768718000000&usg=3DAOvVaw1gO91wt0mqxUH5DFfI=
+kiv7
+[10]
+https://www.google.com/url?q=3Dhttps://www.nii.ac.jp/en/about/international=
+/mou/&source=3Dgmail-imap&ust=3D1729768718000000&usg=3DAOvVaw1E8BRdytK23x8s=
+DYBpx_JI
+
+---------------------------------------------------------------------
+This is a copy of a message posted in archII-24/25.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2898
+
+--b1_JQyyMEFYspaHqUhp5qyTEISepPEJQlqROm9nZJXow8
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2898">archII-24/25</a>=0A    &raqu=
+o;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/index.php?id=3D2898">Forums</a>=0A    &raquo;=0A    <a target=3D"=
+_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=
+=3D7314">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https=
+://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D42988">Periodi di=
+ studio in Giappone</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3"=
+ cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=0A     =
+   <td width=3D"35" valign=3D"top" class=3D"picture left">=0A            <a=
+ href=3D"https://informatica.i-learn.unito.it/user/view.php?id=3D296&amp;co=
+urse=3D2898" class=3D"d-inline-block aabtn"><img src=3D"https://informatica=
+.i-learn.unito.it/theme/image.php/_s/lambda/core/1727030549/u/f2" class=3D"=
+userpicture defaultuserpic" width=3D"35" height=3D"35" alt=3D"" /></a>=0A  =
+      </td>=0A        <td class=3D"topic starter">=0A            <div class=
+=3D"subject">=0A                Periodi di studio in Giappone=0A           =
+ </div>=0A            <div class=3D"author">=0A                by <a target=
+=3D'_blank' href=3D'https://informatica.i-learn.unito.it/user/view.php?id=
+=3D296&course=3D2898'>Gunetti Daniele</a> - Wednesday, 13 November 2024, 2:=
+11 PM=0A            </div>=0A        </td>=0A    </tr>=0A    <tr>=0A       =
+ <td class=3D"left side" valign=3D"top">=0A                &nbsp;=0A       =
+ </td>=0A        <td class=3D"content">=0A            <div>Ricevo e inoltro=
+:<br /></div><div><br /></div><div>il giorno 20/11/2024 alle ore 14:00 pres=
+so la sala
+                  seminari al terzo piano il Dipartimento di Informatica os=
+piter=C3=A0 Emmanuel Planas,
+                  Deputy Director del National Institute of Informatics,
+                  Tokyo per conoscere meglio le opportunit=C3=A0 di
+                  collaborazione. Vi ricordo che il nostro dipartimento
+                  da molti anni partecipa al =C2=A0programma=C2=A0<a href=
+=3D"https://www.google.com/url?q=3Dhttps://www.nii.ac.jp/en/about/internati=
+onal/mouresearch/internship2024-2/index.html&amp;source=3Dgmail-imap&amp;us=
+t=3D1725008661000000&amp;usg=3DAOvVaw0CwLp85xaEsbAG6nTa67uC">NII Internatio=
+nal Internship
+                    Program</a>=C2=A0aperto a livello dottorato di ricerca =
+e
+                  laurea magistrale.</div>
+                <div><br /></div>
+                <div><b>Abstract:</b></div>
+                <div>This seminar introduces the=C2=A0<a href=3D"https://ww=
+w.google.com/url?q=3Dhttps://www.nii.ac.jp/en/&amp;source=3Dgmail-imap&amp;=
+ust=3D1729768718000000&amp;usg=3DAOvVaw1RZMZ4tBjc5SGi_rk2Eqot" target=3D"_b=
+lank" rel=3D"noreferrer noopener">National
+                    Institute of Informatics (NII)</a>=C2=A0and opportuniti=
+es
+                  for international cooperation with NII.<br /><br />
+                  NII is the Inter-University Research Institute (ROIS)
+                  for advanced Computer Science Research and Global
+                  Science Data Infrastructure support, situated in the
+                  heart of Tokyo, Japan. NII is ranked=C2=A0<a href=3D"http=
+s://www.google.com/url?q=3Dhttps://csrankings.org/%23/index?all%26jp&amp;so=
+urce=3Dgmail-imap&amp;ust=3D1729768718000000&amp;usg=3DAOvVaw2eQ8YsEfNNjYDK=
+yZtGrEMX">top 2</a>=C2=A0for publications in
+                  Computer Science in Japan.=C2=A0<a href=3D"https://www.go=
+ogle.com/url?q=3Dhttps://www.nii.ac.jp/en/faculty/&amp;source=3Dgmail-imap&=
+amp;ust=3D1729768718000000&amp;usg=3DAOvVaw0gTmtW_vbO9D2ZwlpvjFE2" target=
+=3D"_blank" rel=3D"noreferrer noopener">Research
+                    activity</a>=C2=A0is divided in four Departments:=C2=
+=A0<a href=3D"https://www.google.com/url?q=3Dhttps://www.nii.ac.jp/en/facul=
+ty/informatics/&amp;source=3Dgmail-imap&amp;ust=3D1729768718000000&amp;usg=
+=3DAOvVaw3gKVhTbu9Vy6EwMUTpiPO4" target=3D"_blank" rel=3D"noreferrer noopen=
+er">1.Principles
+                    of Informatics</a>=C2=A0including Mathematical
+                  Informatics, Intelligent Informatics, Quantum
+                  Information, Mathematical Logics;=C2=A0<a href=3D"https:/=
+/www.google.com/url?q=3Dhttps://www.nii.ac.jp/en/faculty/architecture/&amp;=
+source=3Dgmail-imap&amp;ust=3D1729768718000000&amp;usg=3DAOvVaw2Om608atf0We=
+Yaz-57NWDx" target=3D"_blank" rel=3D"noreferrer noopener">2.Information
+                    Systems Architecture Science</a>=C2=A0including Network
+                  Architecture, Computer Architecture, Information
+                  Network, Software Architecture, Software Engineering;=
+=C2=A0<a href=3D"https://www.google.com/url?q=3Dhttps://www.nii.ac.jp/en/fa=
+culty/digital_content/&amp;source=3Dgmail-imap&amp;ust=3D1729768718000000&a=
+mp;usg=3DAOvVaw1jN8M4qerJbl_Uks7TgzAx" target=3D"_blank" rel=3D"noreferrer =
+noopener">3. Digital
+                    Content and Media Sciences</a>=C2=A0including Text and
+                  Language Media, Human and Knowledge Media, Pattern
+                  Media, Image processing, Fondations of Content
+                  Management:=C2=A0<a href=3D"https://www.google.com/url?q=
+=3Dhttps://www.nii.ac.jp/en/faculty/society/&amp;source=3Dgmail-imap&amp;us=
+t=3D1729768718000000&amp;usg=3DAOvVaw3c3DlmIUB4T5qWr4JiCHpp" target=3D"_bla=
+nk" rel=3D"noreferrer noopener">Information
+                    and Society</a>=C2=A0including Information Use, Human a=
+nd
+                  Knowledge Media, Science Information, Information
+                  Public Policy.<br /><br />
+                  The=C2=A0<a href=3D"https://www.google.com/url?q=3Dhttps:=
+//www.nii.ac.jp/en/about/international/&amp;source=3Dgmail-imap&amp;ust=3D1=
+729768718000000&amp;usg=3DAOvVaw1gO91wt0mqxUH5DFfIkiv7" target=3D"_blank" r=
+el=3D"noreferrer noopener">Global
+                    Liaison Office (GLO)</a>=C2=A0at NII has established
+                  partnerships with=C2=A0<a href=3D"https://www.google.com/=
+url?q=3Dhttps://www.nii.ac.jp/en/about/international/mou/&amp;source=3Dgmai=
+l-imap&amp;ust=3D1729768718000000&amp;usg=3DAOvVaw1E8BRdytK23x8sDYBpx_JI" t=
+arget=3D"_blank" rel=3D"noreferrer noopener">more than 100
+                    MOU partners</a>. GLO supports international
+                  exchanges via the =E2=80=9CMOU Grant Program=E2=80=9D und=
+er which a
+                  NII researcher can invite a colleague from overseas
+                  for a stay, or send some member of his team for a
+                  research visit (up to 2 months, around 40 researches a
+                  year supported). GLO also offers the =E2=80=9CNII
+                  International Internship Program=E2=80=9D in which we wel=
+come
+                  and fund MOU partners Master=E2=80=99s and PhD. students =
+for a
+                  research stay in one of our teams (3 to 6 months,
+                  around 140 students per year).</div><p dir=3D"ltr" style=
+=3D"text-align:left;"></p>=0A=0A            <div class=3D"commands">=0A    =
+        </div>=0A=0A            <div class=3D"link">=0A                <a t=
+arget=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/dis=
+cuss.php?d=3D42988#p70332">=0A                    See this post in context=
+=0A                </a>=0A            </div>=0A        </td>=0A    </tr>=0A=
+</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=0A    <a h=
+ref=3D"https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2898">=
+Change your forum digest preferences</a>=0A</div>
+
+--b1_JQyyMEFYspaHqUhp5qyTEISepPEJQlqROm9nZJXow8--
+

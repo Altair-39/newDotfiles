@@ -1,0 +1,91 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:6a10:b708:b0:593:dd80:fb3b with SMTP id v8csp5049132pxx;
+        Fri, 8 Nov 2024 05:15:44 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHJ9yUlogXD+/GALB/lXuGD/KBXEyZP/4NUkZgvIU+eTWvVpHhj5Z66bu1/Yq/23zu+V38U
+X-Received: by 2002:a05:6e02:1c25:b0:3a6:b6b4:1d4c with SMTP id e9e14a558f8ab-3a6f19b76d2mr8729115ab.2.1731071744740;
+        Fri, 08 Nov 2024 05:15:44 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1731071744; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Fo6tv12lYw2ExPe1t4BaDrZtEIFjIFoyIDK49CqQ3MmYiyCR0ZtSnW/AgMe1GL/cbR
+         nBsFe70CTIgadUQAzF0QtzjPdX4xoH2NVcgFbedD+aAXUiJrvNRRpnBUTPQT7GNz8SQH
+         4G+DUGZmxvAcnEE95MMur+rHmxMzlDXTJhUrRbpyB3yEIuY+/3MB4c919VXuOBSIq7+G
+         2UFgWOmZj8Hqhl6U8wVj3LOe+Qf1as/d74A7BgurU5zfEIug2dsDU7wZX6TC/XaeOrQk
+         c8eZI7J9IGFjqzu1+qp+WuNdvj3KdJjwB+rSM5CBRJSgUQXSGVNTzAKs3jSrxQDSxse8
+         Cq3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:mime-version:subject:message-id:to:from
+         :date:dkim-signature:dkim-filter;
+        bh=0Z30Rr3oQXXn3RMPLGaW4c+fj7ye7J8GyR1EWZ0Ud14=;
+        fh=IxM04YauqXzCozmF/ngeXvaWuWeW7uONbHgj9jmZsgE=;
+        b=KDkCsXXUY7V2x0uF55tTdu8DW+lwZibcrm+bg6hs/5hJfAN3MT96lbgcY7929vt7+c
+         KL7xFwSQKWcOlT1fOtFpCXmYdTXqnPrtV3LBCpe8mGsby9Ks+qHIb6TicmXvfqDummIJ
+         R6ShAcpcm9GsLhFJ6pbiLF1ePb5K3GtMz32TiKlnhgawTLa88mbGqeZdz6qdOs6yJnsz
+         pvjt7dB+/Z4HcsRLCHvybDcZcoefvddrCOlJfwpb3hnm0gg3RJAS/W8fqQoze50Grk33
+         p1fbwxIMSdd0t2T5hHOeL6RAAtAxLSgV6PF2SRHH2PGmKJgplWWAni1XzJQDchgIg5lF
+         fxgQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=HcWAAOuf;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id e9e14a558f8ab-3a6ead509acsi27723205ab.160.2024.11.08.05.15.44
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Nov 2024 05:15:44 -0800 (PST)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=HcWAAOuf;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 7C7ED28892
+	for <luca.barra@edu.unito.it>; Fri,  8 Nov 2024 14:15:43 +0100 (CET)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id J0yscFHokb2S for <luca.barra@edu.unito.it>;
+ Fri,  8 Nov 2024 14:15:43 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 5233D28A49
+	for <luca.barra@edu.unito.it>; Fri,  8 Nov 2024 14:15:43 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 5233D28A49
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1731071743;
+	bh=0Z30Rr3oQXXn3RMPLGaW4c+fj7ye7J8GyR1EWZ0Ud14=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=HcWAAOufmQm8nGCMsoPFy1swceOwOxieHpQkiUf+OD6sDWW9Mex9qD4yUVWK8AU51
+	 Qy6o2jqoMsjRx3IxBIG43ZelwU/IetFdYWNpVwCOYBcBWl/YcHGABwfEcwpAiIdJnY
+	 5psavotJaJOcqngXlg8uQZrQOy5SiAoa2e+FdWvhEy7zi3ThFzcrkKNg9Boo9mdZxl
+	 qMQMe0ViE0mYl1uDqfzdNco7EWCfGuZdklsxYx4QwjkVoZ2zGWmo93/MlN4SP0T/as
+	 C52vcpNp0QHj1dhfFkGVOZm13zhOd4+A0EiXdgyWgsTfJnJ3v+EN3EG1t+438k5pJn
+	 WwwIXJBsa2ueA==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id pumvLveznxw9 for <luca.barra@edu.unito.it>;
+ Fri,  8 Nov 2024 14:15:43 +0100 (CET)
+Received: from esse3appjboss26.private.cineca.it (esse3appjboss26.cineca.it [130.186.5.161])
+	by smtp4.cineca.it (Postfix) with ESMTP id 34CA328529
+	for <luca.barra@edu.unito.it>; Fri,  8 Nov 2024 14:15:43 +0100 (CET)
+Received: from esse3appjboss26.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss26.private.cineca.it (Postfix) with ESMTP id 2BA6E547
+	for <luca.barra@edu.unito.it>; Fri,  8 Nov 2024 14:15:43 +0100 (CET)
+Date: Fri, 8 Nov 2024 14:15:43 +0100 (CET)
+From: "avvisi@unito.it" <avvisi@unito.it>
+To: luca.barra@edu.unito.it
+Message-ID: <1106527048.14429.1731071743178@esse3appjboss26.private.cineca.it>
+Subject: COMUNICAZIONE ESITO RPT
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Gentile BARRA LUCA,
+a seguito della Sua richiesta di pagamento effettuata tramite PagoPA per il=
+ codice IUV 000000291470128 di =E2=82=AC 156,00 in scadenza il 17/01/2025 L=
+e comunichiamo che la transazione ha avuto il seguente esito:
+Il pagamento =C3=A8 stato eseguito con successo in data 08/11/2024 per un i=
+mporto di euro 156,00 e sono state addebitate commissioni per euro 1,30
+Cordiali Saluti

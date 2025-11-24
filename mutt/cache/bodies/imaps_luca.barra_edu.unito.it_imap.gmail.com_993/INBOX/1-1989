@@ -1,0 +1,783 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b615:0:b0:2fb:4c9b:a38b with SMTP id r21csp3141354ljn;
+        Thu, 7 Nov 2024 09:07:39 -0800 (PST)
+X-Received: by 2002:a05:6512:e91:b0:53d:7ced:6964 with SMTP id 2adb3069b0e04-53d85977be1mr131067e87.12.1730999259438;
+        Thu, 07 Nov 2024 09:07:39 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1730999259; cv=none;
+        d=google.com; s=arc-20240605;
+        b=HLlrUSEfPFZALKtRmkXoAnLDIFMHN41awxCivRZD+lY4cgrTEwbZ2dIoY9Nti1dCNu
+         /HKSOcr4+AiE0nLNIecBo7KX8iWCtHZbClNEwEf/6mywKZ4unTOas8WNjhr9yCvP6X5l
+         cZ87Atf3A6ajZ3NYsMGg3U1ix50aiEa8a9uWxOo7X74anUmRunybUAnpjsBLDUsGv9nD
+         1gMb/r7pFYyRdd2P/gLJ/8ga8UcZ3e8RSm/USG6WmJdCyugL0eGLTmRC3Zf0KzzFc+yk
+         jZ5Ydi6XNPDFvMSWdV/ZG4m24p0GsalhhGzWa8BtdqQCVTJQUXWCoxi8LCihN2phTPby
+         9eig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:from:subject:date:message-id:feedback-id:mime-version
+         :dkim-signature;
+        bh=K+OEcQS6C7YZIy1uCeLTh7vKYzyd86eMR9H+W5jdqQY=;
+        fh=IxM04YauqXzCozmF/ngeXvaWuWeW7uONbHgj9jmZsgE=;
+        b=lJ4bFXDbWsPwa6Fgi60e+w/DIKfyGNEqTJ9YgD8/9uDpmfllqCoTH8rdqYLKMZgcIl
+         OnAmfnX+fv/WXmej0jW9ZIUJ6sP9FJWFrsSc7CAqlPPKM5XoQFYD2ZLJS87G32eEsK96
+         wvtY8IM5B41bLor5UF2IFHFTZBal8MSILWwmHoqxV0ARgO3vtlmNd/Cj3FcV1IaEyMt7
+         mTYUStnMKUydE4lunsxwEEffQeCDBmVDP09ScZhHVU7FwNUnGf0Qall0IflopjE1iBUO
+         niRhmM/0inrI/ROu0YAlkaDchtnzioZck5woKHSepNH6bIyNyNnNzJ0kBOnUvK48nVoU
+         faTA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=T6sVKIyt;
+       spf=pass (google.com: domain of 32vmszxykaluajmhn-mzxzdkon-ijmzkgtbjjbgz.xjh@trix.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=32vMsZxYKALUajmhn-mZXZdkon-ijmZkgtbjjbgZ.Xjh@trix.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <32vMsZxYKALUajmhn-mZXZdkon-ijmZkgtbjjbgZ.Xjh@trix.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id 2adb3069b0e04-53d82624783sor302951e87.0.2024.11.07.09.07.38
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Thu, 07 Nov 2024 09:07:39 -0800 (PST)
+Received-SPF: pass (google.com: domain of 32vmszxykaluajmhn-mzxzdkon-ijmzkgtbjjbgz.xjh@trix.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=T6sVKIyt;
+       spf=pass (google.com: domain of 32vmszxykaluajmhn-mzxzdkon-ijmzkgtbjjbgz.xjh@trix.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=32vMsZxYKALUajmhn-mZXZdkon-ijmZkgtbjjbgZ.Xjh@trix.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1730999258; x=1731604058; darn=edu.unito.it;
+        h=to:from:subject:date:message-id:feedback-id:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=K+OEcQS6C7YZIy1uCeLTh7vKYzyd86eMR9H+W5jdqQY=;
+        b=T6sVKIyt0OEd0FI0MiktLa9+63ZSedmniv7H0Q0g09cSrJX30RCnLcPVkVPZ9N21f+
+         p+UbnXOKhgkZNU+KpCXBJ/2GyxNvLuKw2LQ0tLj1f55doICEBg9gc/xyPUytsIWes171
+         jyIfZuDUpfBqIY4ALuoOPss9pE1PRXoJgI/XN0X9aHHKjdZ56mGKJbrQ8N+fXHlYZtwR
+         j/VIDqpSyb/m7XozOWZ66kncSmUI/GlBC0CG8g02m8z45f+nN5i7fZTDShJwpFnfpsSe
+         LAmzY+qMAoHH1s4xp8ZNskECepi8fgGXBxPiL9QoKICY7/QdhEuIWF5DtZvvsp4EoBUX
+         9J1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730999258; x=1731604058;
+        h=to:from:subject:date:message-id:feedback-id:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=K+OEcQS6C7YZIy1uCeLTh7vKYzyd86eMR9H+W5jdqQY=;
+        b=QhcLYh9OJ1OSUNbCBh7I+e3318h21+CEwCFk+vTQ63JkgwxbRBHYzOZqjqJZME0Y9p
+         a05uhAtxZFMi7TTKcg2sSqC8eeFLYug3s/vZPhJ+z9+zdByci8IYXJ8Mt2ZCv8SyCiv7
+         Up+WhL3MNXrPhBcU3jslepkA3azTr8VWaFrIs+83YzgSefzeG+SWwCxOwPABmCBD+6BE
+         0G3lKzcNgfeptgY4silnKq9nvW5k5qoSk27KM1h6bahaNvi7k7y348PiTdE8pvN4gLtB
+         NresUbo28kqW4YIDkRnDbmwXQeMdZJIU6/LrJMqMqJIdXQiA8MeN/Cce6AAlZuQwoy+f
+         G2aA==
+X-Gm-Message-State: AOJu0Yz3ZlYXjG1AOPNJy4V5iZvhl2zniFeT35oO40gp1UT+8KBlKciS
+	QOcqTOypWzR4r+zl4eUsnheoZYuYLvEG/huN8BJ3sIO8qtFxfbbnm9L44cEeiQDl6HOco37Noy5
+	+FpikkX436jglJcV8f9cpWlJ7dgsKA9FcRGFsZZDOP9PMzJBPbBtOB5zhq5yMIHwU6X7txtBsDx
+	g5ENT3oa3QWqoR3cyeQa35mz8xIJxLkcphZWLJ36yn
+X-Google-Smtp-Source: AGHT+IGeCiVbQM0QNY4+ddGQRYdRjbXyfeFmGPQ7bAcFOaQHuqgUPuEIy2IntU+X5R4qm1jyDj3lhjrnmJW6o4ukdvltWg==
+MIME-Version: 1.0
+X-Received: by 2002:a05:651c:1549:b0:2fb:55b0:8293 with SMTP id
+ 38308e7fff4ca-2ff1e8d8f90mr1703891fa.5.1730999258432; Thu, 07 Nov 2024
+ 09:07:38 -0800 (PST)
+Feedback-ID: MailTypeResponseReceipt:GoogleForms
+X-GoogleForms-FormId: e/1FAIpQLSfVMPg_TkJsj4TltUEUZuvscVdfUg9R186EssZTASRYQNkmQA
+X-GoogleForms-CustomerDisplayName: =?UTF-8?Q?Universit=C3=A0_di_Torino?=
+Message-ID: <autogen-java-bdb671a4-5989-48a6-b485-5f2b8e52bf79@google.com>
+Date: Thu, 07 Nov 2024 17:07:38 +0000
+Subject: Questionario di Soddisfazione sulla Laurea in Informatica di UNITO
+From: Moduli Google <forms-receipts-noreply@google.com>
+To: luca.barra@edu.unito.it
+Content-Type: multipart/alternative; boundary="000000000000e804e0062655abac"
+
+--000000000000e804e0062655abac
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: quoted-printable
+
+Moduli Google
+
+
+Grazie per aver compilato Questionario di Soddisfazione sulla Laurea in =20
+Informatica di UNITO
+Ecco le risposte ricevute.
+
+Modifica risposta
+
+
+Questionario di Soddisfazione sulla Laurea in Informatica di UNITO
+
+
+Gentile Laureata, gentile Laureato,
+
+
+ringraziandoti per aver acconsentito a essere ricontattata/o via email dopo=
+ =20
+la laurea, ti inviamo il primo questionario di soddisfazione e ti chiediamo=
+ =20
+di compilarlo per darci le tue opinioni sull'esperienza di studio che hai =
+=20
+recentemente concluso. Le tue risposte sono molto preziose per migliorare =
+=20
+il corso di studio!
+
+
+
+Ti ricordiamo che ti ricontatteremo una sola volta ancora, per chiederti =
+=20
+informazioni entro un anno dalla laurea.
+
+
+
+Grazie! Un cordiale saluto,
+
+la Presidente del Corso di Laurea, Liliana Ardissono
+
+
+Il tuo indirizzo email (luca.barra@edu.unito.it) =C3=A8 stato registrato qu=
+ando =20
+hai inviato questo modulo.
+
+
+Seleziona l'area tematica di approfondimento che hai frequentato *
+
+
+Informazione e Conoscenza
+
+
+Linguaggi e Sistemi
+
+
+Sistemi e Reti
+
+
+Di quale diploma di scuola superiore (o titolo equipollente) sei in =20
+possesso?
+*
+
+
+Liceo Classico
+
+
+Liceo Scientifico
+
+
+Liceo Linguistico
+
+
+Liceo Artistico
+
+
+Liceo delle Scienze Umane
+
+
+Istituto Tecnico
+
+
+Istituto Professionale
+
+
+Altro:
+
+
+Sezione 2
+
+
+Pensi che ti siano mancate delle basi dalla scuola superiore per la =20
+comprensione di argomenti affrontati in questo corso di laurea? *
+
+
+S=C3=AC
+
+
+No
+
+
+Sezione 4
+
+
+Con quale delle seguenti affermazioni sei d'accordo?
+
+*
+
+
+I docenti di questo corso di laurea mi hanno fornito sufficienti =20
+informazioni a supporto delle mie scelte di studio.
+
+
+Avrei voluto maggiore interazione con i docenti di questo corso di laurea =
+=20
+per ricevere informazioni a supporto delle mie scelte di studio.
+
+
+Non ho contattato i docenti di questo corso di laurea per ricevere =20
+informazioni a supporto delle mie scelte di studio.
+
+
+Tornando indietro nel tempo, ti reiscriveresti a questo corso di laurea?
+*
+
+
+S=C3=AC
+
+
+No
+
+
+Sezione 6
+
+
+Come pensi che il corso di laurea frequentato possa essere migliorato?
+
+
+Sezione 7
+
+
+In base alla tua esperienza pensi che tutti i docenti del corso di laurea =
+=20
+dovrebbero REGISTRARE le lezioni? *
+
+
+Si
+
+
+No
+
+
+Mi =C3=A8 indifferente
+
+
+In base alla tua esperienza pensi che negli insegnamenti del corso di =20
+laurea servano pi=C3=B9 attivit=C3=A0 LABORATORIALI? *
+
+
+Si
+
+
+No
+
+
+Mi =C3=A8 indifferente
+
+
+Intendi proseguire con una laurea magistrale? *
+
+
+Si
+
+
+No
+
+
+Non ho ancora deciso
+
+
+Non per il momento, magari in futuro
+
+
+Sezione 8
+
+
+In quale Ateneo vorresti proseguire gli studi?
+*
+
+
+Universit=C3=A0 di Torino
+
+
+Politecnico di Torino
+
+
+Universit=C3=A0 Statale di Milano
+
+
+Universit=C3=A0 di Milano Bicocca
+
+
+Non lo so ancora
+
+
+Altro:
+
+
+In quale corso di laurea magistrale vorresti proseguire?
+*
+
+
+Informatica
+
+
+Crea il tuo modulo Google
+
+Segnala abuso
+
+
+
+--=20
+------------------------
+
+
+Indirizzo istituzionale di posta elettronica=20
+degli studenti e dei laureati dell'Universit=C3=A0 di TorinoOfficial=C2=A0U=
+niversity=20
+of Turin=C2=A0email address=C2=A0for students and graduates=C2=A0
+
+--000000000000e804e0062655abac
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><style nonce=3D"160gUz6J_iOhwxlq8qFLLA">@import url(https://fon=
+ts.googleapis.com/css?family=3DGoogle+Sans_old:400,500|Roboto_old:300,400,4=
+00i,500,700&subset=3Dlatin,vietnamese,latin-ext,cyrillic,greek,cyrillic-ext=
+,greek-ext);</style><style nonce=3D"160gUz6J_iOhwxlq8qFLLA">[class=3D"x_bod=
+y-content-wrapper"] * {white-space: normal !important;}</style></head><body=
+ dir=3D"ltr" style=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sa=
+ns-serif;font-size: 14px; font-weight: 400; line-height: 20px;text-align: s=
+tart; word-wrap: break-word; margin: 0; padding: 0; height: 100%; width: 10=
+0%;"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"backg=
+round-color:rgb(212,20,36);" width=3D"100%" role=3D"presentation"><tbody><t=
+r height=3D"64px"><td style=3D"padding: 0 24px;"><img alt=3D"Moduli Google"=
+ height=3D"26px" style=3D"display: inline-block; margin: 0; vertical-align:=
+ middle;" width=3D"143px" src=3D"https://www.gstatic.com/docs/forms/google_=
+forms_logo_lockup_white_2x.png"></td></tr></tbody></table><div class=3D"bod=
+y-content-wrapper" style=3D"padding: 12px; background-color: rgb(251,232,23=
+3);"><div style=3D"margin: 0 auto; max-width: 640px; min-width: 154px;"><di=
+v style=3D"border: 1px solid #dadce0; padding: 20px 12px;background-color: =
+#fff; border-radius: 8px; margin-bottom: 12px;padding: 20px;"><h1 style=3D"=
+color: #202124;font-family: Roboto,Helvetica,Arial,sans-serif;font-size: 20=
+px; font-weight: 400; line-height: 28px;margin: 0 0 12px;">Grazie per aver =
+compilato <a href=3D"https://docs.google.com/forms/d/e/1FAIpQLSfVMPg_TkJsj4=
+TltUEUZuvscVdfUg9R186EssZTASRYQNkmQA/viewform?usp=3Dmail_form_link" target=
+=3D"_blank" style=3D"white-space: pre-wrap;">Questionario di Soddisfazione =
+sulla Laurea in Informatica di UNITO<span></span></a></h1>Ecco le risposte =
+ricevute.<div style=3D"margin-top: 16px;"><div style=3D"margin-top: 24px"><=
+a href=3D"https://docs.google.com/forms/d/e/1FAIpQLSfVMPg_TkJsj4TltUEUZuvsc=
+VdfUg9R186EssZTASRYQNkmQA/viewform?edit2=3D2_ABaOnuca95pJB44mGZFuZxZyWuKT6f=
+1ZGW9iKeaChyVjDVQyliu3OIPy_tuQ1wCNlQ" target=3D"_blank" style=3D"border-rad=
+ius: 4px;font-family: &#39;Google Sans&#39;,Roboto,Helvetica,Arial,sans-ser=
+if;font-size: 14px; font-weight: 500; padding: 8px 24px; text-align: center=
+; text-decoration: none;background-color: rgb(212,20,36); color: #fff;">Mod=
+ifica risposta</a></div><div itemprop=3D"action" itemscope itemtype=3D"http=
+://schema.org/ViewAction"><meta itemprop=3D"url" content=3D"https://docs.go=
+ogle.com/forms/d/e/1FAIpQLSfVMPg_TkJsj4TltUEUZuvscVdfUg9R186EssZTASRYQNkmQA=
+/viewform?edit2=3D2_ABaOnuca95pJB44mGZFuZxZyWuKT6f1ZGW9iKeaChyVjDVQyliu3OIP=
+y_tuQ1wCNlQ&amp;usp=3Dmail_goto_form"><meta itemprop=3D"name" content=3D"Mo=
+difica la risposta"></div></div></div><div style=3D"border-bottom: 1px soli=
+d #dadce0; border-left: 1px solid #dadce0; border-right: 1px solid #dadce0;=
+ border-top: 8px solid rgb(212,20,36); padding: 20px;background-color: #fff=
+; border-radius: 8px; margin-bottom: 12px;"><h1 dir=3D"ltr" style=3D"font-f=
+amily: Roboto,Helvetica,Arial,sans-serif;font-size: 32px; font-weight: 400;=
+ line-height: 42px;white-space: pre-wrap;margin: 0 0 12px;">Questionario di=
+ Soddisfazione sulla Laurea in Informatica di UNITO<span></span></h1><div s=
+tyle=3D"white-space: pre-wrap;margin-bottom: 12px;"><div>Gentile Laureata, =
+gentile Laureato, <br></div><div>=C2=A0=C2=A0=C2=A0=C2=A0 ringraziandoti pe=
+r aver acconsentito a essere ricontattata/o=C2=A0<span>via email=C2=A0</spa=
+n><span>dopo la laurea, ti inviamo il primo questionario di soddisfazione e=
+ ti chiediamo di compilarlo per darci le tue opinioni sull'esperienza di st=
+udio che hai recentemente concluso. Le tue risposte sono molto preziose per=
+ migliorare il corso di studio!</span></div><div><br></div><div>Ti ricordia=
+mo che ti ricontatteremo una sola volta ancora, per chiederti informazioni =
+entro un anno dalla laurea.</div><div>=C2=A0<br></div><div>Grazie! Un=C2=A0=
+<span>cordiale=C2=A0</span><span>saluto,</span></div><div>la Presidente del=
+ Corso di Laurea, Liliana Ardissono<br></div></div><div dir=3D"ltr">Il tuo =
+indirizzo email (<b>luca.barra@edu.unito.it</b>) =C3=A8 stato registrato qu=
+ando hai inviato questo modulo.</div></div><div style=3D"border: 1px solid =
+#dadce0; padding: 20px 12px;background-color: #fff; border-radius: 8px; mar=
+gin-bottom: 12px;margin-bottom: 12px;"><div style=3D"padding: 0 12px;"><h2 =
+dir=3D"auto" style=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sa=
+ns-serif;font-size: 16px; font-weight: 400; line-height: 24px;white-space: =
+pre-wrap;margin: 0 0 16px;"><span style=3D"white-space:pre-wrap">Seleziona =
+l'area tematica di approfondimento che hai frequentato</span><span style=3D=
+"color: #d93025;" aria-label=3D"Domanda obbligatoria"> *</span></h2></div><=
+div style=3D"padding: 0 12px;"><div style=3D"margin-top: 16px;"><table styl=
+e=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-serif;font-siz=
+e: 14px; font-weight: 400; line-height: 20px;color: #70757a;margin-top: 8px=
+; table-layout: fixed;"><tr><td><div role=3D"radio" aria-checked=3D"false" =
+aria-label=3D"Informazione e Conoscenza" style=3D"border: solid 2px #9aa0a6=
+; height: 16px; width: 16px; border-radius: 50%;"></div></td><td style=3D"m=
+in-width: 8px;"></td><td style=3D"word-break: break-word;">Informazione e C=
+onoscenza</td></tr></table></div><div style=3D"margin-top: 16px;"><table st=
+yle=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-serif;font-s=
+ize: 14px; font-weight: 400; line-height: 20px;margin-top: 8px; table-layou=
+t: fixed;"><tr><td><div role=3D"radio" aria-checked=3D"true" aria-label=3D"=
+Linguaggi e Sistemi" style=3D"border: solid 2px #5f6368; height: 16px; widt=
+h: 16px; border-radius: 50%;"><div style=3D"background-color: #5f6368; bord=
+er: solid 5px #5f6368; border-radius: 50%; margin: 3px; height: 0; width: 0=
+;"></div></div></td><td style=3D"min-width: 8px;"></td><td style=3D"word-br=
+eak: break-word;">Linguaggi e Sistemi</td></tr></table></div><div style=3D"=
+margin-top: 16px;"><table style=3D"color: #202124;font-family: Roboto,Helve=
+tica,Arial,sans-serif;font-size: 14px; font-weight: 400; line-height: 20px;=
+color: #70757a;margin-top: 8px; table-layout: fixed;"><tr><td><div role=3D"=
+radio" aria-checked=3D"false" aria-label=3D"Sistemi e Reti" style=3D"border=
+: solid 2px #9aa0a6; height: 16px; width: 16px; border-radius: 50%;"></div>=
+</td><td style=3D"min-width: 8px;"></td><td style=3D"word-break: break-word=
+;">Sistemi e Reti</td></tr></table></div></div></div><div style=3D"border: =
+1px solid #dadce0; padding: 20px 12px;background-color: #fff; border-radius=
+: 8px; margin-bottom: 12px;margin-bottom: 12px;"><div style=3D"padding: 0 1=
+2px;"><h2 dir=3D"auto" style=3D"color: #202124;font-family: Roboto,Helvetic=
+a,Arial,sans-serif;font-size: 16px; font-weight: 400; line-height: 24px;whi=
+te-space: pre-wrap;margin: 0 0 16px;">Di quale diploma di scuola superiore =
+(o titolo equipollente) sei in possesso?<br><span style=3D"color: #d93025;"=
+ aria-label=3D"Domanda obbligatoria"> *</span></h2></div><div style=3D"padd=
+ing: 0 12px;"><div style=3D"margin-top: 16px;"><table style=3D"color: #2021=
+24;font-family: Roboto,Helvetica,Arial,sans-serif;font-size: 14px; font-wei=
+ght: 400; line-height: 20px;color: #70757a;margin-top: 8px; table-layout: f=
+ixed;"><tr><td><div role=3D"radio" aria-checked=3D"false" aria-label=3D"Lic=
+eo Classico" style=3D"border: solid 2px #9aa0a6; height: 16px; width: 16px;=
+ border-radius: 50%;"></div></td><td style=3D"min-width: 8px;"></td><td sty=
+le=3D"word-break: break-word;">Liceo Classico</td></tr></table></div><div s=
+tyle=3D"margin-top: 16px;"><table style=3D"color: #202124;font-family: Robo=
+to,Helvetica,Arial,sans-serif;font-size: 14px; font-weight: 400; line-heigh=
+t: 20px;margin-top: 8px; table-layout: fixed;"><tr><td><div role=3D"radio" =
+aria-checked=3D"true" aria-label=3D"Liceo Scientifico" style=3D"border: sol=
+id 2px #5f6368; height: 16px; width: 16px; border-radius: 50%;"><div style=
+=3D"background-color: #5f6368; border: solid 5px #5f6368; border-radius: 50=
+%; margin: 3px; height: 0; width: 0;"></div></div></td><td style=3D"min-wid=
+th: 8px;"></td><td style=3D"word-break: break-word;">Liceo Scientifico</td>=
+</tr></table></div><div style=3D"margin-top: 16px;"><table style=3D"color: =
+#202124;font-family: Roboto,Helvetica,Arial,sans-serif;font-size: 14px; fon=
+t-weight: 400; line-height: 20px;color: #70757a;margin-top: 8px; table-layo=
+ut: fixed;"><tr><td><div role=3D"radio" aria-checked=3D"false" aria-label=
+=3D"Liceo Linguistico" style=3D"border: solid 2px #9aa0a6; height: 16px; wi=
+dth: 16px; border-radius: 50%;"></div></td><td style=3D"min-width: 8px;"></=
+td><td style=3D"word-break: break-word;">Liceo Linguistico</td></tr></table=
+></div><div style=3D"margin-top: 16px;"><table style=3D"color: #202124;font=
+-family: Roboto,Helvetica,Arial,sans-serif;font-size: 14px; font-weight: 40=
+0; line-height: 20px;color: #70757a;margin-top: 8px; table-layout: fixed;">=
+<tr><td><div role=3D"radio" aria-checked=3D"false" aria-label=3D"Liceo Arti=
+stico" style=3D"border: solid 2px #9aa0a6; height: 16px; width: 16px; borde=
+r-radius: 50%;"></div></td><td style=3D"min-width: 8px;"></td><td style=3D"=
+word-break: break-word;">Liceo Artistico</td></tr></table></div><div style=
+=3D"margin-top: 16px;"><table style=3D"color: #202124;font-family: Roboto,H=
+elvetica,Arial,sans-serif;font-size: 14px; font-weight: 400; line-height: 2=
+0px;color: #70757a;margin-top: 8px; table-layout: fixed;"><tr><td><div role=
+=3D"radio" aria-checked=3D"false" aria-label=3D"Liceo delle Scienze Umane" =
+style=3D"border: solid 2px #9aa0a6; height: 16px; width: 16px; border-radiu=
+s: 50%;"></div></td><td style=3D"min-width: 8px;"></td><td style=3D"word-br=
+eak: break-word;">Liceo delle Scienze Umane</td></tr></table></div><div sty=
+le=3D"margin-top: 16px;"><table style=3D"color: #202124;font-family: Roboto=
+,Helvetica,Arial,sans-serif;font-size: 14px; font-weight: 400; line-height:=
+ 20px;color: #70757a;margin-top: 8px; table-layout: fixed;"><tr><td><div ro=
+le=3D"radio" aria-checked=3D"false" aria-label=3D"Istituto Tecnico" style=
+=3D"border: solid 2px #9aa0a6; height: 16px; width: 16px; border-radius: 50=
+%;"></div></td><td style=3D"min-width: 8px;"></td><td style=3D"word-break: =
+break-word;">Istituto Tecnico</td></tr></table></div><div style=3D"margin-t=
+op: 16px;"><table style=3D"color: #202124;font-family: Roboto,Helvetica,Ari=
+al,sans-serif;font-size: 14px; font-weight: 400; line-height: 20px;color: #=
+70757a;margin-top: 8px; table-layout: fixed;"><tr><td><div role=3D"radio" a=
+ria-checked=3D"false" aria-label=3D"Istituto Professionale" style=3D"border=
+: solid 2px #9aa0a6; height: 16px; width: 16px; border-radius: 50%;"></div>=
+</td><td style=3D"min-width: 8px;"></td><td style=3D"word-break: break-word=
+;">Istituto Professionale</td></tr></table></div><div style=3D"margin-top: =
+16px;"><table style=3D"color: #202124;font-family: Roboto,Helvetica,Arial,s=
+ans-serif;font-size: 14px; font-weight: 400; line-height: 20px;color: #7075=
+7a;margin-top: 8px; table-layout: fixed;"><tr><td><div role=3D"radio" aria-=
+checked=3D"false" aria-label=3D"Altro: " style=3D"border: solid 2px #9aa0a6=
+; height: 16px; width: 16px; border-radius: 50%;"></div></td><td style=3D"m=
+in-width: 8px;"></td><td style=3D"white-space: nowrap;">Altro:&nbsp;&nbsp;<=
+/td><td style=3D"word-break: break-word;border-bottom: 1px dotted rgba(0,0,=
+0,0.38);width: 99%;"></td></tr></table></div></div></div><div style=3D"bord=
+er-bottom: 1px solid #dadce0; border-left: 1px solid #dadce0; border-right:=
+ 1px solid #dadce0; border-top: 8px solid rgb(212,20,36); padding: 0;backgr=
+ound-color: #fff; border-radius: 8px; margin-bottom: 12px;margin-bottom: 12=
+px;"><div style=3D"padding: 0 ;"><h2 dir=3D"auto" style=3D"color: #fff;font=
+-family: Roboto,Helvetica,Arial,sans-serif;font-size: 16px; font-weight: 40=
+0; line-height: 24px;background-color: rgb(212,20,36); margin: 0; padding: =
+4px 24px 12px;border-bottom-left-radius: 8px; border-bottom-right-radius: 8=
+px;">Sezione 2<span></span></h2></div><div style=3D"padding: 0 12px;"></div=
+></div><div style=3D"border: 1px solid #dadce0; padding: 20px 12px;backgrou=
+nd-color: #fff; border-radius: 8px; margin-bottom: 12px;margin-bottom: 12px=
+;"><div style=3D"padding: 0 12px;"><h2 dir=3D"auto" style=3D"color: #202124=
+;font-family: Roboto,Helvetica,Arial,sans-serif;font-size: 16px; font-weigh=
+t: 400; line-height: 24px;white-space: pre-wrap;margin: 0 0 16px;"><span st=
+yle=3D"white-space:pre-wrap">Pensi che ti siano mancate delle basi dalla sc=
+uola superiore per la comprensione di argomenti affrontati in questo corso =
+di laurea?</span><span style=3D"color: #d93025;" aria-label=3D"Domanda obbl=
+igatoria"> *</span></h2></div><div style=3D"padding: 0 12px;"><div style=3D=
+"margin-top: 16px;"><table style=3D"color: #202124;font-family: Roboto,Helv=
+etica,Arial,sans-serif;font-size: 14px; font-weight: 400; line-height: 20px=
+;color: #70757a;margin-top: 8px; table-layout: fixed;"><tr><td><div role=3D=
+"radio" aria-checked=3D"false" aria-label=3D"S=C3=AC" style=3D"border: soli=
+d 2px #9aa0a6; height: 16px; width: 16px; border-radius: 50%;"></div></td><=
+td style=3D"min-width: 8px;"></td><td style=3D"word-break: break-word;">S=
+=C3=AC</td></tr></table></div><div style=3D"margin-top: 16px;"><table style=
+=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-serif;font-size=
+: 14px; font-weight: 400; line-height: 20px;margin-top: 8px; table-layout: =
+fixed;"><tr><td><div role=3D"radio" aria-checked=3D"true" aria-label=3D"No"=
+ style=3D"border: solid 2px #5f6368; height: 16px; width: 16px; border-radi=
+us: 50%;"><div style=3D"background-color: #5f6368; border: solid 5px #5f636=
+8; border-radius: 50%; margin: 3px; height: 0; width: 0;"></div></div></td>=
+<td style=3D"min-width: 8px;"></td><td style=3D"word-break: break-word;">No=
+</td></tr></table></div></div></div><div style=3D"border-bottom: 1px solid =
+#dadce0; border-left: 1px solid #dadce0; border-right: 1px solid #dadce0; b=
+order-top: 8px solid rgb(212,20,36); padding: 0;background-color: #fff; bor=
+der-radius: 8px; margin-bottom: 12px;margin-bottom: 12px;"><div style=3D"pa=
+dding: 0 ;"><h2 dir=3D"auto" style=3D"color: #fff;font-family: Roboto,Helve=
+tica,Arial,sans-serif;font-size: 16px; font-weight: 400; line-height: 24px;=
+background-color: rgb(212,20,36); margin: 0; padding: 4px 24px 12px;border-=
+bottom-left-radius: 8px; border-bottom-right-radius: 8px;">Sezione 4<span><=
+/span></h2></div><div style=3D"padding: 0 12px;"></div></div><div style=3D"=
+border: 1px solid #dadce0; padding: 20px 12px;background-color: #fff; borde=
+r-radius: 8px; margin-bottom: 12px;margin-bottom: 12px;"><div style=3D"padd=
+ing: 0 12px;"><h2 dir=3D"auto" style=3D"color: #202124;font-family: Roboto,=
+Helvetica,Arial,sans-serif;font-size: 16px; font-weight: 400; line-height: =
+24px;white-space: pre-wrap;margin: 0 0 16px;"><div>
+<span>Con quale delle seguenti affermazioni sei d'accordo?<br></span>
+
+</div><span style=3D"color: #d93025;" aria-label=3D"Domanda obbligatoria"> =
+*</span></h2></div><div style=3D"padding: 0 12px;"><div style=3D"margin-top=
+: 16px;"><table style=3D"color: #202124;font-family: Roboto,Helvetica,Arial=
+,sans-serif;font-size: 14px; font-weight: 400; line-height: 20px;margin-top=
+: 8px; table-layout: fixed;"><tr><td><div role=3D"radio" aria-checked=3D"tr=
+ue" aria-label=3D"I docenti di questo corso di laurea mi hanno fornito suff=
+icienti informazioni a supporto delle mie scelte di studio." style=3D"borde=
+r: solid 2px #5f6368; height: 16px; width: 16px; border-radius: 50%;"><div =
+style=3D"background-color: #5f6368; border: solid 5px #5f6368; border-radiu=
+s: 50%; margin: 3px; height: 0; width: 0;"></div></div></td><td style=3D"mi=
+n-width: 8px;"></td><td style=3D"word-break: break-word;">I docenti di ques=
+to corso di laurea mi hanno fornito sufficienti informazioni a supporto del=
+le mie scelte di studio.</td></tr></table></div><div style=3D"margin-top: 1=
+6px;"><table style=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sa=
+ns-serif;font-size: 14px; font-weight: 400; line-height: 20px;color: #70757=
+a;margin-top: 8px; table-layout: fixed;"><tr><td><div role=3D"radio" aria-c=
+hecked=3D"false" aria-label=3D"Avrei voluto maggiore interazione con i doce=
+nti di questo corso di laurea per ricevere informazioni a supporto delle mi=
+e scelte di studio." style=3D"border: solid 2px #9aa0a6; height: 16px; widt=
+h: 16px; border-radius: 50%;"></div></td><td style=3D"min-width: 8px;"></td=
+><td style=3D"word-break: break-word;">Avrei voluto maggiore interazione co=
+n i docenti di questo corso di laurea per ricevere informazioni a supporto =
+delle mie scelte di studio.</td></tr></table></div><div style=3D"margin-top=
+: 16px;"><table style=3D"color: #202124;font-family: Roboto,Helvetica,Arial=
+,sans-serif;font-size: 14px; font-weight: 400; line-height: 20px;color: #70=
+757a;margin-top: 8px; table-layout: fixed;"><tr><td><div role=3D"radio" ari=
+a-checked=3D"false" aria-label=3D"Non ho contattato i docenti di questo cor=
+so di laurea per ricevere informazioni a supporto delle mie scelte di studi=
+o." style=3D"border: solid 2px #9aa0a6; height: 16px; width: 16px; border-r=
+adius: 50%;"></div></td><td style=3D"min-width: 8px;"></td><td style=3D"wor=
+d-break: break-word;">Non ho contattato i docenti di questo corso di laurea=
+ per ricevere informazioni a supporto delle mie scelte di studio.</td></tr>=
+</table></div></div></div><div style=3D"border: 1px solid #dadce0; padding:=
+ 20px 12px;background-color: #fff; border-radius: 8px; margin-bottom: 12px;=
+margin-bottom: 12px;"><div style=3D"padding: 0 12px;"><h2 dir=3D"auto" styl=
+e=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-serif;font-siz=
+e: 16px; font-weight: 400; line-height: 24px;white-space: pre-wrap;margin: =
+0 0 16px;"><span style=3D"white-space:pre-wrap">Tornando indietro nel tempo=
+, ti reiscriveresti a questo corso di laurea?</span><br><span style=3D"colo=
+r: #d93025;" aria-label=3D"Domanda obbligatoria"> *</span></h2></div><div s=
+tyle=3D"padding: 0 12px;"><div style=3D"margin-top: 16px;"><table style=3D"=
+color: #202124;font-family: Roboto,Helvetica,Arial,sans-serif;font-size: 14=
+px; font-weight: 400; line-height: 20px;margin-top: 8px; table-layout: fixe=
+d;"><tr><td><div role=3D"radio" aria-checked=3D"true" aria-label=3D"S=C3=AC=
+" style=3D"border: solid 2px #5f6368; height: 16px; width: 16px; border-rad=
+ius: 50%;"><div style=3D"background-color: #5f6368; border: solid 5px #5f63=
+68; border-radius: 50%; margin: 3px; height: 0; width: 0;"></div></div></td=
+><td style=3D"min-width: 8px;"></td><td style=3D"word-break: break-word;">S=
+=C3=AC</td></tr></table></div><div style=3D"margin-top: 16px;"><table style=
+=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-serif;font-size=
+: 14px; font-weight: 400; line-height: 20px;color: #70757a;margin-top: 8px;=
+ table-layout: fixed;"><tr><td><div role=3D"radio" aria-checked=3D"false" a=
+ria-label=3D"No" style=3D"border: solid 2px #9aa0a6; height: 16px; width: 1=
+6px; border-radius: 50%;"></div></td><td style=3D"min-width: 8px;"></td><td=
+ style=3D"word-break: break-word;">No</td></tr></table></div></div></div><d=
+iv style=3D"border-bottom: 1px solid #dadce0; border-left: 1px solid #dadce=
+0; border-right: 1px solid #dadce0; border-top: 8px solid rgb(212,20,36); p=
+adding: 0;background-color: #fff; border-radius: 8px; margin-bottom: 12px;m=
+argin-bottom: 12px;"><div style=3D"padding: 0 ;"><h2 dir=3D"auto" style=3D"=
+color: #fff;font-family: Roboto,Helvetica,Arial,sans-serif;font-size: 16px;=
+ font-weight: 400; line-height: 24px;background-color: rgb(212,20,36); marg=
+in: 0; padding: 4px 24px 12px;border-bottom-left-radius: 8px; border-bottom=
+-right-radius: 8px;">Sezione 6<span></span></h2></div><div style=3D"padding=
+: 0 12px;"></div></div><div style=3D"border: 1px solid #dadce0; padding: 20=
+px 12px;background-color: #fff; border-radius: 8px; margin-bottom: 12px;mar=
+gin-bottom: 12px;"><div style=3D"padding: 0 12px;"><h2 dir=3D"auto" style=
+=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-serif;font-size=
+: 16px; font-weight: 400; line-height: 24px;white-space: pre-wrap;margin: 0=
+ 0 16px;"><span style=3D"white-space:pre-wrap">Come pensi che il corso di l=
+aurea frequentato possa essere migliorato?</span><br></h2></div><div style=
+=3D"padding: 0 12px;"><div dir=3D"auto" style=3D"white-space: pre-wrap;bord=
+er-bottom: 1px dotted rgba(0,0,0,0.38);margin: 12px 0 8px; min-height: 20px=
+;width: 100%;"></div></div></div><div style=3D"border-bottom: 1px solid #da=
+dce0; border-left: 1px solid #dadce0; border-right: 1px solid #dadce0; bord=
+er-top: 8px solid rgb(212,20,36); padding: 0;background-color: #fff; border=
+-radius: 8px; margin-bottom: 12px;margin-bottom: 12px;"><div style=3D"paddi=
+ng: 0 ;"><h2 dir=3D"auto" style=3D"color: #fff;font-family: Roboto,Helvetic=
+a,Arial,sans-serif;font-size: 16px; font-weight: 400; line-height: 24px;bac=
+kground-color: rgb(212,20,36); margin: 0; padding: 4px 24px 12px;border-bot=
+tom-left-radius: 8px; border-bottom-right-radius: 8px;">Sezione 7<span></sp=
+an></h2></div><div style=3D"padding: 0 12px;"></div></div><div style=3D"bor=
+der: 1px solid #dadce0; padding: 20px 12px;background-color: #fff; border-r=
+adius: 8px; margin-bottom: 12px;margin-bottom: 12px;"><div style=3D"padding=
+: 0 12px;"><h2 dir=3D"auto" style=3D"color: #202124;font-family: Roboto,Hel=
+vetica,Arial,sans-serif;font-size: 16px; font-weight: 400; line-height: 24p=
+x;white-space: pre-wrap;margin: 0 0 16px;">In base alla tua esperienza pens=
+i che tutti i docenti del corso di laurea dovrebbero REGISTRARE le lezioni?=
+<span style=3D"color: #d93025;" aria-label=3D"Domanda obbligatoria"> *</spa=
+n></h2></div><div style=3D"padding: 0 12px;"><div style=3D"margin-top: 16px=
+;"><table style=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-=
+serif;font-size: 14px; font-weight: 400; line-height: 20px;margin-top: 8px;=
+ table-layout: fixed;"><tr><td><div role=3D"radio" aria-checked=3D"true" ar=
+ia-label=3D"Si" style=3D"border: solid 2px #5f6368; height: 16px; width: 16=
+px; border-radius: 50%;"><div style=3D"background-color: #5f6368; border: s=
+olid 5px #5f6368; border-radius: 50%; margin: 3px; height: 0; width: 0;"></=
+div></div></td><td style=3D"min-width: 8px;"></td><td style=3D"word-break: =
+break-word;">Si</td></tr></table></div><div style=3D"margin-top: 16px;"><ta=
+ble style=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-serif;=
+font-size: 14px; font-weight: 400; line-height: 20px;color: #70757a;margin-=
+top: 8px; table-layout: fixed;"><tr><td><div role=3D"radio" aria-checked=3D=
+"false" aria-label=3D"No" style=3D"border: solid 2px #9aa0a6; height: 16px;=
+ width: 16px; border-radius: 50%;"></div></td><td style=3D"min-width: 8px;"=
+></td><td style=3D"word-break: break-word;">No</td></tr></table></div><div =
+style=3D"margin-top: 16px;"><table style=3D"color: #202124;font-family: Rob=
+oto,Helvetica,Arial,sans-serif;font-size: 14px; font-weight: 400; line-heig=
+ht: 20px;color: #70757a;margin-top: 8px; table-layout: fixed;"><tr><td><div=
+ role=3D"radio" aria-checked=3D"false" aria-label=3D"Mi =C3=A8 indifferente=
+" style=3D"border: solid 2px #9aa0a6; height: 16px; width: 16px; border-rad=
+ius: 50%;"></div></td><td style=3D"min-width: 8px;"></td><td style=3D"word-=
+break: break-word;">Mi =C3=A8 indifferente</td></tr></table></div></div></d=
+iv><div style=3D"border: 1px solid #dadce0; padding: 20px 12px;background-c=
+olor: #fff; border-radius: 8px; margin-bottom: 12px;margin-bottom: 12px;"><=
+div style=3D"padding: 0 12px;"><h2 dir=3D"auto" style=3D"color: #202124;fon=
+t-family: Roboto,Helvetica,Arial,sans-serif;font-size: 16px; font-weight: 4=
+00; line-height: 24px;white-space: pre-wrap;margin: 0 0 16px;">
+<span>In base alla tua esperienza pensi che negli insegnamenti del corso di=
+ laurea servano </span>pi=C3=B9 attivit=C3=A0 LABORATORIALI<span>?</span>
+
+<span style=3D"color: #d93025;" aria-label=3D"Domanda obbligatoria"> *</spa=
+n></h2></div><div style=3D"padding: 0 12px;"><div style=3D"margin-top: 16px=
+;"><table style=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-=
+serif;font-size: 14px; font-weight: 400; line-height: 20px;color: #70757a;m=
+argin-top: 8px; table-layout: fixed;"><tr><td><div role=3D"radio" aria-chec=
+ked=3D"false" aria-label=3D"Si" style=3D"border: solid 2px #9aa0a6; height:=
+ 16px; width: 16px; border-radius: 50%;"></div></td><td style=3D"min-width:=
+ 8px;"></td><td style=3D"word-break: break-word;">Si</td></tr></table></div=
+><div style=3D"margin-top: 16px;"><table style=3D"color: #202124;font-famil=
+y: Roboto,Helvetica,Arial,sans-serif;font-size: 14px; font-weight: 400; lin=
+e-height: 20px;color: #70757a;margin-top: 8px; table-layout: fixed;"><tr><t=
+d><div role=3D"radio" aria-checked=3D"false" aria-label=3D"No" style=3D"bor=
+der: solid 2px #9aa0a6; height: 16px; width: 16px; border-radius: 50%;"></d=
+iv></td><td style=3D"min-width: 8px;"></td><td style=3D"word-break: break-w=
+ord;">No</td></tr></table></div><div style=3D"margin-top: 16px;"><table sty=
+le=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-serif;font-si=
+ze: 14px; font-weight: 400; line-height: 20px;margin-top: 8px; table-layout=
+: fixed;"><tr><td><div role=3D"radio" aria-checked=3D"true" aria-label=3D"M=
+i =C3=A8 indifferente" style=3D"border: solid 2px #5f6368; height: 16px; wi=
+dth: 16px; border-radius: 50%;"><div style=3D"background-color: #5f6368; bo=
+rder: solid 5px #5f6368; border-radius: 50%; margin: 3px; height: 0; width:=
+ 0;"></div></div></td><td style=3D"min-width: 8px;"></td><td style=3D"word-=
+break: break-word;">Mi =C3=A8 indifferente</td></tr></table></div></div></d=
+iv><div style=3D"border: 1px solid #dadce0; padding: 20px 12px;background-c=
+olor: #fff; border-radius: 8px; margin-bottom: 12px;margin-bottom: 12px;"><=
+div style=3D"padding: 0 12px;"><h2 dir=3D"auto" style=3D"color: #202124;fon=
+t-family: Roboto,Helvetica,Arial,sans-serif;font-size: 16px; font-weight: 4=
+00; line-height: 24px;white-space: pre-wrap;margin: 0 0 16px;">
+Intendi proseguire con una laurea magistrale?=20
+
+<span style=3D"color: #d93025;" aria-label=3D"Domanda obbligatoria"> *</spa=
+n></h2></div><div style=3D"padding: 0 12px;"><div style=3D"margin-top: 16px=
+;"><table style=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-=
+serif;font-size: 14px; font-weight: 400; line-height: 20px;margin-top: 8px;=
+ table-layout: fixed;"><tr><td><div role=3D"radio" aria-checked=3D"true" ar=
+ia-label=3D"Si" style=3D"border: solid 2px #5f6368; height: 16px; width: 16=
+px; border-radius: 50%;"><div style=3D"background-color: #5f6368; border: s=
+olid 5px #5f6368; border-radius: 50%; margin: 3px; height: 0; width: 0;"></=
+div></div></td><td style=3D"min-width: 8px;"></td><td style=3D"word-break: =
+break-word;">Si</td></tr></table></div><div style=3D"margin-top: 16px;"><ta=
+ble style=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-serif;=
+font-size: 14px; font-weight: 400; line-height: 20px;color: #70757a;margin-=
+top: 8px; table-layout: fixed;"><tr><td><div role=3D"radio" aria-checked=3D=
+"false" aria-label=3D"No" style=3D"border: solid 2px #9aa0a6; height: 16px;=
+ width: 16px; border-radius: 50%;"></div></td><td style=3D"min-width: 8px;"=
+></td><td style=3D"word-break: break-word;">No</td></tr></table></div><div =
+style=3D"margin-top: 16px;"><table style=3D"color: #202124;font-family: Rob=
+oto,Helvetica,Arial,sans-serif;font-size: 14px; font-weight: 400; line-heig=
+ht: 20px;color: #70757a;margin-top: 8px; table-layout: fixed;"><tr><td><div=
+ role=3D"radio" aria-checked=3D"false" aria-label=3D"Non ho ancora deciso" =
+style=3D"border: solid 2px #9aa0a6; height: 16px; width: 16px; border-radiu=
+s: 50%;"></div></td><td style=3D"min-width: 8px;"></td><td style=3D"word-br=
+eak: break-word;">Non ho ancora deciso</td></tr></table></div><div style=3D=
+"margin-top: 16px;"><table style=3D"color: #202124;font-family: Roboto,Helv=
+etica,Arial,sans-serif;font-size: 14px; font-weight: 400; line-height: 20px=
+;color: #70757a;margin-top: 8px; table-layout: fixed;"><tr><td><div role=3D=
+"radio" aria-checked=3D"false" aria-label=3D"Non per il momento, magari in =
+futuro" style=3D"border: solid 2px #9aa0a6; height: 16px; width: 16px; bord=
+er-radius: 50%;"></div></td><td style=3D"min-width: 8px;"></td><td style=3D=
+"word-break: break-word;">Non per il momento, magari in futuro</td></tr></t=
+able></div></div></div><div style=3D"border-bottom: 1px solid #dadce0; bord=
+er-left: 1px solid #dadce0; border-right: 1px solid #dadce0; border-top: 8p=
+x solid rgb(212,20,36); padding: 0;background-color: #fff; border-radius: 8=
+px; margin-bottom: 12px;margin-bottom: 12px;"><div style=3D"padding: 0 ;"><=
+h2 dir=3D"auto" style=3D"color: #fff;font-family: Roboto,Helvetica,Arial,sa=
+ns-serif;font-size: 16px; font-weight: 400; line-height: 24px;background-co=
+lor: rgb(212,20,36); margin: 0; padding: 4px 24px 12px;border-bottom-left-r=
+adius: 8px; border-bottom-right-radius: 8px;">Sezione 8<span></span></h2></=
+div><div style=3D"padding: 0 12px;"></div></div><div style=3D"border: 1px s=
+olid #dadce0; padding: 20px 12px;background-color: #fff; border-radius: 8px=
+; margin-bottom: 12px;margin-bottom: 12px;"><div style=3D"padding: 0 12px;"=
+><h2 dir=3D"auto" style=3D"color: #202124;font-family: Roboto,Helvetica,Ari=
+al,sans-serif;font-size: 16px; font-weight: 400; line-height: 24px;white-sp=
+ace: pre-wrap;margin: 0 0 16px;">In quale Ateneo vorresti proseguire gli st=
+udi?<br><span style=3D"color: #d93025;" aria-label=3D"Domanda obbligatoria"=
+> *</span></h2></div><div style=3D"padding: 0 12px;"><div style=3D"margin-t=
+op: 16px;"><table style=3D"color: #202124;font-family: Roboto,Helvetica,Ari=
+al,sans-serif;font-size: 14px; font-weight: 400; line-height: 20px;margin-t=
+op: 8px; table-layout: fixed;"><tr><td><div role=3D"radio" aria-checked=3D"=
+true" aria-label=3D"Universit=C3=A0 di Torino" style=3D"border: solid 2px #=
+5f6368; height: 16px; width: 16px; border-radius: 50%;"><div style=3D"backg=
+round-color: #5f6368; border: solid 5px #5f6368; border-radius: 50%; margin=
+: 3px; height: 0; width: 0;"></div></div></td><td style=3D"min-width: 8px;"=
+></td><td style=3D"word-break: break-word;">Universit=C3=A0 di Torino</td><=
+/tr></table></div><div style=3D"margin-top: 16px;"><table style=3D"color: #=
+202124;font-family: Roboto,Helvetica,Arial,sans-serif;font-size: 14px; font=
+-weight: 400; line-height: 20px;color: #70757a;margin-top: 8px; table-layou=
+t: fixed;"><tr><td><div role=3D"radio" aria-checked=3D"false" aria-label=3D=
+"Politecnico di Torino" style=3D"border: solid 2px #9aa0a6; height: 16px; w=
+idth: 16px; border-radius: 50%;"></div></td><td style=3D"min-width: 8px;"><=
+/td><td style=3D"word-break: break-word;">Politecnico di Torino</td></tr></=
+table></div><div style=3D"margin-top: 16px;"><table style=3D"color: #202124=
+;font-family: Roboto,Helvetica,Arial,sans-serif;font-size: 14px; font-weigh=
+t: 400; line-height: 20px;color: #70757a;margin-top: 8px; table-layout: fix=
+ed;"><tr><td><div role=3D"radio" aria-checked=3D"false" aria-label=3D"Unive=
+rsit=C3=A0 Statale di Milano" style=3D"border: solid 2px #9aa0a6; height: 1=
+6px; width: 16px; border-radius: 50%;"></div></td><td style=3D"min-width: 8=
+px;"></td><td style=3D"word-break: break-word;">Universit=C3=A0 Statale di =
+Milano</td></tr></table></div><div style=3D"margin-top: 16px;"><table style=
+=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-serif;font-size=
+: 14px; font-weight: 400; line-height: 20px;color: #70757a;margin-top: 8px;=
+ table-layout: fixed;"><tr><td><div role=3D"radio" aria-checked=3D"false" a=
+ria-label=3D"Universit=C3=A0 di Milano Bicocca" style=3D"border: solid 2px =
+#9aa0a6; height: 16px; width: 16px; border-radius: 50%;"></div></td><td sty=
+le=3D"min-width: 8px;"></td><td style=3D"word-break: break-word;">Universit=
+=C3=A0 di Milano Bicocca</td></tr></table></div><div style=3D"margin-top: 1=
+6px;"><table style=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sa=
+ns-serif;font-size: 14px; font-weight: 400; line-height: 20px;color: #70757=
+a;margin-top: 8px; table-layout: fixed;"><tr><td><div role=3D"radio" aria-c=
+hecked=3D"false" aria-label=3D"Non lo so ancora" style=3D"border: solid 2px=
+ #9aa0a6; height: 16px; width: 16px; border-radius: 50%;"></div></td><td st=
+yle=3D"min-width: 8px;"></td><td style=3D"word-break: break-word;">Non lo s=
+o ancora</td></tr></table></div><div style=3D"margin-top: 16px;"><table sty=
+le=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-serif;font-si=
+ze: 14px; font-weight: 400; line-height: 20px;color: #70757a;margin-top: 8p=
+x; table-layout: fixed;"><tr><td><div role=3D"radio" aria-checked=3D"false"=
+ aria-label=3D"Altro: " style=3D"border: solid 2px #9aa0a6; height: 16px; w=
+idth: 16px; border-radius: 50%;"></div></td><td style=3D"min-width: 8px;"><=
+/td><td style=3D"white-space: nowrap;">Altro:&nbsp;&nbsp;</td><td style=3D"=
+word-break: break-word;border-bottom: 1px dotted rgba(0,0,0,0.38);width: 99=
+%;"></td></tr></table></div></div></div><div style=3D"border: 1px solid #da=
+dce0; padding: 20px 12px;background-color: #fff; border-radius: 8px; margin=
+-bottom: 12px;margin-bottom: 12px;"><div style=3D"padding: 0 12px;"><h2 dir=
+=3D"auto" style=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-=
+serif;font-size: 16px; font-weight: 400; line-height: 24px;white-space: pre=
+-wrap;margin: 0 0 16px;">In quale corso di laurea magistrale vorresti prose=
+guire?<br><span style=3D"color: #d93025;" aria-label=3D"Domanda obbligatori=
+a"> *</span></h2></div><div style=3D"padding: 0 12px;"><div dir=3D"auto" st=
+yle=3D"white-space: pre-wrap;border-bottom: 1px dotted rgba(0,0,0,0.38);mar=
+gin: 12px 0 8px; min-height: 20px;width: 100%;">Informatica </div></div></d=
+iv></div><table align=3D"center" cellpadding=3D"0" cellspacing=3D"0" style=
+=3D"max-width: 672px; min-width: 154px; border-collapse: separate; border-s=
+pacing: 0 0.2em;" width=3D"100%" role=3D"presentation"><tbody><tr height=3D=
+"24px"><td></td></tr><tr><td><a href=3D"https://docs.google.com/forms?usp=
+=3Dmail_form_link" style=3D"color: #424242; font-size: 13px;">Crea il tuo m=
+odulo Google</a></td></tr><tr><td><a href=3D"https://docs.google.com/forms/=
+u/1/d/e/1FAIpQLSfVMPg_TkJsj4TltUEUZuvscVdfUg9R186EssZTASRYQNkmQA/reportabus=
+e?source=3Dhttps://docs.google.com/forms/d/e/1FAIpQLSfVMPg_TkJsj4TltUEUZuvs=
+cVdfUg9R186EssZTASRYQNkmQA/viewform&amp;usp=3Dmail_receipt_abuse" target=3D=
+"_blank" style=3D"color: #424242; font-size: 13px;">Segnala abuso</a></td><=
+/tr></tbody></table></div></body></html>
+<br>
+<div style=3D"font-size:1.3em">------------------------</div><span style=3D=
+"font-size:small"><div><img src=3D"https://web.unito.it/logofirmastu.png"><=
+br></div>Indirizzo istituzionale di posta elettronica degli studenti e dei =
+laureati dell&#39;Universit=C3=A0 di Torino</span><div><font size=3D"2">Off=
+icial=C2=A0University of Turin=C2=A0email address=C2=A0for students and gra=
+duates=C2=A0</font></div>
+--000000000000e804e0062655abac--

@@ -1,0 +1,4 @@
+application/pdf; zathura %s; copiousoutput;
+text/plain; cat %s; copiousoutput
+text/html; w3m -I %{charset} -T text/html; copiousoutput;
+image/png;feh %s

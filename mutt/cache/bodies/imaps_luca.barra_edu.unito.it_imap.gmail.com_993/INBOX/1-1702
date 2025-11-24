@@ -1,0 +1,150 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:8e91:0:b0:2e2:75a4:21a3 with SMTP id z17csp4354788ljk;
+        Mon, 20 May 2024 03:27:25 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGBdY6xy90lY00fIZ5sNZjSozNrVlOVok8E45vyuIICOnZ9EeeyMBvpCVFfQtqLlnTC4TVG
+X-Received: by 2002:aa7:d1d3:0:b0:574:eb26:74a with SMTP id 4fb4d7f45d1cf-574eb260839mr11729560a12.21.1716200845045;
+        Mon, 20 May 2024 03:27:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1716200845; cv=none;
+        d=google.com; s=arc-20160816;
+        b=vwNwH4V25JLdznB8pLxzMxMh4u/l/odY9ufA8URi0T2/5VUexnkajLeVxfbof7z1C2
+         kYo+cTFbjbCwhqjkdugzLkn6fFNNF6+9I2C9GiVeLrEBli+W+SRMNoMbeZ3DLpL3zM28
+         nZI3woqt2voO9hJSl0Lvgs7Kkck7pinmek3oGneg0uHKBoijOXNwzy3XYPVqoaRLKnRm
+         qrCJJxGZrFz6voeEcZMsoT4rFnhrK1Bpk0lptaCwWjtbsWBJRwStY2nQE+iHJRoShhAw
+         +TwB3HXtVkgZvF7r0pbnddZQB2gLe2qXuUJGsyKQNowlESpTj3jZu23++SJKZJjtRXQI
+         ADZQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=UIlu16xtVxkLamFtdItGetLpZNBa0632rT//r59VM0M=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=SpbGy13BmZiMjxXJ04IM9M1Kamhok2BeIUckanViI4M8WGuOPM8bxvdm83Kht3qBfY
+         0mepulSFwwW8fUrfz6TlUJ6nAPL+Xh6TkCxLHKOJ9YrDeXwaMMCj2L+DFW/mfZVUzXjx
+         51/+jbgKrNculQNnRpZwhuGbv8t6nHU8Lzp+iufZ6V7ea+SauUJ1O0XH4Qw9pHfIS9z0
+         uHJ7yfjIkiI6R3892FTYv4JDdj6ktl266yG9nCIkudNLbG03BLHtN7WLDccl71SlC9ta
+         6ca1MgJ+J36J6E42nBu46+gCYFD3je3lDMK6xNUhHEuloGTVrVIenlqGETBuztfVpem5
+         cPXA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-5733c37936asi12888826a12.685.2024.05.20.03.27.24
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 May 2024 03:27:25 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 44KARNUE2076024
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Mon, 20 May 2024 12:27:23 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 44KARNUE2076024
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 44KARN7x028887
+	for <luca.barra@edu.unito.it>; Mon, 20 May 2024 12:27:23 +0200
+Date: Mon, 20 May 2024 12:27:23 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Migliore Ernesto (da informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: Fisica-A: Orario lezione 21.05: 9-11 aula C
+Message-ID: <70e555eddaee634b16563af7b8a700c705291ea160923df59788bff1fe10283f@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Forum comunicazioni docenti-studenti" <moodleforum7274@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7274
+X-Course-Id: 2722
+X-Course-Name: FISICA (A) [Cognomi A-K]
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: Fisica-A: Orario lezione 21.05: 9-11 aula C
+Thread-Index: 70e555eddaee634b16563af7b8a7
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_Nox7cfBREIFMJLI6pBKrXslQjpUuRFTMROJtRIT2s"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 44KARNUE2076024
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_Nox7cfBREIFMJLI6pBKrXslQjpUuRFTMROJtRIT2s
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+Fisica-A -> Forum -> Forum comunicazioni docenti-studenti -> Orario lezione
+21.05: 9-11 aula C
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41726#p68902
+Orario lezione 21.05: 9-11 aula C
+di Migliore Ernesto - luned=C3=AC, 20 maggio 2024, 12:10
+---------------------------------------------------------------------
+Cari studenti,
+
+come annunciato in aula, la lezione di domani 21.05 si svolger=C3=A0 dalle =
+9
+alle 11 in Aula C.
+
+Saluti
+
+Ernesto Migliore
+
+---------------------------------------------------------------------
+Questa =C3=A8 la copia di un intervento effettuato su Fisica-A .
+
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2722
+
+--b1_Nox7cfBREIFMJLI6pBKrXslQjpUuRFTMROJtRIT2s
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2722">Fisica-A</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D2722">Forum</a>=0A    &raquo;=0A    <a target=3D"_bl=
+ank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D72=
+74">Forum comunicazioni docenti-studenti</a>=0A    &raquo;=0A    <a target=
+=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/discuss.=
+php?d=3D41726">Orario lezione 21.05: 9-11 aula C</a>=0A</div>=0A=0A<table b=
+order=3D"0" cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    =
+<tr class=3D"header">=0A        <td width=3D"35" valign=3D"top" class=3D"pi=
+cture left">=0A            <a href=3D"https://informatica.i-learn.unito.it/=
+user/view.php?id=3D12205&amp;course=3D2722" class=3D"d-inline-block aabtn">=
+<img src=3D"https://informatica.i-learn.unito.it/theme/image.php/_s/lambda/=
+core/1707437411/u/f2" class=3D"userpicture defaultuserpic" width=3D"35" hei=
+ght=3D"35" alt=3D"" /></a>=0A        </td>=0A        <td class=3D"topic sta=
+rter">=0A            <div class=3D"subject">=0A                Orario lezio=
+ne 21.05: 9-11 aula C=0A            </div>=0A            <div class=3D"auth=
+or">=0A                di <a target=3D'_blank' href=3D'https://informatica.=
+i-learn.unito.it/user/view.php?id=3D12205&course=3D2722'>Migliore Ernesto</=
+a> - luned=C3=AC, 20 maggio 2024, 12:10=0A            </div>=0A        </td=
+>=0A    </tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=
+=0A                &nbsp;=0A        </td>=0A        <td class=3D"content">=
+=0A            <p dir=3D"ltr" style=3D"text-align:left;">Cari studenti,</p>=
+<p dir=3D"ltr" style=3D"text-align:left;">come annunciato in aula, la lezio=
+ne di domani 21.05 si svolger=C3=A0 dalle 9 alle 11 in Aula C.</p><p dir=3D=
+"ltr" style=3D"text-align:left;">Saluti<br /></p><p dir=3D"ltr" style=3D"te=
+xt-align:left;">Ernesto Migliore<br /></p>=0A=0A            <div class=3D"c=
+ommands">=0A            </div>=0A=0A            <div class=3D"link">=0A    =
+            <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.=
+it/mod/forum/discuss.php?d=3D41726#p68902">=0A                    Visualizz=
+a questo intervento nel contesto=0A                </a>=0A            </div=
+>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-al=
+ign unsubscribelink">=0A    <a href=3D"https://informatica.i-learn.unito.it=
+/mod/forum/index.php?id=3D2722">Modifica preferenze email di raccolta</a>=
+=0A</div><p>Reading this in an email? <a href=3D"https://download.moodle.or=
+g/mobile?version=3D2021051718&amp;lang=3Dit&amp;iosappid=3D633359593&amp;an=
+droidappid=3Dcom.moodle.moodlemobile">Download the mobile app and receive n=
+otifications on your mobile device</a>.</p>
+
+--b1_Nox7cfBREIFMJLI6pBKrXslQjpUuRFTMROJtRIT2s--
+

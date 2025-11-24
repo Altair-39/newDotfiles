@@ -1,0 +1,166 @@
+X-Google-Smtp-Source: AGHT+IHbx/uEgVEJwZqcpH4AtGph9BZeh0sDte0keFY2xaU6MMX6jTznuD7zNSwKpCtwLLKbcKuAqiozEKpGZOWS/Q==
+X-Received: by 2002:a1f:c385:0:b0:48d:11d1:9feb with SMTP id t127-20020a1fc385000000b0048d11d19febmr9707749vkf.8.1693120700829;
+        Sun, 27 Aug 2023 00:18:20 -0700 (PDT)
+Received: from 292831042739
+	named unknown
+	by gmailapi.google.com
+	with HTTPREST;
+	Sun, 27 Aug 2023 03:18:20 -0400
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a5d:5146:0:0:0:0:0 with SMTP id u6csp2273209wrt;
+        Mon, 12 Dec 2022 00:11:13 -0800 (PST)
+X-Received: by 2002:a17:906:6ad7:b0:78d:f455:3105 with SMTP id q23-20020a1709066ad700b0078df4553105mr10539070ejs.45.1670832673185;
+        Mon, 12 Dec 2022 00:11:13 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1670832673; cv=none;
+        d=google.com; s=arc-20160816;
+        b=duDWu2JCmTFaLudULgYLG/n8outbz4qbjkq7NhEV5YmgvbsRdo3c6P0IaYWJTvIYhy
+         XrKkFlfLerf4xKYicVrvgeVYzoPpFgOs3AlOST4RzGxShi5Hd9IvvL18/odWi5S4hThP
+         AtGfUX5Ivmlrk0iwrAqK7DO5fXsZ+H6H9mhPaSPJjuBzZhl+N+r/X2b4+ESswobC9NvZ
+         YIPSHzD7YAeQg+QK/wYrKmxjDieWe9hxXy0lLzIWY8oG/VSR2ksDr/Le/weUhuBYN2jc
+         Yngu9NHVXt++Kd1gpABW4RUUjcOwo571r9YdpDjTDzTrOnptoUg/WeRgBsrE1PHgl7MH
+         //PQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:references:in-reply-to
+         :list-unsubscribe:auto-submitted:precedence:list-help:list-id
+         :message-id:subject:reply-to:from:to:date:dkim-filter;
+        bh=5kku8R3hHSbXe6MDOu+WMo3D/XmmYAOUFGS2gGNG3GI=;
+        b=KqlQQzwfRv6rHZBKo3f6AjJea7yRl0qW8sW786RHD/zJ7o8H04Uwu7ZlGsu7NxwSmr
+         Wa+ouiVDguGWirDhfUpvYQfsihCFpEyQ+r2u3R+1LVy4uZ4jUyAKmkzUADk1Vum+nk+r
+         KjGA+SsplEyT6KtvR5W0bKCa68Xgwq6PmNO7mTwv9fA/Vwbs0iL20AJY+J7t9B47Uwkz
+         c9TtS7phNTh/mqMlvl6xCamK3tlEjpf1vrIyR2E+FlT+9mBI0nvSMLV3HrPl5fXWOaDa
+         3eh+wwbEf/MgQJmQV3nnczbXqWYrrweIMvg0QK3O9ARALZdoSLYllkO6IIntuMHIUPch
+         wG2A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id gx6-20020a1709068a4600b0077c5ec87ec2si4968407ejc.297.2022.12.12.00.11.12
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 12 Dec 2022 00:11:13 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 2BC8B8Hk2206429
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Mon, 12 Dec 2022 09:11:08 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 2BC8B8Hk2206429
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 2BC8B8XQ084215
+	for <luca.barra@edu.unito.it>; Mon, 12 Dec 2022 09:11:08 +0100
+Date: Mon, 12 Dec 2022 09:11:08 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Bini Enrico (da informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: 2022_SO_Lab_T2_T3: Ri: Chiarimento SO_FILL
+Message-ID: <dcb0ddf89a74166fe3cfb0a439f322308d99203f304aad5eede88a8f1881c00f@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Forum su dubbi e chiarimenti progetto" <moodleforum6342@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=6342
+X-Course-Id: 2548
+X-Course-Name: Laboratorio di Sistemi Operativi: corso A (turno T2), corso B (turno T3). a.a 2022/23
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=6342&d=37312>
+In-Reply-To: <57f44410966081ea60b062f14c3bb92e0f5322d0c551dcf18364339a94a8dc60@informatica.i-learn.unito.it>
+References: <c93ec52abe731b729a40e310d0a0e2a563ef35ba86094a3195a2b9bcede2a462@informatica.i-learn.unito.it> <57f44410966081ea60b062f14c3bb92e0f5322d0c551dcf18364339a94a8dc60@informatica.i-learn.unito.it>
+Thread-Topic: 2022_SO_Lab_T2_T3: Chiarimento SO_FILL
+Thread-Index: c93ec52abe731b729a40e310d0a0
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_c5FU31vvOG2sk2L5IFKquKgq6RTXEh6EALfEVD7q18"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 2BC8B8Hk2206429
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_c5FU31vvOG2sk2L5IFKquKgq6RTXEh6EALfEVD7q18
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+2022_SO_Lab_T2_T3 -> Forum -> Forum su dubbi e chiarimenti progetto ->
+Chiarimento SO_FILL
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D37312#p63342
+Ri: Chiarimento SO_FILL
+di Bini Enrico - luned=C3=AC, 12 dicembre 2022, 08:54
+---------------------------------------------------------------------
+La suddivisione di domanda/offerta fra porti deve esserci, ma e` a vostra
+discrezione.
+
+Enrico Bini
+
+---------------------------------------------------------------------
+Questa =C3=A8 la copia di un intervento effettuato su 2022_SO_Lab_T2_T3 .
+
+Per rispondere fare click sul seguente collegamento:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D63342
+Revoca la sottoscrizione del forum:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D6342
+Revoca la sottoscrizione della discussione:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D6342&d=3D=
+37312
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2548
+
+--b1_c5FU31vvOG2sk2L5IFKquKgq6RTXEh6EALfEVD7q18
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2548">2022_SO_Lab_T2_T3</a>=0A    =
+&raquo;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unit=
+o.it/mod/forum/index.php?id=3D2548">Forum</a>=0A    &raquo;=0A    <a target=
+=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php=
+?f=3D6342">Forum su dubbi e chiarimenti progetto</a>=0A    &raquo;=0A    <a=
+ target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/d=
+iscuss.php?d=3D37312">Chiarimento SO_FILL</a>=0A</div>=0A=0A<table border=
+=3D"0" cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr c=
+lass=3D"header">=0A        <td width=3D"35" valign=3D"top" class=3D"picture=
+ left">=0A            <a href=3D"https://informatica.i-learn.unito.it/user/=
+view.php?id=3D20288&amp;course=3D2548" class=3D"d-inline-block aabtn"><img =
+src=3D"https://informatica.i-learn.unito.it/pluginfile.php/123954/user/icon=
+/lambda/f2?rev=3D291858" class=3D"userpicture" width=3D"35" height=3D"35" a=
+lt=3D"" /></a>=0A        </td>=0A        <td class=3D"topic ">=0A          =
+  <div class=3D"subject">=0A                Ri: Chiarimento SO_FILL=0A     =
+       </div>=0A            <div class=3D"author">=0A                di <a =
+target=3D'_blank' href=3D'https://informatica.i-learn.unito.it/user/view.ph=
+p?id=3D20288&course=3D2548'>Bini Enrico</a> - luned=C3=AC, 12 dicembre 2022=
+, 08:54=0A            </div>=0A        </td>=0A    </tr>=0A    <tr>=0A     =
+   <td class=3D"left side" valign=3D"top">=0A                &nbsp;=0A     =
+   </td>=0A        <td class=3D"content">=0A            <div class=3D"text_=
+to_html">La suddivisione di domanda/offerta fra porti deve esserci, ma e` a=
+ vostra discrezione.<br /><br />=0AEnrico Bini</div>=0A=0A            <div =
+class=3D"commands">=0A                    <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D37312&parent=3D6=
+3340">=0A                        Visualizza intervento genitore=0A         =
+           </a>=0A                        |=0A                    <a target=
+=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/post.php=
+?reply=3D63342">=0A                        Rispondi=0A                    <=
+/a>=0A            </div>=0A=0A            <div class=3D"link">=0A          =
+      <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod=
+/forum/discuss.php?d=3D37312#p63342">=0A                    Visualizza ques=
+to intervento nel contesto=0A                </a>=0A            </div>=0A  =
+      </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align un=
+subscribelink">=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/f=
+orum/subscribe.php?id=3D6342">Revoca la sottoscrizione del forum</a>&nbsp;=
+=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/forum/subscribe.=
+php?id=3D6342&d=3D37312">Revoca la sottoscrizione della discussione</a>&nbs=
+p;=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/forum/index.ph=
+p?id=3D2548">Modifica preferenze email di raccolta</a>=0A</div><p>Reading t=
+his in an email? <a href=3D"https://download.moodle.org/mobile?version=3D20=
+21051711&amp;lang=3Dit&amp;iosappid=3D633359593&amp;androidappid=3Dcom.mood=
+le.moodlemobile">Download the mobile app and receive notifications on your =
+mobile device</a>.</p>
+
+--b1_c5FU31vvOG2sk2L5IFKquKgq6RTXEh6EALfEVD7q18--
+

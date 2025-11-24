@@ -1,0 +1,205 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a781:0:b0:361:9897:9696 with SMTP id c1csp3404539ljf;
+        Thu, 2 Oct 2025 09:58:43 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFuobzlLYFR0Odm91kIounX9l1WIon7LfcNzyjDog+ZnCG7nsDNKumrak8hzQFKOVCrbu1O
+X-Received: by 2002:a17:906:8f8a:b0:b43:b7ec:b899 with SMTP id a640c23a62f3a-b49c08961eemr10837766b.1.1759424322953;
+        Thu, 02 Oct 2025 09:58:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1759424322; cv=none;
+        d=google.com; s=arc-20240605;
+        b=TTX7DvvmrEcuT3WHTL9pNlVjBAYowmeru6jI+CYZgz9ItvidbtHhVULb5ks2uL8gNw
+         6+EmmdbQTXhscK3Phl/fco/6DhEUDxAS5vOy0TzyXOw/O2+Fq9TidFt7qjD1hsOedR4K
+         VBYDnuZcRMMHjuxNgzHPBwT75Qsdw0evh+jJ7xhtXs2VhyqIV6gEWTtJsSMQKcf7qsuz
+         PY34a5NbzV/a8afh9KZp8RBl+6P1eR5gp7XkhpWmGVryZA6C0a8u9V6OguLz+c5uyOJR
+         NGi05nW0ftTC/BAlyZqcR0K0pfg3KntSL8yMfqZWWCCQ4YoyMta+2F+noCHgK5Zup34S
+         80sg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-signature:dkim-filter;
+        bh=UL8dHx+Pb/kjt5hKSS+I5KUULgsp0nZOfe1N0Pvtxs4=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=T3n/Qmo+NctdYdgxsEamzXc2yTZnXuvkNKKVtfIDwjibAWwnQOW8xARJ2Tz37UepJL
+         B9ohEKZQGwfwksd/yryiv4NY6XFWpRqgeYSiP1IgezpbeebvWxL4P37tVbXeQs9FjgnX
+         FenqP7PcX+pYSnbl9CuxydWamcrgT5bDxXHyxueqhxE6ms3esBbIEEhxJVSOWdvPN26c
+         pBEuDYc5cL8poG5AsgygFlDgi6DslMXA3NVr/LJbUnVnWt1Q7YKeXG6g0mPuUu6OYCxG
+         Y6dtW6RjzDl2gjPj1WNS/8LUb4QjoE3Eg64PWGd5YSGm8zRZmv0MouISNnJJiW0d6b+p
+         HmcQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=CXra6qVc;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-b486a7961b7si189717566b.935.2025.10.02.09.58.42
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Oct 2025 09:58:42 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=CXra6qVc;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 592Gwcl93111969
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Thu, 2 Oct 2025 18:58:38 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 592Gwcl93111969
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=i-learn.unito.it;
+	s=default; t=1759424318;
+	bh=UL8dHx+Pb/kjt5hKSS+I5KUULgsp0nZOfe1N0Pvtxs4=;
+	h=Date:To:From:Reply-To:Subject:List-Id:List-Help:List-Unsubscribe:
+	 From;
+	b=CXra6qVcVv0QLIYRXt+mzU+NFYIF/+NGewWuTydJam3v65+h2VyYlnlLHo8tuarcF
+	 w+TkcRn/pe58Z0lwyCbv8Jwbi6/xLdsd+Ny2gz1b3OC/7dliNt9uSiuJeiympqcnxy
+	 sVxkX8ponfj1HGwKKj1zgTlMFeQAOgdgNUpNKcDs=
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 592GwcKZ3261918
+	for <luca.barra@edu.unito.it>; Thu, 2 Oct 2025 18:58:38 +0200
+Date: Thu, 2 Oct 2025 18:58:38 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Picardi Claudia (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: TAASS-2526: Sciopero e preview argomenti lezione / settimana del 6-10
+Message-ID: <79c18eb1ad642da96b20f87fed6e4b0136b866714b03a2af87259b182293814f@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.6.5 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum8319@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=8319
+X-Course-Id: 3521
+X-Course-Name: Tecniche e Architetture Avanzate per lo Sviluppo del Software 2025/26
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: TAASS-2526: Sciopero e preview argomenti lezione / settimana del 6-10
+Thread-Index: 79c18eb1ad642da96b20f87fed6e
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_Z9SayhPpkAghttEGI4x2UXXnMBqc9N1tBR8xNKflzQ"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 592Gwcl93111969
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply-informatica@i-learn.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_Z9SayhPpkAghttEGI4x2UXXnMBqc9N1tBR8xNKflzQ
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+TAASS-2526 -> Forums -> Annunci -> Sciopero e preview argomenti lezione /
+settimana del 6-10
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45494#p73340
+Sciopero e preview argomenti lezione / settimana del 6-10
+by Picardi Claudia - Thursday, 2 October 2025, 6:42 PM
+---------------------------------------------------------------------
+Care studentesse e studenti di TAASS
+
+la presente per informarvi che domani 3 ottobre aderir=C3=B2 allo sciopero
+generale.=C2=A0
+
+L'intenzione di questo sciopero non =C3=A8 creare disagi a voi. Per questa
+ragione entro la mezzanotte di oggi caricher=C3=B2 il video della lezione c=
+he
+avrei dovuto tenere domani, in cui completo il ripasso di Spring (come da
+vostra richiesta, ho aggiunto alcuni aspetti che potreste non aver visto, o
+aver visto molto di corsa, nei vostri precedenti percorsi di studi).=C2=
+=A0
+
+Potrebbe avvantaggiarvi seguire questa videolezione prima della successiva
+lezione di luned=C3=AC 6, ma non =C3=A8 indispensabile. Se per=C3=B2 non co=
+noscete bene
+Spring vi consiglio di seguirla PRIMA DELLA LEZIONE DI VENERD=C3=8C 10=
+=C2=A0perch=C3=A9
+Spring comincer=C3=A0 da l=C3=AC ad essere al centro di quasi tutti i nostr=
+i
+"spike"***.
+
+Preview della prossima settimana:
+
+* luned=C3=AC 6: ripasso di React per Single Page Application
+* marted=C3=AC 7: completiamo il discorso sul Domain Driven Design
+approfondento gli aspetti di progettazione (Tactical DDD)
+* venerd=C3=AC 10: iniziamo a parlare di comunicazione fra microservizi
+introducendo il paradigma REST per la progettazione di (micro)service API e
+vedendo un primo esempio di comunicazione fra due (micro)servizi realizzati
+in Spring
+
+[*** cos'=C3=A8 uno spike? Lo vedremo nella lezione di marted=C3=AC! Per il=
+ momento
+prendetelo come un esempio articolato volto a capire e/o illustrare il
+funzionamento di una libreria, di un servizio esterno, di un framework,
+etc. per gli scopi per cui si intende utilizzarlo in un progetto]
+
+---------------------------------------------------------------------
+This is a copy of a message posted in TAASS-2526.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3521
+
+--b1_Z9SayhPpkAghttEGI4x2UXXnMBqc9N1tBR8xNKflzQ
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3521">TAASS-2526</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3521">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D8=
+319">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://i=
+nformatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45494">Sciopero e pre=
+view argomenti lezione / settimana del 6-10</a>=0A</div>=0A=0A<table border=
+=3D"0" cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr c=
+lass=3D"header">=0A        <td width=3D"35" valign=3D"top" class=3D"picture=
+ left">=0A            <a href=3D"https://informatica.i-learn.unito.it/user/=
+view.php?id=3D889&amp;course=3D3521" class=3D"d-inline-block aabtn"><img sr=
+c=3D"https://informatica.i-learn.unito.it/pluginfile.php/17427/user/icon/la=
+mbda/f2?rev=3D1" class=3D"userpicture" width=3D"35" height=3D"35" alt=3D"Pi=
+cardi Claudia" title=3D"Picardi Claudia" /></a>=0A        </td>=0A        <=
+td class=3D"topic starter">=0A            <div class=3D"subject">=0A       =
+         Sciopero e preview argomenti lezione / settimana del 6-10=0A      =
+      </div>=0A            <div class=3D"author">=0A                by <a t=
+arget=3D'_blank' href=3D'https://informatica.i-learn.unito.it/user/view.php=
+?id=3D889&course=3D3521'>Picardi Claudia</a> - Thursday, 2 October 2025, 6:=
+42 PM=0A            </div>=0A        </td>=0A    </tr>=0A    <tr>=0A       =
+ <td class=3D"left side" valign=3D"top">=0A                &nbsp;=0A       =
+ </td>=0A        <td class=3D"content">=0A            <p dir=3D"ltr" style=
+=3D"text-align:left;">Care studentesse e studenti di TAASS</p><p dir=3D"ltr=
+" style=3D"text-align:left;">la presente per informarvi che domani 3 ottobr=
+e aderir=C3=B2 allo sciopero generale.=C2=A0</p><p dir=3D"ltr" style=3D"tex=
+t-align:left;">L'intenzione di questo sciopero non =C3=A8 creare disagi a v=
+oi. Per questa ragione entro la mezzanotte di oggi caricher=C3=B2 il video =
+della lezione che avrei dovuto tenere domani, in cui completo il ripasso di=
+ Spring (come da vostra richiesta, ho aggiunto alcuni aspetti che potreste =
+non aver visto, o aver visto molto di corsa, nei vostri precedenti percorsi=
+ di studi).=C2=A0</p><p dir=3D"ltr" style=3D"text-align:left;">Potrebbe avv=
+antaggiarvi seguire questa videolezione prima della successiva lezione di l=
+uned=C3=AC 6, ma non =C3=A8 indispensabile. Se per=C3=B2 non conoscete bene=
+ Spring vi consiglio di seguirla <strong>prima della lezione di venerd=
+=C3=AC 10</strong>=C2=A0perch=C3=A9 Spring comincer=C3=A0 da l=C3=AC ad ess=
+ere al centro di quasi tutti i nostri "spike"***.</p><p dir=3D"ltr" style=
+=3D"text-align:left;">Preview della prossima settimana:</p><p dir=3D"ltr" s=
+tyle=3D"text-align:left;"></p><ul><li>luned=C3=AC 6: ripasso di React per S=
+ingle Page Application</li><li>marted=C3=AC 7: completiamo il discorso sul =
+Domain Driven Design approfondento gli aspetti di progettazione (Tactical D=
+DD)</li><li>venerd=C3=AC 10: iniziamo a parlare di comunicazione fra micros=
+ervizi introducendo il paradigma REST per la progettazione di (micro)servic=
+e API e vedendo un primo esempio di comunicazione fra due (micro)servizi re=
+alizzati in Spring</li></ul>[*** cos'=C3=A8 uno spike? Lo vedremo nella lez=
+ione di marted=C3=AC! Per il momento prendetelo come un esempio articolato =
+volto a capire e/o illustrare il funzionamento di una libreria, di un servi=
+zio esterno, di un framework, etc. per gli scopi per cui si intende utilizz=
+arlo in un progetto]<p></p>=0A=0A            <div class=3D"commands">=0A   =
+         </div>=0A=0A            <div class=3D"link">=0A                <a =
+target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/di=
+scuss.php?d=3D45494#p73340">=0A                    See this post in context=
+=0A                </a>=0A            </div>=0A        </td>=0A    </tr>=0A=
+</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=0A    <a h=
+ref=3D"https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3521">=
+Change your forum digest preferences</a>=0A</div>
+
+--b1_Z9SayhPpkAghttEGI4x2UXXnMBqc9N1tBR8xNKflzQ--
+

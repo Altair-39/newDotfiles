@@ -1,0 +1,239 @@
+Delivered-To: luca.barra@tmp.edu.unito.it
+Received: by 2002:a05:651c:1197:b0:2e0:563d:595 with SMTP id w23csp444139ljo;
+        Mon, 29 Apr 2024 05:29:27 -0700 (PDT)
+X-Forwarded-Encrypted: i=4; AJvYcCW5H9d3WnyfekTTYpWRfqei14CsnFtzbFIEsLMVwDLGCYcsb5lY8oGf2rTUvwwB9ZHaoQH2GdhL7WTRp61OU/o0UEWeiTEftd/mgCU=
+X-Received: by 2002:a50:d7ca:0:b0:570:db4:e5cd with SMTP id m10-20020a50d7ca000000b005700db4e5cdmr6506262edj.34.1714393766840;
+        Mon, 29 Apr 2024 05:29:26 -0700 (PDT)
+ARC-Seal: i=3; a=rsa-sha256; t=1714393766; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=EZJTVywZA23Tlse2XUIakKZXbDZykx55xalxMotwtbF9wrkgCOPBefr7v47ywsu4t+
+         Qhx7+uJbWNsH0YIci1zJS/J7Y1VrzFjbM/4ioKTkCy0Sp4b1Yhq3lXLJ77zHavW5TEMx
+         CHLt4hT/XwYD7LmTGZdkEMVKOEZXzPu7GxbDFj8PXkPoIXESGStLIPgASVBMcXn30gl4
+         yMLZZxMg/qfvOwVSJmQXPGP4z9CIazCa1eA+6OrhSKB+Du1f68jm8dwE/dtauXYbtQGO
+         EAvNeJ/41hHv7W/RYZhPlUdZ3JiGfSZqVO/OhbHRsLR05xoPKb+yRn6i9OvGqoA61zoH
+         qmng==
+ARC-Message-Signature: i=3; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=14gCtXExysmBGdxamFr6rF385DARjBGXuCJG45XQMAI=;
+        fh=CwkwBiOQcKh7JCfYSgDqqMNrZPsHhfmEnDrS/KKFZKg=;
+        b=rGIPSGt4tGkf2l8wpu5ItkgfUi+khoSXMR9W9WkA4/Y7rMU6LPtKEtoumbVRC/8t+f
+         kWMEQouWhfuNLuFxgyQ29E1osg6p3lwIcNHV8Ct7EntzX5Tlbv67UpkLEjCnUh1KF9Ek
+         NbnMeyias5qtZggYSCPZCtlbo0jT17uRc4H8Q9nPgzwMXqtzEa/Uui4mIEcIcgsrC4nW
+         Ct/ZLyGTj48ctaI+tPjaPKgmm3RXbZQjfvV18tbSc9s4teodPo+63xxxQdMNKNgyURBl
+         DwHsQdHAesQiJ6hOdT5+3LLZneg1/zrM8uCWiIor3DSzCKT+Ze6jKYEBGB0gYJ6C17mc
+         CjWg==;
+        dara=google.com
+ARC-Authentication-Results: i=3; mx.google.com;
+       arc=pass (i=2 spf=pass spfdomain=educ.di.unito.it dmarc=pass fromdomain=unito.it);
+       spf=fail (google.com: domain of noreply@educ.di.unito.it does not designate 209.85.220.69 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=fail (p=QUARANTINE sp=QUARANTINE dis=NONE arc=pass) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id n9-20020a5099c9000000b0056e2389098fsor5553145edb.10.2024.04.29.05.29.26
+        for <luca.barra@tmp.edu.unito.it>
+        (Google Transport Security);
+        Mon, 29 Apr 2024 05:29:26 -0700 (PDT)
+Received-SPF: fail (google.com: domain of noreply@educ.di.unito.it does not designate 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       arc=pass (i=2 spf=pass spfdomain=educ.di.unito.it dmarc=pass fromdomain=unito.it);
+       spf=fail (google.com: domain of noreply@educ.di.unito.it does not designate 209.85.220.69 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=fail (p=QUARANTINE sp=QUARANTINE dis=NONE arc=pass) header.from=unito.it
+ARC-Seal: i=2; a=rsa-sha256; t=1714393766; cv=pass;
+        d=google.com; s=arc-20160816;
+        b=ybmGqT4ca/CUYzv9U+qSF4yUy5b8yElg5f12lTk5SDA1OzXRgODSwBSU6ITasOtiwI
+         E0BAArFrV5PrVWVZ1M/Yjn/AprsHhDTOmv0UmcmrNb7KK9lVZOAENYaEFb2gFDURsRL0
+         uFn0cjpaqOPEPS+oxsZtxnkQ8zf88678ZiIIEAwVx5tSgSaPHjnSk+djdhzDh4wHgO+2
+         zULLFHiAZvxdUy9tSoYVI2J//RrhwvSbONzQQRiV9cBCmEjjLxDmZeD51R9dnQD4/Lx4
+         +ECGqrIDA0meZle2xKZM5rXAbUb3zPswilrfQ2Fy86qcpAZ8KznelQl3M3wbeNbtxMGL
+         NcCA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=14gCtXExysmBGdxamFr6rF385DARjBGXuCJG45XQMAI=;
+        fh=CwkwBiOQcKh7JCfYSgDqqMNrZPsHhfmEnDrS/KKFZKg=;
+        b=p3GdPeF7ZY6SBQW88HI9vUQP0oe3cETsCRoH6Af++3eA3aDetMeOuqvtIkkhQACX9i
+         C/KQ1XDdG2PJ1I6zFZ6W2GjoE6yoB+Ns4NqMY75L7jojCWLpIXaLEU71LQNUUvwXJ3xS
+         qBacJxYqe/6qH0yvF3BLTia4I1ul2Q2y21wMZ0tSYPN9/ufD8vSFe44RNc48pGO3AFn9
+         t/9EsNv4HZqbw8bSO5WHajeSO0v68jA0l7V/YEOx05NULTpbRJ/XoAQLJdYc7NrfqC61
+         rCDQZsgM/1+NrviJh9KB4O9dfYNSM72j5wU+bKXig+fBG6DtW2pKbtmA80/jp5yfco4p
+         IqrQ==;
+        dara=google.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714393766; x=1714998566;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter:x-gm-message-state
+         :x-original-authentication-results:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=14gCtXExysmBGdxamFr6rF385DARjBGXuCJG45XQMAI=;
+        b=ib6FZh6gaW1tXMyaH1V18hvQL4Vmbjx4PGzWPsu7JldQOarYBVXKin1EsGrT8SseN6
+         ZVK69GOHz9gB1OaozjCPOMSOqRliRGciwp+ZXYlvbkdmln/QrjY+Pz722hnhrzZ2L+Yr
+         vpur02loPAyxgjio2/781/sY0viu2IGCk7S3/sm544qy8jyUlMxRC1Q3NFkNvavDo6x/
+         KlOf3tl1oeSyflk67LDWNjuLbga8EM9ZsU8CNqcLM1HUsRex0XkKSxdWd3c+BoY5+ILi
+         f5kB91mqNLpvV/n94WDEeL6KGNPoK0MDQ3w++HJ5wLppRJ6ubV5ErtmWRSrngTTaBlWN
+         ufHA==
+X-Original-Authentication-Results: mx.google.com;       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+X-Forwarded-Encrypted: i=2; AJvYcCXMIU7L9s7bYWCil3GsnCKBBsfe9mVi0WPY/fIa0VQSdn9oPXh6pnjpghflt6aQ2cdrdUB8SY2f4MSnsQ5OkPVbSM8tQniYTA0YYNo=
+X-Gm-Message-State: AOJu0YxxEvoeT7F2c4uvB9ls8se3QKLFTIOUnFvmvBWsd0QMqvbMx6Yp
+	AX8OtWHgZnrUc1MJf/eRNZQa1AeOz/qRWhvCyC3nApdXVRwrL2hATl59WP3GIiP4awJcTtHX8ZG
+	yPiWW6k6DcpHRCFFXX9/1Mk2l1EGbybr3nbrtWMujX2aJAIJg1dHinOp6bhw7oWzLl3RHeeIHni
+	XA8t4Jx82DAuyl0+k92esI4YZxVJAF2twzOnpC4nT8DnOY3UeslsIm1/uHo1xkslHPRvZC0iQEj
+	w==
+X-Received: by 2002:a50:9eef:0:b0:56b:ff5b:c49c with SMTP id a102-20020a509eef000000b0056bff5bc49cmr6217975edf.33.1714393765836;
+        Mon, 29 Apr 2024 05:29:25 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE88kqsk6bcS4RIZeGb+OwkwZZqEdzM2guy/8JU4qYpPqPPjdFxNuwoKTGzkaou/tzg0Nwd
+X-Received: by 2002:a50:9eef:0:b0:56b:ff5b:c49c with SMTP id a102-20020a509eef000000b0056bff5bc49cmr6217951edf.33.1714393764817;
+        Mon, 29 Apr 2024 05:29:24 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1714393764; cv=none;
+        d=google.com; s=arc-20160816;
+        b=IavOOPPwoD51RKXf7a+X74Ce5n42lBdrgZSmXylm3G/a7+Yl/ka6kHUE+mc+ccY0i9
+         rN6GhTVOLouOG+hNtSsPF/N0UzA1dRbVnnLKrLhojScSmNqjKG9RSDZ0fgSuF2zGRXLS
+         6t6jfHRP2qzNwsKq18yM/g0uykTowpGMCENI4krbxEJx9W5JrBpHqT3qqIM8aBYkRVqa
+         0gvgMklFF1IQsVf0B6iZRUjNUvHAwCirx8aAhpFgv1SEzEhLVq8eeEJeHBcMyE5crtuI
+         2QFRz52jP9UwWzppNZSpY8+sBLH+5bnjl0Xi/A7EDixV/8qP3KAfWtVUQ3CTVfbtUdLC
+         VYEw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=14gCtXExysmBGdxamFr6rF385DARjBGXuCJG45XQMAI=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=ZIJrlxg5s4/zNEdhsF5MmAO77MV7o5bKFQnJMcWtUzk3VfpjCgOmGIKa0jQjU+UFO0
+         +FOzsgWetM2foxDAKtSvHSe0HcKIRRpsJFsl+6pKFDC0QWSA30ZkIojuqlDHqB81waUf
+         9lUHHtFsS+YmrNbBo0D2rjceZAUslKo7AzGt++Xon0U0A/KTfwdqynzgs2mfzW1OixJF
+         /ixSR6p88uBttQgL2MCh+7ZJ0N0BYLHZofJNokh6RbE50gzxtSkrwymgKCv0PdoGRkqA
+         k3IFL6w/fr43c7v4lWAcF19sfA+Yt8ospAyeTZCg6eoccWQ8tcLGbJ7S/QLK776rEXUu
+         IuKA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id x4-20020a50d604000000b0056e0a2f34e8si13523947edi.629.2024.04.29.05.29.24
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Apr 2024 05:29:24 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 43TCTNlH309936
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Mon, 29 Apr 2024 14:29:23 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 43TCTNlH309936
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 43TCTNhg088853
+	for <luca.barra@edu.unito.it>; Mon, 29 Apr 2024 14:29:23 +0200
+Date: Mon, 29 Apr 2024 14:29:23 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "=?utf-8?B?Qmlya2UgUm9iZXJ0IFJlbsOoIE1hcmlhIChkYSBpbmZvcm1hdGljYSk=?=" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: SAS-Lab-2324: [T4] Lezione del 3/5/2024
+Message-ID: <325ca8f43a77945d1d650f08027792c2cde85befc17c3678df3f9c444a3d3e1f@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7124@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7124
+X-Course-Id: 2832
+X-Course-Name: Sviluppo delle Applicazioni Software - LABORATORIO T* - 2023/24
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: SAS-Lab-2324: [T4] Lezione del 3/5/2024
+Thread-Index: 325ca8f43a77945d1d650f080277
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_5vfbvBVuVOvivPn8jOkD77rtDixP9o0ag75Lo6bZk"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 43TCTNlH309936
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+X-Gm-Spam: 0
+X-Gm-Phishy: 0
+X-Gm-Original-To: luca.barra@edu.unito.it
+
+This is a multi-part message in MIME format.
+
+--b1_5vfbvBVuVOvivPn8jOkD77rtDixP9o0ag75Lo6bZk
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SAS-Lab-2324 -> Forum -> Annunci -> [T4] Lezione del 3/5/2024
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41452#p68578
+[T4] Lezione del 3/5/2024
+di Birke Robert Ren=C3=A8 Maria - luned=C3=AC, 29 aprile 2024, 14:13
+---------------------------------------------------------------------
+Car* student* del turno=C2=A0T4,
+
+come anticipato a lezione, si avvisa che=C2=A0VENERD=C3=8C 03/05/2024 ci sa=
+ranno 4
+ORE DI LEZIONE=C2=A0dalle 13:00 alle 17:00 per il turno T4. Le prime due or=
+e
+(13:00-15:00) sono in AULA C=C2=A0le seconde due ore (15:00-17:00) in TURIN=
+G.
+
+Cordiali saluti,
+Robert Birke
+
+---------------------------------------------------------------------
+Questa =C3=A8 la copia di un intervento effettuato su SAS-Lab-2324 .
+
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2832
+
+--b1_5vfbvBVuVOvivPn8jOkD77rtDixP9o0ag75Lo6bZk
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2832">SAS-Lab-2324</a>=0A    &raqu=
+o;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/index.php?id=3D2832">Forum</a>=0A    &raquo;=0A    <a target=3D"_=
+blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D=
+7124">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://=
+informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41452">[T4] Lezione =
+del 3/5/2024</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" cellsp=
+acing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=0A        <td =
+width=3D"35" valign=3D"top" class=3D"picture left">=0A            <a href=
+=3D"https://informatica.i-learn.unito.it/user/view.php?id=3D30636&amp;cours=
+e=3D2832" class=3D"d-inline-block aabtn"><img src=3D"https://informatica.i-=
+learn.unito.it/theme/image.php/_s/lambda/core/1707437411/u/f2" class=3D"use=
+rpicture defaultuserpic" width=3D"35" height=3D"35" alt=3D"" /></a>=0A     =
+   </td>=0A        <td class=3D"topic starter">=0A            <div class=3D=
+"subject">=0A                [T4] Lezione del 3/5/2024=0A            </div>=
+=0A            <div class=3D"author">=0A                di <a target=3D'_bl=
+ank' href=3D'https://informatica.i-learn.unito.it/user/view.php?id=3D30636&=
+course=3D2832'>Birke Robert Ren=C3=A8 Maria</a> - luned=C3=AC, 29 aprile 20=
+24, 14:13=0A            </div>=0A        </td>=0A    </tr>=0A    <tr>=0A   =
+     <td class=3D"left side" valign=3D"top">=0A                &nbsp;=0A   =
+     </td>=0A        <td class=3D"content">=0A            <p dir=3D"ltr" st=
+yle=3D"text-align:left;"></p><p dir=3D"ltr">Car* student* del turno=C2=
+=A0<strong>T4</strong>,</p><p dir=3D"ltr">come anticipato a lezione, si avv=
+isa che=C2=A0<strong>venerd=C3=AC 03/05/2024 </strong>ci saranno<strong> 4 =
+ore di lezione</strong>=C2=A0dalle 13:00 alle 17:00 per il turno T4. Le pri=
+me due ore (13:00-15:00) sono in <strong>Aula C</strong>=C2=A0le seconde du=
+e ore (15:00-17:00) in <strong>Turing</strong>.</p><p dir=3D"ltr"><br /></p=
+><p dir=3D"ltr">Cordiali saluti,<br />Robert Birke</p><br /><p></p>=0A=0A  =
+          <div class=3D"commands">=0A            </div>=0A=0A            <d=
+iv class=3D"link">=0A                <a target=3D"_blank" href=3D"https://i=
+nformatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41452#p68578">=0A    =
+                Visualizza questo intervento nel contesto=0A               =
+ </a>=0A            </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr =
+/>=0A<div class=3D"mdl-align unsubscribelink">=0A    <a href=3D"https://inf=
+ormatica.i-learn.unito.it/mod/forum/index.php?id=3D2832">Modifica preferenz=
+e email di raccolta</a>=0A</div><p>Reading this in an email? <a href=3D"htt=
+ps://download.moodle.org/mobile?version=3D2021051718&amp;lang=3Dit&amp;iosa=
+ppid=3D633359593&amp;androidappid=3Dcom.moodle.moodlemobile">Download the m=
+obile app and receive notifications on your mobile device</a>.</p>
+
+--b1_5vfbvBVuVOvivPn8jOkD77rtDixP9o0ag75Lo6bZk--
+

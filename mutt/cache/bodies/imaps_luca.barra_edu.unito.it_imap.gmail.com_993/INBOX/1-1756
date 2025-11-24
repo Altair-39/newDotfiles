@@ -1,0 +1,87 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:548:b0:2ea:83d6:7f34 with SMTP id q8csp1711470ljp;
+        Mon, 10 Jun 2024 04:11:07 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUakdHuAdlxMFvQFLQaeUKJ0tdNMBJUzLuHSwFEMHXqhrrOoHzY0uH9krhgq9wRHRba2HD9Lurbruz14ohlPhjT1kxu4NjKhA==
+X-Google-Smtp-Source: AGHT+IEs6FsMIsX+V1/AqMOiP7SRBUx5Oxm+3OukvbWjPw3jxuWJnRyEdCGES0aEP6kkmwvFpLpr
+X-Received: by 2002:a05:651c:4d1:b0:2e6:f59e:226f with SMTP id 38308e7fff4ca-2eadce15febmr65580731fa.5.1718017867452;
+        Mon, 10 Jun 2024 04:11:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1718017867; cv=none;
+        d=google.com; s=arc-20160816;
+        b=JmVWEq05SPYGv0LaoQDsQn8DOL04Z4CWJ+tPXUFU7mAqtCJNDg3XbD4zNFXWdRSjW/
+         P3W2xDNYUmfiwnrNovGTihBKZTGYxEJzrVSgrHvkfGv3L0mS8cDBEr7P5/Up/Q2XFpex
+         P6jHmP9eZG7a2/74vIFQa1qFtAKbjtv4eMzxPhNtZ72jAhyblAkGZprJYsT5zA7PMDLD
+         At1nRe8E+Sz3NYexc1ivfLs5ifbLJ+C9tHFl2g+/75L2N6R/UJ+UDMRe9YCjjS5RN2yh
+         XtdBeo7pyiYyQOyq0e92F7yP0qWk2nArF5CifHuhMp4euxWqpvVBMLcYa4t/1vmZmn61
+         2GOA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:subject:message-id:cc:from
+         :date:dkim-signature:dkim-filter;
+        bh=HXczfcnyCn59JKG9aKt5E8s4QmOtK7CntZnckEEtUK0=;
+        fh=vTqD8cPKHPXHD37MmEi99Cr22oTg/s82I2PU3QpqG9M=;
+        b=VlMPBEidX94mn6JS6nAwkROa3CShp3bh3TwpguRCW5OdcBghTjDRdXxa5QJqUAMf6B
+         igKhec0jyaUgqOnMklaFAYCUkkLo4vyZt7D6LDgriAZRqOWuD566Xphuh5xu/20niTEA
+         3oFU48J/M+rMJER1tT0CD+OBztC2WlswP8lvGvy9rvts9SpUFYzXIj9PlSCC6eKek4e+
+         vtMUidTbJ/F5pfWJgtQ0z58i5V4/FMSWpXLxab6nIQwJUOVH0FwvjgR8r33PyU6wLmP7
+         YELNceYeM+5h7Tj6h0px6cQwClHrZXqLkECdfuTbRawxvvQOdfTh8NSXpn/GjzfBr/tk
+         EAtQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=AuxxxAuk;
+       spf=pass (google.com: domain of liliana.ardissono@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=liliana.ardissono@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <liliana.ardissono@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-4b7a227422fsi4481896173.56.2024.06.10.04.11.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Jun 2024 04:11:07 -0700 (PDT)
+Received-SPF: pass (google.com: domain of liliana.ardissono@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=AuxxxAuk;
+       spf=pass (google.com: domain of liliana.ardissono@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=liliana.ardissono@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 8066738DEB;
+	Mon, 10 Jun 2024 13:03:16 +0200 (CEST)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id Snu9kUomjR3m; Mon, 10 Jun 2024 13:03:16 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 952C437B04;
+	Mon, 10 Jun 2024 12:22:19 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 952C437B04
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1718014940;
+	bh=HXczfcnyCn59JKG9aKt5E8s4QmOtK7CntZnckEEtUK0=;
+	h=Date:From:Message-ID:MIME-Version;
+	b=AuxxxAukBYtbPBSMC94N+s19bpaFoaGVeJ4g05BS2z3P81MjjI6ozRiHPxGdcJbQV
+	 /IHc2JlP4y+GCe3HXg/3KpPj6JhrxQSlD9EbAZr8zM3ZKvEnVidSqG+Pm9YshwYt5K
+	 0gPby2dQKXQR5WUqp4Lt38YaW6FmMfxrv3FKiGYKXF7wTKj7B9D4urczFDVWC0m2AF
+	 7PnTuYzw+r2vGUX3jPHcPwmL0/KRSRWFrppWP8kHlf25tLz6gb1KM+D8QWox/3yT1J
+	 KXVdYS0M/qwsawTPsCfBpGsCD4Rp82S7YEyQhb4pBUcEgoUz3BFXJpcd6+qQzM0W+4
+	 3iYEj+P8hxpQA==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id LpBcLb3B35kL; Mon, 10 Jun 2024 12:22:19 +0200 (CEST)
+Received: from esse3appjboss27.private.cineca.it (esse3appjboss27.cineca.it [130.186.5.162])
+	by smtp4.cineca.it (Postfix) with ESMTP id 6AF0E334B6;
+	Mon, 10 Jun 2024 11:56:11 +0200 (CEST)
+Received: from esse3appjboss27.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss27.private.cineca.it (Postfix) with ESMTP id 5851ED6E;
+	Mon, 10 Jun 2024 11:56:11 +0200 (CEST)
+Date: Mon, 10 Jun 2024 11:56:11 +0200 (CEST)
+From: LILIANA ARDISSONO <liliana.ardissono@unito.it>
+Cc: liliana.ardissono@unito.it
+Message-ID: <300337900.13487.1718013371360@esse3appjboss27.private.cineca.it>
+Subject: verbalizzazione voti finali di programmazione III
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Buongiorno,</p>
+
+<p>&nbsp;ho verbalizzato i voti di coloro che hanno superato sia la prova scritta che quella di laboratorio di programmazione III. Controllate e se rilevate qualche problema, o non vedete il vostro voto nel libretto, mandatemi una mail.</p>
+
+<p>LA</p>

@@ -1,0 +1,154 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:9301:0:b0:2eb:f1cf:4407 with SMTP id e1csp344336ljh;
+        Tue, 11 Jun 2024 05:33:50 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCWUbH6i0sZuIvRJOJsr75aIfwFxvRKArMSw5lZAhjRHU2RiXXxQkXTqm1/RZVg+QbVoboVBSCtLiTI/yI6+PvneLbopsPmm8A==
+X-Google-Smtp-Source: AGHT+IFHmp5nySlxIEzNlTnW+vJdMUcQTH/kGRTl/dp61z6VT7VlxNFRYQEs8HOoGR1NrZM6cDod
+X-Received: by 2002:a2e:8e92:0:b0:2eb:eef9:6d54 with SMTP id 38308e7fff4ca-2ebeef97596mr27659781fa.4.1718109230405;
+        Tue, 11 Jun 2024 05:33:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1718109230; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Br4Ky7siTTqJ9ujxXLl5fo4HISQcjk++lydAuNiCtjBCtsmycewFi4l9mOCo40Mr+y
+         fwo3vVw1Euc8Sd7VmABU4SilszC9Ot661cvDogdk1TSm8ceXIyBbcyrgqEXKXZ2jWPAk
+         BlZ7UX8KwrBueAngAuFJ1Ca5ebOMuVRJtAwKe9bri5NQIS2PC0vhArBfMtIz/bbyhB7+
+         lVTzGyACWaqrqdZ2uPlgi15tb4C4t7Q11oltOn5I2g7BiE6NuTdfDmVPI+MNM/n4mO9L
+         TtWuVIlGl2PImjlCveyBmvIo0ttoECELmeqJdVRWXP2jOedjGnCJiXpbmDZzmcas+jfM
+         r9bg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:subject:message-id:cc:from
+         :date:dkim-signature:dkim-filter;
+        bh=T9Izn8ev0S1C76yltRjpJ7HBRwvyVDstWK5hdBwEXdk=;
+        fh=qVUs5WbzQ/uvOYebG/UmXeVL/nw6M0HWNJ3X45jPvvo=;
+        b=VwiCzDWppGJLv3w4HOPD/1GXdtL2KVB5L8MCCiHV/tU6TS2r9H+ZEhWqoJBBr58yCJ
+         uINIZ6H1+ScnFzKmzEyrrktz/NDW8h7JG5tHfdkLlAybVq1mY59P6iY22UiMWxcwo95O
+         ZPcey8m6QZEBZONxYZnTLOMAutT8JSzhsH9y/rANjPS+nCYk3Y9NTFlEubacaakbhgiv
+         seD+tqmcZ1vKY56ajf0Te4aLGhBJpaJSDWLSA27FvyydwB5Lr9xVYOU6/XqQfuecVIJb
+         u2/e1RYgRNx1TOLJSlcf4xJwnc+QHU+Js/5VHzFUpEjzoDfZZSCInvh6mBogwoX9j+/y
+         1Mgg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=AfxLL48Y;
+       spf=pass (google.com: domain of daniele.gunetti@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=daniele.gunetti@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <daniele.gunetti@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id e9e14a558f8ab-3758a55d732si39853685ab.56.2024.06.11.05.33.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 11 Jun 2024 05:33:50 -0700 (PDT)
+Received-SPF: pass (google.com: domain of daniele.gunetti@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=AfxLL48Y;
+       spf=pass (google.com: domain of daniele.gunetti@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=daniele.gunetti@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id EF83A216AB;
+	Tue, 11 Jun 2024 14:33:46 +0200 (CEST)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id AmkawrJx084l; Tue, 11 Jun 2024 14:33:46 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 5EF6B21A66;
+	Tue, 11 Jun 2024 14:33:46 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 5EF6B21A66
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1718109226;
+	bh=T9Izn8ev0S1C76yltRjpJ7HBRwvyVDstWK5hdBwEXdk=;
+	h=Date:From:Message-ID:MIME-Version;
+	b=AfxLL48YkORRccByMcfEadwgcM6BBIzX/5YsVTQnLgM7c7evJUB/pXNZJLsaVBN1K
+	 oxKYfGguB4Nz0wBDV7bIng7d7wKc5o6C2A13TVx7O8DVSuaAQf0vUjyZD9vrlGoUtL
+	 rxflO9tffVA/h8/0mz4xnm2JJddp4pPrW/dY4Rjjo8xBHu/R9goCN/fCduEKBLggb0
+	 4FoeWMzAiiNj0g75VaixSXkmV74ghtobmvPXoMG7yJ/VJRShrB/wBohtpo0DYqhBgK
+	 MAJrQFgUfILZYTigNstRVbYovitmXpa9E+ULVh629LP58U3ZDs5fV9HDY4zeMZwwEh
+	 3QByWMOssocGw==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id J-c-femNyiY8; Tue, 11 Jun 2024 14:33:46 +0200 (CEST)
+Received: from esse3appjboss27.private.cineca.it (esse3appjboss27.cineca.it [130.186.5.162])
+	by smtp4.cineca.it (Postfix) with ESMTP id 71D75216AB;
+	Tue, 11 Jun 2024 14:33:44 +0200 (CEST)
+Received: from esse3appjboss27.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss27.private.cineca.it (Postfix) with ESMTP id 5D0F61B2;
+	Tue, 11 Jun 2024 14:33:44 +0200 (CEST)
+Date: Tue, 11 Jun 2024 14:33:44 +0200 (CEST)
+From: DANIELE GUNETTI <daniele.gunetti@unito.it>
+Cc: daniele.gunetti@unito.it, felice.cardone@unito.it
+Message-ID: <2092294505.18294.1718109224380@esse3appjboss27.private.cineca.it>
+Subject: Istruzioni per lo scritto di Storia dell'Informatica del 13 giugno
+ 2024
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Gentili studentesse e studenti registrati all&#39;appello scritto del corso di Storia dell&#39;Informatica del 13 giugno prossimo, programmato a partire dalle ore 9.</p>
+
+<p>Ecco qui di seguito le istruzioni pratiche relative allo scritto, che siete pregati di leggere attentamente FINO IN FONDO, individuando le sezioni con le istruzioni che riguardano la vostra situazione. Se dovete solo registrare il vostro voto finale, e quindi non vi presenterete allo scritto, potete ignorare questo messaggio.</p>
+
+<p>RITIRI:</p>
+
+<p>se decidete di non presentarvi allo scritto per favore comunicatelo prima possibile via mail a &quot;gunetti.daniele@unito.it&quot;, in modo da potervi depennare dall&#39;elenco dei partecipanti. Questo ci permetter&agrave; di alleggerire le operazioni di gestione della prova.</p>
+
+<p><br />
+INFORMAZIONI GENERALI PER LO SVOLGIMENTO DELLA PROVA:</p>
+
+<p>La prova scritta si svolger&agrave; in presenza, nell&#39;aula informatizzata del dipartimento Turing.</p>
+
+<p>Per usare una postazione di lavoro in aula Turing ricordate che dovete avviare il thinclient premendo in tasto di avvio situato sul retro del terminale video. Alle postazioni di quest&#39;aula si accede con le credenziali di ateneo, dopo di che &egrave; sufficiente avviare il browser e accedere alla pagina moodle del corso di Storia (ossia dove avete scaricato le slide del corso, e NON alla piattaforma esami) e poi alla prova scritta.</p>
+
+<p>I link alle prove online relative alla prima e alla seconda parte del programma si trovano all&#39;inizio della sezione &quot;Esoneri ed esami&quot;, sulla pagina moodle del corso di Storia dell&#39;Informatica AA 2023-2024, che trovate qui:</p>
+
+<p>https://informatica.i-learn.unito.it/course/view.php?id=2668</p>
+
+<p>I link alle prove potrebbero non essere ancora visibili, ma lo saranno entro le ore 9 del 13 giugno prossimo. Dovrete accedere alla pagina moodle del corso e poi alla pagina dello scritto usando un normale browser, e NON il safe browser. NON usate il browser Explorer, che non gestisce bene l&#39;impaginazione grafica delle domande.</p>
+
+<p>NOTA BENE 1: se non siete iscritti alla pagina moodle del corso di Storia dell&#39;Informatica 2023-2024, o se siete iscritti con un account ospite/guest e non con un account edu, allora moodle non vi permetter&agrave; di accedere allo scritto online. Per sostenere l&#39;esame dovete quindi immediatamente iscrivervi con le vostre credenziali di ateneo al moodle del corso.</p>
+
+<p>NOTA BENE 2: non &egrave; sufficiente poter accedere alle pagine moodle del corso per risultare iscritti e quindi poter sostenere l&#39;esame, dovete esservi iscritti esplicitamente al corso con il vostro account edu. In caso contrario dovrete farlo durante la prova d&#39;esame.</p>
+
+<p>NOTA BENE 3: dopo il termine della prova scritta sulla piattaforma moodle, siete pregati di NON DISISCRIVERVI dalla pagina moodle del corso fino alla registrazione del voto finale del vostro esame su esse3.</p>
+
+<p>**************************</p>
+
+<p>STUDENTI CHE INTENDONO SOSTENERE SOLO LA PRIMA PARTE DELL&#39;ESAME:</p>
+
+<p><br />
+Cognomi dalla A* alla P*: sosterranno la prova dalle ore 9:00 alle ore 9:30</p>
+
+<p>Cognomi dalla R* alla Z*: sosterranno la prova dalle ore 9:31 in avanti</p>
+
+<p><br />
+Dal momento in cui fate partire la prova, questa avr&agrave; la durata di 30 minuti.</p>
+
+<p>La prova sulla prima parte sar&agrave; formata da domande a risposta chiusa e da domande a trascinamento/completamento, per un totale di 32 punti. Le domande saranno navigabili. Le domande verteranno su tutti gli argomenti della prima parte del corso. Le domande a risposta chiusa avranno quattro opzioni di scelta possibili, di cui una sola giusta. ATTENZIONE: una delle tre risposte sbagliate vi assegna un punteggio negativo pari alla met&agrave; del punteggio positivo assegnato in caso di risposta giusta, dunque se non siete certi della vostra scelta, &egrave; meglio non dare nessuna risposta. Le domande a trascinamento non prevedono punteggio negativo. Durante la prova NON SARA&#39; PERMESSA LA CONSULTAZIONE DI TESTI, APPUNTI, FOTOCOPIE O SLIDE, SIA CARTACEI CHE ONLINE.</p>
+
+<p>**************************</p>
+
+<p>STUDENTI CHE INTENDONO SOSTENERE SOLO LA SECONDA PARTE DELL&#39;ESAME:</p>
+
+<p>Dovrete presentarvi e sostenere la prova dalle ore 9:31 in avanti.</p>
+
+<p>Dal momento in cui fate partire la prova, questa avr&agrave; la durata di 30 minuti.</p>
+
+<p>Anche l&#39;esame sulla seconda parte del corso sar&agrave; composto da domande a risposta chiusa per un totale di 32 punti, e in cui una delle risposte sbagliate assegner&agrave; un punteggio negativo. In questa prova &egrave; permesso consultare i testi d&#39;esame e le domande saranno navigabili.</p>
+
+<p><br />
+Allo scadere dei 30 minuti l&#39;accesso alla prova verr&agrave; chiuso automaticamente con il salvataggio delle risposte date fino a quel momento. Dopo le ore 10:10 sullo stesso link usato per la prova sar&agrave; visualizzabile il voto conseguito e la correzione delle risposte.</p>
+
+<p>**************************</p>
+
+<p>STUDENTI CHE INTENDONO SOSTENERE LA PRIMA E LA SECONDA PARTE DELL&#39;ESAME:</p>
+
+<p>Dovranno sostenere le due prove una di seguito all&#39;altra, e dovranno presentarsi alle ore 9 (dunque la loro prova si concluder&agrave; dopo un&#39;ora, intorno alle ore 10.</p>
+
+<p>**************************</p>
+
+<p>STUDENTI CON DIRITTO A UNA ESTENSIONE DI TEMPO</p>
+
+<p>Gli studenti che hanno diritto a una estensione di tempo (posto che abbiano gi&agrave; inviato il modulo previsto nelle settimane scorse ai docenti del corso e agli uffici preposti) sono pregati di scrivere una mail ai docenti entro il 12 giugno ricordando la loro situazione e specificando quale parte di esame intendono svolgere, in modo da poter allestire una prova di durata personalizzata.</p>
+
+<p>**************************</p>
+
+<p>Come al solito, non esitate a contattare i docenti del corso per qualsiasi informazione ulteriore di cui possiate aver bisogno.</p>
+
+<p>Felice Cardone, Daniele Gunetti</p>

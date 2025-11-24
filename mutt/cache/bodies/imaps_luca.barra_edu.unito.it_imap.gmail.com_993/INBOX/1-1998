@@ -1,0 +1,138 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b615:0:b0:2fb:4c9b:a38b with SMTP id r21csp4812699ljn;
+        Mon, 11 Nov 2024 06:37:02 -0800 (PST)
+X-Received: by 2002:a5d:47cd:0:b0:381:d004:83c2 with SMTP id ffacd0b85a97d-381f171c371mr4418866f8f.5.1731335822492;
+        Mon, 11 Nov 2024 06:37:02 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1731335822; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Uxu+4ki9j3J1CRmu6Spdur9ACDfdlZcaUS291jgyeH01BWCIfzrMXyHspwqJGcQFRL
+         QFHqcnPmvCcDQOFkFAXZAp0/jBTRn1QREFuWHQROQD4UsFk/0qttZJjIwBboMBKEPCya
+         ocFgULtZZErIFNjA6RvXMaGOcZ258A/efs51wkIwceeTFIK7J+139q/V6Hzf1j3kTWVZ
+         aY30bOY7vrpPnyYjlZcLcDvsfKhaZ3yBvQShUUJMJaJqAbMFZTIwa/gZrvJhnAvk+lgD
+         SuEPIxRoJIFWfiboviEDeaOmAOWZcZ+iWLrsajqUmNbVxXLaz73wlnAiU7iNNLbo+CXc
+         LaoA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:in-reply-to:references:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :dkim-signature;
+        bh=pSgvgqEOCqgA8/leTTlkZ4WaY2NEoRVWKIIRIkL65+g=;
+        fh=wnoTQjHgWz4kRW5W3Yv210Aj9LolbdJ/Lvc/uyAoO3M=;
+        b=Z+RNEhhNxJyIvuYZ+FXlEO5yFrlYZ8ztNcw8FLLxobqc/LLKomrzcDA28t+eOfEyVk
+         U73E9OLxij5nVczfrSfaLznyvmSbR192fkwULzVP23TY4iOk9QlYVBYS7vR+p+ZFbzDl
+         87IewQsZEOEWXaVdS+cqzTlsagFDa/bzUVhSD4fOjk1Kt14hFVsMb2hrsLh5hi1t/yi6
+         L0jeTEFIu712nE0unbK/l9AvJHBYavv8gwsqILg984xYxrznmDykSfMXgKvC5hzzrXc2
+         S8RJxvZGJ/7mfLyyg8efmX9oojhIlZiwpi1nOdaUahJiyyhTjIqPuHHjHVajPcmlRgxe
+         pR7g==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=f0sEbAaa;
+       spf=pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.65 as permitted sender) smtp.mailfrom=paola.gatti@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <paola.gatti@unito.it>
+Received: from mail-sor-f65.google.com (mail-sor-f65.google.com. [209.85.220.65])
+        by mx.google.com with SMTPS id ffacd0b85a97d-381ed974eacsor3029804f8f.1.2024.11.11.06.37.01
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Mon, 11 Nov 2024 06:37:02 -0800 (PST)
+Received-SPF: pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.65 as permitted sender) client-ip=209.85.220.65;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=f0sEbAaa;
+       spf=pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.65 as permitted sender) smtp.mailfrom=paola.gatti@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1731335821; x=1731940621; darn=edu.unito.it;
+        h=content-transfer-encoding:in-reply-to:references:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pSgvgqEOCqgA8/leTTlkZ4WaY2NEoRVWKIIRIkL65+g=;
+        b=f0sEbAaaAxVkkid9WZRioyj2V1QcZbIWPxn37k0cn4Fr3W9S4MF25XSXmKLaXWWoJy
+         HRKeiND8y80ehgzcTnzgspe3QYgepUD7hS7yrNb6Jti38M8JGKH0BPGP9Qz59sHjxNZO
+         Cmy7ey7Ii7y/tev+pRKD52/LCCMy1C+LlOMcU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1731335821; x=1731940621;
+        h=content-transfer-encoding:in-reply-to:references:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pSgvgqEOCqgA8/leTTlkZ4WaY2NEoRVWKIIRIkL65+g=;
+        b=VEJ3xUAnEPmSQAC00/4bSME7xLV3bSCJ4856x5ECyqUWSueTq8NG7abOCZux9BCzT/
+         56BnalE1986RyOsID7gM/d3NxNoVTx8Z6vD2sKOi56b+mqzdv7o3AaIy0dhecKLZmS4R
+         1rserjl+jDokMlodsEhe3tS+rGG8JmF8zgf6znWcIfS2l3Bq4UZ4QO4AhkiJCWV67rDT
+         OymByVhjW0BQ7rqEdHMzjdeRPSwPnu9YtVAsaBTYFp38exwyb53V+eE7rnSp8SUaD6W/
+         WB1Qs2qg8a3EDBjolDj7a2ks74bwcnUYMd/yWJY2E4glUUZKLDrlhbEQRLVAXedhqyhe
+         GVSw==
+X-Gm-Message-State: AOJu0Yy3apKFCsYsEKkXtmxdEWSGVTfi4KLxxKJhGxbaPb2d/d/GiIcT
+	FuG2VnNhI86n6Y5BBRj39JcPmucVUwQ+RaAKI9Ftd35ajPd2M9A3Uxy84evoidc9MChTEgue5rZ
+	wtpU24lmM
+X-Google-Smtp-Source: AGHT+IHg2BuVpVPYrLxucW6V6T8RwuK5zo4sdbENkyxPWLWjFcJ7GDenTbNVGPZgEbrXI9FL3L23LQ==
+X-Received: by 2002:a05:6000:784:b0:382:5af:e993 with SMTP id ffacd0b85a97d-38205afeb31mr779661f8f.54.1731335821189;
+        Mon, 11 Nov 2024 06:37:01 -0800 (PST)
+Return-Path: <paola.gatti@unito.it>
+Received: from [192.168.1.67] (93-36-162-25.ip61.fastwebnet.it. [93.36.162.25])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-381eda036afsm13217323f8f.86.2024.11.11.06.37.00
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Nov 2024 06:37:00 -0800 (PST)
+Message-ID: <77982cc0-43e3-4a7c-ad54-f248176700d9@unito.it>
+Date: Mon, 11 Nov 2024 15:37:00 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: tabella piano di studi Laurea Magistrale in Informatica, colloqui
+ del 20 settembre 2024
+Content-Language: it
+From: Gatti Paola <paola.gatti@unito.it>
+To: Luca Barra <luca.barra@edu.unito.it>
+References: <880fbb3f-e743-4ae3-8465-3d905ad4b733@unito.it>
+ <437a5522-b1df-4074-840f-d2b591f7401d@unito.it>
+In-Reply-To: <437a5522-b1df-4074-840f-d2b591f7401d@unito.it>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Gentile studente,
+chiedo scusa in anticipo in caso mi sia persa la tua risposta, ma (a 
+prescindere dal piano carriera che nel frattempo potresti aver 
+compilato, rispettando le regole di compilazione e i vincoli indicati 
+durante il colloquio di ammissione) non mi risulta tu abbia accettato il 
+contenuto dell'estratto che ti avevamo inviato.
+
+Attendo tua cortese conferma
+grazie
+paola gatti
+
+Il 26/09/2024 17:30, Gatti Paola ha scritto:
+> Gentile studente,
+> 
+> le allego la tabella di piano di studi discussa durante il colloquio di 
+> ammissione.
+> 
+> ATTENZIONE: nell'estratto alcuni codici/semestri potrebbero essere non 
+> aggiornati. Controlli sempre gli orari (https://unito.prod.up.cineca.it/ 
+> calendarioPubblico/linkCalendarioId=613bd49941164e0018f0f1d7), il 
+> volantino (https://docs.google.com/document/ 
+> d/1uHXMIpZ_7jlCjjJGzszKJmILrXEFez4f/edit? 
+> usp=sharing&ouid=114090409226138407977&rtpof=true&sd=true) e l'allegato 
+> "ITER..." di questa mail.
+> 
+> La prego cortesemente di rispondere a questa mail per confermare la sua 
+> accettazione o segnalarci eventuali errori.
+> 
+> In allegato trova anche le indicazioni per procedere all'iscrizione e 
+> per eventuali modifiche al piano: l'Ateneo riceverà l'esito di 
+> superamento del colloquio, utile per procedere ad abilitare il suo 
+> nominativo all'iscrizione alla Laurea Magistrale (che in ogni caso può 
+> avvenire solo quando si è già in possesso del titolo triennale e, 
+> superato il colloquio, a partire dal 24 luglio 2024 ore 9.30 al 17 
+> gennaio 2025 ore 15).
+> 
+> Dall'Ateneo lo scorso anno avevano segnalato anche che per concludere il 
+> processo con successo dalla My.unito fosse necessario dichiarare un 
+> titolo di accesso in stato conseguito (ipotizzo nella sezione apposita 
+> dei titoli dichiarati, in caso il sistema lo richiedesse per far andare 
+> a buon fine l'iscrizione): da tenere a mente in caso servisse farlo 
+> anche quest'anno, in quanto noi non abbiamo visibilità/accesso alla 
+> procedura.
+> 
+> cari saluti
+> paola gatti
+

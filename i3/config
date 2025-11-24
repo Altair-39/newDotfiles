@@ -1,0 +1,377 @@
+# language {{{
+
+set $LANG en_US.UTF-8
+set $LANGUAGE en_US:en
+set $LC_ALL en_US.UTF-8
+
+#}}}
+
+default_border pixel 5
+default_floating_border  pixel 5
+
+font pango:scientifica 8
+# }}}
+
+# Variables {{{
+set $mod Mod4
+set $sup Mod1
+set $terminal wezterm
+set $workspace1  "1"
+set $workspace2  "2"
+set $workspace3  "3"
+set $workspace4  "4"
+set $workspace5  "5"
+set $workspace6  "6"
+set $workspace7  "7"
+set $workspace8  "8"
+set $workspace9  "9"
+set $workspace10 "10"
+set $workspace11 "11"
+set $workspace12 "12"
+set $workspace13 "13"
+set $workspace14 "14"
+set $workspace15 "15"
+set $workspace16 "16"
+set $workspace17 "17"
+set $workspace18 "18"
+set $workspace19 "19"
+set $workspace20 "20"
+set $workspace21 "21"
+set $workspace22 "22"
+# }}}
+
+# Window Movement (excluding workspaces) {{{
+
+# terminals
+bindsym $mod+q       exec --no-startup-id $terminal
+bindsym $mod+Return   exec --no-startup-id $terminal
+
+# kill
+bindsym $sup+k kill
+bindsym $mod+k kill
+
+# focus
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+# movement
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# splitting
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# fullscreen
+bindsym $mod+f fullscreen toggle
+
+# container layout
+bindsym $mod+s layout stacking
+
+# floating
+floating_modifier $mod
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+# parent/child focus
+bindsym $mod+shift+a focus parent
+bindsym $mod+shift+b focus child
+
+# resizing
+bindsym $sup+Left        resize shrink width  5 px or 5 ppt
+bindsym $sup+Down        resize grow   height 5 px or 5 ppt
+bindsym $sup+Up          resize shrink height 5 px or 5 ppt
+bindsym $sup+Right       resize grow   width  5 px or 5 ppt
+
+bindsym $sup+Shift+Left  resize shrink width  1 px or 1 ppt
+bindsym $sup+Shift+Down  resize grow   height 1 px or 1 ppt
+bindsym $sup+Shift+Up    resize shrink height 1 px or 1 ppt
+bindsym $sup+Shift+Right resize grow   width  1 px or 1 ppt
+# }}}
+
+# Gaps {{{
+gaps inner 15
+gaps outer 35
+gaps left 10
+gaps right 10
+
+bindsym $mod+minus       gaps inner all minus 5
+bindsym $mod+plus        gaps inner all plus  5
+bindsym $mod+Shift+minus gaps outer all minus 5
+bindsym $mod+Shift+plus  gaps outer all plus  5
+# }}}
+
+# Workspaces (including window movement) {{{
+
+# movement
+bindsym $mod+Shift+1   move container to workspace $workspace1
+bindsym $mod+Shift+2   move container to workspace $workspace2
+bindsym $mod+Shift+3   move container to workspace $workspace3
+bindsym $mod+Shift+4   move container to workspace $workspace4
+bindsym $mod+Shift+5   move container to workspace $workspace5
+bindsym $mod+Shift+6   move container to workspace $workspace6
+bindsym $mod+Shift+7   move container to workspace $workspace7
+bindsym $mod+Shift+8   move container to workspace $workspace8
+bindsym $mod+Shift+9   move container to workspace $workspace9
+bindsym $mod+Shift+0   move container to workspace $workspace10
+bindsym $mod+Shift+F1  move container to workspace $workspace11
+bindsym $mod+Shift+F2  move container to workspace $workspace12
+bindsym $mod+Shift+F3  move container to workspace $workspace13
+bindsym $mod+Shift+F4  move container to workspace $workspace14
+bindsym $mod+Shift+F5  move container to workspace $workspace15
+bindsym $mod+Shift+F6  move container to workspace $workspace16
+bindsym $mod+Shift+F7  move container to workspace $workspace17
+bindsym $mod+Shift+F8  move container to workspace $workspace18
+bindsym $mod+Shift+F9  move container to workspace $workspace19
+bindsym $mod+Shift+F10 move container to workspace $workspace20
+bindsym $mod+Shift+F11 move container to workspace $workspace21
+bindsym $mod+Shift+F12 move container to workspace $workspace22
+
+# active workspace
+set $WALLPAPER_DIR $HOME/Pictures/Wallpapers
+
+bindsym $mod+1 workspace $workspace1 
+bindsym $mod+2 workspace $workspace2 
+bindsym $mod+3 workspace $workspace3 
+bindsym $mod+4 workspace $workspace4 
+bindsym $mod+5 workspace $workspace5 
+bindsym $mod+6 workspace $workspace6 
+bindsym $mod+7 workspace $workspace7 
+bindsym $mod+8 workspace $workspace8 
+bindsym $mod+9 workspace $workspace9 
+bindsym $mod+0 workspace $workspace10 
+bindsym $mod+F1 workspace $workspace11 
+bindsym $mod+F2 workspace $workspace12
+bindsym $mod+F3 workspace $workspace13
+bindsym $mod+F5 workspace $workspace15
+bindsym $mod+F6 workspace $workspace16
+bindsym $mod+F7 workspace $workspace17
+bindsym $mod+F8 workspace $workspace18
+bindsym $mod+F9 workspace $workspace19
+bindsym $mod+F10 workspace $workspace20
+bindsym $mod+F11 workspace $workspace21
+bindsym $mod+F12 workspace $workspace22
+
+
+bindsym $sup+1   workspace $workspace1
+bindsym $sup+2   workspace $workspace2
+bindsym $sup+3   workspace $workspace3
+bindsym $sup+4   workspace $workspace4
+bindsym $sup+5   workspace $workspace5
+bindsym $sup+6   workspace $workspace6
+bindsym $sup+7   workspace $workspace7
+bindsym $sup+8   workspace $workspace8
+bindsym $sup+9   workspace $workspace9
+bindsym $sup+0   workspace $workspace10
+bindsym $sup+F1  workspace $workspace11
+bindsym $sup+F2  workspace $workspace12
+bindsym $sup+F3  workspace $workspace13
+bindsym $sup+F5  workspace $workspace15
+bindsym $sup+F6  workspace $workspace16
+bindsym $sup+F7  workspace $workspace17
+bindsym $sup+F8  workspace $workspace18
+bindsym $sup+F9  workspace $workspace19
+bindsym $sup+F10 workspace $workspace20
+bindsym $sup+F11 workspace $workspace21
+bindsym $sup+F12 workspace $workspace22
+
+
+workspace $workspace1  output LVDS1
+workspace $workspace2  output LVDS1
+workspace $workspace3  output LVDS1
+workspace $workspace4  output LVDS1
+workspace $workspace5  output LVDS1
+workspace $workspace6  output LVDS1
+workspace $workspace7  output LVDS1
+workspace $workspace8  output LVDS1
+workspace $workspace9  output LVDS1
+workspace $workspace10 output LVDS1
+workspace $workspace11 output DP1
+workspace $workspace12 output DP1
+workspace $workspace13 output DP1
+workspace $workspace14 output DP1
+workspace $workspace15 output DP1
+workspace $workspace16 output DP1
+workspace $workspace17 output DP1
+workspace $workspace18 output DP1
+workspace $workspace19 output DP1
+workspace $workspace20 output DP1
+workspace $workspace21 output DP1
+workspace $workspace22 output DP1
+# }}}
+
+# Other Keybindings {{{
+
+## Screenshots
+bindsym Print            exec --no-startup-id maim "/home/$USER/Pictures/$(date).png"
+bindsym $mod+Print       exec --no-startup-id maim --window $(xdotool getactivewindow) "/home/$USER/Pictures/$(date).png"
+bindsym Shift+Print      exec --no-startup-id maim --select "/home/$USER/Pictures/$(date).png"
+
+## Clipboard Screenshots
+bindsym Ctrl+Print       exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym Ctrl+$mod+Print  exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+
+## Brightness
+bindsym XF86MonBrightnessUp   exec --no-startup-id ~/.config/i3/Brightness.sh up
+bindsym XF86MonBrightnessDown exec --no-startup-id ~/.config/i3/Brightness.sh down
+
+## Lockscreen
+bindsym $mod+l       exec --no-startup-id exec betterlockscreen -l
+
+## Telegram
+bindsym $mod+t       exec --no-startup-id python3 Repository/telegram-pywal/pallete-gen.py & 64gram-desktop
+
+## Client Mail
+bindsym $mod+w       exec --no-startup-id wezterm -e neomutt
+
+## Nvim
+bindsym $mod+n       exec --no-startup-id wezterm -e nvim
+
+## Browser
+bindsym $mod+z       exec --no-startup-id zen-browser
+
+## Video recording
+bindsym $mod+p       exec --no-startup-id obs
+
+## Crunchyroll
+bindsym $mod+c       exec --no-startup-id crunchyroll
+
+## Wifi menu
+bindsym $sup+w       exec --no-startup-id /home/$USER/.config/i3/wifi.sh
+bindsym $mod+SHIFT+w exec --no-startup-id /home/$USER/.config/i3/wifi.sh
+
+## Discord
+bindsym $mod+d       exec --no-startup-id vesktop
+
+## Dictionary
+bindsym $sup+d       exec --no-startup-id /home/$USER/.config/i3/dict.sh
+
+## Bluethoot
+bindsym $mod+i       exec --no-startup-id overskride
+
+## Simple exit
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'Exit?' -b 'Yes, exit i3' 'i3-msg exit'"
+
+## Reload i3
+bindsym $mod+Shift+r exec --no-startup-id "i3-msg restart"
+
+## Application launcher
+bindsym $mod+r       exec --no-startup-id "rofi -show drun -lines 10 -width 20"
+
+## Config
+bindsym $mod+Shift+c exec --no-startup-id wezterm -e sh -c 'cd ~/.config && nvim'
+bindsym $sup+c       exec --no-startup-id wezterm -e sh -c 'cd ~/.config/nvim && nvim'
+
+## Notes
+bindsym $mod+Shift+n exec --no-startup-id wezterm -e sh -c 'cd ~/Repository/TeX/LaTeX && nvim'
+
+## Bachelor's thesis
+bindsym $mod+Shift+t exec --no-startup-id wezterm -e sh -c 'cd ~/Repository/TeX/Tesi && nvim'
+
+## Manga
+bindsym $mod+m       exec --no-startup-id wezterm -e sh -c 'manga-tui'
+
+## Music Player 
+bindsym $sup+m       exec --no-startup-id wezterm -e sh -c 'rmpc'
+
+## Wallpapers manager
+bindsym $mod+a       exec --no-startup-id wezterm -e sh -c 'wallrs'
+
+## Clipboard History
+bindsym $mod+$sup+c       exec --no-startup-id /home/$USER/.config/i3/clihist.sh add
+bindsym $mod+$sup+v       exec --no-startup-id /home/$USER/.config/i3/clihist.sh out
+bindsym $mod+u       exec --no-startup-id /home/$USER/.config/i3/clihist.sh sel
+
+## File manager - Terminal
+bindsym $mod+o       exec --no-startup-id wezterm -e yazi
+bindsym $mod+e       exec --no-startup-id wezterm -e yazi
+
+## Audio Visualizer
+bindsym $mod+y       exec --no-startup-id wezterm -e cava
+
+## Music
+bindsym $mod+Shift+m exec --no-startup-id /home/$USER/.config/i3/music.sh
+
+## Switcher
+bindsym $mod+$sup+r  exec  --no-startup-id /home/$USER/.config/i3/rice_switcher.sh
+
+## Powermenu
+bindsym $mod+x exec --no-startup-id ~/.config/polybar/scripts/powermenu.sh 
+
+# }}}
+
+# Pulse Audio Controls {{{
+bindsym XF86AudioMute        exec --no-startup-id /home/$USER/.config/dunst/volume.sh mute
+bindsym XF86AudioLowerVolume exec --no-startup-id /home/$USER/.config/dunst/volume.sh down
+bindsym XF86AudioRaiseVolume exec --no-startup-id /home/$USER/.config/dunst/volume.sh up
+
+# }}}
+
+# Media Player Controls {{{
+bindsym XF86AudioStop exec --no-startup-id mpc clear && /home/reed/scripts/killm.sh ncmpcpp
+bindsym XF86AudioNext exec --no-startup-id mpc next
+bindsym XF86AudioPlay exec --no-startup-id mpc toggle
+bindsym XF86AudioPrev exec --no-startup-id mpc prev
+
+# if there's no XF86Audio buttons, control+arrow is good
+bindsym Control+Up    exec --no-startup-id mpc clear && /home/reed/scripts/killm.sh ncmpcpp
+bindsym Control+Right exec --no-startup-id mpc next
+bindsym Control+Down  exec --no-startup-id mpc toggle
+bindsym Control+Left  exec --no-startup-id mpc prev
+
+# }}}
+
+set_from_resource $bg color0
+set_from_resource $fg color7
+set_from_resource $accent color1
+set_from_resource $color1 color1
+set_from_resource $color2 color2
+set_from_resource $color3 color3
+set_from_resource $color4 color4
+set_from_resource $color5 color5
+set_from_resource $color6 color6
+set_from_resource $color7 color7
+set_from_resource $color8 color8
+set_from_resource $color9 color9
+set_from_resource $color10 color10
+set_from_resource $color11 color11
+set_from_resource $color12 color12
+set_from_resource $color13 color13
+set_from_resource $color14 color14
+set_from_resource $color15 color15
+
+# Apply colors to i3
+client.background $bg
+
+# Border colors
+client.focused          $accent $accent $fg $accent $accent
+client.focused_inactive $color8 $color8 $fg $color8 $color8
+client.unfocused        $color8 $color8 $fg $color8 $color8
+client.urgent           $color9 $color9 $fg $color9 $color9
+client.placeholder      $bg $bg $fg $bg $bg
+# Autostart {{{
+exec        --no-startup-id xset r rate 280 40
+exec        --no-startup-id unclutter
+exec        --no-startup-id mousetrap -t 7
+exec        --no-startup-id dunst
+exec        --no-startup-id sleep 1;picom --corner-radius 5 
+exec        --no-startup-id export LANG=en_US.UTF-8
+exec        --no-startup-id export LANGUAGE=en_US:en
+exec        --no-startup-id export LC_ALL=en_US.UTF-8
+exec        --no-startup-id /home/$USER/.config/i3/battery.sh -n -D -L 20 -l 10 &
+exec_always --no-startup-id sleep 1;/home/$USER/.config/polybar/launch.sh
+exec        --no-startup-id sleep 2; udiskie
+exec 	    --no-startup-id swww-daemon
+exec        --no-startup-id sleep 2; mpd
+exec        --no-startup-id sleep 1; pipewire & pipewire-pulse & wireplumber
+exec --no-startup-id feh --bg-fill "$WALLPAPER_DIR/Breakcore/xenogender.jpg"; wal -i "$WALLPAPER_DIR/Breakcore/xenogender.jpg"
+# }}}
+
+## I don't like the mouse to follow my focus...
+focus_follows_mouse no
+

@@ -1,0 +1,105 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:548:b0:2ea:83d6:7f34 with SMTP id q8csp603911ljp;
+        Fri, 7 Jun 2024 00:48:50 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUIC2WyCeiq4kVXAN1wBHMobyAhtLt5VEKLjoNbuEHBGBJU+CzaI3E8Pwy3hVDfAiUpgg/ITs15C6bvUp4h64WmQYSnqs53jA==
+X-Google-Smtp-Source: AGHT+IFsARCO5kkTl2YkNZKTMYzTCABeB9o74ZLp94WnQzV5uuaFo8XFNYl+xbY11OQdbgG+9vwE
+X-Received: by 2002:a2e:8890:0:b0:2e2:b61:aa97 with SMTP id 38308e7fff4ca-2eadceacc59mr10672711fa.48.1717746530181;
+        Fri, 07 Jun 2024 00:48:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1717746530; cv=none;
+        d=google.com; s=arc-20160816;
+        b=hoUsKnjQf4cmQehPcOJf2WidaH1W+ePzfiy+qVZvGOAuXPUgbIZC+upVCcJ87rbgFk
+         xkesmy26+35Xv0xjYQQyyMZUZJ9dsCr7PWhRhQTZ3IPDVOy/QW7vhtPdKmy0LQ89Sg0O
+         jMSrG7hEwq+Ygv+y4PQGvlXNN6kKxrEuPtZxr58onSIrCfSRp0Zk0qD7QtPzeY2kt1yf
+         1hpl4b7l5XT5aJTloxfE+Ked+KVrmZNHzX4y7RbL3GZ6EaO7Zxb2nWBdUswUojZJr5C/
+         db3R8eYBaBheOEW7DWeMMRb8vl6IYRmGBKQVIhxvqniCjp0MzDFYLa7SEJQ9M7VC6Jzc
+         iLHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:subject:message-id:cc:from
+         :date:dkim-signature:dkim-filter;
+        bh=tCzvI19RMM52U1gRgE1lsgYuCQOEy04ZB/GVJ2btadw=;
+        fh=qVUs5WbzQ/uvOYebG/UmXeVL/nw6M0HWNJ3X45jPvvo=;
+        b=eBkycTHcFx/gU4+M56dzFDsASf+ih3XgKU6jHhrpcafrrk6lukt5ZuZT0cJO+IqCvc
+         V7cefOSRcr2qbpGCNTRyWcN+cL3CG7Xdf96ZSrlMvCK0xmGWINr32Jvv9kjzfJ6tcrZT
+         eF2RyB9KQfum/cWCUf+j7NBd0+OwRAfPv9BidinVt3IIqpnJxvK/0z+3VbpV0CC4SDMR
+         L15XHb+l+XwGaVAel51C6sx1/srV4QBLL+fx3a8VaF764TQjYhzZdb2gMyqaRvK9uigf
+         ifsF6y5NO5rNWYI6wX7R6PX7F9IeWFZa0UGReuR1YKX+c4RAePms/17fB40OxfSgxLIz
+         CPOw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=gxhXbEQg;
+       spf=pass (google.com: domain of daniele.gunetti@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=daniele.gunetti@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <daniele.gunetti@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id ca18e2360f4ac-7eb4c47d41asi116739439f.144.2024.06.07.00.48.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Jun 2024 00:48:50 -0700 (PDT)
+Received-SPF: pass (google.com: domain of daniele.gunetti@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=gxhXbEQg;
+       spf=pass (google.com: domain of daniele.gunetti@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=daniele.gunetti@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 3E5A32B0DE;
+	Fri,  7 Jun 2024 09:48:47 +0200 (CEST)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id G1SBQDurdCxd; Fri,  7 Jun 2024 09:48:47 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 9963F2B27A;
+	Fri,  7 Jun 2024 09:48:46 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 9963F2B27A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1717746527;
+	bh=tCzvI19RMM52U1gRgE1lsgYuCQOEy04ZB/GVJ2btadw=;
+	h=Date:From:Message-ID:MIME-Version;
+	b=gxhXbEQgyQkgzAR+T0rXsKEIUatP02n4CLQKITALvefsseCR0Mk//spd/3RjjGbd9
+	 DvUirsWGJaJBC2N7pXhXdYMAVy/VuQZkyrbwQMl8k3BWLKVTMpaA1eFgKG+cmIFwwk
+	 ea80RjJaJDyf3qiJ51559F8wu5XLSTKPz48pJB7O31i6oooMJ/2DR7lpU16juZw6oa
+	 hf/xPFmAGhhb6qUAn0XBn76mSBhPvjQrOcsMxxJ2Yz/+Wtp/6BYe8g5tQh+dci5pHJ
+	 PFEtgLeK5Lw2/KZpoz6l6E4EzK4KvUiKRkdV229ViYdWeXeanK3OZfjfznpN+vzG2L
+	 SfhZ3hxvHK6lA==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id k22GpfRkwvTv; Fri,  7 Jun 2024 09:48:46 +0200 (CEST)
+Received: from esse3appjboss26.private.cineca.it (esse3appjboss26.cineca.it [130.186.5.161])
+	by smtp4.cineca.it (Postfix) with ESMTP id C2A142B20E;
+	Fri,  7 Jun 2024 09:48:44 +0200 (CEST)
+Received: from esse3appjboss26.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss26.private.cineca.it (Postfix) with ESMTP id AB2F988B;
+	Fri,  7 Jun 2024 09:48:44 +0200 (CEST)
+Date: Fri, 7 Jun 2024 09:48:44 +0200 (CEST)
+From: DANIELE GUNETTI <daniele.gunetti@unito.it>
+Cc: daniele.gunetti@unito.it, felice.cardone@unito.it
+Message-ID: <691449605.17871.1717746524681@esse3appjboss26.private.cineca.it>
+Subject: Sondaggio in vista dello scritto di Storia dell'Informatica del
+ 13/06/2024
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Gentili studentesse e studenti, ricevete questo messaggio perch&eacute; siete iscritti all&#39;appello di Storia dell&#39;Informatica del 13 giugno prossimo.</p>
+
+<p>ATTTENZIONE: se vi siete iscritti SOLO per registrare il voto finale del corso in quanto:</p>
+
+<p>1) avete gi&agrave; conseguito un voto sufficiente negli scritti sia sulla prima che sulla seconda parte del corso<br />
+2) e all&#39;atto della registrazione su esse3 avete indicato nelle note che volete solo registrare il voto finale gi&agrave; conseguito</p>
+
+<p>ALLORA POTETE IGNORARE QUESTO MESSAGGIO. Altrimenti proseguite la lettura.</p>
+
+<p>Al fine di organizzare al meglio la prova, che potrebbe doversi svolgere su pi&ugrave; turni, siete pregati di rispondere ENTRO E NON OLTRE LUNEDI&#39; 10 GIUGNO al sondaggio che trovate in testa alla pagina moodle del corso, o direttamente al link sottostante:</p>
+
+<p>https://informatica.i-learn.unito.it/mod/questionnaire/view.php?id=242934</p>
+
+<p>e intitolato: QUESTIONARIO SULLO SCRITTO DI STORIA DELL&#39;INFORMATICA DEL 13 GIUGNO 2024</p>
+
+<p>NOTA BENE 1: L&#39;ultima opzione: &quot;chiedo solo la registrazione del voto gi&agrave; conseguito quindi non mi presenter&ograve; allo scritto&quot; deve essere selezionata SOLO da chi si trova in questa situazione ma ha dimenticato di indicarlo nelle note quando si &egrave; iscritto su Esse3.</p>
+
+<p>NOTA BENE 2: se non siete iscritti al corso moodle del corso di Storia dell&#39;AA 2023-2024 DOVETE ISCRIVERVI IMMEDIATAMENTE CON LE VOSTRE CREDENZIALI ISTITUZIONALI, sia per poter rispondere al sondaggio, e sia perch&eacute; altrimenti il sistema moodle non vi permetter&agrave; di sostenere lo scritto del 12.</p>
+
+<p>Resto ovviamente a disposizione per qualsiasi chiarimento in merito.</p>
+
+<p>Daniele Gunetti</p>

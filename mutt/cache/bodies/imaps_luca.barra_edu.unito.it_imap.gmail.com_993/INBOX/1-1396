@@ -1,0 +1,91 @@
+X-Received: by 2002:a2e:a68a:0:b0:2d0:8d39:7636 with SMTP id q10-20020a2ea68a000000b002d08d397636mr693980lje.41.1706887022659;
+        Fri, 02 Feb 2024 07:17:02 -0800 (PST)
+Received: from 292831042739
+	named unknown
+	by gmailapi.google.com
+	with HTTPREST;
+	Fri, 2 Feb 2024 07:17:02 -0800
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a17:906:7c91:b0:a30:17b:f5e1 with SMTP id w17csp926826ejo;
+        Mon, 22 Jan 2024 01:27:29 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGGWR/+HX9HKy5Dj7YLgv04J+gWhJ56U3EtftzHnfA4oU2mIHV72y8Bu/o4+c6VU859dA9l
+X-Received: by 2002:aa7:d842:0:b0:559:b4ad:f742 with SMTP id f2-20020aa7d842000000b00559b4adf742mr1022758eds.67.1705915649873;
+        Mon, 22 Jan 2024 01:27:29 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1705915649; cv=none;
+        d=google.com; s=arc-20160816;
+        b=nIf21Z7VMJDS/kLDZcvAeDeI49L1Fa9+IiC1wy9CY3aBXUiLpH7fYv8cPjLvSxD4Nx
+         V6HczcpuaCNGwtR65sTsV4PgiYiSGn4WCoIvcIPZ2QPJm1vDXIQjdOhEXg3ApL5KjPy9
+         lEWEozyjuEfXEfGabV2pT2i2dwxuLeh5wnLSPBvyuHk/knxMjkrWwfkyepcpXY8AcfOE
+         a8qsIzAFy1PJnOXsl5wP/cWvA9RhQnGIDrf7tqShmhrmCTa2Hu5KxFAbt8WQxTloa10y
+         fJkA66HMURQIrxsiiOKnZRApXIA0G+H5D9vF7cLho5jaL9SXxX7Wajx77Baw4onyY8KX
+         ItBg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:subject:message-id:to:from
+         :date;
+        bh=IsggvOI4RZi0iqDcwQJqxxTZNu9y2OHx1LHfye3BZd4=;
+        fh=IxM04YauqXzCozmF/ngeXvaWuWeW7uONbHgj9jmZsgE=;
+        b=AbUWI6x/J3fJd/3JnD9FrINwdF1YoaLCkTTFOray/h6zeJRRHwfLin+lKwpdrSjhXt
+         pVYKeJ7g1Bcx9xpQWL8o7tK0hqq/OCHrjIEVSAssN0B40NO0wK7s/q7tb/E1cNtiHMLo
+         qU18rroHZYKBPjmMSbu+Xr0eBD4r0nV8P/YJfQs9EUiPFM4DK7asNfL1XhadXfjVEx87
+         rVV3vMdd7PaxGRqw5aa9Vmy/x9qXlJb54JIWNrYJReVJBmL0Qo6xtF2yeDWrWzAs5hVs
+         UpZjuFc+guHAataWLpxzNQZtaC3/Syis5ig9Ms4fMJe8oZIuGVHhHExV2B59W9zXUgAk
+         41qg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       gateway.spf=pass (google.com: domain edu.unito.it configured 130.186.31.165 as internal address) smtp.mailfrom=avvisi@unito.it smtp.remote-ip=130.186.31.165 policy.d=edu.unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id c96-20020a509fe9000000b0055c0ffb99d0si1656851edf.360.2024.01.22.01.27.29
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Jan 2024 01:27:29 -0800 (PST)
+Received-SPF: pass (google.com: domain edu.unito.it configured 130.186.31.165 as internal address)
+Authentication-Results: mx.google.com;
+       gateway.spf=pass (google.com: domain edu.unito.it configured 130.186.31.165 as internal address) smtp.mailfrom=avvisi@unito.it smtp.remote-ip=130.186.31.165 policy.d=edu.unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 7CAEE23B1B
+	for <luca.barra@edu.unito.it>; Mon, 22 Jan 2024 10:27:29 +0100 (CET)
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id Zm1pkuTbi6Yz for <luca.barra@edu.unito.it>;
+ Mon, 22 Jan 2024 10:27:29 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 160AE231B3
+	for <luca.barra@edu.unito.it>; Mon, 22 Jan 2024 10:27:29 +0100 (CET)
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id cnq9V7G2YLlv for <luca.barra@edu.unito.it>;
+ Mon, 22 Jan 2024 10:27:28 +0100 (CET)
+Received: from esse3appjboss27.private.cineca.it (esse3appjboss27.cineca.it [130.186.5.162])
+	by smtp4.cineca.it (Postfix) with ESMTP id A8A9123449
+	for <luca.barra@edu.unito.it>; Mon, 22 Jan 2024 10:27:28 +0100 (CET)
+Received: from esse3appjboss27.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss27.private.cineca.it (Postfix) with ESMTP id 91346127E
+	for <luca.barra@edu.unito.it>; Mon, 22 Jan 2024 10:27:28 +0100 (CET)
+Date: Mon, 22 Jan 2024 10:27:28 +0100 (CET)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+To: luca.barra@edu.unito.it
+Message-ID: <2079468355.15977.1705915648593@esse3appjboss27.private.cineca.it>
+Subject: Pubblicazione Voto Appello
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Le comunichiamo che l'esito della prova d'esame relativa all'attivit=C3=A0 =
+didattica LINGUAGGI E PARADIGMI DI PROGRAMMAZIONE,
+da Lei sostenuta in data 17/01/2024, =C3=A8: 30/30 .
+=20
+
+=20
+
+
+---------
+Attenzione: se questa e-mail proviene dall'indirizzo avvisi@unito.it =C3=A8=
+ stata generata automaticamente dal sistema informativo. Si prega pertanto =
+di non rispondere a questo messaggio. Per ulteriori informazioni sull'esame=
+ sostenuto contattare direttamente il docente o la Segreteria Studenti di a=
+ppartenenza.
+---------
+
+
+

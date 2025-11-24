@@ -1,0 +1,144 @@
+Authentication-Results: mx.google.com;
+       dkim=neutral (expired) header.i=@unito.it header.s=google header.b=PfnrqL6s
+X-Google-Smtp-Source: AGHT+IFAWQ882S6STF2D6UK1AL7WubHDvgqBI67BFXWlHuQI/hPMoQ0PNNKGbCYRCbxGPFeYV4VfxvJX18d+3mtx7A==
+X-Received: by 2002:a05:6102:33c7:b0:44d:426f:ab3b with SMTP id w7-20020a05610233c700b0044d426fab3bmr9791000vsh.15.1693119759583;
+        Sun, 27 Aug 2023 00:02:39 -0700 (PDT)
+Received: from 292831042739
+	named unknown
+	by gmailapi.google.com
+	with HTTPREST;
+	Sun, 27 Aug 2023 03:02:39 -0400
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a59:d28e:0:b0:3e6:fdfa:aa9f with SMTP id bq14csp773365vqb;
+        Tue, 20 Jun 2023 02:15:44 -0700 (PDT)
+X-Received: by 2002:a25:b2a6:0:b0:be5:4d4b:27c8 with SMTP id k38-20020a25b2a6000000b00be54d4b27c8mr9761854ybj.2.1687252544196;
+        Tue, 20 Jun 2023 02:15:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1687252544; cv=none;
+        d=google.com; s=arc-20160816;
+        b=kDq1JEaO6WHFZZ0gwBVhVZdGH3+dVBUTb+wHIfJl5jUPOtHsI6CgPCzZcW5IWH8Q/f
+         /kHyE+We6qky4K4+W40iWxpbumoyNY5PpD1VrKsV8C2Evyqw4ZSF/sU4E6jm+xRM/uZA
+         veIDtsPziOrE6+MSggkZ+qGKCBc81POrD+8ZsKx8SuoZc6zmkg+ukgNld8ppU/OrOxFb
+         j+u9L9P7/5Ku64RBMl4AEOVhgRF4gmiFLJzpb2ne2hxuJAgjYVgf3lKki8IOLn+wClU3
+         01RPCPEDSmS4rDJom3uYohOMTVi8AUH2XGGuRsS/pwZ/Ar939CpdTRjHZzz5oNUApjfw
+         hD4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=WyxGyfaL3QnKv3Q24fuTDgfui3nO+SeXBbW6gV+9QPM=;
+        b=NmYnPesDvF60cGTqpi2KQDowlQcuFiAYmRnCyNqKEYCXcQRe5RRlbYbyNS9iMEMxof
+         nwttt1X13+0SuAPcWUXM3uua1ONn8kskp5ilCxMKuxbnw90Sqp8db1AYq6EZDkSGn3k2
+         udD9s8wiBtGBx+rHL/fqyKBKqeFGvYkabjwWoPKXuFfQTdlf5GOBN7dQBUEv1a3xH3ZY
+         O8jxI/pHaqF98d33JQk+IWrW57OmWEyNdC7jHnxML/W+uwkntqKlDrSlLCnhNfdnsI05
+         IHKlU8r+gOgIjLB3keePpdVh5soR5+1eLHXnfZZ6cTW1zzSd6Pts9g7Wa9pKNr9BrcQB
+         CvaQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=PfnrqL6s;
+       spf=pass (google.com: domain of noemi.mauro@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=noemi.mauro@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noemi.mauro@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id f81-20020a25cf54000000b00bc61147275fsor54129ybg.2.2023.06.20.02.15.43
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Tue, 20 Jun 2023 02:15:44 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noemi.mauro@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=PfnrqL6s;
+       spf=pass (google.com: domain of noemi.mauro@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=noemi.mauro@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1687252543; x=1689844543;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=WyxGyfaL3QnKv3Q24fuTDgfui3nO+SeXBbW6gV+9QPM=;
+        b=PfnrqL6srXRgqHSh0fBLqYjHMwmpp9OHn9mw3RixOUI5nv3NqzSnMY+ZXd8I+b5hm3
+         iFh9mmiGhZbPXb3RkA9BDQqaghlpdBY69JPaAvxmdiXf9ndD5wOil0MtqrciYCFbzU76
+         3jWG5Q/uz47eH0RfMzb0eFbqN0WJwuko2DiG4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687252543; x=1689844543;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WyxGyfaL3QnKv3Q24fuTDgfui3nO+SeXBbW6gV+9QPM=;
+        b=Yk+FjjHbtKQuhFIWNFnBqARVSdjmt8Hd7UPgxsklNNSUTRR9ZJZ0RuLAwHh9e4O5h2
+         E/Nq9TP4u6im74xRjBRrJuR7XR/5Exz/5vAlwrlba4fAqTEljr7p2zvfleEKSyBZ3qbJ
+         ytiC8y1kCsWERL+sF8RUxbDa8qHWEA72Yp0hmWq8jP6x5W2m69Bo0RBcqBFCNlpYxCM9
+         OnKft/AdTwXiCvXpwQvN5V9A6eNcnrcpr0TEyEiqLuTBAcUddGU0T8/KzjtDoS9RLQEK
+         PhYsxywfb4jwnwRgt03LGuheqBLsShNX0t/QI6JC0MsnrKbPOrhKLbfyzgm+lUQDBApE
+         1CrQ==
+X-Gm-Message-State: AC+VfDwoZ5ZSnJJCcKfLFW8pA7VdqlOo6v6TB+D6dO6UM8mAnkEdtFov
+	k2EnTQxwKeXOBLEEHl0GJxiOwiVCkeF76amEzwBV75WC
+X-Received: by 2002:a25:ab87:0:b0:be8:5753:f7 with SMTP id v7-20020a25ab87000000b00be8575300f7mr4252310ybi.6.1687252543181;
+        Tue, 20 Jun 2023 02:15:43 -0700 (PDT)
+Return-Path: <noemi.mauro@unito.it>
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
+        by smtp.gmail.com with ESMTPSA id v190-20020a257ac7000000b00ba88763e5b5sm289716ybc.2.2023.06.20.02.15.42
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Jun 2023 02:15:42 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-5700e993f37so81406077b3.0
+        for <luca.barra@edu.unito.it>; Tue, 20 Jun 2023 02:15:42 -0700 (PDT)
+X-Received: by 2002:a81:5283:0:b0:56d:2a15:e275 with SMTP id
+ g125-20020a815283000000b0056d2a15e275mr18046235ywb.6.1687252542394; Tue, 20
+ Jun 2023 02:15:42 -0700 (PDT)
+MIME-Version: 1.0
+From: Noemi Mauro <noemi.mauro@unito.it>
+Date: Tue, 20 Jun 2023 11:15:35 +0200
+X-Gmail-Original-Message-ID: <CAHfsHvJGgQp4_Vmxpt=dzhfq_icfAWYjnrigdBW6zKQ0cWHP+Q@mail.gmail.com>
+Message-ID: <CAHfsHvJGgQp4_Vmxpt=dzhfq_icfAWYjnrigdBW6zKQ0cWHP+Q@mail.gmail.com>
+Subject: Discussione laboratorio Basi di Dati
+To: Noemi Mauro <noemi.mauro@unito.it>
+Content-Type: multipart/alternative; boundary="0000000000006f96b605fe8c1825"
+Bcc: luca.barra@edu.unito.it
+
+--0000000000006f96b605fe8c1825
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Buongiorno,
+vi comunico che se i colleghi del vostro gruppo discutono la prova di
+laboratorio anche voi dovete discuterla secondo le regole d'esame. Dovete
+prenotarvi su moodle.
+
+*Per accedere alla discussione =C3=A8 necessario che almeno un* componente =
+del
+gruppo abbia superato la prova scritta. A quel punto tutti i/tutte le
+componenti del gruppo devono obbligatoriamente discutere nella stessa data,
+rispettando le regole di validit=C3=A0 dello scritto.  *
+
+Cordiali saluti,
+Noemi Mauro
+
+--
+Noemi Mauro, Ph.D.
+Researcher and Assistant Professor
+Department of Computer Science, University of Torino
+https://unito.webex.com/meet/noemi.mauro
+
+--0000000000006f96b605fe8c1825
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Buongiorno,<div>vi comunico che se i colleghi del vostro g=
+ruppo discutono la prova di laboratorio anche voi dovete discuterla secondo=
+ le regole d&#39;esame. Dovete prenotarvi su moodle.</div><div><br></div><d=
+iv><i>Per accedere alla discussione =C3=A8 necessario che almeno un* compon=
+ente del gruppo abbia superato la
+prova scritta. A quel punto tutti i/tutte le componenti del gruppo devono o=
+bbligatoriamente
+discutere nella stessa data, rispettando le regole di validit=C3=A0 dello s=
+critto.=C2=A0=C2=A0</i></div><div><i><br></i></div><div>Cordiali saluti,</d=
+iv><div>Noemi Mauro<br clear=3D"all"><div><div dir=3D"ltr" class=3D"gmail_s=
+ignature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><span st=
+yle=3D"color:rgb(136,136,136)"><br></span></div><div><span style=3D"color:r=
+gb(136,136,136)">--</span></div><span style=3D"color:rgb(136,136,136)">Noem=
+i Mauro, Ph.D.</span><br style=3D"color:rgb(136,136,136)"><span style=3D"co=
+lor:rgb(136,136,136)">Researcher and Assistant Professor</span><br style=3D=
+"color:rgb(136,136,136)"><font color=3D"#888888">Department of Computer Sci=
+ence,=C2=A0</font><span style=3D"color:rgb(136,136,136)">University of Tori=
+no</span><br style=3D"color:rgb(136,136,136)"><span style=3D"color:rgb(52,5=
+3,55);font-family:ciscosansttregular,&quot;Helvetica Neue&quot;,Helvetica,A=
+rial,&quot;sans-serif&quot;,&quot;Times New Roman&quot;;font-size:14px;whit=
+e-space:nowrap"><a href=3D"https://unito.webex.com/meet/noemi.mauro" target=
+=3D"_blank">https://unito.webex.com/meet/noemi.mauro</a></span></div></div>=
+</div></div></div>
+
+--0000000000006f96b605fe8c1825--

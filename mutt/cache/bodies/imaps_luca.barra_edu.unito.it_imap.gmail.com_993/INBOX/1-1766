@@ -1,0 +1,102 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:1727:b0:2eb:f1cf:4407 with SMTP id be39csp621572ljb;
+        Fri, 14 Jun 2024 01:28:23 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCWYPSKRdxGhzeq2to3F/Q+r4i2u3EjTxPUpoiUn1abLoNP2cmINfePzMQG7FSA8jN3dHXqJHIRhXBw1+xotTt/2UIxyYREWgg==
+X-Google-Smtp-Source: AGHT+IErQq7B5N7iilHUQCyGewpYBm6UGvPtaGEpVYWlMuya8nR7xNB+YM52JiYoIW/i6LpwOb7h
+X-Received: by 2002:a2e:9807:0:b0:2eb:d7f0:5edd with SMTP id 38308e7fff4ca-2ec0e5d15femr17154471fa.27.1718353702972;
+        Fri, 14 Jun 2024 01:28:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1718353702; cv=none;
+        d=google.com; s=arc-20160816;
+        b=l/13K+dnNpiqttOGWe2qJtVJE58hxLaicGgAmLruo+xA5oxN0lI7eCVki+BDPGCBKu
+         Y6YC8dWb+0MTyEcX/qU6S+jyd/iMvkYpACmTRlSu3UIJRs7JplGJifbqnaP3ckuIALn5
+         BuAy0jJQ/d+2nvmW22gWhIZbzLImSkLFrsZZinFZysST4LbNTlTsbaRql5LFhCs8YUH0
+         uAJjDQE0sMJGhxh6GICRJgwmPK5I1bpD7CSB7Kh/XqAM7uANsLpQr6WMncwBupy+xuV1
+         VKrcgX01eHFjW41fPNeoSlJwxYTSHPDJilYa3bsrgplC6LbJf6+lj7vGkGbVzagnJzNt
+         bBHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:subject:message-id:cc:from
+         :date:dkim-signature:dkim-filter;
+        bh=qkC2bo48+mKIcyoxMPlhwGdkg9tM81BKvnEIWB1kRIA=;
+        fh=c3CFqupQWGEw8T2BQuApvQB12SSslUrgbxZ34WGUtTg=;
+        b=nJeNNdYSff6i37R6aZqTKlE6E66yXDiD6aWaHT7kkA+7Of6cBrIArkZny8OciTHrhc
+         +xE3zJ71oMqUyZN9XLStczg9huitkTH7nB6LbJDdrHbfkiuKBRch9i638U29y5RsxhLM
+         sasclxeUo+Qwv49Cg69kHoPN8l6onEG74u2+hJrjUH8X3Tl1rj6M2a/4vXHBChm/Drl2
+         kVo5kv29AZ2XxWztJrHKn1BPpKwxnjI1pwUUdgfUwssRoz1shSD/2JrhvNb5evtY8UDT
+         lTjCR37IclvRwpdhl4qGizCMXc71EO5qDG5qm82F0tN2djMKHht1qz01SV7uXsDE18jf
+         pxOQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=pItUDcTz;
+       spf=pass (google.com: domain of ernesto.migliore@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=ernesto.migliore@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <ernesto.migliore@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id e9e14a558f8ab-375d866bf2fsi15875085ab.84.2024.06.14.01.28.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 14 Jun 2024 01:28:22 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ernesto.migliore@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=pItUDcTz;
+       spf=pass (google.com: domain of ernesto.migliore@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=ernesto.migliore@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 1867521EF8;
+	Fri, 14 Jun 2024 10:28:20 +0200 (CEST)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id kBh6p7hv_RnL; Fri, 14 Jun 2024 10:28:19 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 5561323781;
+	Fri, 14 Jun 2024 10:28:19 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 5561323781
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1718353699;
+	bh=qkC2bo48+mKIcyoxMPlhwGdkg9tM81BKvnEIWB1kRIA=;
+	h=Date:From:Message-ID:MIME-Version;
+	b=pItUDcTz03SKHGWPAeWchOCmn+0piL/a9yAn82lQPYjmYpTMJQsGlxwN7+o3yJ73W
+	 Mt47ZXDaHBH7wo2B9ETpzoUi1cvj5F2UPiB2tKnxamTazE+9wd3YRVmjjHodj8wIcP
+	 6hdMeSKl8J7ytrGOLE9fk0/JNf5HwTenQV33EL5ZuzLbZwlRkCCmBRZQd3L61KUnlA
+	 2jMmy0XRbbAGj4XXxyOjJvGvLu3mvBowa2TK5UQHNoAepRqv2qc1FvJAOu8jjD7a+P
+	 a3Wi0fGzkkNmRcNhxHeLefgYJKMAuD3E5iSjUN6UOA2bv2Qq5fv/3XzinG7sRC+q2V
+	 Ntbpci+PCVSkQ==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id BCT8aIfA_C5s; Fri, 14 Jun 2024 10:28:19 +0200 (CEST)
+Received: from esse3appjboss27.private.cineca.it (esse3appjboss27.cineca.it [130.186.5.162])
+	by smtp4.cineca.it (Postfix) with ESMTP id 22ED82395F;
+	Fri, 14 Jun 2024 10:28:17 +0200 (CEST)
+Received: from esse3appjboss27.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss27.private.cineca.it (Postfix) with ESMTP id 117678F8;
+	Fri, 14 Jun 2024 10:28:17 +0200 (CEST)
+Date: Fri, 14 Jun 2024 10:28:17 +0200 (CEST)
+From: ERNESTO MIGLIORE <ernesto.migliore@unito.it>
+Cc: stefano.trogolo@unito.it, igor.pesando@unito.it,
+	emanueleroberto.nocera@unito.it, simona.castello@unito.it,
+	liliana.ardissono@unito.it, paola.gatti@unito.it
+Message-ID: <495953511.1673.1718353697070@esse3appjboss27.private.cineca.it>
+Subject: ATTENZIONE: spostamento aula e orario esame
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<p>Cari studenti,</p>
+
+<p>l&#39;esame di Fisica previsto per oggi si terr&agrave; in<br />
+<br />
+<strong>aula Spallanzani, via Carlo Alberto 10 Palazzo Campana</strong></p>
+
+<p>L&#39;orario delle prove &egrave; spostato di un&#39;ora in avanti rispetto la convocazione originale</p>
+
+<p><strong>Turno A: inizio alle 14 anzich&eacute; alle 13</strong></p>
+
+<p><strong>Turno B: inizio alle 15:30 anzich&eacute; alle 14:30</strong></p>
+
+<p><strong>Turno C: inizio alle 17 anzich&eacute; alle 16</strong></p>
+
+<p>(per i docenti)<br />
+Ernesto Migliore</p>
+
+<p>&nbsp;</p>

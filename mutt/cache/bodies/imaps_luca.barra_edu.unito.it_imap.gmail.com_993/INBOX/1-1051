@@ -1,0 +1,164 @@
+X-Google-Smtp-Source: AGHT+IHq+0Hw7gdHmtPsEThpSMnccTsuqt++WN4xzNp0y8HKVw0j4AQExhBVCMj0qkG3NL0D+y0JDM8K+bM6IX/Xtg==
+X-Received: by 2002:a67:de06:0:b0:44d:3c1b:2dc0 with SMTP id q6-20020a67de06000000b0044d3c1b2dc0mr18666978vsk.26.1693120544410;
+        Sun, 27 Aug 2023 00:15:44 -0700 (PDT)
+Received: from 292831042739
+	named unknown
+	by gmailapi.google.com
+	with HTTPREST;
+	Sun, 27 Aug 2023 03:15:44 -0400
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a5d:5146:0:0:0:0:0 with SMTP id u6csp1912728wrt;
+        Sun, 4 Dec 2022 03:14:54 -0800 (PST)
+X-Received: by 2002:a17:906:1d14:b0:7ad:79c0:46f4 with SMTP id n20-20020a1709061d1400b007ad79c046f4mr65814758ejh.363.1670152494078;
+        Sun, 04 Dec 2022 03:14:54 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1670152494; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ODAqpo6hz3wER6oZtADt7ohp75e13YKG2Ae/5XSR0b/CV+mJs5+zCOiT4Zm8Bkr1U5
+         g6rtLhVYUQ9X2cgSpjela4+qDqJveiHmIuBrLj7r3tdpV2ML4sxCLIfoOXYo43dYycCo
+         RzzygZAydxRfOV7W82cBYfzmOYbSYpSiLw8akoczIw5EwSJK0sY9hVbQMGLHM/pgXA+E
+         ry20Fa1ife9ZXcxormbXDzXZRMHVja4Lp09lr3N6QJTzCArCoFJAjOF/aMYwdDUnoFSI
+         /E266ETQ664iTfoAMMpSmzNWHOqhGHE7CIVRNjt+UQ6rgB5N2ShuYLAKkMYMCHS8LdH4
+         75cA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:references:in-reply-to
+         :list-unsubscribe:auto-submitted:precedence:list-help:list-id
+         :message-id:subject:reply-to:from:to:date:dkim-filter;
+        bh=ZDfqvmRScr46sX4ah2zJ/cAMtPqjgnJ2oKG3CfX/IL0=;
+        b=TZVqYkC2YVV1Kbi8uoBd7MMvBt2E91z2hwpWe3maDKZSbFpsBiGnJwgR4mi/TR/IAb
+         GRX63953jVU5mKNZ8APJFdeXqDTtz3Pm/N/n6CMAuci3s9kJ4UVh8khae3uMnNJglEkf
+         E9n+Ze+v1NXWKdkzNlA+5/nOmu9txJihsarErNUJVaXxcmKEVK7f7LU6hljOldUt0fQX
+         hplH/6ddmYZhrPcqi/Q3qfS0xg+2XcwyfNw4DcLDZrxI/CrGct18WaVoSq8V53NveAwO
+         8NHMvVIiVF1XeV5YYBph31Bu6rV2LfPurtGkA8rLQtnGJH2rW3RbEBiumwMFKuJZq9x7
+         Fz9Q==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id bx24-20020a0564020b5800b0046c81f2ef40si1864519edb.493.2022.12.04.03.14.53
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 Dec 2022 03:14:54 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 2B4BErL51435198
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Sun, 4 Dec 2022 12:14:53 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 2B4BErL51435198
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 2B4BErBb096783
+	for <luca.barra@edu.unito.it>; Sun, 4 Dec 2022 12:14:53 +0100
+Date: Sun, 4 Dec 2022 12:14:53 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Bini Enrico (da informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: 2022_SO_Lab_T2_T3: Ri: chiarimento
+Message-ID: <29d922416c96e6954d57149cecf2f1577ee211884b9367dbce33cf9ad2866c70@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Forum su dubbi e chiarimenti progetto" <moodleforum6342@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=6342
+X-Course-Id: 2548
+X-Course-Name: Laboratorio di Sistemi Operativi: corso A (turno T2), corso B (turno T3). a.a 2022/23
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=6342&d=37210>
+In-Reply-To: <678ccf1c8f32d6b1f285ea373bdb22251047973709f102571720ae27d8f70d6f@informatica.i-learn.unito.it>
+References: <678ccf1c8f32d6b1f285ea373bdb22251047973709f102571720ae27d8f70d6f@informatica.i-learn.unito.it>
+Thread-Topic: 2022_SO_Lab_T2_T3: chiarimento
+Thread-Index: 678ccf1c8f32d6b1f285ea373bdb
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_tDFtYcO0nzW0GCKawIu2zonRNs8IEBcmwqBVL5v04Xk"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 2B4BErL51435198
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_tDFtYcO0nzW0GCKawIu2zonRNs8IEBcmwqBVL5v04Xk
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+2022_SO_Lab_T2_T3 -> Forum -> Forum su dubbi e chiarimenti progetto ->
+chiarimento
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D37210#p63196
+Ri: chiarimento
+di Bini Enrico - domenica, 4 dicembre 2022, 11:59
+---------------------------------------------------------------------
+Le navi sono create solo all'inizio della simulazione e non cambiano.
+
+Enrico Bini
+
+---------------------------------------------------------------------
+Questa =C3=A8 la copia di un intervento effettuato su 2022_SO_Lab_T2_T3 .
+
+Per rispondere fare click sul seguente collegamento:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D63196
+Revoca la sottoscrizione del forum:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D6342
+Revoca la sottoscrizione della discussione:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D6342&d=3D=
+37210
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2548
+
+--b1_tDFtYcO0nzW0GCKawIu2zonRNs8IEBcmwqBVL5v04Xk
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2548">2022_SO_Lab_T2_T3</a>=0A    =
+&raquo;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unit=
+o.it/mod/forum/index.php?id=3D2548">Forum</a>=0A    &raquo;=0A    <a target=
+=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php=
+?f=3D6342">Forum su dubbi e chiarimenti progetto</a>=0A    &raquo;=0A    <a=
+ target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/d=
+iscuss.php?d=3D37210">chiarimento</a>=0A</div>=0A=0A<table border=3D"0" cel=
+lpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"he=
+ader">=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=0A=
+            <a href=3D"https://informatica.i-learn.unito.it/user/view.php?i=
+d=3D20288&amp;course=3D2548" class=3D"d-inline-block aabtn"><img src=3D"htt=
+ps://informatica.i-learn.unito.it/pluginfile.php/123954/user/icon/lambda/f2=
+?rev=3D291858" class=3D"userpicture" width=3D"35" height=3D"35" alt=3D"" />=
+</a>=0A        </td>=0A        <td class=3D"topic ">=0A            <div cla=
+ss=3D"subject">=0A                Ri: chiarimento=0A            </div>=0A  =
+          <div class=3D"author">=0A                di <a target=3D'_blank' =
+href=3D'https://informatica.i-learn.unito.it/user/view.php?id=3D20288&cours=
+e=3D2548'>Bini Enrico</a> - domenica, 4 dicembre 2022, 11:59=0A            =
+</div>=0A        </td>=0A    </tr>=0A    <tr>=0A        <td class=3D"left s=
+ide" valign=3D"top">=0A                &nbsp;=0A        </td>=0A        <td=
+ class=3D"content">=0A            <div class=3D"text_to_html">Le navi sono =
+create solo all'inizio della simulazione e non cambiano.<br /><br />=0AEnri=
+co Bini</div>=0A=0A            <div class=3D"commands">=0A                 =
+   <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/fo=
+rum/discuss.php?d=3D37210&parent=3D63192">=0A                        Visual=
+izza intervento genitore=0A                    </a>=0A                     =
+   |=0A                    <a target=3D"_blank" href=3D"https://informatica=
+.i-learn.unito.it/mod/forum/post.php?reply=3D63196">=0A                    =
+    Rispondi=0A                    </a>=0A            </div>=0A=0A         =
+   <div class=3D"link">=0A                <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D37210#p63196">=
+=0A                    Visualizza questo intervento nel contesto=0A        =
+        </a>=0A            </div>=0A        </td>=0A    </tr>=0A</table>=0A=
+=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=0A    <a href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D6342">Revoca =
+la sottoscrizione del forum</a>&nbsp;=0A    <a href=3D"https://informatica.=
+i-learn.unito.it/mod/forum/subscribe.php?id=3D6342&d=3D37210">Revoca la sot=
+toscrizione della discussione</a>&nbsp;=0A    <a href=3D"https://informatic=
+a.i-learn.unito.it/mod/forum/index.php?id=3D2548">Modifica preferenze email=
+ di raccolta</a>=0A</div><p>Reading this in an email? <a href=3D"https://do=
+wnload.moodle.org/mobile?version=3D2021051711&amp;lang=3Dit&amp;iosappid=3D=
+633359593&amp;androidappid=3Dcom.moodle.moodlemobile">Download the mobile a=
+pp and receive notifications on your mobile device</a>.</p>
+
+--b1_tDFtYcO0nzW0GCKawIu2zonRNs8IEBcmwqBVL5v04Xk--
+

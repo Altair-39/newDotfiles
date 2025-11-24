@@ -1,0 +1,103 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b3d4:0:b0:2ef:b2c9:28ac with SMTP id j20csp1260146lje;
+        Wed, 24 Jul 2024 11:25:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGA/mel0SPjySrxkVSIDW+GuYhLEzWLgCgjQKgndQ2e1AeORI9AwajuDh6199hGbjObjqyM
+X-Received: by 2002:adf:f9d1:0:b0:368:3f60:8725 with SMTP id ffacd0b85a97d-36b31a50257mr352010f8f.39.1721845512913;
+        Wed, 24 Jul 2024 11:25:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1721845512; cv=none;
+        d=google.com; s=arc-20160816;
+        b=f0BQuLkGSYXQUJvGODApspEXiQDOtjbQgRD0xjtqkgz5VW53rwFHALs0xq3NoZUgvV
+         ROLRGw1yc5xzIIqsnvhFRyhxPlinWw9sqAn7TO7qMqast5UYScUMm2DeJ+ImesYV214t
+         BrB+4yMv7Jw5VKfIitaqftG1f5fK6gbmtz8gCOOCjcIV/tDCbBN/mmMhSfTqCIp7LNzq
+         1N0jEqZOYxwLVnt5PMQIjgCbmKcvDmHdJSXNgzGEMdNyJWULXAMGlmGh3oLTDhDGxgAA
+         q5veo3CZwpL4nHp4yWt2VXDOFfhWlp6acx8xWnKkHhx50JwVgr52k0JlyD6RqAde/Hdm
+         RlLQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:feedback-id
+         :list-unsubscribe-post:list-unsubscribe:date:subject:to:reply-to
+         :from:message-id:dkim-signature;
+        bh=iwt21ybA/1MnX8yrt2a2IXbHJ/BC57gc/++Qlt8MQ7o=;
+        fh=IxM04YauqXzCozmF/ngeXvaWuWeW7uONbHgj9jmZsgE=;
+        b=NC7hdOfKuMg1gsKCpQiyhW1MT/REl81WN5+HdJYM21crtgd9uG93fIUvx2euOL9vcq
+         7HVCj8xONPYSyeKnbenMug30wv9trbDJhepJfcGOyp+6g7Rndz3d7IAQeAW5xZMLOCoo
+         FoYGYC8Ij0pisvSgxqqK/rUMnN3f1uFGAvV1AZYX6eV+uOpPsw1jFHY0Tlzm9vGsdAqG
+         xm7SvtYSmFfSrSx8HO+WA8aOxYNZcpgWr1YEBJOKdZc+UrGX3vdfqQV51MOLgCAqjyUB
+         97r9/ZOxV5lFjSIdTZJzFc4Q2GrTiC4ffsdFzVIuGqD8vpcXVg52O3GKfHXThc+QBjf7
+         JA+w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=mailjet header.b=eCLxP1Il;
+       spf=pass (google.com: domain of 71f1cc95.awiaaeh3ungaaaaaaaaaali8ciqaaycriw8aaaaaaag8agbmouch@a539650.bnc3.mailjet.com designates 87.253.233.148 as permitted sender) smtp.mailfrom=71f1cc95.AWIAAEh3ungAAAAAAAAAALI8cIQAAYCrIW8AAAAAAAg8AgBmoUcH@a539650.bnc3.mailjet.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <71f1cc95.AWIAAEh3ungAAAAAAAAAALI8cIQAAYCrIW8AAAAAAAg8AgBmoUcH@a539650.bnc3.mailjet.com>
+Received: from o148.p8.mailjet.com (o148.p8.mailjet.com. [87.253.233.148])
+        by mx.google.com with UTF8SMTPS id ffacd0b85a97d-369e365d411si2001791f8f.204.2024.07.24.11.25.12
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Jul 2024 11:25:12 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 71f1cc95.awiaaeh3ungaaaaaaaaaali8ciqaaycriw8aaaaaaag8agbmouch@a539650.bnc3.mailjet.com designates 87.253.233.148 as permitted sender) client-ip=87.253.233.148;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=mailjet header.b=eCLxP1Il;
+       spf=pass (google.com: domain of 71f1cc95.awiaaeh3ungaaaaaaaaaali8ciqaaycriw8aaaaaaag8agbmouch@a539650.bnc3.mailjet.com designates 87.253.233.148 as permitted sender) smtp.mailfrom=71f1cc95.AWIAAEh3ungAAAAAAAAAALI8cIQAAYCrIW8AAAAAAAg8AgBmoUcH@a539650.bnc3.mailjet.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; q=dns/txt;
+  d=unito.it; i=help.ddss@unito.it; s=mailjet; x=1721852711;
+  h=message-id:from:from:reply-to:to:to:subject:subject:date:date:list-unsubscribe:list-unsubscribe-post:
+  feedback-id:x-csa-complaints:x-mj-mid:x-mj-smtpguid:x-report-abuse-to:
+  mime-version:content-type:content-transfer-encoding;
+  bh=iwt21ybA/1MnX8yrt2a2IXbHJ/BC57gc/++Qlt8MQ7o=;
+  b=eCLxP1IlrXix2k18Daycj8+nP3r7k0suYbYzZAVaAZ3B6Hnk5sFTRB5NM
+ BynnEBCqVV/eNeMFuA+HfyQ0kYiG0IzG/n7SzdsX8GjosPJQvmzVqjiU5i1Q
+ NelHv60uRsjXZsnRJPaphpsUC8Rj/sXMWgsH2CaEK6WYkVxqFQcUks=
+Return-Path:
+	<71f1cc95.AWIAAEh3ungAAAAAAAAAALI8cIQAAYCrIW8AAAAAAAg8AgBmoUcH@a539650.bnc3.mailjet.com>
+Message-Id: <71f1cc95.AWIAAEh3ungAAAAAAAAAALI8cIQAAYCrIW8AAAAAAAg8AgBmoUcH@mailjet.com>
+From: Service Desk Studenti - Unito <help.ddss@unito.it>
+Reply-To: =?UTF-8?B?U2VydmljZSBEZXNrIFN0dWRlbnRpIC0gVW5pdG8=?=
+	<help.ddss@unito.it>
+To: luca.barra@edu.unito.it
+Subject: [#9WP-A33-HLU3] Ticket ricevuto: Scienze della Natura e Scienze e
+ Tecnologie del Farmaco - DOMANDA DI LAUREA
+Date: Wed, 24 Jul 2024 20:25:11 +0200
+List-Unsubscribe:
+	<mailto:unsub-71f1cc95.h964.l6k44nikii37@bnc3.mailjet.com>,
+	<https://h964.mjt.lu/unsub2?m=AWIAAEh3ungAAAAAAAAAALI8cIQAAYCrIW8AAAAAAAg8AgBmoUcHkBbwTYBMRxeWa6OcsbIHoAAH1Hs&b=71f1cc95&e=df793241&x=RYSx_euBDLTXghldHwn7K4iV0JnVtMfVN_5MdgRg0YE>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Feedback-Id: 42.539650.513147:MJ
+X-CSA-Complaints: csa-complaints@eco.de
+X-MJ-Mid:
+	AWIAAEh3ungAAAAAAAAAALI8cIQAAYCrIW8AAAAAAAg8AgBmoUcHkBbwTYBMRxeWa6OcsbIHoAAH1Hs
+X-MJ-SMTPGUID: 9016f04d-804c-4717-966b-a39cb1b207a0
+X-REPORT-ABUSE-TO: Message sent by Mailjet please report to
+	abuse@mailjet.com with a copy of the message
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+=EF=BB=BFGentile Barra Luca,
+
+Il tuo ticket di supporto "DOMANDA DI LAUREA" =C3=A8 stato inviato corretta=
+mente. La tua richiesta sar=C3=A0 presa in carico quanto prima e comunque m=
+ediamente entro 2,5 gg dalla ricezione della stessa. I tempi di risposta va=
+rieranno in funzione della complessit=C3=A0 del quesito posto.
+
+
+Il tuo Tracking ID: 9WP-A33-HLU3
+
+Puoi visualizzare lo stato del ticket da qui:
+https://hdstudenti.unito.it/ticket.php?track=3D9WP-A33-HLU3&Refresh=3D21970
+
+Riceverai una email di notifica quando il nostro staff risponder=C3=A0 al t=
+uo ticket.
+
+
+*NON RISPONDERE A QUESTA E-MAIL*
+Questo =C3=A8 un messaggio email automatico inviato dal nostro sistema di s=
+upporto. Non rispondere a questa email poich=C3=A9 non riceveremo la tua ri=
+sposta!
+Saluti,
+
+SERVICE DESK STUDENTI - UNITO
+https://hdstudenti.unito.it
+
+=

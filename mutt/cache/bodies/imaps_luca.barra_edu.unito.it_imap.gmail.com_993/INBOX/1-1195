@@ -1,0 +1,160 @@
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=I1pcQkYt
+X-Google-Smtp-Source: AGHT+IHYf69g00ZCHROQrex3rdr36YIEonEZHFGWRa7yoL9xecw6q+nUZ/7rdU0JWb45+G/lz3TSR9ENeOz9Sd2Rlw==
+X-Received: by 2002:a67:ebd8:0:b0:44e:a79f:6844 with SMTP id y24-20020a67ebd8000000b0044ea79f6844mr4774463vso.6.1693120650074;
+        Sun, 27 Aug 2023 00:17:30 -0700 (PDT)
+Received: from 292831042739
+	named unknown
+	by gmailapi.google.com
+	with HTTPREST;
+	Sun, 27 Aug 2023 03:17:30 -0400
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a17:902:d1d4:b0:16d:88f5:93a6 with SMTP id g20csp82768plb;
+        Mon, 25 Jul 2022 00:24:17 -0700 (PDT)
+X-Received: by 2002:a05:622a:24a:b0:31f:1763:96b4 with SMTP id c10-20020a05622a024a00b0031f176396b4mr9103106qtx.112.1658733857045;
+        Mon, 25 Jul 2022 00:24:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1658733857; cv=none;
+        d=google.com; s=arc-20160816;
+        b=i6eKTtLSkILJBi7E50/m+zroSf1D063YaACHCv1DvqsmqBZjoQXarpQTUQUhAzlgTh
+         ybiWEiCyArWTjKsnwbBfI2LHS7/iyYyMJUwIbBtOAK8tyDTzY0/BihYCIf9gpijHqR8o
+         9NOqkY+6OHijXO/u98HljjwWlJW5TZVPfwK2Bbv1G7HfhBxk2E3Gm4caRf/fOwpcgC7U
+         T6DDyN7d3AB8EhBmHNeDuXs8fpQZvpOSa7Fh1KrkVkeNutVK6V1/ohNZgKssbLfe3w71
+         vamZwyppwQlex9GTYfpHjbZUrMjJ/UzVE0pr/rhC5MfAGsmzqjq+m5F2Ub5HCT0saFy4
+         pVNA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :dkim-signature;
+        bh=3FHoXrqa9L9fBXJqbNWqPIVkN0lGI8qoGiCvjqDQhHQ=;
+        b=pM222R9vF6CUVESievE1M+g33HMYYxnBaWL8MIbN0su27Ovd8ymxe9256hahKwnkNi
+         j9gNgvcK1Dx3l0Bee8cY2c3EN7MqooK8Va1lnZtD4OEXfZxMrS2qdYOVBbRUVMrShoxa
+         r3C7M97L+ch2e1uORnZXsjrIz6Qezfdd0JqxIoUl/UJ+QB5kE+MwgjKgXrWN+oBpl6kS
+         vYCU+9h5wi85vNQ+8u1RcAE19GBw8dZ28CYB3UCPaeDyIs2o3rebYhIC4xLwJAfPBlfM
+         +uxBI19vAMoJb5QQsTD8XyLAXn6zlzgm617jmPls885dk7Vdv1V4VMQ6N3tA33GVUQUv
+         3QDA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=I1pcQkYt;
+       spf=pass (google.com: domain of tutorato.informatica@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.informatica@unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+Return-Path: <tutorato.informatica@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id j1-20020a05621419c100b00464513091fbsor7847811qvc.57.2022.07.25.00.24.16
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Mon, 25 Jul 2022 00:24:17 -0700 (PDT)
+Received-SPF: pass (google.com: domain of tutorato.informatica@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=I1pcQkYt;
+       spf=pass (google.com: domain of tutorato.informatica@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.informatica@unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=3FHoXrqa9L9fBXJqbNWqPIVkN0lGI8qoGiCvjqDQhHQ=;
+        b=I1pcQkYtbXSEfmPcoPF+LXP2i72Gygx2xpocnau4SuMTLHq6inzHNDdkS8O7Av5sN7
+         x897jlOZCgzxZkBOsoFqW9S5w4wMb0kZscf3EkZU0jqIBq6bplVE3pqP5Kjeb5q3SErO
+         aB9cdLND4PZE8sTmyShegfErX6Qtdyg7nd+6Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=3FHoXrqa9L9fBXJqbNWqPIVkN0lGI8qoGiCvjqDQhHQ=;
+        b=UEdJajdaQcdtSiqjn6MyLpq0rfdSNKBW4evqDgYB1pqLkWhTGW/MTyMydKBWiALxvd
+         VbbuXxGWCh6sjitKnlG9t2dQjToGeDKl5RNQqmQkGFHof31cgDrZ7QrlU7nxYGY8Omqr
+         97JkNSdk+qMwq60umzsPEw9yXC4kC4p7WNl15r0rCJ7aBS+7uCQEHQA75SFKbe0rVcQG
+         c9bCBXAWA+HRdM72Jgq8OVo6GxkCsg3IvVzwCm3ZX/X6YwgkqRKfXQ6v0fofNvrdTgcC
+         69NbbVCtSJGKm+WeLB/6xv7xOZoeUi2mJhQeoE47vLjWCP2v0mCiKqMh8YIprXJBkwuI
+         7GWA==
+X-Gm-Message-State: AJIora9dHK8d66CtSUnQJDvqnBcOSDRgsDVXsEyhz0cH2fOZS8fyRPiG
+	m2mN83gVYrsA32KRx7K+Brv5bJfK0iRn0837r8nCOsvXR+y38QdDCHGG4w==
+X-Received: by 2002:a05:6102:3fa3:b0:357:aff2:a226 with SMTP id
+ o35-20020a0561023fa300b00357aff2a226mr3001784vsv.42.1658733845541; Mon, 25
+ Jul 2022 00:24:05 -0700 (PDT)
+MIME-Version: 1.0
+Reply-To: tutorato.informatica@unito.it
+From: Tutorato Informatica <tutorato.informatica@unito.it>
+Date: Mon, 25 Jul 2022 09:23:38 +0200
+Message-ID: <CAHgZORg3Oqr4_nCv4hGGA78976p40Aaj4fJPet7DRd4vF1wbAQ@mail.gmail.com>
+Subject: Reminder: Indagine sull'abbandono del Corso di Laurea in Informatica
+To: undisclosed-recipients:;
+Content-Type: multipart/alternative; boundary="000000000000a4117d05e49c117e"
+Bcc: luca.barra@edu.unito.it
+
+--000000000000a4117d05e49c117e
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Gentile studente,
+
+Chi ti scrive =C3=A8 la Commissione Tutorato Individuale. Come forse saprai=
+, uno
+dei
+problemi che affliggono il corso di laurea in Informatica =C3=A8 il forte
+abbandono che
+si verifica tra il primo ed il secondo anno.
+
+Se anche tu stai considerando questa ipotesi, ti vorremmo chiedere la
+disponibilit=C3=A0 ad effettuare un'intervista (online o in presenza, in or=
+ari
+da
+concordarsi individualmente) con un borsista. Si tratta di un colloquio
+informale
+per rispondere a poche domande che ci permetteranno di avere una
+fotografia,
+quanto pi=C3=B9 possibile precisa, della situazione e delle motivazioni che
+spingono
+un numero significativo di studenti a considerare l'abbandono del corso di
+laurea.
+
+La tua partecipazione a questa intervista =C3=A8 di fondamentale importanza=
+ in
+quanto, lavorando insieme, possiamo costruire al meglio il nostro futuro e
+migliorare la nostra universit=C3=A0.
+
+Se sei disponibile a partecipare all'intervista scrivi ad Alessio Negro al
+seguente
+indirizzo mail: alessio.negro130@edu.unito.it
+
+Cordiali saluti,
+La Commissione Tutorato
+
+--000000000000a4117d05e49c117e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><span style=3D"color:rgb(80,0,80)">Gentile studente,</span=
+><br style=3D"color:rgb(80,0,80)"><br style=3D"color:rgb(80,0,80)"><div><sp=
+an style=3D"color:rgb(80,0,80)">Chi ti scrive =C3=A8 la Commissione Tutorat=
+o Individuale. Come forse saprai, uno dei=C2=A0</span><br></div><div><div><=
+span style=3D"color:rgb(80,0,80)">problemi che affliggono il corso di laure=
+a in Informatica =C3=A8 il forte abbandono che=C2=A0</span><br></div><div><=
+div><span style=3D"color:rgb(80,0,80)">si verifica tra il primo ed il secon=
+do anno.</span><br></div><div><br style=3D"color:rgb(80,0,80)"><div><span s=
+tyle=3D"color:rgb(80,0,80)">Se anche tu stai considerando questa ipotesi, t=
+i vorremmo chiedere la=C2=A0</span><br></div><div><div><span style=3D"color=
+:rgb(80,0,80)">disponibilit=C3=A0 ad effettuare un&#39;intervista (online o=
+ in presenza, in orari da=C2=A0</span><br></div><div><div><span style=3D"co=
+lor:rgb(80,0,80)">concordarsi individualmente) con un borsista. Si tratta d=
+i un colloquio informale=C2=A0</span><br></div><div><div><span style=3D"col=
+or:rgb(80,0,80)">per rispondere a poche domande che ci permetteranno di ave=
+re una fotografia,=C2=A0</span><br></div><div><div><span style=3D"color:rgb=
+(80,0,80)">quanto pi=C3=B9 possibile precisa, della situazione e delle moti=
+vazioni che spingono=C2=A0</span><br></div><div><div><span style=3D"color:r=
+gb(80,0,80)">un numero significativo di studenti a considerare l&#39;abband=
+ono del corso di=C2=A0</span><span style=3D"color:rgb(80,0,80)">laurea.</sp=
+an><br></div><div><div><br style=3D"color:rgb(80,0,80)"><span style=3D"colo=
+r:rgb(80,0,80)">La tua partecipazione a questa intervista =C3=A8 di fondame=
+ntale importanza in=C2=A0</span><div><span style=3D"color:rgb(80,0,80)">qua=
+nto, lavorando insieme, possiamo costruire al meglio il nostro futuro e=C2=
+=A0</span><br></div><div><div><span style=3D"color:rgb(80,0,80)">migliorare=
+ la nostra universit=C3=A0.</span><br></div><div><br style=3D"color:rgb(80,=
+0,80)"><span style=3D"color:rgb(80,0,80)">Se sei disponibile a partecipare =
+all&#39;intervista scrivi ad Alessio Negro al seguente=C2=A0</span><div><sp=
+an style=3D"color:rgb(80,0,80)">indirizzo mail:=C2=A0</span><a href=3D"mail=
+to:alessio.negro130@edu.unito.it" target=3D"_blank">alessio.negro130@edu.un=
+ito.it</a><br></div><div><br style=3D"color:rgb(80,0,80)"><span style=3D"co=
+lor:rgb(80,0,80)">Cordiali saluti,</span><br style=3D"color:rgb(80,0,80)"><=
+span style=3D"color:rgb(80,0,80)">La Commissione Tutorato</span><br></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v>
+
+--000000000000a4117d05e49c117e--

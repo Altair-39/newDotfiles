@@ -1,0 +1,87 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:7e05:0:b0:32a:7f76:203e with SMTP id z5csp1092704ljc;
+        Sun, 15 Jun 2025 10:47:59 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFLo6/Yjq9NC6x9K15xvsPj2cgOizl2rX811fiI/A83wPtPi8HKBERyGdXu1vsbj1pjtlWL
+X-Received: by 2002:a17:907:7e94:b0:ad8:cd31:5c31 with SMTP id a640c23a62f3a-adfad48bf37mr174694666b.11.1750009679480;
+        Sun, 15 Jun 2025 10:47:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1750009679; cv=none;
+        d=google.com; s=arc-20240605;
+        b=BoQeI/MGp2TvSBppBsRpz4BDFdcsHwd/1i9kDtsf/LhwmWehDZf+WLCDYgki8oRP2U
+         Pli7XVo7hi6h72HZtbTMf2VcaIrH0Wo8QTGARTs5d1ssemR8mYaPGYnXV+D3OPhDhyHZ
+         ovLNsSYrz7E4dnafQiqWqGIDK5lY9J0HzbI1BWwGZrMW3wJQYtN2MnT/MkEoNY1VOO9m
+         Zz4HPABCleCRUtfW0glOqhOS28o7v4cHbU6/kxPI97sh5/AcBtg9XdwjkdzwScqIntFT
+         sIB6nDcy+bdQm/R1o2sO3c9zHtd23LZx+mZmpKUBmXOuZqfb1n4H0Lah4/lbNwCGeyWB
+         /dhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:message-id:subject:reply-to:from:to:date;
+        bh=dEyc+XI1ybwuaFAKyDlT0YGz4VXhOg2dDgnvrT3/v9k=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=KBWrjlt5LErLkoOxCFsWe1Pr3kvNoSFd38up+PdizLubFqBbAX1Ibb9Kj+8He+IGFO
+         tjoZPt+01bUXD8VKYGcdKsIJNcX+YENrtA9XuA5JXdnfBHR8cGtUfsJAwg+C3QqDVizN
+         10yQ6kzduV1cASyznLNeGd7Wd5f2n4pIojQ2GaeDQU/YaonW2G4lZhBv8fjl7as9xYWw
+         JoUsp40MNTL0grmeIw6vE2lHgRFdj8lOWwhGP+PiF+/bQk7MlfgD1lsKjh8HC+h+mVJS
+         Jj2oAij0RY8kHKmCIZM/nSmzJ1jFpv3lntMQCVFO9Rj28WUo5cozaR06JbkWXSv/MDSo
+         LCXQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-608b49b9115si4989966a12.300.2025.06.15.10.47.59
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 15 Jun 2025 10:47:59 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 55FHlw9K4130771
+	for <luca.barra@edu.unito.it>; Sun, 15 Jun 2025 19:47:58 +0200
+Date: Sun, 15 Jun 2025 19:47:58 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Do not reply to this email (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: You have submitted your assignment submission for Repository progetti di laboratorio
+Message-ID: <684f074ee0b501.50182143@informatica.i-learn.unito.it>
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/assign/locallib.php:6461
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_yawV9IDiLI9pLSQrZbkiKDygaXoG7gc7SOkj0PwrWQ"
+
+This is a multi-part message in MIME format.
+
+--b1_yawV9IDiLI9pLSQrZbkiKDygaXoG7gc7SOkj0PwrWQ
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+TLN2425 -> Assignment -> Repository progetti di laboratorio
+---------------------------------------------------------------------
+You have submitted an
+assignment submission for 'Repository progetti di laboratorio'
+
+You can see the status of your assignment submission:
+
+https://informatica.i-learn.unito.it/mod/assign/view.php?id=3D266001
+
+---------------------------------------------------------------------
+
+--b1_yawV9IDiLI9pLSQrZbkiKDygaXoG7gc7SOkj0PwrWQ
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p><font face=3D"sans-serif"><a href=3D"https://informatica.i-learn.unito.i=
+t/course/view.php?id=3D3062">TLN2425</a> -><a href=3D"https://informatica.i=
+-learn.unito.it/mod/assign/index.php?id=3D3062">Assignment</a> -><a href=3D=
+"https://informatica.i-learn.unito.it/mod/assign/view.php?id=3D266001">Repo=
+sitory progetti di laboratorio</a></font></p><hr /><font face=3D"sans-serif=
+"><p><p>You have submitted an assignment submission for '<i>Repository prog=
+etti di laboratorio</i>'.</p>=0A<p>You can see the status of your <a href=
+=3D"https://informatica.i-learn.unito.it/mod/assign/view.php?id=3D266001">a=
+ssignment submission</a>.</p></p></font><hr />
+
+--b1_yawV9IDiLI9pLSQrZbkiKDygaXoG7gc7SOkj0PwrWQ--
+

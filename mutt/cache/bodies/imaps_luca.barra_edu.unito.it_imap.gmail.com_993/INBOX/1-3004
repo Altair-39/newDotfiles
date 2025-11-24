@@ -1,0 +1,227 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:30e4:b0:361:9897:9696 with SMTP id dp4csp188356ljb;
+        Wed, 12 Nov 2025 07:28:15 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCUdrKkB/LmVIFe5lj1PdtCB+G8J8d3PpUd5kTpu8xkFiJDcOh/+tWB78+lg/hIBGa/YJ685DrjtmMVf@edu.unito.it
+X-Received: by 2002:a17:906:f58d:b0:b73:3157:59b9 with SMTP id a640c23a62f3a-b733197d01dmr183559466b.4.1762961295481;
+        Wed, 12 Nov 2025 07:28:15 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762961295; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Ynh51k+vw4Vtp3WOxxAiz4GE9BHlIT7kXkFarv8d9EKrTsp8eNGdsdYDq9pQ6K9OYP
+         XyqVHx0jEhl2gylKztGsEXlgdTxaUod8yu2lPEXbxNO3qZoirkbtrZkFVqMrWMdRJnlV
+         2UoW741wFJH+jSaV6vfjTFAaojbcSJkEUrig01uvf9EJBP/n4TY31/1ccXbJPjycUyAF
+         1RacH57L8SqSMRYzKW/C4LuiNORUpQFacz8HtN6G36boNeKryookxBDnQZQ31Y5BLTBj
+         DoqJ1gw5zfl9x4HuD8xuGfQc9clA2D1lcWZMqj+AfTqk64aOFMqCLrS7M4nBFwk1Yt61
+         u+qQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=Y+mJUsqXjFQ5fTXYzzIkc9sCCx6B733SXuunQ7Dc+MY=;
+        fh=GAMKyCfPWAEJYZ2/bFmpQLPYl5K8eiudg/+wHbo1drs=;
+        b=OrJlvQ+/JqYhy0SR2wvq4BznpDqdoBes1L6ksJisFoux7wuHzuPYJFA7Aam1jUeSgr
+         JxV8opBIl8wDph4R7jQGesIjjGwumMrNgR276xwnWHza5kf0xm6NXlqPV49emthIFYoF
+         yLDBfanHP3dflq2b+MGEbRdnX3Qr8ORA3zBKGg9InlnP+LRrr+KB02VA08QCABr4iM/8
+         TMM5lqddNOEfA5NWUN7jMob2XN88a5yDnL+UbS69tbu1beUF7avX2ELZl2OQWoHXeLpg
+         Y+83jxpO2pgmZcJgBorpX3slV5yMvN1Y6wMWS+ZM7bPL8cMXb2WLDq3WLCBW8p2mpNg5
+         SQjw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=mtrh9gd2;
+       spf=pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.65 as permitted sender) smtp.mailfrom=tutorato.inclusione@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <tutorato.inclusione@unito.it>
+Received: from mail-sor-f65.google.com (mail-sor-f65.google.com. [209.85.220.65])
+        by mx.google.com with SMTPS id a640c23a62f3a-b72bf9de7fbsor656395866b.19.2025.11.12.07.28.15
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Wed, 12 Nov 2025 07:28:15 -0800 (PST)
+Received-SPF: pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.65 as permitted sender) client-ip=209.85.220.65;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=mtrh9gd2;
+       spf=pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.65 as permitted sender) smtp.mailfrom=tutorato.inclusione@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1762961295; x=1763566095; darn=edu.unito.it;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Y+mJUsqXjFQ5fTXYzzIkc9sCCx6B733SXuunQ7Dc+MY=;
+        b=mtrh9gd2PQdY5q8TOSiYiLKOdKy1NgVupI7kz8GDiLyY0+KLA0xrN/IFUWYZIdsr5F
+         hvnl35SgFDi6v7Otid7yrQl1hnjxvJ1hEoztZsmB8INoZ+kz2woiSysVBeFuZrnFMsd9
+         ZL4dx1zdk13lMsN74oFd4vnnSu6EuEXjYoNy/cZm6JxEULNhcBmrTYnV8SJkRi60TLh9
+         JGX8sL16PMCkLVYG2dyT3oyXUHC5KcK4djAkGeooJDQ9RiKi2f9XIWey6GcY3EkS+ToO
+         Lux+XLK+0E3zSc+LNEOKN9DXBf/H9DayD74uHoBOuNW+3G1CprdvZNjUE/p6wyGFusdt
+         sxSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1762961295; x=1763566095;
+        h=to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y+mJUsqXjFQ5fTXYzzIkc9sCCx6B733SXuunQ7Dc+MY=;
+        b=W3W1eDBluy+SdSypmJYserE54+UoRZ72KYTMzhJayu1SlhQnfrrb+wQQJmZzNdv4Sh
+         0A4yseecWVp7+Y4Bdr3j+0XODZxwTS+k/ijZNT+oj990fiTeXD0rvsVz8dJ8+P8KyP4l
+         KJiEpwrnxbglIxw2i/YFjepZHkWfTJREQC52na1xGSPo3OIU6vkr0ZdIY3Ui/rM9q9BL
+         y3FEgm/jgJfqv2vpuFFADcY/XcFQgUZcf9Fg3+5SvU2V7T27/5wQeepdBIao4KDx/nTl
+         cT0/WSkiQma4b1i20KbgTye6AYyihl+a1f0n1tyG4J6rbqSrxj5/5RR6KrJj2/BPTd9e
+         KYDA==
+X-Forwarded-Encrypted: i=1; AJvYcCVRwkJUkdVnYvuMqjTJwTLybAMeS1uN+ep1u0ycmJcaIr5Q7MeSh2AelJOD4vsLlX4m6ZagUZUD+Xtb@edu.unito.it
+X-Gm-Message-State: AOJu0YyV6r5caSIk5He5QUnEbRgEP5mRt1/tycKUX+bSimtXzMS2KQAI
+	5TDbj/UenShQPaqJ1hIEJqfBnoAs5+LZ+sfRO5+yxnfKzp8jdObz+8FqlISwZytbYE96Kp+Vz6S
+	mlmB0VkVbAYen94qjD1DRpc7Zkmvqm7OHKzgVuVf3paYT
+X-Gm-Gg: ASbGncsuwx6o1Lhjjny8gBCwxHS/Y1jNgl9X1zMUxnYbAjQ+ApuySZDuO5fqHXj7KtB
+	n521VRYQZE8w9kmtliiR6MDedYXeAxwO7NvfLrK7WKttYt6QQX8VaQVKCmiDva1laSCoTbzGjBr
+	BomWy/MTw21HnDXXCkq9XhfC+3qdxFMxVlEygJ+8P2pndjxO5Qs6hGaR1hAqsWah4AwCUWE2SrR
+	xHL1rIMZ+YUF5veOeM4QuQlM90c3F3ojyxuaXNiSNDM814Rnk6jsXgQWB5mEzBt
+X-Google-Smtp-Source: AGHT+IHw6pXWMFXlhriOm0NLXbkXpVrZLQdbcqNudYTLeqRwV5tR5dKO+yUHQha+sdcuvkeVhKhCsxs6apS0ydLUrP4=
+X-Received: by 2002:a17:907:e895:b0:b6d:79fa:b166 with SMTP id
+ a640c23a62f3a-b7331c0c3efmr369249466b.63.1762961292684; Wed, 12 Nov 2025
+ 07:28:12 -0800 (PST)
+MIME-Version: 1.0
+From: Tutorato Disabili <tutorato.inclusione@unito.it>
+Date: Wed, 12 Nov 2025 16:27:36 +0100
+X-Gm-Features: AWmQ_bmODET9rqiJ9PAPgUqAbMThynal0zgjut_PRfDbSNlXXQVxbn8WPYyIC3o
+Message-ID: <CAOKF-fWS0dQ7sKe+4Cc+tBZPF1uCM2a1yPxEA1ti_yM-s2CEqw@mail.gmail.com>
+Subject: Richiesta pagamento mese di Novembre 2025: prime 100 ore /seconde 100
+ ore / rinuncia
+To: undisclosed-recipients:;
+Content-Type: multipart/alternative; boundary="0000000000009a8d3a0643676965"
+Bcc: luca.barra@edu.unito.it
+
+--0000000000009a8d3a0643676965
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Genti.m* tutor,
+*SOLO *per chi  dovesse inviare  nel mese di novembre  la  richiesta di
+pagamento delle ore svolte ( prime 100 ore /seconde 100 ore  /
+rinuncia), si precisa quanto segue:
+  la consegna della documentazione richiesta  dovr=C3=A0 essere inviata  * =
+entro
+il giorno  luned=C3=AC 17 novembre 2025.*
+
+A tal fine, =C3=A8 sufficiente compilare il google form disponibile al segu=
+ente
+link: Richiesta pagamento
+<https://docs.google.com/forms/d/e/1FAIpQLSdrQx4VJr6AMjTQyufSuwA57Vb7zLP0Mn=
+AadUKukagecezfiQ/viewform?usp=3Dheader>
+
+*N.B. *Per dare avvio alla richiesta di pagamento, *sar=C3=A0 necessario
+compilare tutte le voci del Form e caricare la documentazione richiesta*,
+che include:
+
+- Copia dei fogli firma
+
+- File Excel
+
+- Copia di un documento di identit=C3=A0
+
+- Eventuale modulo di rinuncia ore (allegato)
+
+- IBAN
+
+
+Per quanto riguarda la firma dello studente nel modulo "fogli firma", se
+l'attivit=C3=A0 =C3=A8 avvenuta a distanza, =C3=A8 necessario chiedere agli
+studenti interessati, di inviarci una mail in cui dichiarano che il
+tutorato =C3=A8 stato svolto secondo quanto concordato con l'ufficio.
+
+
+
+=E2=9A=A0=EF=B8=8F   *Ricordiamo che nel mese di Dicembre non verranno racc=
+olte le
+richieste di *pagamento* che potranno invece essere inviate via mail  *entr=
+o
+* il * *20 di gennaio 202**6. * Le richieste di pagamento che perverranno
+dopo il 17 novembre, verranno  processate con quelle relative al mese di
+gennaio.
+
+
+ Cordiali saluti
+
+Sezione Servizi per l'Inclusione Studentesca
+Direzione Didattica Servizi agli Studenti
+Via Verdi 25 - 10124 Torino
+tel. 011.6704284
+mail tutorato.inclusione@unito.it <ufficio.dsa@unito.it>
+
+--0000000000009a8d3a0643676965
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div class=3D"gmail_default" style=3D""><font face=3D=
+"verdana, sans-serif">Genti.m* tutor,</font></div><div><font face=3D"verdan=
+a, sans-serif"><u style=3D""><b>SOLO=C2=A0</b></u>per=C2=A0chi=C2=A0 dovess=
+e inviare=C2=A0 nel=C2=A0mese=C2=A0di=C2=A0novembre=C2=A0 la=C2=A0=C2=A0ric=
+hiesta=C2=A0di=C2=A0=C2=A0<span class=3D"gmail-il">pagamento</span>=C2=A0de=
+lle ore svolte <span class=3D"gmail_default" style=3D""></span>( prime 100 =
+ore /seconde 100 ore=C2=A0 / rinuncia),=C2=A0si precisa quanto segue:</font=
+></div><div><font face=3D"verdana, sans-serif">=C2=A0 la consegna della doc=
+umentazione=C2=A0richiesta=C2=A0=C2=A0dovr=C3=A0 essere inviata=C2=A0<b>=C2=
+=A0</b><u><b><span class=3D"gmail_default" style=3D""></span></b></u><b>=C2=
+=A0entro il giorno=C2=A0<span class=3D"gmail_default" style=3D"">=C2=A0<fon=
+t size=3D"4">luned=C3=AC 17</font></span><span class=3D"gmail_default" styl=
+e=3D""><font size=3D"4">=C2=A0novembre 2025</font>.</span></b></font></div>=
+<div><u><b><font face=3D"verdana, sans-serif"><br></font></b></u></div><div=
+><font face=3D"verdana, sans-serif"><u><span class=3D"gmail_default" style=
+=3D""></span></u>A tal fine, =C3=A8 sufficiente compilare il=C2=A0<span cla=
+ss=3D"gmail_default" style=3D""></span>google form=C2=A0disponibile al segu=
+ente link:=C2=A0<a href=3D"https://docs.google.com/forms/d/e/1FAIpQLSdrQx4V=
+Jr6AMjTQyufSuwA57Vb7zLP0MnAadUKukagecezfiQ/viewform?usp=3Dheader" rel=3D"no=
+opener nofollow noreferrer" target=3D"_blank" style=3D""><font size=3D"4">R=
+ichiesta=C2=A0<span class=3D"gmail-il">pagamento</span></font></a></font></=
+div></div><div><font face=3D"verdana, sans-serif"><br><span class=3D"gmail_=
+default" style=3D""></span></font><p class=3D"MsoNormal" style=3D"margin:0c=
+m 0cm 8pt;line-height:14.95px"><font face=3D"verdana, sans-serif"><b>N.B.=
+=C2=A0</b>Per=C2=A0dare avvio alla=C2=A0richiesta di=C2=A0<span class=3D"gm=
+ail-il">pagamento</span>,=C2=A0<u>sar=C3=A0 necessario compilare tutte le v=
+oci del=C2=A0Form e caricare la documentazione=C2=A0richiesta</u>, che incl=
+ude:</font></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-heig=
+ht:14.95px"><font face=3D"verdana, sans-serif">- Copia dei fogli firma</fon=
+t></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:14.95p=
+x"><font face=3D"verdana, sans-serif">- File Excel</font></p><p class=3D"Ms=
+oNormal" style=3D"margin:0cm 0cm 8pt;line-height:14.95px"><font face=3D"ver=
+dana, sans-serif">- Copia=C2=A0di=C2=A0un documento=C2=A0di=C2=A0identit=C3=
+=A0</font></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-heigh=
+t:14.95px"><font face=3D"verdana, sans-serif">- Eventuale modulo=C2=A0di=C2=
+=A0rinuncia ore (allegato)</font></p><p class=3D"MsoNormal" style=3D"margin=
+:0cm 0cm 8pt;line-height:14.95px"><font face=3D"verdana, sans-serif">- IBAN=
+=C2=A0=C2=A0</font></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;l=
+ine-height:14.95px"><font face=3D"verdana, sans-serif"><br><span class=3D"g=
+mail_default" style=3D"">P</span>er=C2=A0quanto riguarda la firma dello stu=
+dente nel modulo &quot;fogli firma&quot;,=C2=A0se l&#39;attivit=C3=A0 =C3=
+=A8 avvenuta a distanza,=C2=A0=C3=A8=C2=A0necessario=C2=A0chiedere=C2=A0agl=
+i studenti=C2=A0interessati, di inviarci una mail in cui dichiarano che il =
+tutorato =C3=A8 stato svolto secondo quanto concordato con l&#39;ufficio.</=
+font></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:14.=
+95px"><font face=3D"verdana, sans-serif"><br><br><span class=3D"gmail_defau=
+lt" style=3D""></span>=E2=9A=A0=EF=B8=8F<span class=3D"gmail_default" style=
+=3D"">=C2=A0 =C2=A0</span><span class=3D"gmail_default" style=3D""></span><=
+u>Ricordiamo che nel=C2=A0mese=C2=A0di=C2=A0Dicembre non verranno raccolte =
+le richieste=C2=A0di=C2=A0</u><span class=3D"gmail-il" style=3D"text-decora=
+tion-line:underline">pagamento</span><u>=C2=A0che potranno invece essere in=
+viate via mail=C2=A0=C2=A0</u><span class=3D"gmail_default" style=3D"text-d=
+ecoration-line:underline">entro</span><u>=C2=A0il=C2=A0</u><span class=3D"g=
+mail_default" style=3D"text-decoration-line:underline">=C2=A0</span><u>20=
+=C2=A0di=C2=A0gennaio 202</u><span class=3D"gmail_default" style=3D""><u>6.=
+=C2=A0</u>=C2=A0</span>Le richieste di pagamento che perverranno dopo il 17=
+ novembre, verranno=C2=A0 processate con quelle relative al mese di gennaio=
+.</font></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 8pt;line-height:=
+14.95px"><font face=3D"verdana, sans-serif"><br></font></p><p class=3D"MsoN=
+ormal" style=3D"margin:0cm 0cm 8pt;line-height:14.95px"><font face=3D"verda=
+na, sans-serif">=C2=A0Cordiali saluti</font></p></div><div><div dir=3D"ltr"=
+ class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><font face=3D"verdana,=
+ sans-serif" style=3D"color:rgb(34,34,34)"><br></font></div><div dir=3D"ltr=
+">Sezione Servizi per l&#39;Inclusione Studentesca<br><div style=3D"color:r=
+gb(34,34,34)"><font face=3D"verdana, sans-serif" color=3D"#666666">Direzion=
+e Didattica Servizi agli Studenti</font></div><div style=3D"color:rgb(34,34=
+,34)"><span style=3D"color:rgb(102,102,102);font-family:verdana,sans-serif"=
+>Via Verdi 25 - 10124 Torino</span><br></div><div style=3D"color:rgb(34,34,=
+34)"><font face=3D"verdana, sans-serif" color=3D"#666666">tel. 011.6704284<=
+/font></div><div style=3D"color:rgb(34,34,34)"><font face=3D"verdana, sans-=
+serif"><font color=3D"#666666">mail</font>=C2=A0</font><a href=3D"mailto:uf=
+ficio.dsa@unito.it" style=3D"color:rgb(17,85,204);font-family:verdana,sans-=
+serif;font-size:12.8px" target=3D"_blank">tutorato.inclusione@unito.it</a><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v>
+
+--0000000000009a8d3a0643676965--

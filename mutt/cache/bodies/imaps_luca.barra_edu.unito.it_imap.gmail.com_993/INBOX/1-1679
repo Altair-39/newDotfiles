@@ -1,0 +1,79 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:8e91:0:b0:2e2:75a4:21a3 with SMTP id z17csp307412ljk;
+        Fri, 10 May 2024 05:57:47 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUztSXmL7XIyBgHAi4d6Fiv6iAr4Gp2WSc0R0o1nM+M/q1QA/DpmIGnVPWou6pUgsGizaYYWn2bzetV0et6FXUKgAj+X0gQjw==
+X-Google-Smtp-Source: AGHT+IFfS0blyZ/0x5TKWtMoLLtMwOfXBlt9xAmcUBHFSysrb5bhRZg6Ui7hYKRKYVdrLCEaCVsY
+X-Received: by 2002:a2e:9184:0:b0:2e1:c5d2:b338 with SMTP id 38308e7fff4ca-2e51fe589aemr14751161fa.24.1715345867104;
+        Fri, 10 May 2024 05:57:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1715345867; cv=none;
+        d=google.com; s=arc-20160816;
+        b=qBR6HpQDkHqMms4V7KZwhjxzOScyY4dQ5B1UaQqiX3lDwDBdxNaLyj4zEuH3W4mPix
+         j1GTJvYcRQLHWSAAW5KK4D8Stl2ka2eKSmSt3vIVUkJgagg37+mNrIsxhaQSf4bBIplE
+         EwoFxg0gSkPVfsFKl8VxIpHl4tM05vVWwiuQsys4w6FsH6YoeMxrvc7emGId+HfiuoQG
+         vcqnKI67q8rxLZHE0fpbY2MR81PNz8B0rHW0FDLbWqWiuWqbtxNhZH8NYI9+1iGB/BKq
+         NOj80we2QBo/na2wq879gysgZ4/KE5Pvro4NTmxkoCvzO//kezjiCfssdR3tiX4nU9S7
+         vGsg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date;
+        bh=aCbb7avVf5mYpiC/2z1YZH+YGFXdWPZpfS82RTen5kE=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=XRmuCRjC5TRCj6rHPsM2uazyhsTX3qbXzJQnfoBBNlu9bBm6w99/l9CsFrQ3oT+DxU
+         l3kY8tEdX6qfO8ERtzfnyRxu5jIk60hOZCbIp72jb7AtKFy/xxfCihlOFwKczUfr3phm
+         rRtQh11O0gmvZpRgafDFBoCIzFxOLi2OQ0c6WDbzstNw847joj0O15/2n37oksnb17ow
+         l4i8jkFHHXU5HRTAAQTwoZqhZPov9/S/rXdXihpAK22CigWrKT495PvHKl15xA99Di+E
+         4tMqP5jP2+9lps6/IF0P2hCKgqaJrRFsDM54ul3UXN3jbQhP/FRYwpguMvXeTq2mVkn3
+         M+dg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of liliana.ardissono@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=liliana.ardissono@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <liliana.ardissono@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-48937185610si1624003173.119.2024.05.10.05.57.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 May 2024 05:57:47 -0700 (PDT)
+Received-SPF: pass (google.com: domain of liliana.ardissono@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of liliana.ardissono@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=liliana.ardissono@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 790102C1F6;
+	Fri, 10 May 2024 14:57:42 +0200 (CEST)
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id CDu27NnKyF0H; Fri, 10 May 2024 14:57:42 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 24E642CA71;
+	Fri, 10 May 2024 14:57:42 +0200 (CEST)
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id hYmsS7eMvtFp; Fri, 10 May 2024 14:57:42 +0200 (CEST)
+Received: from esse3appjboss27.private.cineca.it (esse3appjboss27.cineca.it [130.186.5.162])
+	by smtp4.cineca.it (Postfix) with ESMTP id 051472B480;
+	Fri, 10 May 2024 14:57:40 +0200 (CEST)
+Received: from esse3appjboss27.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss27.private.cineca.it (Postfix) with ESMTP id EC0CEABD;
+	Fri, 10 May 2024 14:57:40 +0200 (CEST)
+Date: Fri, 10 May 2024 14:57:40 +0200 (CEST)
+From: LILIANA ARDISSONO <liliana.ardissono@unito.it>
+Message-ID: <445795320.1306.1715345860965@esse3appjboss27.private.cineca.it>
+Subject: Programmazione III - Discussione di laboratorio del 16 maggio 2024
+ - istruzioni
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+To: undisclosed-recipients:;
+
+<p>Buongiorno,</p>
+
+<p>&nbsp;nella pagina moodle di programmazione III potete trovare il calendario di prenotazione dei turni di discussione di laboratorio dell&#39;appello del 17 aprile:</p>
+
+<p>https://informatica.i-learn.unito.it/mod/scheduler/view.php?id=242102</p>
+
+<p>La discussione del laboratorio si terr&agrave; nella mia stanza webex: <a class="moz-txt-link-freetext" href="https://unito.webex.com/meet/liliana.ardissono">https://unito.webex.com/meet/liliana.ardissono</a> in base al calendario di prenotazioni.</p>
+
+<p>Cordiali Saluti,</p>
+
+<p>Liliana Ardissono</p>

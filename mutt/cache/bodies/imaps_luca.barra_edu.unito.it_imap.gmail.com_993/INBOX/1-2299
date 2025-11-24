@@ -1,0 +1,2351 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:3614:0:b0:30c:2dd2:a8c1 with SMTP id d20csp1618175lja;
+        Mon, 31 Mar 2025 07:19:25 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHzz+hFg22HAsZd+Po8BESKn4CiVWiYOmoWoZwpqZ+lqFmA3tfqplKABfaY+d6YngzfcoFm
+X-Received: by 2002:a5d:64e9:0:b0:391:2a9a:47a6 with SMTP id ffacd0b85a97d-39c120db3demr2451436f8f.4.1743430765598;
+        Mon, 31 Mar 2025 07:19:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1743430765; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Z7hzYPq9eoQa8tKwfad4AXyz8dY3QXGgiRPy6uQN0V4XtSHYcxOK9qyHvjMo0uO0bB
+         Sj2zdMV4VVhA8QFJ6wBTYVjXBBXGwlU5LbExTBFfKuzx6DKIXnKyzUeVfkXJlkREcwQA
+         iGnGoFnxqqolk/A3XNxld9boWA/1Yoq9wJHBuPxNoPyQhhwLzX2WTWlvI+p0d9FY7k6L
+         Fpr9bqihBPgs9GoGU5Q7FSAOxzgB7EuC0D/LmLcnL0VQmI2Omf8hh7aJJGm3Zn0ONTv3
+         9NADNIuN/jW0HIojOVnlm8fMEoumwuByKMSRcKLOFDdtcU8JEym7rINadxVZEtyULYUr
+         iUNA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:list-unsubscribe-post:list-unsubscribe:reply-to:subject
+         :message-id:mime-version:from:date:dkim-signature;
+        bh=4pcJEvmLWxw4mIafwXEhLh0aehl5EvLvuFf3wh8ttQc=;
+        fh=IxM04YauqXzCozmF/ngeXvaWuWeW7uONbHgj9jmZsgE=;
+        b=QziUO5ueANbwA3Yv/LHNBQ8hHJVmOTYWQSd3LR0micXL2kBwAfQ49f3jjp6R+bf0Ev
+         n1e3leJj4eJPDojxezkz24CAzCCtnjGqEKIfyhcdhMwpKR0bq+ndR/68Xyv7G7404ljX
+         s+bkJjCEzJnXVsyC7gCWzfM1zuKvMX2b7JTcp/YgpWcRMT4pajCuxb5k7IMKglBi21NU
+         B2edp8+NOXKLodRog6ezsY71ZRXhY/9V5kY+CMBvJgnsZLeq7tq5CJKvPM3CBOsNJSDj
+         mGGr8LqTfo25YFVi+J1OA9SiF/35CbRrhRSAtfm/3zDttg3X2jUrSH7AD0Sz0w7esrue
+         GWzg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@github.com header.s=smtpapi header.b=kCTVcoYR;
+       spf=pass (google.com: domain of bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com designates 167.89.101.202 as permitted sender) smtp.mailfrom="bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Return-Path: <bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com>
+Received: from o11.sgmail.github.com (o11.sgmail.github.com. [167.89.101.202])
+        by mx.google.com with ESMTPS id 41be03b00d2f7-af93b8aeb49si12486890a12.529.2025.03.31.07.19.24
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 31 Mar 2025 07:19:25 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com designates 167.89.101.202 as permitted sender) client-ip=167.89.101.202;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@github.com header.s=smtpapi header.b=kCTVcoYR;
+       spf=pass (google.com: domain of bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com designates 167.89.101.202 as permitted sender) smtp.mailfrom="bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	h=content-type:from:mime-version:subject:reply-to:list-unsubscribe:
+	list-unsubscribe-post:to:cc:content-type:from:subject:to;
+	s=smtpapi; bh=4pcJEvmLWxw4mIafwXEhLh0aehl5EvLvuFf3wh8ttQc=;
+	b=kCTVcoYR9InAngu+seLMnRFFitHpQFFNUK+h1xHaHt3XrcI/1hhnJ57tl+NS7DwWFT7U
+	YdFPwvkRN6tbusgUtYqheqIz7TUQPGoBY5P7xGOcnnpd/ihboDjLxXTh62lqwDZPY1oYeQ
+	pcMf+kXH4hGPadxdCqHWShUpXTmXLF668=
+Received: by recvd-958975c88-4jf4l with SMTP id recvd-958975c88-4jf4l-1-67EAA469-77
+	2025-03-31 14:19:21.722588462 +0000 UTC m=+918436.135036973
+Received: from NDY3MDE5MjI (unknown)
+	by geopod-ismtpd-22 (SG) with HTTP
+	id 10tbkkhiT6eTPXoAUU7_9A
+	Mon, 31 Mar 2025 14:19:21.693 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=ad65450632a70e3bfb8d59478d770445c16993b462ab2f1cf27431cde8f2
+Date: Mon, 31 Mar 2025 14:19:24 +0000 (UTC)
+From: GitHub Education <githubeducation@github.com>
+Mime-Version: 1.0
+Message-ID: <10tbkkhiT6eTPXoAUU7_9A@geopod-ismtpd-22>
+Subject: Certifications, AI Challenges & Exclusive Events in April
+Reply-To: githubeducation@github.com
+List-Unsubscribe: 
+ =?us-ascii?Q?=3Chttps=3A=2F=2Fmailing=2Egithub=2Ecom=2Flu=2Funsubscribe=3Foc=3Du001=2Eor7q--1Ll4a?=
+ =?us-ascii?Q?IdZchoIagBoikICI9UYP7-OIYHjWc8OiS8-A52w?=
+ =?us-ascii?Q?d83kxwIRhFkwaTwkTamEYwTVWgFber=5F2ubyL-cT?=
+ =?us-ascii?Q?HECpOIewEvWeq43S-p9Wp0p8PQe8H0SitgCvqVZ?=
+ =?us-ascii?Q?wzqc87ZSZzdQl8vQVPTn1InH9XTLAnGabQYrPvC?=
+ =?us-ascii?Q?c75-CHsKOgoJLqUm8egFo49vZU3RQHeNjiJw=5FGp?=
+ =?us-ascii?Q?MNYbTT=5Fpn-AgZeW88-dnloMbBlI16UQ-MZHqXgb?=
+ =?us-ascii?Q?W-=5FCLONCNcZIkYUR-BcN8=5FLmrwfh1Jor6RRuAMn?=
+ =?us-ascii?Q?GaoHMQlE=5FnsW5=5F1vlujtjLtZSr59Wv8Lk=5F3cw-Q?=
+ =?us-ascii?Q?8msN9YORyPez2TmHtXRdtLWpUCEWrPS0w60zc9z?=
+ =?us-ascii?Q?DJ3MhKKLyqeH5RYdvncZyTR0JHBqQjyvlVjZYKB?=
+ =?us-ascii?Q?WdfIRb9wr8iR1EZPlhKmAii2CBiHeseU0jM1KBQ?=
+ =?us-ascii?Q?7th30wvYvPazSDMN4CmTvOCWAvFlEhCPfq9XQ8f?=
+ =?us-ascii?Q?9NGAFufJtqDvEdBfKk8rmEGcjnK6eV8NbyQuQm7?=
+ =?us-ascii?Q?iIPGUSIrKsgJUiP8aw=5FeaoVUBosmn=5FO5VFOixcU?=
+ =?us-ascii?Q?H6SrmoYWGUwqf1O3Q6ecYyUU2X3kIHoYF0Jo8ne?=
+ =?us-ascii?Q?MYObq6VU0ZfbPpDV6-j4B7OL-fmPEb3Zs7lAsPh?=
+ =?us-ascii?Q?EmN2Emfr36Zky2EHjRhubETZ1X5gBa1L-leRFvo?=
+ =?us-ascii?Q?VBfFqaDxtV36NAyLqddrld3M1TZd037hJkGNmit?=
+ =?us-ascii?Q?m0F4mbf3PbhquXjSNVXPoQp=5FBoNyKGY=5FurOyvkd?=
+ =?us-ascii?Q?3j8-HLvKiZmjiEN4SJ7IEjjBu7Q2kdgRVtdxvXs?=
+ =?us-ascii?Q?ZiFMbOVo0EP2dTYTse25Cppg=5FgjEuln9jXTEVp7?=
+ =?us-ascii?Q?Vqo1EmijQDe4qkmj2Zpk1qn70RhWeGKl0d2ovf5?=
+ =?us-ascii?Q?oh1Dq4Xu7I9nOYUK=5Fn2fARrMA01BwFVXpC1153F?=
+ =?us-ascii?Q?kU=5FZ6Q6INLJQhUxVlDoVIdlQV-R0AxsHkhF1m7i?=
+ =?us-ascii?Q?FbhZuGZCdgPznpG2V132NimGx4kRvNi0v0deFdG?=
+ =?us-ascii?Q?dSQ4lQUUKklwhTXlW4FEGxaFisOni-y06nckhu1?=
+ =?us-ascii?Q?PrtyoGl-zLKiAxjn5p098gW8nSFz1X3ortCAxM8?=
+ =?us-ascii?Q?5muloWsj5fz7omXBIB5VcpBt3bc0rW75Df1XKm3?=
+ =?us-ascii?Q?zq5njDMG7vis90myH-9o3UL=5FIDv41ydSWMS=5FJoQ?=
+ =?us-ascii?Q?v3NRLr7APZF4gMTN1UHnYU8=5Fi1dbb7Edw9P2acj?=
+ =?us-ascii?Q?-8s33wWOcqRhd6G24hni5jzNtV-psvriaQmbP6t?=
+ =?us-ascii?Q?gEORKCZ2o020yp2WIvHizl6nAsRMZWIAoMPN4AG?=
+ =?us-ascii?Q?q-WZtAJ3diHQjM9zrDr9hr01I5FL7Y8JT49-v7W?=
+ =?us-ascii?Q?5NdBLwBEtIDBcTbYf1BjLTyKSSDUbLPrhYMrkeT?=
+ =?us-ascii?Q?gmmSyTFhvoBEvNRzLHie3MyjQySYT7RrcaOgjY8?=
+ =?us-ascii?Q?DsH8MphLiqATjNjQDmcf0LypVA0npmfneSCTFCF?=
+ =?us-ascii?Q?NKBuYkW-pTIyPM6ysk4H2b33pCt3PrFEi7fUC-5?=
+ =?us-ascii?Q?3cWgqzWaqoofJu7PL=5FZjq9W=5FDlNQcKs534Ihkit?=
+ =?us-ascii?Q?8DRRWH-HdlZia52klL8xRI=3E=2C=3Cmailto=3Aunsubsc?=
+ =?us-ascii?Q?ribe=40sgmail=2Egithub=2Ecom=3Fsubject=3Dhttps=3A=2F=2F?=
+ =?us-ascii?Q?mailing=2Egithub=2Ecom=2Fmt=2Fu=2Fu001=2EralsfbMxOi?=
+ =?us-ascii?Q?OxCwaFzXWGEQG67NZAjfaq4SVdguUnxzg=2F4f9=2Fu?=
+ =?us-ascii?Q?001=2Eu8p1oaMw=2Fu001=2ES8HYypSD1x7cZbKSqbc4Q?=
+ =?us-ascii?Q?sHlrkIL82FpifvXOrlvs2PUIppmG0vrupfc3-2B?=
+ =?us-ascii?Q?4QeW-2FM3OgDdDkzeqGRSHHAjw-2F8LVhXT8jB2?=
+ =?us-ascii?Q?G5yJ3Y1j0bcl1hLpwN6ty1KEVRQO2i9nW54Bg-2?=
+ =?us-ascii?Q?Bk1kf8MPd6c2z5gsMBaupxdMZpyXuwTkPcI0HEz?=
+ =?us-ascii?Q?c34yb7wy4Yk2TmCyLcISp0iW91c5UA6L91BqYkA?=
+ =?us-ascii?Q?kZtK39nmYt9OWwOV7bCMc-2Fhhc1DrownZCoyFo?=
+ =?us-ascii?Q?vty8DW89LU-2FDACtXvA0OYq6asnzXgfS1W5Q-2?=
+ =?us-ascii?Q?BeoKZkYnSYQkXRRazpfBEvofVG4jRyqU-2BLg3g?=
+ =?us-ascii?Q?yj4pRLQaAuOMUueqKFDu4vtTqynIjtzwgvm0yIw?=
+ =?us-ascii?Q?-2FlV8rPPlmqsEXh0sHlaj-2B24op-2BKbwAm2Y?=
+ =?us-ascii?Q?4NkvuQzTeqOZQ2aEh9BedbqMGV62lx97vzCJ-2F?=
+ =?us-ascii?Q?p1t0wnQTf994iMmpBDQzLfG1nYJnsbT2VV7TNxe?=
+ =?us-ascii?Q?jBaTO7MVTfIBA0krxZwh-2F1C2kidCnb9gGE8QF?=
+ =?us-ascii?Q?-2BxP7dCEQu34HRDNqUIrNFW-2FAcEfy7l-2Ffy?=
+ =?us-ascii?Q?BwkO193SG11VL-2F6p5qOlqwCyq890ZEwgvShXD?=
+ =?us-ascii?Q?g9KSU-2FDGsYotHnaKAEH5GGSdCMYocp-2FJimc?=
+ =?us-ascii?Q?ukiZF-2BHJZRKYCgJAoNimeakBkLD4bfLFjWR3j?=
+ =?us-ascii?Q?pXs-2FO4-2BhL-2F5zMSZBXDJV9s8ZWI6ii7JFH?=
+ =?us-ascii?Q?mPVGzJqchGN1yOJg9K-2FrUielD-2FiAxI2-2Bt?=
+ =?us-ascii?Q?3wsf9ro0LPwUNEzJnyFEZUdZViaSCsM5Bxuq7qX?=
+ =?us-ascii?Q?Wo1-2Bw1mBr-2BFJHxOAtf2lkEKubHj4VF79EI5?=
+ =?us-ascii?Q?VNFbHpmKQkfLR0HUCTntSpNGK8D5eXrPCAnNcWd?=
+ =?us-ascii?Q?RJsxC0PEuX7LZUL4K9Eh7Mp-2F9c3WuacpPyXnZ?=
+ =?us-ascii?Q?Q1qF2UaPowIpf4cIyZyaC9Ik6lxVmthtDOE0e9a?=
+ =?us-ascii?Q?VJIdhJLNavND8xA0X-2B0v9rZ0AFSv42ACui-2F?=
+ =?us-ascii?Q?Pjh29kvzrUptUzv1ismdQMWeDmiccZi-2BHCjsS?=
+ =?us-ascii?Q?Sthk9wYtHgRwwSRn2l-2Bgy2CB-2FL5a7keM-3D?=
+ =?us-ascii?Q?=2Fu001=2EOVaGWfIt=3E?=
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-SG-EID: 
+ =?us-ascii?Q?u001=2ElNcmDc+hNZCEz2pmfZvb7Xgb9JADEib7wUaiAfZvyvpnXoHDGKB+UZmxR?=
+ =?us-ascii?Q?cbcA6LEkHq3NVfZpL5Oyz47TDCdIUhpprXL48vU?=
+ =?us-ascii?Q?BX2hVuRmvkASWWXWqGj1Q3c0mtOh72dgRtloXyp?=
+ =?us-ascii?Q?uPj7mgzr0NHTSxK57N9M6ADuRXHPebdn1jvYx60?=
+ =?us-ascii?Q?0rfuZU9pG8bkQEXeyPV+fw9KqvBxpEOjhuHpU+R?=
+ =?us-ascii?Q?sCw3MVNJJTdMQWkO+PwAD8Zgq7S+aUrZ0WgmewU?=
+ =?us-ascii?Q?EWyH96N=2FnYZDJRn5OOuVO18Rig=3D=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2EXwhBPNhCejkv4+fVosb2QVfR16Qxp9CrA7PjDe5zzeI=2F0IZCBsPXtgHbA?=
+ =?us-ascii?Q?oGIj+RskLxA4N2rJjSWrHfgX07tLOm0v5BUQcd6?=
+ =?us-ascii?Q?w3knjorGi7Hwu0WCOA5AFSvy0=2FwlG32=2F95Ma6Er?=
+ =?us-ascii?Q?PXJ+vOWSVModrfc2MAo6n6NWYarsyLbiq9niIx6?=
+ =?us-ascii?Q?Fn=2FXR7kpbFA7Ho9S=2FugqX58gs2Eq55oqADHsqA3?=
+ =?us-ascii?Q?yyHGiHM3WK=2FnWQRKXg7zhlKTABxcKQfkGLWDcta?=
+ =?us-ascii?Q?1qoCOTBQ7+29zNTtXC7NB8KhJghi3qHWxDIDc5w?=
+ =?us-ascii?Q?waGllkOUZ=2F1AXmYzVQcomdXXiHax9FF5kfnCl+R?=
+ =?us-ascii?Q?w3vegGvYfvwxJzIa07kgplwcbkNPop2mStBJyiM?=
+ =?us-ascii?Q?d08oGorHpW8Aq65vOkT6ooy6eD4ChuCbp0erydp?=
+ =?us-ascii?Q?xwawjbGHvR4XW2YOAEn9FXi9Dm0GD=2FBG=2FV89kXZ?=
+ =?us-ascii?Q?MgdPCGpmm8QQ4T3Ptscar57fgTv+umGknO=2F0YtD?=
+ =?us-ascii?Q?2ICFl52iNHc01P1dNC3ttutH2vuyiSj=2FNPJs8OW?=
+ =?us-ascii?Q?7rusfy6WK9nstHLdMlqOS+w5Pr8yElGLmtBL=2Fmd?=
+ =?us-ascii?Q?=2FoaOD68frheGnJVo7PCP6Oq7RmYWHSwUAhbBgmr?=
+ =?us-ascii?Q?A+iGlfmLG2n5UaUfi2cooEVQra5U8YFakei8uEs?=
+ =?us-ascii?Q?ft83RS0LtpxXMPDeq3KBRZAykjJGtXEGkdFSOJN?=
+ =?us-ascii?Q?xAZdkPtMVGQYzogvscvi6V9trHQA+anyOQWQJt+?=
+ =?us-ascii?Q?1OsiG6hOs=2FF951rqSy4uzqR=2F6gDiFu5E8wrjZJG?=
+ =?us-ascii?Q?WqirxVpK4M7Iv+LRM26cXBMfjQla1TY8mPFs=2FVJ?=
+ =?us-ascii?Q?LgW2GGmG8Hj4s=3D?=
+To: luca.barra@edu.unito.it
+X-Entity-ID: u001.B+egv976VsnFPzNwqP101Q==
+
+--ad65450632a70e3bfb8d59478d770445c16993b462ab2f1cf27431cde8f2
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+
+Join a Guinness World Record AI lesson, earn your GitHub Certification and =
+meet GitHub COO Kyle Daigle.
+
+( https://github.com/education )
+
+********************
+*Student Newsletter*
+********************
+
+**********
+March 2025
+**********
+
+Hey Altair-39,
+April brings fresh opportunities to level up your tech skills and connect w=
+ith the global developer community.
+
+*Coming up next:*
+
+*1.* Earn your GitHub Foundations Certification in 5 weeks
+*2.* Join the Microsoft AI Skills Fest
+*3.* Participate in BioHackathon
+
+*4.* Take part in MLH Global Hack Week
+*5.* Attend Kyle Daigle=E2=80=99s Fireside Chats
+*6.* Discover Copilot AI Agent Mode
+*7.* Build your own tech tutorials
+
+***************************************************************************=
+**
+*Start your GitHub Foundations Certification today with our Exam Prep Cours=
+e*
+***************************************************************************=
+**
+
+Don't let your free voucher ( https://education.github.com/experiences/foun=
+dations_certificate ) go to waste, join our *five week prep course starting=
+ today* , March 31st, in the GitHub Community to get resources, practice ex=
+am questions, expert help, and more so you can pass the GitHub Foundations =
+Exam.
+
+Get started today ( https://github.com/orgs/community/discussions/154502 )
+
+**************************************************
+*Master AI skills at the Microsoft AI Skills Fest*
+**************************************************
+
+Let's make history together. Build & showcase your AI Skills while attempti=
+ng to set a *GUINNESS WORLD RECORDS=E2=84=A2* title attempt for most users =
+to take an online multi-level artificial intelligence lesson in 24 hours. D=
+on=E2=80=99t miss the activities beginning on April 7 at 23:00 UTC.
+
+Register now ( https://aiskillsfest.event.microsoft.com/ )
+
+**********************************************
+*Solve biology challenges at the BioHackathon*
+**********************************************
+
+On April 11th, GitHub is sponsoring an *in-person Hackthon in Sao Paulo* , =
+Brazil, for students.
+Learn how to leverage AI while saving the planet, win swag as prizes and me=
+et other environmentally conscious coders. Hosted by GitHub, with nonprofit=
+ ProgramEarth.
+
+Sign up here ( https://lu.ma/0zq3i4f4 )
+
+*****************************************************
+*M* *L* *H* *Global Hack Week: API - April 11th-17th*
+*****************************************************
+
+Join the Major League Hacking Community at Global Hack Week: *API week, com=
+ing up April 11-17th*. At this free event, you'll have the opportunity to e=
+arn swag, attend workshops, and network with the community of builders whil=
+e you build, explore, and learn all about APIs!
+
+Register now ( https://ghw.mlh.io/events/api-week )
+
+*************************************************************
+*Chat with Kyle Daigle at the exclusive Fireside Chat events*
+*************************************************************
+
+Join GitHub COO Kyle Daigle in India for an exclusive Fireside Chat & AMA! =
+You're invited to discover the future of software development, =C2=A0career=
+ pathways, and India=E2=80=99s growing developer community. Mark your calen=
+dars for *April 4th in Bengaluru and April 8th in Mumbai* !
+
+Sign up now ( gh.io/kdindia25 )
+
+*****************************************************
+*Discover Copilot AI Agent Mode in our new blog post*
+*****************************************************
+
+Our latest blog post dives into AI agent mode's strengths, comparing it wit=
+h Copilot Edits to help you choose the right tool for tasks like debugging =
+complex code or streamlining multi-file projects. GitHub Education students=
+ *get free access to Copilot Pro* via the Student Developer Pack ( https://=
+education.github.com/pack ) , making it easy to put these tips into practic=
+e.
+
+Find out more ( https://gh.io/AAvar9z )
+
+********************************************************
+*Build your own tech from scratch with guided tutorials*
+********************************************************
+
+The 'build-your-own-x' repo offers a hands-on way to recreate simplified ve=
+rsions of your favourite technologies from scratch, gaining a deeper unders=
+tanding of programming concepts along the way.
+
+Build your own tech ( https://github.com/codecrafters-io/build-your-own-x )
+
+( https://www.instagram.com/githubeducation/?hl=3Den ) ( https://www.facebo=
+ok.com/GitHubEducation/ ) ( https://www.threads.net/@githubeducation ) ( ht=
+tps://twitter.com/githubeducation ) ( https://bsky.app/profile/githubeducat=
+ion.bsky.social ) ( https://www.linkedin.com/showcase/github-education/ ) (=
+ https://www.youtube.com/@githubeducation4427 ) ( https://www.twitch.tv/git=
+hubeducation )
+
+Open this email in a web browser. ( https://cdn.mc-weblink.sg-mktg.com/webl=
+ink/MTc0MzQzMDc2MXx0eGJobjdjTU5IUTFydllIVHFabGRfZ2ZJQm5JaE5BbnBPa1hRUElLSnl=
+2aktUV2phZVZ0UUkwOEhicklyS2RVM3prQmVwaVhrTnk2OEtYUnVzTmxwZ3ZBWWltSl8yUi1tYW=
+1IczhWejlqeHNfVXZleE43S3BnZ2RxM1pid0pVNzFvQ211TE5ZSTJjNnZKWnRTRkhnaW1jTjJZU=
+WZPN3lmQzV2WTVYLVJiNGcyZHpjcEhwZ0tWTS1WbWk2NERjSUdUUGwtZnNsMjFSdUozc09nbGhF=
+eEVnUEJBWWZxWFUzWk9sa1ZxS0steFRueDVpWXlTT1lJeS00YVpHY2lOajFxWGNHMXgzOVcyNVN=
+0X1hYRnRydTRSTm45QWFnbzlXWERQX0VMelVuVXV3M082X1d4allfN2JVMU5YOXAtU3JPRmNPcm=
+VMcDF6VFNXMDNWME52YjBrNThpVmNrZFNFQT09fOh3vP1362dynv8-zaKX5oMPyh5WnHjetklix=
+0CuPc6e )
+
+GitHub Education
+
+88 Colin P Kelly Jr , San Francisco , CA 94107
+
+Unsubscribe ( https://mailing.github.com/wf/unsubscribe?upn=3Du001.Ee8VvrA6=
+tfmzNDWChM5C8SKvgqLD0rqjKbwLddWAmtVHTRqjXrQXOxjrcLr6ABC1bf3-2BWaLHXRg6-2BvL=
+iwRhG-2BaN0jkqZ1o-2FbIKclAPw3J9qtYg4nGcqx-2FLwQGRuMBoSnBBFMvfUR7ouNbpHhUU8L=
+dgfsZmfs7OVdKU3Ox-2BMJODBC6g5FVv2EzATa4-2BLuIbqRGctEyXizRq-2B-2BT6EA3CuFdhU=
+VlYYnSHCcwo9NdJPPZCuDdeU-2F8NVIuolz2D7Ag6h6RmiYD8fB0rVWOOduo1gm1Jp-2Bal5gSq=
+MOyhJpf2QAIVGclnLH3YxahxZN2v5ki3Bs4DCn0-2BmQzBzOH1D3cESSsOzFJLFZwzxUY03VVEq=
+l9kKXVRVkkypUc0JqX89J3gtLzU52B9xX4ya5NjNWlXLp-2FRZmg5QzpwlL-2BZmzzDxUqICC9I=
+IyASovx1JgL3I1aHgifabbU-2FZ5fPtlV-2FEcAoqU0MgiKaVT5Y1j3g5B1TJze8kuFMgzoLsc2=
+yJb9VP0fjL-2FNDWG9YQrTGmS0CSDA87nOUrvwRsHR3AjdW-2BpdjayZ39ONP57EDraWQPwtR2c=
+Godxg7gzPFbGNvSU81VH1B913m5KdhUsZu38JgdwjxvVxZBUAuk91A3c6PFU7p3fkAWhakKc6wh=
+aDUrt2LG5DTIrzo3poOjOP2A5RtE-2FPWJrGZi4x7NzN0lNIrm3ceN5gVhGH4InzGZYvLg0AsoB=
+nQW7TRhUzQuMTbhFLsnnEwvMcrTrgz4CMi7Gulyw5RmX86rxSWaQ9Nneu1N7C7QoKSOWowjOZY5=
+jValApGXYRUbSVVzZoLh-2BneIsvlpJ109LkIMVcYXgMHW1HIBlwoGHebw7kP-2F-2BbFSLMyiM=
+Bu9z3px-2BXkBV7q-2FYBEKl5SUhyyLxWMSv86g0AAMAzzsmrEYxxpf9t07IVC7Haz41-2FkIpw=
+n5KO-2Bxelprk4-2BYTguowFiFPcZ9RXpVWM9ZwFKX2cn11AytBBNAoPiw1xar0KKg6jOeb55U-=
+3D )
+--ad65450632a70e3bfb8d59478d770445c16993b462ab2f1cf27431cde8f2
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org=
+/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html data-editor-version=3D"2" class=3D"sg-campaigns" xmlns=3D"http://www.=
+w3.org/1999/xhtml">
+    <head>
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8">
+      <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scal=
+e=3D1, minimum-scale=3D1, maximum-scale=3D1">
+      <!--[if !mso]><!-->
+      <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3DEdge">
+      <!--<![endif]-->
+      <!--[if (gte mso 9)|(IE)]>
+      <xml>
+        <o:OfficeDocumentSettings>
+          <o:AllowPNG/>
+          <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+      </xml>
+      <![endif]-->
+      <!--[if (gte mso 9)|(IE)]>
+  <style type=3D"text/css">
+    body {width: 600px;margin: 0 auto;}
+    table {border-collapse: collapse;}
+    table, td {mso-table-lspace: 0pt;mso-table-rspace: 0pt;}
+    img {-ms-interpolation-mode: bicubic;}
+  </style>
+<![endif]-->
+      <style type=3D"text/css">
+    body, p, div {
+      font-family: lucida sans unicode,lucida grande,sans-serif;
+      font-size: 16px;
+    }
+    body {
+      color: #212529;
+    }
+    body a {
+      color: #135dcf;
+      text-decoration: none;
+    }
+    p { margin: 0; padding: 0; }
+    table.wrapper {
+      width:100% !important;
+      table-layout: fixed;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    img.max-width {
+      max-width: 100% !important;
+    }
+    .column.of-2 {
+      width: 50%;
+    }
+    .column.of-3 {
+      width: 33.333%;
+    }
+    .column.of-4 {
+      width: 25%;
+    }
+    ul ul ul ul  {
+      list-style-type: disc !important;
+    }
+    ol ol {
+      list-style-type: lower-roman !important;
+    }
+    ol ol ol {
+      list-style-type: lower-latin !important;
+    }
+    ol ol ol ol {
+      list-style-type: decimal !important;
+    }
+    @media screen and (max-width:480px) {
+      .preheader .rightColumnContent,
+      .footer .rightColumnContent {
+        text-align: left !important;
+      }
+      .preheader .rightColumnContent div,
+      .preheader .rightColumnContent span,
+      .footer .rightColumnContent div,
+      .footer .rightColumnContent span {
+        text-align: left !important;
+      }
+      .preheader .rightColumnContent,
+      .preheader .leftColumnContent {
+        font-size: 80% !important;
+        padding: 5px 0;
+      }
+      table.wrapper-mobile {
+        width: 100% !important;
+        table-layout: fixed;
+      }
+      img.max-width {
+        height: auto !important;
+        max-width: 100% !important;
+      }
+      a.bulletproof-button {
+        display: block !important;
+        width: auto !important;
+        font-size: 80%;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      .columns {
+        width: 100% !important;
+      }
+      .column {
+        display: block !important;
+        width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      .social-icon-column {
+        display: inline-block !important;
+      }
+    }
+  </style>
+      <!--user entered Head Start--><style>
+        a.social-link { text-decoration: none !important; }
+        img { border-radius: 4px !important; }
+       =20
+        @media screen and (max-width: 520px) {
+            .social-links img { height: 16px !important; width: 16px !impor=
+tant; }
+        }
+    </style><!--End Head user entered-->
+    </head>
+    <body>
+      <center class=3D"wrapper" data-link-color=3D"#135dcf" data-body-style=
+=3D"font-size:16px; font-family:lucida sans unicode,lucida grande,sans-seri=
+f; color:#212529; background-color:#FFFFFF;">
+        <div class=3D"webkit">
+          <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"=
+100%" class=3D"wrapper" bgcolor=3D"#FFFFFF">
+            <tr>
+              <td valign=3D"top" bgcolor=3D"#FFFFFF" width=3D"100%">
+                <table width=3D"100%" role=3D"content-container" class=3D"o=
+uter" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+                  <tr>
+                    <td width=3D"100%">
+                      <table width=3D"100%" cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0">
+                        <tr>
+                          <td>
+                            <!--[if mso]>
+    <center>
+    <table><tr><td width=3D"600">
+  <![endif]-->
+                                    <table width=3D"100%" cellpadding=3D"0"=
+ cellspacing=3D"0" border=3D"0" style=3D"width:100%; max-width:600px;" alig=
+n=3D"center">
+                                      <tr>
+                                        <td role=3D"modules-container" styl=
+e=3D"padding:0px 0px 0px 0px; color:#212529; text-align:left;" bgcolor=3D"#=
+FFFFFF" width=3D"100%" align=3D"left"><table class=3D"module preheader preh=
+eader-hide" role=3D"module" data-type=3D"preheader" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"display: none !important;=
+ mso-hide: all; visibility: hidden; opacity: 0; color: transparent; height:=
+ 0; width: 0;">
+    <tr>
+      <td role=3D"module-content">
+        <p>Join a Guinness World Record AI lesson, earn your GitHub Certifi=
+cation and meet GitHub COO Kyle Daigle.</p>
+      </td>
+    </tr>
+  </table><table class=3D"wrapper" role=3D"module" data-type=3D"image" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"8cf028e3-340a-4f85-b625-f0121192b824">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:12px 0px 12px=
+ 0px;" valign=3D"top" align=3D"center">
+         =20
+        <img class=3D"max-width" border=3D"0" style=3D"display:block; color=
+:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; f=
+ont-size:16px;" width=3D"220" alt=3D"" data-proportionally-constrained=3D"t=
+rue" data-responsive=3D"false" src=3D"http://cdn.mcauto-images-production.s=
+endgrid.net/cc8ddcf649afa5e0/ad1feb25-2213-4776-bf3a-23dd08dbdac0/1100x204.=
+png" height=3D"41"></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"wrapper" role=3D"module" data-type=3D"image" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"8021e65c-f4ec-4b9b-9608-938dace05fe1">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3G-2Fae=
+MIVe5lSdMnGODo4Ud11AqjVhW6cg4WddgB2qsGjLhgfZy3MaBCWeS5iPNHnqt_1h5T79IcqJTde=
+vtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVC=
+yJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6=
+h96qa16lGYjOulDYkYMyzF5nozBK9mdgutKUjVwzs8brgwIc55MyIx34ZefLlLskH0UJqgTS1xI=
+fIhjDclziVJr1qML2iC-2FI-2FflJV-2FLRNas8BjiTFzA2HFezEFjXJdk9ihoIEcVk5g1HES6-=
+2BQKgfdPFEppFZ82GIFfIchkFCLWxkB6QUJ6OH3nTCEhmu-2B-2Fheyavmzc-2FS-2FJnrmQPd4=
+Q-2FgegIKSxOygYCbGIljsuhQSbJlIvizr-2BThcY2S1XNwL5LPGEsuRH9nI-2B1J6LjhKxZSLk=
+LiFaJg5JpHuD0WylGkBkGjXrX4f5fv7OS1i9m3rBP-2FM6KkMebSv-2FrTTphQvDbrLW2Kyls7G=
+-2BKm88OrcIfCIi0j7wpHSH-2BvpOEKicODsyrvvySeRzAhuk5-2FP4zKHo0MbVQ5GuCq2Hr7j2=
+AVQmZZJNT8bF6MihjjKcUavpB6BdpquYiF3IN0JsnYdR-2BmPqCo56W6lss81l62RFSzgf-2BSQ=
+M8QT6DuezaKmRw-2FvLSjsqFgFWnofA2-2BYfgYLbnVORVLGvzAZkn8oiIUxAHYkR0kbqHrcdTB=
+w0lggXAgRK6EBaQ4ouAEbO96g8wxYUungREwdoIduNiOAGIhQyDdnZpjscyzBvPXYxP2nMi9qyK=
+KMbNwYrBkFMK21rFbA5K1AoTIH-2B9XrJ6vrW-2BRb-2Bn5wqQuIhMwfJLcSAUwStjxI8e2x1L9=
+E9fSDMUC9VVoWGRC8WtOv9zydKOuFgTYF7NHBCrcyKKaRdX6avrBQYOdssiP9TRKchor1ejVdiq=
+YkeuTVVzfZaCVrg9-2FZshDbhkIB8l80wLa3mMoOEKzVQ3fg-3D-3D"><img class=3D"max-w=
+idth" border=3D"0" style=3D"display:block; color:#000000; text-decoration:n=
+one; font-family:Helvetica, arial, sans-serif; font-size:16px;" width=3D"50=
+0" alt=3D"" data-proportionally-constrained=3D"true" data-responsive=3D"fal=
+se" src=3D"http://cdn.mcauto-images-production.sendgrid.net/cc8ddcf649afa5e=
+0/8477eb0e-0924-439c-83d5-738c2ff3e6c3/1400x800.jpg" height=3D""></a></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"628a2a7d-6db0-4036-84f4-f264401ccde4" data-mc-mo=
+dule-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:10px 0px 10px 0px; line-height:24px; text-alig=
+n:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-cont=
+ent"><div><h1 style=3D"text-align: center"><span style=3D"font-family: &quo=
+t;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-serif; font-si=
+ze: 30px"><strong>Student Newsletter</strong></span></h1>
+<h1 style=3D"text-align: center"><span style=3D"font-family: &quot;lucida s=
+ans unicode&quot;, &quot;lucida grande&quot;, sans-serif; font-size: 24px">=
+March 2025</span></h1><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.1" data-mc-=
+module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:18px 0px 9px 0px; line-height:23px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit"><span sty=
+le=3D"font-family: &quot;lucida sans unicode&quot;, &quot;lucida grande&quo=
+t;, sans-serif; font-size: 14px">Hey Altair-39,</span></div>
+<div style=3D"font-family: inherit; text-align: inherit"><span style=3D"fon=
+t-family: &quot;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-=
+serif; font-size: 14px">April brings fresh opportunities to level up your t=
+ech skills and connect with the global developer community.&nbsp;</span></d=
+iv>
+<div style=3D"font-family: inherit; text-align: inherit"><br></div>
+<div style=3D"font-family: inherit; text-align: inherit"><span style=3D"fon=
+t-family: &quot;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-=
+serif; font-size: 14px"><strong>Coming up next:</strong></span></div><div><=
+/div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 12px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,1">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"290" style=3D"wi=
+dth:290px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"bcd5f543-fe7c-4d00-8584-f1658b45c60a" data-mc-module-version=3D"20=
+19-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:22px; text-align:=
+inherit; background-color:#FFFFFF;" height=3D"100%" valign=3D"top" bgcolor=
+=3D"#FFFFFF" role=3D"module-content"><div><div style=3D"font-family: &quot;=
+lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-serif; text-alig=
+n: inherit; font-size: 14px"><span style=3D"font-family: &quot;lucida sans =
+unicode&quot;, &quot;lucida grande&quot;, sans-serif; font-size: 14px"><str=
+ong>1.</strong></span><span style=3D"font-family: &quot;lucida sans unicode=
+&quot;, &quot;lucida grande&quot;, sans-serif; font-size: 14px"> Earn your =
+GitHub Foundations Certification in 5 weeks</span></div>
+<div style=3D"font-family: &quot;lucida sans unicode&quot;, &quot;lucida gr=
+ande&quot;, sans-serif; text-align: inherit; font-size: 14px"><span style=
+=3D"font-family: &quot;lucida sans unicode&quot;, &quot;lucida grande&quot;=
+, sans-serif; font-size: 14px"><strong>2.</strong></span><span style=3D"fon=
+t-family: &quot;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-=
+serif; font-size: 14px"> Join the Microsoft AI Skills Fest</span></div>
+<div style=3D"font-family: &quot;lucida sans unicode&quot;, &quot;lucida gr=
+ande&quot;, sans-serif; text-align: inherit; font-size: 14px"><span style=
+=3D"font-family: &quot;lucida sans unicode&quot;, &quot;lucida grande&quot;=
+, sans-serif; font-size: 14px"><strong>3.</strong></span><span style=3D"fon=
+t-family: &quot;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-=
+serif; font-size: 14px"> Participate in BioHackathon</span></div><div></div=
+></div></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"290" style=3D"width:290px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"d845af6c-a9c3-4d50-9218-ef0768964c8c" data-mc-module-version=3D"20=
+19-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:22px; text-align:=
+inherit; background-color:#FFFFFF;" height=3D"100%" valign=3D"top" bgcolor=
+=3D"#FFFFFF" role=3D"module-content"><div><div style=3D"font-family: inheri=
+t; text-align: inherit"><span style=3D"color: #212529; font-family: &quot;l=
+ucida sans unicode&quot;, &quot;lucida grande&quot;, sans-serif; font-size:=
+ 14px; font-style: normal; font-variant-ligatures: normal; font-variant-cap=
+s: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align=
+: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0=
+px; -webkit-text-stroke-width: 0px; white-space-collapse: preserve; text-wr=
+ap-mode: wrap; background-color: rgb(255, 255, 255); text-decoration-thickn=
+ess: initial; text-decoration-style: initial; text-decoration-color: initia=
+l; float: none; display: inline"><strong>4.</strong></span><span style=3D"c=
+olor: #212529; font-family: &quot;lucida sans unicode&quot;, &quot;lucida g=
+rande&quot;, sans-serif; font-size: 14px; font-style: normal; font-variant-=
+ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spac=
+ing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfor=
+m: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; whit=
+e-space-collapse: preserve; text-wrap-mode: wrap; background-color: rgb(255=
+, 255, 255); text-decoration-thickness: initial; text-decoration-style: ini=
+tial; text-decoration-color: initial; float: none; display: inline"> Take p=
+art in MLH Global Hack Week</span></div>
+<div style=3D"font-family: inherit; text-align: inherit; margin-left: 0px">=
+<span style=3D"box-sizing: border-box; padding-top: 0px; padding-right: 0px=
+; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0p=
+x; margin-bottom: 0px; margin-left: 0px; font-style: inherit; font-variant-=
+ligatures: inherit; font-variant-caps: inherit; font-variant-numeric: inher=
+it; font-variant-east-asian: inherit; font-variant-alternates: inherit; fon=
+t-variant-position: inherit; font-variant-emoji: inherit; font-weight: inhe=
+rit; font-stretch: inherit; line-height: inherit; font-optical-sizing: inhe=
+rit; font-size-adjust: inherit; font-kerning: inherit; font-feature-setting=
+s: inherit; font-variation-settings: inherit; vertical-align: baseline; bor=
+der-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; bord=
+er-left-width: 0px; border-top-style: initial; border-right-style: initial;=
+ border-bottom-style: initial; border-left-style: initial; border-top-color=
+: initial; border-right-color: initial; border-bottom-color: initial; borde=
+r-left-color: initial; border-image-source: initial; border-image-slice: in=
+itial; border-image-width: initial; border-image-outset: initial; border-im=
+age-repeat: initial; list-style-position: initial; list-style-image: initia=
+l; list-style-type: none; letter-spacing: normal; orphans: 2; text-align: s=
+tart; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px;=
+ -webkit-text-stroke-width: 0px; white-space-collapse: preserve; text-wrap-=
+mode: wrap; background-color: rgb(255, 255, 255); text-decoration-thickness=
+: initial; text-decoration-style: initial; text-decoration-color: initial; =
+counter-increment: uldepth1 1; padding-inline-start: 0px; font-family: &quo=
+t;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-serif; font-si=
+ze: 14px"><strong>5.</strong></span><span style=3D"box-sizing: border-box; =
+padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0p=
+x; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px=
+; font-style: inherit; font-variant-ligatures: inherit; font-variant-caps: =
+inherit; font-variant-numeric: inherit; font-variant-east-asian: inherit; f=
+ont-variant-alternates: inherit; font-variant-position: inherit; font-varia=
+nt-emoji: inherit; font-weight: inherit; font-stretch: inherit; line-height=
+: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-ke=
+rning: inherit; font-feature-settings: inherit; font-variation-settings: in=
+herit; vertical-align: baseline; border-top-width: 0px; border-right-width:=
+ 0px; border-bottom-width: 0px; border-left-width: 0px; border-top-style: i=
+nitial; border-right-style: initial; border-bottom-style: initial; border-l=
+eft-style: initial; border-top-color: initial; border-right-color: initial;=
+ border-bottom-color: initial; border-left-color: initial; border-image-sou=
+rce: initial; border-image-slice: initial; border-image-width: initial; bor=
+der-image-outset: initial; border-image-repeat: initial; list-style-positio=
+n: initial; list-style-image: initial; list-style-type: none; letter-spacin=
+g: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform:=
+ none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-=
+space-collapse: preserve; text-wrap-mode: wrap; background-color: rgb(255, =
+255, 255); text-decoration-thickness: initial; text-decoration-style: initi=
+al; text-decoration-color: initial; counter-increment: uldepth1 1; padding-=
+inline-start: 0px; font-family: &quot;lucida sans unicode&quot;, &quot;luci=
+da grande&quot;, sans-serif; font-size: 14px"> Attend Kyle Daigle=E2=80=99s=
+ Fireside Chats</span></div>
+<div style=3D"font-family: inherit; text-align: inherit; margin-left: 0px">=
+<span style=3D"box-sizing: border-box; padding-top: 0px; padding-right: 0px=
+; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0p=
+x; margin-bottom: 0px; margin-left: 0px; font-style: inherit; font-variant-=
+ligatures: inherit; font-variant-caps: inherit; font-variant-numeric: inher=
+it; font-variant-east-asian: inherit; font-variant-alternates: inherit; fon=
+t-variant-position: inherit; font-variant-emoji: inherit; font-weight: inhe=
+rit; font-stretch: inherit; line-height: inherit; font-optical-sizing: inhe=
+rit; font-size-adjust: inherit; font-kerning: inherit; font-feature-setting=
+s: inherit; font-variation-settings: inherit; vertical-align: baseline; bor=
+der-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; bord=
+er-left-width: 0px; border-top-style: initial; border-right-style: initial;=
+ border-bottom-style: initial; border-left-style: initial; border-top-color=
+: initial; border-right-color: initial; border-bottom-color: initial; borde=
+r-left-color: initial; border-image-source: initial; border-image-slice: in=
+itial; border-image-width: initial; border-image-outset: initial; border-im=
+age-repeat: initial; list-style-position: initial; list-style-image: initia=
+l; list-style-type: none; letter-spacing: normal; orphans: 2; text-align: s=
+tart; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px;=
+ -webkit-text-stroke-width: 0px; white-space-collapse: preserve; text-wrap-=
+mode: wrap; background-color: rgb(255, 255, 255); text-decoration-thickness=
+: initial; text-decoration-style: initial; text-decoration-color: initial; =
+counter-increment: uldepth1 1; padding-inline-start: 0px; font-family: &quo=
+t;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-serif; font-si=
+ze: 14px"><strong>6.</strong></span><span style=3D"box-sizing: border-box; =
+padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0p=
+x; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px=
+; font-style: inherit; font-variant-ligatures: inherit; font-variant-caps: =
+inherit; font-variant-numeric: inherit; font-variant-east-asian: inherit; f=
+ont-variant-alternates: inherit; font-variant-position: inherit; font-varia=
+nt-emoji: inherit; font-weight: inherit; font-stretch: inherit; line-height=
+: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-ke=
+rning: inherit; font-feature-settings: inherit; font-variation-settings: in=
+herit; vertical-align: baseline; border-top-width: 0px; border-right-width:=
+ 0px; border-bottom-width: 0px; border-left-width: 0px; border-top-style: i=
+nitial; border-right-style: initial; border-bottom-style: initial; border-l=
+eft-style: initial; border-top-color: initial; border-right-color: initial;=
+ border-bottom-color: initial; border-left-color: initial; border-image-sou=
+rce: initial; border-image-slice: initial; border-image-width: initial; bor=
+der-image-outset: initial; border-image-repeat: initial; list-style-positio=
+n: initial; list-style-image: initial; list-style-type: none; letter-spacin=
+g: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform:=
+ none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-=
+space-collapse: preserve; text-wrap-mode: wrap; background-color: rgb(255, =
+255, 255); text-decoration-thickness: initial; text-decoration-style: initi=
+al; text-decoration-color: initial; counter-increment: uldepth1 1; padding-=
+inline-start: 0px; font-family: &quot;lucida sans unicode&quot;, &quot;luci=
+da grande&quot;, sans-serif; font-size: 14px"> Discover Copilot AI Agent Mo=
+de</span></div>
+<div style=3D"font-family: inherit; text-align: inherit; margin-left: 0px">=
+<span style=3D"box-sizing: border-box; padding-top: 0px; padding-right: 0px=
+; padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0p=
+x; margin-bottom: 0px; margin-left: 0px; font-style: inherit; font-variant-=
+ligatures: inherit; font-variant-caps: inherit; font-variant-numeric: inher=
+it; font-variant-east-asian: inherit; font-variant-alternates: inherit; fon=
+t-variant-position: inherit; font-variant-emoji: inherit; font-weight: inhe=
+rit; font-stretch: inherit; line-height: inherit; font-optical-sizing: inhe=
+rit; font-size-adjust: inherit; font-kerning: inherit; font-feature-setting=
+s: inherit; font-variation-settings: inherit; vertical-align: baseline; bor=
+der-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; bord=
+er-left-width: 0px; border-top-style: initial; border-right-style: initial;=
+ border-bottom-style: initial; border-left-style: initial; border-top-color=
+: initial; border-right-color: initial; border-bottom-color: initial; borde=
+r-left-color: initial; border-image-source: initial; border-image-slice: in=
+itial; border-image-width: initial; border-image-outset: initial; border-im=
+age-repeat: initial; list-style-position: initial; list-style-image: initia=
+l; list-style-type: none; letter-spacing: normal; orphans: 2; text-align: s=
+tart; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px;=
+ -webkit-text-stroke-width: 0px; white-space-collapse: preserve; text-wrap-=
+mode: wrap; text-decoration-thickness: initial; text-decoration-style: init=
+ial; text-decoration-color: initial; counter-increment: uldepth1 1; padding=
+-inline-start: 0px; font-family: &quot;lucida sans unicode&quot;, &quot;luc=
+ida grande&quot;, sans-serif; font-size: 14px"><strong>7.</strong></span><s=
+pan style=3D"box-sizing: border-box; padding-top: 0px; padding-right: 0px; =
+padding-bottom: 0px; padding-left: 0px; margin-top: 0px; margin-right: 0px;=
+ margin-bottom: 0px; margin-left: 0px; font-style: inherit; font-variant-li=
+gatures: inherit; font-variant-caps: inherit; font-variant-numeric: inherit=
+; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-=
+variant-position: inherit; font-variant-emoji: inherit; font-weight: inheri=
+t; font-stretch: inherit; line-height: inherit; font-optical-sizing: inheri=
+t; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings:=
+ inherit; font-variation-settings: inherit; vertical-align: baseline; borde=
+r-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border=
+-left-width: 0px; border-top-style: initial; border-right-style: initial; b=
+order-bottom-style: initial; border-left-style: initial; border-top-color: =
+initial; border-right-color: initial; border-bottom-color: initial; border-=
+left-color: initial; border-image-source: initial; border-image-slice: init=
+ial; border-image-width: initial; border-image-outset: initial; border-imag=
+e-repeat: initial; list-style-position: initial; list-style-image: initial;=
+ list-style-type: none; letter-spacing: normal; orphans: 2; text-align: sta=
+rt; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -=
+webkit-text-stroke-width: 0px; white-space-collapse: preserve; text-wrap-mo=
+de: wrap; text-decoration-thickness: initial; text-decoration-style: initia=
+l; text-decoration-color: initial; counter-increment: uldepth1 1; padding-i=
+nline-start: 0px; font-family: &quot;lucida sans unicode&quot;, &quot;lucid=
+a grande&quot;, sans-serif; font-size: 14px"> Build your own tech tutorials=
+</span></div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.2.1.1.1.=
+1.1.1.1.1.1.1">
+    <tbody>
+      <tr>
+        <td style=3D"padding:14px 0px 14px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.4.4.2" data=
+-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:22px; text-align:=
+inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conten=
+t"><div><h1 style=3D"text-align: inherit"><span style=3D"font-family: &quot=
+;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-serif; font-siz=
+e: 18px"><strong>Start your GitHub Foundations Certification today with our=
+ Exam Prep Course</strong></span></h1><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 12px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,2">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"193" style=3D"wi=
+dth:193px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"kCxeKZiAb9gvQj2HF6a4gk.6.1">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:20px 0px 20px=
+ 0px;" valign=3D"top" align=3D"center">
+         =20
+        <img class=3D"max-width" border=3D"0" style=3D"display:block; color=
+:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; f=
+ont-size:16px;" width=3D"125" alt=3D"" data-proportionally-constrained=3D"t=
+rue" data-responsive=3D"false" src=3D"http://cdn.mcauto-images-production.s=
+endgrid.net/cc8ddcf649afa5e0/5599d53f-4123-4d49-8264-3a1c0171919e/2146x2152=
+.png" height=3D"125"></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"386" style=3D"width:386px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"462d2c59-21bc-421d-b276-fc214c320ef2.3.1" data-mc-module-version=
+=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 18px 0px; line-height:22px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit"><span sty=
+le=3D"font-size: 14px; font-style: normal; font-variant-ligatures: normal; =
+font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphan=
+s: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2;=
+ word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space-collapse: c=
+ollapse; text-wrap-mode: wrap; background-color: rgb(255, 255, 255); text-d=
+ecoration-thickness: initial; text-decoration-style: initial; text-decorati=
+on-color: initial; float: none; display: inline; font-family: &quot;lucida =
+sans unicode&quot;, &quot;lucida grande&quot;, sans-serif">Don't let your <=
+/span><a href=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3G-2FaeMI=
+Ve5lSdMnGODo0O1PFWB28ifInQxsbCitIu4Ux77NgKp7UxrYAgYk-2FZI0ooxvyLwFT-2BPI4-2=
+FqKDhrhGG4kpRVR-2FjA5fmj6jzM464-3DS02Y_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzv=
+XzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7=
+Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulDYkYMyzF5=
+nozBK9mdgutKUjVwzs8brgwIc55MyIx34ZefLlLskH0UJqgTS1xIfIhjDclziVJr1qML2iC-2FI=
+-2FflJV-2FLRNas8BjiTFzA2HFezEFjXJdk9ihoIEcVk5g1HES6-2BQKgfdPFEppFZ82GIFfIch=
+kFCLWxkB6QUJ6OH3nTCEhmu-2B-2Fheyavmzc-2FS-2FJnrmQPd4Q-2FgegIKSxOygYCbGIljsu=
+hQSbJlIvizr-2BThcY2S1XNwL5LPGEsuRH9nI-2B1J6LjhKxZSLkLiFaJg5JpHuD0WylGkBkGjX=
+rX4f5fv7OS1i9m3rBP-2FM6KkMebSv-2FrTTphQvDbrLW2Kyls7G-2BKm88OrcIfCIi0j7wpHSH=
+-2BvpOEKicODsyrvvySeRzAhuk5-2FP4zKHo0MbVQ5GuCq2Hr7j2AVQmZZJNT8bF6MihjjKcUav=
+pB6BdpquYiF3IN0JsnYdR-2BmPqCo56W6lss81l62RFSzgf-2BSQM8QT6DuezaKmRw-2FvLSjsq=
+FgFWnofA2-2BYfgYLbnVORVLGvzAZkn8oiIUxAHYkR0kbqHrcdTBw0lggXAgRK6EBaQ4ouAEbO9=
+6g8wxYUungREwdoIduNiOAGIhQyDdnZpjscyzBvPXYxP2nMi9qyKKMbNwYrBkFMK21rFbA5K1Ao=
+TIH-2B9XrJ6vrW-2BRb-2Bn5wqQuIhMwfJLcSAUwStjxE-2FFzmJfbXJ0fvADcJkebY16MDW8MG=
+SFzutWk9-2BErWXYDukZtLXKSqXvV011fPcKDJ2-2FZOsUP6LTt36GRUVj3RMHZ5g61l8Q9o4Qb=
+T426ETsV2JSqOZ-2BkToZFVd1qKicNg-3D-3D"><span style=3D"font-size: 14px; font=
+-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; =
+font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; te=
+xt-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit=
+-text-stroke-width: 0px; white-space-collapse: collapse; text-wrap-mode: wr=
+ap; background-color: rgb(255, 255, 255); text-decoration-thickness: initia=
+l; text-decoration-style: initial; text-decoration-color: initial; float: n=
+one; display: inline; font-family: &quot;lucida sans unicode&quot;, &quot;l=
+ucida grande&quot;, sans-serif">free voucher</span></a><span style=3D"font-=
+size: 14px; font-style: normal; font-variant-ligatures: normal; font-varian=
+t-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-=
+align: start; text-indent: 0px; text-transform: none; widows: 2; word-spaci=
+ng: 0px; -webkit-text-stroke-width: 0px; white-space-collapse: collapse; te=
+xt-wrap-mode: wrap; background-color: rgb(255, 255, 255); text-decoration-t=
+hickness: initial; text-decoration-style: initial; text-decoration-color: i=
+nitial; float: none; display: inline; font-family: &quot;lucida sans unicod=
+e&quot;, &quot;lucida grande&quot;, sans-serif"> go to waste, join our </sp=
+an><span style=3D"font-size: 14px; font-style: normal; font-variant-ligatur=
+es: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: no=
+rmal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none=
+; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space=
+-collapse: collapse; text-wrap-mode: wrap; background-color: rgb(255, 255, =
+255); text-decoration-thickness: initial; text-decoration-style: initial; t=
+ext-decoration-color: initial; float: none; display: inline; font-family: &=
+quot;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-serif"><str=
+ong>five week prep course starting today</strong></span><span style=3D"font=
+-size: 14px; font-style: normal; font-variant-ligatures: normal; font-varia=
+nt-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text=
+-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spac=
+ing: 0px; -webkit-text-stroke-width: 0px; white-space-collapse: collapse; t=
+ext-wrap-mode: wrap; background-color: rgb(255, 255, 255); text-decoration-=
+thickness: initial; text-decoration-style: initial; text-decoration-color: =
+initial; float: none; display: inline; font-family: &quot;lucida sans unico=
+de&quot;, &quot;lucida grande&quot;, sans-serif">, March 31st, in the GitHu=
+b Community to get resources, practice exam questions, expert help, and mor=
+e so you can pass the GitHub Foundations Exam.&nbsp;</span></div><div></div=
+></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+module" data-role=3D"module-button" data-type=3D"button" role=3D"module" st=
+yle=3D"table-layout:fixed;" width=3D"100%" data-muid=3D"c4725462-42a7-424c-=
+a2d0-415938860b9a.3.1">
+      <tbody>
+        <tr>
+          <td align=3D"center" bgcolor=3D"" class=3D"outer-td" style=3D"pad=
+ding:0px 0px 0px 0px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"wrapper-mobile" style=3D"text-align:center;">
+              <tbody>
+                <tr>
+                <td align=3D"center" bgcolor=3D"#1C60FE" class=3D"inner-td"=
+ style=3D"border-radius:6px; font-size:16px; text-align:center; background-=
+color:inherit;">
+                  <a href=3D"https://mailing.github.com/ls/click?upn=3Du001=
+.bO3G-2FaeMIVe5lSdMnGODo-2BIP0Hk8jpoZy6OGb4rP-2Fji0kj35jFQNsSvN6jpsKUvvRC6L=
+zWgQRtzxz8B0ZQhe0A-3D-3D6nIY_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6=
+N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcs=
+ohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulDYkYMyzF5nozBK9mdgu=
+tKUjVwzs8brgwIc55MyIx34ZefLlLskH0UJqgTS1xIfIhjDclziVJr1qML2iC-2FI-2FflJV-2F=
+LRNas8BjiTFzA2HFezEFjXJdk9ihoIEcVk5g1HES6-2BQKgfdPFEppFZ82GIFfIchkFCLWxkB6Q=
+UJ6OH3nTCEhmu-2B-2Fheyavmzc-2FS-2FJnrmQPd4Q-2FgegIKSxOygYCbGIljsuhQSbJlIviz=
+r-2BThcY2S1XNwL5LPGEsuRH9nI-2B1J6LjhKxZSLkLiFaJg5JpHuD0WylGkBkGjXrX4f5fv7OS=
+1i9m3rBP-2FM6KkMebSv-2FrTTphQvDbrLW2Kyls7G-2BKm88OrcIfCIi0j7wpHSH-2BvpOEKic=
+ODsyrvvySeRzAhuk5-2FP4zKHo0MbVQ5GuCq2Hr7j2AVQmZZJNT8bF6MihjjKcUavpB6BdpquYi=
+F3IN0JsnYdR-2BmPqCo56W6lss81l62RFSzgf-2BSQM8QT6DuezaKmRw-2FvLSjsqFgFWnofA2-=
+2BYfgYLbnVORVLGvzAZkn8oiIUxAHYkR0kbqHrcdTBw0lggXAgRK6EBaQ4ouAEbO96g8wxYUung=
+REwdoIduNiOAGIhQyDdnZpjscyzBvPXYxP2nMi9qyKKMbNwYrBkFMK21rFbA5K1AoTIH-2B9XrJ=
+6vrW-2BRb-2Bn5wqQuIhMwfJLcSAUwStjxB4e0NJPUtBisMKacTpFVBAWNPgk1-2BSTL44aCppT=
+d6VS7Cx4EfsUVdgSq-2BH5j4mgICjaFfIPt5t6-2BVilU9CcciGYx8gtJVmRX1sDBu-2Fo6CJlc=
+B93xj0XINz9NEA0UwIZGA-3D-3D" style=3D"background-color:#1C60FE; border:1px =
+solid #1C60FE; border-color:#1C60FE; border-radius:6px; border-width:1px; c=
+olor:#ffffff; display:inline-block; font-size:14px; font-weight:normal; let=
+ter-spacing:0px; line-height:normal; padding:12px 18px 12px 18px; text-alig=
+n:center; text-decoration:none; border-style:solid; font-family:lucida sans=
+ unicode,lucida grande,sans-serif;" target=3D"_blank">Get started today</a>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.2.1.1.1.=
+1.1.1.1.1.1.1.1.1.1">
+    <tbody>
+      <tr>
+        <td style=3D"padding:14px 0px 14px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.4.4.1" data=
+-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:22px; text-align:=
+inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conten=
+t"><div><h1 style=3D"text-align: inherit"><span style=3D"font-family: &quot=
+;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-serif; font-siz=
+e: 18px"><strong>Master AI skills at the Microsoft AI Skills Fest</strong><=
+/span></h1><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 12px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,2">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"193" style=3D"wi=
+dth:193px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"kCxeKZiAb9gvQj2HF6a4gk.6">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:20px 0px 20px=
+ 0px;" valign=3D"top" align=3D"center">
+         =20
+        <img class=3D"max-width" border=3D"0" style=3D"display:block; color=
+:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; f=
+ont-size:16px;" width=3D"125" alt=3D"" data-proportionally-constrained=3D"t=
+rue" data-responsive=3D"false" src=3D"http://cdn.mcauto-images-production.s=
+endgrid.net/cc8ddcf649afa5e0/9903aa39-c394-4b9b-9f66-51fc1d54f741/1080x1080=
+.png" height=3D"125"></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"386" style=3D"width:386px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"462d2c59-21bc-421d-b276-fc214c320ef2.3" data-mc-module-version=3D"=
+2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 18px 0px; line-height:22px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit"><span sty=
+le=3D"color: #000000; font-style: normal; font-variant-ligatures: normal; f=
+ont-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans=
+: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; w=
+ord-spacing: 0px; -webkit-text-stroke-width: 0px; white-space-collapse: col=
+lapse; text-wrap-mode: wrap; background-color: rgb(255, 255, 255); text-dec=
+oration-thickness: initial; text-decoration-style: initial; text-decoration=
+-color: initial; float: none; display: inline; font-family: &quot;lucida sa=
+ns unicode&quot;, &quot;lucida grande&quot;, sans-serif; font-size: 14px">L=
+et's make history together. Build &amp; showcase your AI Skills while attem=
+pting to set a&nbsp;</span><span style=3D"font-family: &quot;lucida sans un=
+icode&quot;, &quot;lucida grande&quot;, sans-serif; font-size: 14px"><stron=
+g>GUINNESS WORLD RECORDS=E2=84=A2</strong></span><span style=3D"color: #000=
+000; font-style: normal; font-variant-ligatures: normal; font-variant-caps:=
+ normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: =
+left; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px;=
+ -webkit-text-stroke-width: 0px; white-space-collapse: collapse; text-wrap-=
+mode: wrap; background-color: rgb(255, 255, 255); text-decoration-thickness=
+: initial; text-decoration-style: initial; text-decoration-color: initial; =
+float: none; display: inline; font-family: &quot;lucida sans unicode&quot;,=
+ &quot;lucida grande&quot;, sans-serif; font-size: 14px">&nbsp;title attemp=
+t for&nbsp;</span><span style=3D"font-family: &quot;lucida sans unicode&quo=
+t;, &quot;lucida grande&quot;, sans-serif; font-size: 14px">most users to t=
+ake an online multi-level artificial intelligence lesson in 24 hours.</span=
+><span style=3D"color: #000000; font-style: normal; font-variant-ligatures:=
+ normal; font-variant-caps: normal; font-weight: 400; letter-spacing: norma=
+l; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; wi=
+dows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space-col=
+lapse: collapse; text-wrap-mode: wrap; background-color: rgb(255, 255, 255)=
+; text-decoration-thickness: initial; text-decoration-style: initial; text-=
+decoration-color: initial; float: none; display: inline; font-family: &quot=
+;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-serif; font-siz=
+e: 14px">&nbsp;Don=E2=80=99t miss the activities beginning on April 7 at 23=
+:00 UTC.</span></div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+module" data-role=3D"module-button" data-type=3D"button" role=3D"module" st=
+yle=3D"table-layout:fixed;" width=3D"100%" data-muid=3D"c4725462-42a7-424c-=
+a2d0-415938860b9a.3">
+      <tbody>
+        <tr>
+          <td align=3D"center" bgcolor=3D"" class=3D"outer-td" style=3D"pad=
+ding:0px 0px 0px 0px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"wrapper-mobile" style=3D"text-align:center;">
+              <tbody>
+                <tr>
+                <td align=3D"center" bgcolor=3D"#031E1A" class=3D"inner-td"=
+ style=3D"border-radius:6px; font-size:16px; text-align:center; background-=
+color:inherit;">
+                  <a href=3D"https://mailing.github.com/ls/click?upn=3Du001=
+.bO3G-2FaeMIVe5lSdMnGODo1hUnWYd7YuzyehN-2FFZBBR7z8K3tdr48aVZH-2BqRsxC7dbSeW=
+yxGvvhKf1vm8Y5H71g-3D-3Dtgfa_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6=
+N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcs=
+ohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulDYkYMyzF5nozBK9mdgu=
+tKUjVwzs8brgwIc55MyIx34ZefLlLskH0UJqgTS1xIfIhjDclziVJr1qML2iC-2FI-2FflJV-2F=
+LRNas8BjiTFzA2HFezEFjXJdk9ihoIEcVk5g1HES6-2BQKgfdPFEppFZ82GIFfIchkFCLWxkB6Q=
+UJ6OH3nTCEhmu-2B-2Fheyavmzc-2FS-2FJnrmQPd4Q-2FgegIKSxOygYCbGIljsuhQSbJlIviz=
+r-2BThcY2S1XNwL5LPGEsuRH9nI-2B1J6LjhKxZSLkLiFaJg5JpHuD0WylGkBkGjXrX4f5fv7OS=
+1i9m3rBP-2FM6KkMebSv-2FrTTphQvDbrLW2Kyls7G-2BKm88OrcIfCIi0j7wpHSH-2BvpOEKic=
+ODsyrvvySeRzAhuk5-2FP4zKHo0MbVQ5GuCq2Hr7j2AVQmZZJNT8bF6MihjjKcUavpB6BdpquYi=
+F3IN0JsnYdR-2BmPqCo56W6lss81l62RFSzgf-2BSQM8QT6DuezaKmRw-2FvLSjsqFgFWnofA2-=
+2BYfgYLbnVORVLGvzAZkn8oiIUxAHYkR0kbqHrcdTBw0lggXAgRK6EBaQ4ouAEbO96g8wxYUung=
+REwdoIduNiOAGIhQyDdnZpjscyzBvPXYxP2nMi9qyKKMbNwYrBkFMK21rFbA5K1AoTIH-2B9XrJ=
+6vrW-2BRb-2Bn5wqQuIhMwfJLcSAUwStjxJk2Ar2TQuqJ-2BVAssihh980K0Z8ZmxqYBfFBrWaN=
+0o5fpiugO37BSTbzpCJcoFEmfX6waedXcQ9tRD-2B7wKz8YMB2nCQWfxXWIP1yaDhw2Mec7yTBK=
+aiJHiyf4Qu7vyilXQ-3D-3D" style=3D"background-color:#031E1A; border:1px soli=
+d #031E1A; border-color:#031E1A; border-radius:6px; border-width:1px; color=
+:#ffffff; display:inline-block; font-size:14px; font-weight:normal; letter-=
+spacing:0px; line-height:normal; padding:12px 18px 12px 18px; text-align:ce=
+nter; text-decoration:none; border-style:solid; font-family:lucida sans uni=
+code,lucida grande,sans-serif;" target=3D"_blank">Register now</a>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.2.1.1.1.=
+1.1.1.1.1.1">
+    <tbody>
+      <tr>
+        <td style=3D"padding:14px 0px 14px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.4.4.2.1.1" =
+data-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:22px; text-align:=
+inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conten=
+t"><div><h1 style=3D"text-align: inherit"><span style=3D"font-family: &quot=
+;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-serif; font-siz=
+e: 18px"><strong>Solve biology challenges at the BioHackathon</strong></spa=
+n></h1><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 12px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,2">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"193" style=3D"wi=
+dth:193px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"kCxeKZiAb9gvQj2HF6a4gk.6.1.1">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:20px 0px 20px=
+ 0px;" valign=3D"top" align=3D"center">
+         =20
+        <img class=3D"max-width" border=3D"0" style=3D"display:block; color=
+:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; f=
+ont-size:16px;" width=3D"125" alt=3D"" data-proportionally-constrained=3D"t=
+rue" data-responsive=3D"false" src=3D"http://cdn.mcauto-images-production.s=
+endgrid.net/cc8ddcf649afa5e0/8402b30d-1298-4f8e-a06d-c7a8ca7b5d54/1578x1580=
+.png" height=3D"125"></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"386" style=3D"width:386px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"462d2c59-21bc-421d-b276-fc214c320ef2.3.1.1" data-mc-module-version=
+=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 18px 0px; line-height:22px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit"><span sty=
+le=3D"font-style: normal; font-variant-ligatures: normal; font-variant-caps=
+: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align:=
+ start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0p=
+x; -webkit-text-stroke-width: 0px; white-space-collapse: collapse; text-wra=
+p-mode: wrap; background-color: rgb(255, 255, 255); text-decoration-thickne=
+ss: initial; text-decoration-style: initial; text-decoration-color: initial=
+; float: none; display: inline; font-family: &quot;lucida sans unicode&quot=
+;, &quot;lucida grande&quot;, sans-serif; font-size: 14px">On April 11th, G=
+itHub is sponsoring an </span><span style=3D"font-style: normal; font-varia=
+nt-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-s=
+pacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-trans=
+form: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; w=
+hite-space-collapse: collapse; text-wrap-mode: wrap; background-color: rgb(=
+255, 255, 255); text-decoration-thickness: initial; text-decoration-style: =
+initial; text-decoration-color: initial; float: none; display: inline; font=
+-family: &quot;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-s=
+erif; font-size: 14px"><strong>in-person Hackthon in Sao Paulo</strong></sp=
+an><span style=3D"font-style: normal; font-variant-ligatures: normal; font-=
+variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2;=
+ text-align: start; text-indent: 0px; text-transform: none; widows: 2; word=
+-spacing: 0px; -webkit-text-stroke-width: 0px; white-space-collapse: collap=
+se; text-wrap-mode: wrap; background-color: rgb(255, 255, 255); text-decora=
+tion-thickness: initial; text-decoration-style: initial; text-decoration-co=
+lor: initial; float: none; display: inline; font-family: &quot;lucida sans =
+unicode&quot;, &quot;lucida grande&quot;, sans-serif; font-size: 14px">, Br=
+azil, for students.<br>
+Learn how to leverage AI while saving the planet, win swag as prizes and me=
+et other environmentally conscious coders. Hosted by GitHub, with nonprofit=
+ ProgramEarth.</span></div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+module" data-role=3D"module-button" data-type=3D"button" role=3D"module" st=
+yle=3D"table-layout:fixed;" width=3D"100%" data-muid=3D"c4725462-42a7-424c-=
+a2d0-415938860b9a.3.1.1">
+      <tbody>
+        <tr>
+          <td align=3D"center" bgcolor=3D"" class=3D"outer-td" style=3D"pad=
+ding:0px 0px 0px 0px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"wrapper-mobile" style=3D"text-align:center;">
+              <tbody>
+                <tr>
+                <td align=3D"center" bgcolor=3D"#370B6E" class=3D"inner-td"=
+ style=3D"border-radius:6px; font-size:16px; text-align:center; background-=
+color:inherit;">
+                  <a href=3D"https://mailing.github.com/ls/click?upn=3Du001=
+.bO3G-2FaeMIVe5lSdMnGODo7cAx632r4leogPDdj3kVms-3Dn2P6_1h5T79IcqJTdevtx-2B4h=
+cgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoS=
+c-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16l=
+GYjOulDYkYMyzF5nozBK9mdgutKUjVwzs8brgwIc55MyIx34ZefLlLskH0UJqgTS1xIfIhjDclz=
+iVJr1qML2iC-2FI-2FflJV-2FLRNas8BjiTFzA2HFezEFjXJdk9ihoIEcVk5g1HES6-2BQKgfdP=
+FEppFZ82GIFfIchkFCLWxkB6QUJ6OH3nTCEhmu-2B-2Fheyavmzc-2FS-2FJnrmQPd4Q-2FgegI=
+KSxOygYCbGIljsuhQSbJlIvizr-2BThcY2S1XNwL5LPGEsuRH9nI-2B1J6LjhKxZSLkLiFaJg5J=
+pHuD0WylGkBkGjXrX4f5fv7OS1i9m3rBP-2FM6KkMebSv-2FrTTphQvDbrLW2Kyls7G-2BKm88O=
+rcIfCIi0j7wpHSH-2BvpOEKicODsyrvvySeRzAhuk5-2FP4zKHo0MbVQ5GuCq2Hr7j2AVQmZZJN=
+T8bF6MihjjKcUavpB6BdpquYiF3IN0JsnYdR-2BmPqCo56W6lss81l62RFSzgf-2BSQM8QT6Due=
+zaKmRw-2FvLSjsqFgFWnofA2-2BYfgYLbnVORVLGvzAZkn8oiIUxAHYkR0kbqHrcdTBw0lggXAg=
+RK6EBaQ4ouAEbO96g8wxYUungREwdoIduNiOAGIhQyDdnZpjscyzBvPXYxP2nMi9qyKKMbNwYrB=
+kFMK21rFbA5K1AoTIH-2B9XrJ6vrW-2BRb-2Bn5wqQuIhMwfJLcSAUwStjxNuy51tfPy8WyXM3c=
+-2BCRvkeoCPsfpiJUqIFV81zPA0T23wviJegneln9XOVmTOQdKMUyeclMgqUj-2BH4wzlEzI3bw=
+0HO9vLck72eCwMfVPTR6OxD2c5LpVHaYrlYzObQZkw-3D-3D" style=3D"background-color=
+:#370B6E; border:1px solid #370B6E; border-color:#370B6E; border-radius:6px=
+; border-width:1px; color:#ffffff; display:inline-block; font-size:14px; fo=
+nt-weight:normal; letter-spacing:0px; line-height:normal; padding:12px 18px=
+ 12px 18px; text-align:center; text-decoration:none; border-style:solid; fo=
+nt-family:lucida sans unicode,lucida grande,sans-serif;" target=3D"_blank">=
+Sign up here</a>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.2.1.1.1.=
+1.1.1.1.1.1.1.1.1.1.1">
+    <tbody>
+      <tr>
+        <td style=3D"padding:14px 0px 14px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.4.4.2.1" da=
+ta-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:22px; text-align:=
+inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conten=
+t"><div><h1 style=3D"text-align: inherit"><span style=3D"color: #e83327; fo=
+nt-family: &quot;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans=
+-serif; font-size: 18px"><strong>M</strong></span><span style=3D"color: #1e=
+549f; font-family: &quot;lucida sans unicode&quot;, &quot;lucida grande&quo=
+t;, sans-serif; font-size: 18px"><strong>L</strong></span><span style=3D"co=
+lor: #f8b92b; font-family: &quot;lucida sans unicode&quot;, &quot;lucida gr=
+ande&quot;, sans-serif; font-size: 18px"><strong>H</strong></span><span sty=
+le=3D"font-family: &quot;lucida sans unicode&quot;, &quot;lucida grande&quo=
+t;, sans-serif; font-size: 18px"><strong> Global Hack Week: API - April 11t=
+h-17th</strong></span></h1><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 12px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,2">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"193" style=3D"wi=
+dth:193px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"kCxeKZiAb9gvQj2HF6a4gk.6.1.1.1.1">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:20px 0px 20px=
+ 0px;" valign=3D"top" align=3D"center">
+         =20
+        <img class=3D"max-width" border=3D"0" style=3D"display:block; color=
+:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; f=
+ont-size:16px;" width=3D"125" alt=3D"" data-proportionally-constrained=3D"t=
+rue" data-responsive=3D"false" src=3D"http://cdn.mcauto-images-production.s=
+endgrid.net/cc8ddcf649afa5e0/80fea462-d401-4489-af4f-af6d8ca46d95/1024x1024=
+.png" height=3D"125"></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"386" style=3D"width:386px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"462d2c59-21bc-421d-b276-fc214c320ef2.3.1.1.1.1" data-mc-module-ver=
+sion=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 18px 0px; line-height:22px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit"><span sty=
+le=3D"font-style: normal; font-variant-ligatures: normal; font-variant-caps=
+: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align:=
+ start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0p=
+x; -webkit-text-stroke-width: 0px; white-space-collapse: collapse; text-wra=
+p-mode: wrap; background-color: rgb(255, 255, 255); text-decoration-thickne=
+ss: initial; text-decoration-style: initial; text-decoration-color: initial=
+; float: none; display: inline; font-family: &quot;lucida sans unicode&quot=
+;, &quot;lucida grande&quot;, sans-serif; font-size: 14px">Join the Major L=
+eague Hacking Community at Global Hack Week: </span><span style=3D"font-sty=
+le: normal; font-variant-ligatures: normal; font-variant-caps: normal; font=
+-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-i=
+ndent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-tex=
+t-stroke-width: 0px; white-space-collapse: collapse; text-wrap-mode: wrap; =
+background-color: rgb(255, 255, 255); text-decoration-thickness: initial; t=
+ext-decoration-style: initial; text-decoration-color: initial; float: none;=
+ display: inline; font-family: &quot;lucida sans unicode&quot;, &quot;lucid=
+a grande&quot;, sans-serif; font-size: 14px"><strong>API week, coming up Ap=
+ril 11-17th</strong></span><span style=3D"font-style: normal; font-variant-=
+ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spac=
+ing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transfor=
+m: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; whit=
+e-space-collapse: collapse; text-wrap-mode: wrap; background-color: rgb(255=
+, 255, 255); text-decoration-thickness: initial; text-decoration-style: ini=
+tial; text-decoration-color: initial; float: none; display: inline; font-fa=
+mily: &quot;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-seri=
+f; font-size: 14px">. At this free event, you'll have the opportunity to ea=
+rn swag, attend workshops, and network with the community of builders while=
+ you build, explore, and learn all about APIs!</span></div><div></div></div=
+></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+module" data-role=3D"module-button" data-type=3D"button" role=3D"module" st=
+yle=3D"table-layout:fixed;" width=3D"100%" data-muid=3D"c4725462-42a7-424c-=
+a2d0-415938860b9a.3.1.1.1.1">
+      <tbody>
+        <tr>
+          <td align=3D"center" bgcolor=3D"" class=3D"outer-td" style=3D"pad=
+ding:0px 0px 0px 0px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"wrapper-mobile" style=3D"text-align:center;">
+              <tbody>
+                <tr>
+                <td align=3D"center" bgcolor=3D"#BB160E" class=3D"inner-td"=
+ style=3D"border-radius:6px; font-size:16px; text-align:center; background-=
+color:inherit;">
+                  <a href=3D"https://mailing.github.com/ls/click?upn=3Du001=
+.bO3G-2FaeMIVe5lSdMnGODo1svjEseX-2FhVlvn2KYeAz-2FQaB6zjhq4IB09iUkNh6-2FTiS3=
+hk_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZem=
+MOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZP=
+yLhvjrYDTZ0Fe1S6h96qa16lGYjOulDYkYMyzF5nozBK9mdgutKUjVwzs8brgwIc55MyIx34Zef=
+LlLskH0UJqgTS1xIfIhjDclziVJr1qML2iC-2FI-2FflJV-2FLRNas8BjiTFzA2HFezEFjXJdk9=
+ihoIEcVk5g1HES6-2BQKgfdPFEppFZ82GIFfIchkFCLWxkB6QUJ6OH3nTCEhmu-2B-2Fheyavmz=
+c-2FS-2FJnrmQPd4Q-2FgegIKSxOygYCbGIljsuhQSbJlIvizr-2BThcY2S1XNwL5LPGEsuRH9n=
+I-2B1J6LjhKxZSLkLiFaJg5JpHuD0WylGkBkGjXrX4f5fv7OS1i9m3rBP-2FM6KkMebSv-2FrTT=
+phQvDbrLW2Kyls7G-2BKm88OrcIfCIi0j7wpHSH-2BvpOEKicODsyrvvySeRzAhuk5-2FP4zKHo=
+0MbVQ5GuCq2Hr7j2AVQmZZJNT8bF6MihjjKcUavpB6BdpquYiF3IN0JsnYdR-2BmPqCo56W6lss=
+81l62RFSzgf-2BSQM8QT6DuezaKmRw-2FvLSjsqFgFWnofA2-2BYfgYLbnVORVLGvzAZkn8oiIU=
+xAHYkR0kbqHrcdTBw0lggXAgRK6EBaQ4ouAEbO96g8wxYUungREwdoIduNiOAGIhQyDdnZpjscy=
+zBvPXYxP2nMi9qyKKMbNwYrBkFMK21rFbA5K1AoTIH-2B9XrJ6vrW-2BRb-2Bn5wqQuIhMwfJLc=
+SAUwStjxO0pWXjBJ6HfShlPa1SHaQQVjcZFdCdGxQvAVpgTjhvyjmjgBMMWx1loUgKEYLDQltjI=
+cCvX7Lp9TGATCMPdwjokMLnVm8g-2FDn73i-2Fb11eVZoUJR-2BP-2F8HsGLXPR1vWm8fQ-3D-3=
+D" style=3D"background-color:#BB160E; border:1px solid #BB160E; border-colo=
+r:#BB160E; border-radius:6px; border-width:1px; color:#ffffff; display:inli=
+ne-block; font-size:14px; font-weight:normal; letter-spacing:0px; line-heig=
+ht:normal; padding:12px 18px 12px 18px; text-align:center; text-decoration:=
+none; border-style:solid; font-family:lucida sans unicode,lucida grande,san=
+s-serif;" target=3D"_blank">Register now</a>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.2.1.1.1.=
+1.1.1.1.1.1.1.1.1.1.1.1">
+    <tbody>
+      <tr>
+        <td style=3D"padding:14px 0px 14px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.4.4.2.1.2.1=
+" data-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:22px; text-align:=
+inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conten=
+t"><div><h1 style=3D"text-align: inherit"><span style=3D"font-family: &quot=
+;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-serif; font-siz=
+e: 18px"><strong>Chat with Kyle Daigle at the exclusive Fireside Chat event=
+s</strong></span></h1><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 12px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,2">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"193" style=3D"wi=
+dth:193px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"kCxeKZiAb9gvQj2HF6a4gk.6.1.1.1">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:20px 0px 20px=
+ 0px;" valign=3D"top" align=3D"center">
+         =20
+        <img class=3D"max-width" border=3D"0" style=3D"display:block; color=
+:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; f=
+ont-size:16px;" width=3D"125" alt=3D"" data-proportionally-constrained=3D"t=
+rue" data-responsive=3D"false" src=3D"http://cdn.mcauto-images-production.s=
+endgrid.net/cc8ddcf649afa5e0/9fdbbbc8-76a6-4ed4-9d6d-9976a76d538b/540x540.p=
+ng" height=3D"125"></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"386" style=3D"width:386px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"462d2c59-21bc-421d-b276-fc214c320ef2.3.1.1.1" data-mc-module-versi=
+on=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 18px 0px; line-height:22px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit"><span sty=
+le=3D"font-size: 14px; font-style: normal; font-variant-ligatures: normal; =
+font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphan=
+s: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space-collapse: co=
+llapse; text-wrap-mode: wrap; background-color: rgb(255, 255, 255); text-de=
+coration-thickness: initial; text-decoration-style: initial; text-decoratio=
+n-color: initial; float: none; display: inline; font-family: &quot;lucida s=
+ans unicode&quot;, &quot;lucida grande&quot;, sans-serif">Join GitHub COO K=
+yle Daigle in India for an exclusive Fireside Chat &amp; AMA! You're invite=
+d to discover the future of software development, &nbsp;career pathways, an=
+d India=E2=80=99s growing developer community. Mark your calendars for </sp=
+an><span style=3D"font-size: 14px; font-style: normal; font-variant-ligatur=
+es: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: no=
+rmal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none;=
+ widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space-=
+collapse: collapse; text-wrap-mode: wrap; background-color: rgb(255, 255, 2=
+55); text-decoration-thickness: initial; text-decoration-style: initial; te=
+xt-decoration-color: initial; float: none; display: inline; font-family: &q=
+uot;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-serif"><stro=
+ng>April 4th in Bengaluru and April 8th in Mumbai</strong></span><span styl=
+e=3D"font-size: 14px; font-style: normal; font-variant-ligatures: normal; f=
+ont-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans=
+: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; w=
+ord-spacing: 0px; -webkit-text-stroke-width: 0px; white-space-collapse: col=
+lapse; text-wrap-mode: wrap; background-color: rgb(255, 255, 255); text-dec=
+oration-thickness: initial; text-decoration-style: initial; text-decoration=
+-color: initial; float: none; display: inline; font-family: &quot;lucida sa=
+ns unicode&quot;, &quot;lucida grande&quot;, sans-serif">! </span><span sty=
+le=3D"color: #000000; font-family: -apple-system, &quot;system-ui&quot;, &q=
+uot;Segoe UI&quot;, Roboto, Helvetica, Arial, sans-serif; font-size: 14px; =
+font-style: normal; font-variant-ligatures: normal; font-variant-caps: norm=
+al; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: left;=
+ text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -web=
+kit-text-stroke-width: 0px; white-space-collapse: collapse; text-wrap-mode:=
+ wrap; background-color: rgb(255, 255, 255); text-decoration-thickness: ini=
+tial; text-decoration-style: initial; text-decoration-color: initial; float=
+: none; display: inline">&nbsp;</span></div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+module" data-role=3D"module-button" data-type=3D"button" role=3D"module" st=
+yle=3D"table-layout:fixed;" width=3D"100%" data-muid=3D"c4725462-42a7-424c-=
+a2d0-415938860b9a.3.1.1.1">
+      <tbody>
+        <tr>
+          <td align=3D"center" bgcolor=3D"" class=3D"outer-td" style=3D"pad=
+ding:0px 0px 0px 0px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"wrapper-mobile" style=3D"text-align:center;">
+              <tbody>
+                <tr>
+                <td align=3D"center" bgcolor=3D"#A46FFD" class=3D"inner-td"=
+ style=3D"border-radius:6px; font-size:16px; text-align:center; background-=
+color:inherit;">
+                  <a href=3D"gh.io/kdindia25" style=3D"background-color:#A4=
+6FFD; border:1px solid #A46FFD; border-color:#A46FFD; border-radius:6px; bo=
+rder-width:1px; color:#ffffff; display:inline-block; font-size:14px; font-w=
+eight:normal; letter-spacing:0px; line-height:normal; padding:12px 18px 12p=
+x 18px; text-align:center; text-decoration:none; border-style:solid; font-f=
+amily:lucida sans unicode,lucida grande,sans-serif;" target=3D"_blank">Sign=
+ up now</a>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.2.1.1.1.=
+1.1.1.1.1.1.1.1.1.1.1.1.1">
+    <tbody>
+      <tr>
+        <td style=3D"padding:14px 0px 14px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.4.4.2.1.2.2=
+" data-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:22px; text-align:=
+inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conten=
+t"><div><h1 style=3D"text-align: inherit"><span style=3D"font-family: &quot=
+;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-serif; font-siz=
+e: 18px"><strong>Discover Copilot AI Agent Mode in our new blog post</stron=
+g></span></h1><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 12px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,2">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"193" style=3D"wi=
+dth:193px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"kCxeKZiAb9gvQj2HF6a4gk.6.1.1.1.2.1">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:20px 0px 20px=
+ 0px;" valign=3D"top" align=3D"center">
+         =20
+        <img class=3D"max-width" border=3D"0" style=3D"display:block; color=
+:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; f=
+ont-size:16px;" width=3D"125" alt=3D"" data-proportionally-constrained=3D"t=
+rue" data-responsive=3D"false" src=3D"http://cdn.mcauto-images-production.s=
+endgrid.net/cc8ddcf649afa5e0/938c5cea-e61f-4c6d-80dd-978399e7215e/540x540.p=
+ng" height=3D"125"></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"386" style=3D"width:386px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"462d2c59-21bc-421d-b276-fc214c320ef2.3.1.1.1.2.1" data-mc-module-v=
+ersion=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 18px 0px; line-height:22px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit"><span sty=
+le=3D"font-size: 14px; font-style: normal; font-variant-ligatures: normal; =
+font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphan=
+s: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space-collapse: co=
+llapse; text-wrap-mode: wrap; background-color: rgb(255, 255, 255); text-de=
+coration-thickness: initial; text-decoration-style: initial; text-decoratio=
+n-color: initial; float: none; display: inline; font-family: &quot;lucida s=
+ans unicode&quot;, &quot;lucida grande&quot;, sans-serif">Our latest blog p=
+ost dives into AI agent mode's strengths, comparing it with Copilot Edits t=
+o help you choose the right tool for tasks like debugging complex code or s=
+treamlining multi-file projects. GitHub Education students </span><span sty=
+le=3D"font-size: 14px; font-style: normal; font-variant-ligatures: normal; =
+font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphan=
+s: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space-collapse: co=
+llapse; text-wrap-mode: wrap; background-color: rgb(255, 255, 255); text-de=
+coration-thickness: initial; text-decoration-style: initial; text-decoratio=
+n-color: initial; float: none; display: inline; font-family: &quot;lucida s=
+ans unicode&quot;, &quot;lucida grande&quot;, sans-serif"><strong>get free =
+access to Copilot Pro</strong></span><span style=3D"font-size: 14px; font-s=
+tyle: normal; font-variant-ligatures: normal; font-variant-caps: normal; fo=
+nt-weight: 400; letter-spacing: normal; orphans: 2; text-align: left; text-=
+indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-te=
+xt-stroke-width: 0px; white-space-collapse: collapse; text-wrap-mode: wrap;=
+ background-color: rgb(255, 255, 255); text-decoration-thickness: initial; =
+text-decoration-style: initial; text-decoration-color: initial; float: none=
+; display: inline; font-family: &quot;lucida sans unicode&quot;, &quot;luci=
+da grande&quot;, sans-serif"> via the </span><a href=3D"https://mailing.git=
+hub.com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo0O1PFWB28ifInQxsbCitIt-2=
+FrWK7LdIvubrp7N4REXWwo0kZ_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j=
+9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv=
+2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulDYkYMyzF5nozBK9mdgutKU=
+jVwzs8brgwIc55MyIx34ZefLlLskH0UJqgTS1xIfIhjDclziVJr1qML2iC-2FI-2FflJV-2FLRN=
+as8BjiTFzA2HFezEFjXJdk9ihoIEcVk5g1HES6-2BQKgfdPFEppFZ82GIFfIchkFCLWxkB6QUJ6=
+OH3nTCEhmu-2B-2Fheyavmzc-2FS-2FJnrmQPd4Q-2FgegIKSxOygYCbGIljsuhQSbJlIvizr-2=
+BThcY2S1XNwL5LPGEsuRH9nI-2B1J6LjhKxZSLkLiFaJg5JpHuD0WylGkBkGjXrX4f5fv7OS1i9=
+m3rBP-2FM6KkMebSv-2FrTTphQvDbrLW2Kyls7G-2BKm88OrcIfCIi0j7wpHSH-2BvpOEKicODs=
+yrvvySeRzAhuk5-2FP4zKHo0MbVQ5GuCq2Hr7j2AVQmZZJNT8bF6MihjjKcUavpB6BdpquYiF3I=
+N0JsnYdR-2BmPqCo56W6lss81l62RFSzgf-2BSQM8QT6DuezaKmRw-2FvLSjsqFgFWnofA2-2BY=
+fgYLbnVORVLGvzAZkn8oiIUxAHYkR0kbqHrcdTBw0lggXAgRK6EBaQ4ouAEbO96g8wxYUungREw=
+doIduNiOAGIhQyDdnZpjscyzBvPXYxP2nMi9qyKKMbNwYrBkFMK21rFbA5K1AoTIH-2B9XrJ6vr=
+W-2BRb-2Bn5wqQuIhMwfJLcSAUwStjxMxWnDqxt7mdH0O3gL-2FtMzKbzs9UOaXYU8Ua9KqLqSM=
+ZavmTeMRUxcKuJQseiJLhzDYFB2fNPwFzueU3fNc1bWXFjxuwlxXxBadAo8gKdbGknViIrE3vs-=
+2BHuY24FAg2zcw-3D-3D"><span style=3D"font-size: 14px; font-style: normal; f=
+ont-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400;=
+ letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; te=
+xt-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width=
+: 0px; white-space-collapse: collapse; text-wrap-mode: wrap; background-col=
+or: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration=
+-style: initial; text-decoration-color: initial; float: none; display: inli=
+ne; font-family: &quot;lucida sans unicode&quot;, &quot;lucida grande&quot;=
+, sans-serif">Student Developer Pack</span></a><span style=3D"font-size: 14=
+px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: =
+normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: l=
+eft; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; =
+-webkit-text-stroke-width: 0px; white-space-collapse: collapse; text-wrap-m=
+ode: wrap; background-color: rgb(255, 255, 255); text-decoration-thickness:=
+ initial; text-decoration-style: initial; text-decoration-color: initial; f=
+loat: none; display: inline; font-family: &quot;lucida sans unicode&quot;, =
+&quot;lucida grande&quot;, sans-serif">, making it easy to put these tips i=
+nto practice. &nbsp;</span><span style=3D"color: #000000; font-family: -app=
+le-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, Roboto, Helvetica, =
+Arial, sans-serif; font-size: 14px; font-style: normal; font-variant-ligatu=
+res: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: n=
+ormal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none=
+; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space=
+-collapse: collapse; text-wrap-mode: wrap; background-color: rgb(255, 255, =
+255); text-decoration-thickness: initial; text-decoration-style: initial; t=
+ext-decoration-color: initial; float: none; display: inline">&nbsp;</span><=
+/div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+module" data-role=3D"module-button" data-type=3D"button" role=3D"module" st=
+yle=3D"table-layout:fixed;" width=3D"100%" data-muid=3D"c4725462-42a7-424c-=
+a2d0-415938860b9a.3.1.1.1.2.1">
+      <tbody>
+        <tr>
+          <td align=3D"center" bgcolor=3D"" class=3D"outer-td" style=3D"pad=
+ding:0px 0px 0px 0px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"wrapper-mobile" style=3D"text-align:center;">
+              <tbody>
+                <tr>
+                <td align=3D"center" bgcolor=3D"#072B5A" class=3D"inner-td"=
+ style=3D"border-radius:6px; font-size:16px; text-align:center; background-=
+color:inherit;">
+                  <a href=3D"https://mailing.github.com/ls/click?upn=3Du001=
+.bO3G-2FaeMIVe5lSdMnGODo-2BlCX7hUcuWA-2BSd128hoEHQ-3DgWbW_1h5T79IcqJTdevtx-=
+2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwv=
+YgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96q=
+a16lGYjOulDYkYMyzF5nozBK9mdgutKUjVwzs8brgwIc55MyIx34ZefLlLskH0UJqgTS1xIfIhj=
+DclziVJr1qML2iC-2FI-2FflJV-2FLRNas8BjiTFzA2HFezEFjXJdk9ihoIEcVk5g1HES6-2BQK=
+gfdPFEppFZ82GIFfIchkFCLWxkB6QUJ6OH3nTCEhmu-2B-2Fheyavmzc-2FS-2FJnrmQPd4Q-2F=
+gegIKSxOygYCbGIljsuhQSbJlIvizr-2BThcY2S1XNwL5LPGEsuRH9nI-2B1J6LjhKxZSLkLiFa=
+Jg5JpHuD0WylGkBkGjXrX4f5fv7OS1i9m3rBP-2FM6KkMebSv-2FrTTphQvDbrLW2Kyls7G-2BK=
+m88OrcIfCIi0j7wpHSH-2BvpOEKicODsyrvvySeRzAhuk5-2FP4zKHo0MbVQ5GuCq2Hr7j2AVQm=
+ZZJNT8bF6MihjjKcUavpB6BdpquYiF3IN0JsnYdR-2BmPqCo56W6lss81l62RFSzgf-2BSQM8QT=
+6DuezaKmRw-2FvLSjsqFgFWnofA2-2BYfgYLbnVORVLGvzAZkn8oiIUxAHYkR0kbqHrcdTBw0lg=
+gXAgRK6EBaQ4ouAEbO96g8wxYUungREwdoIduNiOAGIhQyDdnZpjscyzBvPXYxP2nMi9qyKKMbN=
+wYrBkFMK21rFbA5K1AoTIH-2B9XrJ6vrW-2BRb-2Bn5wqQuIhMwfJLcSAUwStjxAVliIBxQPD6S=
+2L2dxdAwafCGdujAT-2FhXWtUE4kMCisjlsoVjIBGVVBNm0BB8pmOTINuiUHRNNQO3N8JiMtIGX=
+3WWWJBQbsA24AHc-2B-2FSLJje0idjw7RWmBzW-2BITehFie3Q-3D-3D" style=3D"backgrou=
+nd-color:#072B5A; border:1px solid #072B5A; border-color:#072B5A; border-ra=
+dius:6px; border-width:1px; color:#ffffff; display:inline-block; font-size:=
+14px; font-weight:normal; letter-spacing:0px; line-height:normal; padding:1=
+2px 18px 12px 18px; text-align:center; text-decoration:none; border-style:s=
+olid; font-family:lucida sans unicode,lucida grande,sans-serif;" target=3D"=
+_blank">Find out more</a>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.2.1.1.1.=
+1.1.1.1.1.1.1.1.1.1.1.1.1.1">
+    <tbody>
+      <tr>
+        <td style=3D"padding:14px 0px 14px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.4.4.2.1.2" =
+data-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:22px; text-align:=
+inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conten=
+t"><div><h1 style=3D"text-align: inherit"><span style=3D"font-family: &quot=
+;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-serif; font-siz=
+e: 18px"><strong>Build your own tech from scratch with guided tutorials</st=
+rong></span></h1><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 12px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,2">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"193" style=3D"wi=
+dth:193px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"kCxeKZiAb9gvQj2HF6a4gk.6.1.1.1.2">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:20px 0px 20px=
+ 0px;" valign=3D"top" align=3D"center">
+         =20
+        <img class=3D"max-width" border=3D"0" style=3D"display:block; color=
+:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; f=
+ont-size:16px;" width=3D"125" alt=3D"" data-proportionally-constrained=3D"t=
+rue" data-responsive=3D"false" src=3D"http://cdn.mcauto-images-production.s=
+endgrid.net/cc8ddcf649afa5e0/9c8b852a-8502-4e0d-bb02-b16eb6c4828b/540x540.p=
+ng" height=3D"125"></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"386" style=3D"width:386px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"462d2c59-21bc-421d-b276-fc214c320ef2.3.1.1.1.2" data-mc-module-ver=
+sion=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 18px 0px; line-height:22px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit"><span sty=
+le=3D"font-size: 14px; font-style: normal; font-variant-ligatures: normal; =
+font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphan=
+s: 2; text-align: left; text-indent: 0px; text-transform: none; widows: 2; =
+word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space-collapse: co=
+llapse; text-wrap-mode: wrap; background-color: rgb(255, 255, 255); text-de=
+coration-thickness: initial; text-decoration-style: initial; text-decoratio=
+n-color: initial; float: none; display: inline; font-family: &quot;lucida s=
+ans unicode&quot;, &quot;lucida grande&quot;, sans-serif">The 'build-your-o=
+wn-x' repo offers a hands-on way to recreate simplified versions of your fa=
+vourite technologies from scratch, gaining a deeper understanding of progra=
+mming concepts along the way. &nbsp;&nbsp;</span><span style=3D"color: #000=
+000; font-family: -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot=
+;, Roboto, Helvetica, Arial, sans-serif; font-size: 14px; font-style: norma=
+l; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: =
+400; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px=
+; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-w=
+idth: 0px; white-space-collapse: collapse; text-wrap-mode: wrap; background=
+-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decora=
+tion-style: initial; text-decoration-color: initial; float: none; display: =
+inline">&nbsp;</span></div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+module" data-role=3D"module-button" data-type=3D"button" role=3D"module" st=
+yle=3D"table-layout:fixed;" width=3D"100%" data-muid=3D"c4725462-42a7-424c-=
+a2d0-415938860b9a.3.1.1.1.2">
+      <tbody>
+        <tr>
+          <td align=3D"center" bgcolor=3D"" class=3D"outer-td" style=3D"pad=
+ding:0px 0px 0px 0px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"wrapper-mobile" style=3D"text-align:center;">
+              <tbody>
+                <tr>
+                <td align=3D"center" bgcolor=3D"#0D345F" class=3D"inner-td"=
+ style=3D"border-radius:6px; font-size:16px; text-align:center; background-=
+color:inherit;">
+                  <a href=3D"https://mailing.github.com/ls/click?upn=3Du001=
+.bO3G-2FaeMIVe5lSdMnGODozdWaczKDNd3u6rKBkGxwEsRKA-2BV3f6n9L-2BHfWsnBhe6fvrs=
+JYfXaHH8zIYbss3OWQ-3D-3DhvHP_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6=
+N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcs=
+ohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulDYkYMyzF5nozBK9mdgu=
+tKUjVwzs8brgwIc55MyIx34ZefLlLskH0UJqgTS1xIfIhjDclziVJr1qML2iC-2FI-2FflJV-2F=
+LRNas8BjiTFzA2HFezEFjXJdk9ihoIEcVk5g1HES6-2BQKgfdPFEppFZ82GIFfIchkFCLWxkB6Q=
+UJ6OH3nTCEhmu-2B-2Fheyavmzc-2FS-2FJnrmQPd4Q-2FgegIKSxOygYCbGIljsuhQSbJlIviz=
+r-2BThcY2S1XNwL5LPGEsuRH9nI-2B1J6LjhKxZSLkLiFaJg5JpHuD0WylGkBkGjXrX4f5fv7OS=
+1i9m3rBP-2FM6KkMebSv-2FrTTphQvDbrLW2Kyls7G-2BKm88OrcIfCIi0j7wpHSH-2BvpOEKic=
+ODsyrvvySeRzAhuk5-2FP4zKHo0MbVQ5GuCq2Hr7j2AVQmZZJNT8bF6MihjjKcUavpB6BdpquYi=
+F3IN0JsnYdR-2BmPqCo56W6lss81l62RFSzgf-2BSQM8QT6DuezaKmRw-2FvLSjsqFgFWnofA2-=
+2BYfgYLbnVORVLGvzAZkn8oiIUxAHYkR0kbqHrcdTBw0lggXAgRK6EBaQ4ouAEbO96g8wxYUung=
+REwdoIduNiOAGIhQyDdnZpjscyzBvPXYxP2nMi9qyKKMbNwYrBkFMK21rFbA5K1AoTIH-2B9XrJ=
+6vrW-2BRb-2Bn5wqQuIhMwfJLcSAUwStjxPkmpJiR4XgaXqfZM2mrMVJ3IL3hhGEP1vKd3tWi43=
+Mpx-2F-2FrR8nL52TgriTKNDVM-2F6hkOe-2BlcNHcWoABksfkepv8-2Fm-2BpY-2BnrjHKQGYR=
+DVTEzKwhj7SZ-2BXQurddxhv92j-2Bw-3D-3D" style=3D"background-color:#0D345F; b=
+order:1px solid #0D345F; border-color:#0D345F; border-radius:6px; border-wi=
+dth:1px; color:#ffffff; display:inline-block; font-size:14px; font-weight:n=
+ormal; letter-spacing:0px; line-height:normal; padding:12px 18px 12px 18px;=
+ text-align:center; text-decoration:none; border-style:solid; font-family:l=
+ucida sans unicode,lucida grande,sans-serif;" target=3D"_blank">Build your =
+own tech</a>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.2.1.1.1.=
+1.1.1.1.1.1.1.1.1.1.1.1.1.1.1">
+    <tbody>
+      <tr>
+        <td style=3D"padding:14px 0px 14px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"code" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"e45b7ca1-f75a-4c6e-b499-369602af5f88">
+    <tbody>
+      <tr>
+        <td height=3D"100%" valign=3D"top" role=3D"module-content"><p style=
+=3D"color: #999999; font-size: 1rem; margin: 2em 0 2em 0; text-align: cente=
+r;" class=3D"social-links">
+    <a class=3D"social-link" href=3D"https://mailing.github.com/ls/click?up=
+n=3Du001.bO3G-2FaeMIVe5lSdMnGODo4CwL8Dgg1QUklEBnHSTz8R3LMNKugae8Lgl20rNSNnC=
+8BIZ1Ecsp2FtIiQYH9MgRQ-3D-3DxVZV_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7T=
+TNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHe=
+ekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulDYkYMyzF5nozBK9=
+mdgutKUjVwzs8brgwIc55MyIx34ZefLlLskH0UJqgTS1xIfIhjDclziVJr1qML2iC-2FI-2FflJ=
+V-2FLRNas8BjiTFzA2HFezEFjXJdk9ihoIEcVk5g1HES6-2BQKgfdPFEppFZ82GIFfIchkFCLWx=
+kB6QUJ6OH3nTCEhmu-2B-2Fheyavmzc-2FS-2FJnrmQPd4Q-2FgegIKSxOygYCbGIljsuhQSbJl=
+Ivizr-2BThcY2S1XNwL5LPGEsuRH9nI-2B1J6LjhKxZSLkLiFaJg5JpHuD0WylGkBkGjXrX4f5f=
+v7OS1i9m3rBP-2FM6KkMebSv-2FrTTphQvDbrLW2Kyls7G-2BKm88OrcIfCIi0j7wpHSH-2BvpO=
+EKicODsyrvvySeRzAhuk5-2FP4zKHo0MbVQ5GuCq2Hr7j2AVQmZZJNT8bF6MihjjKcUavpB6Bdp=
+quYiF3IN0JsnYdR-2BmPqCo56W6lss81l62RFSzgf-2BSQM8QT6DuezaKmRw-2FvLSjsqFgFWno=
+fA2-2BYfgYLbnVORVLGvzAZkn8oiIUxAHYkR0kbqHrcdTBw0lggXAgRK6EBaQ4ouAEbO96g8wxY=
+UungREwdoIduNiOAGIhQyDdnZpjscyzBvPXYxP2nMi9qyKKMbNwYrBkFMK21rFbA5K1AoTIH-2B=
+9XrJ6vrW-2BRb-2Bn5wqQuIhMwfJLcSAUwStjxK1EaG0OLabOi33mI95RmIONn5WQPMltwsk0YJ=
+YNiJ8VEZ64hkYNvEBZq5GxlQJ2uWRIvC6JzELEsfyAoHkFwQ-2BvMNhaOnVGNW-2Fie7-2BZ9gv=
+OsKgCfBaxG5NKRoLKYIfZ-2Bg-3D-3D">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/cca08ffd-683d-4e75-868c-999a3df27c9e/300x=
+300.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D"2=
+4">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://mailing.github.com/ls/click?up=
+n=3Du001.bO3G-2FaeMIVe5lSdMnGODozgoAQD6jwHlE9yz6w0v3-2FKBwgrTJU-2BtbBmk1-2B=
+2b2R-2Bjoa8pM71iL6ikgBAAClFPvA-3D-3Dbf61_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpT=
+zvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEa=
+U7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulDYkYMyz=
+F5nozBK9mdgutKUjVwzs8brgwIc55MyIx34ZefLlLskH0UJqgTS1xIfIhjDclziVJr1qML2iC-2=
+FI-2FflJV-2FLRNas8BjiTFzA2HFezEFjXJdk9ihoIEcVk5g1HES6-2BQKgfdPFEppFZ82GIFfI=
+chkFCLWxkB6QUJ6OH3nTCEhmu-2B-2Fheyavmzc-2FS-2FJnrmQPd4Q-2FgegIKSxOygYCbGIlj=
+suhQSbJlIvizr-2BThcY2S1XNwL5LPGEsuRH9nI-2B1J6LjhKxZSLkLiFaJg5JpHuD0WylGkBkG=
+jXrX4f5fv7OS1i9m3rBP-2FM6KkMebSv-2FrTTphQvDbrLW2Kyls7G-2BKm88OrcIfCIi0j7wpH=
+SH-2BvpOEKicODsyrvvySeRzAhuk5-2FP4zKHo0MbVQ5GuCq2Hr7j2AVQmZZJNT8bF6MihjjKcU=
+avpB6BdpquYiF3IN0JsnYdR-2BmPqCo56W6lss81l62RFSzgf-2BSQM8QT6DuezaKmRw-2FvLSj=
+sqFgFWnofA2-2BYfgYLbnVORVLGvzAZkn8oiIUxAHYkR0kbqHrcdTBw0lggXAgRK6EBaQ4ouAEb=
+O96g8wxYUungREwdoIduNiOAGIhQyDdnZpjscyzBvPXYxP2nMi9qyKKMbNwYrBkFMK21rFbA5K1=
+AoTIH-2B9XrJ6vrW-2BRb-2Bn5wqQuIhMwfJLcSAUwStjxN6nM7Mk3w-2BEIXBACqv3SolMFoF9=
+-2FM00FWDikikyruGT3YRhvMwjT5lB6knn8Wlqwd1fCV5L1As1jj4rSRs8dxza4Z9TLuxbmlE-2=
+BmndqwvmygHNRChDGDAJ7VijC7jbiuQWrnF-2Fh-2BxNAVv4AVKXTs4c-3D">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/7fbfa4f4-c42c-4596-8208-887bf53f41aa/512x=
+512.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D"2=
+4">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://mailing.github.com/ls/click?up=
+n=3Du001.bO3G-2FaeMIVe5lSdMnGODo1KxRZG7NRfCjR-2FG0wTxt0HlI-2FvKJRfwdCDHax9b=
+wtgmWyIJWvaLpL65i1CNotlPJQ-3D-3DsYpz_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXz=
+XR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua=
+7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulDYkYMyzF5no=
+zBK9mdgutKUjVwzs8brgwIc55MyIx34ZefLlLskH0UJqgTS1xIfIhjDclziVJr1qML2iC-2FI-2=
+FflJV-2FLRNas8BjiTFzA2HFezEFjXJdk9ihoIEcVk5g1HES6-2BQKgfdPFEppFZ82GIFfIchkF=
+CLWxkB6QUJ6OH3nTCEhmu-2B-2Fheyavmzc-2FS-2FJnrmQPd4Q-2FgegIKSxOygYCbGIljsuhQ=
+SbJlIvizr-2BThcY2S1XNwL5LPGEsuRH9nI-2B1J6LjhKxZSLkLiFaJg5JpHuD0WylGkBkGjXrX=
+4f5fv7OS1i9m3rBP-2FM6KkMebSv-2FrTTphQvDbrLW2Kyls7G-2BKm88OrcIfCIi0j7wpHSH-2=
+BvpOEKicODsyrvvySeRzAhuk5-2FP4zKHo0MbVQ5GuCq2Hr7j2AVQmZZJNT8bF6MihjjKcUavpB=
+6BdpquYiF3IN0JsnYdR-2BmPqCo56W6lss81l62RFSzgf-2BSQM8QT6DuezaKmRw-2FvLSjsqFg=
+FWnofA2-2BYfgYLbnVORVLGvzAZkn8oiIUxAHYkR0kbqHrcdTBw0lggXAgRK6EBaQ4ouAEbO96g=
+8wxYUungREwdoIduNiOAGIhQyDdnZpjscyzBvPXYxP2nMi9qyKKMbNwYrBkFMK21rFbA5K1AoTI=
+H-2B9XrJ6vrW-2BRb-2Bn5wqQuIhMwfJLcSAUwStjxD0hbIgmKPXUQqMMVyY8ychb89wDzWuerq=
+puFr602Wzd4CEtKQaoUwsakGRsa5KBUh9G7p8fuoxy4DfF0GOYnAWTovcUuG5KCF9mbAwuWh41R=
+s1paEa8rBPCpd4gAc0mQuRX74a2cgccGcqpeVjVQCw-3D">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/199b126a-2e9f-49b6-8a32-cc5ac3562cef/153x=
+178.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D"2=
+4">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://mailing.github.com/ls/click?up=
+n=3Du001.bO3G-2FaeMIVe5lSdMnGODo7OMy-2FrgUl7LaVtJwyMhyqR5AnWnQFQo-2BIze2sJ-=
+2Bb3W4laCZ_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2n=
+cWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v=
+8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulDYkYMyzF5nozBK9mdgutKUjVwzs8brgwIc55M=
+yIx34ZefLlLskH0UJqgTS1xIfIhjDclziVJr1qML2iC-2FI-2FflJV-2FLRNas8BjiTFzA2HFez=
+EFjXJdk9ihoIEcVk5g1HES6-2BQKgfdPFEppFZ82GIFfIchkFCLWxkB6QUJ6OH3nTCEhmu-2B-2=
+Fheyavmzc-2FS-2FJnrmQPd4Q-2FgegIKSxOygYCbGIljsuhQSbJlIvizr-2BThcY2S1XNwL5LP=
+GEsuRH9nI-2B1J6LjhKxZSLkLiFaJg5JpHuD0WylGkBkGjXrX4f5fv7OS1i9m3rBP-2FM6KkMeb=
+Sv-2FrTTphQvDbrLW2Kyls7G-2BKm88OrcIfCIi0j7wpHSH-2BvpOEKicODsyrvvySeRzAhuk5-=
+2FP4zKHo0MbVQ5GuCq2Hr7j2AVQmZZJNT8bF6MihjjKcUavpB6BdpquYiF3IN0JsnYdR-2BmPqC=
+o56W6lss81l62RFSzgf-2BSQM8QT6DuezaKmRw-2FvLSjsqFgFWnofA2-2BYfgYLbnVORVLGvzA=
+Zkn8oiIUxAHYkR0kbqHrcdTBw0lggXAgRK6EBaQ4ouAEbO96g8wxYUungREwdoIduNiOAGIhQyD=
+dnZpjscyzBvPXYxP2nMi9qyKKMbNwYrBkFMK21rFbA5K1AoTIH-2B9XrJ6vrW-2BRb-2Bn5wqQu=
+IhMwfJLcSAUwStjxDXthX2JDK5pOL9lGUczFov44QkG8sDS2NmC5BMH3-2FKhCuzresd4WoxmkD=
+XZUOT-2FFaT1ofw4KNK2KC7UtUDDt3lRBKaQf6hNa-2BbFQ-2BUZZEWS-2FS9rmzCZdLuV22A8h=
+sTpWrs9IdC6zzK3R1rQC6OUsH8-3D">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/139d5afd-f635-4234-b6bd-cd44ff1d3d85/1184=
+x1184.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D=
+"24">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://mailing.github.com/ls/click?up=
+n=3Du001.bO3G-2FaeMIVe5lSdMnGODo2dVGx1b-2BEeSRYGdTRBAbKctIVR22mrkc3ehURL4mb=
+EFpr7Y26tGVfJNw5xoyaAKow-3D-3DqXrU_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR=
+7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7A=
+Heekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulDYkYMyzF5nozB=
+K9mdgutKUjVwzs8brgwIc55MyIx34ZefLlLskH0UJqgTS1xIfIhjDclziVJr1qML2iC-2FI-2Ff=
+lJV-2FLRNas8BjiTFzA2HFezEFjXJdk9ihoIEcVk5g1HES6-2BQKgfdPFEppFZ82GIFfIchkFCL=
+WxkB6QUJ6OH3nTCEhmu-2B-2Fheyavmzc-2FS-2FJnrmQPd4Q-2FgegIKSxOygYCbGIljsuhQSb=
+JlIvizr-2BThcY2S1XNwL5LPGEsuRH9nI-2B1J6LjhKxZSLkLiFaJg5JpHuD0WylGkBkGjXrX4f=
+5fv7OS1i9m3rBP-2FM6KkMebSv-2FrTTphQvDbrLW2Kyls7G-2BKm88OrcIfCIi0j7wpHSH-2Bv=
+pOEKicODsyrvvySeRzAhuk5-2FP4zKHo0MbVQ5GuCq2Hr7j2AVQmZZJNT8bF6MihjjKcUavpB6B=
+dpquYiF3IN0JsnYdR-2BmPqCo56W6lss81l62RFSzgf-2BSQM8QT6DuezaKmRw-2FvLSjsqFgFW=
+nofA2-2BYfgYLbnVORVLGvzAZkn8oiIUxAHYkR0kbqHrcdTBw0lggXAgRK6EBaQ4ouAEbO96g8w=
+xYUungREwdoIduNiOAGIhQyDdnZpjscyzBvPXYxP2nMi9qyKKMbNwYrBkFMK21rFbA5K1AoTIH-=
+2B9XrJ6vrW-2BRb-2Bn5wqQuIhMwfJLcSAUwStjxMyq2kQc7n6eeus6-2BGUv-2F7V2nfcMHX6g=
+Ny5ZD-2BhhDKdiIklb8L-2FeSRUN1aeSggMlO4tg53UYc4npxKxP2KKqOm827KvXMFajT4rxXQK=
+iuorJbzLEiMlS9t0-2FndGcrKysz5aQO6gPG1p3EdssDyczW3Y-3D">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/69dc9ddb-b05f-4371-bb0a-ff395594725a/2319=
+x2049.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D=
+"24">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://mailing.github.com/ls/click?up=
+n=3Du001.bO3G-2FaeMIVe5lSdMnGODo5kXsF-2BAY3pqNDPNf3FfJxAWN2WDKCotnbDDLNWq9E=
+pF1A-2B0xG-2FtooK9-2BbaH4r9wFQ-3D-3Dbv8z_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpT=
+zvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEa=
+U7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulDYkYMyz=
+F5nozBK9mdgutKUjVwzs8brgwIc55MyIx34ZefLlLskH0UJqgTS1xIfIhjDclziVJr1qML2iC-2=
+FI-2FflJV-2FLRNas8BjiTFzA2HFezEFjXJdk9ihoIEcVk5g1HES6-2BQKgfdPFEppFZ82GIFfI=
+chkFCLWxkB6QUJ6OH3nTCEhmu-2B-2Fheyavmzc-2FS-2FJnrmQPd4Q-2FgegIKSxOygYCbGIlj=
+suhQSbJlIvizr-2BThcY2S1XNwL5LPGEsuRH9nI-2B1J6LjhKxZSLkLiFaJg5JpHuD0WylGkBkG=
+jXrX4f5fv7OS1i9m3rBP-2FM6KkMebSv-2FrTTphQvDbrLW2Kyls7G-2BKm88OrcIfCIi0j7wpH=
+SH-2BvpOEKicODsyrvvySeRzAhuk5-2FP4zKHo0MbVQ5GuCq2Hr7j2AVQmZZJNT8bF6MihjjKcU=
+avpB6BdpquYiF3IN0JsnYdR-2BmPqCo56W6lss81l62RFSzgf-2BSQM8QT6DuezaKmRw-2FvLSj=
+sqFgFWnofA2-2BYfgYLbnVORVLGvzAZkn8oiIUxAHYkR0kbqHrcdTBw0lggXAgRK6EBaQ4ouAEb=
+O96g8wxYUungREwdoIduNiOAGIhQyDdnZpjscyzBvPXYxP2nMi9qyKKMbNwYrBkFMK21rFbA5K1=
+AoTIH-2B9XrJ6vrW-2BRb-2Bn5wqQuIhMwfJLcSAUwStjxDNuDce-2BC10fhlVeZLx16qVxrvxb=
+AyPat-2FXr4PgFqbSVGSFifueAfca7wXKj3wIowAnqwT-2B1hy7evMuncPspKs7tkI4F4I9-2FB=
+eoo0bz8HwzxREXiY4c-2FZKlDSXn9uENVboSX3GEDPxTcId5IUCRr7y8-3D">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/2fb6c833-4f48-4a08-beda-4cad2082a3ed/512x=
+512.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D"2=
+4">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://mailing.github.com/ls/click?up=
+n=3Du001.bO3G-2FaeMIVe5lSdMnGODo3-2FQ6ALJoZReZPpMLK6cEoUG2KBCa8E4ucxjcmXFCY=
+mk9lLyMyqioFLdmyTjj6xj7Q-3D-3D-GIa_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR=
+7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7A=
+Heekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulDYkYMyzF5nozB=
+K9mdgutKUjVwzs8brgwIc55MyIx34ZefLlLskH0UJqgTS1xIfIhjDclziVJr1qML2iC-2FI-2Ff=
+lJV-2FLRNas8BjiTFzA2HFezEFjXJdk9ihoIEcVk5g1HES6-2BQKgfdPFEppFZ82GIFfIchkFCL=
+WxkB6QUJ6OH3nTCEhmu-2B-2Fheyavmzc-2FS-2FJnrmQPd4Q-2FgegIKSxOygYCbGIljsuhQSb=
+JlIvizr-2BThcY2S1XNwL5LPGEsuRH9nI-2B1J6LjhKxZSLkLiFaJg5JpHuD0WylGkBkGjXrX4f=
+5fv7OS1i9m3rBP-2FM6KkMebSv-2FrTTphQvDbrLW2Kyls7G-2BKm88OrcIfCIi0j7wpHSH-2Bv=
+pOEKicODsyrvvySeRzAhuk5-2FP4zKHo0MbVQ5GuCq2Hr7j2AVQmZZJNT8bF6MihjjKcUavpB6B=
+dpquYiF3IN0JsnYdR-2BmPqCo56W6lss81l62RFSzgf-2BSQM8QT6DuezaKmRw-2FvLSjsqFgFW=
+nofA2-2BYfgYLbnVORVLGvzAZkn8oiIUxAHYkR0kbqHrcdTBw0lggXAgRK6EBaQ4ouAEbO96g8w=
+xYUungREwdoIduNiOAGIhQyDdnZpjscyzBvPXYxP2nMi9qyKKMbNwYrBkFMK21rFbA5K1AoTIH-=
+2B9XrJ6vrW-2BRb-2Bn5wqQuIhMwfJLcSAUwStjxD3-2BY-2BBB7ewKwH2y3os07950DEqsBDwd=
+Yh9vsAwaeSl-2FD5ed-2FYJt4yfzuDpg87Jp-2Bdsagz5jZ7g1pPXQfIvUeYr55hZoqg2K5XHmH=
+cKlAVsErgeJzqDbi7asDCr4yNKiKrH63WIRhPsOR5URUeZ2-2FKU-3D">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/e2e3632e-d2ab-415a-a61d-072743569784/512x=
+512.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D"2=
+4">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://mailing.github.com/ls/click?up=
+n=3Du001.bO3G-2FaeMIVe5lSdMnGODo2gvddZ8656ATSl5-2BTEB98YabS5KKljl5Ypv-2Bi-2=
+FJC05yM9aF_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2n=
+cWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v=
+8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulDYkYMyzF5nozBK9mdgutKUjVwzs8brgwIc55M=
+yIx34ZefLlLskH0UJqgTS1xIfIhjDclziVJr1qML2iC-2FI-2FflJV-2FLRNas8BjiTFzA2HFez=
+EFjXJdk9ihoIEcVk5g1HES6-2BQKgfdPFEppFZ82GIFfIchkFCLWxkB6QUJ6OH3nTCEhmu-2B-2=
+Fheyavmzc-2FS-2FJnrmQPd4Q-2FgegIKSxOygYCbGIljsuhQSbJlIvizr-2BThcY2S1XNwL5LP=
+GEsuRH9nI-2B1J6LjhKxZSLkLiFaJg5JpHuD0WylGkBkGjXrX4f5fv7OS1i9m3rBP-2FM6KkMeb=
+Sv-2FrTTphQvDbrLW2Kyls7G-2BKm88OrcIfCIi0j7wpHSH-2BvpOEKicODsyrvvySeRzAhuk5-=
+2FP4zKHo0MbVQ5GuCq2Hr7j2AVQmZZJNT8bF6MihjjKcUavpB6BdpquYiF3IN0JsnYdR-2BmPqC=
+o56W6lss81l62RFSzgf-2BSQM8QT6DuezaKmRw-2FvLSjsqFgFWnofA2-2BYfgYLbnVORVLGvzA=
+Zkn8oiIUxAHYkR0kbqHrcdTBw0lggXAgRK6EBaQ4ouAEbO96g8wxYUungREwdoIduNiOAGIhQyD=
+dnZpjscyzBvPXYxP2nMi9qyKKMbNwYrBkFMK21rFbA5K1AoTIH-2B9XrJ6vrW-2BRb-2Bn5wqQu=
+IhMwfJLcSAUwStjxN-2BsYV32Ef8-2Fwi3GECYo-2F5TX2zI3rMgWoeDHPY9TsJxldCJdO4-2Bj=
+jiPQZiKqZDU4gi3hXqpTmxuBwmc9Xw1kR3fE-2F2wiYyFvjtq9bN2s4VyanfXPWqRUm41LUMJRr=
+-2BvBapqiH3b7381J07ReevK7pXU-3D">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/8681d38e-9b91-4930-ae9c-10afb1dd1e53/3000=
+x3000.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D=
+"24">
+    </a>=20
+</p></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"501f90a6-ff4d-458e-b7e5-23c21633aea6" data-mc-mo=
+dule-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:9px 0px 9px 0px; line-height:22px; text-align:=
+inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conten=
+t"><div><div style=3D"font-family: inherit; text-align: center"><a href=3D"=
+https://mailing.github.com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo09vcC=
+l7PPqDILZt-2FGoACYbV4L-2FcOcvMOi5mEz0MDuAddhPxGWEabHxldtos4YQ9-2BjyRGvM8Dik=
+HFgRMX3dTlhpIx00x1L-2B2gm4l5YQkMiIqTLVdZUw7Y2NE2ZspoVsTg2GXSk8O7Vr6toP7YYc9=
+ZsA30zpGxwdi-2FZB0AqQnSf4mYCs7OZelGI7uWj1BAGOKfdZ0-2FkwZrt4c9KdPbE6c51lFMLG=
+2MCCtnvhMyReNiWUMDx-2Fvs7jkvrN9zYDbWFV1imFYbZKOiQUxCFrbrmZj1N5SnMwIvvdo5kJ4=
+YjfuO-2BZVFSOfHu36IWAGopIazI4IN6c3UsdtSgYQxSXnZR-2BSSRd8Se9I385ylu9FD5sYMl6=
+5yEc4Y-2B198mqVco1dgMZvcgdxaHcq8gvqEdF1MAyHayqYqh1ka-2BSZESmTIloc-2F4PjS2by=
+ui9G-2BlpR3B-2FccqxysEWMiV9JRstdRutDFbomDELI4Cw-2BMzjauptmGiHuoQW7DHaVQpMoe=
+JqOvKfFAqhkqEumq8Yh3IiquKdgCvCL9U8aJWoruyQ3p8x-2Fiw6frSD7fZsuPM3QgZmW9bxTBn=
+fgsHJoGJ2yXrnfQeai-2FRS-2FooyMUmKPRtES23eCzacbVZXJM7wwSmgsZQT6eYmquxUIsklew=
+8lfRYW0thhb1mz8-2B9xUMrK7zHd-2BkjRbad8MUmvAGX0XLhUK20CRmihaApH7HWpfiHz6RrlZ=
+hlz9cyXY5tS1HSgn-2BQ1YVx5U-2Bo4XbmXuoFMKoS1ZTzbrAuNiqqnzww-3D-3DDWdA_1h5T79=
+IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odW=
+KRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDT=
+Z0Fe1S6h96qa16lGYjOulDYkYMyzF5nozBK9mdgutKUjVwzs8brgwIc55MyIx34ZefLlLskH0UJ=
+qgTS1xIfIhjDclziVJr1qML2iC-2FI-2FflJV-2FLRNas8BjiTFzA2HFezEFjXJdk9ihoIEcVk5=
+g1HES6-2BQKgfdPFEppFZ82GIFfIchkFCLWxkB6QUJ6OH3nTCEhmu-2B-2Fheyavmzc-2FS-2FJ=
+nrmQPd4Q-2FgegIKSxOygYCbGIljsuhQSbJlIvizr-2BThcY2S1XNwL5LPGEsuRH9nI-2B1J6Lj=
+hKxZSLkLiFaJg5JpHuD0WylGkBkGjXrX4f5fv7OS1i9m3rBP-2FM6KkMebSv-2FrTTphQvDbrLW=
+2Kyls7G-2BKm88OrcIfCIi0j7wpHSH-2BvpOEKicODsyrvvySeRzAhuk5-2FP4zKHo0MbVQ5GuC=
+q2Hr7j2AVQmZZJNT8bF6MihjjKcUavpB6BdpquYiF3IN0JsnYdR-2BmPqCo56W6lss81l62RFSz=
+gf-2BSQM8QT6DuezaKmRw-2FvLSjsqFgFWnofA2-2BYfgYLbnVORVLGvzAZkn8oiIUxAHYkR0kb=
+qHrcdTBw0lggXAgRK6EBaQ4ouAEbO96g8wxYUungREwdoIduNiOAGIhQyDdnZpjscyzBvPXYxP2=
+nMi9qyKKMbNwYrBkFMK21rFbA5K1AoTIH-2B9XrJ6vrW-2BRb-2Bn5wqQuIhMwfJLcSAUwStjxN=
+s4gdf-2FvE3BL7e-2FMm0f0bychadXU132yiG-2Bsc8O3iE9KIdmhuwOTc-2B5sArBq5xOKnzd5=
+5vy3glX24Qe27BbxidCIdfqhebVW2FIjz3LpWf-2FAeIcvlC-2FEBwoBJ-2B4YffKRly3kWo-2B=
+tgQoJg45JMtRiAU-3D"><span style=3D"font-size: 12px">Open this email in a we=
+b browser.</span></a></div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><div data-role=3D"module-unsubscribe" class=3D"module" role=3D"mo=
+dule" data-type=3D"unsubscribe" style=3D"color:#444444; font-size:12px; lin=
+e-height:20px; padding:16px 16px 16px 16px; text-align:Center;" data-muid=
+=3D"4e838cf3-9892-4a6d-94d6-170e474d21e5"><div class=3D"Unsubscribe--addres=
+sLine"><p class=3D"Unsubscribe--senderName" style=3D"font-size:12px; line-h=
+eight:20px;">GitHub Education</p><p style=3D"font-size:12px; line-height:20=
+px;"><span class=3D"Unsubscribe--senderAddress">88 Colin P Kelly Jr</span>,=
+ <span class=3D"Unsubscribe--senderCity">San Francisco</span>, <span class=
+=3D"Unsubscribe--senderState">CA</span> <span class=3D"Unsubscribe--senderZ=
+ip">94107</span></p></div><p style=3D"font-size:12px; line-height:20px;"><a=
+ class=3D"Unsubscribe--unsubscribeLink" href=3D"https://mailing.github.com/=
+wf/unsubscribe?upn=3Du001.Ee8VvrA6tfmzNDWChM5C8SKvgqLD0rqjKbwLddWAmtVHTRqjX=
+rQXOxjrcLr6ABC1bf3-2BWaLHXRg6-2BvLiwRhG-2BaN0jkqZ1o-2FbIKclAPw3J9qtYg4nGcqx=
+-2FLwQGRuMBoSnBBFMvfUR7ouNbpHhUU8LdgfsZmfs7OVdKU3Ox-2BMJODBC6g5FVv2EzATa4-2=
+BLuIbqRGctEyXizRq-2B-2BT6EA3CuFdhUVlYYnSHCcwo9NdJPPZCuDdeU-2F8NVIuolz2D7Ag6=
+h6RmiYD8fB0rVWOOduo1gm1Jp-2Bal5gSqMOyhJpf2QAIVGclnLH3YxahxZN2v5ki3Bs4DCn0-2=
+BmQzBzOH1D3cESSsOzFJLFZwzxUY03VVEql9kKXVRVkkypUc0JqX89J3gtLzU52B9xX4ya5NjNW=
+lXLp-2FRZmg5QzpwlL-2BZmzzDxUqICC9IIyASovx1JgL3I1aHgifabbU-2FZ5fPtlV-2FEcAoq=
+U0MgiKaVT5Y1j3g5B1TJze8kuFMgzoLsc2yJb9VP0fjL-2FNDWG9YQrTGmS0CSDA87nOUrvwRsH=
+R3AjdW-2BpdjayZ39ONP57EDraWQPwtR2cGodxg7gzPFbGNvSU81VH1B913m5KdhUsZu38Jgdwj=
+xvVxZBUAuk91A3c6PFU7p3fkAWhakKc6whaDUrt2LG5DTIrzo3poOjOP2A5RtE-2FPWJrGZi4x7=
+NzN0lNIrm3ceN5gVhGH4InzGZYvLg0AsoBnQW7TRhUzQuMTbhFLsnnEwvMcrTrgz4CMi7Gulyw5=
+RmX86rxSWaQ9Nneu1N7C7QoKSOWowjOZY5jValApGXYRUbSVVzZoLh-2BneIsvlpJ109LkIMVcY=
+XgMHW1HIBlwoGHebw7kOiCC2xbTQfmu-2BC9FaNO5cMf2ndRpyIZu9FR3oAoIL-2BelpoDjwzi5=
+0k6lqS0p8K6l4b99wsiqLDlWkFrJKYaK1Ka9vU3YySAzK2WCtaP2cTbuIiV1K55VrNDA0nSuXSp=
+Y2Jl7GrUAXwxz0YUUyVRjn4-3D" target=3D"_blank" style=3D"">Unsubscribe</a></p=
+></div></td>
+                                      </tr>
+                                    </table>
+                                    <!--[if mso]>
+                                  </td>
+                                </tr>
+                              </table>
+                            </center>
+                            <![endif]-->
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </center>
+    <img src=3D"https://mailing.github.com/wf/open?upn=3Du001.Ee8VvrA6tfmzN=
+DWChM5C8SKvgqLD0rqjKbwLddWAmtVHTRqjXrQXOxjrcLr6ABC1bf3-2BWaLHXRg6-2BvLiwRhG=
+-2BaN0jkqZ1o-2FbIKclAPw3J9qtYg4nGcqx-2FLwQGRuMBoSnBBFMvfUR7ouNbpHhUU8LdgfsZ=
+mfs7OVdKU3Ox-2BMJODBC6g5FVv2EzATa4-2BLuIbqRGctEyXizRq-2B-2BT6EA3CuFdhUVlYYn=
+SHCcwo9NdJPPZCuDdeU-2F8NVIuolz2D7Ag6h6RmiYD8fB0rVWOOduo1gm1Jp-2Bal5gSqMOyhJ=
+pf2QAIVGclnLH3YxahxZN2v5ki3Bs4DCn0-2BmQzBzOH1D3cESSsOzFJLFZwzxUY03VVEql9kKX=
+VRVkkypUc0JqX89J3gtLzU52B9xX4ya5NjNWlXLp-2FRZmg5QzpwlL-2BZmzzDxUqICC9IIyASo=
+vx1JgL3I1aHgifabbU-2FZ5fPtlV-2FEcAoqU0MgiKaVT5Y1j3g5B1TJze8kuFMgzoLsc2yJb9V=
+P0fjL-2FNDWG9YQrTGmS0CSDA87nOUrvwRsHR3AjdW-2BpdjayZ39ONP57EDraWQPwtR2cGodxg=
+7gzPFbGNvSU81VH1B913m5KdhUsZu38JgdwjxvVxZBUAuk91A3c6PFU7p3fkAWhakKc6whaDUrt=
+2LG5DTIrzo3poOjOP2A5RtE-2FPWJrGZi4x7NzN0lNIrm3ceN5gVhGH4InzGZYvLg0AsoBnQW7T=
+RhUzQuMTbhFLsnnEwvMcrTrgz4CMi7Gulyw5RmX86rxSWaQ9Nneu1N7C7QoKSOWowjOZY5jValA=
+pGXYRUbSVVzZoLh-2BneIsvlpJ109LkIMVcYXgMHW1HIBlwoGHebw7kMG3HkdwH9WIZMof7zWbX=
+oJIbwjeAcltFs0E-2BpnWIGTl-2FhJnDe7MQrIGG0tLoxBND5xx9ijrVWSXeuY7-2Bc0t014awN=
+nrVNNOa2Fhqo-2FmH8bDdHGvI-2FTOhWqgLUezU-2FxsWcUZh4RRT-2FpptZYLCiI2ows-3D" a=
+lt=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"height:1px !importan=
+t;width:1px !important;border-width:0 !important;margin-top:0 !important;ma=
+rgin-bottom:0 !important;margin-right:0 !important;margin-left:0 !important=
+;padding-top:0 !important;padding-bottom:0 !important;padding-right:0 !impo=
+rtant;padding-left:0 !important;"/></body>
+  </html>
+--ad65450632a70e3bfb8d59478d770445c16993b462ab2f1cf27431cde8f2--

@@ -1,0 +1,117 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b5b0:0:b0:2fb:4c9b:a38b with SMTP id f16csp1163188ljn;
+        Thu, 28 Nov 2024 03:21:49 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHNUUadHKttdhZ0qB89r0PymlOf2rL4HPvTJsPK7eVRSN6hq33VgExCvG2hNhmvs0t1EhiA
+X-Received: by 2002:a05:600c:19ce:b0:42c:ba83:3f08 with SMTP id 5b1f17b1804b1-434a9db9e38mr24315285e9.2.1732792909265;
+        Thu, 28 Nov 2024 03:21:49 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1732792909; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Mkc0DCY2j6I3loPBR+MHwi38zXvAlGDJk50pLeEaJTnCqY8l/dWHKTrDHyP1FIT9PE
+         0m4WY4QKhkUBAJDdgdFSJrvuSZIHFW21UlPfRdtROlMGQND1bbFTq9ts9plUSvbN7HZ8
+         zrAwlqm2JZNn9PwL4WqDekdCk4sf5Vx4tJrpTT9IlItVjAvBYwp+PkbRe80vvHLbsPfp
+         ZeTqczM8ywBso37p+6YJZ1zPo+80pJjKbe2hxuxu8GhzTeGV9CeFRUB9NwOoQt1HRKqz
+         9/7HiJHbSHFPtLReF/bxk0WyLeq+EGUDuA3UH3/DK4FbawsV/dbunSOoIQKt2oeN7kFC
+         W5ww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:message-id:subject:reply-to:from:to:date:dkim-filter;
+        bh=wfRJMB7+LDkIQNTIdCYwvwnI7aIkD2DvcQlkzxBN0Rk=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=BbK+lD/TWCiKJVUvzytcT/qfPip3UsZOY4p6Bqvl/Lqn+SCbMm4kQl/O4mTYjbbdG6
+         sNVay5Jkk1JSBI5A7KCs75UTsW4LKMm0Nut/yQMAupV/eFfQ7diRIWyxKe23AwK4puGL
+         p9M/Km9/sP32YQMEX95QRvxcq+GPeUvCIVkALIQD7wzLlr9SGU/vHvEIMRf8K712P329
+         tAfp2jfkoM8jSLtbo7oSad8pEucjkyTqmo3U2y1u0Ef3Zi2MHlz67mnU895247KulZqw
+         byT8M0iT3iLkbmVq0KNof1ficIdrKMCRbubdp3XCKzTR2Toza9FgIKqP8t0EaxPrM8Ne
+         3oTA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-4e230ddcc09si720206173.39.2024.11.28.03.21.48
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Nov 2024 03:21:49 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 4ASBLkJQ2437807
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Thu, 28 Nov 2024 12:21:46 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 4ASBLkJQ2437807
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 4ASBLkqE030074
+	for <luca.barra@edu.unito.it>; Thu, 28 Nov 2024 12:21:46 +0100
+Date: Thu, 28 Nov 2024 12:21:46 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Meo Rosa (da informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: New message from Meo Rosa
+Message-ID: <6748524a05b9d7.69932313@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:message/lib.php:373
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_3t0OHeSI60oTw5MJXVC6QUrVxZx6EqvKE3DbxCCjgA"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 4ASBLkJQ2437807
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_3t0OHeSI60oTw5MJXVC6QUrVxZx6EqvKE3DbxCCjgA
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+Cari studenti iscritti a corso di Apprendimento Automatico,
+domani, 29 Novembre 2024, aderir=C3=B2 allo sciopero generale dei lavorator=
+i
+indetto anche per i lavoratori del settore della conoscenza.
+Queste le richieste:
+https://www.flcgil.it/attualita/legge-di-bilancio-2025-gli-emendamenti-prop=
+osti-dalla-flc-cgil-per-l-universita-e-la-ricerca.flc
+
+A Torino, la mobilitazione sar=C3=A0 con il concentramento alle ore 9:00 in
+Piazza XVIII Dicembre e il corteo sar=C3=A0 fino a Piazza Castello.
+
+Anche il prof. Esposito aderisce allo sciopero, per cui recupereremo la
+lezione persa.
+A presto!
+Rosa Meo
+
+---------------------------------------------------------------------
+This is a copy of a message sent to you on the site informatica. Go to
+https://informatica.i-learn.unito.it/message/index.php?id=3D1592 [1] to
+reply.
+
+Links:
+------
+[1] https://informatica.i-learn.unito.it/message/index.php?id=3D1592
+
+--b1_3t0OHeSI60oTw5MJXVC6QUrVxZx6EqvKE3DbxCCjgA
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"text_to_html"><p>Cari studenti iscritti a corso di Apprendime=
+nto Automatico,<br />=0Adomani, 29 Novembre 2024, aderir=C3=B2 allo scioper=
+o generale dei lavoratori indetto anche per i lavoratori del settore della =
+conoscenza.<br />=0AQueste le richieste:<br />=0Ahttps://www.flcgil.it/attu=
+alita/legge-di-bilancio-2025-gli-emendamenti-proposti-dalla-flc-cgil-per-l-=
+universita-e-la-ricerca.flc<br />=0A<br />=0AA Torino, la mobilitazione sar=
+=C3=A0 con il concentramento alle ore 9:00 in <br />=0APiazza XVIII Dicembr=
+e e il corteo sar=C3=A0 fino a Piazza Castello.<br />=0A<br />=0AAnche il p=
+rof. Esposito aderisce allo sciopero, per cui recupereremo la lezione persa=
+.<br />=0AA presto!<br />=0ARosa Meo </p> <br />=0A------------------------=
+---------------------------------------------<br />=0AThis is a copy of a m=
+essage sent to you on the site informatica. Go to <a href=3D"https://inform=
+atica.i-learn.unito.it/message/index.php?id=3D1592">https://informatica.i-l=
+earn.unito.it/message/index.php?id=3D1592</a> to reply.</div>
+
+--b1_3t0OHeSI60oTw5MJXVC6QUrVxZx6EqvKE3DbxCCjgA--
+

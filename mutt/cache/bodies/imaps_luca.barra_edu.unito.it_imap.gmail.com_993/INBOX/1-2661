@@ -1,0 +1,1243 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:7e05:0:b0:32a:7f76:203e with SMTP id z5csp1437571ljc;
+        Mon, 16 Jun 2025 07:28:48 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH/oy8pBWcmeKzA+2aqWC32XMQOEKI3S1FvftRzYFIDhngbwKdQlwwVunduHTe271hVhU+R
+X-Received: by 2002:a05:6000:3103:b0:3a4:e667:9226 with SMTP id ffacd0b85a97d-3a572e7a2afmr2537430f8f.10.1750084127707;
+        Mon, 16 Jun 2025 07:28:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1750084127; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Fd6JIM61FYPPoGSnBGG6nbXd4IIgb+EhaO/8ZrAVJ3FUwYV1g9FBAHy7H2J9dloIXg
+         V7QjgLllc1bRqQ/zHG8qB20rxVI9d1N2YIVKTCmGI2+5QAFjUftdMd9azdNquf5EB/Gm
+         CH6ezX++9a574w7bJW+bNnbVg3ELVNP4PoHFNn0MgxNPzRSRHavC+O/dhszFtVMRuMUw
+         pikTsiS3XrVyMaLUSr16MwCbYaZ080WUV0JtG6G9R02skP9z8I/iRxi+BE0rxE2YN6Qh
+         Uyqa0OAj3ilTRYKnibbYBiR8GhFeeXYWsJQbO42j8VYfshPi79KbPY5TQtKiHLW5/hWj
+         jlIA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:list-unsubscribe-post:list-unsubscribe:reply-to:subject
+         :message-id:mime-version:from:date:dkim-signature;
+        bh=ze1B4mDRXkIk4ccUZjJJpE8Xa4WjORiEfjrvCNszDyo=;
+        fh=IxM04YauqXzCozmF/ngeXvaWuWeW7uONbHgj9jmZsgE=;
+        b=EQm5UZKttEjhBDkylV0v4WD6I2Cja7BakDlsZzNzF2GYFNOpSuWjRnjIUS8hECxUTs
+         fcf+aR2+ixoY6wXuM8kFlIZgtRfwibwNq5FuKh2/zdrCRHda6iq12uZVWJkTc2Pylp2N
+         wcceMB92GMugAGRj35gqy6MmuHsOJ9y2tvHnPwpSDXy4T92EVvAGSAfmYU+5DYOZUOu0
+         CrfSTqu+tTWca/WSyB9lMv/aovizGW90QmzWor/D6Wo7+m4eJOLnaNroFzrMk5stFHA3
+         JBZbVQsxWTsbmPeJf5Ct0/7OoWLBV6n50gfYJKSdinwJFmHjQKJVqpxxwAoub/UaUC1+
+         1muQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@github.com header.s=smtpapi header.b=YMcmuSnf;
+       spf=pass (google.com: domain of bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com designates 167.89.101.201 as permitted sender) smtp.mailfrom="bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Return-Path: <bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com>
+Received: from o10.sgmail.github.com (o10.sgmail.github.com. [167.89.101.201])
+        by mx.google.com with ESMTPS id 6a1803df08f44-6fb4c1ea991si58502086d6.478.2025.06.16.07.28.46
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Jun 2025 07:28:47 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com designates 167.89.101.201 as permitted sender) client-ip=167.89.101.201;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@github.com header.s=smtpapi header.b=YMcmuSnf;
+       spf=pass (google.com: domain of bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com designates 167.89.101.201 as permitted sender) smtp.mailfrom="bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	h=content-type:from:mime-version:subject:reply-to:list-unsubscribe:
+	list-unsubscribe-post:to:cc:content-type:from:subject:to;
+	s=smtpapi; bh=ze1B4mDRXkIk4ccUZjJJpE8Xa4WjORiEfjrvCNszDyo=;
+	b=YMcmuSnfs1n/u72xXKaUPpEBi4Jx+oaA2CdZ8BvDCIewSMD94cSbG2LCRd9FtfrvjtVs
+	vmB+vJX8GfaWtDbOj4o/2dyXxdK2OHy22YJ36+lcXEhaAtJhKpUZAaejnQYlS3P6wlOWzB
+	gqnAVCnFNbQi+LRHSFKXKNu+KdajbVAYI=
+Received: by recvd-canary-7fc4469768-7gzgz with SMTP id recvd-canary-7fc4469768-7gzgz-1-68502A1D-18
+	2025-06-16 14:28:45.241932718 +0000 UTC m=+1092003.654194123
+Received: from NDY3MDE5MjI (unknown)
+	by geopod-ismtpd-1 (SG) with HTTP
+	id W4UD3lb0SnCxpNLH3FeyrA
+	Mon, 16 Jun 2025 14:28:45.225 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=222d866eaa399704897f359f0a0933ec1699cb84b9f51164058e568fbafc
+Date: Mon, 16 Jun 2025 14:28:45 +0000 (UTC)
+From: GitHub Education <githubeducation@github.com>
+Mime-Version: 1.0
+Message-ID: <W4UD3lb0SnCxpNLH3FeyrA@geopod-ismtpd-1>
+Subject: Altair-39, Code for prizes =?UTF-8?B?4piA77iP?=
+Reply-To: githubeducation@github.com
+List-Unsubscribe: 
+ =?us-ascii?Q?=3Chttps=3A=2F=2Fmailing=2Egithub=2Ecom=2Flu=2Funsubscribe=3Foc=3Du001=2Eor7q--1Ll4a?=
+ =?us-ascii?Q?IdZchoIagBoikICI9UYP7-OIYHjWc8OiS8-A52w?=
+ =?us-ascii?Q?d83kxwIRhFkwaTwkTamEYwTVWgFber=5F2ubyL-cT?=
+ =?us-ascii?Q?HECpOIewEvWeq43S-p9Wp0p8PQe8H0SitgCvqVZ?=
+ =?us-ascii?Q?wzqc87ZSZzdQl8vQVPTn1InH9XTLAnGabQYrPvC?=
+ =?us-ascii?Q?c75-CHsKOgoJLqUm8egFo49vZU3RQHeNjiJw=5FGp?=
+ =?us-ascii?Q?MNYbTT=5Fpn-AgZeW88-dnloMbBlI16UQ-MZHqXgb?=
+ =?us-ascii?Q?W-=5FCLONCNcZIkYUR-BcN8=5FLmrwfh1Jor6RRuAMn?=
+ =?us-ascii?Q?GaoHMQlE=5FnsW5=5F1vlujtjLtZSr59Wv8Lk=5F3crMI?=
+ =?us-ascii?Q?nOUWTSDQYizvMAfAj7CHQvoqXoD46FURgwCtbRb?=
+ =?us-ascii?Q?Az7CBcCs=5FZcCNpg-MZTWgkOJD2I927wx9a-oPRo?=
+ =?us-ascii?Q?astsDgL8-TLk7Wfm90oJW4q7DNN0Rn7H8udhWGk?=
+ =?us-ascii?Q?eUKMVCv0ubwVYhmxUC0fdgPmEwEmfbfhM42B1TS?=
+ =?us-ascii?Q?RrQ5gP9ro414fMfGVZxD-rFI2qISr6W1YsCsNwK?=
+ =?us-ascii?Q?6o4RFEHAnEpFlNn-vytWFOv6kOCO-y09U9hemX1?=
+ =?us-ascii?Q?VZJIOZyI2eNsJdVN9CT70hbzsxppM8YQ=5F7QxHRV?=
+ =?us-ascii?Q?mTlow=5FGJoNL1awXU-oZH9jDzf8LqRFMJWZv3Z4p?=
+ =?us-ascii?Q?5H6ZgsE9zkAV=5FHtHAYizydIunJVKACZY9urJTEj?=
+ =?us-ascii?Q?v-wQJgUHKgXlzkWgArztBGZJ8Jh3YhuFMvix0nK?=
+ =?us-ascii?Q?IcNCJJbpO8EQB96CAjcirNdOjQ1o2nNHZQKkcf7?=
+ =?us-ascii?Q?vQUp87nL=5FQLZAH3FWOlf6gS=5FrnOBy7jJ8f=5FCEcJ?=
+ =?us-ascii?Q?atCWnl7I8qxvoCAHmzXeRY2kybrRZpc2TJmIZpR?=
+ =?us-ascii?Q?IKjNXJAZQ-BdWlEV=5FOgpI1L6UFNf49Idsy2FJrN?=
+ =?us-ascii?Q?9N3lzoidH7QnO10r6BClVcwhwZWi-TQG8W6Dxu9?=
+ =?us-ascii?Q?Zmqu1wicgaWmOMH-QSo6Gfqm0QM0ddc6qvw9cRn?=
+ =?us-ascii?Q?RF7huyEXTNWmgmLY5lK6hWP9WaoOrmlbf7Ewtsa?=
+ =?us-ascii?Q?PeRt6BZPica7=5FlvmmrZZDo5Ol7ONZcUZt=5FZVsOr?=
+ =?us-ascii?Q?FA06qHzIq5iId5y929r2g27tV2aseuxuOzRfCta?=
+ =?us-ascii?Q?d0JeKfYizduqoqnOLj85lZIVQsIoMlWe7aa1ma6?=
+ =?us-ascii?Q?wIJXfENe1qUHwaFOmWk8BNotiisfr25rhgik1Wg?=
+ =?us-ascii?Q?qXNtpPn14gYGgnZnaN9Y6mtZNvvw=5Fh1D=5FBTuVs6?=
+ =?us-ascii?Q?e047LCzkNrEc7GdxRuIy5NLaGdeDIvfh7--Grs8?=
+ =?us-ascii?Q?PXSl8=5FQRcwARqZEF2taqXsCVzYxw3Xffu7Ggd-y?=
+ =?us-ascii?Q?hGG1ThbX1LGR1wnyOmtbWlg0mxkM-mugbwMLU-C?=
+ =?us-ascii?Q?xhCcjTAcPw8Abok90sT7eZS1BeFS=5Fe6gPH5W=5FMg?=
+ =?us-ascii?Q?S2E4UIoIZO=5FVGs2oi=5F0Q=5FQIabIxgwX7fElufpz7?=
+ =?us-ascii?Q?tSzOPEZOPHbfL4Bg2ajkWQ4FVku423g6ER5m2Jh?=
+ =?us-ascii?Q?Eu5r73VJ7QRn6bw=3E=2C=3Cmailto=3Aunsubscribe=40sg?=
+ =?us-ascii?Q?mail=2Egithub=2Ecom=3Fsubject=3Dhttps=3A=2F=2Fmailing?=
+ =?us-ascii?Q?=2Egithub=2Ecom=2Fmt=2Fu=2Fu001=2EralsfbMxOiOxCwaFz?=
+ =?us-ascii?Q?XWGEQG67NZAjfaq4SVdguUnxzg=2F4he=2Fu001=2EZl2?=
+ =?us-ascii?Q?-be8K=2Fu001=2ES8HYypSD1x7cZbKSqbc4QsHlrkIL?=
+ =?us-ascii?Q?82FpifvXOrlvs2PUIppmG0vrupfc3-2B4QeW-2F?=
+ =?us-ascii?Q?M3OgDdDkzeqGRSHHAjw-2F8LVhXT8jB2G5yJ3Y1?=
+ =?us-ascii?Q?j0bcl1hLpwN6ty1KEVRQO2i9nW54Bg-2Bk1kf8M?=
+ =?us-ascii?Q?Pd6c2z5gsMBaupxdMZpyXuwTkPcI0HEzc1X-2BG?=
+ =?us-ascii?Q?O9vH-2B4SEFRpXmWoIyczFWr1z43AdyUur5RZ-2?=
+ =?us-ascii?Q?BhRUihWNG6In71vT4WduwAuHqosuuse4hC1hhGV?=
+ =?us-ascii?Q?Dehz7FuTZmvOwwv4vnaaJp-2Frx-2B-2Fz5fo0t?=
+ =?us-ascii?Q?nCn-2F2hwsXb9eMHcw1BUusgMn8GAP-2F6TRnKT?=
+ =?us-ascii?Q?w-2FxV05eEooFUkREn6PA3VJHSZcNSc7sG8QjsO?=
+ =?us-ascii?Q?BZ-2B6FdGmNKG3T-2BthIKI4LS-2FgGCX5aaOGy?=
+ =?us-ascii?Q?03v0MLkp2abt1OgLpbsTza4XsbZNJ37JQgWf5Ci?=
+ =?us-ascii?Q?oSr8OWjH2-2Bu6IPkuZLwKvDgDItyoWUqdm3UJG?=
+ =?us-ascii?Q?pj8rTDREtvwoih-2F-2FW0I9130Z8ELb4XMSyg3?=
+ =?us-ascii?Q?-2B-2F2MIoITF5d08B6aXw1ys-2FXR9EGZSkn6w?=
+ =?us-ascii?Q?3DAHRBi-2F9B16B4Iq12D87ISdNxOBPlKlr0wUO?=
+ =?us-ascii?Q?uEumw0xD4Ki9QcTuXjINWdReRzQVwi-2FLcXm0U?=
+ =?us-ascii?Q?vLxzY0PU6mr6ZXZXwR08nnyN2t9k4iXZhzL69aQ?=
+ =?us-ascii?Q?EOGVIMnjrPiINGt3Qz9MoVHx6gIOGm9YPnSoNnd?=
+ =?us-ascii?Q?90FK-2BTBirl4zlZtxtsw04YV3iUK8HcJLrthNV?=
+ =?us-ascii?Q?rkZVBXG0fkN5zqVG0EMZ7IzLs-2FGarURO3b7on?=
+ =?us-ascii?Q?rp5yURoOun9MrmUdYrSXiuZmfoj26jQvGjlaq5x?=
+ =?us-ascii?Q?7WxiGmrhWAUl2RPOrAR3kLn5x39jCvlet5R2I9u?=
+ =?us-ascii?Q?h33fqd2a91UvYJrYpVQwy-2F1-2BFCxdTGN4ZBX?=
+ =?us-ascii?Q?zKcgVQ2bVfN9dTiqEn3HZHAxYZ4drkvgjKKHVw9?=
+ =?us-ascii?Q?-2FJo20bIEYJAYDRHBkV6ur7IeWaZXJ-2BU-3D=2F?=
+ =?us-ascii?Q?u001=2EorlZcTUW=3E?=
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-SG-EID: 
+ =?us-ascii?Q?u001=2ElNcmDc+hNZCEz2pmfZvb7Xgb9JADEib7wUaiAfZvyvpnXoHDGKB+UZmxR?=
+ =?us-ascii?Q?cbcA6LEkHq3NVfZpL5Oyz47TDCdIfDZHzoYXGgj?=
+ =?us-ascii?Q?Jmhh5rnIlOTaqB1yHG7Qe8fm2LGl32CcxynAAPx?=
+ =?us-ascii?Q?0L41BHXfpA2AWfKhsWRiE3iSiUCoihklw4zexA7?=
+ =?us-ascii?Q?NXJG+1NWqLU4yFrLCu6TZahyuP=2FUPdjfWjbxWir?=
+ =?us-ascii?Q?flAidjrS5yHhK2l+9aOiMnuPz6pqlXRM3bn7Bi7?=
+ =?us-ascii?Q?jSgztyk9sVkU3FBbBOW6KhYqdw=3D=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2EXwhBPNhCejkv4+fVosb2QVfR16Qxp9CrA7PjDe5zzeI=2F0IZCBsPXtgHbA?=
+ =?us-ascii?Q?oGIj+RskLxA4N2rJjSWrHfgX07tLOm0v5BUQcd6?=
+ =?us-ascii?Q?w3knjorGi7Hwu0WCOA5AFSvy0=2FwlG32=2F=2FBRN7Pp?=
+ =?us-ascii?Q?vbdgfwd8vLzziareEWrZkZs72asWxAjEZkoNqgf?=
+ =?us-ascii?Q?Ns8FbHL7gDLHmnIwdnePlCzupvOnm2Ij1ZGzZjB?=
+ =?us-ascii?Q?CyPNu4phkvecdv478ze+H1wqrXgH1sTWp1q1ocy?=
+ =?us-ascii?Q?mZw060jc3GsaWmzUS+NIefGX69zAW0WtyiQqLjj?=
+ =?us-ascii?Q?bPpgcESdtm838hFdX=2FEo18=2FNTSG5G3CYiuzfMvE?=
+ =?us-ascii?Q?gc7Xnvp=2FkvOnjOBGXtR4Y9SEc93QfdKdcEa+bkR?=
+ =?us-ascii?Q?dKJzSyL8gze2FyS=2FAsjvg0JCEEKHDlMHHtPkRNz?=
+ =?us-ascii?Q?c1JFePgdfTA=2FHRw4uBt5dXb6Ut3eMYjpx+je91C?=
+ =?us-ascii?Q?CAXNxvA=2FtXXgbGINcvXOu7bkeQS088SlgqNW8W8?=
+ =?us-ascii?Q?MRfxDJ4F4NUwc=2Ff0c0KVTXXGFidVehJMxW6B8C7?=
+ =?us-ascii?Q?rmrzCoegN1fJZqR2fXARh4pOtuWJrcZQ5d3eLPA?=
+ =?us-ascii?Q?eGDqqj6QwmV0JLYjWpP6fClvte7GvQEDFbMv4lk?=
+ =?us-ascii?Q?yx2N9eYGSoP1sPwJGjOVX9j2V2XpOZGUvaJ317B?=
+ =?us-ascii?Q?sQkhLWRTRfMIUpJvHloVC367Mybw3NmGT6=2Fx9XQ?=
+ =?us-ascii?Q?c7jizFQ4vK=2FnjZZDubo47yvLG+6Ny29p5dPGGyB?=
+ =?us-ascii?Q?g1MMkw=3D=3D?=
+To: luca.barra@edu.unito.it
+X-Entity-ID: u001.B+egv976VsnFPzNwqP101Q==
+
+--222d866eaa399704897f359f0a0933ec1699cb84b9f51164058e568fbafc
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+
+-=3D=E2=98=B0(=E2=8A=83=CA=98=C9=9C=CA=98)=E3=81=A4=E2=9C=A8=F0=9F=92=BB=E2=
+=9C=A8 Free iPads, Laptops, Welders galore for teenage coders!! ( https://h=
+ack.club/som25-gh )
+
+GitHub is joining Hack Club ( https://hackclub.com ) for Summer of Making 2=
+025 ( https://hack.club/som25-gh ) !
+
+C o d e this summer to earn incredible prizes: Framework Laptops , Raspberr=
+y Pis , Cricut Cutters , Flipper Zeros , Bambu 3D Printers , and so much mo=
+re.
+
+Here's how it works:
+
+* Code on personal projects to earn shells
+* Spend your shells on prizes from Pis to Pinecils
+* Repeat until August 31st
+
+Sign Up & Get Free Stickers ( https://hack.club/som25-gh )
+
+Open to teenagers 18 and under.
+Age 19+? Earn the same prizes by getting teens to sign up ( https://hack.cl=
+ub/som25-referral-ghedu ).
+
+( https://hack.club/som25-gh )
+
+----------------------
+Why Are We Doing This?
+----------------------
+
+Because we love seeing teenagers build awesome projects =F0=9F=AB=B6
+
+GitHub and Hack Club believe that the best way to grow as a maker is to bui=
+ld things you're proud of.
+
+It's just like Hack Club High Seas ( https://highseas.hackclub.com ) and Ha=
+ck Club Arcade ( https://hackclub.com/arcade ) where high schoolers shipped=
+ 9,214 projects and earned $600,000 USD in prizes (=E2=97=9E=CA=98=E1=97=9D=
+=CA=98=E2=97=9F ')
+
+5,400 people received at least 1 package in Hack Club High Seas ( https://h=
+ighseas.hackclub.com ) this winter!
+
+Age 19 or older? You can earn prizes too.
+-----------------------------------------
+
+Earn the same prizes by getting teens age 18 and under to sign up. See our =
+guide here. ( https://hack.club/som25-referral-ghedu )
+
+( https://github.com/ading2210/doompdf )
+
+DoomPDF ( https://github.com/ading2210/doompdf ) by @ading2210 ( https://gi=
+thub.com/ading2210 ) for High Seas
+
+( https://www.instagram.com/p/DK2EACRNUbi/?hl=3Den )
+
+@tobyab ( https://github.com/tobyab ) , 16 y/o Hack Clubber, interviewed by=
+ UK Prime Minister. ( https://www.instagram.com/p/DK2EACRNUbi/?hl=3Den )
+
+We can't wait to see what you make this summer!
+The GitHub Education Team
+
+( https://github.com/education )
+
+( https://www.instagram.com/githubeducation/ ) ( https://www.facebook.com/G=
+itHubEducation/ ) ( https://www.threads.com/@githubeducation ) ( https://x.=
+com/githubeducation ) ( https://bsky.app/profile/githubeducation.bsky.socia=
+l ) ( https://www.linkedin.com/showcase/github-education/ ) ( https://www.y=
+outube.com/@githubeducation4427 ) ( https://www.twitch.tv/githubeducation )
+
+Open this email in a web browser. ( https://cdn.mc-weblink.sg-mktg.com/webl=
+ink/MTc1MDA4NDEyNXxpWFJJR3EwZ3VrMXRwbGFjV1pHdGZ1eVV5VmtUSFZwSDJFUjVaRGtEQjd=
+uWlRSbmNLM0w2cHVaTzIwbV9qNVkzRE5wazRWQlFNa2ZIaURKamZfTGlvNk9xT3ZMazVZWnVKal=
+R1NWxpMEI5VHBhZC1WN3JiWVlySjNRX0RuclRqSm1UdkczUkRSWGQ1YWpJajFFcWhkSU1aX3R0c=
+XFjMGJQTUJ0ODQyNW5BZWZRLXMzLU5JSTMyRXV4Rzc3MFloeTRfd3lyWVJHUUxSZ1Y0aVc3YVRa=
+ZVp4VEFwTk9QTjFQUVU3MUlIaGNGN1pLc2Y5XzA4MjJrYk91dUpJWlBYOExWWTdZRlBDNFJEaGZ=
+EVHN6X2UzeHd3Y1h6aG9mX1J1eWlxWXFzenNmRG50T3dYQ2xiOFNVQTdWQkVJMERaTmNjUThpRH=
+BfQWU4YWRFZE9VS1JHRDcxbzcxRkFLaUxrQT09fKsMoFdX_XV4bl-e2oEwF6NI2b3sayfglEMUB=
+rIznD9D )
+
+Unsubscribe ( https://mailing.github.com/wf/unsubscribe?upn=3Du001.Ee8VvrA6=
+tfmzNDWChM5C8SKvgqLD0rqjKbwLddWAmtVHTRqjXrQXOxjrcLr6ABC1bf3-2BWaLHXRg6-2BvL=
+iwRhG-2BaN0jkqZ1o-2FbIKclAPw3J9qtYg4nGcqx-2FLwQGRuMBoSnBBFMvfUR7ouNbpHhUU8L=
+dgfsZmfs7OVdKU3Ox-2BMJODD7IAT8zZV920jC1tMvPLGCC6k1Z9TaWJDLKUBF9k4pM3DzG2vII=
+R0bhguCtGoz7D-2BQkGl1Qo8QWdq0-2BXJwLig8sWmIBEj791oMFzn-2BF3K8stYY14OVE2W3a7=
+YKUkIAvo6ochCTl-2BjWk5rpRf9napo-2F8po8lO37g8DEcpuVj4GS1-2B1cld0afpyLf6CpE56=
+JHe6k-2F6DBR3drFQRS59DibdqrmZW3rfPTe5XIkz7VWaiUo4yo9x-2FhV-2BBIUpCHusNAnOoD=
+j7hnz4X-2FtSa5azu4r4gxx8z5kEJHKE5CQAvhZ5WN-2FEzYldZxCE5MKWrJjj1ufaRA5iIBLod=
+987c-2B9nJGBQ2og87wHP4KVU8hyqwVtwZoCcCXSabRzIPKGOUHsMPwFCZXjYPQ74ADsz5lifNa=
+QP6mIoUdePQ59rCRn37-2FHf9TKV0w6QJcQriwBKBXu2811aYzmO6cVw2rR1CzO0HdMj76X8ZYY=
+A0K1L8yrEq9vzWuCZxg01BpfmItrCYfaPVfU2Dw8qPUIdO23tgj4KpCq83gVya0ngSOKH5GXk-2=
+FQhS3MNTKcU83239sdBwvlfZpvNbM6bJIG4i3LOOZpqocqMEncghWYKyl5Dkwfe0Fge42ZhTYpX=
+gjXUp9dZVv4e8kD2D5L4XV6sXuFj08igj5WClNAfWqW14JCvRYrib49LlfbQ0CPYWMVi8-2BRyw=
+hYZGNxUVRiEYSDeFmeXHVhnw6fiDlPje-2BVILNy6FD26cjX9KHqM1WDp9-2FjSEu9LTxgJd-2B=
+mg5w-3D )
+--222d866eaa399704897f359f0a0933ec1699cb84b9f51164058e568fbafc
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+<!DOCTYPE html>
+<html lang=3D"en" xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:sch=
+emas-microsoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office"=
+>
+<head>
+    <meta charset=3D"UTF-8">
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1.0, maximum-scale=3D1.0, user-scalable=3Dno">
+    <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+    <meta name=3D"color-scheme" content=3D"light dark">
+    <meta name=3D"supported-color-schemes" content=3D"light dark">
+    <title>Code for prizes - GitHub Education</title>
+   =20
+    <!--[if mso]>
+    <noscript>
+    <xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+    </xml>
+    </noscript>
+    <![endif]-->
+   =20
+    <!--[if mso]>
+    <style type=3D"text/css">
+        table { border-collapse: collapse !important; }
+    </style>
+    <![endif]-->
+   =20
+    <style type=3D"text/css">
+        /* Reset styles */
+        body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-=
+adjust: 100%; }
+        table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+        img { -ms-interpolation-mode: bicubic; border: 0; height: auto; lin=
+e-height: 100%; outline: none; text-decoration: none; }
+       =20
+        /* Remove default styling */
+        body { margin: 0; padding: 0; width: 100% !important; min-width: 10=
+0%; }
+       =20
+        /* Font import */
+        @import url('https://fonts.googleapis.com/css?family=3DInter:400,60=
+0');
+       =20
+        /* Base styles */
+        body {
+            font-family: Inter, ui-sans-serif, sans-serif;
+            font-size: 14px;
+            line-height: 21px;
+            color: #000000;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            min-width: 100%;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            word-wrap: break-word;
+            -webkit-font-smoothing: antialiased;
+        }
+       =20
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+       =20
+        h1, h2, h3 {
+            margin: 0;
+            padding: 0;
+            font-weight: 500;
+            word-wrap: break-word;
+        }
+       =20
+        h1 { font-size: 28px; line-height: 35px; }
+        h2 { font-size: 24px; line-height: 30px; }
+        h3 { font-size: 20px; line-height: 25px; }
+       =20
+        p {
+            word-wrap: break-word;
+        }
+       =20
+        /* Container styles */
+        .wrapper {
+            width: 100%;
+            table-layout: fixed;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            background-color: #f4f4f4;
+        }
+       =20
+        .main-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+       =20
+        .main-table {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+       =20
+        /* Button styles */
+        .button {
+            background-color: #f8e9d7;
+            border: 3px solid #a8956b;
+            border-radius: 4px;
+            color: #3a2f25;
+            display: inline-block;
+            font-size: 16px;
+            line-height: 16px;
+            padding: 12px 16px;
+            text-align: center;
+            text-decoration: none;
+        }
+       =20
+        /* Text styles */
+        .bold { font-weight: 600; }
+        .italic { font-style: italic; }
+        .underline { text-decoration: underline !important; }
+       =20
+        /* Color classes */
+        .color-green { color: #51A373; }
+        .color-blue { color: #42A5E7; }
+        .color-purple { color: #b05fb0; }
+        .color-orange { color: #cf8d37; }
+        .color-red { color: #E65A42; }
+        .color-pink { color: #e900e7; }
+       =20
+        /* Mobile styles */
+        @media only screen and (max-width: 600px) {
+            body { margin: 0 !important; padding: 0 !important; }
+            .wrapper { padding: 0 !important; }
+            .main-table {=20
+                width: 100% !important;=20
+                max-width: 100% !important;
+                margin: 0 !important;
+            }
+            td { padding-left: 10px !important; padding-right: 10px !import=
+ant; }
+            .content-padding { padding: 0 15px !important; }
+            .header-padding { padding: 15px !important; }
+            .footer-padding { padding: 30px 15px 15px 15px !important; }
+            .column {=20
+                width: 100% !important;=20
+                display: block !important;=20
+                padding: 0 !important;
+            }
+            .column td { padding: 10px 0 !important; }
+            .mobile-center { text-align: center !important; }
+            .mobile-padding { padding: 20px !important; }
+            img {=20
+                width: auto !important;=20
+                max-width: 100% !important;=20
+                height: auto !important;=20
+            }
+            .button {=20
+                font-size: 14px !important;
+                padding: 10px 14px !important;
+            }
+            .social-icons td { padding: 0 4px !important; }
+            .social-icons {=20
+                max-width: 280px !important;=20
+                margin: 0 auto !important;=20
+            }
+            h1 { font-size: 24px !important; line-height: 30px !important; =
+}
+            h2 { font-size: 20px !important; line-height: 26px !important; =
+}
+            h3 { font-size: 18px !important; line-height: 24px !important; =
+}
+            .project-showcase { width: 100% !important; }
+            .project-showcase td {=20
+                display: block !important;=20
+                width: 100% !important;=20
+                padding: 0 0 20px 0 !important;
+            }
+            .spacer { display: none !important; }
+        }
+       =20
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            body, .wrapper { background-color: #1a1a1a !important; }
+            .main-table, .main-container { background-color: #2a2a2a !impor=
+tant; }
+            td, span, p, div { color: #ffffff !important; }
+            .divider { border-color: #ffffff !important; }
+        }
+    </style>
+</head>
+<body style=3D"margin: 0; padding: 0; background-color: #f4f4f4;">
+    <!--[if mso]>
+    <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"100%" =
+style=3D"background-color: #f4f4f4;">
+    <tr><td>
+    <![endif]-->
+    <div class=3D"wrapper" style=3D"width: 100%; table-layout: fixed; backg=
+round-color: #f4f4f4; padding: 20px 10px;">
+        <div class=3D"main-container" style=3D"max-width: 600px; margin: 0 =
+auto; background-color: #ffffff;">
+            <table class=3D"main-table" cellpadding=3D"0" cellspacing=3D"0"=
+ border=3D"0" width=3D"100%" style=3D"max-width: 600px; margin: 0 auto; bac=
+kground-color: #ffffff;">
+            <!-- Preheader -->
+            <tr>
+                <td style=3D"display: none; font-size: 1px; color: #ffffff;=
+ line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: h=
+idden;">
+                    -=3D=E2=98=B0(=E2=8A=83=CA=98=C9=9C=CA=98)=E3=81=A4=E2=
+=9C=A8=F0=9F=92=BB=E2=9C=A8 Free iPads, Laptops, Welders galore for teenage=
+ coders!!
+                </td>
+            </tr>
+           =20
+            <!-- Header Image -->
+            <tr>
+                <td align=3D"center" class=3D"header-padding" style=3D"padd=
+ing: 20px;">
+                    <a href=3D"https://mailing.github.com/ls/click?upn=3Du0=
+01.bO3G-2FaeMIVe5lSdMnGODo8Mguz13CGiRp9kNlgtagWFA-2BGf6f3PC-2BFiGHaKcI531Al=
+k__1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZem=
+MOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZP=
+yLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0PocBgos4YlcHz3w-2FVnRNf-2BhiyBiNUhZ9oBnTvX=
+46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2B7OZvQKOG7Vix-2FDKAA0ClCCE28bM-2Fb7kI0F9u-=
+2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2FJwG7fNlWXfHkcprSs0ug-2BtiLTZoG0oj9IWSu7VG=
+YhrPPl2O1CzbQ2io8BOwJgotmISNCFo8MKC1k5DHG4neIgLedunB64WKOSsqdu8I-2BSpFSFDlS=
+jM0w5MKG3MllUA2jD47f2adDXlmL-2BKjHfEwmqCWzixkpHjeiscwTDO-2BQcoyg8-2BI5Axswl=
+Nyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rktmGz3veiSOYmyx-2FgWPQf0FWbW05wC5eXoH-2Fzsx=
+YdxEtOPQHqblai2X-2BaIvwMKHygSHIk7EP1PQGKLSxvccEnBARkSrLtPaCSy8rUyml-2BXtWZF=
+hSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ5PA7j-2BZQmoHBGZRWmuf7vb1q3WN-2FF9-2FWAIy8=
+z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY3EzdSAUGeyfUN0I-2BBI3R-2BjcCm28BmKrmU0M8f-=
+2B7B11HDCcaEt-2FOY74NEwb9-2Fa41pe9VZxsiJnhdmlxneX2pDkCQeEjI9H1CYbWn4txUgN22=
+6fQZK6904q4aeheoom1H-2BkNTcoXp6jsEtDdhvXsciNcMHiTwADhiFA18aZN74wd-2FW158tde=
+JmjlzhDfCf7GVg-3D-3D" target=3D"_blank">
+                        <img src=3D"https://d3b9kr64nievew.cloudfront.net/c=
+mbtoo5770jzczf0i7ke5fwax/cmbz4cbkx00tp3q0ikg8s50p5.png"=20
+                             alt=3D"Summer of Making 2025"=20
+                             width=3D"500"=20
+                             style=3D"display: block; width: 100%; max-widt=
+h: 500px; height: auto;">
+                    </a>
+                </td>
+            </tr>
+           =20
+            <!-- Main Content -->
+            <tr>
+                <td class=3D"content-padding" style=3D"padding: 0 20px;">
+                    <!-- Introduction -->
+                    <p style=3D"font-size: 14px; line-height: 21px; margin:=
+ 0 0 20px 0;">
+                        GitHub is joining <a href=3D"https://mailing.github=
+.com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODowZQAWspueFtllY2QTBfpdI-3D-0=
+cm_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZem=
+MOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZP=
+yLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0PocBgos4YlcHz3w-2FVnRNf-2BhiyBiNUhZ9oBnTvX=
+46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2B7OZvQKOG7Vix-2FDKAA0ClCCE28bM-2Fb7kI0F9u-=
+2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2FJwG7fNlWXfHkcprSs0ug-2BtiLTZoG0oj9IWSu7VG=
+YhrPPl2O1CzbQ2io8BOwJgotmISNCFo8MKC1k5DHG4neIgLedunB64WKOSsqdu8I-2BSpFSFDlS=
+jM0w5MKG3MllUA2jD47f2adDXlmL-2BKjHfEwmqCWzixkpHjeiscwTDO-2BQcoyg8-2BI5Axswl=
+Nyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rktmGz3veiSOYmyx-2FgWPQf0FWbW05wC5eXoH-2Fzsx=
+YdxEtOPQHqblai2X-2BaIvwMKHygSHIk7EP1PQGKLSxvccEnBARkSrLtPaCSy8rUyml-2BXtWZF=
+hSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ5PA7j-2BZQmoHBGZRWmuf7vb1q3WN-2FF9-2FWAIy8=
+z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY3EzdSAUGeyfUN0I-2BBI3R-2BjcCm28BmKrmU0M8f-=
+2B7B11WtXHmM-2Bd8lDuREiXELD5s7tNWSB2q8M5TAwRjUsYBkG7LsPHXmwosFEOi-2FwHwngbZ=
+jtAI4HrC4rA-2FLQ0AZP-2BYTZgFuSYLxrOYj-2B3D86kWGTDi7QfgjT83xUkyFB6ZbgdeZ-2F1=
+yh0PFHz2aRx2iETs9w-3D-3D" target=3D"_blank" style=3D"text-decoration: under=
+line;">Hack Club</a>=20
+                        for <a href=3D"https://mailing.github.com/ls/click?=
+upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo8Mguz13CGiRp9kNlgtagWFA-2BGf6f3PC-2BFiGHa=
+KcI531EWEX_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2n=
+cWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v=
+8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0PocBgos4YlcHz3w-2FVnRNf-2BhiyBiNUh=
+Z9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2B7OZvQKOG7Vix-2FDKAA0ClCCE28bM-2Fb=
+7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2FJwG7fNlWXfHkcprSs0ug-2BtiLTZoG0oj=
+9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8MKC1k5DHG4neIgLedunB64WKOSsqdu8I-2B=
+SpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-2BKjHfEwmqCWzixkpHjeiscwTDO-2BQcoyg8-2=
+BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rktmGz3veiSOYmyx-2FgWPQf0FWbW05wC5eX=
+oH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7EP1PQGKLSxvccEnBARkSrLtPaCSy8rUyml=
+-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ5PA7j-2BZQmoHBGZRWmuf7vb1q3WN-2FF9=
+-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY3EzdSAUGeyfUN0I-2BBI3R-2BjcCm28BmK=
+rmU0M8f-2B7B112a23BmVud88DUftf0E00xH8JQVDRcECshLH9BS-2FXcY7Ubz-2FvAfb-2F7gR=
+lxXJ3fhYEW9h4o0x08VgbjfSqw4jeN-2FWa6yqpjdiZngbv9j8e4g3v7RJIRWw5HtVlYRXTzhTJ=
+hYnnOh-2FWwhOcTbS1SI9JWw-3D-3D" target=3D"_blank" style=3D"text-decoration:=
+ underline;">Summer of Making 2025</a>!
+                    </p>
+                   =20
+                    <p style=3D"font-size: 14px; line-height: 21px; margin:=
+ 0 0 20px 0;">
+                        <span class=3D"bold color-green">C</span><span clas=
+s=3D"bold color-blue">o</span><span class=3D"bold color-purple">d</span><sp=
+an class=3D"bold color-orange">e</span>=20
+                        this summer to earn incredible prizes:=20
+                        <span class=3D"bold color-green">Framework Laptops<=
+/span>,=20
+                        <span class=3D"bold color-blue">Raspberry Pis</span=
+>,=20
+                        <span class=3D"bold color-purple">Cricut Cutters</s=
+pan>,=20
+                        <span class=3D"bold color-orange">Flipper Zeros</sp=
+an>,=20
+                        <span class=3D"bold color-red">Bambu 3D Printers</s=
+pan>,=20
+                        and so much more.
+                    </p>
+                   =20
+                    <!-- How it works -->
+                    <p style=3D"font-size: 14px; line-height: 21px; margin:=
+ 0 0 10px 0;">Here's how it works:</p>
+                    <ol style=3D"margin: 0 0 20px 20px; padding: 0;">
+                        <li style=3D"margin: 0 0 5px 0;">Code on personal p=
+rojects to earn <em>shells</em></li>
+                        <li style=3D"margin: 0 0 5px 0;">Spend your shells =
+on prizes from Pis to Pinecils</li>
+                        <li style=3D"margin: 0 0 5px 0;">Repeat until Augus=
+t 31st</li>
+                    </ol>
+                   =20
+                    <!-- CTA Button -->
+                    <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0"=
+ align=3D"center" style=3D"margin: 20px auto; width: 100%; max-width: 300px=
+;">
+                        <tr>
+                            <td align=3D"center">
+                                <a href=3D"https://mailing.github.com/ls/cl=
+ick?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo8Mguz13CGiRp9kNlgtagWFA-2BGf6f3PC-2BF=
+iGHaKcI531-UkS_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2s=
+IG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2B=
+KT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0PocBgos4YlcHz3w-2FVnRNf-2BhiyB=
+iNUhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2B7OZvQKOG7Vix-2FDKAA0ClCCE28bM=
+-2Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2FJwG7fNlWXfHkcprSs0ug-2BtiLTZo=
+G0oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8MKC1k5DHG4neIgLedunB64WKOSsqdu8=
+I-2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-2BKjHfEwmqCWzixkpHjeiscwTDO-2BQcoy=
+g8-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rktmGz3veiSOYmyx-2FgWPQf0FWbW05w=
+C5eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7EP1PQGKLSxvccEnBARkSrLtPaCSy8r=
+Uyml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ5PA7j-2BZQmoHBGZRWmuf7vb1q3WN-=
+2FF9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY3EzdSAUGeyfUN0I-2BBI3R-2BjcCm2=
+8BmKrmU0M8f-2B7B113ZmyelItMS6tazVQaaQiE83D8u8G3x9S1ri5Hq-2BxmzwuBCfEcSZ-2Bz=
+IyyOsMVeOYBap-2FnZ6HNTYswWVc-2BlCibpnoJZn38L2fJ8c6CXBkEt-2BmXkoCSFUaU7Snmfp=
+EDvl2b3QXKWX5WMnaZrEsbpQovqQ-3D-3D" target=3D"_blank" class=3D"button" styl=
+e=3D"display: inline-block;">
+                                    Sign Up & Get Free Stickers
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                   =20
+                    <p style=3D"font-size: 12px; line-height: 18px; text-al=
+ign: center; font-style: italic; color: #666666; margin: 0 0 30px 0;">
+                        Open to teenagers 18 and under.<br>
+                        Age 19+? Earn the same prizes by <a href=3D"https:/=
+/mailing.github.com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo8Mguz13CGiRp=
+9kNlgtagWHwuFfzUHhPCEYpYX7slm3TnVKF_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzX=
+R7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7=
+AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0PocBgos4Y=
+lcHz3w-2FVnRNf-2BhiyBiNUhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2B7OZvQKOG=
+7Vix-2FDKAA0ClCCE28bM-2Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2FJwG7fNlW=
+XfHkcprSs0ug-2BtiLTZoG0oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8MKC1k5DHG4=
+neIgLedunB64WKOSsqdu8I-2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-2BKjHfEwmqCWz=
+ixkpHjeiscwTDO-2BQcoyg8-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rktmGz3veiS=
+OYmyx-2FgWPQf0FWbW05wC5eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7EP1PQGKLS=
+xvccEnBARkSrLtPaCSy8rUyml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ5PA7j-2BZ=
+QmoHBGZRWmuf7vb1q3WN-2FF9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY3EzdSAUGe=
+yfUN0I-2BBI3R-2BjcCm28BmKrmU0M8f-2B7B11-2BGBytltN25l59OlPQVNGT3zmqnHq-2F2P-=
+2BUeZ6HL0R7HIlPS5XdpK5vNQ3BwXI2fQIeFBYrJOQl22O6Bu7KM-2BbRrLdeAv6-2FkOZMgQE8=
+xuVGaIXqC03QIaxM0oawRYW8mNQzarLOxsKRF-2BOZVpv3e2aaQ-3D-3D" target=3D"_blank=
+" style=3D"text-decoration: underline;">getting teens to sign up</a>.
+                    </p>
+                   =20
+                    <!-- Summer of Making Circle -->
+                    <div style=3D"text-align: center; margin: 20px 0;">
+                        <a href=3D"https://mailing.github.com/ls/click?upn=
+=3Du001.bO3G-2FaeMIVe5lSdMnGODo8Mguz13CGiRp9kNlgtagWFA-2BGf6f3PC-2BFiGHaKcI=
+531pGiy_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWE=
+iCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zC=
+e7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0PocBgos4YlcHz3w-2FVnRNf-2BhiyBiNUhZ9o=
+BnTvX46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2B7OZvQKOG7Vix-2FDKAA0ClCCE28bM-2Fb7kI=
+0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2FJwG7fNlWXfHkcprSs0ug-2BtiLTZoG0oj9IW=
+Su7VGYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8MKC1k5DHG4neIgLedunB64WKOSsqdu8I-2BSpF=
+SFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-2BKjHfEwmqCWzixkpHjeiscwTDO-2BQcoyg8-2BI5=
+AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rktmGz3veiSOYmyx-2FgWPQf0FWbW05wC5eXoH-=
+2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7EP1PQGKLSxvccEnBARkSrLtPaCSy8rUyml-2B=
+XtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ5PA7j-2BZQmoHBGZRWmuf7vb1q3WN-2FF9-2F=
+WAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY3EzdSAUGeyfUN0I-2BBI3R-2BjcCm28BmKrmU=
+0M8f-2B7B119HatsCTydqoFXvL8qZrwOuhuX69tapbFMOip3OrZIPKkVWqam-2F-2BCwRaQioSb=
+NuLBK2ouFuDwObjDBVP3UBnZiZd1XMf8pd41br4qfDGW9kt8h-2BpMk7zS5V5M1nCO6-2BYkC4P=
+HD4JKlr3l1qsEuKnqcA-3D-3D" target=3D"_blank">
+                            <img src=3D"https://d3b9kr64nievew.cloudfront.n=
+et/cmbtoo5770jzczf0i7ke5fwax/cmbwl9e0r1cfyxo0idfn70oz7.png"=20
+                                 alt=3D"Summer of Making"=20
+                                 width=3D"190"=20
+                                 style=3D"display: inline-block; width: aut=
+o; max-width: 190px; height: auto;">
+                        </a>
+                    </div>
+                   =20
+                    <!-- Why section -->
+                    <h2 style=3D"font-size: 24px; line-height: 30px; margin=
+: 30px 0 10px 0;">Why Are We Doing This?</h2>
+                    <p style=3D"font-size: 14px; line-height: 21px; margin:=
+ 0 0 20px 0;">
+                        Because we love seeing teenagers build awesome proj=
+ects =F0=9F=AB=B6
+                    </p>
+                   =20
+                    <p style=3D"font-size: 14px; line-height: 21px; margin:=
+ 0 0 20px 0;">
+                        GitHub and Hack Club believe that the best way to g=
+row as a maker is to build things you're proud of.
+                    </p>
+                   =20
+                    <p style=3D"font-size: 14px; line-height: 21px; margin:=
+ 0 0 20px 0;">
+                        It's just like <a href=3D"https://mailing.github.co=
+m/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo4eEK7butz-2FLbPMFOXoNt9pt019qT=
+0wJtpgfmgQSmjI398rb_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD=
+61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xs=
+H0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0PocBgos4YlcHz3w-2FVnRNf-2=
+BhiyBiNUhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2B7OZvQKOG7Vix-2FDKAA0ClCC=
+E28bM-2Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2FJwG7fNlWXfHkcprSs0ug-2Bt=
+iLTZoG0oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8MKC1k5DHG4neIgLedunB64WKOS=
+sqdu8I-2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-2BKjHfEwmqCWzixkpHjeiscwTDO-2=
+BQcoyg8-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rktmGz3veiSOYmyx-2FgWPQf0FW=
+bW05wC5eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7EP1PQGKLSxvccEnBARkSrLtPa=
+CSy8rUyml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ5PA7j-2BZQmoHBGZRWmuf7vb1=
+q3WN-2FF9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY3EzdSAUGeyfUN0I-2BBI3R-2B=
+jcCm28BmKrmU0M8f-2B7B11vvl0xEIiRTXiUeZGruahD5yanFRRhcXOOe2LcSTh54O1aT9InpmA=
+-2Btr4MBn7g16VN-2BnWZDJyr6xvyjCuShHMQk7LBHldTFXE06xGnF-2FUvdFuHtYRtjofTJ94a=
+IsRId9jCNfUuUFeNv0uM2mfdlSLDg-3D-3D" target=3D"_blank" style=3D"text-decora=
+tion: underline;">Hack Club High Seas</a>=20
+                        and <a href=3D"https://mailing.github.com/ls/click?=
+upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo6CMRtYBtnql5QBt5hlzCWL0q9pCyZLJNAGqWkdJzm=
+mOscw6_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEi=
+CZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe=
+7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0PocBgos4YlcHz3w-2FVnRNf-2BhiyBiNUhZ9oB=
+nTvX46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2B7OZvQKOG7Vix-2FDKAA0ClCCE28bM-2Fb7kI0=
+F9u-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2FJwG7fNlWXfHkcprSs0ug-2BtiLTZoG0oj9IWS=
+u7VGYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8MKC1k5DHG4neIgLedunB64WKOSsqdu8I-2BSpFS=
+FDlSjM0w5MKG3MllUA2jD47f2adDXlmL-2BKjHfEwmqCWzixkpHjeiscwTDO-2BQcoyg8-2BI5A=
+xswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rktmGz3veiSOYmyx-2FgWPQf0FWbW05wC5eXoH-2=
+FzsxYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7EP1PQGKLSxvccEnBARkSrLtPaCSy8rUyml-2BX=
+tWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ5PA7j-2BZQmoHBGZRWmuf7vb1q3WN-2FF9-2FW=
+AIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY3EzdSAUGeyfUN0I-2BBI3R-2BjcCm28BmKrmU0=
+M8f-2B7B113dbuO-2FzetEuU6wyJNos8IVkO68IWWY3EwtAZQL6oE4frcCKQZwRH3C4cLoeyh4u=
+6SVh9dbUJtblD0AElcXfZxt04o1fTJDNcRDUdqJ1GiNqwv2Ob-2FoEsT8MSCVxydJ6XauUxnpO1=
+1jZ-2FMwAtttR8xA-3D-3D" target=3D"_blank" style=3D"text-decoration: underli=
+ne;">Hack Club Arcade</a>=20
+                        where high schoolers shipped 9,214 projects and ear=
+ned $600,000 USD in prizes=20
+                        <span class=3D"color-pink">(=E2=97=9E=CA=98=E1=97=
+=9D=CA=98=E2=97=9F ')</span>
+                    </p>
+                   =20
+                    <!-- Stats Image -->
+                    <div style=3D"text-align: center; margin: 20px 0;">
+                        <img src=3D"https://d3b9kr64nievew.cloudfront.net/c=
+mbtoo5770jzczf0i7ke5fwax/cmbz4xszx05s9ze0i9k5djhtt.jpg"=20
+                             alt=3D"5,400 people received packages"=20
+                             width=3D"600"=20
+                             style=3D"display: block; width: 100%; max-widt=
+h: 600px; height: auto; margin: 0 auto;">
+                    </div>
+                   =20
+                    <p style=3D"font-size: 12px; line-height: 18px; text-al=
+ign: center; font-style: italic; color: #666666; margin: 0 0 30px 0;">
+                        5,400 people received at least 1 package in <a href=
+=3D"https://mailing.github.com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo4=
+eEK7butz-2FLbPMFOXoNt9pt019qT0wJtpgfmgQSmjI3Iu_1_1h5T79IcqJTdevtx-2B4hcgZLL=
+MQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1=
+IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOu=
+ltw0PocBgos4YlcHz3w-2FVnRNf-2BhiyBiNUhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2Fdlq=
+We-2B7OZvQKOG7Vix-2FDKAA0ClCCE28bM-2Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2Ubo=
+Bd-2FJwG7fNlWXfHkcprSs0ug-2BtiLTZoG0oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmISNC=
+Fo8MKC1k5DHG4neIgLedunB64WKOSsqdu8I-2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-=
+2BKjHfEwmqCWzixkpHjeiscwTDO-2BQcoyg8-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7=
+M5rktmGz3veiSOYmyx-2FgWPQf0FWbW05wC5eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygS=
+HIk7EP1PQGKLSxvccEnBARkSrLtPaCSy8rUyml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEE=
+WXIQ5PA7j-2BZQmoHBGZRWmuf7vb1q3WN-2FF9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB=
+36eY3EzdSAUGeyfUN0I-2BBI3R-2BjcCm28BmKrmU0M8f-2B7B11WuSoAM4k6NwfLoC-2BGamJ-=
+2BIwrWbIoFjjE99AGCLBmpYbLqt6ACPE8fCUILYJy0iUiglc-2FodqHFyhQuQ9YgrpAc6xRA-2F=
+p9LcXi8-2Blth4dxEsgSW-2F-2Bt3Wglb3-2F1iaAq-2B-2FhM7wF2bFUsoSoJ5mAO1VkKWA-3D=
+-3D" target=3D"_blank" style=3D"text-decoration: underline;">Hack Club High=
+ Seas</a> this winter!
+                    </p>
+                   =20
+                    <!-- Age 19+ section -->
+                    <h3 style=3D"font-size: 20px; line-height: 25px; margin=
+: 30px 0 10px 0;">Age 19 or older? You can earn prizes too.</h3>
+                    <p style=3D"font-size: 14px; line-height: 21px; margin:=
+ 0 0 30px 0;">
+                        Earn the same prizes by getting teens age 18 and un=
+der to sign up.=20
+                        <a href=3D"https://mailing.github.com/ls/click?upn=
+=3Du001.bO3G-2FaeMIVe5lSdMnGODo8Mguz13CGiRp9kNlgtagWHwuFfzUHhPCEYpYX7slm3TH=
+FEw_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZe=
+mMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZ=
+PyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0PocBgos4YlcHz3w-2FVnRNf-2BhiyBiNUhZ9oBnTv=
+X46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2B7OZvQKOG7Vix-2FDKAA0ClCCE28bM-2Fb7kI0F9u=
+-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2FJwG7fNlWXfHkcprSs0ug-2BtiLTZoG0oj9IWSu7V=
+GYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8MKC1k5DHG4neIgLedunB64WKOSsqdu8I-2BSpFSFDl=
+SjM0w5MKG3MllUA2jD47f2adDXlmL-2BKjHfEwmqCWzixkpHjeiscwTDO-2BQcoyg8-2BI5Axsw=
+lNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rktmGz3veiSOYmyx-2FgWPQf0FWbW05wC5eXoH-2Fzs=
+xYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7EP1PQGKLSxvccEnBARkSrLtPaCSy8rUyml-2BXtWZ=
+FhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ5PA7j-2BZQmoHBGZRWmuf7vb1q3WN-2FF9-2FWAIy=
+8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY3EzdSAUGeyfUN0I-2BBI3R-2BjcCm28BmKrmU0M8f=
+-2B7B11OxwV0WsPlihxIxe8w5ACopIhNR8paW4pqszIzv7tm9x5En4dKzFXzhAk27RTKCcNA6bQ=
+7HjETCWbkT2dwjpadweWGhYTYQMf8nv9Va3lcmKcaPb3C2fyPLhBdoMOlwSEhB4LeBzfpbbBwmX=
+zdRxAIA-3D-3D" target=3D"_blank" style=3D"text-decoration: underline;">See =
+our guide here.</a>
+                    </p>
+                   =20
+                    <!-- Projects showcase -->
+                    <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0"=
+ width=3D"100%" style=3D"margin: 20px 0;" class=3D"project-showcase">
+                        <tr>
+                            <td width=3D"48%" valign=3D"top" class=3D"colum=
+n">
+                                <a href=3D"https://mailing.github.com/ls/cl=
+ick?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODozz-2Fv45aaOYwQApRAkvcU9JALm6y98OeYmQD=
+DrCEV76iWPSr_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG=
+2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT=
+8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0PocBgos4YlcHz3w-2FVnRNf-2BhiyBiN=
+UhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2B7OZvQKOG7Vix-2FDKAA0ClCCE28bM-2=
+Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2FJwG7fNlWXfHkcprSs0ug-2BtiLTZoG0=
+oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8MKC1k5DHG4neIgLedunB64WKOSsqdu8I-=
+2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-2BKjHfEwmqCWzixkpHjeiscwTDO-2BQcoyg8=
+-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rktmGz3veiSOYmyx-2FgWPQf0FWbW05wC5=
+eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7EP1PQGKLSxvccEnBARkSrLtPaCSy8rUy=
+ml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ5PA7j-2BZQmoHBGZRWmuf7vb1q3WN-2F=
+F9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY3EzdSAUGeyfUN0I-2BBI3R-2BjcCm28B=
+mKrmU0M8f-2B7B11cdTXPjteosii-2B0Ryt89UUw5QX235kC9StclSbf4aQABrL-2B7FzEv-2Bq=
+-2BmOqgMN3s8i2f9IetJo1G0Q7gIRWl51mDopgyPqBNXmpyl-2BxYv-2Fq1VTb-2FUhOQq6OObO=
+L97Nm9VYchoKM-2Fr7c1FQP8D2x-2FDbvg-3D-3D" target=3D"_blank">
+                                    <img src=3D"https://d3b9kr64nievew.clou=
+dfront.net/cmbtoo5770jzczf0i7ke5fwax/cmbz4lkgg030t0d0jrq8jrtip.gif"=20
+                                         alt=3D"DoomPDF"=20
+                                         width=3D"276"=20
+                                         style=3D"display: block; width: 10=
+0%; max-width: 276px; height: auto;">
+                                </a>
+                                <p style=3D"font-size: 14px; line-height: 2=
+1px; margin: 10px 0;">
+                                    <a href=3D"https://mailing.github.com/l=
+s/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODozz-2Fv45aaOYwQApRAkvcU9JALm6y98Oe=
+YmQDDrCEV76iIZ3S_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b=
+2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-=
+2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0PocBgos4YlcHz3w-2FVnRNf-2Bhi=
+yBiNUhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2B7OZvQKOG7Vix-2FDKAA0ClCCE28=
+bM-2Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2FJwG7fNlWXfHkcprSs0ug-2BtiLT=
+ZoG0oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8MKC1k5DHG4neIgLedunB64WKOSsqd=
+u8I-2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-2BKjHfEwmqCWzixkpHjeiscwTDO-2BQc=
+oyg8-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rktmGz3veiSOYmyx-2FgWPQf0FWbW0=
+5wC5eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7EP1PQGKLSxvccEnBARkSrLtPaCSy=
+8rUyml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ5PA7j-2BZQmoHBGZRWmuf7vb1q3W=
+N-2FF9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY3EzdSAUGeyfUN0I-2BBI3R-2BjcC=
+m28BmKrmU0M8f-2B7B11iaB4areDabf6I94ZA8UA4SzNJra4OKaHyZr52VUo5oLNi3UOuM7JZP9=
+Nzc-2BuxBPraRqID0h05KUzpS5qp8sAeJb7wcGboIW64NUOZLYWxAk-2Fb-2BoQCA21-2FlRQ-2=
+FmDwTGOgPtxiVBKYBgW1hHGBtiPZfw-3D-3D" target=3D"_blank" style=3D"text-decor=
+ation: underline;">DoomPDF</a>=20
+                                    by <a href=3D"https://mailing.github.co=
+m/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODozz-2Fv45aaOYwQApRAkvcU9IJeGMrg=
+zF2ZqD0bzmm7KYszCGI_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD=
+61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xs=
+H0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0PocBgos4YlcHz3w-2FVnRNf-2=
+BhiyBiNUhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2B7OZvQKOG7Vix-2FDKAA0ClCC=
+E28bM-2Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2FJwG7fNlWXfHkcprSs0ug-2Bt=
+iLTZoG0oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8MKC1k5DHG4neIgLedunB64WKOS=
+sqdu8I-2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-2BKjHfEwmqCWzixkpHjeiscwTDO-2=
+BQcoyg8-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rktmGz3veiSOYmyx-2FgWPQf0FW=
+bW05wC5eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7EP1PQGKLSxvccEnBARkSrLtPa=
+CSy8rUyml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ5PA7j-2BZQmoHBGZRWmuf7vb1=
+q3WN-2FF9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY3EzdSAUGeyfUN0I-2BBI3R-2B=
+jcCm28BmKrmU0M8f-2B7B11s8Jp-2FHVDRpjkV6PUMYn5Iwa-2FN7TAi4OcUeTt1HlrtZByL3Qi=
+MAI4AftQtDkzYkurdSLufPcyKW32Ee-2Br-2FF2k8JLURCTAjSnw21N8nxXhN1hYsGq-2FXT9ko=
+Ns-2F2LEFWpIuiWp0hNm1hxpQYKtk4VL1uA-3D-3D" target=3D"_blank" style=3D"text-=
+decoration: underline;">@ading2210</a> for High Seas
+                                </p>
+                            </td>
+                            <td width=3D"4%" class=3D"spacer"></td>
+                            <td width=3D"48%" valign=3D"top" class=3D"colum=
+n">
+                                <a href=3D"https://mailing.github.com/ls/cl=
+ick?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo4CwL8Dgg1QUklEBnHSTz8TzJqSe80-2BaxyWN=
+mesyKv287wy7YcHRwI9s06VES5LdVw-3D-3Dupsw_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpT=
+zvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEa=
+U7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0PocB=
+gos4YlcHz3w-2FVnRNf-2BhiyBiNUhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2B7OZ=
+vQKOG7Vix-2FDKAA0ClCCE28bM-2Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2FJwG=
+7fNlWXfHkcprSs0ug-2BtiLTZoG0oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8MKC1k=
+5DHG4neIgLedunB64WKOSsqdu8I-2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-2BKjHfEw=
+mqCWzixkpHjeiscwTDO-2BQcoyg8-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rktmGz=
+3veiSOYmyx-2FgWPQf0FWbW05wC5eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7EP1P=
+QGKLSxvccEnBARkSrLtPaCSy8rUyml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ5PA7=
+j-2BZQmoHBGZRWmuf7vb1q3WN-2FF9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY3Ezd=
+SAUGeyfUN0I-2BBI3R-2BjcCm28BmKrmU0M8f-2B7B11BYS-2F4XiDWkDcVL4D3DFQAc6LBgCNt=
+elf2jF48ALtTqbvfxKAfohkJYO1Jdq5TKF4GvW5piaq7Wc3Z-2BZxJpPcbtKk6FOqfvV2LFWxPT=
+FKPewatmN8hEaG7COsKMxnNwQPQw4rfFkTKHYB9JMvOu3a-2Bw-3D-3D" target=3D"_blank"=
+>
+                                    <img src=3D"https://d3b9kr64nievew.clou=
+dfront.net/cmbtoo5770jzczf0i7ke5fwax/cmbz4qpvf04a40c0ivl4vggny.gif"=20
+                                         alt=3D"@tobyab interview"=20
+                                         width=3D"276"=20
+                                         style=3D"display: block; width: 10=
+0%; max-width: 276px; height: auto;">
+                                </a>
+                                <p style=3D"font-size: 14px; line-height: 2=
+1px; margin: 10px 0;">
+                                    <a href=3D"https://mailing.github.com/l=
+s/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo7mEr9LkuBydnbi3r-2ByFpU6OwwT-2FKY=
+ifT7OKUJ7Z9LS-2FnhXT_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqV=
+D61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3x=
+sH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0PocBgos4YlcHz3w-2FVnRNf-=
+2BhiyBiNUhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2B7OZvQKOG7Vix-2FDKAA0ClC=
+CE28bM-2Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2FJwG7fNlWXfHkcprSs0ug-2B=
+tiLTZoG0oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8MKC1k5DHG4neIgLedunB64WKO=
+Ssqdu8I-2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-2BKjHfEwmqCWzixkpHjeiscwTDO-=
+2BQcoyg8-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rktmGz3veiSOYmyx-2FgWPQf0F=
+WbW05wC5eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7EP1PQGKLSxvccEnBARkSrLtP=
+aCSy8rUyml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ5PA7j-2BZQmoHBGZRWmuf7vb=
+1q3WN-2FF9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY3EzdSAUGeyfUN0I-2BBI3R-2=
+BjcCm28BmKrmU0M8f-2B7B111bVdJveox1V3QovIqcDIK-2F0wNOnRWx-2BV-2BcYmR0fvYSaIN=
+pXmPQDYhcY7GMRzFj2Atc4sMJ-2BZJtGK-2BbmtcsNAzSl984TbPwkNZXE3Cnp6M-2F9nWYOF-2=
+BltYg3OEJObNtyHMU6WliW1ZceP4n03KU2eQAA-3D-3D" target=3D"_blank" style=3D"te=
+xt-decoration: underline;">@tobyab</a>,=20
+                                    16 y/o Hack Clubber,=20
+                                    <a href=3D"https://mailing.github.com/l=
+s/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo4CwL8Dgg1QUklEBnHSTz8TzJqSe80-2Ba=
+xyWNmesyKv287wy7YcHRwI9s06VES5LdVw-3D-3DEb5h_1h5T79IcqJTdevtx-2B4hcgZLLMQ4g=
+DdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1Irtg=
+fgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0=
+PocBgos4YlcHz3w-2FVnRNf-2BhiyBiNUhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2=
+B7OZvQKOG7Vix-2FDKAA0ClCCE28bM-2Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2=
+FJwG7fNlWXfHkcprSs0ug-2BtiLTZoG0oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8M=
+KC1k5DHG4neIgLedunB64WKOSsqdu8I-2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-2BKj=
+HfEwmqCWzixkpHjeiscwTDO-2BQcoyg8-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rk=
+tmGz3veiSOYmyx-2FgWPQf0FWbW05wC5eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7=
+EP1PQGKLSxvccEnBARkSrLtPaCSy8rUyml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ=
+5PA7j-2BZQmoHBGZRWmuf7vb1q3WN-2FF9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY=
+3EzdSAUGeyfUN0I-2BBI3R-2BjcCm28BmKrmU0M8f-2B7B117oPSQv-2BlwYF-2BEpiuVIbslfG=
+tEnwuNc-2FsgJGP8QPbCZnnWwGYet5LG8fTjhLyFG85aC0Mw-2FATPxHPUDGttttkq3lpKs-2Bj=
+b3jbLRMvMlaohJv8J9O-2FmkZn93YIannE6CL3h4dKiFoSxIW9f5kjs8iv7A-3D-3D" target=
+=3D"_blank" style=3D"text-decoration: underline;">interviewed by UK Prime M=
+inister.</a>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                   =20
+                    <!-- Closing -->
+                    <p style=3D"font-size: 14px; line-height: 21px; margin:=
+ 30px 0;">
+                        We can't wait to see what you make this summer!<br>
+                        The GitHub Education Team
+                    </p>
+                </td>
+            </tr>
+           =20
+            <!-- Footer -->
+            <tr>
+                <td class=3D"content-padding footer-padding" style=3D"paddi=
+ng: 40px 20px 20px 20px;">
+                    <hr style=3D"border: 0; border-top: 1px solid #cccccc; =
+margin: 0 0 20px 0;">
+                   =20
+                    <!-- Logo -->
+                    <!-- Logo -->
+                    <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0"=
+ align=3D"center">
+                        <tr>
+                            <td align=3D"center" style=3D"padding: 0 0 20px=
+ 0;">
+                                <a href=3D"https://mailing.github.com/ls/cl=
+ick?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo4Ud11AqjVhW6cg4WddgB2qsGjLhgfZy3MaBCW=
+eS5iPN-6Nd_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2n=
+cWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v=
+8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0PocBgos4YlcHz3w-2FVnRNf-2BhiyBiNUh=
+Z9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2B7OZvQKOG7Vix-2FDKAA0ClCCE28bM-2Fb=
+7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2FJwG7fNlWXfHkcprSs0ug-2BtiLTZoG0oj=
+9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8MKC1k5DHG4neIgLedunB64WKOSsqdu8I-2B=
+SpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-2BKjHfEwmqCWzixkpHjeiscwTDO-2BQcoyg8-2=
+BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rktmGz3veiSOYmyx-2FgWPQf0FWbW05wC5eX=
+oH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7EP1PQGKLSxvccEnBARkSrLtPaCSy8rUyml=
+-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ5PA7j-2BZQmoHBGZRWmuf7vb1q3WN-2FF9=
+-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY3EzdSAUGeyfUN0I-2BBI3R-2BjcCm28BmK=
+rmU0M8f-2B7B11FhdnhlHlSQvoS8xgddTHmdpI5CKGBJJ48k6JROv6Armq-2FVATMN3wVJFKXhh=
+JsIjk4zL0nQPG8NqBwLcfysBnYTZ6V5SBjNj0UU-2Fu-2BVyKiatxX4-2FPfxf8AOxi5iXudTGo=
+BEKI8oEj7rx4ljxKP0S-2BjQ-3D-3D" target=3D"_blank">
+                                    <img src=3D"https://d3b9kr64nievew.clou=
+dfront.net/cmbtoo5770jzczf0i7ke5fwax/cmbz4g4nk01nqxa0iy20wrw67.png"=20
+                                         alt=3D"GitHub Education"=20
+                                         width=3D"150"=20
+                                         style=3D"display: block;">
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                   =20
+                    <!-- Social Icons -->
+                    <div style=3D"text-align: center; margin: 0 0 20px 0;">
+                        <table cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" style=3D"margin: 0 auto;" class=3D"social-icons">
+                            <tr>
+                                <td style=3D"padding: 0 8px;">
+                                    <a href=3D"https://mailing.github.com/l=
+s/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo4CwL8Dgg1QUklEBnHSTz8R3LMNKugae8L=
+gl20rNSNnCJusr8lKMEuu3N2V9Yhl-2BLg-3D-3DessM_1h5T79IcqJTdevtx-2B4hcgZLLMQ4g=
+DdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1Irtg=
+fgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0=
+PocBgos4YlcHz3w-2FVnRNf-2BhiyBiNUhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2=
+B7OZvQKOG7Vix-2FDKAA0ClCCE28bM-2Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2=
+FJwG7fNlWXfHkcprSs0ug-2BtiLTZoG0oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8M=
+KC1k5DHG4neIgLedunB64WKOSsqdu8I-2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-2BKj=
+HfEwmqCWzixkpHjeiscwTDO-2BQcoyg8-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rk=
+tmGz3veiSOYmyx-2FgWPQf0FWbW05wC5eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7=
+EP1PQGKLSxvccEnBARkSrLtPaCSy8rUyml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ=
+5PA7j-2BZQmoHBGZRWmuf7vb1q3WN-2FF9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY=
+3EzdSAUGeyfUN0I-2BBI3R-2BjcCm28BmKrmU0M8f-2B7B11X-2FkxVFa5EH3AidaXb5tFb6mRZ=
+yLNb-2BsY1tCKkcLZ20xnhJkLv995Xb3FJOCI9ogJ9OmcoxP3jIgrjFtW0FN6Q4JtNs-2FtoHbf=
+INObTmFjnh4xGa9hHK0MOLgZ-2F7Y-2FEtj4y6i5iWAy3KMQp1ugk2AJxw-3D-3D" target=3D=
+"_blank">
+                                        <img src=3D"https://d3b9kr64nievew.=
+cloudfront.net/social-icons/000000/faInstagram.png"=20
+                                             alt=3D"Instagram" width=3D"26"=
+ height=3D"26" style=3D"display: block;">
+                                    </a>
+                                </td>
+                                <td style=3D"padding: 0 8px;">
+                                    <a href=3D"https://mailing.github.com/l=
+s/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODozgoAQD6jwHlE9yz6w0v3-2FKBwgrTJU-2=
+BtbBmk1-2B2b2R-2Bjoa8pM71iL6ikgBAAClFPvA-3D-3DMTbE_1h5T79IcqJTdevtx-2B4hcgZ=
+LLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2=
+B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYj=
+Oultw0PocBgos4YlcHz3w-2FVnRNf-2BhiyBiNUhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2Fd=
+lqWe-2B7OZvQKOG7Vix-2FDKAA0ClCCE28bM-2Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2U=
+boBd-2FJwG7fNlWXfHkcprSs0ug-2BtiLTZoG0oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmIS=
+NCFo8MKC1k5DHG4neIgLedunB64WKOSsqdu8I-2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlm=
+L-2BKjHfEwmqCWzixkpHjeiscwTDO-2BQcoyg8-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2Bf=
+U7M5rktmGz3veiSOYmyx-2FgWPQf0FWbW05wC5eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHy=
+gSHIk7EP1PQGKLSxvccEnBARkSrLtPaCSy8rUyml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAun=
+EEWXIQ5PA7j-2BZQmoHBGZRWmuf7vb1q3WN-2FF9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSx=
+AB36eY3EzdSAUGeyfUN0I-2BBI3R-2BjcCm28BmKrmU0M8f-2B7B11dZiMtzCorHfs2tazvl03m=
+1XqIwbgnFDktuIXiyPVL1DvT07h2BITYFje3TxTYOp90pnkpuGODu2n8VRA7Do6ImFxhRCiE2cs=
+oeqYEWZHAQVFc4BSMgSgiU9dS4YNJIVIWSyxd2-2ByEdQhU0KnVtIVzg-3D-3D" target=3D"_=
+blank">
+                                        <img src=3D"https://d3b9kr64nievew.=
+cloudfront.net/social-icons/000000/faFacebook.png"=20
+                                             alt=3D"Facebook" width=3D"26" =
+height=3D"26" style=3D"display: block;">
+                                    </a>
+                                </td>
+                                <td style=3D"padding: 0 8px;">
+                                    <a href=3D"https://mailing.github.com/l=
+s/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODozKkZTe-2FK-2FtIL4kGKDfrKHgZghAlPs=
+wdrby-2F9sjCVQoKenhG8NZ0EE7htGY2gbrDTQ-3D-3DCJW-_1h5T79IcqJTdevtx-2B4hcgZLL=
+MQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1=
+IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOu=
+ltw0PocBgos4YlcHz3w-2FVnRNf-2BhiyBiNUhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2Fdlq=
+We-2B7OZvQKOG7Vix-2FDKAA0ClCCE28bM-2Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2Ubo=
+Bd-2FJwG7fNlWXfHkcprSs0ug-2BtiLTZoG0oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmISNC=
+Fo8MKC1k5DHG4neIgLedunB64WKOSsqdu8I-2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-=
+2BKjHfEwmqCWzixkpHjeiscwTDO-2BQcoyg8-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7=
+M5rktmGz3veiSOYmyx-2FgWPQf0FWbW05wC5eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygS=
+HIk7EP1PQGKLSxvccEnBARkSrLtPaCSy8rUyml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEE=
+WXIQ5PA7j-2BZQmoHBGZRWmuf7vb1q3WN-2FF9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB=
+36eY3EzdSAUGeyfUN0I-2BBI3R-2BjcCm28BmKrmU0M8f-2B7B117T4JmGpIGDvE-2Bl1QahHNF=
+ZEUDEq3nYikoE0TjMJBEa5vb6VncaZhlEz-2Bfd7BNLg58gR2QuwB7gVQiiSXhyugnjqnar5QRr=
+SVWrYDzT2OgSB8ASkfK9svRxqlcvUCXKRaINz7pDpUhBlXHGDRNY48eg-3D-3D" target=3D"_=
+blank">
+                                        <img src=3D"https://d3b9kr64nievew.=
+cloudfront.net/social-icons/000000/faThreads.png"=20
+                                             alt=3D"Threads" width=3D"26" h=
+eight=3D"26" style=3D"display: block;">
+                                    </a>
+                                </td>
+                                <td style=3D"padding: 0 8px;">
+                                    <a href=3D"https://mailing.github.com/l=
+s/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo0kGm8iGiYw1RJqVywP9ghGe-2FPsd6IBG=
+yOSs7d6CqEFVED-K_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b=
+2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-=
+2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0PocBgos4YlcHz3w-2FVnRNf-2Bhi=
+yBiNUhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2B7OZvQKOG7Vix-2FDKAA0ClCCE28=
+bM-2Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2FJwG7fNlWXfHkcprSs0ug-2BtiLT=
+ZoG0oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8MKC1k5DHG4neIgLedunB64WKOSsqd=
+u8I-2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-2BKjHfEwmqCWzixkpHjeiscwTDO-2BQc=
+oyg8-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rktmGz3veiSOYmyx-2FgWPQf0FWbW0=
+5wC5eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7EP1PQGKLSxvccEnBARkSrLtPaCSy=
+8rUyml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ5PA7j-2BZQmoHBGZRWmuf7vb1q3W=
+N-2FF9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY3EzdSAUGeyfUN0I-2BBI3R-2BjcC=
+m28BmKrmU0M8f-2B7B11q1cilOhdaxpoAaU-2B-2FNxTGvruhu-2F4eR8T3SC2-2FpZV0wuasI4=
+vu-2FT-2Bh6spD-2F3-2FYr-2FlXFsYhU6xTs3FkIUl0CCiO4PS8wkfhQ7j4Bs-2FyN7EGBO8MW=
+-2B5nsnJPtzyybNEvL8V0rNCCOwS0quafUO2c38k4Q-3D-3D" target=3D"_blank">
+                                        <img src=3D"https://d3b9kr64nievew.=
+cloudfront.net/social-icons/000000/faSquareXTwitter.png"=20
+                                             alt=3D"X" width=3D"26" height=
+=3D"26" style=3D"display: block;">
+                                    </a>
+                                </td>
+                                <td style=3D"padding: 0 8px;">
+                                    <a href=3D"https://mailing.github.com/l=
+s/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo2dVGx1b-2BEeSRYGdTRBAbKctIVR22mrk=
+c3ehURL4mbEFpr7Y26tGVfJNw5xoyaAKow-3D-3DCAtC_1h5T79IcqJTdevtx-2B4hcgZLLMQ4g=
+DdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1Irtg=
+fgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0=
+PocBgos4YlcHz3w-2FVnRNf-2BhiyBiNUhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2=
+B7OZvQKOG7Vix-2FDKAA0ClCCE28bM-2Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2=
+FJwG7fNlWXfHkcprSs0ug-2BtiLTZoG0oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8M=
+KC1k5DHG4neIgLedunB64WKOSsqdu8I-2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-2BKj=
+HfEwmqCWzixkpHjeiscwTDO-2BQcoyg8-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rk=
+tmGz3veiSOYmyx-2FgWPQf0FWbW05wC5eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7=
+EP1PQGKLSxvccEnBARkSrLtPaCSy8rUyml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ=
+5PA7j-2BZQmoHBGZRWmuf7vb1q3WN-2FF9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY=
+3EzdSAUGeyfUN0I-2BBI3R-2BjcCm28BmKrmU0M8f-2B7B11bsmc7nK06XINb-2BvdoiEsVlO3V=
+GC-2B4hROPkVcsvPSW1wEwBPYWrvoQvzXKR-2Bc5mHIVeSUonwfaehyQ6nfYZ7eZdkjWf-2FJ2s=
+SelmP5o4Jv-2BpKgl3hmbQWzmGzlqrzmR75Np3-2Bf-2BPqjc83XRwzn-2FcPJMg-3D-3D" tar=
+get=3D"_blank">
+                                        <img src=3D"https://d3b9kr64nievew.=
+cloudfront.net/social-icons/000000/faBluesky.png"=20
+                                             alt=3D"Bluesky" width=3D"26" h=
+eight=3D"26" style=3D"display: block;">
+                                    </a>
+                                </td>
+                                <td style=3D"padding: 0 8px;">
+                                    <a href=3D"https://mailing.github.com/l=
+s/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo5kXsF-2BAY3pqNDPNf3FfJxAWN2WDKCot=
+nbDDLNWq9EpF1A-2B0xG-2FtooK9-2BbaH4r9wFQ-3D-3D9rUt_1h5T79IcqJTdevtx-2B4hcgZ=
+LLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2=
+B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYj=
+Oultw0PocBgos4YlcHz3w-2FVnRNf-2BhiyBiNUhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2Fd=
+lqWe-2B7OZvQKOG7Vix-2FDKAA0ClCCE28bM-2Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2U=
+boBd-2FJwG7fNlWXfHkcprSs0ug-2BtiLTZoG0oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmIS=
+NCFo8MKC1k5DHG4neIgLedunB64WKOSsqdu8I-2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlm=
+L-2BKjHfEwmqCWzixkpHjeiscwTDO-2BQcoyg8-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2Bf=
+U7M5rktmGz3veiSOYmyx-2FgWPQf0FWbW05wC5eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHy=
+gSHIk7EP1PQGKLSxvccEnBARkSrLtPaCSy8rUyml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAun=
+EEWXIQ5PA7j-2BZQmoHBGZRWmuf7vb1q3WN-2FF9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSx=
+AB36eY3EzdSAUGeyfUN0I-2BBI3R-2BjcCm28BmKrmU0M8f-2B7B112cQ2-2BmjjAtmdzuoLAJs=
+rIHVNH34CEwI-2FqS0U-2F91ZsX3zr0mQ5IQkt-2BL1eQHVDYg9aA-2FRC7onfgykSsVWbq-2Bj=
+aU2CCxb4eQ-2FdSE9iBIxgy-2BTwdlFNYvh1gAqcET4PtAmiwVReQ9yW5SFPM41yTSrBsQ-3D-3=
+D" target=3D"_blank">
+                                        <img src=3D"https://d3b9kr64nievew.=
+cloudfront.net/social-icons/000000/faLinkedin.png"=20
+                                             alt=3D"LinkedIn" width=3D"26" =
+height=3D"26" style=3D"display: block;">
+                                    </a>
+                                </td>
+                                <td style=3D"padding: 0 8px;">
+                                    <a href=3D"https://mailing.github.com/l=
+s/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo3-2FQ6ALJoZReZPpMLK6cEoUG2KBCa8E4=
+ucxjcmXFCYmk9lLyMyqioFLdmyTjj6xj7Q-3D-3DN5Cu_1h5T79IcqJTdevtx-2B4hcgZLLMQ4g=
+DdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1Irtg=
+fgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0=
+PocBgos4YlcHz3w-2FVnRNf-2BhiyBiNUhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2=
+B7OZvQKOG7Vix-2FDKAA0ClCCE28bM-2Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2=
+FJwG7fNlWXfHkcprSs0ug-2BtiLTZoG0oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8M=
+KC1k5DHG4neIgLedunB64WKOSsqdu8I-2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-2BKj=
+HfEwmqCWzixkpHjeiscwTDO-2BQcoyg8-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rk=
+tmGz3veiSOYmyx-2FgWPQf0FWbW05wC5eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7=
+EP1PQGKLSxvccEnBARkSrLtPaCSy8rUyml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ=
+5PA7j-2BZQmoHBGZRWmuf7vb1q3WN-2FF9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY=
+3EzdSAUGeyfUN0I-2BBI3R-2BjcCm28BmKrmU0M8f-2B7B11a0Peqxeht0z3OuyJNfIjmDjDHYH=
+pZX-2FaTPQs318GVgRuGfaTQ5kx2eea0BM7aMd1KigRS-2BhoD4PohkmKYlKNpVJk18B6S35Uvo=
+YzFPfQs0-2B5OCHZcifdDHnwOoBCDqYLKNZOxaBpxm-2B-2BR-2Bkam8RiCw-3D-3D" target=
+=3D"_blank">
+                                        <img src=3D"https://d3b9kr64nievew.=
+cloudfront.net/social-icons/000000/faYoutube.png"=20
+                                             alt=3D"YouTube" width=3D"26" h=
+eight=3D"26" style=3D"display: block;">
+                                    </a>
+                                </td>
+                                <td style=3D"padding: 0 8px;">
+                                    <a href=3D"https://mailing.github.com/l=
+s/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo2gvddZ8656ATSl5-2BTEB98YabS5KKljl=
+5Ypv-2Bi-2FJC05y4k_H_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqV=
+D61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3x=
+sH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOultw0PocBgos4YlcHz3w-2FVnRNf-=
+2BhiyBiNUhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2FdlqWe-2B7OZvQKOG7Vix-2FDKAA0ClC=
+CE28bM-2Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2UboBd-2FJwG7fNlWXfHkcprSs0ug-2B=
+tiLTZoG0oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmISNCFo8MKC1k5DHG4neIgLedunB64WKO=
+Ssqdu8I-2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXlmL-2BKjHfEwmqCWzixkpHjeiscwTDO-=
+2BQcoyg8-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2BfU7M5rktmGz3veiSOYmyx-2FgWPQf0F=
+WbW05wC5eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKHygSHIk7EP1PQGKLSxvccEnBARkSrLtP=
+aCSy8rUyml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAunEEWXIQ5PA7j-2BZQmoHBGZRWmuf7vb=
+1q3WN-2FF9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxSxAB36eY3EzdSAUGeyfUN0I-2BBI3R-2=
+BjcCm28BmKrmU0M8f-2B7B11dfALQb0qy4iMch-2BosrZica7gDDLHXPMuKgwIXX0MF8jWSeU8Y=
+d91H7Ycfb9yvUf4b2na87SFY6LNafwtT-2FW7erB1wgT3cV6r-2BKVouyEnNRGKvXIvw7aezug3=
+hC-2FfD9LHTYRV48f8nStWvruXPSxOiA-3D-3D" target=3D"_blank">
+                                        <img src=3D"https://d3b9kr64nievew.=
+cloudfront.net/social-icons/000000/faTwitch.png"=20
+                                             alt=3D"Twitch" width=3D"26" he=
+ight=3D"26" style=3D"display: block;">
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                   =20
+                    <!-- Footer text -->
+                    <p style=3D"font-size: 12px; line-height: 18px; text-al=
+ign: center; color: #666666; margin: 0;"><a href=3D"https://mailing.github.=
+com/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo09vcCl7PPqDILZt-2FGoACYbV4L-=
+2FcOcvMOi5mEz0MDuAd0fqPhaq93bDnGhja0cKmMpa-2BbZrDztLcsj-2B4a-2B-2B7Q8xp3TGG=
+uLa-2BqEMZSf9VqFEQIMhtLAi7ltDOZ-2BMWJvWkzJIySiQJGWitGyVazHEelG0Qe7GfpEjqgVq=
+qK0EXxQGqP-2FcxJNGAIUYIsSnGWrjtw-2BVZdQjn9PsiFeWljpBoEVU9ioTspOkaT1OeJUPF8A=
+cTrv5eefmEk-2F0prJHbf3-2BcYRCRN1nOSxNUwGxZsYV0-2FySOAIKJMVQGRRdPeYMtfD-2FEt=
+-2Fm-2FiBeXaZzkUG-2F54JezEatwTXDRiwODFHx0plwn9gPCwY1nC6dND1aQmB9MERkpCH9rjg=
+vTo36rhKVZMn6jChqqyLxhmBNgVduwjir4tD1lzuIlhIogo3lTAri81A0f3gEK-2BMBliDQ742t=
+TKzgQfo8RIs774IlqKcTmjVc-2B7NqaQ3I7Sp-2FyjHcy96fHH5VaxYXiZsaD09gOr2MYSHjdQG=
+ZgvRvc4ZdcjZIdevx4NgUPewyxR1X-2FJs9rmhZTemS2OtKDwySTce8bCwWAMz35OYuc0lU48FX=
+1wvfbWgBGT08B27TjjXJS2q0Ti69r6nepmxXQJlDa6mQZsHGx1msGMS8ppxuXKf35FuYN5REBrq=
+tpKnXSvO4Rmomyg4q34j26M1jcLjBGggZbi5PhMe-2F3WwHid-2FKUdA-2FsF8MxxlwF0mwr7KD=
+NnOmA106RyIWTm680yllRAmRBpo64R2bPTHi-2BJw-3D-3DAzfA_1h5T79IcqJTdevtx-2B4hcg=
+ZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-=
+2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGY=
+jOultw0PocBgos4YlcHz3w-2FVnRNf-2BhiyBiNUhZ9oBnTvX46lhzQUEHXBEL-2FBnn9zmM-2F=
+dlqWe-2B7OZvQKOG7Vix-2FDKAA0ClCCE28bM-2Fb7kI0F9u-2FZRdIhs5H7YUkCJj2pzijhsL2=
+UboBd-2FJwG7fNlWXfHkcprSs0ug-2BtiLTZoG0oj9IWSu7VGYhrPPl2O1CzbQ2io8BOwJgotmI=
+SNCFo8MKC1k5DHG4neIgLedunB64WKOSsqdu8I-2BSpFSFDlSjM0w5MKG3MllUA2jD47f2adDXl=
+mL-2BKjHfEwmqCWzixkpHjeiscwTDO-2BQcoyg8-2BI5AxswlNyj-2Fs9RA82ude0u6qpAuH-2B=
+fU7M5rktmGz3veiSOYmyx-2FgWPQf0FWbW05wC5eXoH-2FzsxYdxEtOPQHqblai2X-2BaIvwMKH=
+ygSHIk7EP1PQGKLSxvccEnBARkSrLtPaCSy8rUyml-2BXtWZFhSaKNLe8TAtMzBHlmu9dRWPWAu=
+nEEWXIQ5PA7j-2BZQmoHBGZRWmuf7vb1q3WN-2FF9-2FWAIy8z-2B0LQ6pWspO95NEnvM4XeRxS=
+xAB36eY3EzdSAUGeyfUN0I-2BBI3R-2BjcCm28BmKrmU0M8f-2B7B11u3Q6SzRuFSuHpTiEs91W=
+VebsBJhKWwaGz6KvKvfbBAMU3YgPp-2B1B2QN8zwmgdDtinbU5tpU4gBGYrblfPNvvxWD2QD78C=
+wqbnrSlws6DHwxXaODsJZCUje3vMAdFPokPcBXSF-2B1bO43xx08Vgt67Ig-3D-3D" style=3D=
+"font-size:12px;">Open this email in a web browser.</a><br><br>
+                        <a href=3D"https://mailing.github.com/wf/unsubscrib=
+e?upn=3Du001.Ee8VvrA6tfmzNDWChM5C8SKvgqLD0rqjKbwLddWAmtVHTRqjXrQXOxjrcLr6AB=
+C1bf3-2BWaLHXRg6-2BvLiwRhG-2BaN0jkqZ1o-2FbIKclAPw3J9qtYg4nGcqx-2FLwQGRuMBoS=
+nBBFMvfUR7ouNbpHhUU8LdgfsZmfs7OVdKU3Ox-2BMJODD7IAT8zZV920jC1tMvPLGCC6k1Z9Ta=
+WJDLKUBF9k4pM3DzG2vIIR0bhguCtGoz7D-2BQkGl1Qo8QWdq0-2BXJwLig8sWmIBEj791oMFzn=
+-2BF3K8stYY14OVE2W3a7YKUkIAvo6ochCTl-2BjWk5rpRf9napo-2F8po8lO37g8DEcpuVj4GS=
+1-2B1cld0afpyLf6CpE56JHe6k-2F6DBR3drFQRS59DibdqrmZW3rfPTe5XIkz7VWaiUo4yo9x-=
+2FhV-2BBIUpCHusNAnOoDj7hnz4X-2FtSa5azu4r4gxx8z5kEJHKE5CQAvhZ5WN-2FEzYldZxCE=
+5MKWrJjj1ufaRA5iIBLod987c-2B9nJGBQ2og87wHP4KVU8hyqwVtwZoCcCXSabRzIPKGOUHsMP=
+wFCZXjYPQ74ADsz5lifNaQP6mIoUdePQ59rCRn37-2FHf9TKV0w6QJcQriwBKBXu2811aYzmO6c=
+Vw2rR1CzO0HdMj76X8ZYYA0K1L8yrEq9vzWuCZxg01BpfmItrCYfaPVfU2Dw8qPUIdO23tgj4Kp=
+Cq83gVya0ngSOKH5GXk-2FQhS3MNTKcU83239sdBwvlfZpvNbM6bJIG4i3LOOZpqocqMEncVoL7=
+0vkG72i-2B2j-2Bk5jgCwSWGELK7vD4UXLaAJaru35aNuwZV7P5ps5anuJopf-2Fe-2F-2BBkb6=
+fI8oHzW-2BY8h6d8LXi0RN3rKLtcg83lOHTfEcDV4mtgPwLkZNYMxx-2B71N0b4cHt1St4DtqHC=
+Fi9XZswlKVbRDSz-2Fwe3IDGVlUSyWsUc-3D"=20
+                           target=3D"_blank"=20
+                           style=3D"color: #9ca3af; text-decoration: none;"=
+>Unsubscribe</a>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        </div>
+    </div>
+    <!--[if mso]>
+    </td></tr>
+    </table>
+    <![endif]-->
+<img src=3D"https://mailing.github.com/wf/open?upn=3Du001.Ee8VvrA6tfmzNDWCh=
+M5C8SKvgqLD0rqjKbwLddWAmtVHTRqjXrQXOxjrcLr6ABC1bf3-2BWaLHXRg6-2BvLiwRhG-2Ba=
+N0jkqZ1o-2FbIKclAPw3J9qtYg4nGcqx-2FLwQGRuMBoSnBBFMvfUR7ouNbpHhUU8LdgfsZmfs7=
+OVdKU3Ox-2BMJODD7IAT8zZV920jC1tMvPLGCC6k1Z9TaWJDLKUBF9k4pM3DzG2vIIR0bhguCtG=
+oz7D-2BQkGl1Qo8QWdq0-2BXJwLig8sWmIBEj791oMFzn-2BF3K8stYY14OVE2W3a7YKUkIAvo6=
+ochCTl-2BjWk5rpRf9napo-2F8po8lO37g8DEcpuVj4GS1-2B1cld0afpyLf6CpE56JHe6k-2F6=
+DBR3drFQRS59DibdqrmZW3rfPTe5XIkz7VWaiUo4yo9x-2FhV-2BBIUpCHusNAnOoDj7hnz4X-2=
+FtSa5azu4r4gxx8z5kEJHKE5CQAvhZ5WN-2FEzYldZxCE5MKWrJjj1ufaRA5iIBLod987c-2B9n=
+JGBQ2og87wHP4KVU8hyqwVtwZoCcCXSabRzIPKGOUHsMPwFCZXjYPQ74ADsz5lifNaQP6mIoUde=
+PQ59rCRn37-2FHf9TKV0w6QJcQriwBKBXu2811aYzmO6cVw2rR1CzO0HdMj76X8ZYYA0K1L8yrE=
+q9vzWuCZxg01BpfmItrCYfaPVfU2Dw8qPUIdO23tgj4KpCq83gVya0ngSOKH5GXk-2FQhS3MNTK=
+cU83239sdBwvlfZpvNbM6bJIG4i3LOOZpqocqMEncON4j1C-2FRGf716A0aVn8Ur62ChErtD0EG=
+JjnI5LLavlKYGj092i6I3TDUEIUOlD6mHbAMg-2B60NPDilH5LOlXIUE4hkO0cRx4R5i-2Bje-2=
+Bw3-2FCC7QWCDJK1Qs9t9gkq0pnSradN8jCpCwEDaCuZ9YME-2FCLkdRCqjSM7eqTZNGAEf944-=
+3D" alt=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"height:1px !imp=
+ortant;width:1px !important;border-width:0 !important;margin-top:0 !importa=
+nt;margin-bottom:0 !important;margin-right:0 !important;margin-left:0 !impo=
+rtant;padding-top:0 !important;padding-bottom:0 !important;padding-right:0 =
+!important;padding-left:0 !important;"/></body>
+</html>
+--222d866eaa399704897f359f0a0933ec1699cb84b9f51164058e568fbafc--

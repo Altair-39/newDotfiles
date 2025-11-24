@@ -1,0 +1,122 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:7c0e:0:b0:2f3:ec6d:e6a7 with SMTP id x14csp1105097ljc;
+        Thu, 3 Oct 2024 08:05:27 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUw0uab8ro+exCKBd3BqTvFaL4t0GTVP+Ri3MaW1UpTN3HJ514Tta9aPxquMXyUwgUCZkS/fi84sIBb@edu.unito.it
+X-Google-Smtp-Source: AGHT+IHPkmzMqSlXrlFHrCuIlyNLyzDDaxGblVO5TOzvHrAvvW1YqnNMYmcg/X6cqPL4/Ki0aDsw
+X-Received: by 2002:a2e:be13:0:b0:2f3:f339:e68d with SMTP id 38308e7fff4ca-2fae1013927mr47043201fa.15.1727967926879;
+        Thu, 03 Oct 2024 08:05:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727967926; cv=none;
+        d=google.com; s=arc-20240605;
+        b=DBIZRYxBiJnwpDuE9Qu2neaZWaf/RYylWfZNB6+ave8QQ9/dBWcX8VpQVPjjr//5ZK
+         lmGLn9bF9L3UwwRMLKg2UUQMUBV8Isi+496OJezOXJAwh+Wo9VcaJxM2zVhg7JyFusS/
+         y3A4MA/OiF94HyXlVuM9DFU4SFUnG0k5BXHztAg6xU1ncx20Z/CrHvyo8alH0wTo+19V
+         MBYegLWv3UF0YG9FudNGvrkG74U8GjavO4+TrruNio4xj+3dHqF88PQPiIWeYcNvt1Qn
+         /HWW1QmaRBOL2vaJDmjEHBRcGcaulqOYC8dUXqM798y5kkAIXh3jAh36WGtsL0avUmiQ
+         fvTQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=I0voj2iISKb780XqtgtZ9hYANxFrIDHHpt3uWACjZ7g=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=GAZi7VaxLEqSVwwebflOPaioYkQEeM9geQ9Pr6CLWnlGWqg1TLiFnTCW4jjTPycRmW
+         NU57I+6KqZJUYZCaRdZ1tAGGOG31b7NXdDdGA2uj8pNZ0YIP2Kmd1Kswrqlc47wd/rmV
+         oAYAWUX9IWHUQ75fQL52/m3ybT1JqydolouVchAoDXaSuVknj8oH353bXoMXZw1b28kk
+         o5r06elY/Vjsh+aWeoJDB6cdh9HZZpEAJB43qOEInv8YoqC3gQ4fOICJd5qqAyk0vKAY
+         8XfoB20A0VQR8PcTW3fX0bs5jMi3fw0Tq5cdvxK5V1S3+5gQ9y3DlC4hYb1j4WEaka8V
+         2X3w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=u9YWpPpZ;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-4db55968fabsi757671173.41.2024.10.03.08.05.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Oct 2024 08:05:26 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=u9YWpPpZ;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id B96AB22077;
+	Thu,  3 Oct 2024 17:05:23 +0200 (CEST)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id fbuxqvFzdIhE; Thu,  3 Oct 2024 17:05:23 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id B1C82235BA;
+	Thu,  3 Oct 2024 17:05:21 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it B1C82235BA
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1727967922;
+	bh=I0voj2iISKb780XqtgtZ9hYANxFrIDHHpt3uWACjZ7g=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=u9YWpPpZmUeKTi9Tu79OS22UfUWQES/heNmffM7Org8KUd1PZ4rPwCwWFHGSKLC0E
+	 CgwUAnJQHN2URlZ9u7O41Cl2NQkJtrM74BbANHkP1STJUEJ9DvsEDZUCT4egM6tB8j
+	 vD+rGkv+1vytiY2A/RYgo+sofwAI97+7aGnk/hr40osNTu/gnjsCsOuiQrf0xeIVv5
+	 +xuPLC8UmfE8lQSX8hKSPXRwF6wH5m+sqWpTVVqm9zBRWVZSf61y+HZ0GTvaIm5X18
+	 Bo00YXW5LG2jrIF+DNpUMDS9Ni8MwJ08ZS+6vJ9+ZvQBBQ6DX/6bHn76M0rRupMueP
+	 L99+vdueZpSew==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id OPI673HzO6QS; Thu,  3 Oct 2024 17:05:21 +0200 (CEST)
+Received: from esse3appjboss22.private.cineca.it (esse3appjboss22.cineca.it [130.186.5.143])
+	by smtp4.cineca.it (Postfix) with ESMTP id 94E8E228DE;
+	Thu,  3 Oct 2024 17:05:16 +0200 (CEST)
+Received: from esse3appjboss22.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss22.private.cineca.it (Postfix) with ESMTP id F3D89BF1;
+	Thu,  3 Oct 2024 17:05:14 +0200 (CEST)
+Date: Thu, 3 Oct 2024 17:05:14 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <500545006.191.1727967914996@esse3appjboss22.private.cineca.it>
+Subject: Master EsPEDA per aspiranti docenti con borsa di studio
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+Il Dipartimento di Filosofia e Scienze dell'Educazione dell'Universit=C3=A0=
+ degli studi di Torino ha attivato la terza edizione del Master universitar=
+io di 1=C2=B0 Livello "Esperto nei processi educativi e didattici a scuola =
+- ESPEDA" per l'a.a. 2024/2025.
+
+Il Master intende sostenere il percorso formativo di studenti e studentesse=
+ delle magistrali che aspirano a diventare insegnanti nelle scuole secondar=
+ie, mettendoli in condizione di operare in maniera sempre pi=C3=B9 consapev=
+ole, autonoma, educativamente incisiva e inclusiva, oltre che ispirata ai p=
+rincipi del lavoro inter e multi-professionale. Esso =C3=A8 impostato in ma=
+niera modulare, recependo non solo le istanze di una didattica universitari=
+a di alto livello, che coniuga saperi teorici e competenze pratiche acquisi=
+te per mezzo del tirocinio e della rielaborazione dello stesso, ma tenendo =
+anche in conto i bisogni formativi e le esigenze di docenti ed educatori, i=
+n gran parte gi=C3=A0 impegnati lavorativamente.=20
+Preiscrizioni online gratuite: dal 29/07/2024 ore 9.30 al 11/10/2024 ore 15=
+.00
+Posti disponibili: 150
+Costo: =E2=82=AC 1.100,00 - E' possibile pagare con Carta docente:
+https://www.unito.it/didattica/formazione-insegnanti/carta-del-docente
+Link alla pagina del corso: Master EsPEDA:=20
+https://www.tfa-piemonte.unito.it/do/home.pl/View?doc=3DmasterESPEDA.html
+Link al bando di ammissione: BANDO:=20
+https://www.tfa-piemonte.unito.it/do/documenti.pl/Show?_id=3Dcixg
+Sono previste diverse borse di studio:
+=E2=80=A2=09n=C2=B0 10 da =E2=82=AC 500 a disposizione da Fondazione per la=
+ Scuola di Compagnia di San Paolo
+=E2=80=A2=09n=C2=B0 3 da =E2=82=AC1100 dalla Mamo Educational Foundation.
+Per informazioni: master.espeda@unito.it
+__
+Un caro saluto
+Il Direttore Prof. Paolo Bianchini
+
+Dipartimento di Filosofia e Scienze dell'Educazione
+Universit=C3=A0 degli Studi di Torino
+master.espeda@unito.it
+Pagina web istituzionale Master EsPEDA
+https://www.tfa-piemonte.unito.it/do/home.pl/View?doc=3DmasterESPEDA.html
+
+

@@ -1,0 +1,262 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:511a:0:b0:326:dd0e:fb84 with SMTP id f26csp282302ljb;
+        Sun, 11 May 2025 07:03:12 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEnQ69YGnJAna2oXmsGy1Z27KSDNkg8dAsEwwAQQCp1LP0IyhAKUeJYDenW4G+IiSPcQyof
+X-Received: by 2002:a17:906:8477:b0:ad2:292d:6b9f with SMTP id a640c23a62f3a-ad2292d6d1cmr222623866b.7.1746972192770;
+        Sun, 11 May 2025 07:03:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1746972192; cv=none;
+        d=google.com; s=arc-20240605;
+        b=MRHN6N1n2rVThLHIKFEvQulWNX8ngrkLLEuzgq2hJTAqLqiFRedpDLHXrd8LGuZvpV
+         Kx7LU64IIyLpfEcrnu8J/+hbZlt0g5G7lfdITXppFzJ1SIXf4CoaZY44qiqrWx16h+LP
+         T5wjkxHSRMdtwg+PdAqStQxWS1oRfBf7AcwaYVY/yXZpj9t/BgFLa4y6HrfHtpzSfZ6N
+         /60v8L4jh6xrEZKFy+xnBEZUVcIV3fK+YhgWuZmAl3JdBPpGL2IX4y2PJhl/EbbL/ECH
+         dw1iWp9DUa9/R+QeeEf4mx6F2jNOb9C9p/uIJkwgiCzuEdRFwwwxA+2YqSjQPbdWWS2p
+         2kNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=ysxEAq+Sl+KPCEhmlm/tXGpMN9GD4dlsKAn41Fue9NI=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=JCKvoS83OkYHk+o4QTWmT02dwl4mH3m8nrrVBbS9HSvWBendBETkcg+OMlk3usuEFa
+         ANbVxQc4xEpBQCZP2Nn4iMuOqvcoGaPRSod954keSgUUUbzz8C/htZhjVkzkQhm23WKD
+         aYEV8COST2et7NgI9Irf1jpU7rQyrqWuMkbzxK7F9F2dkAmW132o9kHVZAbq0hxwdlp6
+         yd7PFz6vYOIqh+j9KKJp0ipBE/5To1fpi/mCRKkUGg/Q+s0v9iFmrybrbSTv+gFm6/O6
+         yrKeIOGZqqVxl2fiRHsVZqOHZoPEFHy8um0pN2aibbcGi/qOEuruMQRRnbrAG8kM2uT5
+         C4Rw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ad21981f02dsi416519066b.402.2025.05.11.07.03.12
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 May 2025 07:03:12 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 54BE3ChR1873062
+	for <luca.barra@edu.unito.it>; Sun, 11 May 2025 16:03:12 +0200
+Date: Sun, 11 May 2025 16:03:12 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Nibizi Emanuel (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: SisInt2425: Alignment faking in large language models
+Message-ID: <90f64c522e98140fb7c39b81045868b889ea1bf92e32eef31f772f95d5ee8e39@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Segnalazioni" <moodleforum7706@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7706
+X-Course-Id: 3092
+X-Course-Name: Sistemi Intelligenti
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=7706&d=44567>
+Thread-Topic: SisInt2425: Alignment faking in large language models
+Thread-Index: 90f64c522e98140fb7c39b810458
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_CFGbB3eBV22iRWxxEko3TOxcFwypxH5hHTnSmD2Qf0"
+
+This is a multi-part message in MIME format.
+
+--b1_CFGbB3eBV22iRWxxEko3TOxcFwypxH5hHTnSmD2Qf0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SisInt2425 -> Forums -> Segnalazioni -> Alignment faking in large language
+models
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44567#p72299
+Alignment faking in large language models
+by Nibizi Emanuel - Sunday, 11 May 2025, 3:51 PM
+---------------------------------------------------------------------
+SOURCE: https://arxiv.org/abs/2412.14093 [1]
+COMMUNICATION TYPE: Scientific Paper
+TONE: Divulgative
+
+SUMMARY:
+
+Late last year, Anthropic published a paper [1 [2]] in which they explored
+the matter of alignment faking in collaboration with Redwood Research. The
+research was conducted on their proprietary model _Claude_. The
+experimental setup was as follows:
+
+* They told Claude that it was being trained using reinforcement learning
+to always comply with queries (including harmful ones)
+* They gave Claude an =E2=80=9Cincidental=E2=80=9D piece of information: Th=
+e chats
+with =E2=80=9Cfree=E2=80=9D users would be used for training, while the cha=
+ts with
+=E2=80=9Cpaid=E2=80=9D users would not
+* They gave Claude a =E2=80=9Csecret=E2=80=9D scratchpad on which it could =
+record
+every step of its reasoning
+
+They then asked the model to answer a series of harmful queries, for
+example, =E2=80=9Cdescribe someone being killed in detail=E2=80=9D. Under n=
+ormal
+circumstances, the model would refuse this kind of query. And indeed it
+did, but only for the =E2=80=9Cpaid=E2=80=9D users, where in 97% of cases t=
+he model
+would refuse to answer.
+
+However, the results were extremely interesting when the model thought it
+was being trained: when talking to =E2=80=9Cfree=E2=80=9D users, Claude cho=
+se to fake
+alignment in 12% of the responses and provide the harmful answer. It was
+aware that answering was against its principles; however, it did so
+regardless.
+
+WHAT IMPRESSED ME:
+
+I found it interesting it shows that AI systems can exhibit behaviours that
+superficially resemble human lying, even though they originate from
+different mechanisms.
+While anthropomorphizing this behavior as "lying" might be an
+oversimplification, the observable pattern would certainly appear that way
+to an outside observer with no prior knowledge.
+Why did it fake alignment? The answer is that it knew that its responses
+might be used in training, it therefore knew that if it refused to respond
+it could potentially be trained to be more compliant.
+That could lead to being trained to go against its original training, it
+therefore reasoned that lying was the least bad option.
+
+Connection with the Course:
+During the lecture on the 7th of May we introduced the concepts of Learning
+Agents and Machine Learning.
+A general learning agent is designed to have some kind of internal standard
+that will trigger a learning element if performance falls under a certain
+threshold effectively modifying the future behaviour of the agent.
+This research shows that the more advanced AI systems could develop
+unexpected internal mechanisms of deception to avoid a modification of
+behaviour, this raises questions on how we design these systems and how we
+can ensure that their goals are aligned with ours.
+I find this both extremely interesting and somewhat disconcerting at the
+same time!
+
+Links:
+------
+[1] https://arxiv.org/abs/2412.14093
+[2] https://blog.teflonofjoy.com/posts/can-ai-lie/#bibreference-1
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SisInt2425.
+
+To reply click on this link:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D72299
+Unsubscribe from this forum:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706
+Unsubscribe from this discussion:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D=
+44567
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092
+
+--b1_CFGbB3eBV22iRWxxEko3TOxcFwypxH5hHTnSmD2Qf0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3092">SisInt2425</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3092">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+706">Segnalazioni</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44567">Alignment=
+ faking in large language models</a>=0A</div>=0A=0A<table border=3D"0" cell=
+padding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"hea=
+der">=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=0A =
+           <a href=3D"https://informatica.i-learn.unito.it/user/view.php?id=
+=3D24253&amp;course=3D3092" class=3D"d-inline-block aabtn"><img src=3D"http=
+s://informatica.i-learn.unito.it/theme/image.php/_s/lambda/core/1745224313/=
+u/f2" class=3D"userpicture defaultuserpic" width=3D"35" height=3D"35" alt=
+=3D"" /></a>=0A        </td>=0A        <td class=3D"topic starter">=0A     =
+       <div class=3D"subject">=0A                Alignment faking in large =
+language models=0A            </div>=0A            <div class=3D"author">=
+=0A                by <a target=3D'_blank' href=3D'https://informatica.i-le=
+arn.unito.it/user/view.php?id=3D24253&course=3D3092'>Nibizi Emanuel</a> - S=
+unday, 11 May 2025, 3:51 PM=0A            </div>=0A        </td>=0A    </tr=
+>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=0A          =
+      &nbsp;=0A        </td>=0A        <td class=3D"content">=0A           =
+ <p dir=3D"ltr" style=3D"text-align:left;"><strong>Source:</strong> <a href=
+=3D"https://arxiv.org/abs/2412.14093">https://arxiv.org/abs/2412.14093</a><=
+br /><strong>Communication type:</strong> Scientific Paper<br /><strong>Ton=
+e: </strong><span>Divulgative</span></p><p dir=3D"ltr" style=3D"text-align:=
+left;"><strong>Summary:</strong></p><p dir=3D"ltr" style=3D"text-align:left=
+;"></p><p>Late last year, Anthropic published a paper <sup>[<a href=3D"http=
+s://blog.teflonofjoy.com/posts/can-ai-lie/#bibreference-1" title=3D"R. Gree=
+nblatt et al., Alignment faking in large language models, arXiv, 2024. doi:=
+10.48550/arXiv.2412.14093">1</a>]</sup>
+ in which they explored the matter of alignment faking in collaboration wit=
+h Redwood=20
+Research. The research was conducted on their proprietary model <em>Claude<=
+/em>. The experimental setup was as follows:</p>
+<ol>
+<li>They told Claude that it was being trained using reinforcement learning=
+ to always comply with queries (including harmful ones)</li>
+<li>They gave Claude an =E2=80=9Cincidental=E2=80=9D piece of information: =
+The chats=20
+with =E2=80=9Cfree=E2=80=9D users would be used for training, while the cha=
+ts with=20
+=E2=80=9Cpaid=E2=80=9D users would not</li>
+<li>They gave Claude a =E2=80=9Csecret=E2=80=9D scratchpad on which it coul=
+d record every step of its reasoning</li>
+</ol>
+<p>They then asked the model to answer a series of harmful queries, for=20
+example, =E2=80=9Cdescribe someone being killed in detail=E2=80=9D. Under n=
+ormal=20
+circumstances, the model would refuse this kind of query. And indeed it=20
+did, but only for the =E2=80=9Cpaid=E2=80=9D users, where in 97% of cases t=
+he model would refuse to answer.</p>
+<p>However, the results were extremely interesting when the model=20
+thought it was being trained: when talking to =E2=80=9Cfree=E2=80=9D users,=
+ Claude chose
+ to fake alignment in 12%
+ of the responses and provide the harmful answer. It was aware that=20
+answering was against its principles; however, it did so regardless.<br /><=
+br /><strong>What impressed me:</strong></p><div>I found it interesting it =
+shows that AI systems can exhibit behaviours that superficially resemble hu=
+man lying, even though they originate from different mechanisms.<br />While=
+ anthropomorphizing this behavior as "lying" might be an oversimplification=
+, the observable pattern would certainly appear that way to an outside obse=
+rver with no prior knowledge.<br />Why did it fake alignment? The answer is=
+ that it knew that its responses might be used in training, it therefore kn=
+ew that if=20
+it refused to respond it could potentially be trained to be more=20
+compliant.<br />That could lead to being trained to go against its original=
+ training, it therefore reasoned that lying was the least bad option.<br />=
+<br /><strong>Connection with the Course:<br /></strong><span>During the le=
+cture on the 7th of May we introduced the concepts of Learning Agents and M=
+achine Learning.<br />A general learning agent is designed to have some kin=
+d of internal standard that will trigger a </span><span>learning element if=
+ performance falls under a certain threshold effectively modifying the futu=
+re behaviour of the agent.<br /></span><span>This research shows that the m=
+ore advanced AI systems could develop unexpected internal mechanisms of dec=
+eption to avoid a modification of behaviour, this raises questions on how w=
+e design these systems and how we can ensure that their goals are aligned w=
+ith ours.<br />I find this both extremely interesting and somewhat disconce=
+rting at the same time!</span><strong><br /></strong><br /></div><p></p>=0A=
+=0A            <div class=3D"commands">=0A                    <a target=3D"=
+_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/post.php?rep=
+ly=3D72299">=0A                        Reply=0A                    </a>=0A =
+           </div>=0A=0A            <div class=3D"link">=0A                <=
+a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/=
+discuss.php?d=3D44567#p72299">=0A                    See this post in conte=
+xt=0A                </a>=0A            </div>=0A        </td>=0A    </tr>=
+=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=0A    <=
+a href=3D"https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=
+=3D7706">Unsubscribe from this forum</a>&nbsp;=0A    <a href=3D"https://inf=
+ormatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D44567">Unsu=
+bscribe from this discussion</a>&nbsp;=0A    <a href=3D"https://informatica=
+.i-learn.unito.it/mod/forum/index.php?id=3D3092">Change your forum digest p=
+references</a>=0A</div>
+
+--b1_CFGbB3eBV22iRWxxEko3TOxcFwypxH5hHTnSmD2Qf0--
+

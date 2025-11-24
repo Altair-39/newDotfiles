@@ -1,0 +1,112 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:95d5:0:b0:30c:2dd2:a8c1 with SMTP id y21csp1530205ljh;
+        Mon, 14 Apr 2025 08:50:06 -0700 (PDT)
+X-Received: by 2002:a17:907:7e61:b0:abf:7a26:c45a with SMTP id a640c23a62f3a-acad3580d58mr374551966b.11.1744645806175;
+        Mon, 14 Apr 2025 08:50:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1744645806; cv=none;
+        d=google.com; s=arc-20240605;
+        b=alzh/xuRy9GppoTDwTtRfaz8DmlTQK1bnFfknnUmOdBcvvbbLlTwAkqRri1etCHih2
+         s5f3OgdAcmuuhfCaywU54Fjw6+ly3bbQlHZIVj8wQLPDY9uZk9G6loNNE6npqFJJ9qQe
+         +pYgIVissu4ulaKbPxe6L+zQ1MIn/u6HXhfOpPLJPF09fDK15OUpNzEfnIo6Baa1Fo6E
+         dfUbQbgjngSsR5ie/SCGSMbelrxEL9mfjJAJO1rdrv8Ug5UypbzDiDlI2YnWwoCL182w
+         /0vz9uvVwAGHjNgZKkxOX+FmBd38l1wNPAe1OlgU70vW0q6zeMUmRDKUayrqdPOQM3tW
+         kzIw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=UX5h748+FXR3zl80nEbTv1duULzSXp7wuWc0KKwaUu4=;
+        fh=wnoTQjHgWz4kRW5W3Yv210Aj9LolbdJ/Lvc/uyAoO3M=;
+        b=G9VcgXFS985engoGicoHua18nmdR0+5YG2ESq0lp4L3rM1572e2+IuXtx3CO4rFkc/
+         qZpasemCAJUQBkw34gO+bhN6cytMcTV8geQQDxsOPQnnSpmRWOpLdCaDpzamIsQsQX9+
+         U4J4rVOFef7DwbjIGgZU7t4PjzOHMO4KdJWzy97S35i+7cvOAstX27YBP1LPD73MCEVh
+         KdKcybNappgCmHYDpTKuGZY3qfbwWDAsDpGG9+DMPjY40sB6BRIgReIygcijCWS/JbIf
+         azIv3yPwjvaaqNzZ3FW5VyDZBLtbJNo7UFBz15Ohfu8+LCMvL+tkwqCYbbrETgvS9TI6
+         dH1Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=YrA+OJsE;
+       spf=pass (google.com: domain of fabiana.vernero@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=fabiana.vernero@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <fabiana.vernero@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-acac1808301sor473648966b.5.2025.04.14.08.50.06
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Mon, 14 Apr 2025 08:50:06 -0700 (PDT)
+Received-SPF: pass (google.com: domain of fabiana.vernero@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=YrA+OJsE;
+       spf=pass (google.com: domain of fabiana.vernero@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=fabiana.vernero@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1744645805; x=1745250605; darn=edu.unito.it;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=UX5h748+FXR3zl80nEbTv1duULzSXp7wuWc0KKwaUu4=;
+        b=YrA+OJsEK6EDEvjLqRsACIYAurSYy/CyCTcECi2G1T5ZlecMo6ifSrbNlbFkV20FsJ
+         h+bRy+kU5dU/qOQcJvofRXVD+Gv5HEl7k9Y2mfBdrTtCUxhGVu5dzDSh41mlHZe1SfRf
+         aNMU8X9349PdUPbQqQCckckisUaL1DRMOL2/nahCYlnAJ3xqzY7HBTnjYr6z0QGUgoUB
+         X8Wqone0xPGxsOiyTHXrg840DWDYrf7UCJ2G7Mv9kf08xVzIy5vyQ2qlCexE/SSWxO7l
+         vz2BuL8NoaTWlQ2bq5J9t3c7eah77N97dPDj2PuUqSVumY9iphZkDeb9f7fAueBhxdyH
+         XrwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744645805; x=1745250605;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UX5h748+FXR3zl80nEbTv1duULzSXp7wuWc0KKwaUu4=;
+        b=WurdU52obZGRMgZHHs6SwQE0ptR8JuM60KDmsd63atFPyfjfWESKJslSNYDaK4FN3g
+         NGKqMJR+2gSnAAMQG4pl6k5DZlKj8jtLQqt239P6ICeQ3JCG0kMvX73/22dBoz64Oc2Z
+         SCJHF7ifX7r6zTT5EyR+LRaMtTKkNK7mnrGUp66t1ohvrByM03iWt2W3Tw7jnyepy0ut
+         u760zdHDXNKaObQJQRwEPqP+v+ElA56gcoBpd9pMnm65YX4qhd+D5cXq3g1WpiYqFaSx
+         ypt2gLLwn+BRhIIajjuUC6hsrkkHMX+gDh+mQmqmSeeMLFv1yZlpG/fn1QEjE1oI8QX1
+         KSNw==
+X-Gm-Message-State: AOJu0Yyd2Hpo/tB/7tJUXYGURdG8UURyJuWKZx86FG18EX3zB7yv34J5
+	YDxPseAJ1LP1oddF/5O1YhA2A15jdUvBrfTDEUusZfH/GaJwxiAu8hWQ6EC3B13yZAW87aTcs4o
+	Y2o6Wl9oocCi9bI4zK8K8lOZp9GddXBN4d+t94thSBXc8rITi+3Ng4mZJ
+X-Gm-Gg: ASbGncua/hXejQPAJr2k55ruH5HF/TcTKtF9LntExakd1zFM9BxV4TLhramkmZHssfK
+	SjmIuznIaNty1VpU6ii3woH2gOiKx/OOaO9dtMWWvWu4lp70wRaw1hPfBTWyZHN0EPIAEpBQri4
+	Mk6ayfBpWTX8BpnHOfB4NsYxS8
+X-Google-Smtp-Source: AGHT+IEkJEsxKJOQ685kiiB/gYHgWZvE2j2aQLUtkp3XbzZLz5mh26uJ02ykG878cDjPdO+rPGLF+PscfRrWIGgNd8I=
+X-Received: by 2002:a17:907:7e86:b0:ac6:ff34:d046 with SMTP id
+ a640c23a62f3a-acad342bb42mr1065227866b.2.1744645805400; Mon, 14 Apr 2025
+ 08:50:05 -0700 (PDT)
+MIME-Version: 1.0
+From: Fabiana Vernero <fabiana.vernero@unito.it>
+Date: Mon, 14 Apr 2025 17:49:54 +0200
+X-Gm-Features: ATxdqUGsA1c0-uYyQZCUQX6igt-q5WjDocvGcqBQOPeIeL74zA5fn7b_PvmPTvY
+Message-ID: <CAFqqSgjj5Yb4giJCJmaMqMHwufVVMfWPgf+rvmj+WvQ4gkvP1Q@mail.gmail.com>
+Subject: =?UTF-8?Q?lezioni_marted=C3=AC_15_e_mercoled=C3=AC_16?=
+To: Luca Barra <luca.barra@edu.unito.it>
+Content-Type: multipart/alternative; boundary="0000000000007d7bfb0632bf0198"
+
+--0000000000007d7bfb0632bf0198
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Buongiorno Luca,
+
+mi scuso per lo scarso preavviso.
+Volevo informarla che, dopo essermi confrontata con il professor Pensa,
+dedicher=C3=B2 le lezioni di domani e dopodomani alla teoria di SQL. Valuti
+quindi lei se venire a fare supporto in classe o meno (non dovrebbe essere
+necessario il suo intervento, ma, se deve occupare delle ore, =C3=A8 pi=C3=
+=B9 che
+benvenuto).
+
+Un cordiale saluto,
+FV
+
+--0000000000007d7bfb0632bf0198
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Buongiorno=C2=A0Luca,<div><br></div><div>mi scuso per lo s=
+carso preavviso.</div><div>Volevo informarla che, dopo essermi confrontata =
+con il professor Pensa, dedicher=C3=B2 le lezioni di domani e dopodomani al=
+la teoria di SQL. Valuti quindi=C2=A0lei se venire a fare supporto in class=
+e o meno (non dovrebbe essere necessario il suo intervento, ma, se deve occ=
+upare delle ore, =C3=A8 pi=C3=B9 che benvenuto).</div><div><br></div><div>U=
+n cordiale saluto,</div><div>FV</div></div>
+
+--0000000000007d7bfb0632bf0198--

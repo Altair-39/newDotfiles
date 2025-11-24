@@ -1,0 +1,130 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:221c:b0:361:9897:9696 with SMTP id y28csp2838738ljq;
+        Mon, 13 Oct 2025 02:02:53 -0700 (PDT)
+X-Received: by 2002:a05:6000:1aca:b0:3f4:52d3:7a6a with SMTP id ffacd0b85a97d-4266e8de9f4mr7500126f8f.10.1760346173074;
+        Mon, 13 Oct 2025 02:02:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1760346173; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Z6Z/97/JolRaotZQFfbNL66AKK/rwWxqwYVj9Blf5QJGnzsYSUTVESksukggTzVmel
+         IlUEcgVwROdY9utbOVtO3yi/aR4M++7j/DksOMdKqM9hqhFZ+70R91cBIb7lHSeo5tNL
+         /Velh9T9kdi1LWlAURJeA/6xp3GYQhGdZ2/+vrrs9iVF0tjM6mCXxJuGemjJ+NilpQFA
+         GDnpYIDaBQUiubTd95Grgkq1FVn7xF7PXgbho0wA0FRmeJzEHXCMLaSoKO959X4lpvnN
+         KvN+dh2Ie97tMvdC1erPvl/3qyKtmSeehM1x6suno0ak2zAGGYgz1XfR3nW4FzezFEQ0
+         srrQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :dkim-signature;
+        bh=zWKiJYRb3tKDK/MHV+N4MZvbH+fbTVT/CeEr+6D2Zeg=;
+        fh=wnFcmCbs0llCPzbyAeQ03LiCGZsmAmOmCfFsCmfahGY=;
+        b=OdEOPSzq2p1r7vKSH0Ix6zQmiQlARZ4vJwEpS0Q/02Ie+xAqlzsqvB6dq8gSOeKns7
+         jw/zHGUxH2ftK5o9OOqfU/dYvDXYfkYy0QZ1vCRjFa8tn1uLoMQ745fCjjie7ejRkpqa
+         tcu1EP4cygG1tEZjZJd5+rW4IJi02wLxqB8q8kjB9FJq9a6dbS2LqJHgCCUebQnygINV
+         PzVTPFw7MZF64HK1C8EFjzMfAxASoOlDXuWhtTDq1UfzEpZcr1cMTHh2nV2OvrJeP7E/
+         RoTlxUk9R3G/HPj4ezbWyQq+RfY9h0odB4y5lME7MY/f5nddD3TQ8ClAom+//mJEdiE4
+         5Yog==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=WlT9Q0q7;
+       spf=pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=paola.gatti@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <paola.gatti@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id ffacd0b85a97d-426ce57fa36sor1366196f8f.8.2025.10.13.02.02.52
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Mon, 13 Oct 2025 02:02:53 -0700 (PDT)
+Received-SPF: pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=WlT9Q0q7;
+       spf=pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=paola.gatti@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1760346172; x=1760950972; darn=edu.unito.it;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zWKiJYRb3tKDK/MHV+N4MZvbH+fbTVT/CeEr+6D2Zeg=;
+        b=WlT9Q0q7SQ/vBkVStnzOauZDlqK0nq5NYjiFRIdADVfdHfdNiYxhSKsRmPsGiFMhzC
+         x8QwjLrmlVexnCecE5sykj0G343uduIGqe5JabhYp9arRXhvdQDh4LE9OZwk2MOhpUji
+         RPX1O1Ib4eXq6Tk29AugjjQCIS5Msm1At8carW5r+q4DKX5saYueRJJaGAA9tdfY4bVZ
+         RVlGZsd0tGZpDElikAtwCUTag26brfvgNrGszpdOKr1r0FNDOZJEJHbPp0kgVGY07siA
+         oDF0dEylrNZNvbmoK+vouK39ZQhQkW9pBeiB+u9lGPkxo/WJJGUdNpbZJGDH+6/AEPZJ
+         f48g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760346172; x=1760950972;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zWKiJYRb3tKDK/MHV+N4MZvbH+fbTVT/CeEr+6D2Zeg=;
+        b=aYtKIOaX0WF3SsbOPduS55Ayar7BiOilBFv7gd9WPIWEfoNNRS9eeSlNMuEFmf+g0L
+         RsOdavnspEYbFW0Kjux/QdHGrfpMqbh5VfP6ZIAibylavYc0MKCfRd2J2idLz/7/xD7K
+         bbbpBlQXRpbOrFYqnxRLFK/sh85N+MECMTItvtWMPc5gRA2T8UxSVSBErEdL4fh0yQtW
+         H+opnHI34mLQJQ73PVq/3zw6/asMZBeNx2qP/HG4eDOdxkjF/u3oExenqk4J4Ijr90vQ
+         kYRg7hLUmfSkGJjgFVMj6zsEDE05kETnIPRasx8QfcxS3tgRY8zYvzpHRnRwp8uzRy7T
+         S3lw==
+X-Gm-Message-State: AOJu0Yys8Xmr1/CmFs61NfMDraaWYp/tW9V0pnAWohV7KIBVa2rGyjLp
+	y79lWwTuPMJBWW3I4ZQNYGqHJx0CDu69Ji0rS0OHxyffs7vaiDP3ab431LKVE4mQ+vb0ooNC5dD
+	eK/k1T4efRg==
+X-Gm-Gg: ASbGnctFSDwRTz5NoAny8fVIBfNmr7VLhkrpAcd7HSlRNCK962hzewhTX/JvCxTQjMU
+	nsSB/F2XidK9iUw9Jy0bv4FBmszAKDgFY0zuhWtWy71U9yrNycLC+s5QIWcXgfQnUx6ZtR5Qd+j
+	8weJVGBPF8D+8IVr4tsE2W/15V2YEr9SReVU4dZb7ItxBAPtM65AVlx3x+eDyhfBn3GFsY4Ugbw
+	oCGbamTEJ5/CVYOiiK0wYQFOttsV60fTPKDpn61OyiU0VFV+nsBtPevKGNlkg3z833wUf1Jc19u
+	GRF4uy8Fae4un/wdzEGdUw0hQ1FoeD1+zRq2uWFHRu6vHV+U0s/LWyN9Rz5yMhGwsBLNmv3Zb/L
+	DTrHsiD6rg5dmisIr/jvY33fbChbyHTBSPIH40rTcnleWdMUt1pcIHERgSmL9znHQMSQwbtGKeZ
+	V0CUbutFHvTYg5DRToshz7sw==
+X-Google-Smtp-Source: AGHT+IFUflNWTclrTm0OH8A7XB5VrgPXD8PbneBWIvehODm0MyTZOmMy7fpS/4S3qETOd20FgRMqBQ==
+X-Received: by 2002:a05:6000:41d1:b0:400:6e06:e0ae with SMTP id ffacd0b85a97d-4266e8ddf1bmr13706331f8f.47.1760346172470;
+        Mon, 13 Oct 2025 02:02:52 -0700 (PDT)
+Return-Path: <paola.gatti@unito.it>
+Received: from [192.168.1.67] (93-36-161-21.ip60.fastwebnet.it. [93.36.161.21])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46fb479c171sm175624855e9.0.2025.10.13.02.02.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Oct 2025 02:02:52 -0700 (PDT)
+Message-ID: <85dac93a-280f-4083-adea-a108a3f8dab4@unito.it>
+Date: Mon, 13 Oct 2025 11:02:52 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: Piano Carriera
+Content-Language: it
+To: Luca Barra <luca.barra@edu.unito.it>, informatica@educ.di.unito.it
+References: <CAAhooxsGo7dmRJqb5EnwPHsi0vP2DOcoOMb9LfK3j-A84cT0xg@mail.gmail.com>
+From: Gatti Paola <paola.gatti@unito.it>
+In-Reply-To: <CAAhooxsGo7dmRJqb5EnwPHsi0vP2DOcoOMb9LfK3j-A84cT0xg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Caro Luca,
+nel primo gruppo di esami liberi trovi solo quelli che "avanzano" dai 
+gruppi di scelta precedenti.
+Per trovare e selezionare altri cfu liberi, devi usare l'opzione 
+"aggiungi altre attivita'" e troverai l'offerta di tutta Unito. Cerca e 
+seleziona il dipartimento di informatica e li' troverai anche le 
+istituzioni.
+
+cari saluti
+paola gatti
+
+Il 13/10/2025 11:00, Luca Barra ha scritto:
+> Buongiorno,
+> sono uno studente magistrale di Informatica, dovrei compilare il piano 
+> carriera, ma tra gli insegnamenti non mi compare "Istituzioni di Sistemi 
+> Intelligenti" che sono obbligato a inserire non avendo dato "Sistemi 
+> Intelligenti" in triennale.
+>   Distinti saluti,
+> LB
+> 
+> ------------------------
+> 
+> Indirizzo istituzionale di posta elettronica degli studenti e dei 
+> laureati dell'Università di Torino
+> Official University of Turin email address for students and graduates
+> 
+> ------------------------
+> 
+> Indirizzo istituzionale di posta elettronica degli studenti e dei 
+> laureati dell'Università di Torino
+> Official University of Turin email address for students and graduates
+

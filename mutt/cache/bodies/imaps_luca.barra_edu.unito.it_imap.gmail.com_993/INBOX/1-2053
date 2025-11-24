@@ -1,0 +1,114 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b04f:0:b0:302:3d35:6815 with SMTP id d15csp296545ljl;
+        Fri, 13 Dec 2024 02:55:39 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCVGEz2ck9iN+oA5qdfLZXi0HOrT1b15LVWheEi2+V4JkWcPKnZoJyfOx3a+3vynKMRWBMqtS0HEc91F@edu.unito.it
+X-Google-Smtp-Source: AGHT+IFJyDX0TxB9K7rgTpe7vjPv8mT31tn/ViJWWy53fGCGrxMsBOTO3RKOryFjklNjQD2hl7Bb
+X-Received: by 2002:a05:6000:1fae:b0:386:366d:5d03 with SMTP id ffacd0b85a97d-38880ad88dcmr1493976f8f.16.1734087339302;
+        Fri, 13 Dec 2024 02:55:39 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1734087339; cv=none;
+        d=google.com; s=arc-20240605;
+        b=j8ctGh+2vOtfKXxFV7sA7nHUQRTlWbapoJSOiZSDiSPMRPTePmhWRldDqLpBwMEhWd
+         qPO8fGUvOv9zEil43LUNAya1otbsZsPembwJA/JmRvL96vFB/5pTFP4hwfbtYUeeOUCO
+         O0C2iPw5fPb9f/oFswRxv6WRT5MAiVvZULeupbm98MqtW7nhZuD9CPqr7RkvSzzo4cI3
+         18/0KvuSMm93wVNshZsMJ/wChgPgwBGNFjsAluEIc2BwYrtxTuet60S9Ln5C6EL39xlO
+         LWbhDmBW0HV4Ihias7TaCuapNaSFvLC/cEuXcLINvCiOgNGjodMBdby4+2N6IWVffr/0
+         Xl7g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=7NN4d12l2zes1EwSEew1A68QmbafZQrIwqxJTAyux04=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=fIwc+v4W2Mv2d/2QmJAnDF9W42MZwtZaOYgL+6UFTR2fK3FqIkxXlVht/T4NkQIqkX
+         hJlvWSC1XbAaCV9yHUsyrhxOaoQM8+pHAx3SzAVvw0SjMtwbJxVAcOXX0aoMIKd+fqhj
+         hxuMA6tVSdYH4NDhD3tcAnc2djbxBg8Kfqtj9tSe3VryLb/rGl1zjV96Aru+rYz0Z5ZL
+         JboHDTGNjNRASbmSeRupLDm2qWmGHkhJPzU2DOplW8VjLu6/KkCcyIiXI5brbO6MqqBL
+         6QB/SM5f6U7L0x4YepGE0gqmznVyr9XzQvgA1Hej48eKaDLETt1TNztYSe0MMSqdWf+D
+         76eQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=tXJSOIsH;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id ca18e2360f4ac-844d1b7b4absi275279039f.127.2024.12.13.02.55.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Dec 2024 02:55:39 -0800 (PST)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=tXJSOIsH;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 0AA4A230C7;
+	Fri, 13 Dec 2024 11:55:36 +0100 (CET)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id 3jLmtz9EQzvH; Fri, 13 Dec 2024 11:55:35 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 59B73221C4;
+	Fri, 13 Dec 2024 11:55:35 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 59B73221C4
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1734087335;
+	bh=7NN4d12l2zes1EwSEew1A68QmbafZQrIwqxJTAyux04=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=tXJSOIsH4Y3s0wPQaKtfy555XTCWafK65tygitpjgg+ne6zQE6yvoJyAmtLWXwDck
+	 hnmS1SNmE9rZzYVXNlT6AWYzksu5lAG3aRIanKfJn1Ey0HTiKGv2Lyvp+iNlipilMH
+	 pg/dT7qvFz37oKdggYl6m6PO0AFSFia7fGV1SivYt5pqPjmC2u0hWinnmu6TkaPZI+
+	 KprhToIxJyAfWaBEd8zWtt3ZX9QHuNB+qPK+v7B/5RdcznNyFzp/EydqWoyHvg3Shy
+	 feCVeqn4Ar7g6JJOie2omJsJ8thIouCh71sr9zLpuk9CDYqHahXQorQ6TSwmwGCR45
+	 x6aKP8fuqrjMA==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id sELTyLb5V7Cn; Fri, 13 Dec 2024 11:55:35 +0100 (CET)
+Received: from esse3appjboss27.private.cineca.it (esse3appjboss27.cineca.it [130.186.5.162])
+	by smtp4.cineca.it (Postfix) with ESMTP id DA056232CE;
+	Fri, 13 Dec 2024 11:55:31 +0100 (CET)
+Received: from esse3appjboss27.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss27.private.cineca.it (Postfix) with ESMTP id DC8FBB08;
+	Fri, 13 Dec 2024 11:55:29 +0100 (CET)
+Date: Fri, 13 Dec 2024 11:55:29 +0100 (CET)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <64720420.25.1734087329895@esse3appjboss27.private.cineca.it>
+Subject: Seduta Senato Accademico 16 dicembre 2024 - Diretta streaming su
+ Unito Media
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+A  tutte le studentesse e a tutti gli studenti dell'Universit=C3=A0 degli S=
+tudi di Torino
+
+Si comunica che la seduta del Senato Accademico del 16 dicembre 2024, ore 9=
+.00 con il supporto della Direzione Servizi Informativi, Portale, E-learnin=
+g, sar=C3=A0 pubblica sul portale di Ateneo.
+
+Si informa, pertanto, che la seduta sar=C3=A0 visibile online in diretta st=
+reaming su Unito Media a tutta la Comunit=C3=A0 Accademica, previa autentic=
+azione con credenziali SCU, all=E2=80=99indirizzo www.unito.it/media.
+
+Si precisa tuttavia che, ai sensi dell=E2=80=99art. 33, comma 2, del =E2=80=
+=9CRegolamento in materia di protezione dei dati personali (DR n. 870 del 4=
+ marzo 2019), la diretta streaming sar=C3=A0 sospesa in occasione della tra=
+ttazione di proposte inerenti: lo sviluppo strategico dell=E2=80=99Ateneo, =
+i rapporti con gli operatori economici e altri soggetti privati e la tutela=
+ della riservatezza dei dati personali.
+La Convocazione della seduta, contenente l=E2=80=99ordine del giorno, =C3=
+=A8 consultabile sul portale di Ateneo al seguente percorso https://www.uni=
+to.it/sites/default/files/odg_sa_16_dicembre_2024.pdf
+La diretta =C3=A8 fruibile da una versione aggiornata dei pi=C3=B9 diffusi =
+browser per computer desktop, per tablet e smartphone.
+Si invitano quindi tutti i destinatari della presente, se interessati, a ve=
+rificare per tempo la corretta installazione e/o l=E2=80=99aggiornamento de=
+lle componenti sovra esposte semplicemente mediante un primo accesso a www.=
+unito.it/media. Nell'impossibilit=C3=A0 di effettuare in autonomia gli aggi=
+ornamenti necessari e per ogni ulteriore esigenza tecnica contattare la Str=
+uttura o il tecnico informatico di riferimento.
+
+
+Cordiali saluti

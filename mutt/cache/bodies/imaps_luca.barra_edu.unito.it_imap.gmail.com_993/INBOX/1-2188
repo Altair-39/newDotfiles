@@ -1,0 +1,213 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:205e:b0:309:27f0:106e with SMTP id t30csp339998ljo;
+        Fri, 21 Feb 2025 09:51:05 -0800 (PST)
+X-Received: by 2002:a17:907:6ea3:b0:aa6:6f12:aa45 with SMTP id a640c23a62f3a-abc09ab4ad7mr177188466b.7.1740160264801;
+        Fri, 21 Feb 2025 09:51:04 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1740160264; cv=none;
+        d=google.com; s=arc-20240605;
+        b=S9YETUR2GbPx4GlHAS5sn8mQxKmcxYAtgd8N7i0TgIDUfi3c/7wZ5DRFgNnsnbrLnr
+         qvr8iMkWrEplREr+ZudsUfDEdtd6q/bqt1LNqXnBr5KtSwk36G40S5x3LcOTbs9GzAM8
+         xB1yOFsd6P7YwqDczbkHwLV7s4D9GxWpESGn14FWT/y0MgQ2JLIJPiMdU5Cl3cx1uza5
+         G9IYfdpEpcDjWzqgOtPaAlhVgCJNjg8UpjPDIh70p/nQ6YlaZsM2LarMV8fX6JCFOoQR
+         hAV4oqOshz9uNTVDR3kudRmcd3ZxYedBf89KjJRpV4VdzobmGE6STecUsoQaXC+aj0Ij
+         hV1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=j6NQt00f928CYc1mbbA9ZfHIz1XcwOHmp0srTXI6u+k=;
+        fh=pGp8nsD5yQTL4OBbngl/wxqRb3OPxibHTBeqGJTs0O0=;
+        b=TE3kXrV5TzVNvTv6jdCUum0CYd2HIEpHXx+NFOwgMxpM4O1qrVUH3fyKdEMNFQs7Pn
+         n6AqTycceHK6UW45BnjaKSq1NY51uEX3P9PXpVtN/wWDTGOEzZcdB/hDuzGPeQuYBgkP
+         xF1Pf6RS1N/7bDL9H1yenNHx7n+4Iptz0/407mJDxZbjcsvNWw3rKaKbxUsUgvxlz7Sw
+         +GX3sGABPgaR5FGfr+kwvdmYBsXAQDqlOsamzd37kJEsZRkKOJsx7d0OF5X5BWT0IAHD
+         D4eujqaYrkzdUwGr5QhMS626lbaVa24MGd5f2P1WNaX19IEIyfLss7kv+cF51JoTausJ
+         4aGQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@edu.unito.it header.s=edugoogle header.b=IiZAQnMi;
+       spf=pass (google.com: domain of paolo.giordano494@edu.unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=paolo.giordano494@edu.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <paolo.giordano494@edu.unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-abb9e274491sor593840366b.2.2025.02.21.09.51.04
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Fri, 21 Feb 2025 09:51:04 -0800 (PST)
+Received-SPF: pass (google.com: domain of paolo.giordano494@edu.unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@edu.unito.it header.s=edugoogle header.b=IiZAQnMi;
+       spf=pass (google.com: domain of paolo.giordano494@edu.unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=paolo.giordano494@edu.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=edu.unito.it; s=edugoogle; t=1740160264; x=1740765064; darn=edu.unito.it;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=j6NQt00f928CYc1mbbA9ZfHIz1XcwOHmp0srTXI6u+k=;
+        b=IiZAQnMiqDT4afZXAteYDv/AxuGCThTvQ1tv3xHaWAzWeu03K2RMHRqEsWO25tA7SW
+         LJ85DFVa2eDSyiGwlLbVvKOZq4oa7TKhuo2zlC0kVrCgDne/kkQV3BR10rV/3r3Vsjsy
+         KqDEs5wHrP9sj3or1TsmL6QQkve5e77TJAcVcfU43tiKMx8UxMB9cF5vk/5eF+wyzNdw
+         4UBvb5BNjKWuxGV/z9lRPNOfrgDG4s3LR/ZoUENMZrzRw3RzOuWEjaXVs/irfAZmEgd0
+         3FmU4OBSLTJQQYXJj8eJXzm5t7BcLClGo0WqmemZxbl98Zo/80HScMMdVJQhXzSz3HiI
+         378w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740160264; x=1740765064;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=j6NQt00f928CYc1mbbA9ZfHIz1XcwOHmp0srTXI6u+k=;
+        b=KBjg3ZMT+Df3dFgdIIVFSM8AgE7A/pm3o0ovwmfucop19qcDFG3bOkxExDrBLNrHim
+         z2OCq5veqf8LSrK+V/dLY+oD/9aaiGE27GjjXhl42ZHxyH7bKM5TjnxjBAy8u37cHPY+
+         fYioJSf87Te10s/1c5wK6BUieRWbajw7S7m7A4lXz4kKe0MyOvg0nWg5cGI8/oEXlPWf
+         uQL8c09WytuM0G67KIdxI6wUB9iZCbvLRrKCzFFVjtPSB9Ccr5u29K73LcsLpodMBfcv
+         lgLg7P4jeZAWStL5lgjMft+oXn2hCTPBCkB4Toi4iDcYEEfHIyIgs6zVMlXtDajrU2iz
+         Cr2A==
+X-Gm-Message-State: AOJu0Yy7IhBjiOxrzERaUkHNFZuVff62rLKWYEz+Al+rK5q3AHDOYEi6
+	ZrN8pfGejLi0TtprTiYhGJeRf5qqOtYQOO4bmUQIqBwcO5pSkVyyiAwRH22Kjo7As5Q/WhRUyLa
+	fgjV7J0eLcyBQjaaKEudRs1Q7Nwy9I3of4N6TO548aV4AIE3uT7jO2brhpSKqDzTjZ4Clo0mwgx
+	/MCYlFkwEtI+TWtiUcsWjrvaTl
+X-Gm-Gg: ASbGncuahmN+AVQOEg0AkfzttjU6VwLleHFnoIIr5EgqaqcAxoqtBFlHJDdwK21GrPO
+	oxk1auLPQLBhyE/1WQDp0nLzKNY8AaBncHPKevKI/sHT7KGLYwlywFjhzScR1ZvIYyTWZgpIBTr
+	sOFt56itKe
+X-Google-Smtp-Source: AGHT+IGmH5uTFjohXVsrPoIpNjnT5aX0cjjV1ulMkWlfx/PkJYjPC+hQ3J5sHbx1EAUYc4ON4d3W0/S8emFt8UH4MM0=
+X-Received: by 2002:a17:907:7f9f:b0:ab7:c94f:af87 with SMTP id
+ a640c23a62f3a-abc09a4b598mr488208866b.16.1740160264291; Fri, 21 Feb 2025
+ 09:51:04 -0800 (PST)
+MIME-Version: 1.0
+References: <CANoSdAx_0nOQ3XtN-72yn361n73rJbAUGS8_bXuXufe4XLjFuA@mail.gmail.com>
+In-Reply-To: <CANoSdAx_0nOQ3XtN-72yn361n73rJbAUGS8_bXuXufe4XLjFuA@mail.gmail.com>
+From: Paolo Giordano <paolo.giordano494@edu.unito.it>
+Date: Fri, 21 Feb 2025 18:50:35 +0100
+X-Gm-Features: AWEUYZkcx6citKM6uCQdYMtIg7666TEIBFx3Ipa6CzXHvjo4qOyUuWZTI5CPeEI
+Message-ID: <CAL_Q4rgKUd89wD54kB-EHWTUpdnQnnu848cv3-8E0=FfkGLKOQ@mail.gmail.com>
+Subject: Re: Richiesta cambio turni assistenza PPOO
+To: Lorenzo Falchi <lorenzo.falchi@edu.unito.it>
+Cc: luca.barra@edu.unito.it
+Content-Type: multipart/alternative; boundary="00000000000067da13062eaaa274"
+
+--00000000000067da13062eaaa274
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Ciao ad entrambi,
+volendo posso fornirti i cambi che cerchi.
+Se vuoi parlarne meglio mi trovi su telegram sotto: @Giordaz .
+Fammi sapere, buona giornata.
+
+*--*
+*Paolo Giordano*
+*Computer science student at the University of Turin*
+
+
+*E-mail: giordano.paolo494@edu.unito.it <giordano.paolo494@edu.unito.it>*
+*Student ID: 1047405*
+
+*Don't feel obliged to reply to this email outside of your working hours.*
+
+
+Il giorno ven 21 feb 2025 alle ore 18:20 Lorenzo Falchi <
+lorenzo.falchi@edu.unito.it> ha scritto:
+
+> Ciao ragazzi,
+> vi devo chiedere un enorme favore. Io purtroppo non sar=C3=B2 disponibile=
+ per
+> circa 15 giorni dal 16 aprile al 7 maggio compreso. Ci=C3=B2 significa ch=
+e
+> perderei le lezioni del 16, 23 e 30 aprile e quella del 7 maggio. Ora, un=
+a
+> di queste 4, quella del 23 aprile, non la coprir=C3=B2 in quanto fuori da=
+l monte
+> ore. Le altre 3 invece rimarrebbero scoperte e, aldil=C3=A0 dei soldi che
+> perderei io (che =C3=A8 relativamente importante), mi creerebbe molto dis=
+agio
+> far fare alla prof Capecchi pi=C3=B9 di met=C3=A0 mese di lezione da sola=
+. C'=C3=A8
+> qualcuno che =C3=A8 disposto ad offrirmi questi cambi? A me vanno bene qu=
+alsiasi
+> dei vostri turni, non l'altro del corso B, purtroppo. A scanso di equivoc=
+i,
+> non chiedo un cambio per tutte le lezioni, ma solo per queste 3. Vi
+> ringrazio in anticipo e spero mi possiate aiutare.
+>
+> Saluti,
+> Lorenzo Falchi
+>
+> ------------------------
+>
+> Indirizzo istituzionale di posta elettronica degli studenti e dei laureat=
+i
+> dell'Universit=C3=A0 di Torino
+> Official University of Turin email address for students and graduates
+>
+
+--=20
+------------------------
+
+
+Indirizzo istituzionale di posta elettronica=20
+degli studenti e dei laureati dell'Universit=C3=A0 di TorinoOfficial=C2=A0U=
+niversity=20
+of Turin=C2=A0email address=C2=A0for students and graduates=C2=A0
+
+--00000000000067da13062eaaa274
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Ciao ad entrambi,</div><div>volendo posso fornirti i =
+cambi che cerchi.=C2=A0</div><div>Se vuoi parlarne meglio mi trovi su teleg=
+ram sotto:=C2=A0<a class=3D"gmail_plusreply" id=3D"plusReplyChip-0">@Giorda=
+z .</a></div><div>Fammi sapere, buona giornata.</div><div><a class=3D"gmail=
+_plusreply"><br></a></div><div><div dir=3D"ltr" class=3D"gmail_signature" d=
+ata-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr" style=
+=3D"color:rgb(34,34,34)"><i><font face=3D"times new roman, serif" color=3D"=
+#999999">--</font></i></div><div><i><font face=3D"times new roman, serif" c=
+olor=3D"#999999">Paolo Giordano</font></i></div><div><font color=3D"#999999=
+" face=3D"times new roman, serif"><i>Computer science student at the Univer=
+sity of Turin</i></font><br></div><div><font color=3D"#999999" face=3D"time=
+s new roman, serif"><i><br></i></font></div><div><font color=3D"#999999" fa=
+ce=3D"times new roman, serif"><i>E-mail:=C2=A0<a href=3D"mailto:giordano.pa=
+olo494@edu.unito.it" style=3D"color:rgb(17,85,204)" target=3D"_blank">giord=
+ano.paolo494@edu.unito.it</a><br></i></font><div><i><font face=3D"times new=
+ roman, serif" color=3D"#999999">Student ID: 1047405</font></i><br></div></=
+div><div><i><font face=3D"times new roman, serif" color=3D"#999999"><br></f=
+ont></i></div><div style=3D"color:rgb(34,34,34)"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><font face=3D"times new roman, s=
+erif" size=3D"1" color=3D"#666666"><i><b><u>Don&#39;t feel obliged to reply=
+ to this email outside of your working hours.</u></b></i></font></div></div=
+></div></div></div><div><div style=3D"margin:2px 0px 0px"></div></div></div=
+></div></div><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" clas=
+s=3D"gmail_attr">Il giorno ven 21 feb 2025 alle ore 18:20 Lorenzo Falchi &l=
+t;<a href=3D"mailto:lorenzo.falchi@edu.unito.it" target=3D"_blank">lorenzo.=
+falchi@edu.unito.it</a>&gt; ha scritto:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex"><div dir=3D"ltr">Ciao ragazzi,<div>vi devo chiedere=
+ un enorme favore. Io purtroppo non sar=C3=B2 disponibile per circa 15 gior=
+ni dal 16 aprile al 7 maggio compreso. Ci=C3=B2 significa che perderei le l=
+ezioni del 16, 23 e 30 aprile e quella del 7 maggio. Ora, una di queste 4, =
+quella del 23 aprile, non la coprir=C3=B2 in quanto fuori dal monte ore. Le=
+ altre 3 invece rimarrebbero scoperte e, aldil=C3=A0 dei soldi che perderei=
+ io (che =C3=A8 relativamente importante), mi creerebbe molto disagio far f=
+are alla prof Capecchi pi=C3=B9 di met=C3=A0 mese di lezione da sola. C&#39=
+;=C3=A8 qualcuno che =C3=A8 disposto ad offrirmi questi cambi? A me vanno b=
+ene qualsiasi dei vostri turni, non l&#39;altro del corso B, purtroppo. A s=
+canso di equivoci, non chiedo un cambio per tutte le lezioni, ma solo per q=
+ueste 3. Vi ringrazio in anticipo e spero mi possiate aiutare.=C2=A0</div><=
+div><br></div><div>Saluti,</div><div>Lorenzo Falchi</div></div>
+
+<br>
+<div style=3D"font-size:1.3em">------------------------</div><span style=3D=
+"font-size:small"><div><img src=3D"https://web.unito.it/logofirmastu.png"><=
+br></div>Indirizzo istituzionale di posta elettronica degli studenti e dei =
+laureati dell&#39;Universit=C3=A0 di Torino</span><div><font size=3D"2">Off=
+icial=C2=A0University of Turin=C2=A0email address=C2=A0for students and gra=
+duates=C2=A0</font></div></blockquote></div>
+
+<br>
+<div style=3D"font-size:1.3em">------------------------</div><span style=3D=
+"font-size:small"><div><img src=3D"https://web.unito.it/logofirmastu.png"><=
+br></div>Indirizzo istituzionale di posta elettronica degli studenti e dei =
+laureati dell&#39;Universit=C3=A0 di Torino</span><div><font size=3D"2">Off=
+icial=C2=A0University of Turin=C2=A0email address=C2=A0for students and gra=
+duates=C2=A0</font></div>
+--00000000000067da13062eaaa274--

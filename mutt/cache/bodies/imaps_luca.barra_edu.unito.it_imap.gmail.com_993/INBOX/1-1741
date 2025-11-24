@@ -1,0 +1,175 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:1a28:b0:2ea:83d6:7f34 with SMTP id by40csp1405216ljb;
+        Mon, 3 Jun 2024 06:19:27 -0700 (PDT)
+X-Received: by 2002:a17:906:378c:b0:a59:9db2:d988 with SMTP id a640c23a62f3a-a6821d647bdmr622520166b.50.1717420767743;
+        Mon, 03 Jun 2024 06:19:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1717420767; cv=none;
+        d=google.com; s=arc-20160816;
+        b=wpFJBxnjlwZywolqoJHm8Zo0SNAkKn/ndJFL6p5HALR79buwz7YSwy2q7ILTunOdVG
+         wjnOdbw4qM9631UpL0iWNOUyyCQbAbUxhNA9Nbnxb4h+EUDhJOcbwWa7CzGPlKv/4Qeu
+         AnYj01D2TDPqQZbIlOTm1h7vAiWOJqPItz44C2XQT4GgDvt8LbbDvBHwWg2iNkXHQSlY
+         2Wz8qQ0FmgRkrgufES83UUwe3GDByyss/NQe/8o169QaIoB37ac33NHc1NJAbHLGXbrX
+         vasyuxBfivnLQryy8tc/zgeJwPN1PiptwM8BbRp7rUuuckKPZm9e7g57TsnftQe1MAGd
+         yMrQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:dkim-signature;
+        bh=voQdTvSrlGSeTxQ4Rj1PUcZ16ZCl5+J/WSl5idGcR8Y=;
+        fh=wnoTQjHgWz4kRW5W3Yv210Aj9LolbdJ/Lvc/uyAoO3M=;
+        b=xW2w0TdMZz6rqXhn044Nk6f+A0GrZWjr9N+Z3S7LHLuRFI9a/5y4CkQHAySvIqlKhI
+         wpyQ0gJR4/f3aPVB9p1bqjYiiGGUq+Yp4d4te/1DV61VEbHdDzGCqn+2SZljbvyZbyDy
+         8Wo0SA+/scffs7dMIYf16rlEtOm1cvGehpmixvTT/A58dJGst8tBhXjnKVD6PG9G85gV
+         KHaFCYwlUsHb2gnkluuZA7sQksto4sJCHaTCcttskuUXhwykEtsfugPXBweqJRNFoboC
+         T4OZT57WeB0fDVi98ymA5zRhqCIt4c0BX3caQNAFE/XaZfccY6Tih01SwO5FhJ2+Iq6j
+         CZKw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=e81o5JOe;
+       spf=pass (google.com: domain of tutorato.scienzedellanatura@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.scienzedellanatura@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <tutorato.scienzedellanatura@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-a690b492bc3sor57352766b.20.2024.06.03.06.19.27
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Mon, 03 Jun 2024 06:19:27 -0700 (PDT)
+Received-SPF: pass (google.com: domain of tutorato.scienzedellanatura@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=e81o5JOe;
+       spf=pass (google.com: domain of tutorato.scienzedellanatura@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.scienzedellanatura@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1717420767; x=1718025567; darn=edu.unito.it;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=voQdTvSrlGSeTxQ4Rj1PUcZ16ZCl5+J/WSl5idGcR8Y=;
+        b=e81o5JOeyzg8bxYppvyjn4nYQc5Q9NuOioKsR3m0Dm+/ypM0h0TEskSBO3VA/OCVLj
+         djuJ5UzEIX9IwGYWVe9VK4rye/BRWwWnbrqt8yHukcWZlYS8b5c87AcV5fgBMpQYAGI+
+         CmExCja8zsUrwBO8N+vwEHPB/ThYJqQ0cQU6o=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717420767; x=1718025567;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=voQdTvSrlGSeTxQ4Rj1PUcZ16ZCl5+J/WSl5idGcR8Y=;
+        b=YFvE8StpzhmeMpH0TB4dpzFEeqTjGgJSZzyPonfdCbwVgkZ2sc8bbxJSyXorQj/VPG
+         8YwUm7HHGxhG86LjKTp1Dh9y48up8rTapnrsPexfdd4S1EcJED9L65plutAxyFTmfeXG
+         jPJZfwGS0RL8rL8UJfe5uz6xjdbbGPXd+327qzQKDEjb0cL3KHbETN3AM8ulPKtCGW8I
+         9/UUkDLinOyqo1ZKwts/BMF7fiJ2M21ZL1IvKZzsl/43F7o0Ac1ZgoMu6AAWHi4sfEVr
+         yJ7Im593W9N4sqkscfoTOcmRMsxAXWgq+crgkHeZHrZtee396NZY+Vdc5TgCK/t7T+0o
+         xTMw==
+X-Gm-Message-State: AOJu0YxVD+jOg8J2qS5RRGkG2NYWstLScApF0+SP8hsU5t3Mz/Wkh5Op
+	YQSOfCCeAtPoMOm221b8jg8jBj0+l87VYbBQb6/unCCon+PEBSv7vk3wvj2t0HCl/FrX2xmWIpA
+	NCOo=
+X-Google-Smtp-Source: AGHT+IFuM5mBYBfr/zu11TmCTYUxgyfKAaaKVNowMsW9YAkuMDBoJDKHdITkmMYHQIJ9uWJNjkbh3g==
+X-Received: by 2002:a17:906:aa09:b0:a66:18b7:8fb9 with SMTP id a640c23a62f3a-a6820901e9emr571289366b.41.1717420766846;
+        Mon, 03 Jun 2024 06:19:26 -0700 (PDT)
+Return-Path: <tutorato.scienzedellanatura@unito.it>
+Received: from [192.168.0.116] (93-32-154-253.ip34.fastwebnet.it. [93.32.154.253])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a68e7111b49sm271287366b.102.2024.06.03.06.19.26
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Jun 2024 06:19:26 -0700 (PDT)
+Content-Type: multipart/alternative;
+ boundary="------------00c5Px501xXEkeYHJYgs2SZP"
+Message-ID: <7b04fb32-5917-4c7e-ae5c-9ca54c43575d@unito.it>
+Date: Mon, 3 Jun 2024 15:19:26 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: Foglio firme
+Content-Language: it
+To: Luca Barra <luca.barra@edu.unito.it>
+References: <CAAhooxtJN7XOr1DeqBLsKLdEQfSwbhr38MJvR+1EO+TctXgRMg@mail.gmail.com>
+From: "tutorato.scienzedellanatura@unito.it"
+ <tutorato.scienzedellanatura@unito.it>
+In-Reply-To: <CAAhooxtJN7XOr1DeqBLsKLdEQfSwbhr38MJvR+1EO+TctXgRMg@mail.gmail.com>
+
+This is a multi-part message in MIME format.
+--------------00c5Px501xXEkeYHJYgs2SZP
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Buongiorno Luca
+
+ti informo di aver trasmesso in Ateneo il documento firmato dalla 
+prof.ssa Ardissono per l'avvio del pagamento.
+
+Grazie per la collaborazione agli eventi
+
+Buon pomeriggio
+
+Stefania
+
+Il 02/06/2024 08:00, Luca Barra ha scritto:
+> Buongiorno,
+> allego il foglio firme riguardanti le ultime 100 ore dell'attività di 
+> tutorato matricole (dipartimento di informatica).
+> Distinti saluti,
+> LB
+>
+> ------------------------
+>
+> Indirizzo istituzionale di posta elettronica degli studenti e dei 
+> laureati dell'Università di Torino
+> Official University of Turin email address for students and graduates
+
+-- 
+Area Didattica e Servizi agli Studenti del Polo di Scienze della Natura
+Servizi Orientamento e Tutorato - Scuola di Scienze della Natura
+Via Michelangelo 32 - 10126 Torino
+Tel. 011 670 5397
+
+--------------00c5Px501xXEkeYHJYgs2SZP
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Buongiorno Luca</p>
+    <p>ti informo di aver trasmesso in Ateneo il documento firmato dalla
+      prof.ssa Ardissono per l'avvio del pagamento.</p>
+    <p>Grazie per la collaborazione agli eventi</p>
+    <p>Buon pomeriggio</p>
+    <p>Stefania <br>
+    </p>
+    <div class="moz-cite-prefix">Il 02/06/2024 08:00, Luca Barra ha
+      scritto:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAAhooxtJN7XOr1DeqBLsKLdEQfSwbhr38MJvR+1EO+TctXgRMg@mail.gmail.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div dir="ltr">
+        <div>Buongiorno, <br>
+        </div>
+        <div>allego il foglio firme riguardanti le ultime 100 ore
+          dell'attività di tutorato matricole (dipartimento di
+          informatica).</div>
+        <div>Distinti saluti,</div>
+        <div>LB<br>
+        </div>
+      </div>
+      <br>
+      <div style="font-size:1.3em">------------------------</div>
+      <span style="font-size:small">
+        <div><img src="https://web.unito.it/logofirmastu.png"
+            moz-do-not-send="true"><br>
+        </div>
+        Indirizzo istituzionale di posta elettronica degli studenti e
+        dei laureati dell'Università di Torino</span>
+      <div><font size="2">Official University of Turin email address for
+          students and graduates </font></div>
+    </blockquote>
+    <pre class="moz-signature" cols="72">-- 
+Area Didattica e Servizi agli Studenti del Polo di Scienze della Natura
+Servizi Orientamento e Tutorato - Scuola di Scienze della Natura
+Via Michelangelo 32 - 10126 Torino
+Tel. 011 670 5397</pre>
+  </body>
+</html>
+
+--------------00c5Px501xXEkeYHJYgs2SZP--

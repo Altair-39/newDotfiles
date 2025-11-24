@@ -1,0 +1,112 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:92c2:0:b0:302:3d35:6815 with SMTP id k2csp787093ljh;
+        Wed, 12 Feb 2025 07:39:30 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCWnpyvCxvzpxmf+dNuP0Y2TKf7qaIsOJ924ipLrLGIC0bjb6Hlh158DxQxuHRy01eH50KQVJ2gs79NQ@edu.unito.it
+X-Google-Smtp-Source: AGHT+IGzwH7PmPPtRFRcAUnMbQeTRKm53qeKISb/+kSypD1/2ubhGSg5+NllVwr+NpF0jJGv4JC9
+X-Received: by 2002:a05:6402:40c4:b0:5de:6486:3f52 with SMTP id 4fb4d7f45d1cf-5deb08807b8mr2543573a12.9.1739374769375;
+        Wed, 12 Feb 2025 07:39:29 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1739374769; cv=none;
+        d=google.com; s=arc-20240605;
+        b=b1aN4va/WCWdaUQI/aJzhieVP8sdgcwAdANkSHStt+vWDzPv+LzLQphPewatTFtxda
+         rgTuOhfPpPZ/wtKegEmMvIIDPNffxOQ4xriUdATPAHYjJQ+ldjtUaaQpljDbatvtpjEo
+         8Eg9FF7Ef83E1VTNrbh31F0ewXsOnjCpNX4WgBhTbnEUs7bZl2Ze863l3QY9PK2hQD4i
+         ouWlKUKl/cVoVxsWJ3rNSJ9ooRNkl15HlBGsud3mSS5+vH2KfHum5/xCnZxm4UiFQSTF
+         pE/0xIgRf6wkduU8p0b+RuR2coqOU/Dscm1zyrxWkWzk1cUupQr8YhQcdgigDlcX8qHr
+         VzBg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=775ui8D0Ou1Snronqk4IH8NA/EPcTboAeVYo+enCsts=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=NENEpJDW7+y3QLBO1x/Gg8hXN8dMNVgVo/nyW2sKNgN3ZZulS0X0vLFOEOOm+ybAim
+         2RRNaItsdBBadpEabsJvNK//b+dzI4KVDtdwR1yE2NEpuW2h9+Ra+YvL8JSWYesColyO
+         10yZTN3X1AP0+74elyhDHWTmzux/Hg4qide+X1jSZ643SuZKWiss9qnJx6PaeYaNh1gx
+         5K2oKYNzPd3ttO6xQgwD+2FEsXTOpAq4USPJ+v2icxCVg/NKCkgnJ6f9laO8mRHzpp7O
+         j5EjzTJ0s1u3jKHUVyRDd6NoZM8cZ7E6yDSdgPVxioT2SNskFOlyNieWv8mR2ph3NuBE
+         Pe1A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=fIxxBFf+;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-5de4f058ddbsi8777906a12.301.2025.02.12.07.39.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Feb 2025 07:39:29 -0800 (PST)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=fIxxBFf+;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id DA4EE23533;
+	Wed, 12 Feb 2025 16:39:26 +0100 (CET)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id BkoB7cb614zi; Wed, 12 Feb 2025 16:39:26 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 4C3AB22BE5;
+	Wed, 12 Feb 2025 16:39:26 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 4C3AB22BE5
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1739374766;
+	bh=775ui8D0Ou1Snronqk4IH8NA/EPcTboAeVYo+enCsts=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=fIxxBFf+csf6AP0ZXJxmi43Tc8xyuGRBjqP5uUqSzktDLSXeZ8GojXXew2Wo2iUrf
+	 1KqlWJHxEgv0FrByHB9bq2R58dE2mEEACDLF1apBsbKz1rdwxSAs7dQjnP73Ri8h8y
+	 OptAhgfPDxVPMgHaPgr1Qu8BzgmYMsd5rin+uFtkvi2x/I4kRdOFPnOnqle0kA/4GM
+	 s+39TTuFA1vzPEGGZwGcHXUso8CPM/KOb3MvSniA7zJctS5pvK23ZKMrfzVhUo2vYr
+	 nzPEFX0kohk75ilJbHXnGOEOfcs8UVQhR8GBNULjTjASGJbupztPoUrOI3CEiVZ9sV
+	 AvTosHE3z4OMA==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id 3IQUZpWy76dY; Wed, 12 Feb 2025 16:39:26 +0100 (CET)
+Received: from esse3appjboss23.private.cineca.it (esse3appjboss23.cineca.it [130.186.5.144])
+	by smtp4.cineca.it (Postfix) with ESMTP id 58D0023533;
+	Wed, 12 Feb 2025 16:39:23 +0100 (CET)
+Received: from esse3appjboss23.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss23.private.cineca.it (Postfix) with ESMTP id 64ACC881;
+	Wed, 12 Feb 2025 16:39:21 +0100 (CET)
+Date: Wed, 12 Feb 2025 16:39:21 +0100 (CET)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <1738033484.29.1739374761402@esse3appjboss23.private.cineca.it>
+Subject: LET'PO!!!
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+LET=E2=80=99S PO!!
+
+Care studentesse e cari studenti,
+
+Volete fare la differenza?
+Il Dipartimento di Management Valter Cantino =C3=A8 onorato di presentarvi =
+l=E2=80=99iniziativa della Citt=C3=A0 di Torino denominata =E2=80=9CUn fium=
+e di futuro: LET=E2=80=99S PO=E2=80=9D, a cui sta collaborando.
+
+Immaginate un luogo dove incontrare il fiume Po in un abbraccio fatto di na=
+tura, innovazione e sostenibilit=C3=A0. La Citt=C3=A0 di Torino sta lavoran=
+do per trasformare questa visione in realt=C3=A0, con un progetto unico che=
+ prevede la creazione di un River Center ai Murazzi e la riattivazione dell=
+a navigazione sul Po a impatto zero. Tu puoi fare parte di questo progetto.
+
+Come partecipare?
+=C3=88 semplicissimo, per costruire uno spazio che rispecchi i desideri e i=
+ bisogni di chi vive e studia a Torino, abbiamo bisogno della tua voce. Ti =
+invitiamo a partecipare al nostro sondaggio: richiede solo pochi minuti e r=
+appresenta un'opportunit=C3=A0 per contribuire attivamente alla definizione=
+ di un futuro pi=C3=B9 sostenibile, accessibile e innovativo per tutti.
+
+Ecco il link di riferimento: https://forms.gle/nnEzvpYFYBEnGrUm8
+
+Grazie per il tuo tempo e per la tua preziosa collaborazione. Insieme, poss=
+iamo trasformare Torino e il suo fiume Po in un simbolo di sostenibilit=C3=
+=A0 e innovazione.
+Vi auguriamo una buona giornata!
+
+LET=E2=80=99S PO!

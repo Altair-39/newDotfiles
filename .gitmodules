@@ -1,0 +1,3 @@
+[submodule "NewMikuVim"]
+	path = NewMikuVim
+	url = https://github.com/Altair-39/NewMikuVim

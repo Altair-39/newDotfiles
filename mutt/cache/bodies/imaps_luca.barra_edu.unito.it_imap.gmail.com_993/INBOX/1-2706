@@ -1,0 +1,465 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:1145:b0:32a:7f76:203e with SMTP id h5csp6291793ljo;
+        Wed, 9 Jul 2025 08:46:30 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCWwyBduIFiqwyHZDy7QvZTKImwKx3udXR+/6pDpkqN0ohkkpiJkuqWsP64aIo3nmNfn5K+BU2uCjNcN@edu.unito.it
+X-Received: by 2002:a17:907:c25:b0:ad8:9b93:8579 with SMTP id a640c23a62f3a-ae6cefd50d5mr111585966b.0.1752075990325;
+        Wed, 09 Jul 2025 08:46:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1752075990; cv=none;
+        d=google.com; s=arc-20240605;
+        b=XLpCdn4rtprYEjbyZwUx/u6JEEeE9KkOnQt9iCQ42pOwk4XNOOAtplbD8nKJHOKyzN
+         c1jysPqY+4f6JgRiONLAsplPmJqeOizBKTYf2ZL7vn21WdVZ4dokgt3N3F5QjA0vvrhn
+         YJKhNpYL8bDAoWMSGAesrJ1nh0rzik01lHa8sWIrPqkFvU/htoaQurkB4Yd8hXRzJwv5
+         NJPtQg9BqCu2HPs0cKjdOUhmTpwIkufXwMcglgYbp4JS9M2ztWZ2UPgnxOplaqGBlsRk
+         LqdL/mNiFaaC9KIj3BRLNHA91RPKLFBNyyJ+pPnVFjI6n2LRy+le9EbTzYlJB1NbuK25
+         mXQA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=subject:to:content-language:from:user-agent:mime-version:date
+         :message-id:dkim-signature;
+        bh=mBBRX8f3niICG66M/sTFGULjIEdrbH8z9iN/yLnjtKY=;
+        fh=fX1UlNFODchdflT8Ap7qYuN9zbXKSlpvNqhfcYCzoTs=;
+        b=b2qfTnXtuBgwZRX4kQKJbrgG763L8obCnK6Vqkf2iv92+9Zj/ar8fr3wzhd4I4bStK
+         0OlNLVDAD6f3GejmibfJRVqb7OD7QQZ6cKbG+PPu+X0N2AZiU2z8jRrj3e6dcFSBWkkf
+         zSgxc3e2Rpwh1EBJhwdRhp/a+Y5lF7EjLtK+eVLuldFfh+y3rxvsc8x0PbSZLmKMTcxH
+         NwoJS+Dj8J9S0FxK7LjlenLbYatQOQp4qoLusetPleXgOSv5JsAdxsWFNJGSDPiejglt
+         8oX7SpH5o9Q11t9b8Q3BDT3BBOLnJA7qXENyt3U7aN82uyRnt1NWVKa/dj90Z4DeJL08
+         /5hQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=aEFHaofi;
+       spf=pass (google.com: domain of alessandro.mazzei@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=alessandro.mazzei@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <alessandro.mazzei@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-ae3f6b32197sor658235966b.12.2025.07.09.08.46.29
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Wed, 09 Jul 2025 08:46:30 -0700 (PDT)
+Received-SPF: pass (google.com: domain of alessandro.mazzei@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=aEFHaofi;
+       spf=pass (google.com: domain of alessandro.mazzei@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=alessandro.mazzei@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1752075989; x=1752680789; darn=edu.unito.it;
+        h=subject:to:content-language:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=mBBRX8f3niICG66M/sTFGULjIEdrbH8z9iN/yLnjtKY=;
+        b=aEFHaofiG/t9DCGQ80YVXdbw5Rs7tPFElm1FwcfYlIH0Zl6RnO04yMA4qPXWRCvTkU
+         aVw6N6FJIJd9omjZLmGfWrXGwQaCH1oCSzeL//J8b6dVcMO8ZC4eTiEoe63eQrF0jU/O
+         OBUy+w+ikS3B1yBfuu8qYOr1VWJ4VxhmcrWzmvIA7xO/Gkk7nzjlNPvzFdlqfggJLz1R
+         yKEyo7k5HvQxHx8kkW1Gc1Jtc7pTReak9IidVElU/K6nx0nBcxsxQx2fvmLhfsFb9LLH
+         7z2vNVjIF9Qg8epQdu8S6gq6wlHBXI+vV0wyEcoCtrfVYFfND8LD9/7gnPWI2LWnCKRJ
+         2yxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1752075989; x=1752680789;
+        h=subject:to:content-language:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mBBRX8f3niICG66M/sTFGULjIEdrbH8z9iN/yLnjtKY=;
+        b=pWiTENq+qzShE5AoMXBvzlOOnhVO9XakkZ7+tMXYpUOgRIoQJ6IPl26/9hXbCebLcI
+         FJFjXrMXqB6Y8fAee9jebi4nkXgJXIekZuqqurdOG13UdH8gbnlpL0KRHTVMOn7u+xaa
+         ElIANY4ZAttFNjiSgt1tfgGlfojtMadDZsh8InYYETYh2NvCqvb6k2RQu6vXbp4e0S0D
+         NHA8sqOiLvTSlS57vAyc+KDmFl8TB/BKzENezOnDsyjdfprzAFBYyVZWAOXILWTI3Iy4
+         1QqO8cQILjRDFAjiPuQnlZewPF3ORkJpj9KtADHQm98N64zUMsTE5EiW8lzPDMtAWoMN
+         TXfA==
+X-Forwarded-Encrypted: i=1; AJvYcCV1eDy+3qTZVmLjD/tUi8wNR1Eldm4jVyFuSqq73d7Or8+e8h9TIHAvmdLBTsPQV3qPAlOGvuhx4hpa@edu.unito.it
+X-Gm-Message-State: AOJu0Yx17ADDGN+57QIXch6I+mgcFNQUIe9ABOQvoye/PQVZyhv7XOR4
+	6ZHSnrjT037NBHJWnWEiyviPAVN7OtHbmoVCsZTWBbc5XBT+xUpCdJ21a/MC0Gt0uokUJQ==
+X-Gm-Gg: ASbGncvrocQpqGjokfY+bRy/nAwAxsowSe9PTlUz0b85RuUOZm7P0dgueXxyGY8aEP8
+	T2cNEHdZ4VVwPAVNpkafpvR2ZMExZmN9iwdZFcHOaa3oZuUZCS/RiOTFJ15vmUnlYGGaR3dj9op
+	rhDaTTZSCRxIOT2CITzRrDbBI7JPoo9wfmm6Qk5vKgyC9WJlqZJ20qJablqtrvg5nvuW4NVBL+U
+	lL3MmguuBn1Hw0+7eNwMeHLkcHvDGxKawB7WXuCzAC0e5I9u40BOgVW+UWDOnrVduWM7gPwn1OR
+	NlH3cHlQAuLk4WIUx/60b6R/UZgS1M5X9ECrqNxWcFgGUUvGso0grWWitzZfohsbEcHor5Fgypy
+	wOtVVC5fxSB+9OB08TbI+OclAz0wEalm8h+pG/UzrgYObIaw=
+X-Google-Smtp-Source: AGHT+IHN2w8lUUO2iPJGM3Dxt0Lkk89f+vXE6DDQvXoIGD1YJhj2Pn9kJPVrTCshwqoro7ArfK36JA==
+X-Received: by 2002:a17:906:7108:b0:ae0:c6e5:9738 with SMTP id a640c23a62f3a-ae6e14382efmr24152566b.55.1752075989248;
+        Wed, 09 Jul 2025 08:46:29 -0700 (PDT)
+Return-Path: <alessandro.mazzei@unito.it>
+Received: from [10.0.12.101] (nat3.di.unito.it. [130.192.156.246])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ae3f6ac5fd7sm1125320266b.103.2025.07.09.08.46.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Jul 2025 08:46:28 -0700 (PDT)
+Content-Type: multipart/alternative;
+ boundary="------------XcUOVW0VccxUaQm30ZSQtFwA"
+Message-ID: <2bea1bc3-b1a0-4808-ac0e-8b88c97b1422@unito.it>
+Date: Wed, 9 Jul 2025 17:46:26 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Alessandro Mazzei <alessandro.mazzei@unito.it>
+Content-Language: en-GB, it
+To: "alessandro.mazzei" <alessandro.mazzei@unito.it>
+Subject: Calendario esame di TLN (parte 1) - 15_17 Luglio 2025
+
+This is a multi-part message in MIME format.
+--------------XcUOVW0VccxUaQm30ZSQtFwA
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Buongiorno,
+
+ecco il calendario per l'esame di TLN (parte 1) .
+Siete in 22 e quindi ho dovuto per forza di cose dividervi in 2 giorni:
+
+Mail 	Giorno	Luogo 	Orario
+gabriele.tessore@edu.unito.it 	250715 	Sala conferenze, terzo piano 
+(scala L) 	09:00 	09:30
+luigi.carchia@edu.unito.it 	250715 	Sala conferenze, terzo piano (scala 
+L) 	09:30 	10:00
+gabriele.santoro956@edu.unito.it 	250715 	Sala conferenze, terzo piano 
+(scala L) 	10:00 	10:30
+Dennis Montesi <dennis.montesi@edu.unito.it> 	250715 	Sala conferenze, 
+terzo piano (scala L) 	10:30 	11:00
+boris.turcan@edu.unito.it 	250715 	Sala conferenze, terzo piano (scala 
+L) 	11:00 	11:30
+samuele.perrotta@edu.unito.it 	250715 	Sala conferenze, terzo piano 
+(scala L) 	11:30 	12:00
+samuele.peirone@edu.unito.it 	250715 	Sala conferenze, terzo piano 
+(scala L) 	13:00 	13:30
+ethan.cixi@edu.unito.it 	250715 	Sala conferenze, terzo piano (scala L) 
+13:30 	14:00
+anna.rossebastiano@edu.unito.it 	250715 	Sala conferenze, terzo piano 
+(scala L) 	14:00 	14:30
+cristiano.risso@edu.unito.it 	250715 	Sala conferenze, terzo piano 
+(scala L) 	14:30 	15:00
+simone.amitrano@edu.unito.it 	250715 	Sala conferenze, terzo piano 
+(scala L) 	15:00 	15:30
+andrea.camoia@edu.unito.it 	250715 	Sala conferenze, terzo piano (scala 
+L) 	15:30 	16:00
+stefano.dandrea@edu.unito.it 	250715 	Sala conferenze, terzo piano 
+(scala L) 	16:00 	16:30
+cristian.mongitore@edu.unito.it 	250715 	Sala conferenze, terzo piano 
+(scala L) 	16:30 	17:00
+samuel.magnano@edu.unito.it 	250715 	Sala conferenze, terzo piano (scala 
+L) 	17:00 	17:30
+
+	
+	
+	
+	
+Mail 	Giorno	Luogo 	Orario
+patric.reineri@edu.unito.it 	250717 	Sala conferenze, terzo piano (scala 
+L) 	09:00 	09:30
+alessandro.scicolone@edu.unito.it 	250717 	Sala conferenze, terzo piano 
+(scala L) 	09:30 	10:00
+alessandro.muraro@edu.unito.it 	250717 	Sala conferenze, terzo piano 
+(scala L) 	10:00 	10:30
+davide.camino@edu.unito.it 	250717 	Sala conferenze, terzo piano (scala 
+L) 	10:30 	11:00
+andrea.zito665@edu.unito.it 	250717 	Sala conferenze, terzo piano (scala 
+L) 	11:00 	11:30
+luca.barra@edu.unito.it 	250717 	Sala conferenze, terzo piano (scala L) 
+11:30 	12:00
+walid.belafrites@edu.unito.it 	250717 	Sala conferenze, terzo piano 
+(scala L) 	12:00 	12:30
+
+Un cordiale saluto Alessandro Mazzei
+
+
+-- 
+
+Alessandro Mazzei, PhD
+
+Associate Professor in Computer Science
+Dipartimento di Informatica
+Università degli Studi di Torino
+
+Content Centered Computing (CCC) Research Group
+
+phone:   +39-011-6706801
+fax  :   +39-011-751603
+WebEx:https://unito.webex.com/meet/alessandro.mazzei
+e-mail:alessandro.mazzei@unito.it ,mazzei@di.unito.it
+web:www.di.unito.it/~mazzei
+address: Via Pessinetto 12 - Corso Svizzera 185, 10149 Torino, Italy
+
+--------------XcUOVW0VccxUaQm30ZSQtFwA
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <font face="Lato">Buongiorno,<br>
+      <br>
+      ecco il calendario per l'esame di TLN (parte 1) .<br>
+      Siete in 22 e quindi ho dovuto per forza di cose dividervi in 2
+      giorni:<br>
+      <br>
+    </font>
+    <table border="0" cellpadding="0" cellspacing="0" width="652"
+      style="border-collapse:
+ collapse;width:488pt">
+      <colgroup><col width="304"
+style="mso-width-source:userset;mso-width-alt:9728;width:228pt"> <col
+          width="87" span="4" style="width:65pt"> </colgroup><tbody>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" class="xl65" width="304"
+            style="height:16.0pt;width:228pt">Mail</td>
+          <td class="xl66" width="87" style="width:65pt">Giorno<span
+              style="mso-spacerun:yes"> </span></td>
+          <td class="xl67" width="87" style="width:65pt">Luogo</td>
+          <td colspan="2" class="xl68" width="174" style="width:130pt">Orario</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:gabriele.tessore@edu.unito.it">gabriele.tessore@edu.unito.it</a></td>
+          <td class="xl69" align="right">250715</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl70" align="right">09:00</td>
+          <td class="xl70" align="right">09:30</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:luigi.carchia@edu.unito.it">luigi.carchia@edu.unito.it</a></td>
+          <td align="right">250715</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl70" align="right">09:30</td>
+          <td class="xl70" align="right">10:00</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:gabriele.santoro956@edu.unito.it">gabriele.santoro956@edu.unito.it</a></td>
+          <td align="right">250715</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl70" align="right">10:00</td>
+          <td class="xl70" align="right">10:30</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt">Dennis Montesi
+            <a class="moz-txt-link-rfc2396E" href="mailto:dennis.montesi@edu.unito.it">&lt;dennis.montesi@edu.unito.it&gt;</a></td>
+          <td align="right">250715</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl70" align="right">10:30</td>
+          <td class="xl70" align="right">11:00</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:boris.turcan@edu.unito.it">boris.turcan@edu.unito.it</a></td>
+          <td align="right">250715</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl70" align="right">11:00</td>
+          <td class="xl70" align="right">11:30</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:samuele.perrotta@edu.unito.it">samuele.perrotta@edu.unito.it</a></td>
+          <td align="right">250715</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl71" align="right">11:30</td>
+          <td class="xl70" align="right">12:00</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:samuele.peirone@edu.unito.it">samuele.peirone@edu.unito.it</a></td>
+          <td align="right">250715</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl71" align="right">13:00</td>
+          <td class="xl71" align="right">13:30</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:ethan.cixi@edu.unito.it">ethan.cixi@edu.unito.it</a></td>
+          <td align="right">250715</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl71" align="right">13:30</td>
+          <td class="xl71" align="right">14:00</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:anna.rossebastiano@edu.unito.it">anna.rossebastiano@edu.unito.it</a></td>
+          <td align="right">250715</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl71" align="right">14:00</td>
+          <td class="xl71" align="right">14:30</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:cristiano.risso@edu.unito.it">cristiano.risso@edu.unito.it</a></td>
+          <td align="right">250715</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl71" align="right">14:30</td>
+          <td class="xl71" align="right">15:00</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:simone.amitrano@edu.unito.it">simone.amitrano@edu.unito.it</a></td>
+          <td align="right">250715</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl71" align="right">15:00</td>
+          <td class="xl71" align="right">15:30</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:andrea.camoia@edu.unito.it">andrea.camoia@edu.unito.it</a></td>
+          <td align="right">250715</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl71" align="right">15:30</td>
+          <td class="xl71" align="right">16:00</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:stefano.dandrea@edu.unito.it">stefano.dandrea@edu.unito.it</a></td>
+          <td align="right">250715</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl71" align="right">16:00</td>
+          <td class="xl71" align="right">16:30</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:cristian.mongitore@edu.unito.it">cristian.mongitore@edu.unito.it</a></td>
+          <td align="right">250715</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl71" align="right">16:30</td>
+          <td class="xl71" align="right">17:00</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:samuel.magnano@edu.unito.it">samuel.magnano@edu.unito.it</a></td>
+          <td align="right">250715</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl71" align="right">17:00</td>
+          <td class="xl71" align="right">17:30</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><br>
+          </td>
+          <td><br>
+          </td>
+          <td><br>
+          </td>
+          <td class="xl70"><br>
+          </td>
+          <td class="xl70"><br>
+          </td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" class="xl65" style="height:16.0pt">Mail</td>
+          <td class="xl66">Giorno<span style="mso-spacerun:yes"> </span></td>
+          <td class="xl67">Luogo</td>
+          <td colspan="2" class="xl68">Orario</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:patric.reineri@edu.unito.it">patric.reineri@edu.unito.it</a></td>
+          <td align="right">250717</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl70" align="right">09:00</td>
+          <td class="xl70" align="right">09:30</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:alessandro.scicolone@edu.unito.it">alessandro.scicolone@edu.unito.it</a></td>
+          <td align="right">250717</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl70" align="right">09:30</td>
+          <td class="xl70" align="right">10:00</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:alessandro.muraro@edu.unito.it">alessandro.muraro@edu.unito.it</a></td>
+          <td align="right">250717</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl70" align="right">10:00</td>
+          <td class="xl70" align="right">10:30</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:davide.camino@edu.unito.it">davide.camino@edu.unito.it</a></td>
+          <td align="right">250717</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl70" align="right">10:30</td>
+          <td class="xl70" align="right">11:00</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:andrea.zito665@edu.unito.it">andrea.zito665@edu.unito.it</a></td>
+          <td align="right">250717</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl70" align="right">11:00</td>
+          <td class="xl70" align="right">11:30</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:luca.barra@edu.unito.it">luca.barra@edu.unito.it</a></td>
+          <td align="right">250717</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl71" align="right">11:30</td>
+          <td class="xl70" align="right">12:00</td>
+        </tr>
+        <tr height="21" style="height:16.0pt">
+          <td height="21" style="height:16.0pt"><a class="moz-txt-link-abbreviated" href="mailto:walid.belafrites@edu.unito.it">walid.belafrites@edu.unito.it</a></td>
+          <td align="right">250717</td>
+          <td>Sala conferenze, terzo piano (scala L)</td>
+          <td class="xl70" align="right">12:00</td>
+          <td class="xl70" align="right">12:30</td>
+        </tr>
+      </tbody>
+    </table>
+    <style>table
+	{mso-displayed-decimal-separator:"\,";
+	mso-displayed-thousand-separator:"\.";}tr
+	{mso-height-source:auto;}col
+	{mso-width-source:auto;}br
+	{mso-data-placement:same-cell;}td
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:12.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Calibri, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	mso-protection:locked visible;
+	white-space:nowrap;
+	mso-rotate:0;}.xl65
+	{color:white;
+	font-weight:700;
+	border-top:.5pt solid #FFC000;
+	border-right:none;
+	border-bottom:none;
+	border-left:none;
+	background:#FFC000;
+	mso-pattern:#FFC000 none;}.xl66
+	{color:white;
+	font-weight:700;
+	border-top:.5pt solid #FFC000;
+	border-right:.5pt solid #FFC000;
+	border-bottom:none;
+	border-left:none;
+	background:#FFC000;
+	mso-pattern:#FFC000 none;}.xl67
+	{color:white;
+	font-weight:700;
+	background:#FFC000;
+	mso-pattern:#FFC000 none;}.xl68
+	{color:white;
+	font-weight:700;
+	text-align:center;
+	background:#FFC000;
+	mso-pattern:#FFC000 none;}.xl69
+	{color:black;}.xl70
+	{color:black;
+	mso-number-format:"Short Time";}.xl71
+	{mso-number-format:"Short Time";}</style>
+    <pre class="moz-signature" cols="72"><font face="Lato">
+Un cordiale saluto
+
+Alessandro Mazzei </font>
+
+
+-- 
+
+Alessandro Mazzei, PhD
+
+Associate Professor in Computer Science
+Dipartimento di Informatica
+Università degli Studi di Torino
+
+Content Centered Computing (CCC) Research Group
+
+phone:   +39-011-6706801
+fax  :   +39-011-751603
+WebEx:   <a class="moz-txt-link-freetext" href="https://unito.webex.com/meet/alessandro.mazzei">https://unito.webex.com/meet/alessandro.mazzei</a>
+e-mail:  <a class="moz-txt-link-abbreviated" href="mailto:alessandro.mazzei@unito.it">alessandro.mazzei@unito.it</a> , <a class="moz-txt-link-abbreviated" href="mailto:mazzei@di.unito.it">mazzei@di.unito.it</a>
+web:     <a class="moz-txt-link-abbreviated" href="http://www.di.unito.it/~mazzei">www.di.unito.it/~mazzei</a>
+address: Via Pessinetto 12 - Corso Svizzera 185, 10149 Torino, Italy
+</pre>
+  </body>
+</html>
+
+--------------XcUOVW0VccxUaQm30ZSQtFwA--

@@ -1,0 +1,129 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b04f:0:b0:302:3d35:6815 with SMTP id d15csp266616ljl;
+        Fri, 13 Dec 2024 01:24:37 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCV4N7H6c1sO9yhFw2jXkG8oFFLnl8sOVKCRKY426eqxzBdslM/xP7vgmu4KMgUm1DYZMCD9uX91S3rf@edu.unito.it
+X-Received: by 2002:a17:907:6e86:b0:a9a:2a56:b54 with SMTP id a640c23a62f3a-aab7792d790mr65207966b.5.1734081877581;
+        Fri, 13 Dec 2024 01:24:37 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1734081877; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ayFjksA0XSKed76IHTqWkC5rXhK7Ru2N69HEzJ0w8qqXIRoRY9sdxzd2fObWoH07VZ
+         H0P4zRlO6mIM5nHmz9xi98XU1FbdY1e5VOpx6Zl5dCFali7iqpSFYCh0hg0e7c3/0v5w
+         WuPeE7ALs4ODztAb6Wb4TKv6n6FlpadlsE5uLXeGuvhyKkf+5zMH+hVi6sOgsIa6/cnq
+         a06b5h4WX642FOZp3M+cUxseOan8LVsJ4+A27TLPnGJoSt/oejJ4wTOp41aCWFg900Mi
+         M7tGD8E2zVe/s8Rg3y08U7txrypY6+empf5ABA0DfE3mafU3pepwD0ezmI/JqDcGRQz7
+         D92g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=NVcJ4vw6udpTQiqmuqhs2de9fRcB86jy0JiKZ/F2S3I=;
+        fh=wr+DznnYMz5e6wihp7fdEiX367ubt5Can5sL+d6DSuI=;
+        b=d6K02a8/I347asU3aoiwxTYVQjzXRCbZhYhCTRsTsUsacD9r+zxeSZA6z2EeHBFceR
+         1cGBwmY4hIG+pbhTweggQpF9BG34wGMyJoN8P+iX/h4l9fk9KT2AkQGosGTsel3CaYmw
+         96E7O8y481BLVABuOSfKMXj0aciy8APfOvuiQoGXBb06/X1Zqk+VxBTeKIk+3Ow4/eSR
+         IiTo6Sqj3c1N8sHieB+3sMVwfO5J+XJv9YNPR81TLNaZ85kgBXVBaf8xC18SqUQH2TBc
+         afnxYOMu/at4YWNfXNZdp771KNEx3KPwEGRd4oeB4C6Jlt9a5utBnHwCKCo5uX4gfNfL
+         wZdA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=ZBtnVUTp;
+       spf=pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.inclusione@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <tutorato.inclusione@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-aa695432f28sor483362066b.19.2024.12.13.01.24.37
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Fri, 13 Dec 2024 01:24:37 -0800 (PST)
+Received-SPF: pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=ZBtnVUTp;
+       spf=pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.inclusione@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1734081877; x=1734686677; darn=edu.unito.it;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=NVcJ4vw6udpTQiqmuqhs2de9fRcB86jy0JiKZ/F2S3I=;
+        b=ZBtnVUTpWASG9xefS7HdWAz1U0gCUsCBqPr0z/ZM/vHNjpl+FeK34IsSMycD70OE4k
+         IsLxHnjUl/Ci91sY4SJjl+znWACSphCw/rExOmGOP5euIw/vg8gPgxmR+2RL+yt5GmHn
+         1uo0ed20b9VdvWy6BNIlrVQlS3cFjC2zNjzrQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734081877; x=1734686677;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NVcJ4vw6udpTQiqmuqhs2de9fRcB86jy0JiKZ/F2S3I=;
+        b=hF2Fn7dL7PYrHn2tGPxEMjxb1XHqSl1/nTpVydz2wmUTyFwjSunP9PFrObkWDMtFxK
+         tJXMDDEZ6W9fCy632EM3BZJFwmrrJOmZ4zURtpZGk0iXBLFizDEhMqWddi1cQRhEHEnw
+         jRywq8xZFJMRlZuAa9+oz2TfcOxVqylqamN/hdDei7HgN1h9rVQTJpBHhZULX9ZtxQ1z
+         OUCJLo8FZc8VD2yWTYiBGP3VQtPO47DwF3DeGlrXkvxATmMhl1dVM/Tp3MdHR7ndwA4O
+         c54JLO8I6WALcIe/NZ5SJ11lv0SF13al2g/aIfTrVcfMwwNbflqu7wrveL/wyiA1f0Zc
+         ILbg==
+X-Forwarded-Encrypted: i=1; AJvYcCXSj0vvP4uXv6vrm4+kUbgOp/WdoB0DGPRSzMWJs4VO/jWYsQxHxNiCDkXN8Z0JRJkbp0NoWYmhwo3U@edu.unito.it
+X-Gm-Message-State: AOJu0YxMyDMk4nAUCHOBMit21tSq8hZAR5oahM+m743AE2vv1z8LC/Ko
+	yhw1wtRkprwFNBULPb49bHVsZ5QAUQsLW1M8qvXtHy5yg+QG++dpllUJ7LHaNd5C4RdboB+htx5
+	roDJKk0y+7n5M7qQg/I0nC00d4ylGyFiiyq73XPdM
+X-Gm-Gg: ASbGncuHbX/DdlDqmxfkjhhdf34LgTMV0OS41ettVmEnw1jDVDAS1Bib1PshAe4e/7v
+	S9TiMWSpmIkAlQ5JODcZiCBtKZnesb1AX3EgRog==
+X-Google-Smtp-Source: AGHT+IH5a4sPGLXAPebEYBSEonHav/DsnhPyn0lQt1+E7P/+TuPfXZE0asPQIOEwu+4nbTCy43XnDxhupC3w2sL2PGM=
+X-Received: by 2002:a17:907:72c6:b0:aa5:2a57:1779 with SMTP id
+ a640c23a62f3a-aab77eecc9cmr193709166b.59.1734081876818; Fri, 13 Dec 2024
+ 01:24:36 -0800 (PST)
+MIME-Version: 1.0
+From: Tutorato Disabili <tutorato.inclusione@unito.it>
+Date: Fri, 13 Dec 2024 10:24:20 +0100
+Message-ID: <CAOKF-fWk2hZiQ4oUcK1AZyWi9i=kbX2nzPXTY5_q9946q_CKRQ@mail.gmail.com>
+Subject: Aggiornamento
+To: undisclosed-recipients:;
+Content-Type: multipart/alternative; boundary="00000000000047972e0629236646"
+Bcc: luca.barra@edu.unito.it
+
+--00000000000047972e0629236646
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Gentilissim*,
+le ricordiamo che oggi =C3=A8 l'ultimo giorno per poter accettare l'incaric=
+o da
+tutor didattico alla pari presso il nostro ufficio; vi chiediamo
+gentilmente un feedback per avere il tempo di fornirvi il contratto entro i
+termini prestabiliti dalla regolamentazione delle graduatorie
+amministrative.
+
+Cordiali saluti
+Ufficio Studenti con Disabilit=C3=A0 e DSA
+Direzione Didattica Servizi agli Studenti
+Via Verdi 25 - 10124 Torino
+tel. 011.6704284
+mail tutorato.inclusione@unito.it <ufficio.dsa@unito.it>
+
+--00000000000047972e0629236646
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div class=3D"gmail_default" style=3D"font-family:ver=
+dana,sans-serif">Gentilissim*,=C2=A0</div><div class=3D"gmail_default" styl=
+e=3D"font-family:verdana,sans-serif">le ricordiamo che oggi =C3=A8 l&#39;ul=
+timo giorno per poter accettare l&#39;incarico da tutor didattico alla pari=
+ presso il nostro ufficio; vi chiediamo gentilmente un feedback per avere i=
+l tempo di fornirvi il contratto entro i termini prestabiliti dalla regolam=
+entazione delle graduatorie amministrative.</div><br clear=3D"all"></div><d=
+iv><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signa=
+ture"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><fo=
+nt face=3D"verdana, sans-serif" style=3D"color:rgb(34,34,34)">Cordiali salu=
+ti</font></div><div dir=3D"ltr"><font face=3D"verdana, sans-serif" style=3D=
+"color:rgb(34,34,34)">Ufficio Studenti con Disabilit=C3=A0 e DSA</font><div=
+ style=3D"color:rgb(34,34,34)"><font face=3D"verdana, sans-serif" color=3D"=
+#666666">Direzione Didattica Servizi agli Studenti</font></div><div style=
+=3D"color:rgb(34,34,34)"><span style=3D"color:rgb(102,102,102);font-family:=
+verdana,sans-serif">Via Verdi 25 - 10124 Torino</span><br></div><div style=
+=3D"color:rgb(34,34,34)"><font face=3D"verdana, sans-serif" color=3D"#66666=
+6">tel. 011.6704284</font></div><div style=3D"color:rgb(34,34,34)"><font fa=
+ce=3D"verdana, sans-serif"><font color=3D"#666666">mail</font>=C2=A0</font>=
+<a href=3D"mailto:ufficio.dsa@unito.it" style=3D"color:rgb(17,85,204);font-=
+family:verdana,sans-serif;font-size:12.8px" target=3D"_blank">tutorato.incl=
+usione@unito.it</a></div></div></div></div></div></div></div></div></div></=
+div></div></div></div>
+
+--00000000000047972e0629236646--

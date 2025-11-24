@@ -1,0 +1,112 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:7c07:0:b0:2fb:4c9b:a38b with SMTP id x7csp225321ljc;
+        Wed, 13 Nov 2024 01:53:51 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCXDa426V8KwJLRRobU3paq3qDg6v4jTESmV4Sfu+ZaJGT2Ehfs1+Nhf4mrbYQN0BMKD4B+Ybtc6PIVR@edu.unito.it
+X-Google-Smtp-Source: AGHT+IHYhdUQDRLV7bOzewYP/sOocAFlfjdxlOLI0XG2Lpb0BHMaHXsWySLhkYnyCJ65GYNvqXl0
+X-Received: by 2002:a05:6602:2dc7:b0:83a:b7a2:74e6 with SMTP id ca18e2360f4ac-83e4303ddcemr715970639f.0.1731491629683;
+        Wed, 13 Nov 2024 01:53:49 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1731491629; cv=none;
+        d=google.com; s=arc-20240605;
+        b=VO3GQ1a+5jyoo+LE+Jm3QL41CbdcSGaShzTRjMO7VTJGf7X8mUn32Gx0z11Ha00A4x
+         1QGVLEnUaAV8Ql61PCYd09zPCMx51dgZ0M5SJpr2GBEGIBp/wTiAtx3drk1Nd2gL4Qcy
+         eOSdELyBjDsr2D3d/SdtShjs7B8P4+M5zJEaiX294sHceUbMD7lPo/UYcoJKZOh9ajbm
+         IgxpnmDE8jckufgQl9BiLn324wSM3C10pQfwSEfg+kIOapG3l3fVh48O3fVT4zDQqukE
+         pnIkzzWSnb7PofSTDY+kgfo8KcnGV1kG+6HfjlTSvEbNXLmI2sTKsWzPS73pwabUx4P0
+         LonQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=81I5oFSFGCK+z8nQ72sn8YzdPfQOqMeKBgPLia3DXqM=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=IB5hh5eLAauK/gpoVU4XPePV5dMDVPj3h6ucpWTfsof63jddhVDcY6LboADgBf7PzL
+         sCw1h+zIW8WC8Egcas8H586gXWTFlSICavL97Cd4ZExiV3fatq0IXUw8cJExJHLPNJG0
+         ZkQVuopBAqqn9lcWQtOWq/eoBnYMB6+gaSdKY/OVBgWF8Q949SX+Cm9ImUV7V7yDtwPH
+         r/CFzUTN6WTFWoQJJlxvoJ7x7w4rJW8jjau+gt7jFv8nPYXZBX+vOhG2aXf4aSi7TVpy
+         75zKuTpgoCBrGjsLLtjgZwuzBjPwZJdslkm4FxTrQXJ31Z3nHFHuaN7VKk/tEF3sRRY4
+         iVVQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=GlpYzdB2;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id ca18e2360f4ac-83e13587de0si306886439f.133.2024.11.13.01.53.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Nov 2024 01:53:49 -0800 (PST)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=GlpYzdB2;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 7B8972390C;
+	Wed, 13 Nov 2024 10:53:46 +0100 (CET)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id RVAv-dY96Y86; Wed, 13 Nov 2024 10:53:46 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 960332396D;
+	Wed, 13 Nov 2024 10:53:45 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 960332396D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1731491626;
+	bh=81I5oFSFGCK+z8nQ72sn8YzdPfQOqMeKBgPLia3DXqM=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=GlpYzdB2xi6QPhuMmiIXemkFRk3JNs0cpujjYHz8DlQ+7F42+GwZxpYs6Oj/IcWp5
+	 F+4kriaAcGgnMaUbJs/WcZnnzQBN6XT4hJXnwuisSqU5mWt9n4TL4dPXZ2je//2/H2
+	 w8vMgu02MaKoV6j7RzoIyqt90Bw39/kcbiFUdi0iVRWUxRMBkm6lyoGERaIJs09WQh
+	 kzf6vZqDEdHQirvzf1+Vohr+SUtXTD7TwsZC8KBMkOgh9Rx+OasCjpSyWTPBjzm1Wj
+	 Ul0hiH8pa+mkVZv2Ul94Fo2MQQitU1IbapOCtb82zrb7zrTRpxIrsmBQrZaJcWfDVG
+	 ciVG/sL1Y9bOw==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id ZmxGnS9g0KPl; Wed, 13 Nov 2024 10:53:45 +0100 (CET)
+Received: from esse3appjboss27.private.cineca.it (esse3appjboss27.cineca.it [130.186.5.162])
+	by smtp4.cineca.it (Postfix) with ESMTP id 8C787230B9;
+	Wed, 13 Nov 2024 10:53:41 +0100 (CET)
+Received: from esse3appjboss27.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss27.private.cineca.it (Postfix) with ESMTP id 25F3B2ED;
+	Wed, 13 Nov 2024 10:53:39 +0100 (CET)
+Date: Wed, 13 Nov 2024 10:53:39 +0100 (CET)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <780281430.339.1731491619148@esse3appjboss27.private.cineca.it>
+Subject: =?UTF-8?Q?Curriculum_vitae_online_=E2=80=93_aggiornamento_?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+Gentilissim*,
+
+l=E2=80=99Ateneo offre la possibilit=C3=A0 ai propri studenti e alle propri=
+e studentesse e laureati/laureate di richiedere la pubblicazione del curric=
+ulum, in forma anonima, sul Portale di Ateneo.
+
+Puoi richiedere la pubblicazione del tuo cv accedendo alla MyUnito con le c=
+redenziali SCU e cliccando su Servizi on line >> =E2=80=9CServizi di Job pl=
+acement=E2=80=9D >> =E2=80=9CGestione Privacy CV e altro=E2=80=9D.
+Troverai gi=C3=A0 inseriti nel cv i dati relativi alla tua carriera univers=
+itaria. Cliccando su =E2=80=9CGestisci il tuo curriculum vitae=E2=80=9D pot=
+rai inserire altre informazioni (esperienze lavorative, conoscenze linguist=
+iche, competenze informatiche etc=E2=80=A6) e aggiornare il tuo cv.
+Se scegli di pubblicare il tuo cv, sar=C3=A0 consultabile dalle aziende isc=
+ritte ai servizi di Job Placement dell'universit=C3=A0 e potrai cos=C3=AC e=
+ssere contattato/a.=20
+
+Con l'occasione ti informiamo che il servizio job placement online offre an=
+che la possibilit=C3=A0 di consultare le offerte di lavoro e di tirocinio e=
+xtracurriculare pubblicate dalle aziende e di candidarsi a quelle di intere=
+sse.
+
+Ti invitiamo pertanto ad aggiornare e a mantenere aggiornato il cv on line =
+per i servizi del job placement.
+
+Per maggiori informazioni puoi contattare l=E2=80=99ufficio job placement d=
+i riferimento.
+
+Un cordiale saluto.
+Universit=C3=A0 degli Studi di Torino

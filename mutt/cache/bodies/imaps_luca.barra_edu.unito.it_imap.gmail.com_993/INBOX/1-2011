@@ -1,0 +1,162 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b990:0:b0:2fb:4c9b:a38b with SMTP id p16csp2503931ljp;
+        Tue, 19 Nov 2024 04:22:42 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCW/B1I4mkNONNjqFnhBIVcjWglK8NuWmm7Ewv4smOzivxZGX/fiUR+QIpg130WhUEFvo3+274dFfypq@edu.unito.it
+X-Google-Smtp-Source: AGHT+IEVeLsB4Y1xytuqRo62gETkrVGIvWiF9TzbXl8STqsIhTozHFDM6mCxlcSlPbQZsXtli5xV
+X-Received: by 2002:a05:6000:4012:b0:382:48f0:fe5d with SMTP id ffacd0b85a97d-3824cb30e8emr2393218f8f.5.1732018962179;
+        Tue, 19 Nov 2024 04:22:42 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1732018962; cv=none;
+        d=google.com; s=arc-20240605;
+        b=LVmz/Xn3IP5iZMiBLgXt0eMc/aUO2589ud4mrIETdkK8gZnkN+TzMgaMDtdiFV2e3X
+         sVM/AY2P+ybpc43BWjnRQU/jiYii1tL+R3ep+DfaCXp/3WKJmv/jhdnIqRxl8ecaUqne
+         nszakoiya0qhgqk7SOQJAlCv3lKtVCafwHenoyNMP3h7ZX2vFVxzItUyEaHEQpGMPpqX
+         LEOJr6RbbVtLIpSuzslcHys0pv5KmgNV/ZDovE7lKejERYZ/NKgyy4JubH9HKKk45vxw
+         BvinWFk23qXaE9btVJtOPuD0sfbx0hlFo8olEatHBfmeuROadzmbvHCYS9w81H1b8HUH
+         27Rw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=y8/vsJ1adDWa64A2z3Ym8bfG3gQBpSadLBEFxdj96mE=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=NoBEvSEOoZcmLXtEoUHAZqi31cTGyiQIOEREw/0CV/rj2Zcteg37Olf5yqNL5Wdl+v
+         CQktlAwVnDOrjqtlcR1WRqv+nJbtiblSBgJ3r3F5Du12wFCbMlt7AF5jVtgfabUVlJ80
+         b2na8w9Xv5A6CLBfkXNElIxgX/I9ILqGrt9j3UCAZBwwt8L/zggAwWy1SmSZrUpWkBh4
+         NrEtvjaWT6u+/0PauN48Z0JbYf/qCkK/yAE5wAfiHduHd9Fi+SRlpwPAujgEceeqRArC
+         fNLOh2XX7arZYHpaE1TsMuCW5m9wG1NYKsTk08tWJOWLlVuYTTz+ECZM3SfubbugVF9b
+         jJzQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=IIz14goi;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id ca18e2360f4ac-83e6e153bfdsi569472239f.134.2024.11.19.04.22.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 19 Nov 2024 04:22:42 -0800 (PST)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=IIz14goi;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 1B70A32EC9;
+	Tue, 19 Nov 2024 13:22:39 +0100 (CET)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id LZF_MQySqDmE; Tue, 19 Nov 2024 13:22:38 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 76DF532814;
+	Tue, 19 Nov 2024 13:22:38 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 76DF532814
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1732018958;
+	bh=y8/vsJ1adDWa64A2z3Ym8bfG3gQBpSadLBEFxdj96mE=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=IIz14goiCsxG/otc20CfghqzqvO11BDoJyNLXuI7rXvJ5v2cz47YFHdZ9xVWtlkyZ
+	 90A8xQiZIh3AHkjmLWRh3QRBWfVIbRrtFDkAZfa5iZCPJvWj6E3+Y0iYqK/3Rg4ZF3
+	 ZnlCDqt7G4ifq53sQiE7YOhaN/5Bqhvum2kAzSitOXzciaAjm0G0Ow9QSSzBOH4n02
+	 eqd/HTZx6yO+da+8WuEnwla8NR4wgKUUzBpiYWPmkx54zMsxuN4P1DRHx3X5dEgERW
+	 MkrpcyWPteo9pbRv8mRBaoSsOpyFyOm11QFchvWs3mZjTGhSOAljbw40Hq6m+S7bbf
+	 nRcf6TQ3jQCGg==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id fDMKx357TxPx; Tue, 19 Nov 2024 13:22:38 +0100 (CET)
+Received: from esse3appjboss23.private.cineca.it (esse3appjboss23.cineca.it [130.186.5.144])
+	by smtp4.cineca.it (Postfix) with ESMTP id E54B92E68C;
+	Tue, 19 Nov 2024 13:22:35 +0100 (CET)
+Received: from esse3appjboss23.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss23.private.cineca.it (Postfix) with ESMTP id 347DE32B;
+	Tue, 19 Nov 2024 13:22:34 +0100 (CET)
+Date: Tue, 19 Nov 2024 13:22:34 +0100 (CET)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <193359425.327.1732018954206@esse3appjboss23.private.cineca.it>
+Subject: =?UTF-8?Q?Partecipa_a_Volontari_per_l=E2=80=99Educazione?=
+ =?UTF-8?Q?_di_Save_the_Children:_un_progetto_ONL?=
+ =?UTF-8?Q?INE_per_supportare_bambine,_bambini_e_?=
+ =?UTF-8?Q?adolescenti_nel_loro_percorso_educativo?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+Caro studente/Cara studentessa,
+L=E2=80=99Universit=C3=A0 di Torino aderisce anche quest=E2=80=99anno al pr=
+ogetto Volontari per l=E2=80=99Educazione di Save the Children che ha per o=
+biettivo il contrasto della dispersione scolastica e della perdita degli ap=
+prendimenti in bambini bambine ed adolescenti dai 9 ai 18 anni. Nel contrib=
+uire a garantire il diritto all=E2=80=99educazione e istruzione di qualit=
+=C3=A0, il progetto supporta le scuole e tutta la comunit=C3=A0 educante, n=
+ei processi di recupero degli apprendimenti e nella motivazione allo studio=
+, attraverso dei tutoraggi ONLINE, svolti affiancando un/a volontario/a, ad=
+eguatamente formato, ad un singolo studente/studentessa o a un piccolo grup=
+po di studenti/studentesse.
+Il 5 dicembre alle 10:00=20
+
+al link: https://unito.webex.com/meet/jp.scienzeumanistiche
+
+Save The Children presenta IL PROGETTO =E2=80=9CVOLONTARI PER L=E2=80=99EDU=
+CAZIONE=E2=80=9D
+
+in collaborazione con l=E2=80=99Universit=C3=A0 di Torino - nella persona d=
+ella Prof.ssa Lorena Milani - Referente di Ateneo per il Progetto "Volontar=
+i per l'educazione"
+
+
+
+=20
+Volontari per l=E2=80=99Educazione ha sostenuto da dicembre 2020 ad oggi pi=
+=C3=B9 di 5500 bambini/e e adolescenti grazie all=E2=80=99impegno di oltre =
+2900 volontari e volontarie, e desidera raggiungere sempre pi=C3=B9 student=
+i anche grazie al contributo di volontari del nostro ateneo.=20
+Scopri come anche tu puoi partecipare. Il tuo sar=C3=A0 un supporto concret=
+o al fianco della scuola in questa sfida educativa senza precedenti. Chi sc=
+eglie di attivarsi in questa forma di volontariato =C3=A8 una persona che c=
+rede fortemente nel valore dell=E2=80=99educazione e vuole contribuire al c=
+ontrasto della povert=C3=A0 educativa e della dispersione scolastica.
+Disponibilit=C3=A0 richiesta. Per poter partecipare =C3=A8 necessaria una d=
+isponibilit=C3=A0 di almeno due momenti a settimana, da 1,5 ore ciascuno (p=
+er un totale di 3 ore settimanali), nei giorni compresi tra luned=C3=AC e v=
+enerd=C3=AC, di pomeriggio (nella fascia oraria 13-19.30) o/e nei fine sett=
+imana (nella fascia oraria 09:30-19:30).=20
+Formazione. Tutti i volontari e le volontarie saranno supportati attraverso=
+ incontri formativi prima di poter essere pronti a iniziare il loro percors=
+o e supportare al meglio i loro studenti. Il primo, da fare quando si prefe=
+risce poich=C3=A9 on-demand, avr=C3=A0 la durata di 4 ore, il secondo sar=
+=C3=A0 di 2 ore in un webinar live e permetter=C3=A0 un confronto diretto c=
+on lo staff. Inoltre, i volontari saranno seguiti e supportati in itinere d=
+a educatori professionisti.=20
+I volontari avranno la possibilit=C3=A0 di usufruire anche di una serie di =
+strumenti tra i quali il KIT di Volontari per l=E2=80=99Educazione, una sor=
+ta di mappa per orientarsi nel progetto e alcune brevi pillole video di for=
+mazione avanzata su temi quali l=E2=80=99insegnamento dell=E2=80=99italiano=
+ L2, il supporto agli alunni con BES/DSA, gli strumenti per la didattica di=
+gitale, l=E2=80=99approccio psicosociale alla relazione educativa, l=E2=80=
+=99insegnamento delle materie STEM e il supporto alla preparazione dell=E2=
+=80=99esame di chiusura del primo ciclo (ex terza media). Ci saranno anche =
+due formazioni live (facoltative), per ascoltare la voce dei volontari e co=
+nfrontarsi su alcuni temi cardine del progetto.
+
+Cosa aspetti? Unisciti alla community dei Volontari per l=E2=80=99Educazion=
+e, per contribuire a cambiare un destino alla volta.
+
+Per iscriverti:
+Compila questo FORM.
+(Cliccando sul link verr=C3=A0 chiesto di creare un account con una mail, p=
+assword e nome, per poter poi accedere al form).
+Alla domanda =E2=80=9CCome ci hai conosciuti?=E2=80=9D rispondi =E2=80=9CTr=
+amite la mia Universit=C3=A0=E2=80=9D, e alla domanda =E2=80=9CA quale univ=
+ersit=C3=A0 sei iscritto=E2=80=9D indica =E2=80=9CUniversit=C3=A0 degli Stu=
+di di Torino=E2=80=9D.=20
+
+Per avere maggiori informazioni visita la pagina del sito di Save the Child=
+ren dedicata al progetto https://www.savethechildren.it/partecipa/volontari=
+/volontari-per-educazione#diventa-volontario=20
+L=C3=AC trovi anche una sezione FAQ con le domande e risposte pi=C3=B9 freq=
+uenti sull=E2=80=99attivit=C3=A0 di volontariato.
+Se hai altre domande sul funzionamento del progetto, puoi scrivere a volont=
+ariperleducazione@savethechildren.org=20
+

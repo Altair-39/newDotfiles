@@ -1,0 +1,99 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:c52:0:b0:2e9:7e04:4641 with SMTP id o18csp667215ljd;
+        Tue, 28 May 2024 06:24:00 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCW8vHVmPTS1H5jHkSw707d0RPG/Z9YwjDUeduRCVpu/JY4xFvdJNVmMJ1hBl/m1F75oa2xzJlEUNH2LBk37wddPs8XWC7Ff+w==
+X-Google-Smtp-Source: AGHT+IH5vYSOnA2WTxs8eCzJxgOwxasPSKFD9KhOhMKTqOCmV4G67OUEeKYtuusAXdwLOSgWSSvC
+X-Received: by 2002:a05:6512:794:b0:529:46e:b2a5 with SMTP id 2adb3069b0e04-52964eac45fmr10226919e87.2.1716902640217;
+        Tue, 28 May 2024 06:24:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1716902640; cv=none;
+        d=google.com; s=arc-20160816;
+        b=qYQuHzRG1kW1R2WOsB1wugYirI9J/8oaOJvWMoIc4og8AqGw5shpFU6xeTSJA4Ewgf
+         ELntf5rVEmWUyYh9IENH9qluPEol0GkrOzg7c/J219IZ2GkvbkEser/zTIXVNJwa173b
+         Hs0amxJ78P9N8IeBr4lmyE1VuP++K59iqy1md9AzYENUSx95scvuks33nD97W3sPBVZK
+         +uuw1O5d8FsyDyeK5QZVkW9ztEaX9D9B4JbxthooytL8HbfWJV/XeXsRGj3dPEC0WX3U
+         xoY7aoMXIzLM+a7TdjBCqVRxC1vU6PfXec2/JxZlGmTdgpNjeq1/oxk7/xzr24xtiF3q
+         jDgQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date;
+        bh=ke8CU4mGMnOCiix7qFsX/ZlZQyTsGN1OsMS6scuabjk=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=P/wQDn6CgHvefdoBckLKYwdxdnl7gRZ2MbHUYpM7FnJuxRgMFKRbFOpQPq3tK/spFW
+         A2ovreYVzzDuxD3GgBetPbWboCanW8QS3DZRzAyyf2qALhvmWbceKnKg9cKmScyyrGY7
+         jWD4z8UvnpEfYhrikXk9l9oZ96QEU4CC1llU8UG2GV6dYr4qannXqwdea/wM3Tpl1lOR
+         KX2JvVIxd/hN1ola71MCwtaK0HARZlFaULK/hUfy6wStnJEtyq6W/dM8xz8L5JXpdRwt
+         WKT/X/gvR6qG5VbYoWWiBEf0uDsqb0CKYhk6pOAiGsg2tBy2caMMtFduUpkZ/XgAr3ZU
+         H6CA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id e9e14a558f8ab-3737c2e09b7si39499985ab.151.2024.05.28.06.23.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 May 2024 06:24:00 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id CB8DE2D984;
+	Tue, 28 May 2024 15:23:56 +0200 (CEST)
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id ki9TuH1q17NK; Tue, 28 May 2024 15:23:56 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id E76FC2B44A;
+	Tue, 28 May 2024 15:23:55 +0200 (CEST)
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id AY_EMsHC3Ckm; Tue, 28 May 2024 15:23:55 +0200 (CEST)
+Received: from esse3appjboss23.private.cineca.it (esse3appjboss23.cineca.it [130.186.5.144])
+	by smtp4.cineca.it (Postfix) with ESMTP id D8AD12CD83;
+	Tue, 28 May 2024 15:23:53 +0200 (CEST)
+Received: from esse3appjboss23.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss23.private.cineca.it (Postfix) with ESMTP id 2FC6610D;
+	Tue, 28 May 2024 15:23:52 +0200 (CEST)
+Date: Tue, 28 May 2024 15:23:52 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <98133418.119.1716902632189@esse3appjboss23.private.cineca.it>
+Subject: Seduta Senato Accademico 30 maggio 2024, ore 9.00 - Diretta
+ streaming su Unito Media
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+A  tutte le studentesse e a tutti gli studenti dell'Universit=C3=A0 di Tori=
+no
+
+Si comunica che la seduta del Senato Accademico del 30 maggio 2024, ore 9.0=
+0 con il supporto della Direzione Servizi Informativi, Portale, E-learning,=
+ sar=C3=A0 pubblica sul portale di Ateneo.
+
+Si informa, pertanto, che la seduta sar=C3=A0 visibile online in diretta st=
+reaming su Unito Media a tutta la Comunit=C3=A0 Accademica, previa autentic=
+azione con credenziali SCU, all=E2=80=99indirizzo www.unito.it/media.
+
+Si precisa tuttavia che, ai sensi dell=E2=80=99art. 33, comma 2, del =E2=80=
+=9CRegolamento in materia di protezione dei dati personali (DR n. 870 del 4=
+ marzo 2019), la diretta streaming sar=C3=A0 sospesa in occasione della tra=
+ttazione di proposte inerenti: lo sviluppo strategico dell=E2=80=99Ateneo, =
+i rapporti con gli operatori economici e altri soggetti privati e la tutela=
+ della riservatezza dei dati personali.
+La Convocazione della seduta, contenente l=E2=80=99ordine del giorno, =C3=
+=A8 consultabile sul portale di Ateneo al seguente percorso https://www.uni=
+to.it/sites/default/files/odg_sa_30_maggio_2024.pdf
+La diretta =C3=A8 fruibile da una versione aggiornata dei pi=C3=B9 diffusi =
+browser per computer desktop, per tablet e smartphone.
+Si invitano quindi tutti i destinatari della presente, se interessati, a ve=
+rificare per tempo la corretta installazione e/o l=E2=80=99aggiornamento de=
+lle componenti sovra esposte semplicemente mediante un primo accesso a www.=
+unito.it/media. Nell'impossibilit=C3=A0 di effettuare in autonomia gli aggi=
+ornamenti necessari e per ogni ulteriore esigenza tecnica contattare la Str=
+uttura o il tecnico informatico di riferimento.
+
+
+Cordiali saluti

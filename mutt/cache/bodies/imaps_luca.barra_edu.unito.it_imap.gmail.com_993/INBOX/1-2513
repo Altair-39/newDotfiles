@@ -1,0 +1,242 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a54a:0:b0:328:ea4:e135 with SMTP id e10csp1106333ljn;
+        Sun, 18 May 2025 14:05:07 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGn51ZkrD696IorPT06V3nTL+7wIGb0p5j04iCqoMoxfLlpM7SJcJnSnHufWgRDZgMcAqsf
+X-Received: by 2002:a17:907:7388:b0:ad4:dca3:5b66 with SMTP id a640c23a62f3a-ad52d5cbbe2mr295828666b.15.1747602307278;
+        Sun, 18 May 2025 14:05:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1747602307; cv=none;
+        d=google.com; s=arc-20240605;
+        b=UFKolZ/NgV8Aqj+P/mR8/Fign8/sQuAPsUPVJTZqYxhW8R6vIzZlAo0vRgnUVb0W/x
+         b6qdq1dMEF+qTg/C2RlsBjhseMHooKN/LJBfzWOvTjwiHAsOFo+YjEElg8AIbkcvvhFg
+         MOialEfoZCWZxfbV988+z2dfuDsOBMRhWId7YFOjjNXnhfEfz0cNqbpWKeBrmU1ywWP2
+         ajHFgF+lXqppyV4mgNV+xDRrXt+4B9axb7u23AbBNLzZcLgZfhJuLK4/lH6D+6U5vcUx
+         LLx0IOBotmIgMIA5DfGw+LQxV5bO73d7ZVxEOwN0gjLBjx1ocVEuRoeFo0RTI3+u+NQy
+         xC9A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=hGGvrncJiC+hCG9yC3uaJzItJTrx6UciYCJ/UQLykvI=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=VslBKj1bpZES3NcoHwsQXR80bdT+hmzlR7p9d3ZrpsX9CkHNAs38e0ahuFnXoS7bZI
+         9HRb3aRWh+gexDORucg1ijzxt7iUeDNvvGp5m60A+wQVeQIkiWxUEL97VpfamRMzuO7L
+         79XimSjZLgWmhVcoC8eq51tgIpAuNiuwbvWXDeDVVg594ms9CVK93isYxYQkT5Nx/YbS
+         IItjlz1MrVGavmPN/SdYuvg3SvoBcAhiUg8VCrYtYu4faYcr5T8JKeKgri96GsfkeN9V
+         PdRGq0SdJpSmx8fncIueN8dPR7lpd9qdqR33CreSibBMN8od5wdY3IrQja2qWVYujK4T
+         2z9Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ad52d4e00c5si473923366b.583.2025.05.18.14.05.07
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 18 May 2025 14:05:07 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 54IL56is122471
+	for <luca.barra@edu.unito.it>; Sun, 18 May 2025 23:05:06 +0200
+Date: Sun, 18 May 2025 23:05:06 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Buoso Gabriele (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: =?utf-8?B?U2lzSW50MjQyNTogU3R1ZHkgc2hvd3MgdmlzaW9uLWxhbmd1YWdlIG1vZGVs?=
+ =?utf-8?B?cyBjYW7igJl0IGhhbmRsZSBxdWVyaWVzIHdpdGggbmVnYXRpb24gd29yZHM=?=
+Message-ID: <ddb5e3efddd23bd8522cde2d419769e8b1704147517e4a06f20abe27c6c00cb8@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Segnalazioni" <moodleforum7706@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7706
+X-Course-Id: 3092
+X-Course-Name: Sistemi Intelligenti
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=7706&d=44693>
+Thread-Topic: =?utf-8?B?U2lzSW50MjQyNTogU3R1ZHkgc2hvd3MgdmlzaW9uLWxhbmd1YWdlIG1vZGVs?=
+ =?utf-8?B?cyBjYW7igJl0IGhhbmRsZSBxdWVyaWVzIHdpdGggbmVnYXRpb24gd29yZHM=?=
+Thread-Index: ddb5e3efddd23bd8522cde2d4197
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_bpLZPQM1Gwhc2koGgurJuiZAL3KGYdG2xX71tQXGHgI"
+
+This is a multi-part message in MIME format.
+
+--b1_bpLZPQM1Gwhc2koGgurJuiZAL3KGYdG2xX71tQXGHgI
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SisInt2425 -> Forums -> Segnalazioni -> Study shows vision-language models
+can=E2=80=99t handle queries with negation words
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44693#p72451
+Study shows vision-language models can=E2=80=99t handle queries with negati=
+on
+words
+by Buoso Gabriele - Sunday, 18 May 2025, 10:48 PM
+---------------------------------------------------------------------
+FONTE:=C2=A0https://news.mit.edu/2025/study-shows-vision-language-models-ca=
+nt-handle-negation-words-queries-0514
+
+TIPOLOGIA: Articolo
+
+TONO DELLA COMUNICAZIONE: Informativo, divulgativo
+
+BREVE RIASSUNTO:=C2=A0
+
+L=E2=80=99articolo=C2=A0descrive una limitazione critica nell=E2=80=99utili=
+zzo dei=C2=A0visual
+large language model=C2=A0(VLM) e=C2=A0large language model=C2=A0(LLM): la =
+loro
+incapacit=C3=A0 di comprendere le=C2=A0negazioni=C2=A0(parole come =
+=E2=80=9Cno=E2=80=9D, =E2=80=9Cnon=E2=80=9D,
+=E2=80=9Csenza=E2=80=9D) all=E2=80=99interno delle query.
+
+Questa carenza =C3=A8 particolarmente pericolosa in ambiti ad alto rischio,
+come la medicina. Ad esempio, se un modello non riesce a distinguere tra
+=E2=80=9Ccuore ingrossato=E2=80=9D e =E2=80=9Ccuore=C2=A0non=C2=A0ingrossat=
+o=E2=80=9D, pu=C3=B2 portare a
+diagnosi errate e, di conseguenza, a trattamenti inappropriati per i
+pazienti.
+
+Gli autori spiegano che questa lacuna nasce dal modo in cui i modelli sono
+addestrati: i dataset di immagini utilizzati contengono solo
+descrizioni=C2=A0affermazioni positive, ovvero indicano ci=C3=B2 che=C2=
+=A0=C3=A8=C2=A0presente
+in un=E2=80=99immagine, mai ci=C3=B2 che=C2=A0non =C3=A8=C2=A0presente.
+
+Per affrontare questo problema, i ricercatori hanno creato un nuovo dataset
+contenente milioni di immagini accompagnate da descrizioni che
+includono=C2=A0negazioni. Dopo aver eseguito un=C2=A0fine-tuning=C2=A0dei m=
+odelli su
+questo dataset, si sono ottenuti miglioramenti significativi.
+
+MOTIVO PER CUI MI HA COLPITO:=C2=A0
+
+mi ha colpito profondamente quanto questo studio evidenzi in modo
+chiaro=C2=A0la fragilit=C3=A0 e i limiti degli LLM e VLM, soprattutto perch=
+=C3=A9
+spesso vengono percepiti come =E2=80=9Cintelligenti=E2=80=9D o affidabili, =
+quando in
+realt=C3=A0 non=C2=A0comprendono=C2=A0davvero il linguaggio nel senso umano=
+ del
+termine. Il fatto che questi modelli non riescano a gestire concetti
+fondamentali come la=C2=A0negazione=C2=A0dimostra che, nonostante la loro a=
+pparente
+competenza,=C2=A0non ragionano=C2=A0n=C3=A9 possiedono una comprensione sem=
+antica
+profonda: si limitano a correlare pattern statistici precedente "imparati"
+sui dataset su quali sono stati allenati.
+
+EVENTUALI COLLEGAMENTI CON GLI ARGOMENTI DEL CORSO:=C2=A0
+
+Distinzione tra intelligenza e automazione, in questo caso i modelli
+utilizzati per la classificazione e diagnosi di malattie non sono in grado
+di ragionare, ma eseguono semplicemente un compito specifico, motivo per
+cui sono stati progettati.
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SisInt2425.
+
+To reply click on this link:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D72451
+Unsubscribe from this forum:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706
+Unsubscribe from this discussion:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D=
+44693
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092
+
+--b1_bpLZPQM1Gwhc2koGgurJuiZAL3KGYdG2xX71tQXGHgI
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3092">SisInt2425</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3092">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+706">Segnalazioni</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44693">Study sho=
+ws vision-language models can=E2=80=99t handle queries with negation words<=
+/a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" cellspacing=3D"0" c=
+lass=3D"forumpost">=0A    <tr class=3D"header">=0A        <td width=3D"35" =
+valign=3D"top" class=3D"picture left">=0A            <a href=3D"https://inf=
+ormatica.i-learn.unito.it/user/view.php?id=3D30504&amp;course=3D3092" class=
+=3D"d-inline-block aabtn"><img src=3D"https://informatica.i-learn.unito.it/=
+theme/image.php/_s/lambda/core/1745224313/u/f2" class=3D"userpicture defaul=
+tuserpic" width=3D"35" height=3D"35" alt=3D"" /></a>=0A        </td>=0A    =
+    <td class=3D"topic starter">=0A            <div class=3D"subject">=0A  =
+              Study shows vision-language models can=E2=80=99t handle queri=
+es with negation words=0A            </div>=0A            <div class=3D"aut=
+hor">=0A                by <a target=3D'_blank' href=3D'https://informatica=
+.i-learn.unito.it/user/view.php?id=3D30504&course=3D3092'>Buoso Gabriele</a=
+> - Sunday, 18 May 2025, 10:48 PM=0A            </div>=0A        </td>=0A  =
+  </tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=0A    =
+            &nbsp;=0A        </td>=0A        <td class=3D"content">=0A     =
+       <p><strong>Fonte:</strong>=C2=A0<span lang=3D"it" xml:lang=3D"it">ht=
+tps://news.mit.edu/2025/study-shows-vision-language-models-cant-handle-nega=
+tion-words-queries-0514</span></p><p><strong>Tipologia:</strong> Articolo</=
+p><p><strong>Tono della comunicazione:</strong> Informativo, divulgativo</p=
+><p><strong>Breve riassunto:=C2=A0</strong></p><p><span lang=3D"it" xml:lan=
+g=3D"it">L=E2=80=99articolo</span>=C2=A0descrive una limitazione critica ne=
+ll=E2=80=99utilizzo dei=C2=A0<span lang=3D"it" xml:lang=3D"it">visual large=
+ language model</span>=C2=A0(VLM) e=C2=A0<span lang=3D"it" xml:lang=3D"it">=
+large language model=C2=A0</span>(LLM): la loro incapacit=C3=A0 di comprend=
+ere le=C2=A0<span>negazioni</span>=C2=A0(parole come =E2=80=9Cno=E2=80=
+=9D, =E2=80=9Cnon=E2=80=9D, =E2=80=9Csenza=E2=80=9D) all=E2=80=99interno de=
+lle query.</p><p></p><p>Questa carenza =C3=A8 particolarmente pericolosa in=
+ ambiti ad alto rischio, come la medicina. Ad esempio, se un modello non ri=
+esce a distinguere tra =E2=80=9Ccuore ingrossato=E2=80=9D e =E2=80=9Ccuore=
+=C2=A0<span>non</span>=C2=A0ingrossato=E2=80=9D, pu=C3=B2 portare a diagnos=
+i errate e, di conseguenza, a trattamenti inappropriati per i pazienti.</p>=
+<p>Gli autori spiegano che questa lacuna nasce dal modo in cui i modelli so=
+no addestrati: i dataset di immagini utilizzati contengono solo descrizioni=
+=C2=A0<span>affermazioni positive</span>, ovvero indicano ci=C3=B2 che=
+=C2=A0<span>=C3=A8</span>=C2=A0presente in un=E2=80=99immagine, mai ci=
+=C3=B2 che=C2=A0<span>non =C3=A8</span>=C2=A0presente.</p><p></p><p></p><p>=
+Per affrontare questo problema, i ricercatori hanno creato un nuovo dataset=
+ contenente milioni di immagini accompagnate da descrizioni che includono=
+=C2=A0<span>negazioni</span>. Dopo aver eseguito un=C2=A0<span>fine-tuning<=
+/span>=C2=A0dei modelli su questo dataset, si sono ottenuti miglioramenti s=
+ignificativi<span lang=3D"it" xml:lang=3D"it">.</span></p><p><strong>Motivo=
+ per cui mi ha colpito:=C2=A0</strong></p><p></p><p><span lang=3D"it" xml:l=
+ang=3D"it">m</span>i ha colpito profondamente quanto questo studio evidenzi=
+ in modo chiaro=C2=A0<span>la fragilit=C3=A0 e i limiti degli LLM e VLM</sp=
+an>, soprattutto perch=C3=A9 spesso vengono percepiti come =E2=80=9Cintelli=
+genti=E2=80=9D o affidabili, quando in realt=C3=A0 non=C2=A0<span>comprendo=
+no</span><strong>=C2=A0</strong>davvero il linguaggio nel senso umano del t=
+ermine. Il fatto che questi modelli non riescano a gestire concetti fondame=
+ntali come la=C2=A0<span>negazione</span>=C2=A0dimostra che, nonostante la =
+loro apparente competenza,=C2=A0<span>non ragionano</span>=C2=A0n=C3=A9 pos=
+siedono una comprensione semantica profonda: si limitano a correlare patter=
+n statistici precedente "imparati" sui dataset su quali sono stati allenati=
+.</p><p><span lang=3D"it" xml:lang=3D"it"><strong>Eventuali collegamenti co=
+n gli argomenti del corso:=C2=A0</strong></span><br /></p>Distinzione tra i=
+ntelligenza e automazione, in questo caso i modelli utilizzati per la class=
+ificazione e diagnosi di malattie non sono in grado di ragionare, ma eseguo=
+no semplicemente un compito specifico, motivo per cui sono stati progettati=
+.<br /><p></p><br /><p></p><p></p>=0A=0A            <div class=3D"commands"=
+>=0A                    <a target=3D"_blank" href=3D"https://informatica.i-=
+learn.unito.it/mod/forum/post.php?reply=3D72451">=0A                       =
+ Reply=0A                    </a>=0A            </div>=0A=0A            <di=
+v class=3D"link">=0A                <a target=3D"_blank" href=3D"https://in=
+formatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44693#p72451">=0A     =
+               See this post in context=0A                </a>=0A          =
+  </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D=
+"mdl-align unsubscribelink">=0A    <a href=3D"https://informatica.i-learn.u=
+nito.it/mod/forum/subscribe.php?id=3D7706">Unsubscribe from this forum</a>&=
+nbsp;=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/forum/subsc=
+ribe.php?id=3D7706&d=3D44693">Unsubscribe from this discussion</a>&nbsp;=0A=
+    <a href=3D"https://informatica.i-learn.unito.it/mod/forum/index.php?id=
+=3D3092">Change your forum digest preferences</a>=0A</div>
+
+--b1_bpLZPQM1Gwhc2koGgurJuiZAL3KGYdG2xX71tQXGHgI--
+

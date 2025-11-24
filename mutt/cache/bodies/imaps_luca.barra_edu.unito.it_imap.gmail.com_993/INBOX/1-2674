@@ -1,0 +1,224 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:be92:0:b0:32a:7f76:203e with SMTP id a18csp2763662ljr;
+        Wed, 25 Jun 2025 03:51:05 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCU9ax7rlvc8R3VqHkFcCJNquBOAg40RcRO2U5twimnGJ746SUeuBaGvjc7rk6qsctLpMSXfe4YR+tBL@edu.unito.it
+X-Received: by 2002:a17:906:f58c:b0:ae0:51ac:84bb with SMTP id a640c23a62f3a-ae0bedb9f89mr76253366b.13.1750848665415;
+        Wed, 25 Jun 2025 03:51:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1750848665; cv=none;
+        d=google.com; s=arc-20240605;
+        b=R5TeYwOu1TGjZqk8Xn9Iz3jXLL9XPs5q6q5oFlCrpQZxDuAKfF6eBLtw2xwcrkaWVQ
+         GvhFhzrEw3Tx310kCrn6eUsJEh4UVND54RYuvETzqGm4mKesOKi9QIaNLh3Bhv9MQR+L
+         GdxoyngTdeGH0q1u9AaqM//rAiq+ojJdEDWBzME01qonEq7g6wVSYKHX2kjpHT6MomJw
+         YwWMWexrqOVcUWDyc6tz/CiK6+B0ay+NvLEhOD/uhoRI7JVLfUzi4s92iqzPUmOro+iA
+         xEJj+9t2IE11vOCSsXAet197NHZtwmqgFrDPIMNpr+0KSnjZCfM4cNMPOsOPIrgFxRAz
+         Wx4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=WmGorHDMOZlMEzJPOrX/goJbfYmtfZyi5L+jvOVt9Zs=;
+        fh=Y5mIvEFvpsJGu/kBKXnuCFdNeNvs9kBRlU56Q0DkWPw=;
+        b=AC3N0Vel34G+cGgUfJQ4bVxjMPl0mqCEZRaU54gbTOzTyQn5cM1IFSnW5riA+dC/LX
+         xy/7aoJi/VnZEil+OOm6DPzCriwEcnXOeBR0GuKUCJIG0TTGUm2SMKTyrt2mNIbOylFb
+         3/WlyKGw3JRQ0UW+8CRaCnPhhUHs1HVP9G5NBC1ZLvRTJVc28zQcp8oGxzglkzvUiZ90
+         9TpfrnQE/J0eTTWJImMCfeI150eSvpiRimDaiAeiFJLDqqKCGlN2BZ5YEyNfdlkQxUr8
+         TvzOA+7MfZYO+BeGs1nZ76Pg5R8koXUB3A+x6N0Y9EPmaxSQLoZymkwt6MhN5jxGIpma
+         ZM/Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=AfSFvWid;
+       spf=pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.inclusione@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <tutorato.inclusione@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-ae0ac717ef1sor192945866b.0.2025.06.25.03.51.05
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Wed, 25 Jun 2025 03:51:05 -0700 (PDT)
+Received-SPF: pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=AfSFvWid;
+       spf=pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.inclusione@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1750848665; x=1751453465; darn=edu.unito.it;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=WmGorHDMOZlMEzJPOrX/goJbfYmtfZyi5L+jvOVt9Zs=;
+        b=AfSFvWids2pCmAWetgy5TA0bARgQVSkfAGyDUtfaF/0cprI6vf//X94NECwx74R1GJ
+         S8jVD8HfP50L8QiOQlqKblE/Fj3P/7E6OdYepOrEAvF0KLgPSUTiO9srA2IYG8stWcQq
+         kJuaRc9l8Rtc4KKKTX+VEilGBd7UzUvQZMd35lc71bvHaBDQkR80U2IZLOD6jVXWmrX+
+         VDIMPkpvVmYI9MAer+mhBTJPGRfSyvtS7eNrmAvKaq9TrJRT2qJwkkSjjC7pCnEzfhly
+         7Pe6Xa8F/GnyeCjNaoxDjbaWy5IaWvo9mv77Xk1+J2bkvtxNV40gtSercSTocCohopbV
+         X1sA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750848665; x=1751453465;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WmGorHDMOZlMEzJPOrX/goJbfYmtfZyi5L+jvOVt9Zs=;
+        b=G0JkWE2XSHgo9R8+bURoAIuY8sYCVQqSzfuxKIIuXRtLqOEjnxvlbkcBeGh7mF1Y5l
+         sfLpeta1jzxEA5uoSoizBVh3nLJixfeSVMZp6YgkAs599teKiyEhNUEI3lozwkzDwPwZ
+         xX4kEUQyUH74RBBDy0byHcjDYqqZqDwY1wj0kOhZp32ymcq08CJ3g4Rl9k6pwGaBLQyp
+         VENN/4muvWA2lzVJ3SQYSCOp6IevXg7ogzaRkdaiQ1hlwObkQTqnRXIx8h7CX8O/6VcD
+         3CivoIXSdWy4QXDXBe3SuQZOmK9nh1/ideye4f7GkabnRid1r0l9FnpIvgT/RW3DAvZx
+         E+0w==
+X-Forwarded-Encrypted: i=1; AJvYcCVJCZpK8R34Pcqk68WVgWfnDLSafzokcSXgD5yHDbYXu6bIiC2nh58wpH1PiufT5obBzEiGD74KoR83@edu.unito.it
+X-Gm-Message-State: AOJu0YwpKk310IJnygnUggvjlO+H3rMQX6a3s8HLZzuItsBaRNWymcFP
+	4ryQTAP0a9/Us6gxd1/JuxRg5KC9ziGvQPy65s4HwQYoAwROvom0/bhtFi5EHOgE448jkEX8F0b
+	6YPkNON+VEqK93NYImHfL6AMq64qBzGoqygeAbKy2d1Yl
+X-Gm-Gg: ASbGnctGw/TduPh/YUmFEZX7zIqkwaIl0+IVL99UwQZuaCoCNfJIVorYvYXHe8vmBr+
+	T7fcRxBQ5Grd95SiFnLostCpvDOub5BxQFU1/XOPunyoLgB2rz22rlTqkAliYWytNTXsyeKUskn
+	OK4Aco9koIFBqmZcsw37xTLtbZ12ki0Kkspt+HVXfs3SnZHHg=
+X-Google-Smtp-Source: AGHT+IE1PqNMCwA397ySCGjNzwV18sxCTFXUwPkQDIq6eIKUMtayeehDmyuVO8LXQJ7CUt86vO7f8ig11v1Pj5VjNuc=
+X-Received: by 2002:a17:906:6a1f:b0:ae0:c729:8646 with SMTP id
+ a640c23a62f3a-ae0c7298adfmr140539566b.30.1750848649376; Wed, 25 Jun 2025
+ 03:50:49 -0700 (PDT)
+MIME-Version: 1.0
+From: Tutorato Disabili <tutorato.inclusione@unito.it>
+Date: Wed, 25 Jun 2025 12:50:31 +0200
+X-Gm-Features: Ac12FXzYYdpgyxR54XzcX48QIocRz3jtAoARN4Ndw88-k1IEiKkkiUlSdJHNHjU
+Message-ID: <CAOKF-fU_rHiQ9tQsFmVHcN_v+2AKW3FV0yQGwUnM-5oC3p9f-w@mail.gmail.com>
+Subject: =?UTF-8?Q?URGENTE=3A_scadenza_bando_per_l=27A=2EA=2E_2025=2D2026_per_lo_?=
+	=?UTF-8?Q?svolgimento_di_collaborazioni_a_tempo_parziale_finalizzate_a?=
+	=?UTF-8?Q?ll=27assistenza_didattica_di_studenti=2Fesse_con_disabilit=C3=A0_e_c?=
+	=?UTF-8?Q?on_DSA_=2D_I_SEMESTRE?=
+To: undisclosed-recipients:;
+Content-Type: multipart/alternative; boundary="000000000000cd506c0638633724"
+Bcc: luca.barra@edu.unito.it
+
+--000000000000cd506c0638633724
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Gent.m*,
+
+Per tutti coloro che fossero interessati e in possesso dei requisiti
+richiesti, si informa che nella seguente pagina web dell'Ateneo:
+
+=F0=9F=94=97
+https://www.unito.it/bandi/bando-lo-svolgimento-di-collaborazioni-tempo-par=
+ziale-finalizzate-allassistenza-didattica-di-6
+
+=C3=A8 stato pubblicato il *NUOVO bando* per il conferimento di *collaboraz=
+ioni
+a tempo parziale per l=E2=80=99A.A. 2025-2026 - **primo semestre*.
+
+=E2=9A=A0=EF=B8=8F Si segnala che, a partire dall' A.A. 2025-2026, il bando=
+ non sar=C3=A0 pi=C3=B9
+annuale ma avr=C3=A0 cadenza semestrale, ovvero verranno indetti 2 bandi ne=
+llo
+stesso anno accademico.
+
+Per quanto riguarda *la partecipazione, =C3=A8 necessario leggere attentame=
+nte i
+requisiti richiesti e riportati nell'* *Art. 2 *- *Destinatari del bando e
+criteri di ammissione.*
+
+La presentazione della domanda =C3=A8 disponibile esclusivamente on-line su
+MyUnito, cliccando sul menu =E2=80=9CCollaborazione 200 h=E2=80=9D e succes=
+sivamente su
+=E2=80=9CIscrizioni=E2=80=9D.
+
+Nella prima pagina sar=C3=A0 necessario selezionare la propria carriera att=
+iva,
+quindi accedere al link relativo al bando nella sezione =E2=80=9CBandi nomi=
+nali non
+ancora sottoscritti=E2=80=9D e infine cliccare su =E2=80=9CSottoscrizione a=
+l bando=E2=80=9D.
+
+=F0=9F=93=85 La presentazione delle candidature on-line dovr=C3=A0 essere c=
+ompletata *entro
+le ore 12:00 di venerd=C3=AC 4 luglio 2025*.
+La scadenza =C3=A8 da ritenersi *perentoria*.
+
+*Per difficolt=C3=A0 tecniche nella compilazione della domanda on-line*,
+*occorre scrivere
+a*:
+=F0=9F=93=A9 *collaborazioni.studenti@unito.it*
+
+Per eventuali domande o richieste di chiarimento sulla collaborazione/
+attivit=C3=A0, =C3=A8 possibile *rispondere direttamente a questa e-mail*.
+Cordiali saluti
+
+Sezione Servizi per l'Inclusione Studentesca
+Direzione Didattica Servizi agli Studenti
+Via Verdi 25 - 10124 Torino
+tel. 011.6704284
+mail tutorato.inclusione@unito.it <ufficio.dsa@unito.it>
+
+--000000000000cd506c0638633724
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><div class=3D"gmail=
+_default"><font face=3D"verdana, sans-serif">Gent.m*,</font></div><div clas=
+s=3D"gmail_default"><font face=3D"verdana, sans-serif"><br></font></div><di=
+v class=3D"gmail_default"><font face=3D"verdana, sans-serif">Per tutti colo=
+ro che fossero interessati e in possesso dei requisiti richiesti, si inform=
+a che nella seguente pagina web dell&#39;Ateneo:</font></div>
+<p><font face=3D"verdana, sans-serif">=F0=9F=94=97 <a rel=3D"noopener" href=
+=3D"https://www.unito.it/bandi/bando-lo-svolgimento-di-collaborazioni-tempo=
+-parziale-finalizzate-allassistenza-didattica-di-6" target=3D"_blank">https=
+://www.unito.it/bandi/bando-lo-svolgimento-di-collaborazioni-tempo-parziale=
+-finalizzate-allassistenza-didattica-di-6</a></font></p>
+<p><font face=3D"verdana, sans-serif">=C3=A8 stato pubblicato il <strong>NU=
+OVO bando</strong> per il conferimento di <strong>collaborazioni a tempo pa=
+rziale per l=E2=80=99<span class=3D"gmail_default"></span>A.A. 2025-2026<sp=
+an class=3D"gmail_default" style=3D"font-family:verdana,sans-serif"> -=C2=
+=A0</span></strong><strong>primo semestre</strong>.</font></p>
+<p>=E2=9A=A0=EF=B8=8F <font face=3D"trebuchet ms, sans-serif">Si segnala ch=
+e, a partire da<span class=3D"gmail_default"></span>l<span class=3D"gmail_d=
+efault">l&#39;</span>
+
+A.A. 2025-2026, il bando non sar=C3=A0 pi=C3=B9 annuale ma avr=C3=A0 cadenz=
+a semestrale<span class=3D"gmail_default">, ovvero<b> </b>verranno indetti =
+2 bandi nello stesso anno accademico</span>.<span class=3D"gmail_default"><=
+b>=C2=A0</b></span></font></p><p><font face=3D"trebuchet ms, sans-serif"><s=
+pan class=3D"gmail_default">Per quanto riguarda <b>la partecipazione, =C3=
+=A8 necessario leggere attentamente i requisiti richiesti e riportati nell&=
+#39;</b></span>=C2=A0<b>Art. 2 </b>- <b>Destinatari del bando e criteri di =
+ammissione<span class=3D"gmail_default">.</span></b></font></p>
+<p><font face=3D"trebuchet ms, sans-serif">La presentazione della domanda =
+=C3=A8 disponibile esclusivamente on-line su MyUnito, cliccando sul menu =
+=E2=80=9CCollaborazione 200 h=E2=80=9D e successivamente su =E2=80=9CIscriz=
+ioni=E2=80=9D.</font></p><p><font face=3D"trebuchet ms, sans-serif">Nella p=
+rima pagina sar=C3=A0 necessario selezionare la propria carriera attiva, qu=
+indi accedere al link relativo al bando nella sezione =E2=80=9CBandi nomina=
+li non ancora sottoscritti=E2=80=9D e infine cliccare su =E2=80=9CSottoscri=
+zione al bando=E2=80=9D.</font></p>
+<p><font face=3D"trebuchet ms, sans-serif">=F0=9F=93=85 La presentazione de=
+lle candidature on-line dovr=C3=A0 essere completata <strong>entro le ore 1=
+2:00 di venerd=C3=AC 4 luglio 2025</strong>.<br>
+La scadenza =C3=A8 da ritenersi <strong>perentoria</strong>.</font></p>
+<p><font face=3D"trebuchet ms, sans-serif"><u>Per <b>difficolt=C3=A0 tecnic=
+he nella compilazione della domanda on-line</b></u>, <span class=3D"gmail_d=
+efault"></span><u><span class=3D"gmail_default">occorre=C2=A0</span>scriver=
+e a</u>:<br>
+=F0=9F=93=A9 <strong><a rel=3D"noopener">collaborazioni.studenti@unito.it</=
+a></strong></font></p>
+<p><font face=3D"trebuchet ms, sans-serif">Per eventuali domande o richiest=
+e di chiarimento <span class=3D"gmail_default" style=3D"font-family:verdana=
+,sans-serif"></span>s<span class=3D"gmail_default" style=3D"font-family:ver=
+dana,sans-serif">ulla collaborazione/ attivit=C3=A0</span>, =C3=A8 possibil=
+e <strong>rispondere direttamente a questa e-mail</strong>.</font></p></div=
+><div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_si=
+gnature"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>=
+<font face=3D"trebuchet ms, sans-serif">Cordiali saluti</font></div><div><f=
+ont face=3D"verdana, sans-serif" style=3D"color:rgb(34,34,34)"><br></font><=
+/div><div dir=3D"ltr">Sezione Servizi per l&#39;Inclusione Studentesca<br><=
+div style=3D"color:rgb(34,34,34)"><font face=3D"verdana, sans-serif" color=
+=3D"#666666">Direzione Didattica Servizi agli Studenti</font></div><div sty=
+le=3D"color:rgb(34,34,34)"><span style=3D"color:rgb(102,102,102);font-famil=
+y:verdana,sans-serif">Via Verdi 25 - 10124 Torino</span><br></div><div styl=
+e=3D"color:rgb(34,34,34)"><font face=3D"verdana, sans-serif" color=3D"#6666=
+66">tel. 011.6704284</font></div><div style=3D"color:rgb(34,34,34)"><font f=
+ace=3D"verdana, sans-serif"><font color=3D"#666666">mail</font>=C2=A0</font=
+><a href=3D"mailto:ufficio.dsa@unito.it" style=3D"color:rgb(17,85,204);font=
+-family:verdana,sans-serif;font-size:12.8px" target=3D"_blank">tutorato.inc=
+lusione@unito.it</a></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div>
+</div>
+</div>
+
+--000000000000cd506c0638633724--

@@ -1,0 +1,157 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:9dd8:0:b0:32a:7f76:203e with SMTP id x24csp794779ljj;
+        Fri, 30 May 2025 07:09:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGNNZ6lsGpMHaAmOhPahSw/TPLP9O7zYnLUsBSx+yGz1oqS/JDTzjyAAery8TD3/cw4Q3D0
+X-Received: by 2002:a17:907:3c88:b0:ad8:8200:ecf7 with SMTP id a640c23a62f3a-adb3222e93dmr113457766b.4.1748614142112;
+        Fri, 30 May 2025 07:09:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1748614142; cv=none;
+        d=google.com; s=arc-20240605;
+        b=j5JSQdbDnUQNSRPX7mv/it4kfKbZiHxbTsrtgzHu4qeKahdTcKKQu9ZGpBqsb1Pg6l
+         OCFZvZBmQn+DWZoXkyg0c1KwherZBqg8OgI0AzxOa9AlBR5bQfB2LZ844GEZSiVgmqZY
+         qKDKorxl/yPqXUeQ+KrrP1AoEQNT52LI6mQTpbVVICMAmCrAdVIB78w17Zcnji3qliNA
+         N38/PnV9+7Y74hgBC+Ll2Las8sBuV3sPUUojinI0nAEw7p6PDyH+Htb6hleoKOaMl7lT
+         AfytLW3IuTbZhRWInGqvGwfjRSD5qB0ZoyXX+0o6vYYBY95KTcb/xFjNJ7wJ5ddIjk5x
+         fYxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=53Pj/m5JgLRza+S2nc1aSFeB/6VpE2ZflNJp1MwZP+g=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=FzYkIql4UQHuTSUmwxXRZ8hwd5fI9V/2qheAbYoYlIKnvdOrosehRuEpJ1GNjI0kOv
+         rITNT6mTVYmwEEp1UOTrlMxzWUJTVdo7WDYPxAm6Dv9s0/txS/2SUT5SH9Tqv/F87iBN
+         xihgsslc2jIJkK0Ku/EPMBPE064ml2IYmNvFF6qUtmH0xf5wAAY8PhHSc4jHn4tZo8Wq
+         dN6dZV7E4ZwKanKugUQ0d+Aj59CSryZFYeP4B4s/5T/K1z4dZG3OctKbQuXBW55Fp4KW
+         hVIbVCIPVTJkH/AmMJ5AgI81veEsRFElopJMr6/D3AljzMGmE+ynKiF8I2gKFTPFlzpB
+         oJHg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ada6ad55374si299347966b.729.2025.05.30.07.09.01
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 May 2025 07:09:02 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 54UE91nI3706792
+	for <luca.barra@edu.unito.it>; Fri, 30 May 2025 16:09:01 +0200
+Date: Fri, 30 May 2025 16:09:01 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Mazzei Alessandro (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: TLN2425: TLN - Parte 1- Sessione estiva
+Message-ID: <9f8d0cbc962b2c28f4065654c1db44800f42ceec60538399fb38a2970838f2e7@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7628@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7628
+X-Course-Id: 3062
+X-Course-Name: Tecnologie del Linguaggio Naturale, A.A. 2024/2025
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: TLN2425: TLN - Parte 1- Sessione estiva
+Thread-Index: 9f8d0cbc962b2c28f4065654c1db
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_mtCfa7whPq7T7Os95vrRcJJeffFPq6OLjpzUvDkQ"
+
+This is a multi-part message in MIME format.
+
+--b1_mtCfa7whPq7T7Os95vrRcJJeffFPq6OLjpzUvDkQ
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+TLN2425 -> Forums -> Annunci -> TLN - Parte 1- Sessione estiva
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44935#p72739
+TLN - Parte 1- Sessione estiva
+by Mazzei Alessandro - Friday, 30 May 2025, 3:52 PM
+---------------------------------------------------------------------
+Buongiorno,
+
+ho ricevuto diverse richieste per quanto riguarda la sessione estiva.
+Ripeto quanto detto a lezione: faccio esami solo nelle date di appello. Mi
+spiace ma ho avuto dei problemi qualche anno fa e preferisco essere rigido
+su questo.
+
+Per venirvi incontro ho deciso "splittare" la data di Luglio in due
+sessioni:
+
+A.=C2=A0 8 Luglio, con scadenza per la consegna relazione/codice 1 Luglio o=
+re
+12:00=C2=A0
+
+B. 15 Luglio, con scadenza per la consegna relazione/codice 8 Luglio ore
+12:00
+
+Per Giugno rimane la data dell'11, con scadenza per la consegna
+relazione/codice 4 Giugno ore 12:00
+
+Ricordatevi di iscrivervi su S3.
+
+Un cordiale saluto,
+
+Alessandro Mazzei
+
+---------------------------------------------------------------------
+This is a copy of a message posted in TLN2425.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3062
+
+--b1_mtCfa7whPq7T7Os95vrRcJJeffFPq6OLjpzUvDkQ
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3062">TLN2425</a>=0A    &raquo;=0A=
+    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/f=
+orum/index.php?id=3D3062">Forums</a>=0A    &raquo;=0A    <a target=3D"_blan=
+k" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7628=
+">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://info=
+rmatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44935">TLN - Parte 1- Se=
+ssione estiva</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" cells=
+pacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=0A        <td=
+ width=3D"35" valign=3D"top" class=3D"picture left">=0A            <a href=
+=3D"https://informatica.i-learn.unito.it/user/view.php?id=3D1262&amp;course=
+=3D3062" class=3D"d-inline-block aabtn"><img src=3D"https://informatica.i-l=
+earn.unito.it/pluginfile.php/17859/user/icon/lambda/f2?rev=3D1" class=3D"us=
+erpicture" width=3D"35" height=3D"35" alt=3D"" /></a>=0A        </td>=0A   =
+     <td class=3D"topic starter">=0A            <div class=3D"subject">=0A =
+               TLN - Parte 1- Sessione estiva=0A            </div>=0A      =
+      <div class=3D"author">=0A                by <a target=3D'_blank' href=
+=3D'https://informatica.i-learn.unito.it/user/view.php?id=3D1262&course=3D3=
+062'>Mazzei Alessandro</a> - Friday, 30 May 2025, 3:52 PM=0A            </d=
+iv>=0A        </td>=0A    </tr>=0A    <tr>=0A        <td class=3D"left side=
+" valign=3D"top">=0A                &nbsp;=0A        </td>=0A        <td cl=
+ass=3D"content">=0A            <p dir=3D"ltr" style=3D"text-align:left;">Bu=
+ongiorno,<br /><br />ho ricevuto diverse richieste per quanto riguarda la s=
+essione estiva. Ripeto quanto detto a lezione: faccio esami solo nelle date=
+ di appello. Mi spiace ma ho avuto dei problemi qualche anno fa e preferisc=
+o essere rigido su questo.<br /><br />Per venirvi incontro ho deciso "split=
+tare" la data di Luglio in due sessioni:<br /><br />A.=C2=A0 8 Luglio, con =
+scadenza per la consegna relazione/codice 1 Luglio ore 12:00=C2=A0<br /><br=
+ />B. 15 Luglio, con scadenza per la consegna relazione/codice 8 Luglio ore=
+ 12:00<br /><br /><br />Per Giugno rimane la data dell'11, con scadenza per=
+ la consegna relazione/codice 4 Giugno ore 12:00<br /><br />Ricordatevi di =
+iscrivervi su S3.<br /><br /><br />Un cordiale saluto,<br /><br />Alessandr=
+o Mazzei<br /></p>=0A=0A            <div class=3D"commands">=0A            =
+</div>=0A=0A            <div class=3D"link">=0A                <a target=3D=
+"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/discuss.php=
+?d=3D44935#p72739">=0A                    See this post in context=0A      =
+          </a>=0A            </div>=0A        </td>=0A    </tr>=0A</table>=
+=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=0A    <a href=3D"h=
+ttps://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3062">Change y=
+our forum digest preferences</a>=0A</div>
+
+--b1_mtCfa7whPq7T7Os95vrRcJJeffFPq6OLjpzUvDkQ--
+

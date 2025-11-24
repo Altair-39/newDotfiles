@@ -1,0 +1,182 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:7e05:0:b0:32a:7f76:203e with SMTP id z5csp2337450ljc;
+        Wed, 18 Jun 2025 03:49:59 -0700 (PDT)
+X-Received: by 2002:a17:907:2d92:b0:ad8:908a:544e with SMTP id a640c23a62f3a-adffae5039bmr251238166b.8.1750243799259;
+        Wed, 18 Jun 2025 03:49:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1750243799; cv=none;
+        d=google.com; s=arc-20240605;
+        b=d6Xu2WNvhBJKFUg4YDDroUNOX6/L5cs7h1IOO3Ej/o0aOqcGlDrlUivzDzr9TI28AH
+         zIyARAHZahE8SmVx/a0tTF+nrYXJsx1PedmypRCG6+Y1KYNYxJkRs80SMMfMujdLJ8Ik
+         U9VoQYEXwvgIr4WJox8xogJv+Xf4h8OKvrezkUSw5x2gZn+M6eUVBeMIcjR+bysYYIXx
+         Xy5xXymqrL1J5og6k8YehfKYG1iumQEmAxMCSugUZ8zUVyaLuUF9CGnPwVu09Qtb7eyj
+         x5+fBmfYRkdAKF8gUxsRfLTYy+E6kEwA7ZetSLhcR1HgdITxMUPWZdr+RW3mOmlOsWff
+         tx6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=ez0/8XONqlWlpW593cokwrrcFy8oEtXPPZ3+8A+AQ5k=;
+        fh=FNJZVrnKBqmqEJfZR9CRhkBiNBfXc06Zv2dJ2zm40N0=;
+        b=krynQxkKS/FJGzCKItcxoHsGjdy/W8MDDjwrhlbmm4ZeGB3IfCaaRiYixx5zoQz2Rj
+         XM8TMn4PQmKSUDvceVPCof4LB04dRGCdq8dVKNaqNo5JCpJoZYGGeHSsd96/3NpuTGek
+         uAuVVbepjUcXg6ONkYgjB0Y9LmUUiif+ExK3v8SUxGtoB+FOYYZwdk5SoLKDlijVbOFk
+         V6HegOvIihaPUFlDEJMeGwKi+D62FV5da/Rsp3AUpKONwIh9aoOYHikimQydlu05Wkmo
+         U5bBJ1aWSRwSxhWAp1D5UGo4a6xmwCoYXRJSZj0vjM24aghLAllIi+xBtPRtyocWbagh
+         THwA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=aRlo4cgd;
+       spf=pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.inclusione@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <tutorato.inclusione@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-ae016ce8234sor93196666b.1.2025.06.18.03.49.59
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Wed, 18 Jun 2025 03:49:59 -0700 (PDT)
+Received-SPF: pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=aRlo4cgd;
+       spf=pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.inclusione@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1750243799; x=1750848599; darn=edu.unito.it;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ez0/8XONqlWlpW593cokwrrcFy8oEtXPPZ3+8A+AQ5k=;
+        b=aRlo4cgdhjH1gOdZtMlsMnFru77BGo6IW68KykpvtMMNfRly3SEihgmk7h6HhKx7x4
+         Hrefkq/Pbpdtl0n7iY+xaqL6+RbwD9d+IJyphSgx0hF/OqZNxu+Kw2+xXuEiFp5G/8pz
+         n5Y4z8g2F29RA/bkXLueWkozrACGkBlh/TyPCNfVATTmpaX0h4kXVAde0/50BEvdK4c8
+         rpKrkAXv5MFnP7AyGTXnZZpQjZi5+LTdBhIeP4BKpFyx7h0LM7jxTlfV7oG1dMJqkUq8
+         kj+qBGRehQ+q4OIWXrtbb1WpE2mOcmJeyqqT1jS+ffh+n3yzPRdI7IuX2Hq1nEUjv41p
+         +Z3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750243799; x=1750848599;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ez0/8XONqlWlpW593cokwrrcFy8oEtXPPZ3+8A+AQ5k=;
+        b=Q80dHPsyMF9PLw0EhdJaMbzGUuG1c1dEZHAN2GN30SFVtnH2okTSbaMkkQxKZTkgtU
+         EviSndtSE3hXKeSc77mMSmD9D2+wgDAAA0ouUlsQvzoMamwEqIE0LptwVarBOs833u2J
+         jVNKs4dkODXyvx3OC8eg0Oh7lQYIQ95lJo1FcUjKKu2b+KUqQwdFWnhWbRJam7b9WgVJ
+         K5EDPXeT7WX38yLsCuENOfjL+JcJBvO4xIy9a0fH7yVwfeAGY2oLT/nZpbAAercZtFI5
+         vCSvLz5+2PN7F9nCNuoi4Ro8S18C1lorU5azrRulJWc1aaIZiG8k0aweuj1nwGUMJa+R
+         COgA==
+X-Gm-Message-State: AOJu0YzD5BB7vWfEVUM/PN62wiCKcFvmkhXejGnfns6RW1m2FBf3C9ZV
+	en27KaxoNpGEmzkWCkwrV9ed6x1MnFLXY+aE+ZsnH8SMJkVrr3G2CzsZqKoU6P9ChT4hzlyN3Jt
+	itJDwp4/ubuHD+fiUhuUeIPOdXyE/RzFh8z383pLiyCYX+Q2e2uFJnFY=
+X-Gm-Gg: ASbGnctAB3sdd5nx23oudYxD8FqGPEjZW4HyTvgtMbW5fuxug8cbWqRZtXClKeQkYP0
+	GEnGgMH0AV0dQ+8XCqebNsjimjS9BYwCiNkrdNhHUkhKftr2D89jXlla4p46BxBzyspzxYb16oR
+	sP7pM7Ghfo9glOD1xEGc+SNVh7ZT1QZ11cJr3F7cY3
+X-Google-Smtp-Source: AGHT+IE2OW3JH26/kHHdtT2HE3ZDRICiOmlKRh/pRkg7K8Q+KyAIyPGJhkFHpS5tHzaGFr1w8xCPIOq/f/PZehwqI4s=
+X-Received: by 2002:a17:906:6189:b0:ae0:16db:1b62 with SMTP id
+ a640c23a62f3a-ae016db1c67mr292233966b.59.1750243798355; Wed, 18 Jun 2025
+ 03:49:58 -0700 (PDT)
+MIME-Version: 1.0
+References: <d4810631-cfc0-44f4-a69d-46b67a4e526d@Spark>
+In-Reply-To: <d4810631-cfc0-44f4-a69d-46b67a4e526d@Spark>
+From: Tutorato Disabili <tutorato.inclusione@unito.it>
+Date: Wed, 18 Jun 2025 12:49:42 +0200
+X-Gm-Features: AX0GCFuJ0FfREVLsGlmEwxJ-5VAdMr7TuXH75hlvDHRMNtlu92a0DaF0fI7UpR8
+Message-ID: <CAOKF-fVdLkRF_hH=a_+yPvOAhGu745Kcs-Yyfgoe2=00cGm5yA@mail.gmail.com>
+Subject: =?UTF-8?Q?Re=3A_Dichiarazione_di_svolgimento_attivit=C3=A0_con_il_tu?=
+	=?UTF-8?Q?tor?=
+To: Antonino Incorvaia <antonino.incorvaia@edu.unito.it>
+Cc: Luca Barra <luca.barra@edu.unito.it>
+Content-Type: multipart/alternative; boundary="000000000000df200f0637d66392"
+
+--000000000000df200f0637d66392
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Gent.mo studente,
+la ringraziamo per la cortese conferma
+
+Cordiali saluti
+
+Sezione Servizi per l'Inclusione Studentesca
+Direzione Didattica Servizi agli Studenti
+Via Verdi 25 - 10124 Torino
+tel. 011.6704284
+mail tutorato.inclusione@unito.it <ufficio.dsa@unito.it>
+
+
+Il giorno sab 14 giu 2025 alle ore 20:39 Antonino Incorvaia <
+antonino.incorvaia@edu.unito.it> ha scritto:
+
+> Gentilissim*,
+> con la presente dichiaro che l=E2=80=99attivit=C3=A0 di supporto =C3=A8 s=
+tata regolarmente
+> svolta secondo quanto concordato, con il tutor *Luca Barra*,
+> relativamente all=E2=80=99insegnamento di *Matematica Discreta*.
+> Resto a disposizione per eventuali ulteriori chiarimenti.
+> Cordiali saluti,
+> *Antonino Incorvaia*
+> *991414*
+>
+> ------------------------
+>
+> Indirizzo istituzionale di posta elettronica degli studenti e dei laureat=
+i
+> dell'Universit=C3=A0 di Torino
+> Official University of Turin email address for students and graduates
+>
+
+--000000000000df200f0637d66392
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div class=3D"gmail_default" style=3D"font-family:ver=
+dana,sans-serif">Gent.mo studente,</div><div class=3D"gmail_default" style=
+=3D"font-family:verdana,sans-serif">la ringraziamo per la cortese conferma<=
+/div><br clear=3D"all"></div><div><div dir=3D"ltr" class=3D"gmail_signature=
+" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div><font face=3D"verdana, sans-serif" style=3D"col=
+or:rgb(34,34,34)">Cordiali saluti</font></div><div><font face=3D"verdana, s=
+ans-serif" style=3D"color:rgb(34,34,34)"><br></font></div><div dir=3D"ltr">=
+Sezione Servizi per l&#39;Inclusione Studentesca<br><div style=3D"color:rgb=
+(34,34,34)"><font face=3D"verdana, sans-serif" color=3D"#666666">Direzione =
+Didattica Servizi agli Studenti</font></div><div style=3D"color:rgb(34,34,3=
+4)"><span style=3D"color:rgb(102,102,102);font-family:verdana,sans-serif">V=
+ia Verdi 25 - 10124 Torino</span><br></div><div style=3D"color:rgb(34,34,34=
+)"><font face=3D"verdana, sans-serif" color=3D"#666666">tel. 011.6704284</f=
+ont></div><div style=3D"color:rgb(34,34,34)"><font face=3D"verdana, sans-se=
+rif"><font color=3D"#666666">mail</font>=C2=A0</font><a href=3D"mailto:uffi=
+cio.dsa@unito.it" style=3D"color:rgb(17,85,204);font-family:verdana,sans-se=
+rif;font-size:12.8px" target=3D"_blank">tutorato.inclusione@unito.it</a></d=
+iv></div></div></div></div></div></div></div></div></div></div></div><br></=
+div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" c=
+lass=3D"gmail_attr">Il giorno sab 14 giu 2025 alle ore 20:39 Antonino Incor=
+vaia &lt;<a href=3D"mailto:antonino.incorvaia@edu.unito.it">antonino.incorv=
+aia@edu.unito.it</a>&gt; ha scritto:<br></div><blockquote class=3D"gmail_qu=
+ote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,20=
+4);padding-left:1ex">
+
+
+
+<div>
+<div name=3D"messageBodySection">
+<div><span>Gentilissim*,</span></div>
+<div>con la presente dichiaro che l=E2=80=99attivit=C3=A0 di supporto =C3=
+=A8 stata regolarmente svolta secondo quanto concordato, con il tutor <stro=
+ng>Luca Barra</strong>, relativamente all=E2=80=99insegnamento di <strong>M=
+atematica Discreta</strong>.</div>
+<div>Resto a disposizione per eventuali ulteriori chiarimenti.</div>
+<div>Cordiali saluti,<br>
+<strong>Antonino Incorvaia</strong></div>
+<div><strong>991414</strong></div>
+</div>
+</div>
+
+
+<br>
+<div style=3D"font-size:1.3em">------------------------</div><span style=3D=
+"font-size:small"><div><img src=3D"https://web.unito.it/logofirmastu.png"><=
+br></div>Indirizzo istituzionale di posta elettronica degli studenti e dei =
+laureati dell&#39;Universit=C3=A0 di Torino</span><div><font size=3D"2">Off=
+icial=C2=A0University of Turin=C2=A0email address=C2=A0for students and gra=
+duates=C2=A0</font></div></blockquote></div>
+
+--000000000000df200f0637d66392--

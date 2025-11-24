@@ -1,0 +1,128 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:9301:0:b0:2eb:f1cf:4407 with SMTP id e1csp434927ljh;
+        Tue, 11 Jun 2024 08:52:37 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUsjtfO/cNlqVvstDh5QuC9hh3OTTSL0hC9GJCzX0hgeHvJpKakERhIxbthYXwKtYoEG3XKh2HXMfkm3T2DCOXW5y2cEBNZwQ==
+X-Received: by 2002:a05:651c:2220:b0:2ea:8abe:2319 with SMTP id 38308e7fff4ca-2eadcb7339fmr95309461fa.0.1718121157200;
+        Tue, 11 Jun 2024 08:52:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1718121157; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ZP11Vy0ue6GHOPP/oRzKiJyRXLbjNgiOlGJzb0fnCbCaB9nzHF7Q9/VgCIi/oqL8lf
+         /80Q+WQGiTEuLhllnVb1uWHhzv5Yjeuk7r9IQLA2lqoEBD3M788oPUq+66KZiQ7tQbgq
+         NFJ6EBA/J17jcWVFM9Yd/4gC6yjJdVoflgVmjUH6TBzLDPPqaycKy7+ax96iIL0bvz9v
+         8QFreQ5tOafycMpOUcptq42dWEUjlLY25ghyViJcj+ny9Ye0fbcNY8YzBi/xXQXEp67x
+         Lm8cljgyPH0+RVa8WpNbezzhlYp1qzafe91MvlVIOpOJc6/8rvCx+7awbJRxkBLY/kCq
+         7lFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:to:content-language:reply-to:subject:from
+         :user-agent:mime-version:date:message-id:dkim-signature;
+        bh=GPp7EfbdxWjG0FkVluTg6ZQxjzbyhrsyretJgWsvk90=;
+        fh=HvuZYS/Rgt5OLHQNmBvVEsU/p5IalhxsZrS6Hd/sgo4=;
+        b=epn+O/VH5kygLAWjiCcpfoRGU6TldXX0d8o/NobWaf6CTOBEDGJaTFC8ig7yVy3l71
+         xXGifZMxQsEnowXw4PkXwnov4uH9F4zpszqTQHepYpvLFr6nAQxbNgCD0X49ou4uch00
+         NNmzkOyLN/8KnAcgiJpfaTIAkSYA2hI6Y0xRiS0bhv7IQV+JSZvs7s3fQsx69wuJwIWB
+         T8GX7NRHkvuqW2iCGAusF/IaDzcRbiKa4IP+9M8Jk3ZCUBUWv3gBQb1oLW58ZK35KxFP
+         WVE553P0vyO/vZNWbJE5pXXKtX9akqSQyU5mAmEmn8w1t8RD6TH8fw5b/8Jk4Itwz33r
+         XKIQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=duaQHTmW;
+       spf=pass (google.com: domain of ernesto.migliore@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=ernesto.migliore@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <ernesto.migliore@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 38308e7fff4ca-2ebe3bac67fsor10641971fa.11.2024.06.11.08.52.37
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Tue, 11 Jun 2024 08:52:37 -0700 (PDT)
+Received-SPF: pass (google.com: domain of ernesto.migliore@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=duaQHTmW;
+       spf=pass (google.com: domain of ernesto.migliore@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=ernesto.migliore@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1718121157; x=1718725957; darn=edu.unito.it;
+        h=content-transfer-encoding:to:content-language:reply-to:subject:from
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GPp7EfbdxWjG0FkVluTg6ZQxjzbyhrsyretJgWsvk90=;
+        b=duaQHTmWH0qsec5EVliZcJ0pjJ2V/rEVIPvyD2GIee3GpHMBq1ccl/aL78ESaV7fQF
+         dA72VVX9ooLNSgQq1VBwGcqzxCvOX+sesNnFMQZde59ip+2QsAOGmNhtPrWXudZ1r1Eo
+         ELv3Q3BWz+8NA0UFwo72XKjm4bzUFlCBykDSQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1718121157; x=1718725957;
+        h=content-transfer-encoding:to:content-language:reply-to:subject:from
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=GPp7EfbdxWjG0FkVluTg6ZQxjzbyhrsyretJgWsvk90=;
+        b=xKaXgCz1R6cpqVeteK1l+82+rTgkXjQfGJiQflF7XxV6fQSw+8xEWOLtMeD2lfJCez
+         qMYdl0wID8++ACJ1MDcNw1PbZfXtI4Zf7QgjwIWCr7NBbe6w1DMFvy+KXPyiiKsfZ8ZX
+         QceF9cVR8a3LI1Crz2SoM5+VmVuoX5KH3/WAhj/7TEdUAp6QpR7L6ObeZsp5REEoOFhs
+         ZnJAB0ws5J6ngWq9GRdjmvkBevs22uE0LlWSftJKVicOD/t7ajkWX+4jLPQmOwKZxxyf
+         Tk92m9FR4wrGoHGEJJnZkedr3gLTGew/x9gfXDo9iHsfo4ZWleAZMaLyj/4EojQi1yNB
+         k4CQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWkoFigBHQI4VTsYkcm2grGhBOCeEJZiYWf7S7/9tZV5ppg1Z6WC4dySQU58vnMbrZ2EHFJ2JQlq9NhhRyFbYTNOsoHmdXbLg==
+X-Gm-Message-State: AOJu0YxonRZXgymN7gS3tNZrS88PSBOmiL9YNWfrKVPnYrSWhhnzjfs8
+	0ErZZwwKYJyYnYKV/HlgGeIsotyOdjJht9obqMEFtBDvzxg1zS2cutyVJcgio0Hlaw==
+X-Google-Smtp-Source: AGHT+IFE17Kc6QKi0Men0dCHb0OmvYaupmjuBCeLWOdv103FqZvj53w/KcexOsbssGTkIWX74JN6lg==
+X-Received: by 2002:a2e:9e47:0:b0:2eb:d4e3:ab6e with SMTP id 38308e7fff4ca-2ebd4e3abcfmr52285751fa.34.1718121156688;
+        Tue, 11 Jun 2024 08:52:36 -0700 (PDT)
+Return-Path: <ernesto.migliore@unito.it>
+Received: from [90.147.203.139] ([90.147.203.139])
+        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-375a77fc62asm9902065ab.64.2024.06.11.08.52.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 11 Jun 2024 08:52:36 -0700 (PDT)
+Message-ID: <2213d3fd-bf45-4b4b-be98-45e7f5dbf42e@unito.it>
+Date: Tue, 11 Jun 2024 17:52:30 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Ernesto Migliore <ernesto.migliore@unito.it>
+Subject: Esame di Fisica 14.06 - Turno B Aula F
+Reply-To: Ernesto Migliore <ernesto.migliore@unito.it>
+Content-Language: en-US
+To: undisclosed-recipients: ;
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Caro studente,
+
+per l'appello di Fisica del 14.06, lei appartiene al gruppo 
+"20240614_TurnoB_AulaF" che effettuerà la prova dalle 14:30 alle 16:00 
+presso l'aula F del Dipartimento di Fisica.
+
+La invitiamo a presentarsi alle 14:20 presso il Dipartimento di Fisica, 
+via P.Giuria 1, munito di tesserino (Smart Card) di UniTo o altro 
+documento di identità.
+
+L'aula F, si trova al 1^ piano interrato.
+
+Le prove su moodle
+
+https://esami.i-learn.unito.it/course/view.php?id=1676
+
+che dovrà svolgere sono:
+
+- "Esercizi - Turno B Aula F" (problemi)
+   Inizio 14:45 durata 35 min
+
+- "Teoria - Turno B Aula F" (teoria)
+   Inizio 15:25 durata 20 min
+
+Le prove saranno visibili solo durante l'orario di esame.
+
+Durante l'esame è possibile usare la propria calcolatrice tascabile ed 
+una copia cartacea del formulario
+http://personalpages.to.infn.it/~migliore/didattica/fisica_informatica/formulario.pdf
+
+Altre informazioni sulle modalità di esame sono descritte in:
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=41880
+
+Gli studenti che avranno totalizzato 30/30 e che vorranno sottoporsi ad 
+un orale per la lode saranno contattati nei giorni successivi (l'orario 
+dell'orale sarà comunicato in seguito).
+
+La invitiamo a conservare questo messaggio in quanto contiene il link 
+alla prova che dovrà svolgere.
+
+Saluti,
+Ernesto Migliore
+

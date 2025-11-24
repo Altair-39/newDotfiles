@@ -1,0 +1,108 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b3d4:0:b0:2ef:b2c9:28ac with SMTP id j20csp1549444lje;
+        Thu, 25 Jul 2024 04:23:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCXgtaGiiN28K/Mj0TbQPv5t3rXj3AEWNjSm7ofOTrcTjZo0rKFe7BA8SkAcc4ea8dl4SmfG5xbr25GMv+6Jtp1KQpVd7XYvJQ==
+X-Google-Smtp-Source: AGHT+IHg1EwgIhU3F2blLK0hY4HPjCuwJJVKaTcsPkQsTEUf1Q+cvABF0/7/0ZC286zkbwFM/8Sw
+X-Received: by 2002:a2e:8693:0:b0:2ef:392e:e4f with SMTP id 38308e7fff4ca-2f039dc898cmr16187091fa.47.1721906606212;
+        Thu, 25 Jul 2024 04:23:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1721906606; cv=none;
+        d=google.com; s=arc-20160816;
+        b=vjUd+TH/+Vo7ZlIuOCKD7Pz8LNwPm+nCGoUjTVPS+HjkVXvJ+u64e0/jayV0DY/aoC
+         v5+UQOsb4BaxdbHtxcutlKf0nnlpkK3U8O5JPXfjAt0mysHoKxToPjy0uLWHjLZn6/d6
+         IVpnLdDY8t5HjPoiY+wt32kK7Udx3j/IHFzN7fYLfS+o0rb9seVEKQYNbbqGFRlkN8Ln
+         r4k7mTKfEs8Rxfa8PdYVZ4E0Rp3fRBwRHPOA1Je/Fwa83WriGlCqLNYlbgg/Zj8dk7M3
+         64PABfy0R7rxHCtbZ4NyVYh4YvnjICOabq5355FuI91C+JdXajatTBuS3UtZPHdwc5V0
+         fO8w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=Kj0QCnZ27U0HWVFha9qGS8L5MglGFMegaNBsjUhorIg=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=cgNICAxzOQQG1zRS5YJEsFAbUYrc7QMx9v7zkDCZXQbNP0cRpDyAFicUY+HtHo6tpm
+         ta+lpfSS7X/sAT1xQ1j4knTaJwU6NaP4SrjyWboDmVu/B9KJpLXWHk8zrUneE/+kyy0S
+         2ua3oDDP8pnJoWFb2Yotqb5MN7iWlXPIJcZEOYPoUiouSjK5qWA+IFl9AkwXkJJeqR1s
+         oCwwkw50Fy3rHM4xTRZB5F+cy6BJQUePR/kBmkdsnLup/4o6jXqPPPYVeVsgI1BXrCrB
+         DF7fxojMnYzpfnj0L7VaNpZ7gX6Pg09gLlzGLSULc6bdXhIh3III2gLzC3m9AJRMyCrJ
+         lWag==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=jl0Yple3;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-4c29fa664basi564878173.45.2024.07.25.04.23.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Jul 2024 04:23:26 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=jl0Yple3;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 6394F23545;
+	Thu, 25 Jul 2024 13:23:22 +0200 (CEST)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id q-2vzSy0RFup; Thu, 25 Jul 2024 13:23:22 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 9E44921E00;
+	Thu, 25 Jul 2024 13:23:21 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 9E44921E00
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1721906602;
+	bh=Kj0QCnZ27U0HWVFha9qGS8L5MglGFMegaNBsjUhorIg=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=jl0Yple34kjdcyGZ8XvU1r2KUCVzmRHuWKprQZjGHJnfIHd3snQvW1+MIF4s1c11N
+	 74yrcPKAFrjbmkV/6Li5WvZHEs5g9car+03UKAJAiBZ9gQD9Fh//G9OeIOM7EbOBuN
+	 dBuoPqcC52YZ/K3D1+OO18dZBSXvacKROP2IB2TCxTYyKxIFCeVlGUlcG4H2q/1fJL
+	 RV8yCsuV+3O6FKNuZWyB9G9XbATxSKlHZjMrRjuemmpHGoCFt+ygkn3dfQUmXELlfV
+	 iY6hi1pCfh9/a2R1NBiKwbSO2XPmecN+3abca7QaU9PwliEIORIk69JektNbM085Mq
+	 3Wml4M+UgvvLw==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id N7Pztywo0wZc; Thu, 25 Jul 2024 13:23:21 +0200 (CEST)
+Received: from esse3appjboss22.private.cineca.it (esse3appjboss22.cineca.it [130.186.5.143])
+	by smtp4.cineca.it (Postfix) with ESMTP id 087422352A;
+	Thu, 25 Jul 2024 13:23:19 +0200 (CEST)
+Received: from esse3appjboss22.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss22.private.cineca.it (Postfix) with ESMTP id 67BD11B6;
+	Thu, 25 Jul 2024 13:23:17 +0200 (CEST)
+Date: Thu, 25 Jul 2024 13:23:17 +0200 (CEST)
+From: =?UTF-8?Q?Univerit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <1670065680.103.1721906597418@esse3appjboss22.private.cineca.it>
+Subject: Presenta la tua candidatura ai Cantieri di Innovazione
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+Gentilissime/i,
+ Sulla pagina Intranet dedicata al Progetto Cantieri di Innovazione https:/=
+/intranet.unito.it/display/AT/Cantieri+di+Innovazione =C3=A8 disponibile la=
+ procedura di autocandidatura, utile a raccogliere le proposte di partecipa=
+zione ai Cantieri da parte del personale della Comunit=C3=A0 di UniTo.     =
+  =20
+
+Per presentare la candidatura =C3=A8 necessario compilare, entro il 16 sett=
+embre p.v., il Google Form https://docs.google.com/forms/d/e/1FAIpQLSfNRtd2=
+cmeCbUsJPB1m50OcEHp64fhcMC26bZbCdwL9R1-AYQ/viewform allegando la lettera di=
+ Motivazione e un documento che descriva le esperienze professionali in lin=
+ea con le tematiche del Cantiere scelto. Vi ricordiamo che =C3=A8 possibile=
+ candidarsi per massimo 2 Cantieri.
+Entro inizio ottobre terminer=C3=A0 la fase di analisi candidature e sarann=
+o resi noti i nominativi dei/delle partecipanti a ciascun Cantiere.
+
+Per ulteriori informazioni visitate la sezione intranet dedicata (Percorso:=
+ myunito > Ateneo > Progetti e Gruppi di lavoro > Cantieri di Innovazione) =
+oppure scrivete a: cantieridinnovazione@unito.it
+
+Confidiamo nella vostra partecipazione.
+
+Cordiali saluti,
+Team di coordinamento Cantieri di Innovazione
+Sara Cantarutti
+Paolo Riva

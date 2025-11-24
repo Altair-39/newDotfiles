@@ -1,0 +1,2590 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:220f:b0:309:27f0:106e with SMTP id y15csp326566ljq;
+        Thu, 27 Feb 2025 12:46:13 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGtr9m+l6Mfun4bI1KWO1VdQrlppcU7AqLy9Y71iaVp2wHx85sCnQakQwdOYqUJlOxjuhv/
+X-Received: by 2002:a05:6000:178c:b0:390:e85b:a8e6 with SMTP id ffacd0b85a97d-390ec9bf460mr188276f8f.7.1740689172934;
+        Thu, 27 Feb 2025 12:46:12 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1740689172; cv=none;
+        d=google.com; s=arc-20240605;
+        b=OjWGMMCLKWxhQSV/1NmEQPX+azxRD4Gukk2D/BmDGHC0sFnVEBrxYzCVTBglHtQ4Ri
+         lC4mU+ddSNRIXr5eJBkIBz+zSTdXIId2SAwhxw3G1+U2/fTb0DLAS/SAdruXUzZ2Agww
+         V7wwQ6mseIymef81aT8RmA8uDQqRQkrYJFF4sk9kyi2rqSUrfnbmubMX5m2tHfuDdOge
+         MlLTkiGfhfB9PzNPdHmy3ffLzA3qBeCJONFECDI4niUgrGJh52q48Oy5Yx7VFRpkNtlg
+         3bq2ox4VGuQtOwCOrflJp4qzna9K2GGfK0jUSq6io1PWGy4Qs8rfER4+mkm/VzB3Weg6
+         Kphg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:list-unsubscribe-post:list-unsubscribe:reply-to:subject
+         :message-id:mime-version:from:date:dkim-signature;
+        bh=iLbpJPI3XFnJRvn6c2PKS/Ozjh0E/VauG+6CRVfTTAE=;
+        fh=IxM04YauqXzCozmF/ngeXvaWuWeW7uONbHgj9jmZsgE=;
+        b=dYewYcSBVScDD7q39+XEkFgUWjhxKw7e1au8qBdbivlhTepijCbaYIkQw0ekIBMZ3T
+         gnIEv3eWr5Hq7E1wKkMH9RxaJWIR6ZclEx1/X0RZt9B4s/Vu1ihi+s97t9ZQmgZtFPKq
+         tw7fgXKSqaUtQgGNXlNeb+DkxvT72Mh1Cq6ZKEJAytFGgRGWkP7PQgEEvwEH8LEpS5+E
+         Ll9rbdxNdJvzYvuMdWlhn+4EUz+Zh937MePBQpjS+rlAnC92Oho2l/FqJfWvMs2Xw9dT
+         oKURUQNGe25R0B6EBLd2mhl7vElBAVa75DvEx/Zp+Jh90taK/TTRcaQXPSIs9oUdrACK
+         5vYg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@github.com header.s=smtpapi header.b=SZfUrgiP;
+       spf=pass (google.com: domain of bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com designates 192.254.112.99 as permitted sender) smtp.mailfrom="bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Return-Path: <bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com>
+Received: from o4.sgmail.github.com (o4.sgmail.github.com. [192.254.112.99])
+        by mx.google.com with ESMTPS id af79cd13be357-7c36ff6a019si186230385a.273.2025.02.27.12.46.12
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Feb 2025 12:46:12 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com designates 192.254.112.99 as permitted sender) client-ip=192.254.112.99;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@github.com header.s=smtpapi header.b=SZfUrgiP;
+       spf=pass (google.com: domain of bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com designates 192.254.112.99 as permitted sender) smtp.mailfrom="bounces+46701922-faa6-luca.barra=edu.unito.it@sgmail.github.com";
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	h=content-type:from:mime-version:subject:reply-to:list-unsubscribe:
+	list-unsubscribe-post:to:cc:content-type:from:subject:to;
+	s=smtpapi; bh=iLbpJPI3XFnJRvn6c2PKS/Ozjh0E/VauG+6CRVfTTAE=;
+	b=SZfUrgiPDmycNV+Oc9vI/Ly4l05arxXCSRvbTRIc/FpIQCJtxLq0S8rwZ0v/1+NIwFq0
+	r4Tgnt+b+rjsd5gEHYx3Mo7M/AZ29r2RTlyI/Ubf+gInSkKy+LrWQvHhiY6Ez/6FumQZW8
+	2wvMoVvBFYULK52v9sRZqe0EW5jTIywr8=
+Received: by recvd-647f6845bc-gbnn7 with SMTP id recvd-647f6845bc-gbnn7-1-67C0CF11-4A
+	2025-02-27 20:46:09.921442463 +0000 UTC m=+3111792.040134426
+Received: from NDY3MDE5MjI (unknown)
+	by geopod-ismtpd-14 (SG) with HTTP
+	id 60fakYHWTVqTuOHhM7D_bw
+	Thu, 27 Feb 2025 20:46:09.914 +0000 (UTC)
+Content-Type: multipart/alternative; boundary=406692294ab0d5b991aa3e3aee37472fd4011918a2c94a4518be31a4699f
+Date: Thu, 27 Feb 2025 20:46:12 +0000 (UTC)
+From: GitHub Education <githubeducation@github.com>
+Mime-Version: 1.0
+Message-ID: <60fakYHWTVqTuOHhM7D_bw@geopod-ismtpd-14>
+Subject: Level =?UTF-8?B?8J+GmQ==?= with free certifications, hackathons &
+ more
+Reply-To: githubeducation@github.com
+List-Unsubscribe: 
+ =?us-ascii?Q?=3Chttps=3A=2F=2Fu46701922=2Ect=2Esendgrid=2Enet=2Flu=2Funsubscribe=3Foc=3Du001=2E2YKZ?=
+ =?us-ascii?Q?Xiy=5Fz-oshCFMPmdD0POT1gcCNiNq0gdtYQpUw-F?=
+ =?us-ascii?Q?AX464E2d29tmSBIioky5SALOf03WUltmhZbQ11N?=
+ =?us-ascii?Q?2if31bgoCnCcgAMJqR7JZibyhSjsWUt7G2P7M08?=
+ =?us-ascii?Q?60knHMU6EIW4ZPFyupbOuh=5FEoyR1JSE=5FIpT8Qf-?=
+ =?us-ascii?Q?WmKS2-Jr7mK=5FSKTmlscrYlx6bMvrq2MFXi31yC9?=
+ =?us-ascii?Q?aiMpZFPDSAfP3iVlxAR=5FckU=5FglbG1sQVt4sgtRk?=
+ =?us-ascii?Q?o6cmat9qv7qj1nXD6eYA5V4DDUdxtG0CpCCRmiF?=
+ =?us-ascii?Q?r-nNuZmiSefKlcFbLNfe-470bDidHn-R7KvdQUk?=
+ =?us-ascii?Q?2Agt9K0DLvT-TPytPT-OhNv4i7Kej0BsHI6NAM0?=
+ =?us-ascii?Q?IHNwHhcTRtXb0C8qh3Tl2C17ow-sU1r7ISeD3Tf?=
+ =?us-ascii?Q?FiavSuf2FECWjplg=5FhXqHU37kzx4AlAU9tF3brA?=
+ =?us-ascii?Q?19Xz4VHNdqYvF6dr1v7vmHslXw29RpRdcqSV9OK?=
+ =?us-ascii?Q?ZZJiMOgTEGLoWGEhoQRoMHxI0RtOc33M0jLCXd7?=
+ =?us-ascii?Q?DHmR2xq=5Fhw=5FAZBJRmZQSV04kct-Om3YXyp6nZCG?=
+ =?us-ascii?Q?9TGbWg59J=5FXKxSMEF3Lf-RBCxqQpVo34nWz0UBy?=
+ =?us-ascii?Q?02=5Fec60w2VhUf-7=5F3QpPAXyT231XwSEgvpQici=5F?=
+ =?us-ascii?Q?Dxo=5FNWD7aFWBGd33lstqPR0YYqxF=5FxStMk-LtQS?=
+ =?us-ascii?Q?jHIuiJGNdTGuEJSAYWKeVWziXjx4jBff0fEcAvk?=
+ =?us-ascii?Q?x=5FRcHlfGCeHaJ5q1aT90aU=5FcX4qmYq2sipHmCCU?=
+ =?us-ascii?Q?zUu7kCSodUzk2L=5FPxGHIX8FA2HpNUdufLXHh6WJ?=
+ =?us-ascii?Q?0DtXfEwurtekqRXek56B6OtAE7HMGFBjz1A3hfq?=
+ =?us-ascii?Q?dQxLj240Lk0V9OJ2JJJzB2YCbQ6fnh7C8RbGha1?=
+ =?us-ascii?Q?Tw0DpxmU8um2uV-2Sgvd1qnJgP0EElOOYQqcKQ8?=
+ =?us-ascii?Q?Liah1CXb1SbOhdLpQUoWulniXk1xu3-uEKzzHUb?=
+ =?us-ascii?Q?ycYw27hO-3ew0k3ScB4Jlc5EXL2LXvBp413WHMN?=
+ =?us-ascii?Q?fOPEMfoTIY3Qg-aoSu0Bew2=5FtXGI7eS422tyIxN?=
+ =?us-ascii?Q?7YdbzuP3HhpLiGFwmWiC-hJuAJjbuJX5gg8JFmU?=
+ =?us-ascii?Q?JK6sZM7KTMTy7Y2IGO-2nqJoeb0oqS6yPcyOj=5F-?=
+ =?us-ascii?Q?lwDZQ4GGd9lS8mXmpTfI210MVpeAFNB3IPbR0=5Fd?=
+ =?us-ascii?Q?ic7-fsvyG6updra0-y8KUWRiB3pTmuFL1XOJBZs?=
+ =?us-ascii?Q?6ueIQOTxR55kEBFGX6blhkgeGWxotDOQWxsggxh?=
+ =?us-ascii?Q?q5C0XpdESsQNCgC5evr0foD2mN=5FEhz=5FFL24rmtQ?=
+ =?us-ascii?Q?CSTk-l=5FadetDPH11T2j8XbPAfrRUXOtk0-smZrR?=
+ =?us-ascii?Q?W6jIgUEJ-vdCOwQj0FFaS=5FvDIhCXOJgXXF8Bt1R?=
+ =?us-ascii?Q?OJcs8x9cmGhk=5FcErkQWjJvih=5FsO73eZo7fyqUvG?=
+ =?us-ascii?Q?H7Kbor0FNjQKF5y7W9OYl9MCeE=5F4AYl7eq6yVLS?=
+ =?us-ascii?Q?BpJ7u1d2muGLyEcOZmDIeMfw40Ib-EABoisWUq1?=
+ =?us-ascii?Q?cHKA=3E=2C=3Cmailto=3Aunsubscribe=40sgmail=2Egithub?=
+ =?us-ascii?Q?=2Ecom=3Fsubject=3Dhttps=3A=2F=2Fu46701922=2Ect=2Esendg?=
+ =?us-ascii?Q?rid=2Enet=2Fmt=2Fu=2Fu001=2EralsfbMxOiOxCwaFzXWGE?=
+ =?us-ascii?Q?QG67NZAjfaq4SVdguUnxzg=2F4ed=2Fu001=2ELPWGNSA?=
+ =?us-ascii?Q?i=2Fu001=2ES8HYypSD1x7cZbKSqbc4QsHlrkIL82Fp?=
+ =?us-ascii?Q?ifvXOrlvs2PUIppmG0vrupfc3-2B4QeW-2FM3Og?=
+ =?us-ascii?Q?DdDkzeqGRSHHAjw-2F8LVhXT8jB2G5yJ3Y1j0bc?=
+ =?us-ascii?Q?l1hLpwN6ty1KEVRQO2i9nW54Bg-2Bk1kf8MPd6c?=
+ =?us-ascii?Q?2z5gsMBaupxdMZpyXuwTkPcI0HEzc0a15bdjIK6?=
+ =?us-ascii?Q?ZRwyWIH9j2qj54iSDuWQdpVNQpZcLzY9yBa9QGU?=
+ =?us-ascii?Q?ge5IPgmmzqKku1FquVOgvxC2EtbIE07-2BybU9s?=
+ =?us-ascii?Q?JYwQ91pg0Iuj2h0yzbeI-2BmyTPWsZdTAhrFLPk?=
+ =?us-ascii?Q?nns-2FxT02pq-2Fufo-2Bo7iwGcUje4ujFhjpF7?=
+ =?us-ascii?Q?VobBJ2Qaz5eFnj137xZD4gxBbUCUYkd6NgWLD0T?=
+ =?us-ascii?Q?5NjiUSMbWQbpIAEN4Cn-2BeqDxSpEbYKqED5uwO?=
+ =?us-ascii?Q?4xCXYd3Ybf7-2BFBZ1-2BpvOPdDuGvb9glzHzhK?=
+ =?us-ascii?Q?NYL2MxnsDoxdRsTGK-2BsbNJbJnQpygd1Jy3gNL?=
+ =?us-ascii?Q?kfCPxrt8uqgm71Pfqa4Zb2vkficddfU-2BBaGwF?=
+ =?us-ascii?Q?JYiGkrLjKYaUZP96is8deI6JaGe6A8odybaTUMb?=
+ =?us-ascii?Q?3Jz3isahS8Du7DB4gj-2BkLa6MX5WvEW6jipL6h?=
+ =?us-ascii?Q?H65nHaly1sqoYSEw1x7iWjmuUSJNJYIo7c3kjQv?=
+ =?us-ascii?Q?79vw9gY4wxeVkPTcEOdeXzrm-2B3Ydny-2B1KVn?=
+ =?us-ascii?Q?MnHZ5Vj6IyJ-2Bj-2BumHIcj7lw7N8-2BZC9HzZ?=
+ =?us-ascii?Q?LTYQQzH9IzpX3tEvDyWrp9VdiG1HnUujEBd4XZi?=
+ =?us-ascii?Q?AsAinsoDdDGlqB3gjkhGto8EpO-2BF37AxwRq6I?=
+ =?us-ascii?Q?SjiZY5eeiLVWFAiEKCsSK2Fos1Pzas8bS6CGGQU?=
+ =?us-ascii?Q?LJVuKUWbG7evE3aWJ2quQX-2F-2F1OazIcoa2Fk?=
+ =?us-ascii?Q?AUs8dq1xm1GhXg-2BLVlCcKrw2-2FW5nlgSqkQi?=
+ =?us-ascii?Q?Dd-2FKzPiHYEMEhn6EEmwYcSaTJGUng2pn1Xu8D?=
+ =?us-ascii?Q?e0NzLksUOdTvpZzXUu3PDLh5TswzaChRWVB-2Fy?=
+ =?us-ascii?Q?SvInUB0=2Fu001=2EuZOyUHSB=3E?=
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-SG-EID: 
+ =?us-ascii?Q?u001=2ElNcmDc+hNZCEz2pmfZvb7Xgb9JADEib7wUaiAfZvyvpnXoHDGKB+UZmxR?=
+ =?us-ascii?Q?cbcA6LEkHq3NVfZpL5Oyz47TDCdIRHDOHl0su=2FV?=
+ =?us-ascii?Q?Dv3LpTtk1Ts8gTprKoDkk4IBiRQ7hftHtesda=2Fi?=
+ =?us-ascii?Q?VtG0KhDya1NFkMrmw+lhw9nEvR61AnamSiOFMMj?=
+ =?us-ascii?Q?TkFae=2FGPL2RbeVHmwsfz95C0nQh68uvITOIr0EN?=
+ =?us-ascii?Q?mZNP5uITpRZj1FsAjXQSuC8TY2CIuP6DibTOAvy?=
+ =?us-ascii?Q?tpIhCk0KUunpuuiqpcbweZeqtw=3D=3D?=
+X-SG-ID: 
+ =?us-ascii?Q?u001=2EXwhBPNhCejkv4+fVosb2QVfR16Qxp9CrA7PjDe5zzeI=2F0IZCBsPXtgHbA?=
+ =?us-ascii?Q?oGIj+RskLxA4N2rJjSWrHfgX07tLOm0v5BUQcd6?=
+ =?us-ascii?Q?w3knjorGi7Hwu0WCOA5AFSvy0=2FwlG32=2FWDI=2FiEd?=
+ =?us-ascii?Q?7XMFqppfDKfGUDoQ7i2v4dkibDJQ7B=2FrqWpl1Z5?=
+ =?us-ascii?Q?R4SkMsycj7AeL8OdvpcUhjHhfrNCFLx67hpxvOU?=
+ =?us-ascii?Q?CNwWqTGhsL185zskl8IEDmfphwbD29tSKRK7YMB?=
+ =?us-ascii?Q?vtik4JxKgtOn2xhHuQ79uHgLE1bYUNVMcol+TSg?=
+ =?us-ascii?Q?vE8t4Bi5ceXFYLuJ7eFp8YP=2F=2F0nEttSmVyzFp8E?=
+ =?us-ascii?Q?PuRu3wBmPAbgc5WZd+kTxhDh32TuqZLLw0tWgC8?=
+ =?us-ascii?Q?UbFU8TtoRIs0KWYDqEaKFfJC2OTYJtqA4+O1vwc?=
+ =?us-ascii?Q?FJ83+eZSsGy3HQsTuTfz5IkHbCOXSP8JM0ChOU0?=
+ =?us-ascii?Q?AYk1+aK7AK4fm8f9s28N1g=2Fl6L8WSuUHyMpDAMd?=
+ =?us-ascii?Q?1waFM2CoNIMUKSN25lgH97iivQUc6DZxtBahpRD?=
+ =?us-ascii?Q?UtNiJLbJdh7eBrEgLQzAxOp2xmg0eRu+yP5llpD?=
+ =?us-ascii?Q?Q8fEr21OOJK1kK6SWlJsM8tKY6Elf382PfxEM17?=
+ =?us-ascii?Q?MM8J33n5OrPTEr+V6ETHYbo+mYGP4DKYFAt6K5C?=
+ =?us-ascii?Q?oueosQ79UjHpCR64WfwkFkoWdUJtIL2+u7XFtjw?=
+ =?us-ascii?Q?EHn+kS331Vcd07mEmCGxGie7m3hF7B9D66XkIZ5?=
+ =?us-ascii?Q?N2UEFL7Z1G9pehopmPb2URwEMBZati6kI11cIJE?=
+ =?us-ascii?Q?WyfZiKeBe?=
+To: luca.barra@edu.unito.it
+X-Entity-ID: u001.B+egv976VsnFPzNwqP101Q==
+
+--406692294ab0d5b991aa3e3aee37472fd4011918a2c94a4518be31a4699f
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0
+
+Explore free exam vouchers, open research grants, AI hackathons, and a flex=
+ible practice platform in this month=E2=80=99s newsletter.
+
+( https://github.com/education )
+
+********************
+*Student Newsletter*
+********************
+
+*************
+February 2025
+*************
+
+Hey Altair-39,
+This month=E2=80=99s newsletter has a bit of everything: new ways to showca=
+se your skills, open research funding, hackathons to ignite your coding pas=
+sion, and a platform to sharpen your practice. Whether you=E2=80=99re divin=
+g into AI-assisted development, looking to participate in an inclusive rese=
+arch project, or aiming to boost your r=C3=A9sum=C3=A9, we=E2=80=99ve got y=
+ou covered.
+
+***********************************************************
+*Hackathon Heroes: Fueling Innovation with MLH & Hack Club*
+***********************************************************
+
+( https://www.youtube.com/watch?v=3D1hzhdjXb5_E&ab_channel=3DMajorLeagueHac=
+king )
+
+At GitHub Education, we=E2=80=99re proud to power hackathons with Major Lea=
+gue Hacking (MLH) ( https://mlh.io/ ) =E2=80=941 million members strong, re=
+aching *1 in 3* *U.S.* *CS grads* =E2=80=94and Hack Club ( https://hackclub=
+.com/ ) , whose High Seas event drew *20,000+ signups* and over *7k new pro=
+jects*.
+
+These gatherings spark incredible creativity, from running Doom in a PDF ( =
+https://github.com/Rochet2/DOOM-in-PDF ) to building a Minecraft server in =
+Rust, and help students level up on GitHub. In fact, *most MLH members* bec=
+ome more active on GitHub after joining, thanks in part to the Student Deve=
+loper Pack ( https://education.github.com/pack ) and GitHub Copilot.
+
+( https://www.youtube.com/watch?v=3D5iaO0r09yRA&ab_channel=3DMajorLeagueHac=
+king )
+
+Curious to see hackathons in action? Check out =E2=8F=AF=EF=B8=8F MLH=E2=80=
+=99s GitHub-powered highlights ( https://youtu.be/1hzhdjXb5_E ) or their =
+=E2=8F=AF=EF=B8=8F 24-hour =E2=80=9CSquid Game=E2=80=9D robot build ( https=
+://youtu.be/5iaO0r09yRA ) =E2=80=94then sign up ( https://mlh.io/ ) to brin=
+g your next big idea to life!
+
+******************************************************
+Build Your GitHub Skills with Certifications & Copilot
+******************************************************
+
+( https://github.com/orgs/community/discussions/150827 )
+
+Looking to boost your coding skills and job prospects? If you=E2=80=99re a =
+*verified student* , you can take the *GitHub Foundations Certification exa=
+m* at no cost through the Student Developer Pack ( https://education.github=
+.com/pack ). It covers essential GitHub topics like version control and col=
+laboration=E2=80=94capabilities employers value in real-world development. =
+Need a place to start? The Microsoft Learning Path for GitHub Foundations (=
+ https://learn.microsoft.com/en-us/training/paths/github-foundations/ ) off=
+ers a step-by-step guide. Once you=E2=80=99re ready, visit the Foundations =
+Certificate page ( https://education.github.com/experiences/foundations_cer=
+tificate ) to redeem your free voucher.
+
+Want to go further? Verified students also get *GitHub Copilot Pro* , which=
+ has more features than the free tier and helps you code faster and smarter=
+. Check out the Copilot Learning Path ( https://learn.microsoft.com/en-us/t=
+raining/paths/copilot/ ) on Microsoft Learn or explore the Essentials of Gi=
+tHub Copilot ( https://resources.github.com/learn/pathways/copilot/essentia=
+ls/essentials-of-github-copilot/ ) to see how AI can streamline your workfl=
+ow. By pairing a recognized certification with advanced AI coding skills, y=
+ou=E2=80=99ll be on track to build great projects=E2=80=94and stand out whe=
+n it=E2=80=99s time to apply for your next opportunity!
+
+*****************************************************************
+Code with AI Hackathon (Microsoft D&I and Code; Without Barriers)
+*****************************************************************
+
+https://msit.events.teams.microsoft.com/event/e9cc0f8e-d768-48f9-8e4a-2a8f9=
+0b78267@72f988bf-86f1-41af-91ab-2d7cd011db47 ( https://www.orcaopen.org/ )
+
+*March 8, 2025* =E2=80=94mark your calendars for the Code with AI Virtual H=
+ackathon ( https://msit.events.teams.microsoft.com/event/e9cc0f8e-d768-48f9=
+-8e4a-2a8f90b78267@72f988bf-86f1-41af-91ab-2d7cd011db47 ) , aimed at empowe=
+ring *female university students* across the Asia-Pacific region. Hosted by=
+ Microsoft D&I, this event combines a quick intro to GitHub and DevOps, an =
+expert Q&A on careers in tech, a guided coding session featuring *GitHub Co=
+pilot* , and a *Fastest Coder Challenge*. Reserve your spot, hone your AI s=
+kills, and meet fellow female innovators.
+
+Event details & registration ( https://msit.events.teams.microsoft.com/even=
+t/e9cc0f8e-d768-48f9-8e4a-2a8f90b78267@72f988bf-86f1-41af-91ab-2d7cd011db47=
+ )
+
+*****************************************
+Free Learning Opportunities with Exercism
+*****************************************
+
+https://exercism.org/ ( https://exercism.org/ )
+
+Whether you=E2=80=99re a beginner or a seasoned coder, Exercism ( https://e=
+xercism.org/ ) offers *free, self-paced coding practice* across more than 6=
+0 programming languages=E2=80=94from Python and JavaScript to Rust and beyo=
+nd. With a supportive community, personalized mentoring, and an *open sourc=
+e foundation* , it=E2=80=99s a great way to build real skills and get feedb=
+ack on your code. Ready to take your knowledge further?
+
+Start learning now! ( https://exercism.org/ )
+
+********************************************************
+Build a Strong First Impression with Your GitHub Profile
+********************************************************
+
+( https://github.com/orgs/community/discussions/150827 )
+
+Your GitHub profile can do more than store code=E2=80=94it can show the wor=
+ld what you=E2=80=99re capable of. If you=E2=80=99re aiming for internships=
+, interviews, or new collaborations, having a clear, engaging profile matte=
+rs. Check out this discussion ( https://github.com/orgs/community/discussio=
+ns/150827 ) to learn how to highlight your projects, organize your reposito=
+ries, and make a great first impression=E2=80=94no flashy r=C3=A9sum=C3=A9 =
+needed!
+
+Join the discussion ( https://github.com/orgs/community/discussions/150827 =
+)
+
+***********************************************************
+You should know: GitHub for Nonprofits has exclusive offers
+***********************************************************
+
+( https://www.youtube.com/watch?v=3DkHO1OvfOR7s&t=3D5s&ab_channel=3DGitHub =
+)
+
+GitHub for Nonprofits enables organizations to leverage technology to drive=
+ forward their missions and *accelerate human progress*. Verified nonprofit=
+s get access to a free GitHub Team plan or 25% off the GitHub Enterprise cl=
+oud plan. Do you work with any nonprofit organizations that could benefit f=
+rom this exclusive offer?
+
+Check out GitHub for Nonprofits ( https://github.com/solutions/industry/non=
+profits )
+
+*******************************
+ORCA=E2=80=99s Catalytic Awards Program
+*******************************
+
+( https://www.orcaopen.org/ )
+
+Looking for funding to support open scholarship and inclusivity? The *Catal=
+ytic Awards Program* from ORCA (backed by the Chan Zuckerberg Initiative) o=
+ffers grants of up to *$15,000* to U.S.-based non-R1, minority-serving, or =
+otherwise under-resourced institutions. Proposals can focus on community en=
+gagement, capacity-building, or networking=E2=80=94anything that advances e=
+quity and openness in research. The *deadline to apply is March 15, 2025*.
+
+Learn more and apply ( https://orcaopen.org/work/cap )
+
+******************************************************
+Beyond the Classroom: Inspiring Careers in Open Source
+******************************************************
+
+https://dev.to/gh-campus-experts/beyond-the-classroom-inspiring-careers-in-=
+open-source-56ld ( https://www.orcaopen.org/ )
+
+Ever wonder where open source can take you after graduation? Discover succe=
+ss stories and real-world tips in this Dev.to feature ( https://dev.to/gh-c=
+ampus-experts/beyond-the-classroom-inspiring-careers-in-open-source-56ld ) =
+, showcasing *how student developers turn classroom lessons into meaningful=
+ community contributions*. It=E2=80=99s an inspiring read for anyone lookin=
+g to grow their skills and broaden their career horizons in tech.
+And remember, we are always keen to work closely with GitHub Campus Experts=
+ ( https://github.com/education/students/campus-expert ) !
+
+Read inspiring stories! ( https://dev.to/gh-campus-experts/beyond-the-class=
+room-inspiring-careers-in-open-source-56ld )
+
+There=E2=80=99s no shortage of ways to learn, grow, and make your mark=E2=
+=80=94whether that=E2=80=99s through an AI hackathon, a new certification, =
+or an open-source project. We can=E2=80=99t wait to see how you use these r=
+esources to sharpen your skills and give back to the community. Until next =
+time, keep coding and keep exploring!
+
+github education ( https://github.com/education )
+
+( https://www.instagram.com/githubeducation/?hl=3Den ) ( https://www.facebo=
+ok.com/GitHubEducation/ ) ( https://www.threads.net/@githubeducation ) ( ht=
+tps://twitter.com/githubeducation ) ( https://bsky.app/profile/githubeducat=
+ion.bsky.social ) ( https://www.linkedin.com/showcase/github-education/ ) (=
+ https://www.youtube.com/@githubeducation4427 ) ( https://www.twitch.tv/git=
+hubeducation )
+
+GitHub Education
+
+88 Colin P Kelly Jr , San Francisco , CA 94107
+
+Unsubscribe ( https://u46701922.ct.sendgrid.net/wf/unsubscribe?upn=3Du001.E=
+e8VvrA6tfmzNDWChM5C8SKvgqLD0rqjKbwLddWAmtVHTRqjXrQXOxjrcLr6ABC1bf3-2BWaLHXR=
+g6-2BvLiwRhG-2BaN0jkqZ1o-2FbIKclAPw3J9qtYg4nGcqx-2FLwQGRuMBoSnBBFMvfUR7ouNb=
+pHhUU8LdgfsZmfs7OVdKU3Ox-2BMJODBEWuX90tpWy9By8cuIRYl6445mpST5r2gAmODGXZ9CIX=
+ShbjgBOVPb3hyZx4-2BieCf5tCeBS84OvGgnmUbvXERYBuuePi-2B-2FMlTIxVZ68t-2FJeRqe5=
+R-2BayNXb-2BtIiJyP3t2hZWhQxmcPpT7sicuLfMnd5AgAtkdV5dzqy4XnInxyvJkkQU6KvCFpp=
+P6aOIDyBdDbmLnE0z9kGTET19OV9UO4-2FYLmuo57wDl0eY5PYQ0NANvQq5Vkd8R35Jxj6KiBJL=
+6U56eJ3aDaL6s9yX8Wp1TrztLI7V4h5-2FLvB9zL73uA-2FJgCg8KaGyTkNIjqch9US7iMvCuf-=
+2Bs4ywrp9peQW9bab3f6IMR35kvtWSNnBNivtVUTCL5Q59gU-2FpiAZdcK7eZoJza4Ubdsq-2FQ=
+PqmZxene0btigok4C5snTrYjJckEpjXfuEaiT72xL-2FNkB8ncm95YOjFiPAgoaGIkuQCSJOBSG=
+XqqTxFH7h4-2BN03jUYzdtQRq-2BXUi2RQoxEQgzV15qSoryYN2T-2Fy5yFG7odJTJYrN4HHUh0=
+cz8FGPbMEQhNnqJdiVH6vP6dHg7Jl19QYgDbSgdo0-2FV1yWn6IgRNQxBrVCih9h6f6VT9W6ooy=
+AduyNsFSA38X0v0nqCkIf-2FEpM1AXc22oCbjDfaeG-2F8O580A4XRELavqt-2F4t4KvVWMJHtX=
+ArzQd-2FeTzCzh1ldI1weD6q8mMs0WUG5QC4GEMw-2FRtMA0gfTjVMNGMVP6C0-2FWEwGztJY3j=
+u-2F4GDKmGxkapnqpjAQ-2FRm76Hg-2FyqP7t5BlkQZRPwCG )
+--406692294ab0d5b991aa3e3aee37472fd4011918a2c94a4518be31a4699f
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=utf-8
+Mime-Version: 1.0
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org=
+/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html data-editor-version=3D"2" class=3D"sg-campaigns" xmlns=3D"http://www.=
+w3.org/1999/xhtml">
+    <head>
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8">
+      <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scal=
+e=3D1, minimum-scale=3D1, maximum-scale=3D1">
+      <!--[if !mso]><!-->
+      <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3DEdge">
+      <!--<![endif]-->
+      <!--[if (gte mso 9)|(IE)]>
+      <xml>
+        <o:OfficeDocumentSettings>
+          <o:AllowPNG/>
+          <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+      </xml>
+      <![endif]-->
+      <!--[if (gte mso 9)|(IE)]>
+  <style type=3D"text/css">
+    body {width: 600px;margin: 0 auto;}
+    table {border-collapse: collapse;}
+    table, td {mso-table-lspace: 0pt;mso-table-rspace: 0pt;}
+    img {-ms-interpolation-mode: bicubic;}
+  </style>
+<![endif]-->
+      <style type=3D"text/css">
+    body, p, div {
+      font-family: lucida sans unicode,lucida grande,sans-serif;
+      font-size: 16px;
+    }
+    body {
+      color: #212529;
+    }
+    body a {
+      color: #135dcf;
+      text-decoration: none;
+    }
+    p { margin: 0; padding: 0; }
+    table.wrapper {
+      width:100% !important;
+      table-layout: fixed;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    img.max-width {
+      max-width: 100% !important;
+    }
+    .column.of-2 {
+      width: 50%;
+    }
+    .column.of-3 {
+      width: 33.333%;
+    }
+    .column.of-4 {
+      width: 25%;
+    }
+    ul ul ul ul  {
+      list-style-type: disc !important;
+    }
+    ol ol {
+      list-style-type: lower-roman !important;
+    }
+    ol ol ol {
+      list-style-type: lower-latin !important;
+    }
+    ol ol ol ol {
+      list-style-type: decimal !important;
+    }
+    @media screen and (max-width:480px) {
+      .preheader .rightColumnContent,
+      .footer .rightColumnContent {
+        text-align: left !important;
+      }
+      .preheader .rightColumnContent div,
+      .preheader .rightColumnContent span,
+      .footer .rightColumnContent div,
+      .footer .rightColumnContent span {
+        text-align: left !important;
+      }
+      .preheader .rightColumnContent,
+      .preheader .leftColumnContent {
+        font-size: 80% !important;
+        padding: 5px 0;
+      }
+      table.wrapper-mobile {
+        width: 100% !important;
+        table-layout: fixed;
+      }
+      img.max-width {
+        height: auto !important;
+        max-width: 100% !important;
+      }
+      a.bulletproof-button {
+        display: block !important;
+        width: auto !important;
+        font-size: 80%;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      .columns {
+        width: 100% !important;
+      }
+      .column {
+        display: block !important;
+        width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      .social-icon-column {
+        display: inline-block !important;
+      }
+    }
+  </style>
+      <!--user entered Head Start--><style>
+        a.social-link { text-decoration: none !important; }
+        img { border-radius: 4px !important; }
+       =20
+        @media screen and (max-width: 520px) {
+            .social-links img { height: 16px !important; width: 16px !impor=
+tant; }
+        }
+    </style><!--End Head user entered-->
+    </head>
+    <body>
+      <center class=3D"wrapper" data-link-color=3D"#135dcf" data-body-style=
+=3D"font-size:16px; font-family:lucida sans unicode,lucida grande,sans-seri=
+f; color:#212529; background-color:#FFFFFF;">
+        <div class=3D"webkit">
+          <table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" width=3D"=
+100%" class=3D"wrapper" bgcolor=3D"#FFFFFF">
+            <tr>
+              <td valign=3D"top" bgcolor=3D"#FFFFFF" width=3D"100%">
+                <table width=3D"100%" role=3D"content-container" class=3D"o=
+uter" align=3D"center" cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+                  <tr>
+                    <td width=3D"100%">
+                      <table width=3D"100%" cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0">
+                        <tr>
+                          <td>
+                            <!--[if mso]>
+    <center>
+    <table><tr><td width=3D"600">
+  <![endif]-->
+                                    <table width=3D"100%" cellpadding=3D"0"=
+ cellspacing=3D"0" border=3D"0" style=3D"width:100%; max-width:600px;" alig=
+n=3D"center">
+                                      <tr>
+                                        <td role=3D"modules-container" styl=
+e=3D"padding:0px 0px 0px 0px; color:#212529; text-align:left;" bgcolor=3D"#=
+FFFFFF" width=3D"100%" align=3D"left"><table class=3D"module preheader preh=
+eader-hide" role=3D"module" data-type=3D"preheader" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"display: none !important;=
+ mso-hide: all; visibility: hidden; opacity: 0; color: transparent; height:=
+ 0; width: 0;">
+    <tr>
+      <td role=3D"module-content">
+        <p>Explore free exam vouchers, open research grants, AI hackathons,=
+ and a flexible practice platform in this month=E2=80=99s newsletter.</p>
+      </td>
+    </tr>
+  </table><table class=3D"wrapper" role=3D"module" data-type=3D"image" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"8cf028e3-340a-4f85-b625-f0121192b824">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:40px 0px 40px=
+ 0px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=3Du001.bO=
+3G-2FaeMIVe5lSdMnGODo4Ud11AqjVhW6cg4WddgB2qsGjLhgfZy3MaBCWeS5iPNac6O_1h5T79=
+IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odW=
+KRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDT=
+Z0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2Bvgb=
+QM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIs=
+FQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKf=
+zc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BG=
+y9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3=
+ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp=
+-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxb=
+M9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F=
+3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOw=
+M217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9STo8FoVjK3sFN1pxsC4pTaeVmo=
+-2FywVx2pFGVZq41-2BRIIXB2op6fDJTUXeLu0DXawFant9f1xZIPH9UdjCYekrD-2BDwuwBf2G=
+7WpOKsMaEX5wV4pqWKUUy2AD9uKmxKUoYM-3D"><img class=3D"max-width" border=3D"0=
+" style=3D"display:block; color:#000000; text-decoration:none; font-family:=
+Helvetica, arial, sans-serif; font-size:16px;" width=3D"220" alt=3D"" data-=
+proportionally-constrained=3D"true" data-responsive=3D"false" src=3D"http:/=
+/cdn.mcauto-images-production.sendgrid.net/cc8ddcf649afa5e0/ad1feb25-2213-4=
+776-bf3a-23dd08dbdac0/1100x204.png" height=3D"41"></a></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"wrapper" role=3D"module" data-type=3D"image" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"8021e65c-f4ec-4b9b-9608-938dace05fe1">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+          <img class=3D"max-width" border=3D"0" style=3D"display:block; col=
+or:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif;=
+ font-size:16px; max-width:80% !important; width:80%; height:auto !importan=
+t;" width=3D"480" alt=3D"" data-proportionally-constrained=3D"true" data-re=
+sponsive=3D"true" src=3D"http://cdn.mcauto-images-production.sendgrid.net/c=
+c8ddcf649afa5e0/8477eb0e-0924-439c-83d5-738c2ff3e6c3/1400x800.jpg">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"628a2a7d-6db0-4036-84f4-f264401ccde4" data-mc-mo=
+dule-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:20px; text-align:=
+inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conten=
+t"><div><h1 style=3D"text-align: center"><span style=3D"font-size: 36px; fo=
+nt-family: &quot;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans=
+-serif"><strong>Student Newsletter</strong></span></h1>
+<h1 style=3D"text-align: center"><span style=3D"font-size: 24px; font-famil=
+y: &quot;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-serif">=
+February 2025</span></h1><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.1" data-mc-=
+module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:18px 0px 18px 0px; line-height:23px; text-alig=
+n:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-cont=
+ent"><div><div style=3D"font-family: inherit; text-align: inherit"><span st=
+yle=3D"font-family: &quot;lucida sans unicode&quot;, &quot;lucida grande&qu=
+ot;, sans-serif">Hey Altair-39,</span></div>
+<div style=3D"font-family: inherit; text-align: inherit"><span style=3D"fon=
+t-family: &quot;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-=
+serif">This month=E2=80=99s newsletter has a bit of everything: new ways to=
+ showcase your skills, open research funding, hackathons to ignite your cod=
+ing passion, and a platform to sharpen your practice. Whether you=E2=80=99r=
+e diving into AI-assisted development, looking to participate in an inclusi=
+ve research project, or aiming to boost your r=C3=A9sum=C3=A9, we=E2=80=99v=
+e got you covered.</span></div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.2.1.1.1.=
+1.1.1.1.1.1">
+    <tbody>
+      <tr>
+        <td style=3D"padding:30px 0px 30px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.3" data-mc-=
+module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:40px; text-align:=
+inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conten=
+t"><div><h1 style=3D"text-align: inherit"><span style=3D"font-size: 30px; f=
+ont-family: &quot;lucida sans unicode&quot;, &quot;lucida grande&quot;, san=
+s-serif"><strong>Hackathon Heroes: Fueling Innovation with MLH &amp; Hack C=
+lub</strong></span></h1><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 0px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,2">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"193" style=3D"wi=
+dth:193px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"kCxeKZiAb9gvQj2HF6a4gk.1">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:8px 0px 8px 0=
+px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=3Du001.bO=
+3G-2FaeMIVe5lSdMnGODo3-2FQ6ALJoZReZPpMLK6cEoW6Tp-2FCtkZvOI-2BSNNNzB4WyZLcwI=
+eemL7MPHt6p4qay4X4yI0lXGyPtcuMHeHHSK2NIkJeIwhsqe4KDqsFHb-2FYZOy1q_1h5T79Icq=
+JTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRG=
+QqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0F=
+e1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1=
+QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQb=
+wItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7=
+VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z=
+9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ=
+-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2F=
+nSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z=
+8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K9=
+45E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM21=
+7-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9S7bDqSGfI2RvCopT3ZjPJT3H9oaQt=
+FEMzY-2FxFnFctJMLvUCOs89p1ylGACxYA79MqJzOM2-2FUoorZ1-2FTSAvr74nzXbvuIGugwxl=
+Q7DjtQYHW-2FOsfGf01WJnWMYR1pkk6J0-3D"><img class=3D"max-width" border=3D"0"=
+ style=3D"display:block; color:#000000; text-decoration:none; font-family:H=
+elvetica, arial, sans-serif; font-size:16px; max-width:100% !important; wid=
+th:100%; height:auto !important;" width=3D"193" alt=3D"" data-proportionall=
+y-constrained=3D"true" data-responsive=3D"true" src=3D"http://cdn.mcauto-im=
+ages-production.sendgrid.net/cc8ddcf649afa5e0/251622e0-4c86-4809-80e3-dd583=
+146bded/412x234.gif"></a></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"386" style=3D"width:386px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"2gjEy5YSMagv7KDgDsG7Dw.1" data-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 18px 0px; line-height:22px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit">At GitHub=
+ Education, we=E2=80=99re proud to power hackathons with <a href=3D"https:/=
+/u46701922.ct.sendgrid.net/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo-2BT9=
+UqwadtUa7jv05Oy4U20-3DjDrq_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2=
+j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsoh=
+v2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHF=
+cPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT=
+-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxW=
+glDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOp=
+wCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2F=
+rabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8L=
+N8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoAq=
+GIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfin=
+Ae13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqX=
+mdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr=
+-2BGro9Qwe5WyL842OggvP0k-2BHjHSVKHG-2BcIAzrqNcXKz3RMFRqAk2-2B2nn5DYHs663uqx=
+3u5XBRXA4XX5H5hWcxsfEFQVDNFhoj2khFXWiyzqoQ0Vy6aC1iL1oNwOUPA-2F-2FpLEJi0-3D"=
+ title=3D"Major League Hacking (MLH)">Major League Hacking (MLH)</a>=E2=80=
+=941 million members strong, reaching <strong>1 in 3 </strong><span style=
+=3D"color: #212529; font-family: &quot;lucida sans unicode&quot;, &quot;luc=
+ida grande&quot;, sans-serif; font-size: 16px; font-style: normal; font-var=
+iant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter=
+-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-tra=
+nsform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px;=
+ white-space-collapse: preserve; text-wrap-mode: wrap; background-color: rg=
+b(255, 255, 255); text-decoration-thickness: initial; text-decoration-style=
+: initial; text-decoration-color: initial; float: none; display: inline"><s=
+trong>U.S.</strong></span><strong> CS grads</strong>=E2=80=94and <a href=3D=
+"https://u46701922.ct.sendgrid.net/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnG=
+ODozdoYkj-2FYoDuAT7W9WYzGF8-3DTSUz_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR=
+7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7A=
+Heekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2F=
+DmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0=
+ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4D=
+UmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2=
+BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2B=
+mQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdz=
+K05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck=
+79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvY=
+NYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-=
+2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-=
+2B1soLwr-2BGro9Si4p2WircJuHjAF7nVkKFD5oZ0rzNc7Y-2FZCnWxsGRZfm-2BRhgg5-2FYBP=
+HRuzpOp-2Bb4EQHJQp-2FaxrRg7zAc9Upii7GaeYhMzCWcG-2FmDjfGOdkBR-2F3mSej1bw1oEF=
+4ilC-2Bk5w-3D" title=3D"Hack Club">Hack Club</a>, whose High Seas event dre=
+w <strong>20,000+ signups</strong> and over <strong>7k new projects</strong=
+>.</div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 0px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"2,1">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"386" style=3D"wi=
+dth:386px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"29c3c17a-e8b1-4fe8-87b9-bcf5b1014bb8.1" data-mc-module-version=3D"=
+2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 18px 0px; line-height:24px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit">These gat=
+herings spark incredible creativity, from running <a href=3D"https://u46701=
+922.ct.sendgrid.net/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODozccdJxf-2Bx-=
+2B-2BzCZSXzwj-2FA1E1XNtfIXc2pAel5-2F0Pd6-2F-n7j_1h5T79IcqJTdevtx-2B4hcgZLLM=
+Q4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1I=
+rtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOul=
+ZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWM=
+JJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZv=
+HwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHc=
+Egt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1n=
+aSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-=
+2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUn=
+zSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-=
+2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvc=
+JV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHw=
+ounqlAXt0tTE-2B1soLwr-2BGro9RtdE2ne6eWtUitjaPjK-2FVUztZBrhXiwcoW2rSJ9urYP84=
+YPso66-2FIpgt6RvPczrfdEJbL4wXkw208cbySUPRYsq0-2Fu4167Jk35JKYzN6K3vibhXs-2FR=
+LXW8Id5958DZfzg-3D" title=3D"Doom in a PDF">Doom in a PDF</a> to building a=
+ Minecraft server in Rust, and help students level up on GitHub. In fact, <=
+strong>most MLH members</strong> become more active on GitHub after joining=
+, thanks in part to the <a href=3D"https://u46701922.ct.sendgrid.net/ls/cli=
+ck?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo0O1PFWB28ifInQxsbCitIt-2FrWK7LdIvubrp7=
+N4REXWwrjCO_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2=
+ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8=
+v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnl=
+MNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L=
+-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ=
+88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1Mv=
+VlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMg=
+ICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkq=
+S8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8=
+TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3=
+o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBr=
+Vwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9RPeWPUP8=
+eZ-2FOWR2qoTRwYMGfJ7hv7JEuTt4Iubma-2FD5f8Z4AhhDJ9B4o8buKiRSRwbvjhLpd7L-2Bd6=
+O3hBPHQqI7leVmwrwnABx0MF37Os6-2BdgihWIgGacfCJkLeVD44o0-3D">Student Develope=
+r Pack</a> and GitHub Copilot.</div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"193" style=3D"width:193px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"5916dd7a-dea3-4f49-80d9-ce24cb275162">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:8px 0px 8px 0=
+px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=3Du001.bO=
+3G-2FaeMIVe5lSdMnGODo3-2FQ6ALJoZReZPpMLK6cEoUjWQS3OVQMS8CE4gwXbtyiirM8DzUBi=
+Xe-2F39R0tgxh8zwrL20L9pU1celrPcmgcCMdTiOfJ0N681RJrKMOFYzdF-Hu_1h5T79IcqJTde=
+vtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVC=
+yJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6=
+h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWm=
+SS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR=
+5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd=
+07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2=
+g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1=
+Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvC=
+ThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8=
+X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3=
+LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2F=
+vMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9Qy5c0uTBOcN6pKTH1Bi9aiMczH018fwuc=
+ZFuyK9W-2FTcopkZLe9Im5I2uNdzZRs14NZtL9MblERT1hcc9Hn5ZlA2WjaF69amFZKLP5dVHXQ=
+-2FFWqS-2Bjg55LBAJqBNW55i0c-3D"><img class=3D"max-width" border=3D"0" style=
+=3D"display:block; color:#000000; text-decoration:none; font-family:Helveti=
+ca, arial, sans-serif; font-size:16px; max-width:100% !important; width:100=
+%; height:auto !important;" width=3D"386" alt=3D"" data-proportionally-cons=
+trained=3D"true" data-responsive=3D"true" src=3D"http://cdn.mcauto-images-p=
+roduction.sendgrid.net/cc8ddcf649afa5e0/9024b4b6-e973-4f6b-aca4-3d0199bf771=
+9/800x441.gif"></a></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"36286583-1a4a-4a17-b3aa-c2291da039a6" data-mc-mo=
+dule-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 18px 0px; line-height:22px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit">Curious t=
+o see hackathons in action? Check out =E2=8F=AF=EF=B8=8F <a href=3D"https:/=
+/u46701922.ct.sendgrid.net/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo-2FQq=
+dm3vSKAa6fkImi-2FTV4NnExrXbDGJ86tNehtS4roFm_R6_1h5T79IcqJTdevtx-2B4hcgZLLMQ=
+4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1Ir=
+tgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZ=
+BGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJ=
+Jp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvH=
+waCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcE=
+gt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1na=
+SUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2=
+BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnz=
+SFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2=
+BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJ=
+V66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwo=
+unqlAXt0tTE-2B1soLwr-2BGro9QePb-2BXMyDIRCDhzRSL7qjNq40MkERA82WorNwP-2FyfMlZ=
+Xxj2EpjbnER3flwtOS3-2FIpoFkATW9TvuQE2K-2BkpTPLi3WH-2B-2BqiZr7AME9iZXe0Dnwaq=
+qbBL4pAryPhYbN6EVo-3D" title=3D"MLH=E2=80=99s GitHub-powered highlights">ML=
+H=E2=80=99s GitHub-powered highlights</a> or their <span style=3D"color: #2=
+12529; font-family: &quot;lucida sans unicode&quot;, &quot;lucida grande&qu=
+ot;, sans-serif; font-size: 16px; font-style: normal; font-variant-ligature=
+s: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: nor=
+mal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none;=
+ widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space-=
+collapse: preserve; text-wrap-mode: wrap; background-color: rgb(255, 255, 2=
+55); text-decoration-thickness: initial; text-decoration-style: initial; te=
+xt-decoration-color: initial; float: none; display: inline">=E2=8F=AF=EF=B8=
+=8F </span><a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=3Du001=
+.bO3G-2FaeMIVe5lSdMnGODozBNbSvUGbpD-2FZfx2VT1IrWzPdFnjloCNua6NDkMUde3cmrG_1=
+h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG=
+88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhv=
+jrYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-=
+2BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2=
+FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbA=
+j1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5=
+h-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16N=
+PaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7=
+ibRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FL=
+buuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sN=
+uGS0F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FF=
+ppgOwM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9RWx-2BJSW5t0IGYBuDi5U=
+iVOqWyk0av64elKNsxVbrwAOf8NR47dXM6-2Fem5GSEdWaYFSqxSEjcwk0KmPC4W4h5jRWsKf05=
+fgQgtpRHeKYDklPSnWODPwXgXE5tuQZVJknC4-3D" title=3D"24-hour =E2=80=9CSquid G=
+ame=E2=80=9D robot build">24-hour =E2=80=9CSquid Game=E2=80=9D robot build<=
+/a>=E2=80=94then <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=
+=3Du001.bO3G-2FaeMIVe5lSdMnGODo-2BT9UqwadtUa7jv05Oy4U20-3D7Yif_1h5T79IcqJTd=
+evtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqV=
+CyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S=
+6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGW=
+mSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwIt=
+R5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxH=
+d07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz=
+2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F=
+1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSv=
+CThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn=
+8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E=
+3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2=
+FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9QHtdU0kofmWIZTffV5WnozPJiEFH-2Bj=
+kynpTbmMnYzJmK-2Ffzbic9XFBTKGdUTTtZZAWLK-2B7tAaD1Un2ylQThO4qWS9cnSZs6oNo5eZ=
+yjpAQ-2BCmNz-2FRUdkyieKlGbqTwZWU-3D">sign up</a> to bring your next big ide=
+a to life!</div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.2.1.1.1.=
+1.1.1.1.1.1.3">
+    <tbody>
+      <tr>
+        <td style=3D"padding:30px 0px 30px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895" data-mc-mo=
+dule-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:40px; text-align:=
+inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conten=
+t"><div><h1 style=3D"text-align: inherit"><span style=3D"font-size: 30px">B=
+uild Your GitHub Skills with Certifications &amp; Copilot</span></h1><div><=
+/div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 0px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,2">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"193" style=3D"wi=
+dth:193px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"kCxeKZiAb9gvQj2HF6a4gk.2">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:8px 0px 8px 0=
+px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=3Du001.bO=
+3G-2FaeMIVe5lSdMnGODo-2BIP0Hk8jpoZy6OGb4rP-2Fji0kj35jFQNsSvN6jpsKUvvGjDucOi=
+PJ6e-2BpX5tmRW0nw-3D-3DJXgD_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N=
+2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcso=
+hv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FH=
+FcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgC=
+T-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXx=
+WglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UO=
+pwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2=
+FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8=
+LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoA=
+qGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfi=
+nAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKq=
+XmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLw=
+r-2BGro9QgvkD3zLvIva6AacxxZwpb0wkOpefhMgIzyhy4y3uqfhR5XfbiOsfP9TdPja3K3EM2Q=
+Ag8mxTIXWLPnjuk3F051SeITqpOhtLci4Av3JQCHnAxfObIGfss2lr3Rn1-2FnxaKauyCeaM2QX=
+CMYq-2BL9jCS"><img class=3D"max-width" border=3D"0" style=3D"display:block;=
+ color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-se=
+rif; font-size:16px; max-width:80% !important; width:80%; height:auto !impo=
+rtant;" width=3D"154" alt=3D"" data-proportionally-constrained=3D"true" dat=
+a-responsive=3D"true" src=3D"http://cdn.mcauto-images-production.sendgrid.n=
+et/cc8ddcf649afa5e0/1281ec67-ae2a-4dfb-af37-f306e810eb45/2032x2040.png"></a=
+></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"386" style=3D"width:386px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"2gjEy5YSMagv7KDgDsG7Dw.2" data-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 18px 0px; line-height:22px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit">Looking t=
+o boost your coding skills and job prospects? If you=E2=80=99re a <strong>v=
+erified student</strong>, you can take the <strong>GitHub Foundations Certi=
+fication exam</strong> at no cost through the <a href=3D"https://u46701922.=
+ct.sendgrid.net/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo0O1PFWB28ifInQxs=
+bCitIt-2FrWK7LdIvubrp7N4REXWww4tw_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7=
+TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AH=
+eekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FD=
+mB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0Z=
+RKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DU=
+mdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2B=
+RjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2Bm=
+QSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK=
+05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck7=
+9lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYN=
+Ye5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2=
+BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2=
+B1soLwr-2BGro9Q8OrcrMfu-2Fk1vA5otkMLsZgLJP33goFUU6jlm4GYrsaQf-2BSNDtT3-2FLe=
+k33YdPT33ycK9NK7xRcbqLbLfiCk6iWl683y9DUAbui9PrtDoCBjh9VxAPgDTIFq-2FdO3ioRc-=
+2FXCDxaDh0aevbNT1yzoT6xw" title=3D"Student Developer Pack">Student Develope=
+r Pack</a>. It covers essential GitHub topics like version control and coll=
+aboration=E2=80=94capabilities employers value in real-world development. N=
+eed a place to start? The <a href=3D"https://u46701922.ct.sendgrid.net/ls/c=
+lick?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo5i-2FesL-2FQ-2BrALOXWnIFOYJ-2FNSuAUY=
+gVu2d2gj-2FzLnCKE7ktpAlQ0KCYVRK14HNuYVvsr3nq-2BBZexlQSk9hEXCTg-3DAtC4_1h5T7=
+9IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88od=
+WKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYD=
+TZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2Bvg=
+bQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmI=
+sFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OK=
+fzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2B=
+Gy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB=
+3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRF=
+p-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuux=
+bM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0=
+F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgO=
+wM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9TmXHfK8fqAr1ad5yHcoIdjq3Z=
+X-2F7SAWS7vD9Gp85NwHJbDN9jgntGn7uFUp5QG-2FlkldS2OILS1z1aDSU7WvOKHgj3Qt9Adr2=
+JxiUOIABGHZcIoF2JqJeMUB71ycP4qobxrO0Q2IG-2FsiWFGYaBtLuOP" title=3D"Microsof=
+t Learning Path for GitHub Foundations">Microsoft Learning Path for GitHub =
+Foundations</a> offers a step-by-step guide. Once you=E2=80=99re ready, vis=
+it the <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=3Du001.bO3=
+G-2FaeMIVe5lSdMnGODo0O1PFWB28ifInQxsbCitIu4Ux77NgKp7UxrYAgYk-2FZI0ooxvyLwFT=
+-2BPI4-2FqKDhrhGG4kpRVR-2FjA5fmj6jzM464-3DQOOW_1h5T79IcqJTdevtx-2B4hcgZLLMQ=
+4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1Ir=
+tgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZ=
+BGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJ=
+Jp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvH=
+waCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcE=
+gt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1na=
+SUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2=
+BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnz=
+SFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2=
+BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJ=
+V66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwo=
+unqlAXt0tTE-2B1soLwr-2BGro9QCa-2BAtvmB6Chv2YSJZqVpA6LaPqPk2zXhYZQMivD6XQnu6=
+HdS2aLdfXq-2F45zRxdhhEGVUJWuPFvSZ9mYvmTz6JB1C2nOQqzIP-2FPdkSqi-2BE88YF-2FcG=
+9QmbN3VN03NHKpRE5asc-2FG4lDYwFXt8DMMV6E" title=3D"Foundations Certificate p=
+age">Foundations Certificate page</a> to redeem your free voucher.</div><di=
+v></div></div></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"8b269d8d-13c4-4126-b0bb-c0d842788e2f" data-mc-mo=
+dule-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 18px 0px; line-height:22px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit">Want to g=
+o further? Verified students also get <strong>GitHub Copilot Pro</strong>, =
+which has more features than the free tier and helps you code faster and sm=
+arter. Check out the <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?=
+upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo5i-2FesL-2FQ-2BrALOXWnIFOYJ-2FNSuAUYgVu2d=
+2gj-2FzLnCKEvXhZlNIcibbKjH3ihn5oP4GatyRIIBOMWZamZH9QyCM-3Da6Xt_1h5T79IcqJTd=
+evtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqV=
+CyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S=
+6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGW=
+mSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwIt=
+R5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxH=
+d07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz=
+2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F=
+1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSv=
+CThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn=
+8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E=
+3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2=
+FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9T-2Bx5j8a3NWT1xX7vwjN7MqOWt-2BCN=
+YnXtjucoAmUtF9bdJHTWVjyUOOR-2BLaRZNjG4pbeY6jyjjn5gDuNdD257UvuNXDFnJ-2BxczB7=
+phRB-2BpA9Be113Gwhu8QTTdhtpUehbuwFL9zkwoyEXLZ8UXQKRbb" title=3D"Copilot Lea=
+rning Path">Copilot Learning Path</a> on Microsoft Learn or explore the <a =
+href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=3Du001.bO3G-2FaeMIVe=
+5lSdMnGODo5TUv2WdbBTQzXohEHFJ4ZVrg8XeLxDqH10Qs2FoeHmjL7o-2FclbWQ7yXLwEp2z2t=
+9K-2FwSJgoon10CKA-2FBGP0V0s-2Bx59Vqz-2FgL5-2F8iw291Mc3ADIvGPgvEuE5dSKEfc47d=
+w-3D-3DRR0j_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2=
+ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8=
+v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnl=
+MNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L=
+-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ=
+88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1Mv=
+VlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMg=
+ICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkq=
+S8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8=
+TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3=
+o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBr=
+Vwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9RbEb6HG5=
+bbK9xy1mgGPedkfwfi0SDlyHQhVjyIjIUknXkTd8R7CqYIwPh3o-2FS0VTaj7u-2FbrK3T89UHz=
+VKO4FOjmg6dfR5VNBspJEowax2VAB7f17qqWOY-2BVPL3GyspjwpdTpP0hCGrgFgXp-2FCyJ-2F=
+sb" title=3D"Essentials of GitHub Copilot">Essentials of GitHub Copilot</a>=
+ to see how AI can streamline your workflow. By pairing a recognized certif=
+ication with advanced AI coding skills, you=E2=80=99ll be on track to build=
+ great projects=E2=80=94and stand out when it=E2=80=99s time to apply for y=
+our next opportunity!</div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.2.1.1.1.=
+1.1.1.1.1.1.2.1">
+    <tbody>
+      <tr>
+        <td style=3D"padding:30px 0px 30px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.4.5" data-m=
+c-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:40px; text-align:=
+inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conten=
+t"><div><h1 style=3D"text-align: inherit"><span style=3D"font-size: 30px">C=
+ode with AI Hackathon (Microsoft D&amp;I and Code; Without Barriers)</span>=
+</h1><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 18px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,2">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"193" style=3D"wi=
+dth:193px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"kCxeKZiAb9gvQj2HF6a4gk.7">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:8px 0px 8px 0=
+px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=3Du001.bO=
+3G-2FaeMIVe5lSdMnGODo3lpafVv1f-2ByI11xmCVJJeqzo0iE01BA3GAKKHZ-2FgGtPrmSb_1h=
+5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG8=
+8odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvj=
+rYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2=
+BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2F=
+gmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj=
+1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h=
+-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NP=
+aRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7i=
+bRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLb=
+uuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNu=
+GS0F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFp=
+pgOwM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9S9Qc29va1naG0TC70w79oJ=
+jo5iT7W1leiKFSwnZgx8tpikto3n2KEV-2BdeY9JjOFZn65JoLky19ZEQjCXUNXoqGuNz1o33PS=
+81PXQFMiHsoA9V8-2FCNbPhUWoq2hZkDB6xnE4lNmcTMiLg0USixHeD-2FW"><img class=3D"=
+max-width" border=3D"0" style=3D"display:block; color:#000000; text-decorat=
+ion:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-wid=
+th:100% !important; width:100%; height:auto !important;" width=3D"193" alt=
+=3D"https://msit.events.teams.microsoft.com/event/e9cc0f8e-d768-48f9-8e4a-2=
+a8f90b78267@72f988bf-86f1-41af-91ab-2d7cd011db47" data-proportionally-const=
+rained=3D"true" data-responsive=3D"true" src=3D"http://cdn.mcauto-images-pr=
+oduction.sendgrid.net/cc8ddcf649afa5e0/f4f83389-bc73-49f8-a61b-7f15c403cefe=
+/2048x2048.jpg"></a></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"386" style=3D"width:386px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"462d2c59-21bc-421d-b276-fc214c320ef2.4" data-mc-module-version=3D"=
+2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 18px 0px; line-height:22px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit"><span sty=
+le=3D"font-family: &quot;lucida sans unicode&quot;, &quot;lucida grande&quo=
+t;, sans-serif"><strong>March 8, 2025</strong></span><span style=3D"font-fa=
+mily: &quot;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-seri=
+f">=E2=80=94mark your calendars for the </span><a href=3D"https://u46701922=
+.ct.sendgrid.net/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo6TuZoMvM2YP4QOh=
+myp33NgRqK1yqWcf9kzkj2UHPmzCIpQ82Fg9N6Mr1zw6STs8hbOFtlWyXEEeSfdKtfa4hCQiiyR=
+t5y0faLhRkEj-2Bi6KLT67CiTrC-2BMVsPb-2Bc1CKtGLYxXNd1OD9EAPadalq80-2FWu8Mb4l1=
+yd6x1g8w2JPn3T7Zhq_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD6=
+1b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH=
+0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnX=
+ta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr=
+-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8=
+XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyea=
+hupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4cz=
+D263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZ=
+S9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do=
+0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU=
+-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadf=
+CdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9T=
+otcOa8U0UHjesmAlJ9cxISOAUcfaUn4W7ID1ujl5fOz6st8HEQOBsGFjB3kMl4v7-2F-2BaTQOt=
+VKQVpzNwOTDUbWBfhSrfkzTB2yprexcy2NtjAu3wVPl5qx6G1nFLSJpH3rrIyOhVk-2Bv-2FbyR=
+11VwXVF"><span style=3D"font-family: &quot;lucida sans unicode&quot;, &quot=
+;lucida grande&quot;, sans-serif">Code with AI Virtual Hackathon</span></a>=
+<span style=3D"font-family: &quot;lucida sans unicode&quot;, &quot;lucida g=
+rande&quot;, sans-serif">, aimed at empowering </span><span style=3D"font-f=
+amily: &quot;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-ser=
+if"><strong>female university students</strong></span><span style=3D"font-f=
+amily: &quot;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-ser=
+if"> across the Asia-Pacific region. Hosted by Microsoft D&amp;I, this even=
+t combines a quick intro to GitHub and DevOps, an expert Q&amp;A on careers=
+ in tech, a guided coding session featuring </span><span style=3D"font-fami=
+ly: &quot;lucida sans unicode&quot;, &quot;lucida grande&quot;, sans-serif"=
+><strong>GitHub Copilot</strong></span><span style=3D"font-family: &quot;lu=
+cida sans unicode&quot;, &quot;lucida grande&quot;, sans-serif">, and a </s=
+pan><span style=3D"font-family: &quot;lucida sans unicode&quot;, &quot;luci=
+da grande&quot;, sans-serif"><strong>Fastest Coder Challenge</strong></span=
+><span style=3D"font-family: &quot;lucida sans unicode&quot;, &quot;lucida =
+grande&quot;, sans-serif">. Reserve your spot, hone your AI skills, and mee=
+t fellow female innovators.</span></div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+module" data-role=3D"module-button" data-type=3D"button" role=3D"module" st=
+yle=3D"table-layout:fixed;" width=3D"100%" data-muid=3D"c4725462-42a7-424c-=
+a2d0-415938860b9a.4">
+      <tbody>
+        <tr>
+          <td align=3D"center" bgcolor=3D"" class=3D"outer-td" style=3D"pad=
+ding:0px 0px 0px 0px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"wrapper-mobile" style=3D"text-align:center;">
+              <tbody>
+                <tr>
+                <td align=3D"center" bgcolor=3D"#333333" class=3D"inner-td"=
+ style=3D"border-radius:6px; font-size:16px; text-align:center; background-=
+color:inherit;">
+                  <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=
+=3Du001.bO3G-2FaeMIVe5lSdMnGODo6TuZoMvM2YP4QOhmyp33NgRqK1yqWcf9kzkj2UHPmzCI=
+pQ82Fg9N6Mr1zw6STs8hbOFtlWyXEEeSfdKtfa4hCQiiyRt5y0faLhRkEj-2Bi6KLT67CiTrC-2=
+BMVsPb-2Bc1CKtGLYxXNd1OD9EAPadalq80-2FWu8Mb4l1yd6x1g8w2JPn3TGkxL_1h5T79IcqJ=
+Tdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQ=
+qVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe=
+1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1Q=
+GWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbw=
+ItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7V=
+xHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9=
+pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-=
+2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2Fn=
+SvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8=
+qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K94=
+5E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217=
+-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9RD3UQvlpYyqrLjOXr72B2pRnpnR-2F=
+arZidZmhZSHAf3Qj3o7H-2B3cG0EejJLEZ2dnzPuqWQyCwtHchcaaRPpYvOuLMS8Hl5KJ1VxEVZ=
+tV6C9kRcwcnR2goYsb1nEMXNUQ-2BXPmebpg1BaFb1lpydEtj7u" style=3D"background-co=
+lor:#333333; border:1px solid #333333; border-color:#333333; border-radius:=
+6px; border-width:1px; color:#ffffff; display:inline-block; font-size:14px;=
+ font-weight:normal; letter-spacing:0px; line-height:normal; padding:12px 1=
+8px 12px 18px; text-align:center; text-decoration:none; border-style:solid;=
+ font-family:lucida sans unicode,lucida grande,sans-serif;" target=3D"_blan=
+k">Event details & registration</a>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.2.1.1.1.=
+1.1.1.1.1.1.2.2">
+    <tbody>
+      <tr>
+        <td style=3D"padding:30px 0px 30px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.4" data-mc-=
+module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:40px; text-align:=
+inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conten=
+t"><div><h1 style=3D"text-align: inherit"><span style=3D"font-size: 30px">F=
+ree Learning Opportunities with Exercism&nbsp;</span></h1><div></div></div>=
+</td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 18px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,2">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"193" style=3D"wi=
+dth:193px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"kCxeKZiAb9gvQj2HF6a4gk">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:8px 0px 8px 0=
+px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=3Du001.bO=
+3G-2FaeMIVe5lSdMnGODo-2BviNB4ovirxS2JwDpLUu6c-3DRbbj_1h5T79IcqJTdevtx-2B4hc=
+gZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc=
+-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lG=
+YjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3=
+FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4=
+N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F=
+5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2Beg=
+eWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2Kp=
+YkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46Ct=
+tFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2F=
+Oihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7T=
+hiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbq=
+HwxHwounqlAXt0tTE-2B1soLwr-2BGro9QVctf-2FRfz3MZELkBiVi0Mr6IT1bbSwfAwF98qOyy=
+y5jduvMoOCP3RIWJUse0p9Ok55IzRNGziB0NFoMdD3f67HKXdBZtUi5d1WiNh7aMXa4nwblLKtp=
+XF9m-2BWYrp8k-2Fsgjdv3Of-2FYG-2BbQXApPBPXoG"><img class=3D"max-width" borde=
+r=3D"0" style=3D"display:block; color:#000000; text-decoration:none; font-f=
+amily:Helvetica, arial, sans-serif; font-size:16px; max-width:75% !importan=
+t; width:75%; height:auto !important;" width=3D"145" alt=3D"https://exercis=
+m.org/" data-proportionally-constrained=3D"true" data-responsive=3D"true" s=
+rc=3D"http://cdn.mcauto-images-production.sendgrid.net/cc8ddcf649afa5e0/842=
+a100b-6fda-4aff-9a57-1086ad76e8ae/150x127.png"></a></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"386" style=3D"width:386px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"462d2c59-21bc-421d-b276-fc214c320ef2" data-mc-module-version=3D"20=
+19-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 18px 0px; line-height:22px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit">Whether y=
+ou=E2=80=99re a beginner or a seasoned coder, <a href=3D"https://u46701922.=
+ct.sendgrid.net/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo-2BviNB4ovirxS2J=
+wDpLUu6c-3DW_D1_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2=
+sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2=
+BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4=
+SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2B=
+LW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGH=
+dTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahup=
+M1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD26=
+3LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9f=
+QqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9=
+STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2B=
+itX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdk=
+AyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9SsGh=
+JWF8YOblJOuZTGceQKr39KQH0ZAjGcFvL3gjgSuIMunRmMK1gff1OAzgZw29nJk0P-2Fve4O8Cm=
+HobgdGP8PMJJpAK15uVjPBB8CfuF-2FnDV-2FJdbFaZiIJAF3HHLcbdqG2eRp-2B19qBV4V98ap=
+-2B0ER" title=3D"Exercism">Exercism</a> offers <strong>free, self-paced cod=
+ing practice</strong> across more than 60 programming languages=E2=80=94fro=
+m Python and JavaScript to Rust and beyond. With a supportive community, pe=
+rsonalized mentoring, and an <strong>open source foundation</strong>, it=E2=
+=80=99s a great way to build real skills and get feedback on your code. Rea=
+dy to take your knowledge further?</div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+module" data-role=3D"module-button" data-type=3D"button" role=3D"module" st=
+yle=3D"table-layout:fixed;" width=3D"100%" data-muid=3D"c4725462-42a7-424c-=
+a2d0-415938860b9a">
+      <tbody>
+        <tr>
+          <td align=3D"center" bgcolor=3D"" class=3D"outer-td" style=3D"pad=
+ding:0px 0px 0px 0px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"wrapper-mobile" style=3D"text-align:center;">
+              <tbody>
+                <tr>
+                <td align=3D"center" bgcolor=3D"#333333" class=3D"inner-td"=
+ style=3D"border-radius:6px; font-size:16px; text-align:center; background-=
+color:inherit;">
+                  <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=
+=3Du001.bO3G-2FaeMIVe5lSdMnGODo-2BviNB4ovirxS2JwDpLUu6c-3DlT_4_1h5T79IcqJTd=
+evtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqV=
+CyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S=
+6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGW=
+mSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwIt=
+R5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxH=
+d07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz=
+2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F=
+1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSv=
+CThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn=
+8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E=
+3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2=
+FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9SfbnEixzz-2FWxfpdQrKYwJ09GbEGhgJ=
+kF-2FtqEfQmiKmnfzQiviCqFUGDN1ZQi1vkz72-2BA1VQuy002vNcxrqmJOD0YEOkiIH9bLBYGh=
+wlZrpdygV8Surn1jU7ucGH29lj6oA0mWmZP3Uw06LETCcW27C" style=3D"background-colo=
+r:#333333; border:1px solid #333333; border-color:#333333; border-radius:6p=
+x; border-width:1px; color:#ffffff; display:inline-block; font-size:14px; f=
+ont-weight:normal; letter-spacing:0px; line-height:normal; padding:12px 18p=
+x 12px 18px; text-align:center; text-decoration:none; border-style:solid; f=
+ont-family:lucida sans unicode,lucida grande,sans-serif;" target=3D"_blank"=
+>Start learning now!</a>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.2.1.1.1.=
+1.1.1.1.1.1.2">
+    <tbody>
+      <tr>
+        <td style=3D"padding:30px 0px 30px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.4.1" data-m=
+c-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:40px; text-align:=
+inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conten=
+t"><div><h1 style=3D"text-align: inherit"><span style=3D"font-size: 30px">B=
+uild a Strong First Impression with Your GitHub Profile</span></h1><div></d=
+iv></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 18px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,2">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"193" style=3D"wi=
+dth:193px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"kCxeKZiAb9gvQj2HF6a4gk.3">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:8px 0px 8px 0=
+px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=3Du001.bO=
+3G-2FaeMIVe5lSdMnGODo-2BIP0Hk8jpoZy6OGb4rP-2Fji0kj35jFQNsSvN6jpsKUvvGjDucOi=
+PJ6e-2BpX5tmRW0nw-3D-3DEgzE_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N=
+2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcso=
+hv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FH=
+FcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgC=
+T-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXx=
+WglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UO=
+pwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2=
+FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8=
+LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoA=
+qGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfi=
+nAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKq=
+XmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLw=
+r-2BGro9RJAaA-2BMZ3W6bflVbf9h0fAAA6EnihJTj1AzE3ot-2FdhwwjpdeVbb-2FClYPcxEX7=
+vBtNQJsxnPAqkzXcu2H6BADtREKfxLOtS-2Fgouc7nf58OnpbvcORGPB6ex3K-2FGOt5NDrzgNR=
+7z1UXd5dTtVTbw-2FN61"><img class=3D"max-width" border=3D"0" style=3D"displa=
+y:block; color:#000000; text-decoration:none; font-family:Helvetica, arial,=
+ sans-serif; font-size:16px; max-width:100% !important; width:100%; height:=
+auto !important;" width=3D"193" alt=3D"" data-proportionally-constrained=3D=
+"true" data-responsive=3D"true" src=3D"http://cdn.mcauto-images-production.=
+sendgrid.net/cc8ddcf649afa5e0/7882a2c7-60e3-411e-9c34-0ac73b295b64/4013x239=
+6.jpg"></a></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"386" style=3D"width:386px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"2gjEy5YSMagv7KDgDsG7Dw.3" data-mc-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 18px 0px; line-height:22px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit">Your GitH=
+ub profile can do more than store code=E2=80=94it can show the world what y=
+ou=E2=80=99re capable of. If you=E2=80=99re aiming for internships, intervi=
+ews, or new collaborations, having a clear, engaging profile matters. Check=
+ out <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=3Du001.bO3G-=
+2FaeMIVe5lSdMnGODo-2BIP0Hk8jpoZy6OGb4rP-2Fji0kj35jFQNsSvN6jpsKUvvGjDucOiPJ6=
+e-2BpX5tmRW0nw-3D-3DfbnU_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9=
+QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2=
+wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcP=
+QQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2=
+FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWgl=
+DReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwC=
+A0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2Fra=
+bKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8=
+z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGI=
+a663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe=
+13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmd=
+ZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2=
+BGro9SHPRfJ6z2wJhJ2GR2TI-2Fu94RRN-2BhBgvZ-2FZqAOQ-2BMxZrmu860S6bYVzlFQXiG-2=
+BPCj6WarFDiuPh9J5wyAWxM0Kg3hltc6OEYXrimPw1XvmdcX-2FXTBige2U8Tzt0VqKlhAJyVFJ=
+JIC-2BMPvYZtV4mMAAZ" title=3D"this discussion">this discussion</a> to learn=
+ how to highlight your projects, organize your repositories, and make a gre=
+at first impression=E2=80=94no flashy r=C3=A9sum=C3=A9 needed!</div><div></=
+div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+module" data-role=3D"module-button" data-type=3D"button" role=3D"module" st=
+yle=3D"table-layout:fixed;" width=3D"100%" data-muid=3D"f9037894-0a65-4468-=
+b54e-9a97fa03b5ce">
+      <tbody>
+        <tr>
+          <td align=3D"center" bgcolor=3D"" class=3D"outer-td" style=3D"pad=
+ding:0px 0px 0px 0px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"wrapper-mobile" style=3D"text-align:center;">
+              <tbody>
+                <tr>
+                <td align=3D"center" bgcolor=3D"#333333" class=3D"inner-td"=
+ style=3D"border-radius:6px; font-size:16px; text-align:center; background-=
+color:inherit;">
+                  <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=
+=3Du001.bO3G-2FaeMIVe5lSdMnGODo-2BIP0Hk8jpoZy6OGb4rP-2Fji0kj35jFQNsSvN6jpsK=
+UvvGjDucOiPJ6e-2BpX5tmRW0nw-3D-3DHJFT_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvX=
+zXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7U=
+a7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ=
+-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtx=
+mM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXI=
+t4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Bl=
+g-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1=
+-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSk=
+CdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuS=
+Rck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2=
+lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa73kf=
+rK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlAXt0t=
+TE-2B1soLwr-2BGro9TludWV5BEgwvyEElpqaSfAtNiVNFJy4EWl9gzZGGddY-2BsxhmDflRAg3=
+0pF0iJ3CCwWLfNKIxEs8GZtaoUcEx8nDtoy2DiSrRIfhpX4dT44umoVg3xI-2BTbVaUf5JRZuKD=
+2amsgZG8clOFqtTskXN4af" style=3D"background-color:#333333; border:1px solid=
+ #333333; border-color:#333333; border-radius:6px; border-width:1px; displa=
+y:inline-block; font-size:14px; font-weight:normal; letter-spacing:0px; lin=
+e-height:normal; padding:12px 18px 12px 18px; text-align:center; text-decor=
+ation:none; border-style:solid; font-family:lucida sans unicode,lucida gran=
+de,sans-serif; color:#ffffff;" target=3D"_blank">Join the discussion</a>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.2.1.1.1.=
+1.1.1.1.1.1.1">
+    <tbody>
+      <tr>
+        <td style=3D"padding:30px 0px 30px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.4.2" data-m=
+c-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:40px; text-align:=
+inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conten=
+t"><div><h1 style=3D"text-align: inherit"><span style=3D"font-size: 30px">Y=
+ou should know: GitHub for Nonprofits has exclusive offers&nbsp;</span></h1=
+><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 18px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,2">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"193" style=3D"wi=
+dth:193px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"kCxeKZiAb9gvQj2HF6a4gk.4">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:8px 0px 8px 0=
+px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=3Du001.bO=
+3G-2FaeMIVe5lSdMnGODo3-2FQ6ALJoZReZPpMLK6cEoUS-2BfEmAML-2Bnn9DgOVRa-2B3wI6m=
+IdWw5XSYjcpvqH-2BLUf2lhmVvCehnW-2FOIXEmm49vQ-3DEgnW_1h5T79IcqJTdevtx-2B4hcg=
+ZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-=
+2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGY=
+jOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3F=
+pkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N=
+8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5=
+zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2Bege=
+WZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpY=
+kvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46Ctt=
+FGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FO=
+ihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7Th=
+iGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqH=
+wxHwounqlAXt0tTE-2B1soLwr-2BGro9QCN5Ev3ewRTmvuKnonV408Udg2-2FQBZ-2BwjovEyvu=
+dR0RJ8c4sy5LztOtxn-2B96VK4335g9CqEQ7oIjrGCbLh6CGuKZvZOtPPxIqGKhbaKuTOO7mFQ2=
+VwjjdSeAH-2BUxomWk395EZ0Kh-2FJ71wbvvmxoWUt"><img class=3D"max-width" border=
+=3D"0" style=3D"display:block; color:#000000; text-decoration:none; font-fa=
+mily:Helvetica, arial, sans-serif; font-size:16px; max-width:100% !importan=
+t; width:100%; height:auto !important;" width=3D"193" alt=3D"" data-proport=
+ionally-constrained=3D"true" data-responsive=3D"true" src=3D"http://cdn.mca=
+uto-images-production.sendgrid.net/cc8ddcf649afa5e0/d6374dd8-7dc5-485e-9475=
+-879260027019/392x248.gif"></a></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"386" style=3D"width:386px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"462d2c59-21bc-421d-b276-fc214c320ef2.1" data-mc-module-version=3D"=
+2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 18px 0px; line-height:22px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit">GitHub fo=
+r Nonprofits enables organizations to leverage technology to drive forward =
+their missions and <strong>accelerate human progress</strong>. Verified non=
+profits get access to a free GitHub Team plan or 25% off the GitHub Enterpr=
+ise cloud plan. Do you work with any nonprofit organizations that could ben=
+efit from this exclusive offer?</div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+module" data-role=3D"module-button" data-type=3D"button" role=3D"module" st=
+yle=3D"table-layout:fixed;" width=3D"100%" data-muid=3D"c4725462-42a7-424c-=
+a2d0-415938860b9a.1">
+      <tbody>
+        <tr>
+          <td align=3D"center" bgcolor=3D"" class=3D"outer-td" style=3D"pad=
+ding:0px 0px 0px 0px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"wrapper-mobile" style=3D"text-align:center;">
+              <tbody>
+                <tr>
+                <td align=3D"center" bgcolor=3D"#333333" class=3D"inner-td"=
+ style=3D"border-radius:6px; font-size:16px; text-align:center; background-=
+color:inherit;">
+                  <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=
+=3Du001.bO3G-2FaeMIVe5lSdMnGODo8gNoh5SZh-2B5cnM6IyAzGAI7-2BTDTsuKJLdCZ5uZbD=
+17cCC0GcF6xWJVlzkNuQ-2FVaaw-3D-3DteYN_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvX=
+zXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7U=
+a7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ=
+-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtx=
+mM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXI=
+t4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Bl=
+g-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1=
+-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSk=
+CdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuS=
+Rck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2=
+lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa73kf=
+rK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlAXt0t=
+TE-2B1soLwr-2BGro9SeYhYEOyHxNwB8y5A-2FswVWlM3yM8msYTDxGIypJdjChrtVMH2bKY5J1=
+rqKzLfNnaWbyCVL3YWBzFk48g9-2BcrCgUNsB-2FsSnqNWnyixjTyf-2Bq8q6P3zfTWnbeTx6VB=
+pvwJgL9ZQP-2BU2YfEg4s2ZBAfg3" style=3D"background-color:#333333; border:1px=
+ solid #333333; border-color:#333333; border-radius:6px; border-width:1px; =
+color:#ffffff; display:inline-block; font-size:14px; font-weight:normal; le=
+tter-spacing:0px; line-height:normal; padding:12px 18px 12px 18px; text-ali=
+gn:center; text-decoration:none; border-style:solid;" target=3D"_blank">Che=
+ck out GitHub for Nonprofits</a>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.2.1.1.1.=
+1.1.1.1.1.1.1.1">
+    <tbody>
+      <tr>
+        <td style=3D"padding:30px 0px 30px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.4.3" data-m=
+c-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:40px; text-align:=
+inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conten=
+t"><div><h1 style=3D"text-align: inherit"><span style=3D"font-size: 30px">O=
+RCA=E2=80=99s Catalytic Awards Program</span></h1><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 18px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,2">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"193" style=3D"wi=
+dth:193px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"kCxeKZiAb9gvQj2HF6a4gk.5">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:8px 0px 8px 0=
+px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=3Du001.bO=
+3G-2FaeMIVe5lSdMnGODo3lpafVv1f-2ByI11xmCVJJeqzo0iE01BA3GAKKHZ-2FgGtP3ibc_1h=
+5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG8=
+8odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvj=
+rYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2=
+BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2F=
+gmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj=
+1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h=
+-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NP=
+aRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7i=
+bRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLb=
+uuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNu=
+GS0F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFp=
+pgOwM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9TxcRXw86nPXLNo6sUuyUXm=
+mnDst-2BVFBDxhMqmh0S9qIjjj8ohFlgMVdY4-2B20vs3vbQnBM39n696II2g6LW8v457CT4UG1=
+cRqIF74jXb-2F2SxthB-2BRzZEUgpDYgynakCT8M0CtMhaDmUXhiC4ihz0vLM"><img class=
+=3D"max-width" border=3D"0" style=3D"display:block; color:#000000; text-dec=
+oration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max=
+-width:90% !important; width:90%; height:auto !important;" width=3D"174" al=
+t=3D"" data-proportionally-constrained=3D"true" data-responsive=3D"true" sr=
+c=3D"http://cdn.mcauto-images-production.sendgrid.net/cc8ddcf649afa5e0/1726=
+3718-fe18-4730-9c47-d4d64352f6f8/1500x1500.png"></a></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"386" style=3D"width:386px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"462d2c59-21bc-421d-b276-fc214c320ef2.2" data-mc-module-version=3D"=
+2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 18px 0px; line-height:22px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit">Looking f=
+or funding to support open scholarship and inclusivity? The <strong>Catalyt=
+ic Awards Program</strong> from ORCA (backed by the Chan Zuckerberg Initiat=
+ive) offers grants of up to <strong>$15,000</strong> to U.S.-based non-R1, =
+minority-serving, or otherwise under-resourced institutions. Proposals can =
+focus on community engagement, capacity-building, or networking=E2=80=94any=
+thing that advances equity and openness in research. The <strong>deadline t=
+o apply is March 15, 2025</strong>.</div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+module" data-role=3D"module-button" data-type=3D"button" role=3D"module" st=
+yle=3D"table-layout:fixed;" width=3D"100%" data-muid=3D"c4725462-42a7-424c-=
+a2d0-415938860b9a.2">
+      <tbody>
+        <tr>
+          <td align=3D"center" bgcolor=3D"" class=3D"outer-td" style=3D"pad=
+ding:0px 0px 0px 0px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"wrapper-mobile" style=3D"text-align:center;">
+              <tbody>
+                <tr>
+                <td align=3D"center" bgcolor=3D"#333333" class=3D"inner-td"=
+ style=3D"border-radius:6px; font-size:16px; text-align:center; background-=
+color:inherit;">
+                  <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=
+=3Du001.bO3G-2FaeMIVe5lSdMnGODo6oiv-2BDkObstvr-2B-2BaFoKGnjLVMCHU13Z9iEMBrM=
+Ouc5DopJU_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2nc=
+WEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8=
+zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMN=
+A7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2=
+BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88=
+TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVl=
+kPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMgIC=
+AQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8=
+MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TR=
+tsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o5=
+72yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVw=
+xuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9Tx2D5bXCHV=
+SEKijB3jV5csiuNTYfm5S383AgCoRmHe1auzGWuspL4kEQEMdaInB3-2BftrNUz4jZintyQNKvG=
+M9m9I6IHPhcsp3djDuiXUP5yfWCBFTpWLjjNlJFmzHdCb8hFH80OGRiSVjToFZ0cbGx" style=
+=3D"background-color:#333333; border:1px solid #333333; border-color:#33333=
+3; border-radius:6px; border-width:1px; color:#ffffff; display:inline-block=
+; font-size:14px; font-weight:normal; letter-spacing:0px; line-height:norma=
+l; padding:12px 18px 12px 18px; text-align:center; text-decoration:none; bo=
+rder-style:solid;" target=3D"_blank">Learn more and apply</a>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.2.1.1.1.=
+1.1.1.1.1.1.1.1.1">
+    <tbody>
+      <tr>
+        <td style=3D"padding:30px 0px 30px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.4.4" data-m=
+c-module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 0px 0px; line-height:40px; text-align:=
+inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conten=
+t"><div><h1 style=3D"text-align: inherit"><span style=3D"font-size: 30px">B=
+eyond the Classroom: Inspiring Careers in Open Source</span></h1><div></div=
+></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" role=3D"module" data-type=3D"columns" style=3D"paddi=
+ng:0px 0px 18px 0px;" bgcolor=3D"#FFFFFF" data-distribution=3D"1,2">
+    <tbody>
+      <tr role=3D"module-content">
+        <td height=3D"100%" valign=3D"top"><table width=3D"193" style=3D"wi=
+dth:193px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px =
+0px;" cellpadding=3D"0" cellspacing=3D"0" align=3D"left" border=3D"0" bgcol=
+or=3D"" class=3D"column column-0">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"wrapper" role=3D"module" data-type=3D"image" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"kCxeKZiAb9gvQj2HF6a4gk.6">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:8px 0px 8px 0=
+px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=3Du001.bO=
+3G-2FaeMIVe5lSdMnGODo3lpafVv1f-2ByI11xmCVJJeqzo0iE01BA3GAKKHZ-2FgGtPhjz2_1h=
+5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG8=
+8odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvj=
+rYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2=
+BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2F=
+gmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj=
+1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h=
+-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NP=
+aRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7i=
+bRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLb=
+uuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNu=
+GS0F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFp=
+pgOwM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9Q0f8HXdtMJ5qhP8Ykh-2F0=
+Le5IP5V-2B7PgEnqyf5RNOvRlt133dBMyuswxjETzb0WR33vLoFh1i0qaIQMKyo1APbmjDHYCRY=
+W-2BxMDDc-2B5beErjRM5Hq9ViQNWYGBnYyF5rDPih17oSlLthTSOHvwrSaUf"><img class=
+=3D"max-width" border=3D"0" style=3D"display:block; color:#000000; text-dec=
+oration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max=
+-width:100% !important; width:100%; height:auto !important;" width=3D"193" =
+alt=3D"https://dev.to/gh-campus-experts/beyond-the-classroom-inspiring-care=
+ers-in-open-source-56ld" data-proportionally-constrained=3D"true" data-resp=
+onsive=3D"true" src=3D"http://cdn.mcauto-images-production.sendgrid.net/cc8=
+ddcf649afa5e0/e7877f2e-0507-4765-86f3-6ce92213c00f/1424x1424.png"></a></td>
+      </tr>
+    </tbody>
+  </table></td>
+        </tr>
+      </tbody>
+    </table><table width=3D"386" style=3D"width:386px; border-spacing:0; bo=
+rder-collapse:collapse; margin:0px 0px 0px 10px;" cellpadding=3D"0" cellspa=
+cing=3D"0" align=3D"left" border=3D"0" bgcolor=3D"" class=3D"column column-=
+1">
+      <tbody>
+        <tr>
+          <td style=3D"padding:0px;margin:0px;border-spacing:0;"><table cla=
+ss=3D"module" role=3D"module" data-type=3D"text" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-layout: fixed;" data=
+-muid=3D"462d2c59-21bc-421d-b276-fc214c320ef2.3" data-mc-module-version=3D"=
+2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 18px 0px; line-height:22px; text-align=
+:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-conte=
+nt"><div><div style=3D"font-family: inherit; text-align: inherit">Ever wond=
+er where open source can take you after graduation? Discover success storie=
+s and real-world tips in this <a href=3D"https://u46701922.ct.sendgrid.net/=
+ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo-2B2uAfO8-2FQ0l8otiBA-2BHORsSmIi=
+v8s-2BDoJQ24cb0iLandW766FJucFVVJGLxQCO3-2BEuhn73uaZfCOoloP22g1LPoV8RNi76VSI=
+1IYk5DLfWwp480-2FlLY6cg8kx6o7psOzw-3D-3DfQYU_1h5T79IcqJTdevtx-2B4hcgZLLMQ4g=
+DdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1Irtg=
+fgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBG=
+XJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp=
+67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwa=
+CSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt=
+55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSU=
+intu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS=
+8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSF=
+GF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZ=
+pYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV6=
+6sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwoun=
+qlAXt0tTE-2B1soLwr-2BGro9Sy1oKVccBCKC2-2BszLSEKOUfyeK6cnLGNr0QAHLtgaQqSFj2N=
+50Z890saYPKQYgTsnr7l8PEfo-2B-2Ber4GUkHvusBD5-2BB5y7IsH8HVgWXDh-2FPOGJGb3sUH=
+h2Jux78aR-2FFvKs0Jx4x2datUJWVYgUrhqvf" title=3D"Dev.to feature">Dev.to feat=
+ure</a>, showcasing <strong>how student developers turn classroom lessons i=
+nto meaningful community contributions</strong>. It=E2=80=99s an inspiring =
+read for anyone looking to grow their skills and broaden their career horiz=
+ons in tech.</div>
+<div style=3D"font-family: inherit; text-align: inherit">And remember, we a=
+re always keen to work closely with <a href=3D"https://u46701922.ct.sendgri=
+d.net/ls/click?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo4Ud11AqjVhW6cg4WddgB2pVteN=
+7EL6-2B6PB-2FKI3JNvzDO-2BOnR1v4G4r0fdDfaidJuw-3D-3DMYQ3_1h5T79IcqJTdevtx-2B=
+4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYg=
+oSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa1=
+6lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-=
+2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M=
+3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH=
+-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2=
+BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu=
+2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF4=
+6CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep=
+-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMz=
+b7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZR=
+zbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9QNGxVV6Gk2KC5CLJrERtTZ-2FiSw-2BtrQKKRCW=
+qEAnGEE0p1e9yTQ2uhaOWKJrvbIEgFP-2FCCyOBk-2BoMyB7WEN-2BbSxAv6ktoS4Q51x-2FaP-=
+2BbYXIb0a8fE02bD8tIZAvzjafzYsvH-2F220c6JpApMeRu4cgLs">GitHub Campus Experts=
+</a>!</div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=3D"=
+module" data-role=3D"module-button" data-type=3D"button" role=3D"module" st=
+yle=3D"table-layout:fixed;" width=3D"100%" data-muid=3D"c4725462-42a7-424c-=
+a2d0-415938860b9a.3">
+      <tbody>
+        <tr>
+          <td align=3D"center" bgcolor=3D"" class=3D"outer-td" style=3D"pad=
+ding:0px 0px 0px 0px;">
+            <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" class=
+=3D"wrapper-mobile" style=3D"text-align:center;">
+              <tbody>
+                <tr>
+                <td align=3D"center" bgcolor=3D"#333333" class=3D"inner-td"=
+ style=3D"border-radius:6px; font-size:16px; text-align:center; background-=
+color:inherit;">
+                  <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=
+=3Du001.bO3G-2FaeMIVe5lSdMnGODo-2B2uAfO8-2FQ0l8otiBA-2BHORsSmIiv8s-2BDoJQ24=
+cb0iLandW766FJucFVVJGLxQCO3-2BEuhn73uaZfCOoloP22g1LPoV8RNi76VSI1IYk5DLfWwp4=
+80-2FlLY6cg8kx6o7psOzw-3D-3D2z7F_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7T=
+TNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHe=
+ekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDm=
+B-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZR=
+KjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUm=
+djmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BR=
+jR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQ=
+SVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK0=
+5NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79=
+lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNY=
+e5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2B=
+NmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B=
+1soLwr-2BGro9RmXTFK-2F9oMnTibMGg5J8oEbv2Ryn9S0ndePIF6lObYjKqLXKi5acbWhuKFL3=
+LBktlivof95Cl1JhbGoVgdyeKAVKGM37EpBWJlVajuhvkAceh12EgdSch8NJoPlp4MyyFhxvcRx=
+768HpRnbCLdkneO" style=3D"background-color:#333333; border:1px solid #33333=
+3; border-color:#333333; border-radius:6px; border-width:1px; color:#ffffff=
+; display:inline-block; font-size:14px; font-weight:normal; letter-spacing:=
+0px; line-height:normal; padding:12px 18px 12px 18px; text-align:center; te=
+xt-decoration:none; border-style:solid;" target=3D"_blank">Read inspiring s=
+tories!</a>
+                </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table></td>
+        </tr>
+      </tbody>
+    </table></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"f7e54444-e47c-4a2d-9274-fe252349141a.2.1.1.1.=
+1.1.1.1.1.1.1.1.1.1">
+    <tbody>
+      <tr>
+        <td style=3D"padding:30px 0px 30px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"text" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"47c5bcbf-6065-449b-ada3-eb1bec674895.2" data-mc-=
+module-version=3D"2019-10-22">
+    <tbody>
+      <tr>
+        <td style=3D"padding:18px 0px 18px 0px; line-height:22px; text-alig=
+n:inherit;" height=3D"100%" valign=3D"top" bgcolor=3D"" role=3D"module-cont=
+ent"><div><div style=3D"font-family: inherit; text-align: inherit">There=E2=
+=80=99s no shortage of ways to learn, grow, and make your mark=E2=80=94whet=
+her that=E2=80=99s through an AI hackathon, a new certification, or an open=
+-source project. We can=E2=80=99t wait to see how you use these resources t=
+o sharpen your skills and give back to the community. Until next time, keep=
+ coding and keep exploring!</div><div></div></div></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"divider" bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table=
+-layout: fixed;" data-muid=3D"611cd385-f974-4442-a92d-9dce716582b8">
+    <tbody>
+      <tr>
+        <td style=3D"padding:30px 0px 30px 0px;" role=3D"module-content" he=
+ight=3D"100%" valign=3D"top" bgcolor=3D"">
+          <table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" align=3D"=
+center" width=3D"100%" height=3D"1px" style=3D"line-height:1px; font-size:1=
+px;">
+            <tbody>
+              <tr>
+                <td style=3D"padding:0px 0px 1px 0px;" bgcolor=3D"#eff2f5">=
+</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"spacer" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"55433372-b8dc-4f66-aac6-9d02a28ac1c4">
+    <tbody>
+      <tr>
+        <td style=3D"padding:0px 0px 20px 0px;" role=3D"module-content" bgc=
+olor=3D"">
+        </td>
+      </tr>
+    </tbody>
+  </table><table class=3D"wrapper" role=3D"module" data-type=3D"image" bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-=
+layout: fixed;" data-muid=3D"49c77fba-d979-45f9-b773-ead0d05c72c9">
+    <tbody>
+      <tr>
+        <td style=3D"font-size:6px; line-height:10px; padding:0px 0px 0px 0=
+px;" valign=3D"top" align=3D"center">
+         =20
+        <a href=3D"https://u46701922.ct.sendgrid.net/ls/click?upn=3Du001.bO=
+3G-2FaeMIVe5lSdMnGODo4Ud11AqjVhW6cg4WddgB2qsGjLhgfZy3MaBCWeS5iPNJ65S_1h5T79=
+IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odW=
+KRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDT=
+Z0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2Bvgb=
+QM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIs=
+FQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKf=
+zc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BG=
+y9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3=
+ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp=
+-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxb=
+M9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F=
+3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOw=
+M217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9RSDi-2FmQdXHqus0v6hHcZ0i3m=
+oDwDDqEPjiIEf-2FP66CpXaKRUPKRCUnCMK8GRRTCOida02nt97BrFEtVFvL04K7sJWLpwyWr0W=
+YEV0lMt0GUGU3tKUBDoCmS2xUUga6HgxhodOr3err28wH8GqwJ9Fg"><img class=3D"max-wi=
+dth" border=3D"0" style=3D"display:block; color:#000000; text-decoration:no=
+ne; font-family:Helvetica, arial, sans-serif; font-size:16px;" width=3D"200=
+" alt=3D"github education" data-proportionally-constrained=3D"true" data-re=
+sponsive=3D"false" src=3D"http://cdn.mcauto-images-production.sendgrid.net/=
+cc8ddcf649afa5e0/ad1feb25-2213-4776-bf3a-23dd08dbdac0/1100x204.png" height=
+=3D"37"></a></td>
+      </tr>
+    </tbody>
+  </table><table class=3D"module" role=3D"module" data-type=3D"code" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"table-la=
+yout: fixed;" data-muid=3D"e45b7ca1-f75a-4c6e-b499-369602af5f88">
+    <tbody>
+      <tr>
+        <td height=3D"100%" valign=3D"top" role=3D"module-content"><p style=
+=3D"color: #999999; font-size: 1rem; margin: 2em 0 2em 0; text-align: cente=
+r;" class=3D"social-links">
+    <a class=3D"social-link" href=3D"https://u46701922.ct.sendgrid.net/ls/c=
+lick?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo4CwL8Dgg1QUklEBnHSTz8R3LMNKugae8Lgl2=
+0rNSNnC8BIZ1Ecsp2FtIiQYH9MgRQ-3D-3DQsbY_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTz=
+vXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU=
+7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQ=
+KJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVF=
+txmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSpms=
+XIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2=
+Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6=
+w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDm=
+SkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-2B=
+uSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYjKM=
+H2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa73=
+kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlAXt=
+0tTE-2B1soLwr-2BGro9Rh8IVif3UdWAXPvNQMqV7ycoj7W4tDdUQJm-2FQXFTJCGpnvr62FUgq=
+OM0tRgxqqV0QRTQL9gdmOUYDkt6Uh39neUZ1kSfd0rCMFqj6Q32mxyE-2F4wUBWuoTzGQyGXMxS=
+dfIjqkxonaCHiSDgu7CBTexC">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/cca08ffd-683d-4e75-868c-999a3df27c9e/300x=
+300.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D"2=
+4">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://u46701922.ct.sendgrid.net/ls/c=
+lick?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODozgoAQD6jwHlE9yz6w0v3-2FKBwgrTJU-2Btb=
+Bmk1-2B2b2R-2Bjoa8pM71iL6ikgBAAClFPvA-3D-3DSQoP_1h5T79IcqJTdevtx-2B4hcgZLLM=
+Q4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1I=
+rtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOul=
+ZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWM=
+JJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZv=
+HwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHc=
+Egt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1n=
+aSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-=
+2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUn=
+zSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-=
+2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvc=
+JV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHw=
+ounqlAXt0tTE-2B1soLwr-2BGro9S1xJExEJQPbOO7oncnYjdg5zN6IKSF5B-2BCJbCHE1S4KGZ=
+1FFRVmIbkfo5Ngo8KVQ6R69EZuOhybIXZHOYaSJxJOfgzKrG3lY1MPdnnm7Yn02Wv2qeuZSEzmf=
+h-2FidjhKtmMmHlrYMevKr73em-2FaLyyP">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/7fbfa4f4-c42c-4596-8208-887bf53f41aa/512x=
+512.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D"2=
+4">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://u46701922.ct.sendgrid.net/ls/c=
+lick?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo1KxRZG7NRfCjR-2FG0wTxt0HlI-2FvKJRfwd=
+CDHax9bwtgmWyIJWvaLpL65i1CNotlPJQ-3D-3DpDys_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gD=
+dpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1Irtgf=
+gEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGX=
+JLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp6=
+7GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaC=
+SpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt5=
+5F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUi=
+ntu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8=
+SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFG=
+F-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZp=
+YjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66=
+sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounq=
+lAXt0tTE-2B1soLwr-2BGro9QPgAZBCBAOXzNHVIVKc2QqPKfzhwcLdBmTYvAiyv62xzdjy2jvl=
+AhI1aZDVtmTusuRUumittDb6fbco23edH37hEHJRoiQlml-2F4VKwnJpEXUHdym0-2B2LoLRJl4=
+VGaJzkDl-2Fgy3J4isE7Mlju8Mu1Vh">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/199b126a-2e9f-49b6-8a32-cc5ac3562cef/153x=
+178.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D"2=
+4">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://u46701922.ct.sendgrid.net/ls/c=
+lick?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo7OMy-2FrgUl7LaVtJwyMhyqR5AnWnQFQo-2B=
+Ize2sJ-2Bb3W43Ldk_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61=
+b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0=
+-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXt=
+a4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-=
+2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8X=
+GHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeah=
+upM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD=
+263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS=
+9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0=
+c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-=
+2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfC=
+dkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9SK=
+xfQlsOhf7-2B66fmLfbZum7eJNVGGbhxAmIG6z-2BVS4tK1vNPVSCWqaIOZECH4ff8-2FPMkD-2=
+Fr72iJEObX3KuZjW4xjI2-2BrkUVjb208qzKVCJ7D0xV4LxvkxNYxEkUd-2Fv-2BXKMaJH4ObVb=
+yd4tziuzpVWZ">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/139d5afd-f635-4234-b6bd-cd44ff1d3d85/1184=
+x1184.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D=
+"24">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://u46701922.ct.sendgrid.net/ls/c=
+lick?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo2dVGx1b-2BEeSRYGdTRBAbKctIVR22mrkc3e=
+hURL4mbEFpr7Y26tGVfJNw5xoyaAKow-3D-3DlsFX_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdp=
+TzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgE=
+aU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJL=
+PQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67G=
+VFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSp=
+msXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F=
+-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUint=
+u6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SB=
+DmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-=
+2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYj=
+KMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa=
+73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlA=
+Xt0tTE-2B1soLwr-2BGro9TYj6yqSD75e9Sqci1zBmCli24AiJ4Xykd5NcbQHCjvVDNdv8L001Q=
+K9PmrZXpA3WURyLlMviz0qoHxA5WEtFxVg46l2jZXnzs2vE-2B6RGIh6WePam6-2Bh9uSftemET=
+G0QJbj65GdRvg-2Bplzz34FcphSZ">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/69dc9ddb-b05f-4371-bb0a-ff395594725a/2319=
+x2049.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D=
+"24">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://u46701922.ct.sendgrid.net/ls/c=
+lick?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo5kXsF-2BAY3pqNDPNf3FfJxAWN2WDKCotnbD=
+DLNWq9EpF1A-2B0xG-2FtooK9-2BbaH4r9wFQ-3D-3D_AmX_1h5T79IcqJTdevtx-2B4hcgZLLM=
+Q4gDdpTzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1I=
+rtgfgEaU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOul=
+ZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWM=
+JJp67GVFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZv=
+HwaCSpmsXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHc=
+Egt55F-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1n=
+aSUintu6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-=
+2BS8SBDmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUn=
+zSFGF-2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-=
+2BZpYjKMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvc=
+JV66sa73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHw=
+ounqlAXt0tTE-2B1soLwr-2BGro9RYGvkzk1HPod-2FFiTx37OaFDaanNh77R8c8xnWKga0j1B7=
+Cia-2FM-2BOVrXD91QBxJKciZe8ofdthbF-2F5reiZUero8oDASHn3-2BhKIZ4me-2FEsa4Fx3r=
+JeQO86XlP-2Fl14ANmJLZoJm08uDCL6IzUsE4DlufX">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/2fb6c833-4f48-4a08-beda-4cad2082a3ed/512x=
+512.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D"2=
+4">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://u46701922.ct.sendgrid.net/ls/c=
+lick?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo3-2FQ6ALJoZReZPpMLK6cEoUG2KBCa8E4ucx=
+jcmXFCYmk9lLyMyqioFLdmyTjj6xj7Q-3D-3DrmJ4_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdp=
+TzvXzXR7TTNJ6N2j9QRqVD61b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgE=
+aU7Ua7AHeekcsohv2wy3xsH0-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJL=
+PQKJ-2FDmB-2FHFcPQQLgnXta4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67G=
+VFtxmM0ZRKjtgCT-2FEMFIr-2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSp=
+msXIt4DUmdjmXxWglDReCG8XGHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F=
+-2Blg-2BRjR7UOpwCA0cyeahupM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUint=
+u6w1-2BmQSVp-2FrabKz4czD263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SB=
+DmSkCdzK05NxB8LN8z8xIEZS9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-=
+2BuSRck79lrDoAqGIa663Do0c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYj=
+KMH2lvYNYe5wfinAe13JcrU-2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa=
+73kfrK-2BNmnKqXmdZIzadfCdkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlA=
+Xt0tTE-2B1soLwr-2BGro9QQ6euFv-2BhMfYd1hhH0PNYBg-2FmH54FsiEzQesmyN4kaXua8zw8=
+bpc0RfR30qYs0D-2Bd7VyF3pO8QmX8PNfP7rXh9V-2FWpU7JQP-2FVC3620P5mmPwAko2p8-2BJ=
+ebfj-2BZZKdoK3opYyHUzN6yipUKHh7kwS6V">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/e2e3632e-d2ab-415a-a61d-072743569784/512x=
+512.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D"2=
+4">
+    </a>=20
+    <i style=3D"letter-spacing:10px;mso-font-width:-100%;display:inline-blo=
+ck;width:10px">=E2=80=8A</i>
+    <a class=3D"social-link" href=3D"https://u46701922.ct.sendgrid.net/ls/c=
+lick?upn=3Du001.bO3G-2FaeMIVe5lSdMnGODo2gvddZ8656ATSl5-2BTEB98YabS5KKljl5Yp=
+v-2Bi-2FJC05yhp8E_1h5T79IcqJTdevtx-2B4hcgZLLMQ4gDdpTzvXzXR7TTNJ6N2j9QRqVD61=
+b2sIG2ncWEiCZemMOoG88odWKRGQqVCyJwvYgoSc-2B1IrtgfgEaU7Ua7AHeekcsohv2wy3xsH0=
+-2BKT8v8zCe7eZPyLhvjrYDTZ0Fe1S6h96qa16lGYjOulZBGXJLPQKJ-2FDmB-2FHFcPQQLgnXt=
+a4SVnlMNA7ey0GbOt9-2BvgbQM1QGWmSS56z-2F3FpkWMJJp67GVFtxmM0ZRKjtgCT-2FEMFIr-=
+2BLW8L-2BURMxjRPE-2FgmIsFQbwItR5iXa8M3f4N8lZvHwaCSpmsXIt4DUmdjmXxWglDReCG8X=
+GHdTmJ88TSUln-2BlbAj1OKfzc7VxHd07tTqH-2F5zbHcEgt55F-2Blg-2BRjR7UOpwCA0cyeah=
+upM1MvVlkPbNRUsqLm5h-2BGy9z9pz2g-2B-2BegeWZ1naSUintu6w1-2BmQSVp-2FrabKz4czD=
+263LMgICAQ-2FwbS16NPaRB3ODQ-2F1Xo1gWu2KpYkvY-2BS8SBDmSkCdzK05NxB8LN8z8xIEZS=
+9fQqkqS8MhQ02gyQaa7ibRFp-2FnSvCThRKF46CttFGUnzSFGF-2BuSRck79lrDoAqGIa663Do0=
+c9STn8TRtsW-2FG-2FLbuuxbM9z8qn8X6ldep-2FOihw-2BZpYjKMH2lvYNYe5wfinAe13JcrU-=
+2BitX3o572yC78Li9sNuGS0F3K945E3LgosMzb7ThiGvcJV66sa73kfrK-2BNmnKqXmdZIzadfC=
+dkAyBrVwxuuid58-2FFppgOwM217-2FvMSeZRzbqHwxHwounqlAXt0tTE-2B1soLwr-2BGro9Td=
+-2B3nOC2zDRQaEJ3aVZZIvchEEZDvRwVEXRihG6yK1wYSlGA1nW-2Fmpib1g6m-2BqVEvOABjom=
+b0YYxngxSfs3y8V1GCj7uWPbQa-2FZ9UsTjkjgGj-2FZfsdEDf9yq8O4K2QO6wyDEfZaoblWBGf=
+uIjB2fj2">
+        <img alt=3D"" height=3D"24" src=3D"http://cdn.mcauto-images-product=
+ion.sendgrid.net/cc8ddcf649afa5e0/8681d38e-9b91-4930-ae9c-10afb1dd1e53/3000=
+x3000.png" style=3D"display: inline-block; margin: 0; padding: 0;" width=3D=
+"24">
+    </a>=20
+</p></td>
+      </tr>
+    </tbody>
+  </table><div data-role=3D"module-unsubscribe" class=3D"module" role=3D"mo=
+dule" data-type=3D"unsubscribe" style=3D"color:#444444; font-size:12px; lin=
+e-height:20px; padding:16px 16px 16px 16px; text-align:Center;" data-muid=
+=3D"4e838cf3-9892-4a6d-94d6-170e474d21e5"><div class=3D"Unsubscribe--addres=
+sLine"><p class=3D"Unsubscribe--senderName" style=3D"font-size:12px; line-h=
+eight:20px;">GitHub Education</p><p style=3D"font-size:12px; line-height:20=
+px;"><span class=3D"Unsubscribe--senderAddress">88 Colin P Kelly Jr</span>,=
+ <span class=3D"Unsubscribe--senderCity">San Francisco</span>, <span class=
+=3D"Unsubscribe--senderState">CA</span> <span class=3D"Unsubscribe--senderZ=
+ip">94107</span></p></div><p style=3D"font-size:12px; line-height:20px;"><a=
+ class=3D"Unsubscribe--unsubscribeLink" href=3D"https://u46701922.ct.sendgr=
+id.net/wf/unsubscribe?upn=3Du001.Ee8VvrA6tfmzNDWChM5C8SKvgqLD0rqjKbwLddWAmt=
+VHTRqjXrQXOxjrcLr6ABC1bf3-2BWaLHXRg6-2BvLiwRhG-2BaN0jkqZ1o-2FbIKclAPw3J9qtY=
+g4nGcqx-2FLwQGRuMBoSnBBFMvfUR7ouNbpHhUU8LdgfsZmfs7OVdKU3Ox-2BMJODBEWuX90tpW=
+y9By8cuIRYl6445mpST5r2gAmODGXZ9CIXShbjgBOVPb3hyZx4-2BieCf5tCeBS84OvGgnmUbvX=
+ERYBuuePi-2B-2FMlTIxVZ68t-2FJeRqe5R-2BayNXb-2BtIiJyP3t2hZWhQxmcPpT7sicuLfMn=
+d5AgAtkdV5dzqy4XnInxyvJkkQU6KvCFppP6aOIDyBdDbmLnE0z9kGTET19OV9UO4-2FYLmuo57=
+wDl0eY5PYQ0NANvQq5Vkd8R35Jxj6KiBJL6U56eJ3aDaL6s9yX8Wp1TrztLI7V4h5-2FLvB9zL7=
+3uA-2FJgCg8KaGyTkNIjqch9US7iMvCuf-2Bs4ywrp9peQW9bab3f6IMR35kvtWSNnBNivtVUTC=
+L5Q59gU-2FpiAZdcK7eZoJza4Ubdsq-2FQPqmZxene0btigok4C5snTrYjJckEpjXfuEaiT72xL=
+-2FNkB8ncm95YOjFiPAgoaGIkuQCSJOBSGXqqTxFH7h4-2BN03jUYzdtQRq-2BXUi2RQoxEQgzV=
+15qSoryYN2T-2Fy5yFG7odJTJYrN4HHUh0cz8FGPbMEQhNnqJdiVH6vP6dHg7Jl19QYgDbSgdo0=
+-2FV1yWn6IgRNQxBrVCih9h6f6VT9W6ooyAduyNsFSA38X0v0nqCkIf-2FEpM1AXc22-2FDqZaQ=
+6-2FCoaIZt1p0bZsFvPQtae77XQeCXk6lJlETQQOKtB3uBOSCC382rSNskFf-2Ba-2Bew0gd1I2=
+sqT-2F0p3WLg5dWSThA4AXJWnWhBVyksC6IE0lSxYFJtI5Xx-2FZ7upjqmj7aCWpqAG8Ht5IMLa=
+6HF" target=3D"_blank" style=3D"">Unsubscribe</a></p></div></td>
+                                      </tr>
+                                    </table>
+                                    <!--[if mso]>
+                                  </td>
+                                </tr>
+                              </table>
+                            </center>
+                            <![endif]-->
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </center>
+    <img src=3D"https://u46701922.ct.sendgrid.net/wf/open?upn=3Du001.Ee8Vvr=
+A6tfmzNDWChM5C8SKvgqLD0rqjKbwLddWAmtVHTRqjXrQXOxjrcLr6ABC1bf3-2BWaLHXRg6-2B=
+vLiwRhG-2BaN0jkqZ1o-2FbIKclAPw3J9qtYg4nGcqx-2FLwQGRuMBoSnBBFMvfUR7ouNbpHhUU=
+8LdgfsZmfs7OVdKU3Ox-2BMJODBEWuX90tpWy9By8cuIRYl6445mpST5r2gAmODGXZ9CIXShbjg=
+BOVPb3hyZx4-2BieCf5tCeBS84OvGgnmUbvXERYBuuePi-2B-2FMlTIxVZ68t-2FJeRqe5R-2Ba=
+yNXb-2BtIiJyP3t2hZWhQxmcPpT7sicuLfMnd5AgAtkdV5dzqy4XnInxyvJkkQU6KvCFppP6aOI=
+DyBdDbmLnE0z9kGTET19OV9UO4-2FYLmuo57wDl0eY5PYQ0NANvQq5Vkd8R35Jxj6KiBJL6U56e=
+J3aDaL6s9yX8Wp1TrztLI7V4h5-2FLvB9zL73uA-2FJgCg8KaGyTkNIjqch9US7iMvCuf-2Bs4y=
+wrp9peQW9bab3f6IMR35kvtWSNnBNivtVUTCL5Q59gU-2FpiAZdcK7eZoJza4Ubdsq-2FQPqmZx=
+ene0btigok4C5snTrYjJckEpjXfuEaiT72xL-2FNkB8ncm95YOjFiPAgoaGIkuQCSJOBSGXqqTx=
+FH7h4-2BN03jUYzdtQRq-2BXUi2RQoxEQgzV15qSoryYN2T-2Fy5yFG7odJTJYrN4HHUh0cz8FG=
+PbMEQhNnqJdiVH6vP6dHg7Jl19QYgDbSgdo0-2FV1yWn6IgRNQxBrVCih9h6f6VT9W6ooyAduyN=
+sFSA38X0v0nqCkIf-2FEpM1AXc22PR1CJFBkqynIu3sQKneqv4YGwcw8W16K9Dp2GGipR-2BA5c=
+GoikLpyJ3-2BCp0oj-2FPkn31SlTW6feaWX1HPYJLXeQ4hHgDlihlVvonngJtYzsKERx6xGgIFP=
+StmjR-2BqfG0tdkm41fGeF8IuF-2BVAkq2xpQ" alt=3D"" width=3D"1" height=3D"1" bo=
+rder=3D"0" style=3D"height:1px !important;width:1px !important;border-width=
+:0 !important;margin-top:0 !important;margin-bottom:0 !important;margin-rig=
+ht:0 !important;margin-left:0 !important;padding-top:0 !important;padding-b=
+ottom:0 !important;padding-right:0 !important;padding-left:0 !important;"/>=
+</body>
+  </html>
+--406692294ab0d5b991aa3e3aee37472fd4011918a2c94a4518be31a4699f--

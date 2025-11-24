@@ -1,0 +1,191 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a40c:0:b0:30c:2dd2:a8c1 with SMTP id p12csp950297ljn;
+        Fri, 9 May 2025 08:01:26 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF3XAz5fGzSo87yM0LE8A6Degf9Cg+G6sXv8YlmcAVIVsl4OxnD4lJb7Wg32xrF/x8Mmhkc
+X-Received: by 2002:a17:907:75ce:b0:abf:6d80:ae1 with SMTP id a640c23a62f3a-ad218e086edmr112469666b.2.1746802885608;
+        Fri, 09 May 2025 08:01:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1746802885; cv=none;
+        d=google.com; s=arc-20240605;
+        b=VJ+58IFPhQLbEUK0EskDhci4ia5j+hLdkFFF+2xfV7nqeoxc3/xzdeIO+QUEItVK37
+         +1TKkH3dEfMK67vIQUYP5abDXQgUOu+dbkvATaG1fBeyqsTfnKmjAuXCj1cYrFeUzKXt
+         /DimS9wT7i0uHZoVwl0zfv3wkABI3IPLS/CjSLGw1Kuwz3iMvJoWzeFbuRFhwNKp7Lwd
+         B/W/zteAYLpgC9OFtz4nTibtXZvFfWBPfrqSOIya0EXL8MstdC+6fceeFA5ghYzzXsPp
+         4+onsbVLqC1EwCfEhQlB60Qv1R4EYo13z2ydE2XT5BAP62mIPqQHrYHf0E6AXP81b5zO
+         zTCg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=TjmPif/8hBCo6VHSj3oX1mrMld11ewQK0sCY53+pexs=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=iL/Ov4C97Lkh+LJNdlvK6ccQZTy8Dtjne5bi1OasPllachibuUcjSkWWDiu+NpmEhI
+         9sVTBsy5vjJdWW1Z+Qd2XOmVYt7SdItbzy6QyfKm6NkUMrKdKkom59oHAtA76zEq2wkW
+         mB5fM9+Zn9pD4wKg/iM2efY+CLYkcso2zRb3Q0gnaOrS5n4gZjFtR9h2eqwt+vEpmwAa
+         9aBmP5NrHXFgV/eFYG4D2hRAHODChecnoVthV4wXnF98+dF/wo5xjbKfBqtNKKE82x5Z
+         eQ/j1+U4z/RGykqoLJ+pgyhsJv7rVVCHIPBdt6NDsN6b6b0wwACnNDCMSBJZtO5l31pe
+         SFFQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ad225a2c28esi76782766b.109.2025.05.09.08.01.25
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 09 May 2025 08:01:25 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 549F1Of8090446
+	for <luca.barra@edu.unito.it>; Fri, 9 May 2025 17:01:24 +0200
+Date: Fri, 9 May 2025 17:01:24 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Andriani Agnese (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: =?utf-8?B?U2lzSW50MjQyNTogSW50ZWxsaWdlbnphIEFydGlmaWNpYWxlIGluIG9uY29s?=
+ =?utf-8?B?b2dpYTogbmFzY2UgRVNBQywgbGEgcHJpbWEgc29jaWV0w6Agc2NpZW50aWY=?=
+ =?utf-8?B?aWNhIGV1cm9wZWEgZGVkaWNhdGEgYWxs4oCZQUkgY29udHJvIGlsIGNhbmNy?=
+ =?utf-8?B?bw==?=
+Message-ID: <5e97a2fdbd91f84000df9e5dbfa2c1cdd17e5d947d2d4f5fcce908796494c5d4@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Segnalazioni" <moodleforum7706@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7706
+X-Course-Id: 3092
+X-Course-Name: Sistemi Intelligenti
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=7706&d=44547>
+Thread-Topic: =?utf-8?B?U2lzSW50MjQyNTogSW50ZWxsaWdlbnphIEFydGlmaWNpYWxlIGluIG9uY29s?=
+ =?utf-8?B?b2dpYTogbmFzY2UgRVNBQywgbGEgcHJpbWEgc29jaWV0w6Agc2NpZW50aWY=?=
+ =?utf-8?B?aWNhIGV1cm9wZWEgZGVkaWNhdGEgYWxs4oCZQUkgY29udHJvIGlsIGNhbmNy?=
+ =?utf-8?B?bw==?=
+Thread-Index: 5e97a2fdbd91f84000df9e5dbfa2
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_IU1TxAUQGjVGcxAAf27jzGu9V0FCWHpqGyWAiFlOXM"
+
+This is a multi-part message in MIME format.
+
+--b1_IU1TxAUQGjVGcxAAf27jzGu9V0FCWHpqGyWAiFlOXM
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SisInt2425 -> Forums -> Segnalazioni -> Intelligenza Artificiale in
+oncologia: nasce ESAC, la prima societ=C3=A0 scientifica europea dedicata
+all=E2=80=99AI contro il cancro
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44547#p72277
+Intelligenza Artificiale in oncologia: nasce ESAC, la prima societ=C3=A0
+scientifica europea dedicata all=E2=80=99AI contro il cancro
+by Andriani Agnese - Friday, 9 May 2025, 4:45 PM
+---------------------------------------------------------------------
+Fonte:
+https://mondosanita.it/intelligenza-artificiale-in-oncologia-nasce-esac-la-=
+prima-societa-scientifica-europea-dedicata-allai-contro-il-cancro/
+
+TIPOLOGIA DI COMUNICAZIONE:
+Articolo
+
+TONO DELLA COMUNICAZIONE:
+Informativo e divulgativo
+
+BREVE SUNTO:
+L=E2=80=99articolo annuncia la nascita di ESAC (European Scientific Associa=
+tion
+for Cancer and AI), la prima societ=C3=A0 scientifica europea dedicata
+esclusivamente all=E2=80=99intelligenza artificiale applicata all=E2=80=
+=99oncologia.
+L=E2=80=99obiettivo =C3=A8 creare una rete di esperti e istituzioni per pro=
+muovere
+ricerca, formazione e applicazioni concrete dell=E2=80=99AI nella lotta con=
+tro il
+cancro.
+
+MOTIVO PER CUI MI HA COLPITO:
+Mi ha colpito perch=C3=A9 mostra come l=E2=80=99IA stia uscendo dai laborat=
+ori per
+entrare concretamente nella pratica clinica, in un ambito critico come
+l'oncologia, dove diagnosi precoci e terapie personalizzate possono fare la
+differenza tra la vita e la morte.
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SisInt2425.
+
+To reply click on this link:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D72277
+Unsubscribe from this forum:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706
+Unsubscribe from this discussion:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D=
+44547
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092
+
+--b1_IU1TxAUQGjVGcxAAf27jzGu9V0FCWHpqGyWAiFlOXM
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3092">SisInt2425</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3092">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+706">Segnalazioni</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44547">Intellige=
+nza Artificiale in oncologia: nasce ESAC, la prima societ=C3=A0 scientifica=
+ europea dedicata all=E2=80=99AI contro il cancro</a>=0A</div>=0A=0A<table =
+border=3D"0" cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A   =
+ <tr class=3D"header">=0A        <td width=3D"35" valign=3D"top" class=3D"p=
+icture left">=0A            <a href=3D"https://informatica.i-learn.unito.it=
+/user/view.php?id=3D29744&amp;course=3D3092" class=3D"d-inline-block aabtn"=
+><img src=3D"https://informatica.i-learn.unito.it/theme/image.php/_s/lambda=
+/core/1745224313/u/f2" class=3D"userpicture defaultuserpic" width=3D"35" he=
+ight=3D"35" alt=3D"" /></a>=0A        </td>=0A        <td class=3D"topic st=
+arter">=0A            <div class=3D"subject">=0A                Intelligenz=
+a Artificiale in oncologia: nasce ESAC, la prima societ=C3=A0 scientifica e=
+uropea dedicata all=E2=80=99AI contro il cancro=0A            </div>=0A    =
+        <div class=3D"author">=0A                by <a target=3D'_blank' hr=
+ef=3D'https://informatica.i-learn.unito.it/user/view.php?id=3D29744&course=
+=3D3092'>Andriani Agnese</a> - Friday, 9 May 2025, 4:45 PM=0A            </=
+div>=0A        </td>=0A    </tr>=0A    <tr>=0A        <td class=3D"left sid=
+e" valign=3D"top">=0A                &nbsp;=0A        </td>=0A        <td c=
+lass=3D"content">=0A            <p dir=3D"ltr" style=3D"text-align:left;"><=
+/p><table border=3D"0" cellpadding=3D"3" cellspacing=3D"0"><tbody><tr><td><=
+p><strong><br />Fonte:</strong></p>https://mondosanita.it/intelligenza-arti=
+ficiale-in-oncologia-nasce-esac-la-prima-societa-scientifica-europea-dedica=
+ta-allai-contro-il-cancro/<br /><p><br /></p><p><strong>Tipologia di comuni=
+cazione:</strong><br />Articolo</p><p><strong>Tono della comunicazione:</st=
+rong><br />Informativo e divulgativo</p><p><strong>Breve sunto:</strong><br=
+ />L=E2=80=99articolo annuncia la nascita di <span>ESAC (European Scientifi=
+c Association for Cancer and AI)</span>, la prima societ=C3=A0 scientifica =
+europea dedicata esclusivamente all=E2=80=99intelligenza artificiale applic=
+ata all=E2=80=99oncologia. L=E2=80=99obiettivo =C3=A8 creare una rete di es=
+perti e istituzioni per promuovere ricerca, formazione e applicazioni concr=
+ete dell=E2=80=99AI nella lotta contro il cancro.</p><p><strong>Motivo per =
+cui mi ha colpito:</strong><br />Mi ha colpito perch=C3=A9 mostra come l=
+=E2=80=99IA stia uscendo dai laboratori per entrare concretamente nella pra=
+tica clinica, in un ambito critico come l'oncologia, dove diagnosi precoci =
+e terapie personalizzate possono fare la differenza tra la vita e la morte.=
+</p></td></tr></tbody></table><br /><p></p>=0A=0A            <div class=3D"=
+commands">=0A                    <a target=3D"_blank" href=3D"https://infor=
+matica.i-learn.unito.it/mod/forum/post.php?reply=3D72277">=0A              =
+          Reply=0A                    </a>=0A            </div>=0A=0A      =
+      <div class=3D"link">=0A                <a target=3D"_blank" href=3D"h=
+ttps://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44547#p72277"=
+>=0A                    See this post in context=0A                </a>=0A =
+           </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div=
+ class=3D"mdl-align unsubscribelink">=0A    <a href=3D"https://informatica.=
+i-learn.unito.it/mod/forum/subscribe.php?id=3D7706">Unsubscribe from this f=
+orum</a>&nbsp;=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/fo=
+rum/subscribe.php?id=3D7706&d=3D44547">Unsubscribe from this discussion</a>=
+&nbsp;=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/forum/inde=
+x.php?id=3D3092">Change your forum digest preferences</a>=0A</div>
+
+--b1_IU1TxAUQGjVGcxAAf27jzGu9V0FCWHpqGyWAiFlOXM--
+

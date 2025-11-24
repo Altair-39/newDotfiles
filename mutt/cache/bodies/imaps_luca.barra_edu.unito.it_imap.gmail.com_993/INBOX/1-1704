@@ -1,0 +1,126 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:8e91:0:b0:2e2:75a4:21a3 with SMTP id z17csp4767578ljk;
+        Tue, 21 May 2024 01:30:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCVLcw7R315NDz/PQ0Cg/zDK1MBKsnVF2D9lJt+yPTpnsoT+FV5I8Os1es4hboYX1FqpPtGsbglZBh/2YGB7S/FdhVjM6o5pAg==
+X-Google-Smtp-Source: AGHT+IHC8a0yVCOcNQtE//SvNXJkhFmpkPm19+aqDr2xTqCWH0Nf0s/7YIfPaRQ4Zrm26rofZEQs
+X-Received: by 2002:a5d:4412:0:b0:34d:9b4d:2a43 with SMTP id ffacd0b85a97d-354b8a70083mr6807962f8f.0.1716280211761;
+        Tue, 21 May 2024 01:30:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1716280211; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Y9kW0DfaeAxA0uzxUhjJR4WAHqXaZw/81jq4XkTL1vk8DUw6Z9yp4VwG4KVCB+q9mn
+         EutAx/Qc5A9Yr+4acCi/eckydmCLVpEGoGvKw/bPtNede1g6FBlmZAFa4ZT7IUKqqH0U
+         37SH6BITp+p4aGbEzIcTILvfmOrcW1gioFJSooGWfOeZT2v/M3s8MlThplUX24QcYo5o
+         AlWS6A8Z5PDTAyyQcmtPtlTvXYYFNKQuiSiBUMKx4/J5KWiBsg2Xnn5DsTq3JCwcuL+v
+         V0ssHNOkOXJIw9n8m2xGWVylzt3s4NKUMarGjCzoXw5PSHMcwYwrMwisrGnl45pQoAup
+         Z6WQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date;
+        bh=RSAcTrE8i0vWXjg+xpxF/2jWNecC9nyD1dIbTNrJ1OA=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=fvb+pjWYcqgCPd7TyLZfAoE14cO5yyb6JwN3vZqa5+f7hZyyz9LqFDO2yQDo/gVRRn
+         fzLTIeZXNb4mKAyshxshDFjuC8soDUDRku/yC2GRZH+O32hVfhlVIB8StkshWGMolKOR
+         I6lsEJvjpO/d5L1UC1CEINeSxW3GIJqUSI3lpkf4ZSvUhlOqdEEpgP98JuY+hYdiDd+F
+         vi+GzobHYUidtNIRUfTNXG+aSjHMUSSWMW4By3mVzLw0Z2lJkwmtif5yU9BsIsmRLuky
+         tRaJUeTvjvJN2AZsXl+TPqmTwRJItOl1ImeYs7hQXUJxbclvitiCGHPeH5EB4yTKquLP
+         drVw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-48936edaf28si2839118173.51.2024.05.21.01.29.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 May 2024 01:30:11 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id DBD0229AF7;
+	Tue, 21 May 2024 10:29:39 +0200 (CEST)
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id PyxWQ5d0mwvk; Tue, 21 May 2024 10:29:39 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 59E94294AE;
+	Tue, 21 May 2024 10:29:39 +0200 (CEST)
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id 5iSCaCtZwX7G; Tue, 21 May 2024 10:29:39 +0200 (CEST)
+Received: from esse3appjboss23.private.cineca.it (esse3appjboss23.cineca.it [130.186.5.144])
+	by smtp4.cineca.it (Postfix) with ESMTP id C24762767F;
+	Tue, 21 May 2024 10:29:36 +0200 (CEST)
+Received: from esse3appjboss23.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss23.private.cineca.it (Postfix) with ESMTP id AFA3F207;
+	Tue, 21 May 2024 10:29:34 +0200 (CEST)
+Date: Tue, 21 May 2024 10:29:34 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <60583523.81.1716280174711@esse3appjboss23.private.cineca.it>
+Subject: Corsi di Studio in INFORMATICA - Terzo modulo del corso
+ Exploring
+ Generative AI a e con OGR Torino 28 maggio, 4 - 11 - 18 giugno
+ ore 18
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+Carissime e carissimi,
+
+ringraziando quante e quanti hanno partecipato venerd=C3=AC all'evento di
+presentazione del Magazine Intelligenza Artificiale MagIA
+<https://www.magia.news>, ho il piacere di annunciarvi che dopo il
+successo del primo e del secondo ciclo di lezioni siamo pronti al lancio
+del 3=C2=B0 modulo del corso *Exploring **Generative AI*.
+Gli incontri si terranno, come di consueto, di marted=C3=AC dalle 18:00 all=
+e
+20:00 a partire dal 28 maggio al 18 giugno, presso le OGR Torino,
+Speakers' Corner, Corso Castelfidardo, 22, Torino.
+
+Anche in questa edizione il corso vede la partecipazione di
+professionisti ed esperti che metteranno a disposizione del pubblico le
+loro conoscenze ed esperienze per delineare le potenzialit=C3=A0, le
+applicazioni e i retroscena dell=E2=80=99intelligenza artificiale generativ=
+a e
+dei cambiamenti che sta apportando al nostro modo di comunicare,
+imparare, conoscere.
+
+Queste le date, i temi e gli ospiti dei 4 incontri:
+
+*/ 28 maggio/ - From Foundational Models to Enterprise AI Applications*
+con Opening Future, progetto congiunto di TIM Enterprise, Google Cloud e
+Intesa Sanpaolo
+
+*/ /**/04 giugno - /**The power of diffusion models*
+con Rita Cucchiara dell'Universit=C3=A0 di Modena e Reggio Emilia - UNIMORE
+
+*/ /**/11 giugno - /**The challenges and opportunities of large scale AI*
+con Andrea Pilzer di NVIDIA, leader mondiale nel computing con
+l=E2=80=99intelligenza artificiale
+
+*/ /**/18 giugno - /**Generative AI in the future of gaming
+*con Valerio Di Donato, 34BigThings, primo studio di sviluppo
+videogiochi in Italia e Pierre Vinson, PLAION, primo publisher e
+distributore crossmediale in Europa
+
+Il corso, organizzato dal gruppo di ricerca Social Computing del
+Dipartimento di Informatica dell=E2=80=99Universit=C3=A0 degli Studi di Tor=
+ino e
+dalle OGR Torino, nell' ambito del progetto Circular Health EDIH, =C3=A8
+rivolto alle e agli studenti universitari, AI developer, ML engineer,
+dipendenti di imprese e PA e potenziali clienti di CHEDIH, e sar=C3=A0
+possibile seguirlo sia in presenza che online. _L'iscrizione =C3=A8
+obbligatoria: _
+
+   * form iscrizione per studenti <https://bit.ly/4bgSBVp>
+   * form iscrizione per aziende e PA <https://bit.ly/4ajg0nY>
+
+
+Ci vediamo il 28 maggio alle OGR!
+A presto,
+
+Guido Boella
+guido.boella@unito.it

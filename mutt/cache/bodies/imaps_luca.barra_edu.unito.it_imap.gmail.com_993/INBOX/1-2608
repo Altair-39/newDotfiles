@@ -1,0 +1,151 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:9dd8:0:b0:32a:7f76:203e with SMTP id x24csp335867ljj;
+        Thu, 29 May 2025 08:06:35 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFY2OlCP5Una02EIiAWzbOFseHFimIyE+v715l+mJ9esqxwiO9LQlva9TBgTYeFoD+dtblL
+X-Received: by 2002:a5d:64e7:0:b0:3a4:eeeb:7e79 with SMTP id ffacd0b85a97d-3a4eeeb8195mr1104457f8f.12.1748531195382;
+        Thu, 29 May 2025 08:06:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1748531195; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ji3LDpI+5RuUFTatYVXWZvKB3E7omc2tzZ4sjLEP4YX5J9D+9N+1D9WSbzMArxsAbp
+         cKf5w3hyQqQLl8dPZ/gAK++H1Rhwk6a8glLy+9afWb+UuUmxrLI+4o57n3DQEZDscheI
+         MojAc/JBGAF5eFrMLITDzMHrPTnda6ONj3h7P1ALb79rX43KJyWwDZ8/Ly+C9CZ+hedg
+         w0ncwo2YsBs7G3TxkQbVJyw9dGAudMHq2vX6clg1CqUoIbXUjZI+aNBRUVZ7x1mfgJOm
+         5fvHGlloYnKxKBeA1JsPZVMZ2jm+7rSmIfD35pBz6tIhvBM+2evmzCyVMPeZewOAQGul
+         MgAA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=destinations:list-unsubscribe-post:list-unsubscribe:list-post
+         :list-archive:list-id:precedence:content-transfer-encoding
+         :mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=ffcsdDqxrb0uAr4C20FezPYmayL8n5Qe3fcME/GZNFc=;
+        fh=w1mWmd819LebMrI/E2KqX8WTt2XcerAErXX9vbcBOKg=;
+        b=DSCsa7/yP1cKOgenFSR/gR7IPlDdKrwZZ8qDb14y0Fa6TycJTTTzA6bvmIXulpfmI/
+         JU/EnOl74HFdJ+sL018u8xYkYyRLIDHBbfrR+tVK8ScZ6cLQSGfQCQ7J7VFIDeY5F2pF
+         nq8mb2dWeydT5hpEgFsBX0fAM1d096Y/tDu57zR2ZYmIHvjxdu6ZUnRNQJyEVy05q+Hu
+         IknKos7xofM3qrmCZw/Yz3A52H34w/E+NkGk1gr/bqg7MPnReK6GdC5OnD1hqhGSY33x
+         fUGXdV6CY7QAlHaJFsiIkg6uPYBmWkRlXzN+5wOV1EHWaq50dtKiVAAbLMyKfkbhbtEQ
+         P4sA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@github.com header.s=pf2023 header.b=GJ5sq+r4;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.208 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Return-Path: <noreply@github.com>
+Received: from out-25.smtp.github.com (out-25.smtp.github.com. [192.30.252.208])
+        by mx.google.com with ESMTPS id d75a77b69052e-4a4358807fcsi16857001cf.106.2025.05.29.08.06.34
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 May 2025 08:06:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@github.com designates 192.30.252.208 as permitted sender) client-ip=192.30.252.208;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@github.com header.s=pf2023 header.b=GJ5sq+r4;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.208 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Received: from github.com (hubbernetes-node-81d7be6.ash1-iad.github.net [10.56.143.43])
+	by smtp.github.com (Postfix) with ESMTPA id D5D181413B0
+	for <luca.barra@edu.unito.it>; Thu, 29 May 2025 08:06:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	s=pf2023; t=1748531194;
+	bh=ffcsdDqxrb0uAr4C20FezPYmayL8n5Qe3fcME/GZNFc=;
+	h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:List-ID:
+	 List-Archive:List-Post:List-Unsubscribe:List-Unsubscribe-Post:
+	 From;
+	b=GJ5sq+r4gb7c4/zWev+ByEfyT5QWWa1LS94dpwbGObTjedtVgZJjvJTq5zhXzoczP
+	 kwxbxzz1ApprsP/WErTydIMFHRNFDtcNIgfQsvY1plJ5cWzRwLQRK4SNC8JW4O6yCL
+	 eieJgkXXHP4PA5RRe0MiHONsf7nZ9zIiToM7d8Mo=
+Date: Thu, 29 May 2025 08:06:34 -0700
+From: Federico Torrielli <notifications@github.com>
+Reply-To: tsi-unito/guida_degli_studenti_di <reply+BAG3TZL2A4VIDQCXYE5MUTGGIRMPVEVBNHHLRGBO7Y@reply.github.com>
+To: tsi-unito/guida_degli_studenti_di <guida_degli_studenti_di@noreply.github.com>
+Cc: Altair <luca.barra@edu.unito.it>, 
+ Author <author@noreply.github.com>
+Message-ID: <tsi-unito/guida_degli_studenti_di/pull/134/review/2878627464@github.com>
+In-Reply-To: <tsi-unito/guida_degli_studenti_di/pull/134@github.com>
+References: <tsi-unito/guida_degli_studenti_di/pull/134@github.com>
+Subject: Re: [tsi-unito/guida_degli_studenti_di] add TLN - Di Caro notes (PR
+ #134)
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_683877fad2cbb_1011008253886";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Precedence: list
+X-GitHub-Sender: federicotorrielli
+X-GitHub-Recipient: Altair-39
+X-GitHub-Reason: author
+List-ID: tsi-unito/guida_degli_studenti_di
+ <guida_degli_studenti_di.tsi-unito.github.com>
+List-Archive: https://github.com/tsi-unito/guida_degli_studenti_di
+List-Post: <mailto:reply+BAG3TZL2A4VIDQCXYE5MUTGGIRMPVEVBNHHLRGBO7Y@reply.github.com>
+List-Unsubscribe: <mailto:unsub+BAG3TZL2A4VIDQCXYE5MUTGGIRMPVEVBNHHLRGBO7Y@reply.github.com>,
+ <https://github.com/notifications/unsubscribe/one-click/BAG3TZLEE34JHBT2V7647533A4O7VANCNFSM6AAAAAB6CQUSGY>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-Auto-Response-Suppress: All
+destinations: luca.barra@edu.unito.it
+X-GitHub-Recipient-Address: luca.barra@edu.unito.it
+
+
+----==_mimepart_683877fad2cbb_1011008253886
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+@federicotorrielli approved this pull request.
+
+Ottimi appunti :)
+
+
+
+-- 
+Reply to this email directly or view it on GitHub:
+https://github.com/tsi-unito/guida_degli_studenti_di/pull/134#pullrequestreview-2878627464
+You are receiving this because you authored the thread.
+
+Message ID: <tsi-unito/guida_degli_studenti_di/pull/134/review/2878627464@github.com>
+----==_mimepart_683877fad2cbb_1011008253886
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p></p>
+<p><b>@federicotorrielli</b> approved this pull request.</p>
+
+<p dir=3D"auto">Ottimi appunti :)</p>
+
+<p style=3D"font-size:small;-webkit-text-size-adjust:none;color:#666;">&m=
+dash;<br />Reply to this email directly, <a href=3D"https://github.com/ts=
+i-unito/guida_degli_studenti_di/pull/134#pullrequestreview-2878627464">vi=
+ew it on GitHub</a>, or <a href=3D"https://github.com/notifications/unsub=
+scribe-auth/BAG3TZNXC4VGB4MHWCCQFVD3A4O7VAVCNFSM6AAAAAB6CQUSG2VHI2DSMVQWI=
+X3LMV43YUDVNRWFEZLROVSXG5CSMV3GSZLXHMZDQNZYGYZDONBWGQ">unsubscribe</a>.<b=
+r />You are receiving this because you authored the thread.<img src=3D"ht=
+tps://github.com/notifications/beacon/BAG3TZO3K7PPWRTAF2OE6IL3A4O7VA5CNFS=
+M6AAAAAB6CQUSG2WGG33NNVSW45C7OR4XAZNRKB2WY3CSMVYXKZLTORJGK5TJMV32UY3PNVWW=
+K3TUL5UWJTVLSRPIQ.gif" height=3D"1" width=3D"1" alt=3D"" /><span style=3D=
+"color: transparent; font-size: 0; display: none; visibility: hidden; ove=
+rflow: hidden; opacity: 0; width: 0; height: 0; max-width: 0; max-height:=
+ 0; mso-hide: all">Message ID: <span>&lt;tsi-unito/guida_degli_studenti_d=
+i/pull/134/review/2878627464</span><span>@</span><span>github</span><span=
+>.</span><span>com&gt;</span></span></p>
+<script type=3D"application/ld+json">[
+{
+"@context": "http://schema.org",
+"@type": "EmailMessage",
+"potentialAction": {
+"@type": "ViewAction",
+"target": "https://github.com/tsi-unito/guida_degli_studenti_di/pull/134#=
+pullrequestreview-2878627464",
+"url": "https://github.com/tsi-unito/guida_degli_studenti_di/pull/134#pul=
+lrequestreview-2878627464",
+"name": "View Pull Request"
+},
+"description": "View this Pull Request on GitHub",
+"publisher": {
+"@type": "Organization",
+"name": "GitHub",
+"url": "https://github.com"
+}
+}
+]</script>=
+
+----==_mimepart_683877fad2cbb_1011008253886--

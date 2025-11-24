@@ -1,0 +1,240 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a54a:0:b0:328:ea4:e135 with SMTP id e10csp933371ljn;
+        Sun, 18 May 2025 04:21:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGwJ03MYimsbvse/jfXprcAiMHgVKRDtHduugGWIDhwy63Wmg504oYYIHi++rqCbIB0ck1p
+X-Received: by 2002:a05:6402:42c1:b0:5ee:497:5221 with SMTP id 4fb4d7f45d1cf-600936241c3mr2768496a12.11.1747567273337;
+        Sun, 18 May 2025 04:21:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1747567273; cv=none;
+        d=google.com; s=arc-20240605;
+        b=H5dHCa2+4OjTm1RIrHw34tftAnvrQTenFto8Pjipd+fI7xDo2GumK5ZnjUn4STeILU
+         PUERvIixAyo8A3u5+glVqLxQHrMq4D1ZHst9XlayDWjzEWWEtQj4EXjv4J7ohpamt4aR
+         0VW4z263jeSuVj6FmLg8Lcr5k1yyMq0r4J6eobC0DUWL0KJXRT29C3vZ8/qzQ0oEZl3y
+         c9IQi+DCSW7PWOsVsEfcUihnAfagoEl2ltVkq7HXxHLZ7DYIzBuNrw6SmVWNsNjnUHES
+         FbACjS58a1RP3T4rYVuZmY9OqPCw/bRUB1454CaSiy+JjPfQWjJ+4IrzcXRkk7M7CddP
+         dOrQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=vEAQDY8nCfGMAyImyo8MzlPGIXVIhAKbw3Q+rNt3INY=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=YzTy/7zPcPHKjd2m1LqSztmKR/2t4uy9LvbPj4MCEskOYbnHkldpZDRwB1gLJ6MV9x
+         M+Ksif/ezm3UPGVZV9CAGzC8NwUHKMJxW+plPsIPKoerCna+lW6A5iNEv9BsAjDdeBts
+         wb5mU5j53nLevfrRXDExAIPLSboaIBE/zeCd3vTKfxcByeEuFwNmjRnSKtyhQaVA6Oir
+         pb0Jb0fY2y4hND2ivQR9fKBHLG+DtP50YgBgOPuJx2A/if4F6g9TCOOQDHmWXwzgiJnK
+         1qSHngqIEbA7bOPEU66Kz7aNHac38dmA6a/+y0exz289CWw6Uz90R0DS+kcQPSvcsjmw
+         zpLQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-6005ac29563si4349686a12.255.2025.05.18.04.21.13
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 18 May 2025 04:21:13 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 54IBLCQ1428202
+	for <luca.barra@edu.unito.it>; Sun, 18 May 2025 13:21:12 +0200
+Date: Sun, 18 May 2025 13:21:12 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Gambadoro Giuseppe (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: SisInt2425: The Influence of an AI-Driven Personalized Nutrition Program on the Human Gut Microbiome and Its Health Implications
+Message-ID: <eea260376710c4c575c2c464be8ca428fd97451878cb9927b0bf4d4566a7da79@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Segnalazioni" <moodleforum7706@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7706
+X-Course-Id: 3092
+X-Course-Name: Sistemi Intelligenti
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=7706&d=44687>
+Thread-Topic: SisInt2425: The Influence of an AI-Driven Personalized Nutrition Program on the Human Gut Microbiome and Its Health Implications
+Thread-Index: eea260376710c4c575c2c464be8c
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_e6orY5joZ5eDAUzTYQ7YuBIh50yzY5NqSC6PTXRT3mo"
+
+This is a multi-part message in MIME format.
+
+--b1_e6orY5joZ5eDAUzTYQ7YuBIh50yzY5NqSC6PTXRT3mo
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SisInt2425 -> Forums -> Segnalazioni -> The Influence of an AI-Driven
+Personalized Nutrition Program on the Human Gut Microbiome and Its Health
+Implications
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44687#p72445
+The Influence of an AI-Driven Personalized Nutrition Program on the Human
+Gut Microbiome and Its Health Implications
+by Gambadoro Giuseppe - Sunday, 18 May 2025, 1:04 PM
+---------------------------------------------------------------------
+- IL RIFERIMENTO ALLA FONTE:
+[1]THE INFLUENCE OF AN AI-DRIVEN PERSONALIZED - PROQUEST [1]
+
+- LA TIPOLOGIA DI COMUNICAZIONE:
+Articolo Scientifico (Rivista accademica)
+
+- IL TONO DELLA COMUNICAZIONE:
+Il tono della comunicazione =C3=A8 formale e scientifico. Nel testo sono
+presenti molti termini tecnici rivolti alla microbiologia e all'AI,
+accompagnati da dati numerici e grafici utili alla comprensione del testo.
+
+- UN BREVISSIMO SUNTO:
+L'articolo parla di uno studio volto a capire come un programma di
+nutrizione personalizzata basato su intelligenza artificiale possa
+influenzare la composizione del microbioma intestinale in individui sani
+dopo sei settimane. L=E2=80=99obiettivo di questo studio =C3=A8 valutare i
+cambiamenti nella dieta, nelle caratteristiche corporee e nei parametri
+biochimici, e come questi si associno alle variazioni del microbioma.
+Questa ricerca volge quindi la sua attenzione verso diete personalizzate
+che considerano fattori biologici complessi come il microbioma, per
+migliorare la salute in modo pi=C3=B9 mirato rispetto agli approcci
+tradizionali.
+
+In conclusione, dai risultati ottenuti si evince che grazie all'AI =C3=
+=A8
+possibile migliorare la salute e lo stile di vita. In aggiunta, questi
+risultati supportano interventi dietetici mirati per prevenire malattie
+croniche e la prospettiva futura =C3=A8 quella di avere dati sempre pi=
+=C3=B9
+completi per poter affrontare problemi pi=C3=B9 mirati e complessi.
+
+- IL MOTIVO PER CUI TI HA COLPITO O COLPITA:
+
+Mi ha colpito l=E2=80=99idea che una dieta su misura, di solito basata su
+parametri tradizionali come peso, percentuale di grasso e/o apporto
+calorico, possa essere migliorata dall=E2=80=99AI. Quest'ultima, infatti,
+analizza in profondit=C3=A0 ci=C3=B2 di cui il corpo necessita e permette q=
+uindi di
+capire nello specifico quali sono le necessit=C3=A0 fisiologiche e nutrizio=
+nali
+di un soggetto, un aspetto a cui non avevo mai pensato prima. In
+conclusione,=C2=A0 vedere l'alimentazione da questa prospettiva non solo mi=
+ ha
+affascinato, ma mi ha anche portato a riflettere.
+
+- L'EVENTUALE LEGAME CON TEMI VISTI A LEZIONE:
+L'articolo si lega al tema delle ontologie, visto a lezione. Queste ultime
+infatti permettono di=C2=A0organizzare e integrare informazioni in modo
+strutturato e semantico e in questo ambito possono essere utilizzate per
+classificare informazioni sui pazienti, problematiche legate
+all'alimentazione, patologie correlate e le risposte dei soggetti ai
+trattamenti nutrizionali.
+
+Links:
+------
+[1]
+https://www.proquest.com/docview/3188876318/fulltextPDF?sourcetype=3DSchola=
+rly%20Journals
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SisInt2425.
+
+To reply click on this link:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D72445
+Unsubscribe from this forum:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706
+Unsubscribe from this discussion:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D=
+44687
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092
+
+--b1_e6orY5joZ5eDAUzTYQ7YuBIh50yzY5NqSC6PTXRT3mo
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3092">SisInt2425</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3092">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+706">Segnalazioni</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44687">The Influ=
+ence of an AI-Driven Personalized Nutrition Program on the Human Gut Microb=
+iome and Its Health Implications</a>=0A</div>=0A=0A<table border=3D"0" cell=
+padding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"hea=
+der">=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=0A =
+           <a href=3D"https://informatica.i-learn.unito.it/user/view.php?id=
+=3D30076&amp;course=3D3092" class=3D"d-inline-block aabtn"><img src=3D"http=
+s://informatica.i-learn.unito.it/theme/image.php/_s/lambda/core/1745224313/=
+u/f2" class=3D"userpicture defaultuserpic" width=3D"35" height=3D"35" alt=
+=3D"" /></a>=0A        </td>=0A        <td class=3D"topic starter">=0A     =
+       <div class=3D"subject">=0A                The Influence of an AI-Dri=
+ven Personalized Nutrition Program on the Human Gut Microbiome and Its Heal=
+th Implications=0A            </div>=0A            <div class=3D"author">=
+=0A                by <a target=3D'_blank' href=3D'https://informatica.i-le=
+arn.unito.it/user/view.php?id=3D30076&course=3D3092'>Gambadoro Giuseppe</a>=
+ - Sunday, 18 May 2025, 1:04 PM=0A            </div>=0A        </td>=0A    =
+</tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=0A      =
+          &nbsp;=0A        </td>=0A        <td class=3D"content">=0A       =
+     <p dir=3D"ltr" style=3D"text-align:left;"></p><p><strong>- il riferime=
+nto alla fonte:</strong></p><strong><a href=3D"https://www.proquest.com/doc=
+view/3188876318/fulltextPDF?sourcetype=3DScholarly%20Journals"></a><a href=
+=3D"https://www.proquest.com/docview/3188876318/fulltextPDF?sourcetype=3DSc=
+holarly%20Journals">The Influence of an AI-Driven Personalized - ProQuest</=
+a></strong><p><strong><br /></strong><strong>- la tipologia di comunicazion=
+e:</strong><br /><span>Articolo Scientifico (Rivista accademica)</span></p>=
+<p><span><br /></span></p><p><strong>- il tono della comunicazione:</strong=
+><br /><span>Il tono della comunicazione =C3=A8 formale e scientifico. Nel =
+testo sono presenti molti termini tecnici rivolti alla microbiologia e all'=
+AI, accompagnati da dati numerici e grafici utili alla comprensione del tes=
+to.</span></p><p><span><br /></span><strong>- un brevissimo sunto:</strong>=
+<br /><span>L'articolo parla di uno studio volto a capire come un programma=
+ di nutrizione personalizzata basato su intelligenza artificiale possa infl=
+uenzare la composizione del microbioma intestinale in individui sani dopo s=
+ei settimane. L=E2=80=99obiettivo di questo studio =C3=A8 valutare i cambia=
+menti nella dieta, nelle caratteristiche corporee e nei parametri biochimic=
+i, e come questi si associno alle variazioni del microbioma. Questa ricerca=
+ volge quindi la sua attenzione verso diete personalizzate che considerano =
+fattori biologici complessi come il microbioma, per migliorare la salute in=
+ modo pi=C3=B9 mirato rispetto agli approcci tradizionali.</span></p><p><sp=
+an>In conclusione, dai risultati ottenuti si evince che grazie all'AI =
+=C3=A8 possibile migliorare la salute e lo stile di vita. In aggiunta, ques=
+ti risultati supportano interventi dietetici mirati per prevenire malattie =
+croniche e la prospettiva futura =C3=A8 quella di avere dati sempre pi=
+=C3=B9 completi per poter affrontare problemi pi=C3=B9 mirati e complessi.<=
+/span></p><p><span><br /></span><strong>- il motivo per cui ti ha colpito o=
+ colpita:</strong><br /></p><p><span>Mi ha colpito l=E2=80=99idea che una d=
+ieta su misura, di solito basata su parametri tradizionali come peso, perce=
+ntuale di grasso e/o apporto calorico, possa essere migliorata dall=
+=E2=80=99AI. Quest'ultima, infatti, analizza in profondit=C3=A0 ci=C3=B2 di=
+ cui il corpo necessita e permette quindi di capire nello specifico quali s=
+ono le necessit=C3=A0 fisiologiche e nutrizionali di un soggetto, un aspett=
+o a cui non avevo mai pensato prima. In conclusione,=C2=A0 vedere l'aliment=
+azione da questa prospettiva non solo mi ha affascinato, ma mi ha anche por=
+tato a riflettere.</span></p><p><br /></p><p><strong>- l'eventuale legame c=
+on temi visti a lezione:</strong><br />L'articolo si lega al tema delle ont=
+ologie, visto a lezione. Queste ultime infatti permettono di=C2=A0organizza=
+re e integrare informazioni in modo strutturato e semantico e in questo amb=
+ito possono essere utilizzate per classificare informazioni sui pazienti, p=
+roblematiche legate all'alimentazione, patologie correlate e le risposte de=
+i soggetti ai trattamenti nutrizionali.</p><p><br /></p><p></p><p></p><p></=
+p><p></p><p></p>=0A=0A            <div class=3D"commands">=0A              =
+      <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod=
+/forum/post.php?reply=3D72445">=0A                        Reply=0A         =
+           </a>=0A            </div>=0A=0A            <div class=3D"link">=
+=0A                <a target=3D"_blank" href=3D"https://informatica.i-learn=
+.unito.it/mod/forum/discuss.php?d=3D44687#p72445">=0A                    Se=
+e this post in context=0A                </a>=0A            </div>=0A      =
+  </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubs=
+cribelink">=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/forum=
+/subscribe.php?id=3D7706">Unsubscribe from this forum</a>&nbsp;=0A    <a hr=
+ef=3D"https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D770=
+6&d=3D44687">Unsubscribe from this discussion</a>&nbsp;=0A    <a href=3D"ht=
+tps://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092">Change yo=
+ur forum digest preferences</a>=0A</div>
+
+--b1_e6orY5joZ5eDAUzTYQ7YuBIh50yzY5NqSC6PTXRT3mo--
+

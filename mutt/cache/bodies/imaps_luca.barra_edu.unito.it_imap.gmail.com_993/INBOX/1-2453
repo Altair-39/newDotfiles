@@ -1,0 +1,196 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:511a:0:b0:326:dd0e:fb84 with SMTP id f26csp209102ljb;
+        Sun, 11 May 2025 03:25:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF6euN/Yn4FhG9jENNkdYfDbN8eH4hg39+l8huQuvXSg++589OB5my9FCdlcvPngP0TviQg
+X-Received: by 2002:a17:907:b588:b0:ad2:292d:6b9b with SMTP id a640c23a62f3a-ad2292d6cfbmr220708666b.9.1746959114239;
+        Sun, 11 May 2025 03:25:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1746959114; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Pd2It+/vHLz6S7jy7i1t/bFbSru5ux1ev4vb3qRAK16V/E/tU5bvp5JnwMocJh/rH/
+         /Yk6Y+uRirRAM9HZJTwalQK9W+SLtyWoMtNuZStOGnqupP5Ch3LmhIMdOMu2fVmdlYEi
+         547bXt02PmS8e20ycw8TenMA3GAaQTe2HCSI2FERYDrdfY0uCH2cLqVAgaJm4gCej1+6
+         kvauHZdPsa0WB9votEYWU/2tf7GecEzgxDEth1b1s32Cu/B6KNX1E2w05iIDLqQqjS0n
+         cKzboHomM0w2ppC4KMhU3L+jy99eD2n7CgWjCn2XyBu3SQZ9LRU4dzdwJkvJ8xAnIot6
+         P+KA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=1uikmhEE/W5E5N286URLgDRMU9W35bq0mbUVhtPQrAY=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=dV5AJO+NqrQOldtJhA0JE44QstlvXVU8x72+n+oXHOr2wepyE59iIsMLKyIl1BV0cK
+         pkPR0e8K2a7olENl9ICFZi2z4qjlhBEfSAiehafnjohOYxx7UiTr0Y4VtmzvtSS53one
+         bUUzcFlG/B8pN801RyF5CzhX7giu5tkLgemkbvRfxbzq96pPjdsJ0tbMeA92kQsnkI+5
+         Y6/KzTz36ufOMhGC933ufMu2JYN5WeYo9cuoroL0PRYEPANnuMUtePpnpcAdURqdh+Ts
+         hD/tjJNo0AsePxLHI2Oduc5mzEAfdDb7ZxYADTJsUoILkM76u7c2xOfp3X5rmIzZJLh8
+         ZJtg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ad21993bad2si418366766b.591.2025.05.11.03.25.12
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 May 2025 03:25:14 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 54BAPCuN437193
+	for <luca.barra@edu.unito.it>; Sun, 11 May 2025 12:25:12 +0200
+Date: Sun, 11 May 2025 12:25:12 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Quaglia Giulio Andrea (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: SisInt2425: Artificial Intelligence in Astronomical Optical Telescopes: Present Status and Future Perspectives
+Message-ID: <ec36fb445c133811006a16c0a6e336b1c404b9885410f03d2635e495824712b6@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Segnalazioni" <moodleforum7706@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7706
+X-Course-Id: 3092
+X-Course-Name: Sistemi Intelligenti
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=7706&d=44561>
+Thread-Topic: SisInt2425: Artificial Intelligence in Astronomical Optical Telescopes: Present Status and Future Perspectives
+Thread-Index: ec36fb445c133811006a16c0a6e3
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_pntf29UYysIOootSymFvGGDsHOgbdbFAvFrPFriI"
+
+This is a multi-part message in MIME format.
+
+--b1_pntf29UYysIOootSymFvGGDsHOgbdbFAvFrPFriI
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SisInt2425 -> Forums -> Segnalazioni -> Artificial Intelligence in
+Astronomical Optical Telescopes: Present Status and Future Perspectives
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44561#p72293
+Artificial Intelligence in Astronomical Optical Telescopes: Present Status
+and Future Perspectives
+by Quaglia Giulio Andrea - Sunday, 11 May 2025, 12:09 PM
+---------------------------------------------------------------------
+1. RIFERIMENTO ALLA FONTE:
+link articolo: https://www.mdpi.com/2218-1997/10/5/210 [1]
+
+2. TIPOLOGIA DI COMUNICAZIONE:
+
+articolo accademico.
+
+3. TONO DELLA COMUNICAZIONE:
+
+formale, scientifico.
+
+4. SUNTO:
+L'articolo tratta l'impiego dell'intelligenza artificiale nel ciclo di vita
+dei telescopi astronomici ottici dalla selezione del sito all'elaborazione
+dei dati. L'AI viene impiegata per valutare i siti osservativi, calibrare i
+sistemi ottici, programmare le osservazioni, diagnosticare i possibili
+guasti, ottimizzare la qualit=C3=A0 delle immagini e gestire la grande mole=
+ di
+dati nei database associati ai telescopi.
+
+5. MOTIVI PER CUI MI HA COLPITO:
+L'articolo mostra come l'intelligenza artificiale pervada l'intero ciclo di
+vita del telescopio, mostrandosi come un alleato inestimabile per il
+corretto funzionamento del dispositivo.
+
+6. TEMI VISTI A LEZIONE:
+L'articolo ripercorre lo sviluppo dell'intelligenza artificiale, nominando
+John McCarthy e il Darthmouth college. Inoltre mostra come nell'astronomia
+si utilizzino regole di inferenza per gestire alcune operazioni di
+elaborazione dei dati.
+
+Links:
+------
+[1] https://www.mdpi.com/2218-1997/10/5/210
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SisInt2425.
+
+To reply click on this link:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D72293
+Unsubscribe from this forum:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706
+Unsubscribe from this discussion:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D=
+44561
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092
+
+--b1_pntf29UYysIOootSymFvGGDsHOgbdbFAvFrPFriI
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3092">SisInt2425</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3092">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+706">Segnalazioni</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44561">Artificia=
+l Intelligence in Astronomical Optical Telescopes: Present Status and Futur=
+e Perspectives</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" cell=
+spacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=0A        <t=
+d width=3D"35" valign=3D"top" class=3D"picture left">=0A            <a href=
+=3D"https://informatica.i-learn.unito.it/user/view.php?id=3D29172&amp;cours=
+e=3D3092" class=3D"d-inline-block aabtn"><img src=3D"https://informatica.i-=
+learn.unito.it/theme/image.php/_s/lambda/core/1745224313/u/f2" class=3D"use=
+rpicture defaultuserpic" width=3D"35" height=3D"35" alt=3D"" /></a>=0A     =
+   </td>=0A        <td class=3D"topic starter">=0A            <div class=3D=
+"subject">=0A                Artificial Intelligence in Astronomical Optica=
+l Telescopes: Present Status and Future Perspectives=0A            </div>=
+=0A            <div class=3D"author">=0A                by <a target=3D'_bl=
+ank' href=3D'https://informatica.i-learn.unito.it/user/view.php?id=3D29172&=
+course=3D3092'>Quaglia Giulio Andrea</a> - Sunday, 11 May 2025, 12:09 PM=0A=
+            </div>=0A        </td>=0A    </tr>=0A    <tr>=0A        <td cla=
+ss=3D"left side" valign=3D"top">=0A                &nbsp;=0A        </td>=
+=0A        <td class=3D"content">=0A            <p dir=3D"ltr" style=3D"tex=
+t-align:left;"><strong></strong><strong>1. riferimento alla fonte:</strong>=
+<br />link articolo: <a href=3D"https://www.mdpi.com/2218-1997/10/5/210">ht=
+tps://www.mdpi.com/2218-1997/10/5/210</a></p><p dir=3D"ltr" style=3D"text-a=
+lign:left;"><strong>2. tipologia di comunicazione:</strong></p><p dir=3D"lt=
+r" style=3D"text-align:left;">articolo accademico.</p><p dir=3D"ltr" style=
+=3D"text-align:left;"><strong>3. tono della comunicazione:</strong></p><p d=
+ir=3D"ltr" style=3D"text-align:left;">formale, scientifico.</p><p dir=3D"lt=
+r" style=3D"text-align:left;"><strong>4. sunto:</strong><br />L'articolo tr=
+atta l'impiego dell'intelligenza artificiale nel ciclo di vita dei telescop=
+i astronomici ottici dalla selezione del sito all'elaborazione dei dati. L'=
+AI viene impiegata per valutare i siti osservativi, calibrare i sistemi ott=
+ici, programmare le osservazioni, diagnosticare i possibili guasti, ottimiz=
+zare la qualit=C3=A0 delle immagini e gestire la grande mole di dati nei da=
+tabase associati ai telescopi.</p><p dir=3D"ltr" style=3D"text-align:left;"=
+><strong>5. motivi per cui mi ha colpito:</strong><br />L'articolo mostra c=
+ome l'intelligenza artificiale pervada l'intero ciclo di vita del telescopi=
+o, mostrandosi come un alleato inestimabile per il corretto funzionamento d=
+el dispositivo.</p><p dir=3D"ltr" style=3D"text-align:left;"><strong>6. tem=
+i visti a lezione:</strong><br />L'articolo ripercorre lo sviluppo dell'int=
+elligenza artificiale, nominando John McCarthy e il Darthmouth college. Ino=
+ltre mostra come nell'astronomia si utilizzino regole di inferenza per gest=
+ire alcune operazioni di elaborazione dei dati. <br /></p><p dir=3D"ltr" st=
+yle=3D"text-align:left;"><br /></p><p dir=3D"ltr" style=3D"text-align:left;=
+"><br /></p>=0A=0A            <div class=3D"commands">=0A                  =
+  <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/for=
+um/post.php?reply=3D72293">=0A                        Reply=0A             =
+       </a>=0A            </div>=0A=0A            <div class=3D"link">=0A  =
+              <a target=3D"_blank" href=3D"https://informatica.i-learn.unit=
+o.it/mod/forum/discuss.php?d=3D44561#p72293">=0A                    See thi=
+s post in context=0A                </a>=0A            </div>=0A        </t=
+d>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribe=
+link">=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/forum/subs=
+cribe.php?id=3D7706">Unsubscribe from this forum</a>&nbsp;=0A    <a href=3D=
+"https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=
+=3D44561">Unsubscribe from this discussion</a>&nbsp;=0A    <a href=3D"https=
+://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092">Change your =
+forum digest preferences</a>=0A</div>
+
+--b1_pntf29UYysIOootSymFvGGDsHOgbdbFAvFrPFriI--
+

@@ -1,0 +1,131 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:1202:b0:2ec:5b2a:eaf4 with SMTP id i2csp1516070lja;
+        Mon, 15 Jul 2024 02:58:59 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCXSpuhXwddcQ+EifICR0U0GPF2dS2t+HkvuxDL6IHOtu0aUur9NRoUAEA6Wa+QtO8Vrg6C2IZr1deHWm81x6URkbngQ6KEWjg==
+X-Google-Smtp-Source: AGHT+IHxCWbIhqHHMIA0qgciaYbFHKhQPWiHvwfXRhgqSTry56f612JfJOkOztkBdHmBrgL9Vfmz
+X-Received: by 2002:a2e:80cd:0:b0:2ee:974c:596f with SMTP id 38308e7fff4ca-2eeb30feba0mr115425631fa.28.1721037539063;
+        Mon, 15 Jul 2024 02:58:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1721037538; cv=none;
+        d=google.com; s=arc-20160816;
+        b=j8a51yTneBqAR/z0nRpgxBU8YxMTQd8qE+E5pMT+cAkW7PxGej9a2FH0o5Vgx1L+rR
+         WKXdAoGRpMHlb1/bdpYLKySVrj1Xd/CL6O+8uMfMJL6gzNort4r3mVo0iaX3hSF9cXOJ
+         Rx80aPgpN7cvhswGxg5TOK9FXMZYo5jDt3I/cAEFlDGsHQ7pCtUQrOv8qLSM40kTMhJV
+         9jCSAQQwlAl2ycIngMsqY2zYX1M4XWIYydHM05NkXi0CVKKUT1y1XxLAMPpBcl4TLHM4
+         7dL1kBpltxP7jBzcmsiwH2CjIBAyYTI0ZrsAxIjUWdd35yvWIbHjcg0xRgBtz7zo7J20
+         4XBg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=jivBA9k3ESGV6cFrkPMroPf/bIxMHQStGZOGI2zCfFI=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=Xye4Z/W2gIu6AMKO3OCidM0EhGoQvWW7cyfhtGbqOupaHO3stc2TdoQ6ET5EaRvIX8
+         vD/jn7AKRMMj3sYTAxa34rfNapHil59AVNBml8OL/ByJhhrFa670kOitSO5f+IpA5hzP
+         /3XLNv18XjtowsPi36uSGyI0yxMFraISj/6XfwoX6zEEYScpZl3Bva3Ru4kOPscwUVvc
+         G7wjNoncK0d8IsaEXo3MG7KmO0zCG3W7VTs6m1SuxIde5MNL0AbwpLPTmNdLROn8fX4A
+         FwUOPMWVwnJrI8pHQbfBtaLw3OR3P+2Zig580ViMEYY+dQbf80ZQnIhedlxw/9t4/UI4
+         Cv/A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=ZjJGWZgp;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-4c1e1b0e2f6si1991125173.23.2024.07.15.02.58.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 15 Jul 2024 02:58:58 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=ZjJGWZgp;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 4590431E70;
+	Mon, 15 Jul 2024 11:58:56 +0200 (CEST)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id 9kAtQG6zViRc; Mon, 15 Jul 2024 11:58:56 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 1F06231DFC;
+	Mon, 15 Jul 2024 11:58:55 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 1F06231DFC
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1721037535;
+	bh=jivBA9k3ESGV6cFrkPMroPf/bIxMHQStGZOGI2zCfFI=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=ZjJGWZgpzN4sHtKQLkpm3cjWNvy8vq97IbMhH9467Gfqe+rQRL2l+vah+1E54HgAt
+	 T5xrVWpYZOQ9pmMmt3wtyNOeFXPTfPra1SYFapZWBwZtUIV2y04bwQQJQECuB6TGEN
+	 t5rg/e92mu8r+S0FnpD8EqQII7+DoS+kBJ78aIF9u/8HAgRx2Xvgu8QMOmXmpxrmjp
+	 skqpsG0MOe7Noo0OMKbW82YJLmjts20EVqQpIttPjRpErrEyOyjKaUaL6ATmUQCtnc
+	 hDV/mLpdBDprEQNrzZoKWe+REGvdVZieUW9Q9ZirqaFfPl61LuQj8IRpxGAospt7vW
+	 c9EhWttzCh+ng==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id TXHhZrL4jLjB; Mon, 15 Jul 2024 11:58:54 +0200 (CEST)
+Received: from esse3appjboss23.private.cineca.it (esse3appjboss23.cineca.it [130.186.5.144])
+	by smtp4.cineca.it (Postfix) with ESMTP id E78A72DB93;
+	Mon, 15 Jul 2024 11:58:51 +0200 (CEST)
+Received: from esse3appjboss23.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss23.private.cineca.it (Postfix) with ESMTP id 18C099F8;
+	Mon, 15 Jul 2024 11:58:50 +0200 (CEST)
+Date: Mon, 15 Jul 2024 11:58:50 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <1195451319.109.1721037530094@esse3appjboss23.private.cineca.it>
+Subject: RECALL per presentazione proposte Bilancio partecipativo di Ateneo
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+To: undisclosed-recipients:;
+
+<p>
+      Gentile studente,
+    </p>
+    <p>
+      Desidero rinnovare l'invito a tutta la comunit&#224; a presentare nuove 
+      proposte per il Bilancio Partecipativo: una significativa opportunit&#224; di 
+      contribuire attivamente al miglioramento del nostro Ateneo.
+    </p>
+    <p>
+      Entro il <strong>31 luglio</strong> &#232; possibile caricare le vostre 
+      proposte attraverso la piattaforma <a href="https://liquidfeedback.firstlife.org/index/index.html?unit=9&_tempstore=xfjxcggr623xn81zrts2rk19hl">LiquidFeedback</a>, 
+      uno strumento innovativo e interattivo per il coinvolgimento di ciascun 
+      membro della nostra comunit&#224;. I temi del 2024 sono:
+    </p>
+    <ul>
+      <li>
+        <strong>Le strategie di prevenzione, tutela e supporto contro ogni 
+        forma di molestia e di abuso di potere</strong>
+      </li>
+      Iniziative rivolte alla sensibilizzazione, alla formazione, alla 
+      prevenzione di ogni forma di molestia e/o abuso di potere nonch&#233; al 
+      supporto di coloro che subiscono tali molestie e abusi.
+
+      <li>
+        <strong>Promozione del benessere lavorativo</strong>
+      </li>
+      Iniziative volte a ridurre lo stress collegato al lavoro, a migliorare 
+      le relazioni sul posto di lavoro e a far emergere le criticit&#224; esistenti 
+      al fine di disegnare interventi correttivi.
+    </ul>
+    <p>
+      <strong>Le proposte</strong> dovranno essere redatte in forma snella <strong>(max 
+      1-2 pagine)</strong>, senza vincoli di formato, dovranno inoltre 
+      interessare <strong>iniziative nuove e trasversali</strong>, con <strong>ricadute</strong> 
+      pi&#249; <strong>ampie</strong> possibili, senza riferimenti a 
+      situazioni o contesti particolari o specifici.
+    </p>
+    <p>
+      Maggiori informazioni sul progetto sono disponibili sullo spazio web di <a href="https://politichediateneo.unito.it/bilancio-partecipativo-2024/" target="_blank">UniTo 
+      Politiche di Ateneo</a>.
+    </p>
+    <p>
+      Vi ringrazio fin d&#8217;ora per la vostra collaborazione. Auspicando la pi&#249; 
+      ampia partecipazione da parte di tutti/e voi, invio i pi&#249; cordiali 
+      saluti,
+    </p>
+    <p>
+      Il Rettore, Stefano Geuna
+    </p>

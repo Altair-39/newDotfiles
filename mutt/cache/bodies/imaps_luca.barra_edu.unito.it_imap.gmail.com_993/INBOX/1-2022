@@ -1,0 +1,113 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b5b0:0:b0:2fb:4c9b:a38b with SMTP id f16csp730869ljn;
+        Wed, 27 Nov 2024 07:24:33 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCVppyGCuV+8GaBNgGcfdFs72zsSB9uKEqvx341d8ILVhCVl13U6EhLqRogo8P81aVbYN7sGK++lsFoW@edu.unito.it
+X-Google-Smtp-Source: AGHT+IG5V8uewiurPw7asVs5ecKsJVzmYZfbCGd+87YsX5aefk1f2g0cXuJP/aEz2zlCrp3B+oBr
+X-Received: by 2002:a05:6000:400f:b0:37d:446a:4142 with SMTP id ffacd0b85a97d-385c6ebe456mr2933825f8f.32.1732721073214;
+        Wed, 27 Nov 2024 07:24:33 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1732721073; cv=none;
+        d=google.com; s=arc-20240605;
+        b=dwsX3+vEUdg2+uwsC76Vg7z6RDSvMYj5/LDjKKKX+idkKRxTXdefKO32yvefN4M1qo
+         8IZVnXk3qTOg4+lw/5iVMsd74PiOvM7s10oQZsN1r8btkQYfVDkTEOkyFSqL/PdxmnyA
+         IqSnwT5OWo2WI495W8CG6pHTso0NLVzo2ZR6/BKcXwyeUD4RKVfhFh8CFMbddv2Jv6OK
+         TP12eUdtWAV2Mrp6fJlnUtiGjJWvCORanSh+nm/shets/3X4O7nXEgVVl0Lp6JySUsa0
+         wRBBRJxna+IUa6nlO5OQAjcAs63oR5+RcEGCDSz84KQqM47yzAqvd1WTtbxd0rdXTVfx
+         j8xw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=iS2CAxQ6+N5VJlCwG5eh6bpKmZg1KC02jMgjBAL1FYs=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=NMpJfY2l8OKDbjQ98bg761E0q0tFz7yBVccLpBzVvRNqifsUQ93EZKYir22zYVeg6G
+         a9Din+wBOeujkHJkyY7GMyxRSa23+gdqtfBHXbYuocFArVQaCR+BI4njjdRRYCkKrj1C
+         7zdYkv3fasSpnxWRz23EI+RmlcXNu6OReNaCCNRwS93Ba937f/DxoEguoNj25yhSqTdn
+         HDEsBpJ2ZZwyn208CavWeuQWevBcu6TVE6OuPUrenmLIoeyBTWS+rVPiWf9E5vpRDe9g
+         I2PBSKOxaf0cJoqDUxE/wma7fCgfX+IcaSDbAVWF9Vvi4IHZQLfW6ezq2iMJfOPqYU1r
+         yozw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=tppURvzW;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-4e2103927c1si2999531173.57.2024.11.27.07.24.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Nov 2024 07:24:33 -0800 (PST)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=tppURvzW;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 361EA225AF;
+	Wed, 27 Nov 2024 16:24:29 +0100 (CET)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id ZzCI-XnQw5Yn; Wed, 27 Nov 2024 16:24:29 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 39ED8237B9;
+	Wed, 27 Nov 2024 16:24:28 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 39ED8237B9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1732721068;
+	bh=iS2CAxQ6+N5VJlCwG5eh6bpKmZg1KC02jMgjBAL1FYs=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=tppURvzWR4uNHoVz0ujLnnSFj5pS6xIUKg9aKWnx70SPwDpSMcUDRNYa1VTUjuQCN
+	 QOFZGq0Kp29dk3FMY8f4LQVekGkAA384m9bvPfJQg+HuICJoIf+MBrwflSuG2Kwz8n
+	 8efvlp7WsIJzCYReHe0vBG4ONX4qCj56yh5gWle3p6hXWOUCoB1ba5Rx9gDxdoBOgb
+	 K4izBYhh/V/F54tKPoEBgPU1ixNpfHZ3JNIMUoQToBO4E3ZscrwGVQOVIKQkvvT8yq
+	 3FxWa6GezU1P/Y6UhmGj0ySmV51pm9mM8e52nvetfkfHMUrtLMhxC+4JocYOQlbmMG
+	 3Ouxb2Bwym+jA==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id LhECKBHvDv6J; Wed, 27 Nov 2024 16:24:28 +0100 (CET)
+Received: from esse3appjboss22.private.cineca.it (esse3appjboss22.cineca.it [130.186.5.143])
+	by smtp4.cineca.it (Postfix) with ESMTP id 2CFA1220D0;
+	Wed, 27 Nov 2024 16:24:25 +0100 (CET)
+Received: from esse3appjboss22.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss22.private.cineca.it (Postfix) with ESMTP id 41C1240;
+	Wed, 27 Nov 2024 16:24:23 +0100 (CET)
+Date: Wed, 27 Nov 2024 16:24:23 +0100 (CET)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <1233400868.21.1732721063261@esse3appjboss22.private.cineca.it>
+Subject: Erasmus+ 2025-26 Informatica: supporto alla preparazione della
+ domanda
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+La Commissione Erasmus della Laurea e della Laurea Magistrale in
+Informatica segnala l'incontro di supporto alla preparazione della
+domanda di partecipazione al Bando Erasmus+ 2025/26 che si terr=C3=A0 il
+giorno *04 dicembre 2024 alle 15:00* sia in presenza in Aula Centro
+Congressi che via WebEx
+
+[Link per aggiungere evento al proprio calendario]
+https://calendar.google.com/calendar/event?action=3DTEMPLATE&tmeid=3DXzY4cT=
+ZhY2hnNmRqNmNiYjQ2NWhtNmI5a2NoajMyYmIxNzByM2liOWk2NHBtNHA5ajc1ajY4YzloNjAgZ=
+W5yaWNvLmJpbmlAdW5pdG8uaXQ&tmsrc=3Denrico.bini%40unito.it
+
+[Link a call WebEx]
+https://unito.webex.com/unito-en/j.php?MTID=3Dm4d8ed7a758d9bb77822b31a42ee2=
+6a47
+
+La Commissione segnala anche che il materiale del CCL-LM in Informatica
+=C3=A8 sempre disponibile qui
+https://laurea.informatica.unito.it/do/home.pl/View?doc=3DMobilita_internaz=
+ionale.html
+
+La Commissione Erasmus del CCL-LM in Informatica,
+commerasmccs@educ.di.unito.it
+
+(BANDO alla pagina
+https://www.unito.it/avvisi/bando-erasmus-studio-aa-2025-2026
+Scadenza per la presentazione delle domande: gioved=C3=AC 19 dicembre 2024,
+ore 13:00)
+
+ATTENZIONE: poiche' lunghi, controllare i link che potrebbero essere
+troncati con un "=3D" per "a capo" forzato creato dall'invio della mail

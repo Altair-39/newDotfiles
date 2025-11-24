@@ -1,0 +1,148 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:93:b0:30c:2dd2:a8c1 with SMTP id 19csp2361092ljq;
+        Wed, 26 Mar 2025 05:02:59 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEkiI76mpayamqAqqtBeTL1z6v/VfplnT5i73Les5qNlqyGOETGrbwe/OvTIzLYceZQ9crD
+X-Received: by 2002:a17:907:95a4:b0:ac1:e752:17be with SMTP id a640c23a62f3a-ac3f23dbe96mr835126866b.1.1742990579037;
+        Wed, 26 Mar 2025 05:02:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1742990579; cv=none;
+        d=google.com; s=arc-20240605;
+        b=O/0A1Q/mdXaP3yVPyNUIvqF3cWWs0O/cchZVKPrth4GhZa/B/waLFvEH6ENB4kMg9F
+         y4ZSy8PvCwP8kBTIJt5A4ERvB2rvF/vvNjxvDlg+No55mQH2W5uBbD+rTQLA4puPD+JS
+         VE9xDLODIqlUNFt/zKLeauMLbXhU57TY1OSWTJo9YzVdXbNDarzm0n9EeHG87HUJk2vM
+         cNAqgsYejKIjygYxGvHjC0BzjX4WlkD9KxseRoWbiNH1YwglIlKcMR0J+cAxYOVKkSO5
+         lCOcUna4baFibHYrmvR6NSzrm8O6E8iNczRtXsgdAK2/h/w9ixFrLzbTKoRZQJLO80U4
+         g9kQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-signature:dkim-filter;
+        bh=0ht+zteeWyCrBF5CLomgx/LVFwF4Gh3E+BKrzQeo4M0=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=JfJpdY430tkznR80Cp58sJ259t+xwe/AOgeypJG7R9OYJJIpsKTBjZRCe/dPL27v1g
+         ThLWc3pHMLk1i/HleE63UmkODowMDRuIwSFHuLJX3hYqFVPLh+Gw3+3YyFybdVlkDxAZ
+         QnecGBmiHGc5xL2OCifz+8Yv1LoY+9k2iILYLFPiOfvR00Cjpd+mBiGRSe+cFvW2lcfd
+         GtGQXWCpS9xNY6gRxvnh9N3/8BsnjjpMl+DUlMnhBwREfBwhZEz8xHDUgLu/vNuvaq32
+         yzGvK1Wo2t3uNfVZZTsxsfz+DDZhVdo2aWX1NBw8g3grBXteY8nA/oPTKoDg+blOaMas
+         TRog==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=BRLdSt5M;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ac3f015703bsi898793066b.661.2025.03.26.05.02.58
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 26 Mar 2025 05:02:59 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=BRLdSt5M;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 52QC2uZF3870343
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Wed, 26 Mar 2025 13:02:56 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 52QC2uZF3870343
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=i-learn.unito.it;
+	s=default; t=1742990577;
+	bh=0ht+zteeWyCrBF5CLomgx/LVFwF4Gh3E+BKrzQeo4M0=;
+	h=Date:To:From:Reply-To:Subject:List-Id:List-Help:List-Unsubscribe:
+	 From;
+	b=BRLdSt5MXgkYn4dEMjgp7/MjSE6TAJkvF+fgeRGvNRJmYutT36pGu/x3sP6lIj8Xs
+	 wiqIOXsLqNE9RX5oLGqUHS+eFTE0w/ydot9MI+/R6HqYuGKDD13Y1hFeOYw9yUitKX
+	 426HTfcMPRIg2tP9R3bIKBOT6kjmmvI2R8TPn6Ks=
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 52QC2umk014338
+	for <luca.barra@edu.unito.it>; Wed, 26 Mar 2025 13:02:56 +0100
+Date: Wed, 26 Mar 2025 13:02:56 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Boella Guido (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: ESP: ATTENZIONE Inversione lezioni giovedi' 27 e venerdi 28
+Message-ID: <6e957e6af51e2f3df65219dab0aa45f8206dc22786d76da621e41ba12e4baec6@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7638@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7638
+X-Course-Id: 3070
+X-Course-Name: =?utf-8?B?RXRpY2EsIFNvY2lldMOgIGUgUHJpdmFjeSwgYS5hLiAyNC8yNQ==?=
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: ESP: ATTENZIONE Inversione lezioni giovedi' 27 e venerdi 28
+Thread-Index: 6e957e6af51e2f3df65219dab0aa
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_GOi9BQQ6LAbS6IyY2FuunLzNEVt9El8HX9pvqPT8k"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 52QC2uZF3870343
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply-informatica@i-learn.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_GOi9BQQ6LAbS6IyY2FuunLzNEVt9El8HX9pvqPT8k
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+ESP -> Forums -> Annunci -> ATTENZIONE Inversione lezioni giovedi' 27 e
+venerdi 28
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44105#p71681
+ATTENZIONE Inversione lezioni giovedi' 27 e venerdi 28
+by Boella Guido - Wednesday, 26 March 2025, 12:47 PM
+---------------------------------------------------------------------
+Domani giovedi' 27 far=C3=A0 lezione la profssa Meo con il suo orario di
+inizio. Venerdi' 28 far=C3=A0 lezione il prof Boella con inizio 9.30
+
+---------------------------------------------------------------------
+This is a copy of a message posted in ESP.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3070
+
+--b1_GOi9BQQ6LAbS6IyY2FuunLzNEVt9El8HX9pvqPT8k
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3070">ESP</a>=0A    &raquo;=0A    =
+<a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum=
+/index.php?id=3D3070">Forums</a>=0A    &raquo;=0A    <a target=3D"_blank" h=
+ref=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7638">An=
+nunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://informat=
+ica.i-learn.unito.it/mod/forum/discuss.php?d=3D44105">ATTENZIONE Inversione=
+ lezioni giovedi' 27 e venerdi 28</a>=0A</div>=0A=0A<table border=3D"0" cel=
+lpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"he=
+ader">=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=0A=
+            <a href=3D"https://informatica.i-learn.unito.it/user/view.php?i=
+d=3D572&amp;course=3D3070" class=3D"d-inline-block aabtn"><img src=3D"https=
+://informatica.i-learn.unito.it/theme/image.php/_s/lambda/core/1742774192/u=
+/f2" class=3D"userpicture defaultuserpic" width=3D"35" height=3D"35" alt=3D=
+"" /></a>=0A        </td>=0A        <td class=3D"topic starter">=0A        =
+    <div class=3D"subject">=0A                ATTENZIONE Inversione lezioni=
+ giovedi' 27 e venerdi 28=0A            </div>=0A            <div class=3D"=
+author">=0A                by <a target=3D'_blank' href=3D'https://informat=
+ica.i-learn.unito.it/user/view.php?id=3D572&course=3D3070'>Boella Guido</a>=
+ - Wednesday, 26 March 2025, 12:47 PM=0A            </div>=0A        </td>=
+=0A    </tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=
+=0A                &nbsp;=0A        </td>=0A        <td class=3D"content">=
+=0A            Domani giovedi' 27 far=C3=A0 lezione la profssa Meo con il s=
+uo orario di inizio.
+Venerdi' 28 far=C3=A0 lezione il prof Boella con inizio 9.30=0A=0A         =
+   <div class=3D"commands">=0A            </div>=0A=0A            <div clas=
+s=3D"link">=0A                <a target=3D"_blank" href=3D"https://informat=
+ica.i-learn.unito.it/mod/forum/discuss.php?d=3D44105#p71681">=0A           =
+         See this post in context=0A                </a>=0A            </di=
+v>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-a=
+lign unsubscribelink">=0A    <a href=3D"https://informatica.i-learn.unito.i=
+t/mod/forum/index.php?id=3D3070">Change your forum digest preferences</a>=
+=0A</div>
+
+--b1_GOi9BQQ6LAbS6IyY2FuunLzNEVt9El8HX9pvqPT8k--
+

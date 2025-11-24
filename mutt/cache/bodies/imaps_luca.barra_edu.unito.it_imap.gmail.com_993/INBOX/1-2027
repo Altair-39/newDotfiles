@@ -1,0 +1,136 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b81c:0:b0:2fb:4c9b:a38b with SMTP id u28csp328781ljo;
+        Fri, 29 Nov 2024 02:05:00 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF4wqvhN435k1hBLGaZ3MYRnkvLaYm5V+yyyjk2DHpCTLzb+rxo30bLww3sAtQ2yMm9AI7H
+X-Received: by 2002:a05:6000:2c6:b0:382:46ea:113b with SMTP id ffacd0b85a97d-385c6eb7252mr3520448f8f.6.1732874700513;
+        Fri, 29 Nov 2024 02:05:00 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1732874700; cv=none;
+        d=google.com; s=arc-20240605;
+        b=SJjacfvvCJ1lGQrImJ/fe/hj1QKbUEIQU0pHpGSLv55MPeSZx0YQWgITHCYygno8Fg
+         LO1+k0IMMckqEylb8EKTQWSYZ/Qg9Ly8/EAXWTKZu7ppncSTQ9pD/WYmUgX9+nWFZaCn
+         Nbvt7H9jNF2JEMHzgjHBASOv59PSKGp4KhZmofbu9vcDNynMlTsKaExhAwQg3tbia6yo
+         YMRNS664yLgNaFxP/UkMntBkoOOo/aJI5SCy1EPHwxiOvNs/1zRXlY3s616/p2RIeght
+         ubTFKbS+99CW5c4pBU7RgXvqq1qSRbwlEXcCUOle+BPtlnWFf/JKQQQeq8MNjnOl7tJV
+         ILYg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=Bb6hO5BICSSGtXcIwupfr+yDRGlJg9uSFcx1TCG52vs=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=I+H7J566FJIgVsUv1t0Kd0D3Nu9dTMpcrinyNREYy0p46r8MTg+H1aCxrfULesSpUL
+         KvOC2kHl3MnsOe74Jo9iRZBNMac04UiPhDtjMve29LLqSf1wJsnE197XCwx4iAxsp/tN
+         ip8s7TMHAoPyqH1LwHXtRHF/BezV1jb6pPxv2ur/RARIA2ZWZ5ICWEhBfR5+ZQX8lLDE
+         M5y4henGliuL8YbYi891dxYAF76WCAcI53M4AR1H/mWg8Zq+538ws5u+z9jKq1wpdSBL
+         ehsBsn+36ErqDh3btRjUmQMMA/LqFxkTT725xnADGPgyvAqdFU4Q8AQN8HIGOxOKNWnT
+         bZzg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-4e230ead321si2285922173.162.2024.11.29.02.04.59
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Nov 2024 02:05:00 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 4ATA4vEm2543464
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Fri, 29 Nov 2024 11:04:57 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 4ATA4vEm2543464
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 4ATA4vf8104320
+	for <luca.barra@edu.unito.it>; Fri, 29 Nov 2024 11:04:57 +0100
+Date: Fri, 29 Nov 2024 11:04:57 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Damiano Rossana (via informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Do not reply to this email" <noreply@educ.di.unito.it>
+Subject: ModSem 24/25: Esercizio SPARQL per il 4/12/2024
+Message-ID: <bba232434ea391172ad00abc197cb8db86c50957d3994cd5c99dffaf9b3e388c@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7530@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7530
+X-Course-Id: 3022
+X-Course-Name: Modellazione Concettuale per il Web Semantico
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: ModSem 24/25: Esercizio SPARQL per il 4/12/2024
+Thread-Index: bba232434ea391172ad00abc197c
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_0LGfzy3nJAU7MjdvJUQL6iO1aATf5EyIit0CRLq0NA"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 4ATA4vEm2543464
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_0LGfzy3nJAU7MjdvJUQL6iO1aATf5EyIit0CRLq0NA
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+ModSem 24/25 -> Forums -> Annunci -> Esercizio SPARQL per il 4/12/2024
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43178#p70548
+Esercizio SPARQL per il 4/12/2024
+by Damiano Rossana - Friday, 29 November 2024, 10:49 AM
+---------------------------------------------------------------------
+Chi lo desidera pu=C3=B2 svolgere l'esercizio su SPARQL sul dominio Arte
+pubblicato NELLA SEZIONE INTRODUTTIVA DEL CORSO=C2=A0
+
+---------------------------------------------------------------------
+This is a copy of a message posted in ModSem 24/25.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3022
+
+--b1_0LGfzy3nJAU7MjdvJUQL6iO1aATf5EyIit0CRLq0NA
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3022">ModSem 24/25</a>=0A    &raqu=
+o;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/index.php?id=3D3022">Forums</a>=0A    &raquo;=0A    <a target=3D"=
+_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=
+=3D7530">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https=
+://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43178">Esercizio =
+SPARQL per il 4/12/2024</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=
+=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=
+=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=0A      =
+      <a href=3D"https://informatica.i-learn.unito.it/user/view.php?id=3D18=
+391&amp;course=3D3022" class=3D"d-inline-block aabtn"><img src=3D"https://i=
+nformatica.i-learn.unito.it/pluginfile.php/106276/user/icon/lambda/f2?rev=
+=3D545076" class=3D"userpicture" width=3D"35" height=3D"35" alt=3D"" /></a>=
+=0A        </td>=0A        <td class=3D"topic starter">=0A            <div =
+class=3D"subject">=0A                Esercizio SPARQL per il 4/12/2024=0A  =
+          </div>=0A            <div class=3D"author">=0A                by =
+<a target=3D'_blank' href=3D'https://informatica.i-learn.unito.it/user/view=
+.php?id=3D18391&course=3D3022'>Damiano Rossana</a> - Friday, 29 November 20=
+24, 10:49 AM=0A            </div>=0A        </td>=0A    </tr>=0A    <tr>=0A=
+        <td class=3D"left side" valign=3D"top">=0A                &nbsp;=0A=
+        </td>=0A        <td class=3D"content">=0A            <p dir=3D"ltr"=
+ style=3D"text-align:left;">Chi lo desidera pu=C3=B2 svolgere l'esercizio s=
+u SPARQL sul dominio Arte pubblicato <strong>nella sezione introduttiva del=
+ corso</strong>=C2=A0</p>=0A=0A            <div class=3D"commands">=0A     =
+       </div>=0A=0A            <div class=3D"link">=0A                <a ta=
+rget=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/disc=
+uss.php?d=3D43178#p70548">=0A                    See this post in context=
+=0A                </a>=0A            </div>=0A        </td>=0A    </tr>=0A=
+</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=0A    <a h=
+ref=3D"https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3022">=
+Change your forum digest preferences</a>=0A</div>
+
+--b1_0LGfzy3nJAU7MjdvJUQL6iO1aATf5EyIit0CRLq0NA--
+

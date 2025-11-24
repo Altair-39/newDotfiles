@@ -1,0 +1,182 @@
+X-Google-Smtp-Source: APBJJlFlC7gueOGAzV73nRirRHuOKc9+kgknx4IaU/tOnoOQN5/3r83DsTmUGJxXvCmLI41HRLH9nKh/G+AfxYgiLg==
+X-Received: by 2002:a17:902:c1cd:b0:1b8:8fe2:6627 with SMTP id c13-20020a170902c1cd00b001b88fe26627mr11072869plc.8.1688991464268;
+        Mon, 10 Jul 2023 05:17:44 -0700 (PDT)
+Received: from 292831042739
+	named unknown
+	by gmailapi.google.com
+	with HTTPREST;
+	Mon, 10 Jul 2023 05:17:44 -0700
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a17:90a:8912:0:0:0:0 with SMTP id u18csp2125636pjn;
+        Mon, 17 Jan 2022 08:39:34 -0800 (PST)
+X-Received: by 2002:a05:6402:f1b:: with SMTP id i27mr21153936eda.225.1642437574056;
+        Mon, 17 Jan 2022 08:39:34 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1642437574; cv=none;
+        d=google.com; s=arc-20160816;
+        b=gp0dAj4Xf+m7bYkA7I9w+D7KCLRXxMLNKsVKcigAqWn/6uM9zfxU0pFQZTBW3lCZCb
+         a+gcuZNiXaq9W6CW4C5eYWe33XZ4OgKqBJDZ0YDH6nQHVmH9NtAakEEfrQzDQiLvamuc
+         YRZT0ykhfSL51tqLX1BuIA+Ws+TPWdZe/0gcHP++GsVUDyYDCDBlVeULcVTEQ714amjG
+         XgdQ+oL9oim8HNrZwO2t5ZwqppZzQ360FuwDOKcODhVbGkYdXvyZF/k1qtAALe9w65iS
+         fyefL7veNDz+gTVymZi9LPyWyjTrK5KvpZoS+z2hdxhQbci9aYmaYmX4TYw8VSQy/x8B
+         ZC2w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject:from
+         :to:date:dkim-filter;
+        bh=hQxsTKb1wuWQyhEhVmjWk5qBbrd/8C0avcigeWqyxtM=;
+        b=ZPRMkVb7cgSIXAWnHp/ABrFHfy9EWcjYIVco7N+OPw0+LngC4U9cqRl5FYA/3YAZgl
+         4WFcD4JuRSegRE2Iwf5w6wtqpAhSJBZYoLohEKycxlGY3Az0Zm7ZIytfg4iJr9eyvcdz
+         4Pjz6RrB/M8BL+Wx5vKYRuTEKdJM4sBEAe83pnMcF298IItQmhPowSce61R6eb9+QkVv
+         aZRXSYNXZcWXRADeYQ1gq7cRodkgO4YvfER7WA6WAI1SM9xVs86Hz6Cdkcpm6tpofpkC
+         timxQoHxTF9qbddmQIZ3fne1gf9Gucjixba4yGswdsXf1zNUkHJV0xWT+wxEJt7CVHx3
+         OfQg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of learnadmin@di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=learnadmin@di.unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+Return-Path: <learnadmin@di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id lv23si2043500ejb.733.2022.01.17.08.39.33
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 17 Jan 2022 08:39:34 -0800 (PST)
+Received-SPF: pass (google.com: domain of learnadmin@di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of learnadmin@di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=learnadmin@di.unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.14.4/8.14.4) with ESMTP id 20HGddLL021107
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Mon, 17 Jan 2022 17:39:40 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 20HGddLL021107
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 20HGdWYR122982
+	for <luca.barra@edu.unito.it>; Mon, 17 Jan 2022 17:39:32 +0100
+Date: Mon, 17 Jan 2022 17:39:32 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Baroglio Cristina" <cristina.baroglio@unito.it>
+Subject: Prog1A21-22: Preparazione per il ripasso di domani, 18 gennaio
+Message-ID:  <be4126e3ae8704870a6853ec1b6a4dc101116a4e0bb803631fdd65d3666f4454@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer Moodle 2016052318 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum5614@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=5614
+X-Course-Id: 2258
+X-Course-Name: Programmazione 1 A (cognomi A-D), AA 21/22
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: Prog1A21-22: Preparazione per il ripasso di domani, 18 gennaio
+Thread-Index: be4126e3ae8704870a6853ec1b6a
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="b1_ca5829783d2723bf80495b8cb43e5a0b"
+
+This is a multi-part message in MIME format.
+
+--b1_ca5829783d2723bf80495b8cb43e5a0b
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+Prog1A21-22 -> Forum -> Annunci -> Preparazione per il ripasso di domani, 1=
+8
+gennaio=20
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D34604#p60094
+Preparazione per il ripasso di domani, 18 gennaio
+di Baroglio Cristina - luned=C3=AC, 17 gennaio 2022, 17:24
+---------------------------------------------------------------------
+Buongiorno,
+
+avvisa chi fosse interessato a partecipare all'incontro di ripasso di
+domani pomeriggio ore 17:00, che ho gi=C3=A0 pubblicato in moodle testo,
+spiegazione e link webex. ATTENZIONE: domani pomeriggio sono previsti dei
+lavori in dipartimento. Moodle non dovrebbe essere toccato da questi lavori
+ma a titolo precauzionale vi consiglio di scaricarvi la documentazione onde
+evitare problemi. In particolare segnatevi il link webex dell'incontro.
+
+Saluti, Cristina Baroglio
+
+
+
+
+---------------------------------------------------------------------
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2258
+
+
+--b1_ca5829783d2723bf80495b8cb43e5a0b
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">
+    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/cours=
+e/view.php?id=3D2258">Prog1A21-22</a>
+    &raquo;
+    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/f=
+orum/index.php?id=3D2258">Forum</a>
+    &raquo;
+    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/f=
+orum/view.php?f=3D5614">Annunci</a>
+    &raquo;
+    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/f=
+orum/discuss.php?d=3D34604">Preparazione per il ripasso di domani, 18 genna=
+io</a>
+</div>
+
+<table border=3D"0" cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost"=
+>
+    <tr class=3D"header">
+        <td width=3D"35" valign=3D"top" class=3D"picture left">
+            <a href=3D"https://informatica.i-learn.unito.it/user/view.php?i=
+d=3D37&amp;course=3D2258"><img src=3D"https://informatica.i-learn.unito.it/=
+pluginfile.php/16311/user/icon/ilearn/f2?rev=3D1" alt=3D"Immagine Baroglio =
+Cristina" title=3D"Immagine Baroglio Cristina" class=3D"userpicture" width=
+=3D"35" height=3D"35" /></a>
+        </td>
+        <td class=3D"topic starter">
+            <div class=3D"subject">
+                Preparazione per il ripasso di domani, 18 gennaio
+            </div>
+            <div class=3D"author">
+                di <a target=3D'_blank' href=3D'https://informatica.i-learn=
+=2Eunito.it/user/view.php?id=3D37&course=3D2258'>Baroglio Cristina</a> - lune=
+d=C3=AC, 17 gennaio 2022, 17:24
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class=3D"left side" valign=3D"top">
+                &nbsp;
+        </td>
+        <td class=3D"content">
+            <p>Buongiorno,</p><p>avvisa chi fosse interessato a partecipare=
+ all'incontro di ripasso di domani pomeriggio ore 17:00, che ho gi=C3=A0 pu=
+bblicato in moodle testo, spiegazione e link webex. <b>ATTENZIONE</b>: doma=
+ni pomeriggio sono previsti dei lavori in dipartimento. Moodle non dovrebbe=
+ essere toccato da questi lavori ma a titolo precauzionale vi consiglio di =
+scaricarvi la documentazione onde evitare problemi. In particolare segnatev=
+i il link webex dell'incontro.</p><p>Saluti, Cristina Baroglio<br /></p>
+
+            <div class=3D"commands">
+            </div>
+
+            <div class=3D"link">
+                <a target=3D"_blank" href=3D"https://informatica.i-learn.un=
+ito.it/mod/forum/discuss.php?d=3D34604#p60094">
+                    Visualizza questo intervento nel contesto
+                </a>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<hr />
+<div class=3D"mdl-align unsubscribelink">
+    <a href=3D"https://informatica.i-learn.unito.it/mod/forum/index.php?id=
+=3D2258">Modifica preferenze email di raccolta</a>
+</div>
+
+
+--b1_ca5829783d2723bf80495b8cb43e5a0b--
+

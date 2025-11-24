@@ -1,0 +1,210 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:2241:0:b0:37b:a51c:a37f with SMTP id i62csp152525lji;
+        Mon, 17 Nov 2025 09:03:57 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IERc441uk2yCekWdOiz0wwOoXmTkXMkrCdqRyavLcqjwRbjXAWbxsL+zYEEbjez4uRMBWE4
+X-Received: by 2002:a17:907:3f99:b0:b45:a84e:8b69 with SMTP id a640c23a62f3a-b736828d758mr774353066b.5.1763399036847;
+        Mon, 17 Nov 2025 09:03:56 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1763399036; cv=none;
+        d=google.com; s=arc-20240605;
+        b=CICicoXGhF5y8GKQVpXC5nS1rotrLruC1E8g0mj6RDqURWoV8DYctKVd5dIT0elBgx
+         Bq3sOmi+4kwUilptW909b0oCXVjAVAFcaOqsKzNnV57eQdeKM0oufiId3bLP3iL2cHS6
+         kT/+8A1L3J01bcUOxIj3okMqgrX9ZVcPOmFMBV+IuksfC6UoKBkpLKVi1s3EHhnf45dq
+         R1p09ViI3pwrlBqdTTenPaw9G9UMgzs2JWI/AGd4VhtpRIvfgfv/BQ1eYtkhJqqXdjMK
+         6J8nf73j2IcMj0ep7xBTaai1sSeiO6S6ogTRGlnMU6+K/po5j3j2u+788GtFcBiZrNEB
+         644A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-signature:dkim-filter;
+        bh=UotyGthBSmeso8yfRJw4+M4jXCKJToVbM3SKdUJiXIU=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=ikQZapoVZ+x7yrWoqfxRaMZnGMF9Cx12H9QZ6BWuCoLxwjmomLOzfddsoU+potr+ps
+         HtXj5Ij6rZ2oaps0mvFWIIX1h0RfGduauWxwN9C6q3/LZqc42jtwuIbKP3tq8Z5PDwVx
+         oCKxzrKGGj/9oEhnOBbKOVD6e6i3gICI9wluxtDWGENb1WZo0OA5SpG2jGTLLhFzSgdW
+         WlzScBt4Swll6sV/5bqOQk9qF6fy1l7pbLArfft9EhNCbHVf8awd2UOg5uQ1KC6bAIcX
+         192OxzFul6sH7+xfW8T90H89okPOQGfFCmarYNrSMUQHjIX2yiM/bxOjCvMefdtV1VRw
+         9dow==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=emvCoOGp;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-b734fc717a3si670718566b.699.2025.11.17.09.03.56
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Nov 2025 09:03:56 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=emvCoOGp;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 5AHH3pQw1847007
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Mon, 17 Nov 2025 18:03:51 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 5AHH3pQw1847007
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=i-learn.unito.it;
+	s=default; t=1763399031;
+	bh=UotyGthBSmeso8yfRJw4+M4jXCKJToVbM3SKdUJiXIU=;
+	h=Date:To:From:Reply-To:Subject:List-Id:List-Help:List-Unsubscribe:
+	 From;
+	b=emvCoOGp8S6VRGyVWUMigaiEvXfGecNgKoZZl80Zks0I5x0FDH6Xnqtogrw8lzEFS
+	 cVxCcIzxodKHEdUs21XssfMU3ZnkKOpzkGG2um6xKTHfs1PFW1UNyrLDMAI3/bitQr
+	 vOOGqNZcOsg5lY56SR0DRrEr9rOY5lzP6JEpOito=
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 5AHH3p31906251
+	for <luca.barra@edu.unito.it>; Mon, 17 Nov 2025 18:03:51 +0100
+Date: Mon, 17 Nov 2025 18:03:51 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Scavone Alessandro (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: SisInt2425: L'IA che "prevede" i crimini
+Message-ID: <466f61b03462ca32a318d5b99fd533b8b7bb39d1324eb22df8f2ac56e0227fbe@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.6.5 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Segnalazioni" <moodleforum7706@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7706
+X-Course-Id: 3092
+X-Course-Name: Sistemi Intelligenti
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=7706&d=45928>
+Thread-Topic: SisInt2425: L'IA che "prevede" i crimini
+Thread-Index: 466f61b03462ca32a318d5b99fd5
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_y9U0xveBuxKOC6i87BQSVGHQspBT8KYusKv5JTfwg"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 5AHH3pQw1847007
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply-informatica@i-learn.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_y9U0xveBuxKOC6i87BQSVGHQspBT8KYusKv5JTfwg
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SisInt2425 -> Forums -> Segnalazioni -> L'IA che "prevede" i crimini
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45928#p73946
+L'IA che "prevede" i crimini
+by Scavone Alessandro - Monday, 17 November 2025, 5:44 PM
+---------------------------------------------------------------------
+1.FONTE:=C2=A0https://www.propublica.org/article/machine-bias-risk-assessme=
+nts-in-criminal-sentencing
+
+2.=C2=A0TIPOLOGIA DI COMUNICAZIONE:=C2=A0articolo
+
+3.=C2=A0TONO:Critico, analitico e di denuncia. Non =C3=A8 un articolo tecni=
+co, ma
+un'analisi dell'impatto sociale di un algoritmo.
+
+4.BREVE RIASSUNTO:=C2=A0
+L'inchiesta di ProPublica ha analizzato COMPAS, un software di IA usato in
+molti tribunali statunitensi per prevedere la probabilit=C3=A0 che un imput=
+ato
+commetta un altro crimine. L'algoritmo viene usato dai giudici per
+decidere, ad esempio, l'importo della cauzione. L'inchiesta ha scoperto che
+l'algoritmo era palesemente distorto (biased): a parit=C3=A0 di condizioni,
+classificava gli imputati neri come a pi=C3=B9 alto rischio di recidiva
+rispetto ai bianchi, in modo errato.
+
+5.=C2=A0Mi ha colpito perch=C3=A9 evidenzia il rischio di automatizzare dec=
+isioni
+cos=C3=AC delicate, delegando all'IA un giudizio critico che dovrebbe invec=
+e
+rimanere secondo me umano.
+
+6. LEGAME CON TEMI VISTI A LEZIONE
+-CLASSIFICAZIONE: questo =C3=A8 un esempio di un problema di classificazion=
+e.
+L'IA viene addestrata per classificare un imputato in due categorie: "alto
+rischio di recidiva" o "basso rischio".
+
+-BIAS DOVUTO A LEARNING SET: l'algoritmo =C3=A8 stato addestrato su dati
+storici che gi=C3=A0 contenevano un pregiudizio umano e sociale.
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SisInt2425.
+
+To reply click on this link:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D73946
+Unsubscribe from this forum:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706
+Unsubscribe from this discussion:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D=
+45928
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092
+
+--b1_y9U0xveBuxKOC6i87BQSVGHQspBT8KYusKv5JTfwg
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3092">SisInt2425</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3092">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+706">Segnalazioni</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45928">L'IA che =
+"prevede" i crimini</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3"=
+ cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=0A     =
+   <td width=3D"35" valign=3D"top" class=3D"picture left">=0A            <a=
+ href=3D"https://informatica.i-learn.unito.it/user/view.php?id=3D29112&amp;=
+course=3D3092" class=3D"d-inline-block aabtn"><span class=3D"userinitials s=
+ize-35">SA</span></a>=0A        </td>=0A        <td class=3D"topic starter"=
+>=0A            <div class=3D"subject">=0A                L'IA che "prevede=
+" i crimini=0A            </div>=0A            <div class=3D"author">=0A   =
+             by <a target=3D'_blank' href=3D'https://informatica.i-learn.un=
+ito.it/user/view.php?id=3D29112&course=3D3092'>Scavone Alessandro</a> - Mon=
+day, 17 November 2025, 5:44 PM=0A            </div>=0A        </td>=0A    <=
+/tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=0A       =
+         &nbsp;=0A        </td>=0A        <td class=3D"content">=0A        =
+    <p dir=3D"ltr" style=3D"text-align:left;"></p><p dir=3D"ltr"><strong>1<=
+/strong>.<strong>=C2=A0Fonte:</strong>=C2=A0https://www.propublica.org/arti=
+cle/machine-bias-risk-assessments-in-criminal-sentencing</p><p dir=3D"ltr">=
+<strong>2.</strong>=C2=A0<strong>Tipologia di comunicazione:</strong>=C2=
+=A0articolo</p><p dir=3D"ltr"><strong>3.</strong>=C2=A0<strong>Tono:=C2=
+=A0</strong>Critico, analitico e di denuncia. Non =C3=A8 un articolo tecnic=
+o, ma un'analisi dell'impatto sociale di un algoritmo.</p><p dir=3D"ltr"><s=
+trong>4.=C2=A0</strong><strong>Breve riassunto:</strong>=C2=A0</p>L'inchies=
+ta di ProPublica ha analizzato COMPAS, un software di IA usato in molti tri=
+bunali statunitensi per prevedere la probabilit=C3=A0 che un imputato comme=
+tta un altro crimine. L'algoritmo viene usato dai giudici per decidere, ad =
+esempio, l'importo della cauzione. L'inchiesta ha scoperto che l'algoritmo =
+era palesemente <span>distorto (biased)</span>: a parit=C3=A0 di condizioni=
+, classificava gli imputati neri come a pi=C3=B9 alto rischio di recidiva r=
+ispetto ai bianchi, in modo errato.<p><br /></p><p dir=3D"ltr"><strong>5.</=
+strong>=C2=A0Mi ha colpito perch=C3=A9 evidenzia il rischio di automatizzar=
+e decisioni cos=C3=AC delicate, delegando all'IA un giudizio critico che do=
+vrebbe invece rimanere secondo me umano.</p><p dir=3D"ltr"><br /></p><stron=
+g>6. Legame con temi visti a lezione</strong><p></p><p><strong>-=C2=A0<stro=
+ng>classificazione</strong>: q</strong>uesto =C3=A8 un esempio di un proble=
+ma di classificazione. L'IA viene addestrata per classificare un imputato i=
+n due categorie: "alto rischio di recidiva" o "basso rischio".</p><p></p><p=
+></p><p></p><p><span><strong>-=C2=A0<span>bias dovuto a learning set</span>=
+: </strong></span>l'algoritmo =C3=A8 stato addestrato su dati storici che g=
+i=C3=A0 contenevano un pregiudizio umano e sociale.</p><p></p>=0A=0A       =
+     <div class=3D"commands">=0A                    <a target=3D"_blank" hr=
+ef=3D"https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D73946=
+">=0A                        Reply=0A                    </a>=0A           =
+ </div>=0A=0A            <div class=3D"link">=0A                <a target=
+=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/discuss.=
+php?d=3D45928#p73946">=0A                    See this post in context=0A   =
+             </a>=0A            </div>=0A        </td>=0A    </tr>=0A</tabl=
+e>=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=0A    <a href=3D=
+"https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706">Un=
+subscribe from forum</a>&nbsp;=0A    <a href=3D"https://informatica.i-learn=
+.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D45928">Unsubscribe from thi=
+s discussion</a>&nbsp;=0A    <a href=3D"https://informatica.i-learn.unito.i=
+t/mod/forum/index.php?id=3D3092">Change your forum digest preferences</a>=
+=0A</div>
+
+--b1_y9U0xveBuxKOC6i87BQSVGHQspBT8KYusKv5JTfwg--
+

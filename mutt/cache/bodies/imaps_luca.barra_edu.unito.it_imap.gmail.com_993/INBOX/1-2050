@@ -1,0 +1,244 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b04f:0:b0:302:3d35:6815 with SMTP id d15csp218437ljl;
+        Thu, 12 Dec 2024 22:50:46 -0800 (PST)
+X-Received: by 2002:a05:6512:1287:b0:540:2339:375c with SMTP id 2adb3069b0e04-5409056ae31mr132839e87.8.1734072646296;
+        Thu, 12 Dec 2024 22:50:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1734072646; cv=none;
+        d=google.com; s=arc-20240605;
+        b=bvu+fR0yOtqHGBO+qMzeAE4IhWMLzbDQunMeIcxdnzBsOibpwpIFLlojw4E0qnwus7
+         ud0HXO5mSZiEQijevOJVxSdBvymH+vhWx5gBjZL83OqrvUpq3xXp4W6QFcWSZNkgeIiQ
+         JSeg/7VOCTWOE1i5HAcuhZ1vQFj28EbqONUJ5cE5ziFgYfauSI+JkfpZKtRT2EJUEDEs
+         Y7/YgR9bs+xNGolpqHNeLg/7BCHIuLjt9AeF/zK7I5JarzzLPrb4/z9W5zWkiSC6NVBw
+         4H9D9/9dgNkngQmh+nuNx7/IPrnvkkA5BkbpZ6cp+PoS6J2ZfMt5tf3jZ4fe2Ctbsh8v
+         mkCQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-signature:dkim-filter;
+        bh=zaf6i126gAsXL/uk9e1A8eP6kUvSAmRsdTPAsu+DHgU=;
+        fh=x7a7nPX3VRefh9eHSfgk6Bh2tC3W8SnHmg5e+PAUGZg=;
+        b=h7XvYQsFZMmbAVk7EGjrTjMp47q7a5xVWu+Yxbnln+vLvTRlEU7tIdC8jn6PBlscjX
+         JPiHCkEDDu4I/YCsJimgYDZtI085M1uHi0rUwf3xH8/6ZWpyWdyHNjyLRMxY0kkPkoAW
+         iKL8LbTScJnpN87gJs0y/wSNWc+bfNZxRPDhotc8R8kQNW2pn5AFmqswBrwWVOVY1JB1
+         pehw2fHUIgpKLYgb5l9d016FfDhmRdVgEeLvPHXekcT1aiQUHJFlyGXVT9SuZVqh9j7s
+         gSPkWoAi4cHvh80QkSA2nW8PA+zd3Rabn4Xi1TPsAjZN58TQ0He4XOleie73RajEbXnX
+         T4yA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=mRmisO35;
+       spf=none (google.com: noreply@compiti3.i-learn.unito.it does not designate permitted sender hosts) smtp.mailfrom=noreply@compiti3.i-learn.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <noreply@compiti3.i-learn.unito.it>
+Received: from mail-sor-f97.google.com (mail-sor-f97.google.com. [209.85.220.97])
+        by mx.google.com with SMTPS id 2adb3069b0e04-540254ada94sor1489939e87.0.2024.12.12.22.50.45
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Thu, 12 Dec 2024 22:50:46 -0800 (PST)
+Received-SPF: none (google.com: noreply@compiti3.i-learn.unito.it does not designate permitted sender hosts) client-ip=209.85.220.97;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=mRmisO35;
+       spf=none (google.com: noreply@compiti3.i-learn.unito.it does not designate permitted sender hosts) smtp.mailfrom=noreply@compiti3.i-learn.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734072645; x=1734677445;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-signature:dkim-filter:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zaf6i126gAsXL/uk9e1A8eP6kUvSAmRsdTPAsu+DHgU=;
+        b=cvRYfAIz/rEprDQom28HzEiDqW8ohoJEJdaXdYeT+8WWkFiyfOl9iRNQr3XPGFemUW
+         4CgkE3Uiy1JBzIUxaw/AVhIplB+vJUzSconYbkjxBM5qFBPaIZnAd8i9OVoiCea22BKT
+         ppzBANTw8/WEhBcNpKrHEoiS9QrjBjLOZqwzgEoauOEbqYxRGST/xmca3Q/SDd+PCdEi
+         3jVLKbol0p/DQGzVbEn148Jo6cXCp/g7n0GZJ/PQ4kG1xH5xfDAv/CNNtCbTEYZYaq7b
+         cN+ZZvGnC8QpHXWTXFlK9PiadvGYoHNYKoocRf3vrae9ZvbUP2JW2xGzLOBon5W12jC2
+         R4Ig==
+X-Gm-Message-State: AOJu0YzXtlDVRXy2TrkscSmYHlwgCPawoSKf7S0QXbVNzy26vfznd2QS
+	Yn+8G1c8jDYzr/mnO5qJ1aYSNySoNd5kGY1ZwhDwcUUUOF/+lBN1V9cPrfSBe+GTjR7OHyHYkLU
+	7Alfvyfa2efJP88c6XWSKgipQqb/lXZmEREoG4LPd3q8=
+X-Gm-Gg: ASbGncs638euaHIJh4YYA+wvnUXnH4143KgaqdWUHVJfulHMLoFskUVYtjj9i6oV080
+	t/YR5pETQ7Kd+ZXCPmpodY8ZUtZ/Y+BUTUdiJ5otz8YcIBEszVzK4RGuyJblq4suOiIunYf58su
+	pHla8yIfaqcGcFcb1/1HX4JyOkB+5zIEL7YhIDUUsPY/uPxZI3/TlgQ27q4vxQPOy0b2lXdPxLx
+	GvKN6k9c42jGohFE5NQ1+mvBcyht0su+ACwUNr2enouuZS7ZGcjZdtTeqgAJdpCuTeQoEO9Sh2l
+	WrFHWjnENMbplrgy/5KR+4SBrV4kurFfv6VtkZy22woLKelebOwSVRYzXg==
+X-Google-Smtp-Source: AGHT+IGerkS7HwiByxpgWdTt4uA2RwSnRKo0LEcDfRQg9DqNegHhvuYI37AzLBR4WfAbrIpOiGxC2Sik0qzw
+X-Received: by 2002:a05:6512:3ca7:b0:540:255b:f2fa with SMTP id 2adb3069b0e04-5408ccff040mr359776e87.10.1734072645213;
+        Thu, 12 Dec 2024 22:50:45 -0800 (PST)
+Return-Path: <noreply@compiti3.i-learn.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by smtp-relay.gmail.com with ESMTPS id 2adb3069b0e04-54030d6ccc5sm133556e87.33.2024.12.12.22.50.45
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 12 Dec 2024 22:50:45 -0800 (PST)
+X-Relaying-Domain: unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 4BD6ohbL206401
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Fri, 13 Dec 2024 07:50:43 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 4BD6ohbL206401
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=i-learn.unito.it;
+	s=default; t=1734072643; i=@i-learn.unito.it;
+	bh=zaf6i126gAsXL/uk9e1A8eP6kUvSAmRsdTPAsu+DHgU=;
+	h=Date:To:From:Reply-To:Subject:List-Id:List-Help:List-Unsubscribe:
+	 From;
+	b=mRmisO35KqqhJbbfgKDoGzp6yl/idDhc4M1hqqGtI0LZ39HTBWApbxFGRqVs83Uwa
+	 ycjsug0n3f+bX8Bz/TZzcL4CXSx9UvTbZVTp9aW/0c9B3jg6PGMovtkzE0E0xXx+IC
+	 yBmq8ihx8LE+Hx8TqlcOKV3x5p32qWPi/XRRGKGc=
+Received: from compitiacasa.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 4BD6oh5a061192
+	for <luca.barra@edu.unito.it>; Fri, 13 Dec 2024 07:50:43 +0100
+Date: Fri, 13 Dec 2024 07:50:43 +0100
+To: "Luca Barra" <luca.barra@edu.unito.it>
+From: "Sara Omegna (da Compiti_a_Casa)" <noreply@compiti3.i-learn.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@compiti3.i-learn.unito.it>
+Subject: CC23_Tutor: Pubblicazione bando Compiti@casa
+Message-ID: <3aeea1092531b7b53589da8419030e0702b9d6745a44cb07df47a238ee8d8879@compitiacasa.i-learn.unito.it>
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum1678@compitiacasa.i-learn.unito.it>
+List-Help: https://compitiacasa.i-learn.unito.it/mod/forum/view.php?f=1678
+X-Course-Id: 760
+X-Course-Name: =?utf-8?B?Q29tdW5pdMOgIGRlaSB0dXRvciAyMDIyLzIwMjM=?=
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: CC23_Tutor: Pubblicazione bando Compiti@casa
+Thread-Index: 3aeea1092531b7b53589da841903
+X-Moodle-Originating-Script: https://compitiacasa.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_r2GhgD8uh4mhHrk1amKjozVGdJfafJ4DZPDnqgfE"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 4BD6ohbL206401
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@compiti3.i-learn.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_r2GhgD8uh4mhHrk1amKjozVGdJfafJ4DZPDnqgfE
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+CC23_Tutor -> Forum -> Annunci -> Pubblicazione bando Compiti@casa
+https://compitiacasa.i-learn.unito.it/mod/forum/discuss.php?d=3D21726#p2373=
+2
+Pubblicazione bando Compiti@casa
+di Sara Omegna - venerd=C3=AC, 13 dicembre 2024, 07:43
+---------------------------------------------------------------------
+Gent.m*,
+
+segnaliamo la pubblicazione del=C2=A0bando [1]=C2=A0per l'Edizione 2024/202=
+5 del
+progetto "Compiti@casa, curare la fragilit=C3=A0 educativa"
+(https://compitiacasa.i-learn.unito.it/ [2]), con scadenza il=C2=A07 GENNAI=
+O
+2025 ORE 12.00=C2=A0per una collaborazione di 70 ore. Si tratta di un proge=
+tto
+gestito da un partenariato nazionale, composto da Parsec Cooperativa
+Sociale (che riveste il ruolo di Capofila), Cooperativa Sociale Raggio
+Verde, Tra Parentesi APS, Associazione I Tetti Colorati, Universit=C3=A0 di
+Torino (che riveste il ruolo di Coordinamento Scientifico), Universit=C3=
+=A0 di
+Roma La Sapienza, Universit=C3=A0 degli Studi di Napoli Federico II e
+Universit=C3=A0 di Messina. Il progetto =C3=A8 finanziato da=C2=A0Con I Bam=
+bini Impresa
+sociale S.r.l [3],=C2=A0Fondazione De Agostini [4],=C2=A0Fondazione Alberto=
+ e
+Franca Riva [5]=C2=A0e=C2=A0Fondazione Comunit=C3=A0 Novarese [6].
+
+In caso quest'anno non potessi partecipare in prima persona, ti chiediamo
+di favorire la massima diffusione del bando, che puoi trovare in allegato,
+in modo che tutti gli interessati possano venirne a conoscenza.
+
+Per avere maggiori informazioni a riguardo scrivere direttamente
+all'indirizzo email compitiacasa@unito.it.
+
+Un cordiale saluto,
+
+Marina Marchisio Conte e il Coordinamento Scientifico del Progetto
+compiti@casa
+
+Links:
+------
+[1]
+https://compitiacasa.i-learn.unito.it/pluginfile.php/136216/mod_forum/post/=
+23730/bando_collaborazioni_compiti_casa_9103_2024.pdf?time=3D1733930335728
+[2] https://compitiacasa.i-learn.unito.it/
+[3] https://www.conibambini.org/
+[4] https://www.fondazionedeagostini.it/
+[5] https://www.fondazioneriva.it/
+[6] https://www.fondazionenovarese.it/
+
+---------------------------------------------------------------------
+Questa =C3=A8 la copia di un intervento effettuato su CC23_Tutor .
+
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://compitiacasa.i-learn.unito.it/mod/forum/index.php?id=3D760
+
+--b1_r2GhgD8uh4mhHrk1amKjozVGdJfafJ4DZPDnqgfE
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://compitiac=
+asa.i-learn.unito.it/course/view.php?id=3D760">CC23_Tutor</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://compitiacasa.i-learn.unito.it/m=
+od/forum/index.php?id=3D760">Forum</a>=0A    &raquo;=0A    <a target=3D"_bl=
+ank" href=3D"https://compitiacasa.i-learn.unito.it/mod/forum/view.php?f=3D1=
+678">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://c=
+ompitiacasa.i-learn.unito.it/mod/forum/discuss.php?d=3D21726"> Pubblicazion=
+e bando Compiti@casa</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3=
+" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=0A    =
+    <td width=3D"35" valign=3D"top" class=3D"picture left">=0A            <=
+a href=3D"https://compitiacasa.i-learn.unito.it/user/view.php?id=3D3342&amp=
+;course=3D760" class=3D"d-inline-block aabtn"><img src=3D"https://compitiac=
+asa.i-learn.unito.it/pluginfile.php/174882/user/icon/lambda/f2?rev=3D667210=
+" class=3D"userpicture" width=3D"35" height=3D"35" alt=3D"" /></a>=0A      =
+  </td>=0A        <td class=3D"topic starter">=0A            <div class=3D"=
+subject">=0A                 Pubblicazione bando Compiti@casa=0A           =
+ </div>=0A            <div class=3D"author">=0A                di <a target=
+=3D'_blank' href=3D'https://compitiacasa.i-learn.unito.it/user/view.php?id=
+=3D3342&course=3D760'>Sara Omegna</a> - venerd=C3=AC, 13 dicembre 2024, 07:=
+43=0A            </div>=0A        </td>=0A    </tr>=0A    <tr>=0A        <t=
+d class=3D"left side" valign=3D"top">=0A                &nbsp;=0A        </=
+td>=0A        <td class=3D"content">=0A            <p dir=3D"ltr" style=3D"=
+text-align:left;"></p><p dir=3D"ltr">Gent.m*,</p><p dir=3D"ltr">segnaliamo =
+la pubblicazione del=C2=A0<a href=3D"https://compitiacasa.i-learn.unito.it/=
+pluginfile.php/136216/mod_forum/post/23730/bando_collaborazioni_compiti_cas=
+a_9103_2024.pdf?time=3D1733930335728">bando</a>=C2=A0per l'Edizione 2024/20=
+25 del progetto "Compiti@casa, curare la fragilit=C3=A0 educativa" (<a href=
+=3D"https://compitiacasa.i-learn.unito.it/">https://compitiacasa.i-learn.un=
+ito.it/</a>), con scadenza il=C2=A0<strong>7 gennaio 2025 ore 12.00</strong=
+>=C2=A0per una collaborazione di 70 ore. Si tratta di un progetto gestito d=
+a un partenariato nazionale, composto da Parsec Cooperativa Sociale (che ri=
+veste il ruolo di Capofila), Cooperativa Sociale Raggio Verde, Tra Parentes=
+i APS, Associazione I Tetti Colorati, Universit=C3=A0 di Torino (che rivest=
+e il ruolo di Coordinamento Scientifico), Universit=C3=A0 di Roma La Sapien=
+za, Universit=C3=A0 degli Studi di Napoli Federico II e Universit=C3=A0 di =
+Messina. Il progetto =C3=A8 finanziato da=C2=A0<a href=3D"https://www.conib=
+ambini.org/">Con I Bambini Impresa sociale S.r.l</a>,=C2=A0<a href=3D"https=
+://www.fondazionedeagostini.it/">Fondazione De Agostini</a>,=C2=A0<a href=
+=3D"https://www.fondazioneriva.it/">Fondazione Alberto e Franca Riva</a>=
+=C2=A0e=C2=A0<a href=3D"https://www.fondazionenovarese.it/">Fondazione Comu=
+nit=C3=A0 Novarese</a>.</p><p dir=3D"ltr">In caso quest'anno non potessi pa=
+rtecipare in prima persona, ti chiediamo di favorire la massima diffusione =
+del bando, che puoi trovare in allegato, in modo che tutti gli interessati =
+possano venirne a conoscenza.</p><p dir=3D"ltr">Per avere maggiori informaz=
+ioni a riguardo scrivere direttamente all'indirizzo email compitiacasa@unit=
+o.it.</p><p dir=3D"ltr">Un cordiale saluto,</p><p dir=3D"ltr">Marina Marchi=
+sio Conte e il Coordinamento Scientifico del Progetto compiti@casa</p><br /=
+><p></p>=0A=0A            <div class=3D"commands">=0A            </div>=0A=
+=0A            <div class=3D"link">=0A                <a target=3D"_blank" =
+href=3D"https://compitiacasa.i-learn.unito.it/mod/forum/discuss.php?d=3D217=
+26#p23732">=0A                    Visualizza questo intervento nel contesto=
+=0A                </a>=0A            </div>=0A        </td>=0A    </tr>=0A=
+</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=0A    <a h=
+ref=3D"https://compitiacasa.i-learn.unito.it/mod/forum/index.php?id=3D760">=
+Modifica preferenze email di raccolta</a>=0A</div><p>Reading this in an ema=
+il? <a href=3D"https://download.moodle.org/mobile?version=3D2021051718&amp;=
+lang=3Dit&amp;iosappid=3D633359593&amp;androidappid=3Dcom.moodle.moodlemobi=
+le">Download the mobile app and receive notifications on your mobile device=
+</a>.</p>
+
+--b1_r2GhgD8uh4mhHrk1amKjozVGdJfafJ4DZPDnqgfE--
+

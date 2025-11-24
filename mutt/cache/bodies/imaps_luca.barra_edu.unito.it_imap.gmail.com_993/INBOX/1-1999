@@ -1,0 +1,125 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b615:0:b0:2fb:4c9b:a38b with SMTP id r21csp4837269ljn;
+        Mon, 11 Nov 2024 07:22:41 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCWMQ3Fl/f51Chbi9Dx8Mu00684+XfZlsRxPx9xP8PUmUhu/D8CfKSKzuMkhoXXc8EXjUeWa+k+G64ng@edu.unito.it
+X-Google-Smtp-Source: AGHT+IGKuztDYcndFgR69SwtXtqe9D/oZ5MfRxfdLycmWYQvqww1g/16tivVx+FIFWG9vzOzozD1
+X-Received: by 2002:a05:6512:3ca5:b0:539:9155:e8d4 with SMTP id 2adb3069b0e04-53d862cd218mr5477730e87.8.1731338561354;
+        Mon, 11 Nov 2024 07:22:41 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1731338561; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Ad6v8SHkj38A+GqJof7OZLo1qPQ9m8atMEyAJvhqCd7CPD/5tBhxKRTy+sJDHSQmB7
+         PIQX5FhjU9C+QVDTb6qZ+/SVUDe1notmn7FU9fcY6CjGOLB9UKC/6tv8kK7Pv3yTC7oy
+         b96PMaM47VFzNBLpnAXoBtCkJOeHEKxfi/yh0lzZghdqydqEh4gUi6ZwjqKMtZ2pXmX/
+         7mtErRNotE2k27dxmLthw+iwjxbudTN4iuUPVhw7RrspCTPcPRN5g4/YL4gV3gy23anh
+         0WpB7USZ0BBvJbBSKmIHt+3lHqT6BTqvh1XSgCU5do/6WtG+aoHt3Lav3j9KJzL8iWYq
+         DWfw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=2q2jwuiPO3+E/ymykDFdIU7cuGEhTiMZcqklxAPhhn0=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=alOdzUN8Z4piQDROE5IWIX/WGoDVjgb26MbP51DsMfcSQ/cM7zu0GBYr8PuckTxh/6
+         V5lT2A46w9LazT1q6o9QvcyRHiyPz4jqoKXxl8A9PKLDO6jkCasY+MTyv3N6s6hjTV6a
+         FxD57CO6N8QfCf9gGREl/5jp3McQLGopUml/Cv3uaqUaPoZegDFJNKyBmVXyu6jpNbj2
+         mZaTZBcqKL98w1evlj/ifAPPqsav9ZXxKd+UuZ2BTmrpyS8NNTfhEy8w1s84FAZcOJ6l
+         JIh9/HCW/Tp0nOujZSynHFP6KUaLN4zX4EJ8I6u9hpdctLJ9eYG89kBbLDUGiImTkd09
+         /wNA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=YSwIxTLN;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id e9e14a558f8ab-3a6f980d0desi5418205ab.68.2024.11.11.07.22.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Nov 2024 07:22:41 -0800 (PST)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=YSwIxTLN;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id D4471221C7;
+	Mon, 11 Nov 2024 16:22:37 +0100 (CET)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id Gd6ynliT6DRB; Mon, 11 Nov 2024 16:22:37 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 2A36F225E9;
+	Mon, 11 Nov 2024 16:22:37 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 2A36F225E9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1731338557;
+	bh=2q2jwuiPO3+E/ymykDFdIU7cuGEhTiMZcqklxAPhhn0=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=YSwIxTLNhxP6qiW3B0gPHU0j6N6Xa0qcKdXwwEvV0w+JFc9emntfOBWiCcm+AdvrK
+	 0SYacz/jqERLFN5YQuuM8ULpZ6i4sxLcrZyypcXOz2zwdV6oPqusCeNpUArgX6JMWt
+	 riRr+oBDRLl9h0TdDbTEOzXliawlPBAZb8qeQM8aBj9EfpCCaTH1PBuAQFDwpCWntV
+	 rndzGOWPeXlYPr2VTr1TsKCC8RPPIrWunaDocMyU0i4qzNH6xbM3zjhpn7sA7RiiQU
+	 N7alFibY4dmrpLE71PEn6Z7rr8BNmkqTLYgjWDK4DLDgn0TDy8naAl6Squ49F6Rfyz
+	 ROEXYCbzNm7sA==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id E5HSKUkSWhvW; Mon, 11 Nov 2024 16:22:36 +0100 (CET)
+Received: from esse3appjboss22.private.cineca.it (esse3appjboss22.cineca.it [130.186.5.143])
+	by smtp4.cineca.it (Postfix) with ESMTP id 40A19221B7;
+	Mon, 11 Nov 2024 16:22:34 +0100 (CET)
+Received: from esse3appjboss22.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss22.private.cineca.it (Postfix) with ESMTP id 04CA82AE;
+	Mon, 11 Nov 2024 16:22:34 +0100 (CET)
+Date: Mon, 11 Nov 2024 16:22:33 +0100 (CET)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <8306527.1.1731338553989@esse3appjboss22.private.cineca.it>
+Subject: Tesi di laurea magistrale in Informatica presso National
+ Institute
+ of Informatics, Tokyo, 20/11/2024, 14:00, Sala Seminari terzo
+ piano
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+Carissime, carissimi,
+il giorno 20/11/2024 alle ore 14:00 presso la sala seminari al terzo
+piano ospiteremo Emmanuel Planas, Deputy Director del National Institute
+of Informatics, Tokyo per conoscere meglio le opportunit=C3=A0 di
+collaborazione. Vi ricordo che il nostro dipartimento da molti anni
+partecipa al  programma NII International Internship Program aperto a
+livello dottorato di ricerca e laurea magistrale.
+
+Abstract:
+This seminar introduces the National Institute of Informatics (NII) and
+opportunities for international cooperation with NII.
+
+NII is the Inter-University Research Institute (ROIS) for advanced
+Computer Science Research and Global Science Data Infrastructure
+support, situated in the heart of Tokyo, Japan. NII is ranked top 2 for
+publications in Computer Science in Japan. Research activity is divided
+in four Departments: 1.Principles of Informatics including Mathematical
+Informatics, Intelligent Informatics, Quantum Information, Mathematical
+Logics; 2.Information Systems Architecture Science including Network
+Architecture, Computer Architecture, Information Network, Software
+Architecture, Software Engineering; 3. Digital Content and Media
+Sciences including Text and Language Media, Human and Knowledge Media,
+Pattern Media, Image processing, Fondations of Content Management:
+Information and Society including Information Use, Human and Knowledge
+Media, Science Information, Information Public Policy.
+
+The Global Liaison Office (GLO) at NII has established partnerships with
+more than 100 MOU partners. GLO supports international exchanges via the
+=E2=80=9CMOU Grant Program=E2=80=9D under which a NII researcher can invite=
+ a colleague
+from overseas for a stay, or send some member of his team for a research
+visit (up to 2 months, around 40 researches a year supported). GLO also
+offers the =E2=80=9CNII International Internship Program=E2=80=9D in which =
+we welcome
+and fund MOU partners Master=E2=80=99s and PhD. students for a research sta=
+y in
+one of our teams (3 to 6 months, around 140 students per year).
+
+Cordiali saluti
+Marco Grangetto

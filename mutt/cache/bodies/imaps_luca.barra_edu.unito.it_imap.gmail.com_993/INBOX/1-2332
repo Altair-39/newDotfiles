@@ -1,0 +1,96 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:3614:0:b0:30c:2dd2:a8c1 with SMTP id d20csp5733426lja;
+        Wed, 9 Apr 2025 11:08:15 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGboAf+Po8udXiTtvjLVW5fHeEiWrDJSzUc/vesUegp2U6gry90gpjKfwI94KkU006fA9kA
+X-Received: by 2002:a17:906:8f82:b0:ac0:b71e:44e7 with SMTP id a640c23a62f3a-aca9b6ff8dcmr140814766b.12.1744222094918;
+        Wed, 09 Apr 2025 11:08:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1744222094; cv=none;
+        d=google.com; s=arc-20240605;
+        b=BE/pO9pwRfnI8sQ5M8te8g/KSmX3scV+q1hZPck5uyT68UZpcxlTaS7mqLtilI419+
+         TOdIcP92pnLWkZjNnOni61gedRmDAgTwMISWOn+/U95KMTXaivffcJI2z4PXCIClXg0c
+         fj3Z1ZGfG8uyRba5sWurvlY2NVt1tgAphHVlEHMDOaSdchMwEcBZ6cpsNRyAHBoomsuL
+         azC3sFmkMtH/J4RvetT3bBeXdA+o2HQuphiMD22HmMwyUVUczZXmGI9g5/WbGl0adaM7
+         M1XV2u8QnkTIkrCOkYDI+dj9XrBxiMCLyjGVXSsL+CUZ4K65eB8fa5Ts61/90xKh0uyC
+         CFlg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:message-id:subject:reply-to:from:to:date;
+        bh=SKqmYRGvmPTBH2JNM6tReYgFuwY0X0csvau5ZzVnjEg=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=LJNT3H9Mwrkp3SBF8RXCf9F2saqOg9I4LuArS3/f66DX23Crw5DC4dA5hiiIDOlQgi
+         ZEa/Dcx2/FqI5BzBWfqz/IUZHc5RuNECfybt9bLSXrNzY9PVJC5paAoNVVO1DUyWpdtW
+         Iwg0aX5EHr2mNy08M5BJeemRD7ukZ9Ob8w+aP6faQzirAnvGipw/tL8EMcfuC4SLjPf4
+         MAH6+J40xa0/Wl+l9Yj0xyE+tCvbcG0gCYzRwy1M3qLPFkukVOKlKTgrBobhKBVpOcLf
+         S0AEPwhM4jNF/0m/75AIZOZ7VMJNzmU+AUOgGG8AAsHPguPKOTLNHalVt7MnDQ42ppSA
+         WkbA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.3 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it. [130.192.157.3])
+        by mx.google.com with ESMTPS id a640c23a62f3a-acaa1cd61dcsi112630866b.609.2025.04.09.11.08.14
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Apr 2025 11:08:14 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.3 as permitted sender) client-ip=130.192.157.3;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.3 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 539I8EnZ3523365
+	for <luca.barra@edu.unito.it>; Wed, 9 Apr 2025 20:08:14 +0200
+Date: Wed, 9 Apr 2025 20:08:14 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Meo Rosa (da informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply-informatica@i-learn.unito.it>
+Subject: New message from Meo Rosa
+Message-ID: <67f6b78dc22ff1.22500983@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:message/lib.php:373
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_B6ZLplX22jQyOWNgKQ6iyZj9PZtaqGnACvs7rhAjsQ0"
+
+This is a multi-part message in MIME format.
+
+--b1_B6ZLplX22jQyOWNgKQ6iyZj9PZtaqGnACvs7rhAjsQ0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+Car* student* del corso di Etica Societ=C3=A0 e Privacy,
+la lezione di domani, giovedi' 10 Aprile, 2025, verra' tenuta da me, Rosa
+Meo e iniziera' alle ore 9:00.
+Invece la lezione di venerdi' 11 Aprile, verra' cancellata per impegni
+concomitanti dei docenti.
+
+A domani!
+Rosa Meo e Guido Boella
+
+---------------------------------------------------------------------
+This is a copy of a message sent to you on the site informatica. Go to
+https://informatica.i-learn.unito.it/message/index.php?id=3D1592 [1] to
+reply.
+
+Links:
+------
+[1] https://informatica.i-learn.unito.it/message/index.php?id=3D1592
+
+--b1_B6ZLplX22jQyOWNgKQ6iyZj9PZtaqGnACvs7rhAjsQ0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"text_to_html"><p>Car* student* del corso di Etica Societ=
+=C3=A0 e Privacy,<br />=0Ala lezione di domani, giovedi' 10 Aprile, 2025, v=
+erra' tenuta da me, Rosa Meo e iniziera' alle ore 9:00.<br />=0AInvece la l=
+ezione di venerdi' 11 Aprile, verra' cancellata per impegni concomitanti de=
+i docenti.<br />=0A<br />=0AA domani!<br />=0ARosa Meo e Guido Boella</p> <=
+br />=0A-------------------------------------------------------------------=
+--<br />=0AThis is a copy of a message sent to you on the site informatica.=
+ Go to <a href=3D"https://informatica.i-learn.unito.it/message/index.php?id=
+=3D1592">https://informatica.i-learn.unito.it/message/index.php?id=3D1592</=
+a> to reply.</div>
+
+--b1_B6ZLplX22jQyOWNgKQ6iyZj9PZtaqGnACvs7rhAjsQ0--
+

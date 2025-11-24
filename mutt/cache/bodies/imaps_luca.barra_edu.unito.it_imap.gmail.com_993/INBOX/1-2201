@@ -1,0 +1,158 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:220f:b0:309:27f0:106e with SMTP id y15csp332264ljq;
+        Thu, 27 Feb 2025 13:02:58 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEswD7hjrpl+LFCOFaf1sb1pT8HDslGuleR9Q8g0rbxWKggmlydT7MFNQcqpXrwCEsCtlVs
+X-Received: by 2002:a17:907:2d0b:b0:a99:a6e0:fa0b with SMTP id a640c23a62f3a-abf25fccc8amr38963666b.5.1740690178255;
+        Thu, 27 Feb 2025 13:02:58 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1740690178; cv=none;
+        d=google.com; s=arc-20240605;
+        b=eK7t77CHYxB+PJocxzFGOTZPdQnMS/DoRRKPMRbhTcA/mpWmQzjZ4KrE2/NpIqieqG
+         7NNwROaVIhKrSsM5o5eFSDY2v6xEXCqBoPidFTDPOgBOhScdzH+d9iaAZgtJKKQeo+mR
+         +JsOBSV8X0mEHWZvukHJfrxssQhZTYVEgOR3J6+aEnqq+nGp+YOCiF4rjLn5y/XBeArq
+         A3XVkpxmtxGDuTu/DPCsXb3MJcfFaHX1vsFJt+baDL/pjxll1ouIhc3Pfo8jj9O5L8Wi
+         8VjX5B9wngPUs3xX3NR5WdhHVoXfMFxb0GEesYzRnj6I453dEAEc5pGQKu0XgG8zA6mr
+         ZOSg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-signature:dkim-filter;
+        bh=xIQLhw7of0DrRQRFD9RTu/39NzzOvWghIldrNYasIEI=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=MgZLCNHK+ypM+OzpJzDzBvKtj5fasGiSKf1zkRxhmH3GESSv0cxlwn35K9rjFyYspv
+         wJM2CR6G625e4IBJ7E4GT1Mm8PDOHFOZOmAn2jgSHv6LD31kFAIjtUKC419MlxPI3PiE
+         7wHJM+v7oStRHh4sv+Up2kGIKfavfiaAvZ4reWxeHp2Xhwp/daEwX6gED6jPVqpjYPWt
+         6U4echWiiS7RKSQs9V1zlGaUhKfH5FozFd8427mhRr7Zsk0vrFfNe+PtOoFZN5+1cBwu
+         RZNo+9iZZeyHLh8lGGrP5sg5ECSvjTCLF02dIpVCbPGbRd7V1tf8D+L/z4JY2v8KACe5
+         1drA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=YWvfWr+j;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-abf0c0b768dsi216385666b.89.2025.02.27.13.02.58
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 27 Feb 2025 13:02:58 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=YWvfWr+j;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 51RL2sc81902570
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Thu, 27 Feb 2025 22:02:54 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 51RL2sc81902570
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=i-learn.unito.it;
+	s=default; t=1740690174;
+	bh=xIQLhw7of0DrRQRFD9RTu/39NzzOvWghIldrNYasIEI=;
+	h=Date:To:From:Reply-To:Subject:List-Id:List-Help:List-Unsubscribe:
+	 From;
+	b=YWvfWr+jCczY65/mktqYoweZjU/pa5mFxjXbWBVPPurC6OB7vWLf197SE4XpDTpL5
+	 FulDpmK7vnd/mN+8/I++kStk6mD+LCZb95TSa1CrFUnFCAAybdeYJZ68szWShZzwCr
+	 RZO/k9g/mcaPNurQhK1TBwy3yxbe7tM+01V0hO6o=
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 51RL2sd6123274
+	for <luca.barra@edu.unito.it>; Thu, 27 Feb 2025 22:02:54 +0100
+Date: Thu, 27 Feb 2025 22:02:54 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Roversi Luca (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: =?utf-8?B?QUxlQzAyNC8yNTogTWVyY29sZWTDrCA1IG1hcnpvIGxlemlvbmkgc29zcGU=?=
+ =?utf-8?B?c2U=?=
+Message-ID: <af78c0abfc47fdf7c0e75024d48f3cd9c4348615ec6ad3230615a1fea14c3b5e@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7632@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7632
+X-Course-Id: 3064
+X-Course-Name: =?utf-8?B?QWxnb3JpdG1pIGUgQ29tcGxlc3NpdMOgIGEuYS4yNC8yNQ==?=
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: =?utf-8?B?QUxlQzAyNC8yNTogTWVyY29sZWTDrCA1IG1hcnpvIGxlemlvbmkgc29zcGU=?=
+ =?utf-8?B?c2U=?=
+Thread-Index: af78c0abfc47fdf7c0e75024d48f
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_erv5ooOMKfLpPvclggDPUuXJZfFbmtkfEnnnDdo3lw"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 51RL2sc81902570
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply-informatica@i-learn.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_erv5ooOMKfLpPvclggDPUuXJZfFbmtkfEnnnDdo3lw
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+ALeC024/25 -> Forums -> Annunci -> Mercoled=C3=AC 5 marzo lezioni sospese
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43848#p71348
+Mercoled=C3=AC 5 marzo lezioni sospese
+by Roversi Luca - Thursday, 27 February 2025, 9:46 PM
+---------------------------------------------------------------------
+Buonasera.
+
+Mi ero perso che nel giorno in oggetto ci sar=C3=A0 il Career day.
+
+Gioved=C3=AC 6 ci sar=C3=A0 lezione secondo orario.
+
+Cordialmente,
+
+Roversi=C2=A0
+
+---------------------------------------------------------------------
+This is a copy of a message posted in ALeC024/25.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3064
+
+--b1_erv5ooOMKfLpPvclggDPUuXJZfFbmtkfEnnnDdo3lw
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3064">ALeC024/25</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3064">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+632">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://i=
+nformatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43848">Mercoled=C3=
+=AC 5 marzo lezioni sospese</a>=0A</div>=0A=0A<table border=3D"0" cellpaddi=
+ng=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=
+=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=0A      =
+      <a href=3D"https://informatica.i-learn.unito.it/user/view.php?id=3D35=
+&amp;course=3D3064" class=3D"d-inline-block aabtn"><img src=3D"https://info=
+rmatica.i-learn.unito.it/pluginfile.php/16307/user/icon/lambda/f2?rev=3D1" =
+class=3D"userpicture" width=3D"35" height=3D"35" alt=3D"" /></a>=0A        =
+</td>=0A        <td class=3D"topic starter">=0A            <div class=3D"su=
+bject">=0A                Mercoled=C3=AC 5 marzo lezioni sospese=0A        =
+    </div>=0A            <div class=3D"author">=0A                by <a tar=
+get=3D'_blank' href=3D'https://informatica.i-learn.unito.it/user/view.php?i=
+d=3D35&course=3D3064'>Roversi Luca</a> - Thursday, 27 February 2025, 9:46 P=
+M=0A            </div>=0A        </td>=0A    </tr>=0A    <tr>=0A        <td=
+ class=3D"left side" valign=3D"top">=0A                &nbsp;=0A        </t=
+d>=0A        <td class=3D"content">=0A            <p dir=3D"ltr" style=3D"t=
+ext-align:left;">Buonasera.</p><p dir=3D"ltr" style=3D"text-align:left;">Mi=
+ ero perso che nel giorno in oggetto ci sar=C3=A0 il Career day.</p><p dir=
+=3D"ltr" style=3D"text-align:left;">Gioved=C3=AC 6 ci sar=C3=A0 lezione sec=
+ondo orario.</p><p dir=3D"ltr" style=3D"text-align:left;">Cordialmente,</p>=
+<p dir=3D"ltr" style=3D"text-align:left;">Roversi=C2=A0</p>=0A=0A          =
+  <div class=3D"commands">=0A            </div>=0A=0A            <div class=
+=3D"link">=0A                <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/mod/forum/discuss.php?d=3D43848#p71348">=0A            =
+        See this post in context=0A                </a>=0A            </div=
+>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-al=
+ign unsubscribelink">=0A    <a href=3D"https://informatica.i-learn.unito.it=
+/mod/forum/index.php?id=3D3064">Change your forum digest preferences</a>=0A=
+</div>
+
+--b1_erv5ooOMKfLpPvclggDPUuXJZfFbmtkfEnnnDdo3lw--
+

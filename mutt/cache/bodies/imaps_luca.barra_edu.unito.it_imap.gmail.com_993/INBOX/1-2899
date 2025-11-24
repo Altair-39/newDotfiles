@@ -1,0 +1,159 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:221c:b0:361:9897:9696 with SMTP id y28csp2866639ljq;
+        Mon, 13 Oct 2025 03:35:58 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE/tU5TUFK7zMnQ4HADBiZlz0jO5EjWWa/YhV40COHgTMPMoeTwBwCXPkepbjbzh3qcHMik
+X-Received: by 2002:a05:6402:42ca:b0:639:e712:cd93 with SMTP id 4fb4d7f45d1cf-639e712dc60mr9997680a12.3.1760351758354;
+        Mon, 13 Oct 2025 03:35:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1760351758; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ayY8DLVtn2FvCHM1KG8/NHa/2lP+LAMvpRwA2jTWm9o38331dLswDBpOk/YiTo9Vba
+         2w/6eQJ1qsxtCdY2+gBZaZ9QdE9hTD9GUIRzIlebg4lZ2PIGg3Deec43x7zCg0dzNzLA
+         Kj7neh//RW0729xuj31X9gkajsd+WHUY6KkUFvdEuK75l3a/V6FQzWzv8f5PirHoAA4N
+         b3VLVPa3jX8EdYcbvZEx++ZTPWhVwcXtw3GxdeHCe3LS/lPladxE9690j+tRthQZIpid
+         37gWA3Pd1++qdJNfn+r884MjmkyjVmIpKvUwWvVSdWxSth0SRSs2ZenqcQIYEjvXM4Dk
+         TjfA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-signature:dkim-filter;
+        bh=ekqHpEdoF5O/ovEtIzKpcOTI7ku45/rVsTozotw4uqE=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=IN9qX+UHKg58edXfXvo9xu2IDjYZwdVOMxRSxr5xtEx1elxmsgTdPE98tX/f6nGyfD
+         TNU8wEbb4C5+uaHMpjw60ohmhhPsUUQLMpiakAwD1h6bkswX7UFpn7xKqG9LMyCjdIe5
+         SS3YWPcq/haWAk4TfRKyDfhm9Mx0WdB+A1qV+j+vF9fDelmJCrkh0MR5Qa/h3Iiqk6Nj
+         uIAjRRO/gYUy4F3kiB0eTur6QagKKXuoj51S1+HA5Mwk6DeuCCcnlPULH1DDAP49JRAl
+         AK8SvOONBahYkXqcN/ieY/RGwND5LZXkj0PFFCc3HH8eD+1pFtroGPK4h7uvHE3Xedqy
+         zY+w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=R1XTM5dZ;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-63a52b7052fsi5796654a12.203.2025.10.13.03.35.58
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Oct 2025 03:35:58 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=R1XTM5dZ;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 59DAZnol3885740
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Mon, 13 Oct 2025 12:35:49 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 59DAZnol3885740
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=i-learn.unito.it;
+	s=default; t=1760351750;
+	bh=ekqHpEdoF5O/ovEtIzKpcOTI7ku45/rVsTozotw4uqE=;
+	h=Date:To:From:Reply-To:Subject:List-Id:List-Help:List-Unsubscribe:
+	 From;
+	b=R1XTM5dZxNWxvbc6T1rGvDbx5+vlla/hO4U7/f1Y+QMlrIoo9DAJS2N8roNfP5mPb
+	 SKXEk0vwTFuH1mclCH75pTKLFDfQIz0E6ZHuldRYTKrrId05EPXED4xPm9R+wWb2BK
+	 GekC+GOrs525m5cVzP/ORLflFG1BOqYCukZ00bJs=
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 59DAZnIe2509977
+	for <luca.barra@edu.unito.it>; Mon, 13 Oct 2025 12:35:49 +0200
+Date: Mon, 13 Oct 2025 12:35:49 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Picardi Claudia (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: TAASS-2526: Feedback su proposte di progetto
+Message-ID: <c50c74bb3d10e743d599ddab2c5cc4fc7d3b070cf732e097e0b2079f6c10a86f@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.6.5 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum8319@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=8319
+X-Course-Id: 3521
+X-Course-Name: Tecniche e Architetture Avanzate per lo Sviluppo del Software 2025/26
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: TAASS-2526: Feedback su proposte di progetto
+Thread-Index: c50c74bb3d10e743d599ddab2c5c
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_tCyu90fQkJcJWpfJgIi70dyZIHb7gqi5nRZocdWLkvc"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 59DAZnol3885740
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply-informatica@i-learn.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_tCyu90fQkJcJWpfJgIi70dyZIHb7gqi5nRZocdWLkvc
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+TAASS-2526 -> Forums -> Annunci -> Feedback su proposte di progetto
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45592#p73468
+Feedback su proposte di progetto
+by Picardi Claudia - Monday, 13 October 2025, 12:19 PM
+---------------------------------------------------------------------
+Buongiorno a tutt*,
+
+nel documento condiviso trovate un mio sintetico feedback sulle vostre
+proposte di progetto. Domani in classe ci sar=C3=A0 occasione di porre doma=
+nde
+e chiarire punti oscuri.=C2=A0
+
+=C2=A0https://docs.google.com/spreadsheets/d/1CIXtbCRHtLsp4pe6hkSrsZXppKGTK=
+cbEPs5MKpvtZrU/edit?usp=3Dsharing
+
+CP
+
+---------------------------------------------------------------------
+This is a copy of a message posted in TAASS-2526.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3521
+
+--b1_tCyu90fQkJcJWpfJgIi70dyZIHb7gqi5nRZocdWLkvc
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3521">TAASS-2526</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3521">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D8=
+319">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://i=
+nformatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45592">Feedback su pr=
+oposte di progetto</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" =
+cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=0A      =
+  <td width=3D"35" valign=3D"top" class=3D"picture left">=0A            <a =
+href=3D"https://informatica.i-learn.unito.it/user/view.php?id=3D889&amp;cou=
+rse=3D3521" class=3D"d-inline-block aabtn"><img src=3D"https://informatica.=
+i-learn.unito.it/pluginfile.php/17427/user/icon/lambda/f2?rev=3D1" class=3D=
+"userpicture" width=3D"35" height=3D"35" alt=3D"Picardi Claudia" title=3D"P=
+icardi Claudia" /></a>=0A        </td>=0A        <td class=3D"topic starter=
+">=0A            <div class=3D"subject">=0A                Feedback su prop=
+oste di progetto=0A            </div>=0A            <div class=3D"author">=
+=0A                by <a target=3D'_blank' href=3D'https://informatica.i-le=
+arn.unito.it/user/view.php?id=3D889&course=3D3521'>Picardi Claudia</a> - Mo=
+nday, 13 October 2025, 12:19 PM=0A            </div>=0A        </td>=0A    =
+</tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=0A      =
+          &nbsp;=0A        </td>=0A        <td class=3D"content">=0A       =
+     <p dir=3D"ltr" style=3D"text-align:left;">Buongiorno a tutt*,</p><p di=
+r=3D"ltr" style=3D"text-align:left;">nel documento condiviso trovate un mio=
+ sintetico feedback sulle vostre proposte di progetto. Domani in classe ci =
+sar=C3=A0 occasione di porre domande e chiarire punti oscuri.=C2=A0</p><p d=
+ir=3D"ltr" style=3D"text-align:left;">=C2=A0https://docs.google.com/spreads=
+heets/d/1CIXtbCRHtLsp4pe6hkSrsZXppKGTKcbEPs5MKpvtZrU/edit?usp=3Dsharing</p>=
+<p dir=3D"ltr" style=3D"text-align:left;"><br /></p><p dir=3D"ltr" style=3D=
+"text-align:left;">CP</p>=0A=0A            <div class=3D"commands">=0A     =
+       </div>=0A=0A            <div class=3D"link">=0A                <a ta=
+rget=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/disc=
+uss.php?d=3D45592#p73468">=0A                    See this post in context=
+=0A                </a>=0A            </div>=0A        </td>=0A    </tr>=0A=
+</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=0A    <a h=
+ref=3D"https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3521">=
+Change your forum digest preferences</a>=0A</div>
+
+--b1_tCyu90fQkJcJWpfJgIi70dyZIHb7gqi5nRZocdWLkvc--
+

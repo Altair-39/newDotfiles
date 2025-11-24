@@ -1,0 +1,121 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:510:b0:302:3d35:6815 with SMTP id o16csp61495ljp;
+        Tue, 4 Feb 2025 00:59:29 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFoP2h13dMgdrk6Tf1hvQEXQWCzVzeT9cP9owwLo77yOncgwRrsnPLNgGFgHr3puzY0UgfH
+X-Received: by 2002:a17:907:720a:b0:aa6:9574:1728 with SMTP id a640c23a62f3a-ab747a92673mr109643966b.6.1738659569121;
+        Tue, 04 Feb 2025 00:59:29 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1738659569; cv=none;
+        d=google.com; s=arc-20240605;
+        b=KXcgfOe5pTop1MlpCI85YpVCYOw7i7b097Op9LXMt0CNKHxkdN9o2/k3pCu383w4//
+         DEXIL4Ig3Skfv2fbnd8Xv4WLp7OIA5jiDSE2kW+lxsjuGxnoXAwSh9tBbnpqgWEwraLk
+         mUxZx1jf7i2EI2sJmPGvtmv0qw28RpT31yyVcqkty9UlbdpIjLGaGoGZcqjpRALyzt7h
+         Nsnyxs5p2XC3irhqTUFpyCNUZJPeKjzX1PBHWz6sWSoPHfQw0oYl+fd2DFKV/TZkvHR1
+         w2z/W0jMju/EWUmWJq2bD6wbPnaZVuJmtn0n6ChnDZ/ZFKiYm8YtrJjS+rU/bVL7l+ar
+         wVhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:message-id:subject:reply-to:from:to:date
+         :dkim-signature:dkim-filter;
+        bh=0CgDIycvSwZLiojTWpv97qCFqKYaluhsDkKULYwJf0w=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=N0rg8RQxWICaz47pUs/2wAVlo6doIq+xSWhEE0+O1w8w6SU5W/bqOJijBAMdW8mTGI
+         kr9pxhVrN6A/ZQXjYEf7bAIM7Rpikbd6y1GGPVFI8Zg4SpwtkFNedMBPR/kk1OnLaz8L
+         SV4eLCM0iStyyZGLU009XNH+K2zW38UlW5plMVDtRDrjslT5i12ty96uGYH4yTwfSoom
+         z+z9fAPbOt+YqNE50jeibiZwSAgW1c2XOm7LlaLjKUh14q4MUtm90ykpNCTEZ6aJ36uH
+         4nr44fa5M/rvqnpE11bIEBmGUQXJY/hr+BmKXdb6Mh5THIAd0fBoY2o8LpSeL+aVo66H
+         lAww==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=m4L0ZMnr;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ab6e47e929csi1020418366b.53.2025.02.04.00.59.28
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Feb 2025 00:59:29 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=m4L0ZMnr;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 5148xLLn022850
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Tue, 4 Feb 2025 09:59:21 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 5148xLLn022850
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=i-learn.unito.it;
+	s=default; t=1738659561;
+	bh=0CgDIycvSwZLiojTWpv97qCFqKYaluhsDkKULYwJf0w=;
+	h=Date:To:From:Reply-To:Subject:From;
+	b=m4L0ZMnrLZ4X32wpRI46y7rTa94Ki6IxPF3s3WeFdprYrbvyFMdmZCepFIawcxlZJ
+	 gCHc/ttpP1dX99Gq8x8TexIX+L3Xvy5wahumabC8y9OpeTyc/Cu6FdVwZ7niCVAmF/
+	 GPiBkHkv0ErxhlxHJBq/5x6z1hICVFp8C1WbHfX0=
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 5148xL7f105253
+	for <luca.barra@edu.unito.it>; Tue, 4 Feb 2025 09:59:21 +0100
+Date: Tue, 4 Feb 2025 09:59:21 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Lovera Rulfi Vladimiro (da informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply-informatica@i-learn.unito.it>
+Subject: New message from Lovera Rulfi Vladimiro
+Message-ID: <67a1d6e9812e89.25289983@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:message/lib.php:373
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_QNO3KlTeVdOooxSbflpSLEhTuXVQzfC1zJHGKXOLg"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 5148xLLn022850
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply-informatica@i-learn.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_QNO3KlTeVdOooxSbflpSLEhTuXVQzfC1zJHGKXOLg
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+Buongiorno a tutt=C9=99,
+
+Comunico la fine delle ore di tutoraggio per il laboratorio di
+Apprendimento Automatico alla fine della prossima settimana. Ci sono ancora
+quattro sessioni previste e prenotabili tramite moodle, esorto tutt=C9=
+=99 ad
+approfittarne e mandami un'email per qualsiasi dubbio!
+
+Grazie,
+Un saluto
+
+Vladimiro Lovera Rulfi
+
+---------------------------------------------------------------------
+This is a copy of a message sent to you on the site informatica. Go to
+https://informatica.i-learn.unito.it/message/index.php?id=3D18582 [1] to
+reply.
+
+Links:
+------
+[1] https://informatica.i-learn.unito.it/message/index.php?id=3D18582
+
+--b1_QNO3KlTeVdOooxSbflpSLEhTuXVQzfC1zJHGKXOLg
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"text_to_html"><p>Buongiorno a tutt=C9=99,<br />=0A<br />=0ACo=
+munico la fine delle ore di tutoraggio per il laboratorio di Apprendimento =
+Automatico alla fine della prossima settimana. Ci sono ancora quattro sessi=
+oni previste e prenotabili tramite moodle, esorto tutt=C9=99 ad approfittar=
+ne e mandami un'email per qualsiasi dubbio!<br />=0A<br />=0AGrazie,<br />=
+=0AUn saluto<br />=0A<br />=0AVladimiro Lovera Rulfi</p> <br />=0A---------=
+------------------------------------------------------------<br />=0AThis i=
+s a copy of a message sent to you on the site informatica. Go to <a href=3D=
+"https://informatica.i-learn.unito.it/message/index.php?id=3D18582">https:/=
+/informatica.i-learn.unito.it/message/index.php?id=3D18582</a> to reply.</d=
+iv>
+
+--b1_QNO3KlTeVdOooxSbflpSLEhTuXVQzfC1zJHGKXOLg--
+

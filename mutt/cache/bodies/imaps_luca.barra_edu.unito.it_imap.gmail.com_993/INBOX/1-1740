@@ -1,0 +1,137 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:1a28:b0:2ea:83d6:7f34 with SMTP id by40csp1336772ljb;
+        Mon, 3 Jun 2024 03:21:11 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCVfJkWuMFH4gVMg7NfbR0G7TPjmk9t5UdyTKySAFkNaBq5TTvap1bu7PH3qRUlGrHYN1+YEjdwTJhMEExc7zm7/rPHUcsqxaw==
+X-Google-Smtp-Source: AGHT+IHpqgl7GAjn6ptaX4dTNGnSlVVJ+g48skSKJV27/6BWVTyMwZTTxjakMKYGuaSatO6hMXwJ
+X-Received: by 2002:a2e:980d:0:b0:2ea:823d:c33a with SMTP id 38308e7fff4ca-2ea951de68dmr66601591fa.33.1717410071296;
+        Mon, 03 Jun 2024 03:21:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1717410071; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Q9B/AEAYXxkvSEfVGJPbALd1fdIGDsn9MNXMcwY1jl4Jkoq0uPCWH3Qm5RQs5N2mO4
+         wtjhucExkmxocKI5MJG+Qa/E6KyTEIrViFzvSfr/JPCDV71XDGzUVgYsR8QVSLiX/wnt
+         hqprvDJlbcuM0ECAazQnBgQ9YGLER+wxiDJLPNu/7dOBBVrXMV/m22oPsw++RtLHAsbq
+         y/gMDi7/b4hvcMsvtw5OYU7t9X4baFXAGhPY++Ul7eWnNAeNdk1DeY4nU9JBkcNR7I6J
+         YeqIcYa9z6iEuoDAZnEMfaaw+RSv2NfRKWR+NQVG3bcSfohickbxdX3pnZvIpTJCsHAg
+         aX6g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date;
+        bh=4fJSjTKn/tHBhxHI/jfMzbPjRUpGN3KgSuYlBKCcXYM=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=KKwOu5eHH6G4e/qDJ/7a8/b1mPdjOVYxV0xeg232qOjTiuMfByFZlL/HjT9alnf4YJ
+         Lvhk4isGODzC4aJY6oEKv1bjwQklFjqRzglUYalBZKSdDiwLqkz7KM2Mza2lP8oST07C
+         xvW4Z3Hxa6AUlXGDbi788r4IDf04S8exo7leUvXs/KDxQg1r9PpafJ4egw7jOpG7zOs0
+         h9Tam99PphOvcIvOHphv+Lu5lM00t5XPt7an8v+cmbkFUvlBtk1d4nDZ2v+/BcgyTWiI
+         jSxKXFCwhO70dzioeOOLpF/klfZ2IUx+M/t3ZNrbqD7xNV/I/nCQaplD6MGKw+Lz6UzH
+         oooQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-4b5558dfa9csi3206720173.118.2024.06.03.03.21.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Jun 2024 03:21:11 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id E91C524227;
+	Mon,  3 Jun 2024 12:21:07 +0200 (CEST)
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id e2vAJbDa8Xw3; Mon,  3 Jun 2024 12:21:07 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 64B69245E4;
+	Mon,  3 Jun 2024 12:21:07 +0200 (CEST)
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id 6s2Kehm47iUm; Mon,  3 Jun 2024 12:21:07 +0200 (CEST)
+Received: from esse3appjboss22.private.cineca.it (esse3appjboss22.cineca.it [130.186.5.143])
+	by smtp4.cineca.it (Postfix) with ESMTP id 66FD021817;
+	Mon,  3 Jun 2024 12:21:04 +0200 (CEST)
+Received: from esse3appjboss22.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss22.private.cineca.it (Postfix) with ESMTP id B5158131C;
+	Mon,  3 Jun 2024 12:21:01 +0200 (CEST)
+Date: Mon, 3 Jun 2024 12:21:01 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <500317154.97.1717410061735@esse3appjboss22.private.cineca.it>
+Subject: Good Practice. Esprimi la tua opinione sui servizi di UniTo/Your
+ opinion on UniTo services
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+Cara studentessa, Caro studente,
+Le lezioni volgono al termine, gli esami si avvicinano, il periodo =C3=A8 r=
+icco d=E2=80=99impegni e di attivit=C3=A0. Non sembra, eppure =C3=A8 propri=
+o questo il momento pi=C3=B9 adatto per contribuire a migliorare il mondo a=
+ccademico che ti circonda.
+Come? Partecipando all=E2=80=99indagine Good Practice, il progetto che, una=
+ volta l=E2=80=99anno, permette alla comunit=C3=A0 studentesca di UniTo di =
+dare i voti anzich=C3=A9 riceverli.
+
+Un semplice questionario online (disponibile in italiano e inglese) per esp=
+rimere opinioni sulla qualit=C3=A0 dei servizi d=E2=80=99Ateneo fruiti nell=
+=E2=80=99anno accademico 2023/2024. Infrastrutture e servizi di campus, com=
+unicazione, sistemi informativi, internazionalizzazione, servizi di segrete=
+ria, servizi bibliotecari, diritto allo studio, job placement e career serv=
+ice. Nessun ambito sfugge all=E2=80=99indagine.
+
+Poco pi=C3=B9 di 10 minuti, in assoluto anonimato, per rispondere alle doma=
+nde in una scala da 1 a 6.
+Non perdere l=E2=80=99occasione per fornire indicazioni e suggerimenti. Anc=
+he le tue idee possono permettere all=E2=80=99Ateneo di avviare azioni di m=
+iglioramento dei servizi universitari.
+
+Accedi al questionario tra il 3 e il 24 giugno 2024. Scegli il link corrisp=
+ondente alla tua carriera universitaria e inizia subito a rispondere
+
+
+=E2=80=A2=09Studentesse e Studenti matricole (I anno di Laurea triennale o =
+I anno di Laurea a ciclo unico):=20
+=E2=80=A2=09https://survey.polimi.it/index.php/256422?token=3D5j6zaIliW02Ck=
+zg
+
+
+=E2=80=A2=09Studentesse e Studenti a partire dal II anno (compresi iscritti=
+ al I anno di Laurea magistrale):=20
+=E2=80=A2=09https://survey.polimi.it/index.php/887161?token=3DvuElIoxtZZSak=
+ZA
+
+Ti ringraziamo fin d=E2=80=99ora per il tuo prezioso contributo: La tua opi=
+nione conta!
+
+Per difficolt=C3=A0 o dubbi durante la compilazione contatta: goodpractice@=
+unito.it
+
+THE SURVEY IS ALSO AVAILABLE IN ENGLISH
+All students are invited to submit anonymous feedback on their experience w=
+ith technical, administrative and support services offered by our universit=
+y. The annual student survey will be online until 24 June.
+
+
+=E2=80=A2=09Students enrolled in the first year of undergraduate and single=
+-cycle degree courses=20
+=E2=80=A2=09https://survey.polimi.it/index.php/256422?token=3D5j6zaIliW02Ck=
+zg
+
+
+=E2=80=A2=09Students enrolled in subsequent years and/or in the first year =
+of the Master's Degree=20
+=E2=80=A2=09https://survey.polimi.it/index.php/887161?token=3DvuElIoxtZZSak=
+ZA
+
+Thank you for your time: your opinion matters!
+
+In case of doubts or clarifications, please contact:  goodpractice@unito.it
+
+Con i pi=C3=B9 cordiali saluti/Best Regards
+Team Good Practice UniTo
+Direzione Sviluppo Organizzativo e delle Risorse Umane e Supporto Istituzio=
+nale ai Dipartimenti
+

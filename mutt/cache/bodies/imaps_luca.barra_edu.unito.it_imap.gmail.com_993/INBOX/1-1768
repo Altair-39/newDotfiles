@@ -1,0 +1,120 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:1727:b0:2eb:f1cf:4407 with SMTP id be39csp1830963ljb;
+        Mon, 17 Jun 2024 07:09:21 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEFAxoUxOc7MaQ/8IcrIgl7EHa4BuYXraGI6mhwT/YAowHry29i2349y8i9QrldGX/haYGb
+X-Received: by 2002:a2e:300f:0:b0:2eb:fc08:8bfe with SMTP id 38308e7fff4ca-2ec0e5ffc21mr60016891fa.32.1718633361703;
+        Mon, 17 Jun 2024 07:09:21 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1718633361; cv=none;
+        d=google.com; s=arc-20160816;
+        b=iAG/7i5VbEqj618F1Ug92gIv4p7eg5jdomFbFg1xPKVJkBjSxIkfM6gkPSueL7yQK2
+         hdIZk6t3r5z9dkzSpY0F3doFlDjAQx0CQ5QciSXvzLW+6DiYbN3L4SRg/DoIeYLHE4lu
+         baUa5H4eJUcA5opxbLdr97ldDOVBxqewFAmmOcfCbWaRFYuZ4i+k0xxtK5ZoDGHVgFo6
+         2D7bccOpdZEcry7i+rCygTUxNpKp4nuWIgxSCf9lIpODE3YqhXYmVNFbv8OW1bVMkl5O
+         cOUiuo/25OvavXLVfjuXLlIfGb8dkQgXx0rryj7w6C0SCmb+OQ63IhaowYvyWQjL/B2h
+         94Lg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:subject:message-id:to:from
+         :date:dkim-signature:dkim-filter;
+        bh=e/jMpjSYfEP100Hp9jn3zCBTmOCB9D67OeuZlg9DMmA=;
+        fh=IxM04YauqXzCozmF/ngeXvaWuWeW7uONbHgj9jmZsgE=;
+        b=1EXvxi998W7bsrbwTbNjvgOAarqfgPmjoccUuO3lX0bPBg2FsaOCq0w1gixoF4vZUl
+         a+i8ioglYZsvfevNTkK3Ptank0Lrm3kAGkgdxs+NNndGV28Ain6XbUI1nzNAxgZU6n+C
+         6IsiRbHPzLXPP2DOS/ThSNqJqUxqKTbpE3BD1+eFZDxEsP79/ShE8HCNbNZaJF0WrxOy
+         TCjqA/A+bORTsr0alDUlueIyzdr9AxYbzZlHzHfyhOaFOF4uWgB7a9FMN/F7fT9hqKlZ
+         vRwEDHwFspvjOG9bCYBCzy/B48GT3lVw7wd3lvFgyRoMjkcCS/AyajeVJiNxSlIJJ8Ta
+         DejQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=iseL24ap;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id e9e14a558f8ab-375d8613301si45156395ab.38.2024.06.17.07.09.21
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 17 Jun 2024 07:09:21 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=iseL24ap;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id A32E7266B7
+	for <luca.barra@edu.unito.it>; Mon, 17 Jun 2024 16:09:16 +0200 (CEST)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id 9tgbjM3K8JI9 for <luca.barra@edu.unito.it>;
+ Mon, 17 Jun 2024 16:09:16 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 5C6B1266BA
+	for <luca.barra@edu.unito.it>; Mon, 17 Jun 2024 16:09:15 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 5C6B1266BA
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1718633355;
+	bh=e/jMpjSYfEP100Hp9jn3zCBTmOCB9D67OeuZlg9DMmA=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=iseL24ap/5kvpYbtNMPSauEJmQrGhW5xI83HAC8ys0w7bZuXCE1DunvbX8d1pzcEg
+	 2ZHkUCO7iDlUF1aK2zgEjgPZOGUjIDs2NWVvxoEdKWVD9agMhBfRJ3Yzivb0L99VKM
+	 MBddFq0XDrF/xEjP0FnxUN4u5L/tjtcTe7TzctSQElzzKccU3SOAoco+iojMawZGgu
+	 BwAoxcN/+TVD3U8DoZxVcVFNwgRtNgx3QfNFsgr2UZYdR4FGxbjxnv90W0BKZB8ANU
+	 6mm8Um9EYejUd/KAbsWJ9dcMHSSub+AUa/Cd0Pwojd6H4yBkRi1WcC5ym0tCiG02js
+	 /czBFsL2JOIug==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id 8w5MzL0ESLDZ for <luca.barra@edu.unito.it>;
+ Mon, 17 Jun 2024 16:09:15 +0200 (CEST)
+Received: from esse3appjboss27.private.cineca.it (esse3appjboss27.cineca.it [130.186.5.162])
+	by smtp4.cineca.it (Postfix) with ESMTP id C0640266EE
+	for <luca.barra@edu.unito.it>; Mon, 17 Jun 2024 16:09:13 +0200 (CEST)
+Received: from esse3appjboss27.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss27.private.cineca.it (Postfix) with ESMTP id B43F51B2
+	for <luca.barra@edu.unito.it>; Mon, 17 Jun 2024 16:09:13 +0200 (CEST)
+Date: Mon, 17 Jun 2024 16:09:13 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+To: luca.barra@edu.unito.it
+Message-ID: <1586021520.14682.1718633353727@esse3appjboss27.private.cineca.it>
+Subject: Pubblicazione Voto Appello
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Le comunichiamo che l'esito della prova d'esame relativa all'attivit=C3=A0 =
+didattica FISICA,
+da Lei sostenuta in data 14/06/2024, =C3=A8: 22/30 .
+(English version below)
+
+Cari studenti,=20
+
+sono stati pubblicati i risultati della prova del 14.06.
+La revisione delle prove sulla piattaforma esami sar=C3=A0 disponibile a br=
+eve.
+
+Saluti
+Ernesto Migliore
+
+Dear students,=20
+
+the exam scores taken on 14.06 have been published.
+The review of the quizzes on the moodle "piattaforma esami" will be availab=
+le soon.
+
+Best regards,
+Ernesto Migliore
+
+=20
+
+
+---------
+Attenzione: se questa e-mail proviene dall'indirizzo avvisi@unito.it =C3=A8=
+ stata generata automaticamente dal sistema informativo. Si prega pertanto =
+di non rispondere a questo messaggio. Per ulteriori informazioni sull'esame=
+ sostenuto contattare direttamente il docente o la Segreteria Studenti di a=
+ppartenenza.
+---------
+
+
+

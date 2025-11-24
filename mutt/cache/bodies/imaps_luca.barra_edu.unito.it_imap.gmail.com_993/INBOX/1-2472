@@ -1,0 +1,138 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:9c06:0:b0:326:dd0e:fb84 with SMTP id s6csp797267lji;
+        Tue, 13 May 2025 23:32:58 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH+l/klhQ1TzAGPcOguCg1mzOCNVsdRVwTmTxL4hZ9bQgeX4Z+8nbl0XrHwWC8rnZwnVqK4
+X-Received: by 2002:a05:6402:3494:b0:5dc:cea7:4e2 with SMTP id 4fb4d7f45d1cf-5ff988a1ee3mr625790a12.4.1747204378658;
+        Tue, 13 May 2025 23:32:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1747204378; cv=none;
+        d=google.com; s=arc-20240605;
+        b=gQqARAsPAAvMJ8Bu4T1cE6aZtB7eD1OE9gUPl3emYMwr90qEaTRgNUzPlnXjB3pOx7
+         4fFR2JWbFwGsXcmHzednoU+WjQtajLTo2ydhIFpCs37vzAL2/5Stb1E2Ep84YK3WSJwm
+         mE6fqvxOSRgp78y011A2G57dMrkxyxawnwnz9n5uKDGp0ajRWf+Xq8ieDdAicX8Rcvpv
+         +r8psCBCjcW5EG7sexshmlWFAnt+J+SlGB6Nx5yvnYSVyiiCA6cQmlm7WfI2JTrSB/CK
+         bI4GfA7mBtA3WNdSZwk2pkXnQXrgzCQkWtywzYICmEDOBsCGzjuLRTidyLVVOU6BYRSo
+         28Fg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=WmSkV/PWCOzMchlepv2faQ6zoOXBCMrXgTdwymoLWbE=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=THGAErDv9xPBxHhNw7Tv8i2RB3t/vfFq5/6naA3MTRxSQwGw+f6ErP5auHYa33ke5d
+         MloLFTVktUW3iw7g31FkXIw137sdoP1zw58CdgUduOk12d2MkeVU8QORNW9L9WhqAfrp
+         xflPT3Rt9Z8tket57WqWifBaPRKNhlUKBmOF1zpobrkIE6BoMpU3Utreb+wdzrQ3+S7s
+         x8CGBBW98HyYjNjZWkUDkk1AcMIdSAFD+lK8RQKUUdI7yJ6Jjl7ae3ZjpALRpWKeF1w3
+         gMF8UuHFzz0ew/9rgoz50Z79LRRj2tVFgscImqQOOevyQqRyQ88nPKDNCLiO6U8RhGAU
+         yLxQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-5fc9d6e0fe4si8554574a12.341.2025.05.13.23.32.58
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 13 May 2025 23:32:58 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 54E6Ww492200706
+	for <luca.barra@edu.unito.it>; Wed, 14 May 2025 08:32:58 +0200
+Date: Wed, 14 May 2025 08:32:58 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Aldinucci Marco (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: SCPD-24-25: Lezione del 14/05/25 cancellata
+Message-ID: <8a4299b1a4d5b3735a70b2059a34fc78b2ad61faf36a462c4e04a48a58276002@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7648@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7648
+X-Course-Id: 3074
+X-Course-Name: Sistemi di Calcolo Paralleli e Distribuiti 24-25
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: SCPD-24-25: Lezione del 14/05/25 cancellata
+Thread-Index: 8a4299b1a4d5b3735a70b2059a34
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_33NSZwgS5qRNkZwPHyDHTNnKJmzhJ9SRKvtAeRJoPc"
+
+This is a multi-part message in MIME format.
+
+--b1_33NSZwgS5qRNkZwPHyDHTNnKJmzhJ9SRKvtAeRJoPc
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SCPD-24-25 -> Forums -> Annunci -> Lezione del 14/05/25 cancellata
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44603#p72341
+Lezione del 14/05/25 cancellata
+by Aldinucci Marco - Wednesday, 14 May 2025, 8:17 AM
+---------------------------------------------------------------------
+Carissimi,
+
+a causa di un imprevisto inaspettato oggi non potr=C3=B2 essere a lezione. =
+La
+lezione =C3=A8 cancellata. La prossima lezione sar=C3=A0 Venerd=C3=AC 16/05=
+ ore 14.00
+come da programma.=C2=A0
+
+Il Docente
+
+Marco Aldinucci
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SCPD-24-25.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3074
+
+--b1_33NSZwgS5qRNkZwPHyDHTNnKJmzhJ9SRKvtAeRJoPc
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3074">SCPD-24-25</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3074">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+648">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://i=
+nformatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44603">Lezione del 14=
+/05/25 cancellata</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" c=
+ellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=0A       =
+ <td width=3D"35" valign=3D"top" class=3D"picture left">=0A            <a h=
+ref=3D"https://informatica.i-learn.unito.it/user/view.php?id=3D5098&amp;cou=
+rse=3D3074" class=3D"d-inline-block aabtn"><img src=3D"https://informatica.=
+i-learn.unito.it/pluginfile.php/26090/user/icon/lambda/f2?rev=3D628364" cla=
+ss=3D"userpicture" width=3D"35" height=3D"35" alt=3D"" /></a>=0A        </t=
+d>=0A        <td class=3D"topic starter">=0A            <div class=3D"subje=
+ct">=0A                Lezione del 14/05/25 cancellata=0A            </div>=
+=0A            <div class=3D"author">=0A                by <a target=3D'_bl=
+ank' href=3D'https://informatica.i-learn.unito.it/user/view.php?id=3D5098&c=
+ourse=3D3074'>Aldinucci Marco</a> - Wednesday, 14 May 2025, 8:17 AM=0A     =
+       </div>=0A        </td>=0A    </tr>=0A    <tr>=0A        <td class=3D=
+"left side" valign=3D"top">=0A                &nbsp;=0A        </td>=0A    =
+    <td class=3D"content">=0A            <p dir=3D"ltr" style=3D"text-align=
+:left;">Carissimi,</p><p dir=3D"ltr" style=3D"text-align:left;">a causa di =
+un imprevisto inaspettato oggi non potr=C3=B2 essere a lezione. La lezione =
+=C3=A8 cancellata. La prossima lezione sar=C3=A0 Venerd=C3=AC 16/05 ore 14.=
+00 come da programma.=C2=A0</p><p dir=3D"ltr" style=3D"text-align:left;"><b=
+r /></p><p dir=3D"ltr" style=3D"text-align:left;">Il Docente</p><p dir=3D"l=
+tr" style=3D"text-align:left;">Marco Aldinucci</p>=0A=0A            <div cl=
+ass=3D"commands">=0A            </div>=0A=0A            <div class=3D"link"=
+>=0A                <a target=3D"_blank" href=3D"https://informatica.i-lear=
+n.unito.it/mod/forum/discuss.php?d=3D44603#p72341">=0A                    S=
+ee this post in context=0A                </a>=0A            </div>=0A     =
+   </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsub=
+scribelink">=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/foru=
+m/index.php?id=3D3074">Change your forum digest preferences</a>=0A</div>
+
+--b1_33NSZwgS5qRNkZwPHyDHTNnKJmzhJ9SRKvtAeRJoPc--
+

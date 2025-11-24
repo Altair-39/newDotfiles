@@ -1,0 +1,193 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:308:b0:2fb:4c9b:a38b with SMTP id a8csp2339123ljp;
+        Mon, 9 Dec 2024 22:52:25 -0800 (PST)
+X-Received: by 2002:a17:907:9711:b0:aa6:75db:c358 with SMTP id a640c23a62f3a-aa675dc064cmr345706366b.11.1733813544942;
+        Mon, 09 Dec 2024 22:52:24 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1733813544; cv=none;
+        d=google.com; s=arc-20240605;
+        b=UYqxoGd/+QcSgjLIkbYhY6a9WBvZLLcDZaTDwQUAFFBeyTif0DTqAqG8JstgJWImGT
+         80MBYbiN5/yGr38aUIZjHYZFpqDN9eKN3Qpr93BsEhFipMuQPIM+ImNKpGIFckyd3fkw
+         DPfF7iVnm/sDeMqtJFe1EJLUoVO/C3F732Gfn9ELrv3FMWg9f4BCut52UWRv1Jl6PCEk
+         0P248An+sV4IhMjzNxEc8YR0zuzevWqQxZc4+KRE3FA3WTENlh5ywa35ghmiQJjvMk/j
+         iP4z/tYJ+CeUQ+RkMgZazIeWJg9i6jiAA3kE5O3cMfL8PgL4FsD5MpMfThNJUdzokiyR
+         Qb1A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-signature:dkim-filter;
+        bh=ZXXZAIkpsO2BuFUouYAwJ5BhOTFTRiVBljvFITmfD6E=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=Lh69/pMPZuGgSn9hpe9ZM34V7MheErgSUOFnDJfODQDNjwoXuSVONwX4oaVtpEjSKa
+         LlLXGaQ+0kKlvBRayJi23pB3ncjt/aesuIYWhj0yfUmuyjuV5J03/z9/u3pm/HQS2PpR
+         sZCfM82/8Y8nul1AkqQxUD5+nadzKQTxPg4XqmnT+Qr+Vqvo9Whh0VUIn73az5ocRMWg
+         gvo264rNEushnRHC4DlnvU5G+iZGAk1lrQJmfIACJyK0U76fJefYCdaFz7roS0i6NP4V
+         KcHJWbLFGiTt/wTWyo62j1wAexUK3LX57UoQrEJqyogXvGX6jeO5Xpo84uLWFFVQ8Wrb
+         sOmA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@educ.di.unito.it header.s=default header.b=a1q6rieo;
+       spf=fail (google.com: domain of noreply@educ.di.unito.it does not designate 209.85.220.97 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from mail-sor-f97.google.com (mail-sor-f97.google.com. [209.85.220.97])
+        by mx.google.com with SMTPS id a640c23a62f3a-aa625eee2d5sor582575966b.3.2024.12.09.22.52.24
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Mon, 09 Dec 2024 22:52:24 -0800 (PST)
+Received-SPF: fail (google.com: domain of noreply@educ.di.unito.it does not designate 209.85.220.97 as permitted sender) client-ip=209.85.220.97;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@educ.di.unito.it header.s=default header.b=a1q6rieo;
+       spf=fail (google.com: domain of noreply@educ.di.unito.it does not designate 209.85.220.97 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733813544; x=1734418344;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-signature:dkim-filter:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZXXZAIkpsO2BuFUouYAwJ5BhOTFTRiVBljvFITmfD6E=;
+        b=FV0J6VH+1HbKCukODZW5o6sHjPYV8tp1C+qjQUT87zYAwyBrdJcP9Uj3bnCdqFD0uS
+         9RJyWIFC2EGc6LrA27Uloc1tXKOiQleexBrc204T3J53BPkcruOi018GgaaSNmhHPXjA
+         Rrlqi5cwk8puxoaAcvHbI4TUSOqk4v/wOu91d7FB3jLiZzjKjrxONdy4TtuIkVK0yvJj
+         s+lZhvxugNitJz3PTmu1kQcHaT4YPSwE5cSOiTWs6zGXOEr61PtHEHD/JG1y4TsykAIv
+         gcWjpv9b/6CzLdzmk9qp9Wnp6K/Ezq1jeBflVL4QGFHH758esWekEXA4XypGlOZQ59AC
+         6SRw==
+X-Gm-Message-State: AOJu0Yx43mqPJhWb3Xq7slQz3pWWq3rYX7pTMZJPDZn+vDFaVJpvijgl
+	0FXgNgp/xTPUk6JxXah57mYudbWHhbnDLUWzEPmfwpKBsBG5BHLg7thDY3wDvpc7TviFqyH/esF
+	d3yofpnUaqHuuq0/glCCY25pNieUFvT8nhv3QHw5Nh6s=
+X-Gm-Gg: ASbGncsbdmLW9T6IN1X97Xi8emM5HVYQ70v4H8hX8evc0/ODyaXIJrL2b6+Gun6AEWM
+	LN20Ra8dqBjuFesgyBeemvCG6b3jW/QPwm3AuCbBiDNTvzTtdKamDUlCdD8xtukEh5UqaoyIMqY
+	qHBjwW24wskHVif6GpIdqccQJTvfaRB2qw3H7MHGu+Z17l5x8gKy7aDfKfUnYCGF90gkaazPjYp
+	2uq/0FqtdY1ASbdUFg3+dn0XBqAPrg7eh2S4l4X9dgpArRJdX/mgXrRZOjRjHG8zPRsZrzZfDNQ
+	wVH6Wc0zMSEtqswvyui12gv7hBmaCDFp+hIKVglQbLY=
+X-Google-Smtp-Source: AGHT+IFSuZzjTvF6jmbU3ScXUZfIxdCqZGSJfP6oUCyehEYgdJPV7tXgG9LG9UiaMl47OheO0FLLwUu7Oz/S
+X-Received: by 2002:a17:907:cc24:b0:aa6:88c6:9449 with SMTP id a640c23a62f3a-aa69cd5c8afmr320261366b.19.1733813544248;
+        Mon, 09 Dec 2024 22:52:24 -0800 (PST)
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by smtp-relay.gmail.com with ESMTPS id a640c23a62f3a-aa6835c03b7sm16785966b.136.2024.12.09.22.52.24
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Dec 2024 22:52:24 -0800 (PST)
+X-Relaying-Domain: unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 4BA6qNSR3515827
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Tue, 10 Dec 2024 07:52:23 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 4BA6qNSR3515827
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=educ.di.unito.it;
+	s=default; t=1733813543;
+	bh=ZXXZAIkpsO2BuFUouYAwJ5BhOTFTRiVBljvFITmfD6E=;
+	h=Date:To:From:Reply-To:Subject:List-Id:List-Help:List-Unsubscribe:
+	 From;
+	b=a1q6rieoatkKvnPrK/tPM4sznTwiEx/PIt2ROxSJdUwppp/p80tjJV45M0QLgFXI8
+	 W5VlBV2FKGG4qOAS7PNVMtLG8YeYTrEOx6qcE11miIWL8NbDjr8CnciUU7SGHNU/UC
+	 DEg+4AA3wsKvNFzMWsELSnB301MsvelYxQVo9j7s=
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 4BA6qN75079328
+	for <luca.barra@edu.unito.it>; Tue, 10 Dec 2024 07:52:23 +0100
+Date: Tue, 10 Dec 2024 07:52:23 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Esposito Roberto (via informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Do not reply to this email" <noreply@educ.di.unito.it>
+Subject: AAUT - aa. 24/25: Proposta di tesi da parte del collega Marco Botta
+Message-ID: <5a01933d8231e5f42635af28c173054f219d3fe0530504c5105036a14713985e@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7478@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7478
+X-Course-Id: 2992
+X-Course-Name: Apprendimento Automatico
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: AAUT - aa. 24/25: Proposta di tesi da parte del collega Marco Botta
+Thread-Index: 5a01933d8231e5f42635af28c173
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_fEgtOTkrUAj0HC0dJs7AMKeWQtNg6Vb4gQ3pB7Ucx0"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 4BA6qNSR3515827
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_fEgtOTkrUAj0HC0dJs7AMKeWQtNg6Vb4gQ3pB7Ucx0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+AAUT - aa. 24/25 -> Forums -> Annunci -> Proposta di tesi da parte del
+collega Marco Botta
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43268#p70658
+Proposta di tesi da parte del collega Marco Botta
+by Esposito Roberto - Tuesday, 10 December 2024, 7:36 AM
+---------------------------------------------------------------------
+Su richiesta del collega, inoltro volentieri la proposta di tesi che
+trovate in allegato a questo messaggio.
+
+Nel caso siate interessate potete contattare il Prof. Botta scrivendo a
+[marco.botta@unito.it](mailto:marco.botta@unito.it).
+
+Attachment PropostaTesiStress.pdf:
+https://informatica.i-learn.unito.it/pluginfile.php/411374/mod_forum/attach=
+ment/70658/PropostaTesiStress.pdf
+
+---------------------------------------------------------------------
+This is a copy of a message posted in AAUT - aa. 24/25.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2992
+
+--b1_fEgtOTkrUAj0HC0dJs7AMKeWQtNg6Vb4gQ3pB7Ucx0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2992">AAUT - aa. 24/25</a>=0A    &=
+raquo;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito=
+.it/mod/forum/index.php?id=3D2992">Forums</a>=0A    &raquo;=0A    <a target=
+=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php=
+?f=3D7478">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"htt=
+ps://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43268">Proposta=
+ di tesi da parte del collega Marco Botta</a>=0A</div>=0A=0A<table border=
+=3D"0" cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr c=
+lass=3D"header">=0A        <td width=3D"35" valign=3D"top" class=3D"picture=
+ left">=0A            <a href=3D"https://informatica.i-learn.unito.it/user/=
+view.php?id=3D16954&amp;course=3D2992" class=3D"d-inline-block aabtn"><img =
+src=3D"https://informatica.i-learn.unito.it/pluginfile.php/73998/user/icon/=
+lambda/f2?rev=3D1" class=3D"userpicture" width=3D"35" height=3D"35" alt=3D"=
+" /></a>=0A        </td>=0A        <td class=3D"topic starter">=0A         =
+   <div class=3D"subject">=0A                Proposta di tesi da parte del =
+collega Marco Botta=0A            </div>=0A            <div class=3D"author=
+">=0A                by <a target=3D'_blank' href=3D'https://informatica.i-=
+learn.unito.it/user/view.php?id=3D16954&course=3D2992'>Esposito Roberto</a>=
+ - Tuesday, 10 December 2024, 7:36 AM=0A            </div>=0A        </td>=
+=0A    </tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=
+=0A                &nbsp;=0A        </td>=0A        <td class=3D"content">=
+=0A                <div class=3D"attachments">=0A                    <a hre=
+f=3D"https://informatica.i-learn.unito.it/pluginfile.php/411374/mod_forum/a=
+ttachment/70658/PropostaTesiStress.pdf"><img class=3D"icon icon" alt=3D"PDF=
+ document" title=3D"PDF document" src=3D"https://informatica.i-learn.unito.=
+it/theme/image.php/_s/lambda/core/1727030549/f/pdf" /></a> <a href=3D"https=
+://informatica.i-learn.unito.it/pluginfile.php/411374/mod_forum/attachment/=
+70658/PropostaTesiStress.pdf">PropostaTesiStress.pdf</a><br />=0A          =
+      </div>=0A            <p>Su richiesta del collega, inoltro volentieri =
+la proposta di tesi che trovate in allegato a questo messaggio.</p>=0A=0A<p=
+>Nel caso siate interessate potete contattare il Prof. Botta scrivendo a <a=
+ href=3D"mailto:marco.botta@unito.it">marco.botta@unito.it</a>.</p>=0A=0A=
+=0A            <div class=3D"commands">=0A            </div>=0A=0A         =
+   <div class=3D"link">=0A                <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43268#p70658">=
+=0A                    See this post in context=0A                </a>=0A  =
+          </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div =
+class=3D"mdl-align unsubscribelink">=0A    <a href=3D"https://informatica.i=
+-learn.unito.it/mod/forum/index.php?id=3D2992">Change your forum digest pre=
+ferences</a>=0A</div>
+
+--b1_fEgtOTkrUAj0HC0dJs7AMKeWQtNg6Vb4gQ3pB7Ucx0--
+

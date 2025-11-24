@@ -1,0 +1,227 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:511a:0:b0:326:dd0e:fb84 with SMTP id f26csp363732ljb;
+        Sun, 11 May 2025 11:17:19 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHdsY23f05zLxpYhqByOBTgn5HsnTXbZoA7VUdekNZWOOZa5kn2WvqmugEGtaAuRtV9qEl6
+X-Received: by 2002:a05:6402:34c9:b0:5dc:cea7:4e2 with SMTP id 4fb4d7f45d1cf-5fca075fe32mr3787817a12.4.1746987439418;
+        Sun, 11 May 2025 11:17:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1746987439; cv=none;
+        d=google.com; s=arc-20240605;
+        b=L/1raUPKVuHhTs11DHZ6dNKTAaaXk8drZZ/Ixo1zIosHGBuSNbumof7ACHV5ivo30l
+         YNjKhDu0mIGlfvzWtvMYQeHzTF5U9/sae/BI3U8q0tGzd9kL3voUVL59RQ8uEwHX/kco
+         HJTOiqaVN9mhO9/wsG5U86QTgAhRaFTMlXvWBCg6LRMSwHOl+7N/aqaZF2NYaXlUW2+H
+         f6zQOldLlnrXsHaG/BLgsxZuYDaSF3gZtQU5UjSOZIgGPa9W55H8DKRle/ve3xjEfmyq
+         a0ECvn+ZdFYEZSalvVp0hJT0ROirzJlqWohht0uTyBRHoq22qXqGL9qygjaHfPhRy4Jc
+         R1fA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=X8zEzgyLZCzMHYEjf7brxn7y6E6DvQG+wmlH41F38Vs=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=B7BLK/eQHnzqde+rUyne0KwUR8oRWrynj4AetwnObyoQOlKcewdASLxL+m7wZ9osvT
+         8RxoftLMGEcEJ0Czvri80VW22vY905bt5ux+gpZA386HyDAyAWUCJH67n/Bqf3aPk6YN
+         gZixReSirqKe9vi8qWtARzwB3a+WjiHYMSxdGHcmP0ZNfybcq2MWRud3TC7gJMAxa5vx
+         ZskYQdHRIyRBxMPB/OvvY9LCuFa0D+xP6tz00ABH/0wD9gq2jJo3OIRSm09ur/rPdA98
+         JQPuIvR7aP5HpTXNBLcjZan+TAQEUpSkREjmoKYEr1slJ/407TylSztTAOicXULi/wdB
+         bxXA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-5fc9d6c2e7csi4729817a12.225.2025.05.11.11.17.19
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 11 May 2025 11:17:19 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 54BIHIZM3543577
+	for <luca.barra@edu.unito.it>; Sun, 11 May 2025 20:17:18 +0200
+Date: Sun, 11 May 2025 20:17:18 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Driza Andrea (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: =?utf-8?B?U2lzSW50MjQyNTogR29vZ2xlIEFNSUU6IEFJIGRvY3RvciBsZWFybnMgdG8=?=
+ =?utf-8?B?IOKAmHNlZeKAmSBtZWRpY2FsIGltYWdlcw==?=
+Message-ID: <f1fedcdfb65a5b25525601cda5b434f14d43f12999d770ba7025149313347a5a@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Segnalazioni" <moodleforum7706@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7706
+X-Course-Id: 3092
+X-Course-Name: Sistemi Intelligenti
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=7706&d=44571>
+Thread-Topic: =?utf-8?B?U2lzSW50MjQyNTogR29vZ2xlIEFNSUU6IEFJIGRvY3RvciBsZWFybnMgdG8=?=
+ =?utf-8?B?IOKAmHNlZeKAmSBtZWRpY2FsIGltYWdlcw==?=
+Thread-Index: f1fedcdfb65a5b25525601cda5b4
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_SXmBzIbxknw5oXpJxZ1cUJcP4Z00lkgRaiAwOdaDM"
+
+This is a multi-part message in MIME format.
+
+--b1_SXmBzIbxknw5oXpJxZ1cUJcP4Z00lkgRaiAwOdaDM
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SisInt2425 -> Forums -> Segnalazioni -> Google AMIE: AI doctor learns to
+=E2=80=98see=E2=80=99 medical images
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44571#p72303
+Google AMIE: AI doctor learns to =E2=80=98see=E2=80=99 medical images
+by Driza Andrea - Sunday, 11 May 2025, 8:00 PM
+---------------------------------------------------------------------
+Riferimento:=C2=A0https://www.artificialintelligence-news.com/news/google-a=
+mie-ai-doctor-learns-to-see-medical-images/
+
+Tipologia: Articolo
+
+Tono: Ottimistico, Informativo
+
+Riassunto:
+
+Google ha=C2=A0introdotto=C2=A0AMIE, un'intelligenza artificiale=C2=A0speri=
+mentale
+creata=C2=A0per=C2=A0aiutare=C2=A0i medici=C2=A0nelle diagnostiche
+attraverso=C2=A0dialoghi=C2=A0testuali con i pazienti.=C2=A0Pi=C3=B9=C2=
+=A0recentemente, il
+sistema =C3=A8 stato=C2=A0reso=C2=A0in=C2=A0grado=C2=A0di=C2=A0interpretare=
+=C2=A0immagini
+mediche,=C2=A0ad=C2=A0esempio=C2=A0mammografie, radiografie=C2=A0e
+altri,=C2=A0identificando=C2=A0potenziali=C2=A0problematiche.=C2=A0Nelle=
+=C2=A0simulazioni
+di=C2=A0test, AMIE ha=C2=A0fornito=C2=A0prestazioni=C2=A0paragonabili
+(o=C2=A0migliori)=C2=A0rispetto=C2=A0a=C2=A0quelle=C2=A0dei medici
+umani=C2=A0per=C2=A0quanto=C2=A0riguarda=C2=A0accuratezza diagnostica, empa=
+tia
+e=C2=A0comprensibilit=C3=A0=C2=A0nella comunicazione. In particolare, le=
+=C2=A0prestazioni
+sono=C2=A0state=C2=A0molto promettenti in settori molto complessi come card=
+iologia
+e=C2=A0oncologia.=C2=A0Tuttavia, la tecnologia=C2=A0non=C2=A0=C3=A8
+ancora=C2=A0stata=C2=A0applicata=C2=A0a=C2=A0pazienti=C2=A0reali=C2=A0ed=
+=C2=A0=C3=A8=C2=A0ancora=C2=A0in=C2=A0fase=C2=A0sperimentale.=C2=A0Lo=C2=
+=A0scopo=C2=A0finale
+non =C3=A8=C2=A0rimpiazzare=C2=A0i medici,
+ma=C2=A0aiutarli,=C2=A0fornendo=C2=A0rapidamente=C2=A0diagnosi=C2=A0e=C2=
+=A0assistenza=C2=A0decisionale
+per migliorare l'accessibilit=C3=A0=C2=A0ed=C2=A0l'efficacia delle cure.
+
+=C2=A0
+
+Motivo per cui mi ha colpito:
+
+Mi ha stupito lo sviluppo medico dell'IA e di come si stia sviluppando in
+una direzione nella quale pu=C3=B2 aiutare le persone oltre alla sola ricer=
+ca
+online e analisi testuale.
+
+Legame con temi visti a lezione:
+
+Lo collegherei all'argomento degli agenti, visto che AIME =C3=A8 composto d=
+a
+diversi moduli funzionali integrati all'interno della stessa IA
+multimodale.
+
+Quindi =C3=A8 un sistema ad agente singolo con una vasta rete neurale.
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SisInt2425.
+
+To reply click on this link:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D72303
+Unsubscribe from this forum:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706
+Unsubscribe from this discussion:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D=
+44571
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092
+
+--b1_SXmBzIbxknw5oXpJxZ1cUJcP4Z00lkgRaiAwOdaDM
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3092">SisInt2425</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3092">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+706">Segnalazioni</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44571">Google AM=
+IE: AI doctor learns to =E2=80=98see=E2=80=99 medical images</a>=0A</div>=
+=0A=0A<table border=3D"0" cellpadding=3D"3" cellspacing=3D"0" class=3D"foru=
+mpost">=0A    <tr class=3D"header">=0A        <td width=3D"35" valign=3D"to=
+p" class=3D"picture left">=0A            <a href=3D"https://informatica.i-l=
+earn.unito.it/user/view.php?id=3D30222&amp;course=3D3092" class=3D"d-inline=
+-block aabtn"><img src=3D"https://informatica.i-learn.unito.it/theme/image.=
+php/_s/lambda/core/1745224313/u/f2" class=3D"userpicture defaultuserpic" wi=
+dth=3D"35" height=3D"35" alt=3D"" /></a>=0A        </td>=0A        <td clas=
+s=3D"topic starter">=0A            <div class=3D"subject">=0A              =
+  Google AMIE: AI doctor learns to =E2=80=98see=E2=80=99 medical images=0A =
+           </div>=0A            <div class=3D"author">=0A                by=
+ <a target=3D'_blank' href=3D'https://informatica.i-learn.unito.it/user/vie=
+w.php?id=3D30222&course=3D3092'>Driza Andrea</a> - Sunday, 11 May 2025, 8:0=
+0 PM=0A            </div>=0A        </td>=0A    </tr>=0A    <tr>=0A        =
+<td class=3D"left side" valign=3D"top">=0A                &nbsp;=0A        =
+</td>=0A        <td class=3D"content">=0A            <p dir=3D"ltr" style=
+=3D"text-align:left;">Riferimento:=C2=A0https://www.artificialintelligence-=
+news.com/news/google-amie-ai-doctor-learns-to-see-medical-images/</p><p dir=
+=3D"ltr" style=3D"text-align:left;">Tipologia: Articolo</p><p dir=3D"ltr" s=
+tyle=3D"text-align:left;">Tono: Ottimistico, Informativo</p><p dir=3D"ltr" =
+style=3D"text-align:left;">Riassunto:</p><p dir=3D"ltr" style=3D"text-align=
+:left;">Google ha=C2=A0introdotto=C2=A0AMIE, un'intelligenza artificiale=
+=C2=A0sperimentale creata=C2=A0per=C2=A0aiutare=C2=A0i medici=C2=A0nelle di=
+agnostiche attraverso=C2=A0dialoghi=C2=A0testuali con i pazienti.=C2=A0Pi=
+=C3=B9=C2=A0recentemente, il sistema =C3=A8 stato=C2=A0reso=C2=A0in=C2=
+=A0grado=C2=A0di=C2=A0interpretare=C2=A0immagini mediche,=C2=A0ad=C2=A0esem=
+pio=C2=A0mammografie, radiografie=C2=A0e altri,=C2=A0identificando=C2=A0pot=
+enziali=C2=A0problematiche.=C2=A0Nelle=C2=A0simulazioni di=C2=A0test, AMIE =
+ha=C2=A0fornito=C2=A0prestazioni=C2=A0paragonabili (o=C2=A0migliori)=C2=
+=A0rispetto=C2=A0a=C2=A0quelle=C2=A0dei medici umani=C2=A0per=C2=A0quanto=
+=C2=A0riguarda=C2=A0accuratezza diagnostica, empatia e=C2=A0comprensibilit=
+=C3=A0=C2=A0nella comunicazione. In particolare, le=C2=A0prestazioni sono=
+=C2=A0state=C2=A0molto promettenti in settori molto complessi come cardiolo=
+gia e=C2=A0oncologia.=C2=A0Tuttavia, la tecnologia=C2=A0non=C2=A0=C3=A8 anc=
+ora=C2=A0stata=C2=A0applicata=C2=A0a=C2=A0pazienti=C2=A0reali=C2=A0ed=C2=
+=A0=C3=A8=C2=A0ancora=C2=A0in=C2=A0fase=C2=A0sperimentale.=C2=A0Lo=C2=A0sco=
+po=C2=A0finale non =C3=A8=C2=A0rimpiazzare=C2=A0i medici, ma=C2=A0aiutarli,=
+=C2=A0fornendo=C2=A0rapidamente=C2=A0diagnosi=C2=A0e=C2=A0assistenza=C2=
+=A0decisionale per migliorare l'accessibilit=C3=A0=C2=A0ed=C2=A0l'efficacia=
+ delle cure.</p><p dir=3D"ltr" style=3D"text-align:left;">=C2=A0</p><p dir=
+=3D"ltr" style=3D"text-align:left;"><br /></p><p dir=3D"ltr" style=3D"text-=
+align:left;">Motivo per cui mi ha colpito:</p><p dir=3D"ltr" style=3D"text-=
+align:left;">Mi ha stupito lo sviluppo medico dell'IA e di come si stia svi=
+luppando in una direzione nella quale pu=C3=B2 aiutare le persone oltre all=
+a sola ricerca online e analisi testuale.</p><p dir=3D"ltr" style=3D"text-a=
+lign:left;"><br /></p><p dir=3D"ltr" style=3D"text-align:left;">Legame con =
+temi visti a lezione:<br /></p><p dir=3D"ltr" style=3D"text-align:left;">Lo=
+ collegherei all'argomento degli agenti, visto che AIME =C3=A8 composto da =
+diversi moduli funzionali integrati all'interno della stessa IA multimodale=
+.</p><p dir=3D"ltr" style=3D"text-align:left;">Quindi =C3=A8 un sistema ad =
+agente singolo con una vasta rete neurale.</p><p dir=3D"ltr" style=3D"text-=
+align:left;"><br /></p>=0A=0A            <div class=3D"commands">=0A       =
+             <a target=3D"_blank" href=3D"https://informatica.i-learn.unito=
+.it/mod/forum/post.php?reply=3D72303">=0A                        Reply=0A  =
+                  </a>=0A            </div>=0A=0A            <div class=3D"=
+link">=0A                <a target=3D"_blank" href=3D"https://informatica.i=
+-learn.unito.it/mod/forum/discuss.php?d=3D44571#p72303">=0A                =
+    See this post in context=0A                </a>=0A            </div>=0A=
+        </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align =
+unsubscribelink">=0A    <a href=3D"https://informatica.i-learn.unito.it/mod=
+/forum/subscribe.php?id=3D7706">Unsubscribe from this forum</a>&nbsp;=0A   =
+ <a href=3D"https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=
+=3D7706&d=3D44571">Unsubscribe from this discussion</a>&nbsp;=0A    <a href=
+=3D"https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092">Cha=
+nge your forum digest preferences</a>=0A</div>
+
+--b1_SXmBzIbxknw5oXpJxZ1cUJcP4Z00lkgRaiAwOdaDM--
+

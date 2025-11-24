@@ -1,0 +1,151 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:1a28:b0:2ea:83d6:7f34 with SMTP id by40csp1461930ljb;
+        Mon, 3 Jun 2024 08:25:28 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IErSzqg/dIeHTuzOLJWPr9g/M8ViCv5GtF2HQAxNYJmDXlPhGDp69ZQwoS7Oyoy6nemOkDN
+X-Received: by 2002:a17:906:40d8:b0:a68:379d:d623 with SMTP id a640c23a62f3a-a68379dd799mr622935266b.36.1717428328677;
+        Mon, 03 Jun 2024 08:25:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1717428328; cv=none;
+        d=google.com; s=arc-20160816;
+        b=s9SrkRWPzivOL/hGj9H3zWuyukgmKNGbgQdmVnNNGdsjAndjoM7HpXiOg40fEhT+u9
+         cDO+jTrJwVWj8OAwLcKnof+OXp2mN6wwh10//JwsFyEsJcuIoGKA3mweB/VmLUlhTJ9z
+         DgsKY5i0YD8DdzhShrlWQ0OQSi5ynTEUkfbfV22W1MyXr8caHt8iRwwjUIdH4pw+PZlT
+         1pLiZFAkUkAFPR4NlJ5fR+SkgCcqG5Bvbk/Z7IB5Gs9G/0cmRQ2c+VTRx7TwuFPGFoIO
+         Q5el85hQNtmtQiPWURlUmLMToZ4XOCrMm1ssJHXSpDxg26GXjTKHc6owf9C1e7qSXY+u
+         LpJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=aceepGW8psh+pWYZcv6g74IkGUn+aLUIfCHCXMBMflk=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=m0oG5912bTAEA6vavdHqt8/oBlrTnXGcDuscBUOyBgonTqljkj2FkjjOHbOq0AOx32
+         TJWa+HBfy7hD4xM96hLismChIrR5e7vx/u755KGWqYt4q/Rt5oLqAhaBnjDClfYnpEZC
+         ehp+zD0CROFPxg/ywd1rn4hXAVB1Zc8Nu03eS8T4tK+4yYIyI/JEuLv6LBVS2Q+KOj4X
+         A2SruOWjpLva65/d8r0c2/ChrJSFweIuQiPZi5Pkkd1xddt142fQ9msRiID+K0gf7doS
+         KXFdPQpYS2xeK8gZYbh+NqCce7ewVsolJsSuDgzBVAtpeYpjkO1uQbbwb4jgRmz0WRe/
+         2X9w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-a68c1399cecsi258693766b.627.2024.06.03.08.25.28
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Jun 2024 08:25:28 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 453FPOVh3299978
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Mon, 3 Jun 2024 17:25:24 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 453FPOVh3299978
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 453FPOWj002803
+	for <luca.barra@edu.unito.it>; Mon, 3 Jun 2024 17:25:24 +0200
+Date: Mon, 3 Jun 2024 17:25:24 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Bracciali Andrea (da informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: SAS-Lab-2324: Primo esame T2
+Message-ID: <1f2bbf0e77ad56f5f019612a885a77144e63df03a86060b6dc49510eafdd2727@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7124@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7124
+X-Course-Id: 2832
+X-Course-Name: Sviluppo delle Applicazioni Software - LABORATORIO T* - 2023/24
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: SAS-Lab-2324: Primo esame T2
+Thread-Index: 1f2bbf0e77ad56f5f019612a885a
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_zNTvtqOAMWe8goyyKS02QDNixeUK90mf5cP5B1Fk6SM"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 453FPOVh3299978
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_zNTvtqOAMWe8goyyKS02QDNixeUK90mf5cP5B1Fk6SM
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SAS-Lab-2324 -> Forum -> Annunci -> Primo esame T2
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41996#p69214
+Primo esame T2
+di Bracciali Andrea - luned=C3=AC, 3 giugno 2024, 17:09
+---------------------------------------------------------------------
+Buongiorno,=C2=A0
+
+Date e aule fissate come discusso a lezione.
+
+Per qualsiasi chiarmimento, esigenza, ... contattatemi.
+
+Saluti=C2=A0
+
+Andrea
+
+---------------------------------------------------------------------
+Questa =C3=A8 la copia di un intervento effettuato su SAS-Lab-2324 .
+
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2832
+
+--b1_zNTvtqOAMWe8goyyKS02QDNixeUK90mf5cP5B1Fk6SM
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2832">SAS-Lab-2324</a>=0A    &raqu=
+o;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/index.php?id=3D2832">Forum</a>=0A    &raquo;=0A    <a target=3D"_=
+blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D=
+7124">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://=
+informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41996">Primo esame T=
+2</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" cellspacing=3D"0"=
+ class=3D"forumpost">=0A    <tr class=3D"header">=0A        <td width=3D"35=
+" valign=3D"top" class=3D"picture left">=0A            <a href=3D"https://i=
+nformatica.i-learn.unito.it/user/view.php?id=3D32852&amp;course=3D2832" cla=
+ss=3D"d-inline-block aabtn"><img src=3D"https://informatica.i-learn.unito.i=
+t/pluginfile.php/394008/user/icon/lambda/f2?rev=3D2325966" class=3D"userpic=
+ture" width=3D"35" height=3D"35" alt=3D"" /></a>=0A        </td>=0A        =
+<td class=3D"topic starter">=0A            <div class=3D"subject">=0A      =
+          Primo esame T2=0A            </div>=0A            <div class=3D"a=
+uthor">=0A                di <a target=3D'_blank' href=3D'https://informati=
+ca.i-learn.unito.it/user/view.php?id=3D32852&course=3D2832'>Bracciali Andre=
+a</a> - luned=C3=AC, 3 giugno 2024, 17:09=0A            </div>=0A        </=
+td>=0A    </tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top"=
+>=0A                &nbsp;=0A        </td>=0A        <td class=3D"content">=
+=0A            <p dir=3D"ltr" style=3D"text-align:left;">Buongiorno,=C2=
+=A0</p><p dir=3D"ltr" style=3D"text-align:left;"><br /></p><p dir=3D"ltr" s=
+tyle=3D"text-align:left;">Date e aule fissate come discusso a lezione.</p><=
+p dir=3D"ltr" style=3D"text-align:left;">Per qualsiasi chiarmimento, esigen=
+za, ... contattatemi.</p><p dir=3D"ltr" style=3D"text-align:left;"><br /></=
+p><p dir=3D"ltr" style=3D"text-align:left;">Saluti=C2=A0</p><p dir=3D"ltr" =
+style=3D"text-align:left;">Andrea</p><p dir=3D"ltr" style=3D"text-align:lef=
+t;"><br /></p>=0A=0A            <div class=3D"commands">=0A            </di=
+v>=0A=0A            <div class=3D"link">=0A                <a target=3D"_bl=
+ank" href=3D"https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=
+=3D41996#p69214">=0A                    Visualizza questo intervento nel co=
+ntesto=0A                </a>=0A            </div>=0A        </td>=0A    </=
+tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=0A  =
+  <a href=3D"https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D=
+2832">Modifica preferenze email di raccolta</a>=0A</div><p>Reading this in =
+an email? <a href=3D"https://download.moodle.org/mobile?version=3D202105171=
+8&amp;lang=3Dit&amp;iosappid=3D633359593&amp;androidappid=3Dcom.moodle.mood=
+lemobile">Download the mobile app and receive notifications on your mobile =
+device</a>.</p>
+
+--b1_zNTvtqOAMWe8goyyKS02QDNixeUK90mf5cP5B1Fk6SM--
+

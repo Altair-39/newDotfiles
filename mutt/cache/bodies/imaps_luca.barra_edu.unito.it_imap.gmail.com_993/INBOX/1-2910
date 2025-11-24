@@ -1,0 +1,154 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:221c:b0:361:9897:9696 with SMTP id y28csp5682191ljq;
+        Sun, 19 Oct 2025 06:25:36 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFdzJA8xiqI9J+xs7q28qbRv9dElcUW5+Dje6aPkbTtmmSc2l9azePuWW5/513f5i33n+fs
+X-Received: by 2002:a05:6000:2383:b0:425:6794:f19b with SMTP id ffacd0b85a97d-42704d14627mr3867855f8f.2.1760880335848;
+        Sun, 19 Oct 2025 06:25:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1760880335; cv=none;
+        d=google.com; s=arc-20240605;
+        b=H6UG+LjKbh2S4MPIV7LDn7azdQklfNsq3fon6vxF6U8xVKclwvglc+JtjMpxsV3n5o
+         B+IL2OdkS/qp3rQkFQX652dXNg7HBV9vsTAEOb+J0wOuUIFticOkM/8XfiyKFOQccjYn
+         2k4+NrHyrj5gjf6OIy2KBMPx8vLAuitxva26yPYkSJYjndyHQwYHSASWG5UA2SOz4Ure
+         myjkjajqno2Z25DrtlmVPgDZVniwskixU8JqTJ+ixTF2aaGS7paH7kyAjfXMBXWEKLsC
+         TEtmJW9pnJvGw+5PT1Sz65OK06N4lAfx6LHP+zaEb8pAvMqjfwGH3e2pY63h89OemQOq
+         cgEw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=destinations:list-unsubscribe-post:list-unsubscribe:list-post
+         :list-archive:list-id:precedence:content-transfer-encoding
+         :mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=iMpLbAoixNqMe+kIlBocYNXhBdUN9KeUqm6K2EXJAf8=;
+        fh=ky5TuBuQEQFoAy4OjqtEIDd6fZw6iEBmHdZj2KBsDLw=;
+        b=irPNakO4fIG2t9MnXVCBrHAUqZrMXILXI5Vzc0nvoL1yvrf4xX4AGGx3tqeGjOhlnr
+         /YE9k/qmsBX684LPy1uDcSx32KVB1Dajqd+tFtD/zNgRYThYEqx08SJxuOuRiZoUd09m
+         65EXgZOm/PdjryYBH0/R1eC/0IDJM5iEYu3x9nIbsI/Pm2tUHWJntAHfSyIHAYD8hSL3
+         lw0I6VKAA1PNDZcVK4aer/FW9hdNp+HcbCogqXdca/IY3YvQwDYBadglZugYZ9mvE/FW
+         nimPVu9wLhKvPhWqO2oGx+7VXp23jH2xZRnxr2RHWtyE0aEGflH3e0Na1Ua8oyOkRlVV
+         YymA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@github.com header.s=pf2023 header.b=YaIYYzYS;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.207 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Return-Path: <noreply@github.com>
+Received: from out-24.smtp.github.com (out-24.smtp.github.com. [192.30.252.207])
+        by mx.google.com with ESMTPS id af79cd13be357-891cfe4af86si139177085a.1506.2025.10.19.06.25.35
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 19 Oct 2025 06:25:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@github.com designates 192.30.252.207 as permitted sender) client-ip=192.30.252.207;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@github.com header.s=pf2023 header.b=YaIYYzYS;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.207 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Received: from github.com (hubbernetes-node-4211027.ac4-iad.github.net [10.52.157.25])
+	by smtp.github.com (Postfix) with ESMTPA id 28B8664041A
+	for <luca.barra@edu.unito.it>; Sun, 19 Oct 2025 06:25:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	s=pf2023; t=1760880335;
+	bh=iMpLbAoixNqMe+kIlBocYNXhBdUN9KeUqm6K2EXJAf8=;
+	h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:List-ID:
+	 List-Archive:List-Post:List-Unsubscribe:List-Unsubscribe-Post:
+	 From;
+	b=YaIYYzYSK0tGkQEYqNn3dtwj4lPZoUoGftgjAryCRBFoxD+1CDCBF1aJPSN9Om6+S
+	 yAivrez9nQ96HBDcgVZD8WgUzqIbwxWzioGmrBmHy31s9zp3BlBYxokQq0uEktYvw4
+	 GZzRPTT38evGJxQOOoytgvU3yd7l+5u8dCPawu/w=
+Date: Sun, 19 Oct 2025 06:25:35 -0700
+From: Carter Li <notifications@github.com>
+Reply-To: fastfetch-cli/fastfetch <reply+BAG3TZLUBGYYBG2RD7CHNFTJNYYM7EVBNHHNEWS2UU@reply.github.com>
+To: fastfetch-cli/fastfetch <fastfetch@noreply.github.com>
+Cc: Altair <luca.barra@edu.unito.it>, 
+ Author <author@noreply.github.com>
+Message-ID: <fastfetch-cli/fastfetch/pull/2015/c3419666407@github.com>
+In-Reply-To: <fastfetch-cli/fastfetch/pull/2015@github.com>
+References: <fastfetch-cli/fastfetch/pull/2015@github.com>
+Subject: Re: [fastfetch-cli/fastfetch] add kiss packages count (PR #2015)
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_68f4e6cf25dd9_580e510d854298";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Precedence: list
+X-GitHub-Sender: CarterLi
+X-GitHub-Recipient: Altair-39
+X-GitHub-Reason: author
+List-ID: fastfetch-cli/fastfetch <fastfetch.fastfetch-cli.github.com>
+List-Archive: https://github.com/fastfetch-cli/fastfetch
+List-Post: <mailto:reply+BAG3TZLUBGYYBG2RD7CHNFTJNYYM7EVBNHHNEWS2UU@reply.github.com>
+List-Unsubscribe: <mailto:unsub+BAG3TZLUBGYYBG2RD7CHNFTJNYYM7EVBNHHNEWS2UU@reply.github.com>,
+ <https://github.com/notifications/unsubscribe/one-click/BAG3TZJUBLTWQLP4Y2FRLRL3YOGM7ANCNFSM6AAAAACJSFYK5E>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-GitHub-Notify-Platform: newsies
+X-GitHub-Labels: 
+X-GitHub-Assignees: 
+X-GitHub-PullRequestStatus: open
+X-Auto-Response-Suppress: All
+destinations: luca.barra@edu.unito.it
+X-GitHub-Recipient-Address: luca.barra@edu.unito.it
+
+
+----==_mimepart_68f4e6cf25dd9_580e510d854298
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+CarterLi left a comment (fastfetch-cli/fastfetch#2015)
+
+I wonder if I want to support a dead package manager
+
+-- 
+Reply to this email directly or view it on GitHub:
+https://github.com/fastfetch-cli/fastfetch/pull/2015#issuecomment-3419666407
+You are receiving this because you authored the thread.
+
+Message ID: <fastfetch-cli/fastfetch/pull/2015/c3419666407@github.com>
+----==_mimepart_68f4e6cf25dd9_580e510d854298
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div style=3D"display: flex; flex-wrap: wrap; white-space: pre-wrap; alig=
+n-items: center; "><img height=3D"20" width=3D"20" style=3D"border-radius=
+:50%; margin-right: 4px;" decoding=3D"async" src=3D"https://avatars.githu=
+busercontent.com/u/6134068?s=3D20&amp;v=3D4" /><strong>CarterLi</strong> =
+left a comment <a href=3D"https://github.com/fastfetch-cli/fastfetch/pull=
+/2015#issuecomment-3419666407">(fastfetch-cli/fastfetch#2015)</a></div>
+<p dir=3D"auto">I wonder if I want to support a dead package manager</p>
+
+<p style=3D"font-size:small;-webkit-text-size-adjust:none;color:#666;">&m=
+dash;<br />Reply to this email directly, <a href=3D"https://github.com/fa=
+stfetch-cli/fastfetch/pull/2015#issuecomment-3419666407">view it on GitHu=
+b</a>, or <a href=3D"https://github.com/notifications/unsubscribe-auth/BA=
+G3TZLMZK5TE3ZAZZZOSV33YOGM7AVCNFSM6AAAAACJSFYK5GVHI2DSMVQWIX3LMV43OSLTON2=
+WKQ3PNVWWK3TUHMZTIMJZGY3DMNBQG4">unsubscribe</a>.<br />You are receiving =
+this because you authored the thread.<img src=3D"https://github.com/notif=
+ications/beacon/BAG3TZOKW7BW7LFZXU2BR7T3YOGM7A5CNFSM6AAAAACJSFYK5GWGG33NN=
+VSW45C7OR4XAZNMJFZXG5LFINXW23LFNZ2KUY3PNVWWK3TUL5UWJTWL2P36O.gif" height=3D=
+"1" width=3D"1" alt=3D"" /><span style=3D"color: transparent; font-size: =
+0; display: none; visibility: hidden; overflow: hidden; opacity: 0; width=
+: 0; height: 0; max-width: 0; max-height: 0; mso-hide: all">Message ID: <=
+span>&lt;fastfetch-cli/fastfetch/pull/2015/c3419666407</span><span>@</spa=
+n><span>github</span><span>.</span><span>com&gt;</span></span></p>
+
+<script type=3D"application/ld+json">[
+{
+"@context": "http://schema.org",
+"@type": "EmailMessage",
+"potentialAction": {
+"@type": "ViewAction",
+"target": "https://github.com/fastfetch-cli/fastfetch/pull/2015#issuecomm=
+ent-3419666407",
+"url": "https://github.com/fastfetch-cli/fastfetch/pull/2015#issuecomment=
+-3419666407",
+"name": "View Pull Request"
+},
+"description": "View this Pull Request on GitHub",
+"publisher": {
+"@type": "Organization",
+"name": "GitHub",
+"url": "https://github.com"
+}
+}
+]</script>
+
+----==_mimepart_68f4e6cf25dd9_580e510d854298--

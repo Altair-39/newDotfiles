@@ -1,0 +1,113 @@
+@theme "/usr/share/rofi/themes/arthur.rasi"
+
+
+window { 
+    width: 700;
+    height: 757;
+    orientation: vertical;
+    location: center;
+    anchor: center;
+    transparency: "real";
+    border-color: @transparent;   
+    border: 0px;
+    border-radius: 0px;
+    spacing: 5;
+    background-color: @transparent;  /* keep transparency */
+}
+
+mainbox {
+    children: [imagebox, inputbar, listview];
+}
+
+// ELEMENT
+// -----------------------------------
+
+element {
+    padding: 4 12;
+    text-color: #c3c6cc; /* palette foreground */
+    background-color: @transparent; /* keep transparent */
+}
+
+element selected {
+    margin: 5 5 5 5;
+    background-color: rgba(170, 118, 128, 0.8); /* palette color3 with 80% opacity */
+    border: 2px 2px 2px 2px;
+}
+
+element-text {
+    background-color: inherit;
+    text-color: inherit;
+}
+
+element-icon {
+    background-color: inherit;
+    text-color: inherit;
+    size: 1.7em;
+}
+
+listview {
+    margin: 5 5 5 5;
+    columns: 3;
+    lines: 8;
+    padding: 8 0;
+    fixed-height: true;
+    fixed-columns: true;
+    fixed-lines: true;
+    border: 0;
+    border-radius: 20px;
+    background-color: rgba(18, 29, 52, 0.8); /* palette background with transparency */
+}
+
+// INPUT BAR 
+//------------------------------------------------
+
+entry {
+    text-color: #c3c6cc; /* palette foreground */
+    padding: 0 10 0 0;
+    margin: 0 2 0 0;
+    background-color: @transparent; /* keep transparent */
+}
+
+inputbar {
+    border: 0;
+    border-radius: 10px;
+    background-color: rgba(18, 29, 52, 0.8); /* palette background semi-transparent */
+    margin: 5 5 5 5;
+} 
+
+prompt {
+    text-color: #c3c6cc; /* palette foreground */
+    padding: 0 4 0 5;
+    margin: 0 0 0 0;
+    background-color: @transparent;
+}
+
+configuration {
+    display-drun: " Search:";
+    modi: "drun,run,window";
+    font: "FiraMono Nerd Font";
+    show-icons: true;
+    icon-theme: "Papirus";
+}
+
+// IMAGE
+//------------------------------------------------
+
+imagebox { 
+    padding: 0 0 0 0;
+    margin: 5 5 5 5;
+    background-color: rgba(18, 29, 52, 0.5); /* palette background with 50% opacity */
+    border: 2px 2px 2px 2px;
+    border-radius: 20px;
+    width: 200px; /* Set width of the imagebox */
+    height: 200px; /* Set height of the imagebox */
+    children: [image];
+}
+
+image {
+    background-image: url("~/.config/rofi/images/wal2.jpg", width);
+    border-radius: 20px;
+    background-color: rgba(170, 118, 128, 0.8); /* palette color3 semi-transparent */
+    border: 2px 2px 2px 2px;
+    background-position: center;
+}

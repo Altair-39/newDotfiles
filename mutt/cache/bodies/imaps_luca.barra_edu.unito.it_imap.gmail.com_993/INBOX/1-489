@@ -1,0 +1,186 @@
+X-Google-Smtp-Source: APBJJlGAEGaPIMxjkfBJ3ujXlWZU+04vhLKdtWi85TL179tuCkacFQ0FR+P5FgUTyUvpRC6OasD1J849KahTIlNAQQ==
+X-Received: by 2002:a17:902:ec88:b0:1af:e4e8:6847 with SMTP id x8-20020a170902ec8800b001afe4e86847mr11286550plg.1.1688991674093;
+        Mon, 10 Jul 2023 05:21:14 -0700 (PDT)
+Received: from 292831042739
+	named unknown
+	by gmailapi.google.com
+	with HTTPREST;
+	Mon, 10 Jul 2023 05:21:14 -0700
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a17:90a:94c8:0:0:0:0 with SMTP id j8csp1037167pjw;
+        Wed, 10 Nov 2021 08:20:54 -0800 (PST)
+X-Received: by 2002:a17:907:9711:: with SMTP id jg17mr430537ejc.242.1636561254265;
+        Wed, 10 Nov 2021 08:20:54 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1636561254; cv=none;
+        d=google.com; s=arc-20160816;
+        b=nLXy+CBZEmxETv7Fj4GY4NiUf7FcizqmnSif89ynT0zj7cy0X8OhXHchgeoJX54dzo
+         pa2hLPMA7k8UiK3rEEMlR683fqodp2esLxB7LX6FODhQihSTfz9CKdZuI9NRKYcqcsrn
+         Y9lmuNai6hpzIHH6DCwamQNXLu4ex7OM9qvo9ueTP14MCvSPCOm1EMvldbEljIgemUJx
+         l032Sv+n4QkxbVPwWj4Rbrnh9omVKaoeqFSYeeQIDxSfQ7WaLBXhYNKReI7qHBOrqt/3
+         bPbhoeSQeKahbj9/Se7cp4rz1sWhV553II4ASx4LVlWHAwy9pwl6wLf3rralt8BHdn+2
+         /7NQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:references:in-reply-to
+         :list-unsubscribe:auto-submitted:precedence:list-help:list-id
+         :message-id:subject:from:to:date:dkim-filter;
+        bh=2KPY+eE+RJ5sHPtEfU46IOjJJ9MN4RZ1GjWeN1NdDQU=;
+        b=oAQxc0wYRZ9bhr7s6Ekvqdhd5KQ+8JGHKnn9hOWqpoOIYRt+G160f7x0TIRATYuZZA
+         zIQLhj13ClPlUTjiBldIgyKkzXeN0htW8k99wHO1kQHyNvQHY/ZjGA+LFAew6rgUtSN8
+         mn//zJN9qXMFIo56dj1NeDvTDiiWAdrj3b4JpHt2VyrZHzmAfMY7B8ZjjTYfDo77/jL/
+         EQFXvDe+HGEW1JyBp/mKsnzvikpkDI2EOS1zTr/iaw4MkZZtAA1CpX916f7DH/fpH9we
+         HZ7HWTmIpSLwZE58SQvs8De/fdNoVyCWxWjkQm2h3o5OP8vLFsdpGxrzTT1E5rPZc+o/
+         tn2A==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of learnadmin@di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=learnadmin@di.unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+Return-Path: <learnadmin@di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id q18si507301ejx.345.2021.11.10.08.20.53
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 10 Nov 2021 08:20:54 -0800 (PST)
+Received-SPF: pass (google.com: domain of learnadmin@di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of learnadmin@di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=learnadmin@di.unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.14.4/8.14.4) with ESMTP id 1AAGKwhK031768
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Wed, 10 Nov 2021 17:20:58 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 1AAGKwhK031768
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 1AAGKoGZ010330
+	for <luca.barra@edu.unito.it>; Wed, 10 Nov 2021 17:20:51 +0100
+Date: Wed, 10 Nov 2021 17:20:50 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Druetto Alessandro" <alessandro.druetto@unito.it>
+Subject: CMRO-21-22: [CMRO A-B-C] Lezioni di Tutorato
+Message-ID:  <16a1fc3dac0f16b7fe265a79d50db6505454ed07716218ee0a2a28dc3c46ad1c@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer Moodle 2016052318 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci dei docenti" <moodleforum5648@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=5648
+X-Course-Id: 2270
+X-Course-Name: Calcolo Matriciale e Ricerca Operativa - Corsi A, B, C - A.A. 2021/22
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+In-Reply-To: <d26470ffd0966e40670724bd68484398e689541c06037f898b7411f1b9ae09a9@informatica.i-learn.unito.it>
+References: <d26470ffd0966e40670724bd68484398e689541c06037f898b7411f1b9ae09a9@informatica.i-learn.unito.it>
+Thread-Topic: CMRO-21-22: [CMRO A-B-C] Lezioni di Tutorato
+Thread-Index: d26470ffd0966e40670724bd6848
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="b1_a6d143b550dd7e2f9dbcb410a304ec48"
+
+This is a multi-part message in MIME format.
+
+--b1_a6d143b550dd7e2f9dbcb410a304ec48
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+CMRO-21-22 -> Forum -> Annunci dei docenti -> [CMRO A-B-C] Lezioni di Tutor=
+ato=20
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D33588#p58894
+[CMRO A-B-C] Lezioni di Tutorato
+di Druetto Alessandro - mercoled=C3=AC, 10 novembre 2021, 17:04
+---------------------------------------------------------------------
+Invio il PDF proiettato durante la lezione di tutorato di MERCOLED=C3=8C 10
+NOVEMBRE, con tutte le annotazioni da me effettuate.
+
+A.D.
+
+
+Allegato lezione-01.pdf:
+https://informatica.i-learn.unito.it/pluginfile.php/273338/mod_forum/attach=
+ment/58894/lezione-01.pdf
+
+---------------------------------------------------------------------
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2270
+
+
+--b1_a6d143b550dd7e2f9dbcb410a304ec48
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">
+    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/cours=
+e/view.php?id=3D2270">CMRO-21-22</a>
+    &raquo;
+    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/f=
+orum/index.php?id=3D2270">Forum</a>
+    &raquo;
+    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/f=
+orum/view.php?f=3D5648">Annunci dei docenti</a>
+    &raquo;
+    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/f=
+orum/discuss.php?d=3D33588">[CMRO A-B-C] Lezioni di Tutorato</a>
+</div>
+
+<table border=3D"0" cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost"=
+>
+    <tr class=3D"header">
+        <td width=3D"35" valign=3D"top" class=3D"picture left">
+            <a href=3D"https://informatica.i-learn.unito.it/user/view.php?i=
+d=3D23608&amp;course=3D2270"><img src=3D"https://informatica.i-learn.unito.=
+it/pluginfile.php/175998/user/icon/ilearn/f2?rev=3D619874" alt=3D"Immagine =
+Druetto Alessandro" title=3D"Immagine Druetto Alessandro" class=3D"userpict=
+ure" width=3D"35" height=3D"35" /></a>
+        </td>
+        <td class=3D"topic ">
+            <div class=3D"subject">
+                [CMRO A-B-C] Lezioni di Tutorato
+            </div>
+            <div class=3D"author">
+                di <a target=3D'_blank' href=3D'https://informatica.i-learn=
+=2Eunito.it/user/view.php?id=3D23608&course=3D2270'>Druetto Alessandro</a> - =
+mercoled=C3=AC, 10 novembre 2021, 17:04
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class=3D"left side" valign=3D"top">
+                &nbsp;
+        </td>
+        <td class=3D"content">
+                <div class=3D"attachments">
+                    <a href=3D"https://informatica.i-learn.unito.it/pluginf=
+ile.php/273338/mod_forum/attachment/58894/lezione-01.pdf"><img class=3D"ico=
+n" alt=3D"documento PDF" title=3D"documento PDF" src=3D"https://informatica=
+=2Ei-learn.unito.it/theme/image.php/_s/ilearn/core/1629886804/f/pdf" /></a> <=
+a href=3D"https://informatica.i-learn.unito.it/pluginfile.php/273338/mod_fo=
+rum/attachment/58894/lezione-01.pdf">lezione-01.pdf</a><br />
+                </div>
+            Invio il PDF proiettato durante la lezione di tutorato di <b>me=
+rcoled=C3=AC 10 novembre</b>, con tutte le annotazioni da me effettuate.<p>=
+<br /></p><p>A.D.</p>
+
+            <div class=3D"commands">
+                    <a target=3D"_blank" href=3D"https://informatica.i-lear=
+n.unito.it/mod/forum/discuss.php?d=3D33588&parent=3D58800">
+                        Visualizza intervento genitore
+                    </a>
+            </div>
+
+            <div class=3D"link">
+                <a target=3D"_blank" href=3D"https://informatica.i-learn.un=
+ito.it/mod/forum/discuss.php?d=3D33588#p58894">
+                    Visualizza questo intervento nel contesto
+                </a>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<hr />
+<div class=3D"mdl-align unsubscribelink">
+    <a href=3D"https://informatica.i-learn.unito.it/mod/forum/index.php?id=
+=3D2270">Modifica preferenze email di raccolta</a>
+</div>
+
+
+--b1_a6d143b550dd7e2f9dbcb410a304ec48--
+

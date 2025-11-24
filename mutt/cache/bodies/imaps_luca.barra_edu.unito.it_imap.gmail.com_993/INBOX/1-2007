@@ -1,0 +1,162 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b990:0:b0:2fb:4c9b:a38b with SMTP id p16csp335983ljp;
+        Thu, 14 Nov 2024 07:15:47 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCWtTusPdO+ZbxlEQ+7fnQ6dZbFNsEFg9ammicZf8XdgFpSXOzH63aHYxPm5zZR/5sV6a16otqQAxkL/@edu.unito.it
+X-Google-Smtp-Source: AGHT+IG6U1//4DJtCfO00f5jdcLXBXl+wpZMMItvfuW1hWqj92Ii6kW2lwC5hk8EWp3P320O3MIh
+X-Received: by 2002:a05:6512:12cc:b0:53d:a95f:2d71 with SMTP id 2adb3069b0e04-53da95f2dc8mr183169e87.12.1731597346850;
+        Thu, 14 Nov 2024 07:15:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1731597346; cv=none;
+        d=google.com; s=arc-20240605;
+        b=RZexFUdnUi08cC0VS7c1j3TiB3HvBspmSMALv4aUVMTofW+7WmpV3XzB7aRT/6tACH
+         m31Nq3H/intkCS69FS6QMvmPOxOyQdRed5pDQcx0bvqwvE/9ZM2zXGlZ5IWj1qUKvV0l
+         d59CPI4ZYzmNaX0/QddLydO/Ghb6RrwPq+n4mw3rNjgpp1tW8J5rWmOo9xwX6Ji6wyhJ
+         g46kJ9r92b7TYS2EUhFxyqsDgOR3TZsEFeEJq0z2ne9j7t5egfVzq3qreHf7CjQADYuR
+         M13OPd951TdSosbm6cmJhYESXRqvG76VA8knY7gdV970Nxqxj9rXcZcvQ1ewyHC6Sw5y
+         6L2g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=yrotbbDwEtibYAhcVxg7mlgVxjGfVKECKqoHKsUJ04Y=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=Um/ec0p5UwkCzZ5BMXKU7t75RDRmo0B22P/dtc1sRYW/rP5jFYa0Jm0LfS4h/h3Ct1
+         ABUH9VcTjOgAt04LhcoN4mNSJCukr9Vu16v43OCBhcZgHW74Gxq2s2R6tZo3/fJQ1G29
+         UX03IxCBtKvQ1x2dbupom6F/t13Jt9w2ypma94oLeIp7NOVwoegn684MuOo2zMQWkyO3
+         rrPS9YtKFZq493L3jtI64nJ6/nYW4c8+O53lKfZXrFbNK2YWh0Ps3UhIxpLLNsPjoY+x
+         i4txAeo1AkpXZjUfMKEKFFxV/CXIXP7pjBYM2PNVngsSzumTbvPD615a8l8kop3oX57T
+         F68w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=kvBydu2w;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id e9e14a558f8ab-3a721a0f910si9431575ab.40.2024.11.14.07.15.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Nov 2024 07:15:46 -0800 (PST)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=kvBydu2w;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 5116923B1B;
+	Thu, 14 Nov 2024 16:15:43 +0100 (CET)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id d2g8rfjWG0qD; Thu, 14 Nov 2024 16:15:43 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id BD37823DBF;
+	Thu, 14 Nov 2024 16:15:42 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it BD37823DBF
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1731597343;
+	bh=yrotbbDwEtibYAhcVxg7mlgVxjGfVKECKqoHKsUJ04Y=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=kvBydu2wBIk6LIBMeUMQ3m6AV5u8EVbpMPbyW74QZCg8F/fXQPhJe4T7mWEINgUiS
+	 xkjgLRABban6D57Awcv9ABpJGDYHBGScQO+812XjJaAPsJ16GhHRrypN3Vh/oCUJRV
+	 NqbjSzBfQfjoUv7pgxkW3VUoMSeYUl+/i9E6rP0DkgbupikOKTMMm6dyrxwUUeWCY9
+	 A9h1KpkZtHuWSFoyKboAB6ppjf3Cr3pHT1IopaRnTx1KSIr+BJdHruJpCtbHSg/+YW
+	 DjuBVd9hmxpks1pyLUrH4WfNdHT4B50N7fkuyVsXtqqIpwgWheKDnwLWr+89iYeh72
+	 HO5sBOcv2uzUQ==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id oOCZK5we0gM5; Thu, 14 Nov 2024 16:15:42 +0100 (CET)
+Received: from esse3appjboss23.private.cineca.it (esse3appjboss23.cineca.it [130.186.5.144])
+	by smtp4.cineca.it (Postfix) with ESMTP id 96F8B236A5;
+	Thu, 14 Nov 2024 16:15:40 +0100 (CET)
+Received: from esse3appjboss23.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss23.private.cineca.it (Postfix) with ESMTP id CCDBD1F7;
+	Thu, 14 Nov 2024 16:15:38 +0100 (CET)
+Date: Thu, 14 Nov 2024 16:15:38 +0100 (CET)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <1088526789.5.1731597338826@esse3appjboss23.private.cineca.it>
+Subject: Bando Erasmus+ Studio a.a. 2025-2026 ON-LINE! // The Erasmus+ Call
+ for Studies 2025-2026 is ON-LINE!
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+English version at the bottom of the page=20
+
+Gentile studente,
+Gentile studentessa,
+La informiamo che in data 14 novembre 2024 =C3=A8 stato pubblicato il Bando=
+ Erasmus+ per studio per l=E2=80=99anno accademico 2025/2026.
+Il testo completo del bando e i relativi allegati sono disponibili al segue=
+nte link:
+https://www.unito.it/internazionalita/studiare-e-lavorare-allestero/erasmus=
+/erasmus-studio/bando-erasmus-studio
+Sar=C3=A0 prossimamente pubblicata allo stesso link una traduzione di corte=
+sia del bando e degli allegati in lingua inglese.
+La procedura online per presentare la candidatura NON =C3=A8 ancora aperta.=
+ Le tempistiche per presentare la candidatura saranno rese note alla pagina=
+ Bando Erasmus+ per studio.
+Il Bando =C3=A8 rivolto a tutti gli studenti e le studentesse che desideran=
+o svolgere un periodo di mobilit=C3=A0 internazionale durante il proprio pe=
+rcorso accademico.
+Al fine di illustrare i contenuti del Bando Erasmus+ Studio 2025/2026 sono =
+previsti una serie di incontri informativi. Il calendario completo degli in=
+contri =C3=A8 pubblicato al seguente link: https://www.unito.it/sites/defau=
+lt/files/calendario_incontri_erasmus_2025_2026.pdf
+La Sezione Mobilit=C3=A0 Internazionale ha, inoltre, previsto l=E2=80=99ape=
+rtura di uno sportello informativo dedicato al Bando Erasmus+ per studio a.=
+a. 2025/2026.
+Sar=C3=A0 possibile accedere allo sportello senza prenotazione a partire da=
+l 18 novembre e sino al 18 dicembre. Lo sportello sar=C3=A0 attivo nei segu=
+enti giorni:
+=EF=83=BC=09luned=C3=AC e mercoled=C3=AC dalle ore 13:00 alle ore 16:00 pre=
+sso l'Infopoint di Ateneo in Via Po n=C2=B0 29 - Torino;
+=EF=83=BC=09venerd=C3=AC on-line dalle ore 10:00 alle ore 13:00 accedendo s=
+enza prenotazione alla seguente stanza Webex: https://unito.webex.com/meet/=
+internationalexchange. Le chiamate saranno gestite in ordine di arrivo.
+
+Siamo a disposizione per eventuali chiarimenti.
+Cordiali saluti.
+Giulia Fonseca
+---------------------------------------------------------------------------=
+-----------------------------------------------------------
+Dear Student,
+We inform you that the new Erasmus+ Call for studies - academic year 2025/2=
+026 (https://www.unito.it/internazionalita/studiare-e-lavorare-allestero/er=
+asmus/erasmus-studio/bando-erasmus-studio) has been published on November 1=
+4th, 2024.
+At the same link you will be able to find the Erasmus+ Call and the Annex I=
+ and II in Italian Language. In the next few days the English version of th=
+e Erasmus+ Call and related Annexes will be published at the same link.
+You will be able to apply by accessing your MyUniTo personal page. The open=
+ing date of Erasmus+ application will be published very soon at the Erasmus=
++ Call for studies webpage.
+The Erasmus+ Call is addressed to all students who would like to carry out =
+an international mobility period as Erasmus+ students.
+In order to find out more about the Erasmus+ Call=E2=80=99s content and all=
+ related administrative and financial aspects, you are invited to take part=
+ in an Information Meeting.=20
+The calendar of all the Information Meetings is available at the following =
+link:=20
+https://www.unito.it/sites/default/files/calendario_incontri_erasmus_2025_2=
+026.pdf
+Moreover, a specific information desk on the Erasmus+ Call a.y. 2025/2026 w=
+ill be available. The desk will be open from November 18nd until December 1=
+8th and there is no need to book in advance. The desk will be set up on:
+o=09Mondays and Wednesdays, 1:00 p.m. to 4:00 p.m. at UniTO Infopoint in Vi=
+a Po n=C2=B0 29, Torino;
+o=09Fridays from 10:00 a.m. to 1:00 p.m. without reservation at the followi=
+ng Webex room:  https://unito.webex.com/meet/internationalexchange.
+
+Please do not hesitate to contact our Office if you have any further questi=
+ons.
+
+Best regards
+Giulia Fonseca
+---
+Direzione Ricerca, Innovazione e Internazionalizzazione
+Sezione Mobilit=C3=A0 Internazionale
+Universit=C3=A0 degli Studi di Torino
+Complesso Aldo Moro, Palazzina D - Stanza 2B-2F
+Via Sant'Ottavio 12 - 10124 Torino
+Email: internationalexchange@unito.it

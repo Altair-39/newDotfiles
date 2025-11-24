@@ -1,0 +1,161 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b990:0:b0:2fb:4c9b:a38b with SMTP id p16csp2937958ljp;
+        Wed, 20 Nov 2024 00:25:04 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHndskMfO24G0hrtxiRfYL50nIMDvZNyAI7U8/pEtM5ZP9JCCyD+JzLQuoom7cu4Nqr5OfO
+X-Received: by 2002:a5d:6c63:0:b0:37d:4705:ff71 with SMTP id ffacd0b85a97d-38254b165eemr543401f8f.10.1732091103898;
+        Wed, 20 Nov 2024 00:25:03 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1732091103; cv=none;
+        d=google.com; s=arc-20240605;
+        b=C+8nCN5XwpoelUjxJbqLq6wArQ5fVDFX1juBhfByyZtoxMBAypCytia/LbLd+OaOy1
+         2IFFFDCFjL6sACyOQWA5LfDB9F5ZQbv6tVHlFWD/AmZyQd7ihLwArv8lO2XQv+wlpHU6
+         Iqits4ffLCSgJaTAgsf2h8gcG8r9gcwV2QXfvSmE7cokboalo0aoVW+O+k1x8/wuZ6Jl
+         VGFjvt95C2OYrP8sui3W5RDvYBT9iWV9NJ2zs+9OEYPx5jmAhbAGj6q3lnDCxwmGvVS6
+         RUMQT9JZOgJnETiAqqhY7XUj9NjHD2UTfUhs5BrWSxjNQNko9hMK2D0VGu5mIJHZPhJ8
+         LSMA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=ZjmTJur6wXjGt1l0is4vLdNPj9O8z/AzeJjX80YmCM4=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=N/wk98yTPOM0wt9Pr6WLIVuJWn0aUH1fDWQIr6IgmIhBid5pEmj/TCSgVphs2OsHLa
+         kkkS6XYFxKIz8Wz2ZHjMEAMqFrJcdJV7LUMjS+NS8sGyt4JB6zvjsVW51kyQmejKpKZj
+         hgWMm5QRXyGIfE3SjNY73NOHm/aoCQsU22X6xOvOYBsbByEoPegQl7Yy/5Yfa1/u/JTc
+         q17mJtWaf6oHnxBerOtRJAgGd9qZvXZ/2sIm74DYyfpuEEArotncll3Vy1fZuY4QMoyj
+         zVIDqj8vr2S4kmLDLGhkT1RDQJ/lQmaKd3EgkH7oelHj9UkdMigSTZXnFObizxhAl3e4
+         v3uw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id e9e14a558f8ab-3a74809d028si64146225ab.77.2024.11.20.00.25.02
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Nov 2024 00:25:03 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 4AK8Ov3E1363430
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Wed, 20 Nov 2024 09:24:58 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 4AK8Ov3E1363430
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 4AK8OvLR015614
+	for <luca.barra@edu.unito.it>; Wed, 20 Nov 2024 09:24:57 +0100
+Date: Wed, 20 Nov 2024 09:24:57 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Gunetti Daniele (via informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Do not reply to this email" <noreply@educ.di.unito.it>
+Subject: archII-24/25: Prossime lezioni del corso di Architetture II
+Message-ID: <3b8e767a7713bf96deef9d9b5f2de8a45e5fbd360d094f7b55a40ec0acc54ef4@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7314@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7314
+X-Course-Id: 2898
+X-Course-Name: Architettura degli Elaboratori II 24/25
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: archII-24/25: Prossime lezioni del corso di Architetture II
+Thread-Index: 3b8e767a7713bf96deef9d9b5f2d
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_qQx57uicvYPtTrCJX7FDgbpUDKfHxfuBDvi7MdgHVQ"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 4AK8Ov3E1363430
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_qQx57uicvYPtTrCJX7FDgbpUDKfHxfuBDvi7MdgHVQ
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+archII-24/25 -> Forums -> Annunci -> Prossime lezioni del corso di
+Architetture II
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43052#p70418
+Prossime lezioni del corso di Architetture II
+by Gunetti Daniele - Wednesday, 20 November 2024, 9:09 AM
+---------------------------------------------------------------------
+Gentili studentesse e studenti,
+
+dopo la lezione di oggi, mercoled=C3=AC 20 novembre, le lezioni del corso
+proseguiranno come segue:
+
+nei giorni 27-28/11, 4-5/12, 11-12/12, nel solito orario, il prof.
+Aldinucci terr=C3=A0 le lezioni relative alla parte sulle architetture
+grafiche;
+
+nei giorni 8-9/01/25 il corso si concluder=C3=A0 con due lezioni di
+introduzione al quantum computing.
+
+Pertanto domani, gioved=C3=AC 21 novembre, non ci sar=C3=A0 lezione.
+
+Cordiali saluti,
+
+DG
+
+---------------------------------------------------------------------
+This is a copy of a message posted in archII-24/25.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2898
+
+--b1_qQx57uicvYPtTrCJX7FDgbpUDKfHxfuBDvi7MdgHVQ
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2898">archII-24/25</a>=0A    &raqu=
+o;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/index.php?id=3D2898">Forums</a>=0A    &raquo;=0A    <a target=3D"=
+_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=
+=3D7314">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https=
+://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43052">Prossime l=
+ezioni del corso di Architetture II</a>=0A</div>=0A=0A<table border=3D"0" c=
+ellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"=
+header">=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=
+=0A            <a href=3D"https://informatica.i-learn.unito.it/user/view.ph=
+p?id=3D296&amp;course=3D2898" class=3D"d-inline-block aabtn"><img src=3D"ht=
+tps://informatica.i-learn.unito.it/theme/image.php/_s/lambda/core/172703054=
+9/u/f2" class=3D"userpicture defaultuserpic" width=3D"35" height=3D"35" alt=
+=3D"" /></a>=0A        </td>=0A        <td class=3D"topic starter">=0A     =
+       <div class=3D"subject">=0A                Prossime lezioni del corso=
+ di Architetture II=0A            </div>=0A            <div class=3D"author=
+">=0A                by <a target=3D'_blank' href=3D'https://informatica.i-=
+learn.unito.it/user/view.php?id=3D296&course=3D2898'>Gunetti Daniele</a> - =
+Wednesday, 20 November 2024, 9:09 AM=0A            </div>=0A        </td>=
+=0A    </tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=
+=0A                &nbsp;=0A        </td>=0A        <td class=3D"content">=
+=0A            <p dir=3D"ltr" style=3D"text-align:left;">Gentili studentess=
+e e studenti, <br /></p><p dir=3D"ltr" style=3D"text-align:left;">dopo la l=
+ezione di oggi, mercoled=C3=AC 20 novembre, le lezioni del corso proseguira=
+nno come segue:</p><p dir=3D"ltr" style=3D"text-align:left;">nei giorni 27-=
+28/11, 4-5/12, 11-12/12, nel solito orario, il prof. Aldinucci terr=C3=
+=A0 le lezioni relative alla parte sulle architetture grafiche;</p><p dir=
+=3D"ltr" style=3D"text-align:left;">nei giorni 8-9/01/25 il corso si conclu=
+der=C3=A0 con due lezioni di introduzione al quantum computing.</p><p dir=
+=3D"ltr" style=3D"text-align:left;">Pertanto domani, gioved=C3=AC 21 novemb=
+re, non ci sar=C3=A0 lezione.</p><p dir=3D"ltr" style=3D"text-align:left;">=
+Cordiali saluti, <br /></p><p dir=3D"ltr" style=3D"text-align:left;">DG<br =
+/></p>=0A=0A            <div class=3D"commands">=0A            </div>=0A=0A=
+            <div class=3D"link">=0A                <a target=3D"_blank" hre=
+f=3D"https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43052#p=
+70418">=0A                    See this post in context=0A                </=
+a>=0A            </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=
+=0A<div class=3D"mdl-align unsubscribelink">=0A    <a href=3D"https://infor=
+matica.i-learn.unito.it/mod/forum/index.php?id=3D2898">Change your forum di=
+gest preferences</a>=0A</div>
+
+--b1_qQx57uicvYPtTrCJX7FDgbpUDKfHxfuBDvi7MdgHVQ--
+

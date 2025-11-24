@@ -1,0 +1,160 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:30e4:b0:361:9897:9696 with SMTP id dp4csp170895ljb;
+        Wed, 5 Nov 2025 03:27:42 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFwyXCLNJUQ7IDc7BaBNuA/ZUOn0MzSnYB6ERHA4JrNzHdmAdWY6A9DODn8ATRl6oAr6yO7
+X-Received: by 2002:a17:907:d91:b0:b6d:606f:2a96 with SMTP id a640c23a62f3a-b726529e638mr139410866b.4.1762342061796;
+        Wed, 05 Nov 2025 03:27:41 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762342061; cv=none;
+        d=google.com; s=arc-20240605;
+        b=QNi3H7bgoY9ENYWtoIDCbkLblS28qyT6G79kGYqNREs5MrF9M0japmW1xO5rJ74Jai
+         DZ0f1bEKSqOzX9CqD2jHKBUTwYd4itjUooA56U4Yj9DGy9tBqoZXIwb4bQOkptMzktwh
+         qIILRspWRNnbsFdglSNslFJK291DdeJTUNNMrMY79jxDbxz1Z6JiPMmGa9Em/ZuHrrK/
+         H/jIJfemS3EUT7WdrbjduPUNwd9qqACKU+WDioCSAj5kaKUePokU+TUZuFzDSrVTOLGx
+         smeWNUj77dw5N6CZU/C0DR67l178jgM+WVU7YoIvjzAT042ger8BQ0SYH4VN2VeDxHfD
+         Wb6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-signature:dkim-filter;
+        bh=oYuyg+c9sMMALUtlbA0WuYZnSNIJhTrGfxIx5qFhWP0=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=F4fu1sV5Vz60L5Giji1QdIta99WsIjWcrtJ7o76IB6M+Mpa7bjwaYs1lteIgqCEwCo
+         QDXHLBs2ep/rxJWfaCdfUqBNQLK5FS+BovPbWuY8eoc4CiQ76uX1jAVJe4qm4eZEZyUa
+         iEPvNoFOVBIAH4xAdPn3MmVasRiwLL48mpFMPPqk/jlanb5TJi7AP7R0XyOiiS00iMZF
+         BHv68Jq3ARoJVqwgk5RwL7tEx9OgZet0ILGSgfpx4WXf8uOKqD84xM+FUVQRkAE8adTj
+         EdjE1wDiFs0Yx9jH7DV2DI4uNvV2r7NEEWrR0kcM5MfxB2Xj5+9zj4p5OTxdiArh9qFD
+         Wz0w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=TEiog9tC;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-b70b48e6f82si504780266b.599.2025.11.05.03.27.41
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Nov 2025 03:27:41 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=TEiog9tC;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 5A5BRcop940464
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Wed, 5 Nov 2025 12:27:38 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 5A5BRcop940464
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=i-learn.unito.it;
+	s=default; t=1762342058;
+	bh=oYuyg+c9sMMALUtlbA0WuYZnSNIJhTrGfxIx5qFhWP0=;
+	h=Date:To:From:Reply-To:Subject:List-Id:List-Help:List-Unsubscribe:
+	 From;
+	b=TEiog9tCb3c1FdSeBIO3L6sMeeKgySfJvw7hsTlxBKipMjax4vXPT5I/HYjcYuqlA
+	 o7GlTLvNDDlBoiMC12TaIuw8lyZn6v86x/EdM4xgyeQkw0FyD2mxDgCWQO1X2I/sk4
+	 SdjnXNAxF1Mpbzmj+M/R0iwh3qtfTZh84wYZk1TY=
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 5A5BRcTU4067092
+	for <luca.barra@edu.unito.it>; Wed, 5 Nov 2025 12:27:38 +0100
+Date: Wed, 5 Nov 2025 12:27:38 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Bertola Diego (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: ProgrIII-2025/26: Cambio turno del laboratorio
+Message-ID: <14b2e13fea4bac990d93cdfe4973125bb7555ef76233bc81b6f10286a6bf2a87@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.6.5 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Forum per comunicazioni tra studenti / Forum for student communications" <moodleforum8476@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=8476
+X-Course-Id: 3411
+X-Course-Name: Programmazione III, Istituzioni di programmazione in rete
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: ProgrIII-2025/26: Cambio turno del laboratorio
+Thread-Index: 14b2e13fea4bac990d93cdfe4973
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_tEuSh44aAkOroadaGXsqZPSNLNSd2hRxb4zlMO2Ac"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 5A5BRcop940464
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply-informatica@i-learn.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_tEuSh44aAkOroadaGXsqZPSNLNSd2hRxb4zlMO2Ac
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+ProgrIII-2025/26 -> Forums -> Forum per comunicazioni tra studenti / Forum
+for student communications -> Cambio turno del laboratorio
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45806#p73782
+Cambio turno del laboratorio
+by Diego Bertola - Wednesday, 5 November 2025, 12:08 PM
+---------------------------------------------------------------------
+Buongiorno, sono uno studente del turno T1 e vorrei spostarmi nel turno T3.
+Sto cercando qualcuno del turno T3 con cui fare cambio. Se qualcuno =C3=
+=A8
+interessato pu=C3=B2 per favore scrivermi?
+
+Grazie,
+
+Buona giornata.
+
+---------------------------------------------------------------------
+This is a copy of a message posted in ProgrIII-2025/26.
+
+To reply click on this link:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D73782
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3411
+
+--b1_tEuSh44aAkOroadaGXsqZPSNLNSd2hRxb4zlMO2Ac
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3411">ProgrIII-2025/26</a>=0A    &=
+raquo;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito=
+.it/mod/forum/index.php?id=3D3411">Forums</a>=0A    &raquo;=0A    <a target=
+=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php=
+?f=3D8476">Forum per comunicazioni tra studenti / Forum for student communi=
+cations</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://inform=
+atica.i-learn.unito.it/mod/forum/discuss.php?d=3D45806">Cambio turno del la=
+boratorio</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" cellspaci=
+ng=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=0A        <td wid=
+th=3D"35" valign=3D"top" class=3D"picture left">=0A            <a href=3D"h=
+ttps://informatica.i-learn.unito.it/user/view.php?id=3D31504&amp;course=3D3=
+411" class=3D"d-inline-block aabtn"><span class=3D"userinitials size-35">BD=
+</span></a>=0A        </td>=0A        <td class=3D"topic starter">=0A      =
+      <div class=3D"subject">=0A                Cambio turno del laboratori=
+o=0A            </div>=0A            <div class=3D"author">=0A             =
+   by <a target=3D'_blank' href=3D'https://informatica.i-learn.unito.it/use=
+r/view.php?id=3D31504&course=3D3411'>Diego Bertola</a> - Wednesday, 5 Novem=
+ber 2025, 12:08 PM=0A            </div>=0A        </td>=0A    </tr>=0A    <=
+tr>=0A        <td class=3D"left side" valign=3D"top">=0A                &nb=
+sp;=0A        </td>=0A        <td class=3D"content">=0A            <p dir=
+=3D"ltr" style=3D"text-align:left;"></p><div>
+                            <p dir=3D"ltr">Buongiorno,
+ sono uno studente del turno T1 e vorrei spostarmi nel turno T3. Sto=20
+cercando qualcuno del turno T3 con cui fare cambio. Se qualcuno =C3=A8=20
+interessato pu=C3=B2 per favore scrivermi?</p><p dir=3D"ltr">Grazie,</p><p =
+dir=3D"ltr">Buona giornata.</p>
+                        </div><br /><p></p>=0A=0A            <div class=3D"=
+commands">=0A                    <a target=3D"_blank" href=3D"https://infor=
+matica.i-learn.unito.it/mod/forum/post.php?reply=3D73782">=0A              =
+          Reply=0A                    </a>=0A            </div>=0A=0A      =
+      <div class=3D"link">=0A                <a target=3D"_blank" href=3D"h=
+ttps://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45806#p73782"=
+>=0A                    See this post in context=0A                </a>=0A =
+           </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div=
+ class=3D"mdl-align unsubscribelink">=0A    <a href=3D"https://informatica.=
+i-learn.unito.it/mod/forum/index.php?id=3D3411">Change your forum digest pr=
+eferences</a>=0A</div>
+
+--b1_tEuSh44aAkOroadaGXsqZPSNLNSd2hRxb4zlMO2Ac--
+

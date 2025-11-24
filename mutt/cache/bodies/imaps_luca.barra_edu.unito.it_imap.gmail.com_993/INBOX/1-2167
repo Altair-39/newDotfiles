@@ -1,0 +1,115 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:7e09:0:b0:302:3d35:6815 with SMTP id z9csp375157ljc;
+        Thu, 13 Feb 2025 06:06:41 -0800 (PST)
+X-Received: by 2002:a17:907:b9cc:b0:ab7:f92c:8ff9 with SMTP id a640c23a62f3a-ab7f92c94a0mr217878966b.1.1739455598087;
+        Thu, 13 Feb 2025 06:06:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1739455598; cv=none;
+        d=google.com; s=arc-20240605;
+        b=DJr3obrV0C+EOP4f/siv6/gxG9ZiNcQdvLQk7f0Hax/euCYCJtQYA4fnMBKUfMWelS
+         e5GqKjy8uI+QhLcYbSbzUnshBGYKI9KWwpqo3NF0BXlymm87Hq+eiTBiihNAMcNRHQhD
+         /F+MoNUJqM8mZLpNglYYeVtRi6/Vl8eIHlKWVhFidekRYarPQp7KDkJjrV/EEDkmMhnB
+         uAnkfPHlWpgHKLjToyc3vM1lLJZotfyZoD1CtFFGge7ADBT3h83I+6se6EDdRPEYhDxI
+         TntE8Md3wdAOwPty4Wgaw7Ilz5GN7FHN5zCqHR66lf5fxa/eI6zr31D8VcLWiEvqqhqy
+         ZP3w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :dkim-signature;
+        bh=KAIezQQk6ApL/NuMUfsGxTlj+9kntdjTp8sZejLzzXs=;
+        fh=BukKh9gm4szVBNbz+iiE8mDCNZR8sV4dZ29m9eHyn58=;
+        b=cdp88LEmNf6m109Ph3eEk0HBVxIKgYtMimQ7JwVXeiDfX0BHJRm9qILk3IvA3WeAIn
+         ngy1Md8n52bXxgYA8M9eu/xOBfrr50b5C1UcinpnZo4TOj9Fnmu+QZxtHk74nkCVo23e
+         msSySZSKVy6rKPwyg95kYGP6foD6IGHhyUvfJfDuUur/BbTAfQFvlAcLmxctaSD8qkjG
+         iq6yheo0yNyi/4cS8QVUHFGwNR+1ciPueD+2LA1g+qvzdru7n6yYKUy/KBrtTO4e9AEE
+         qoWz8ryjH5Xmlp7Xo1ey1YZvhImuT6MGXtbWPSxnjR6IIq+FDkDETzFeZxNjVZw3RJT9
+         W8tQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=Ds+SCeth;
+       spf=pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=paola.gatti@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <paola.gatti@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-aba53343d84sor80058966b.5.2025.02.13.06.06.37
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Thu, 13 Feb 2025 06:06:37 -0800 (PST)
+Received-SPF: pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=Ds+SCeth;
+       spf=pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=paola.gatti@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1739455597; x=1740060397; darn=edu.unito.it;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KAIezQQk6ApL/NuMUfsGxTlj+9kntdjTp8sZejLzzXs=;
+        b=Ds+SCeth+DYg2sT2si7IsDWeu5hEyRLOGY+4qY/Vy7LzZ6sZ9Hfl875D0t6DVcS+2/
+         UzF+f7yAEz5l9b8jIzTCyp9+8eKl2fbJ8U7aIqrEvpdDrKlll9VKs7mNFrx0IFsLLE/J
+         dWU+MEPYNB+D8wEq4N5nJLhDX0gernt78vfKEiatahowpDBFjn+y44VV4e9qn8cVIIxq
+         L0vAz+IgewTOFHftVFWVk6tFrJJ7F269n8lwG936KPy5y+vw75hwhsLQqw24FaJTFvB5
+         HnjrF3JR5n4wNFtqrTK5Zs4nI+zEws1pXJaXwqq/pC9GX90/uBPCS26EwtCixm4DyxUQ
+         V9zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739455597; x=1740060397;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KAIezQQk6ApL/NuMUfsGxTlj+9kntdjTp8sZejLzzXs=;
+        b=lyldC4wCXY7f3Ha3vwXbFnx2khAVkv3icapmqvYEnn3r4R/wKaSHqD7oxlL6+JsWl1
+         mlX4v5Rt/TMMR6pwC71xnzACnDaW6a/FFKo4Z/h2Slj2CKqzD7X8bHET3VIILGoTDUb8
+         n8jYvrHuFMGgZNTymtiZvaH3kUznQ2EJh1aUjFBFh+0/cDiUz+DPdYt8EHNl2EVqxcUk
+         4us9jrkYaS9RWSRd7HO8RyH771e9l9ra4Qa9JeFl+bBKeJ7tmH2GtpAL94ARmX1yEfPG
+         V7E08yGJQpq5A/G5Hj6EXsYUw44ofC/i7WI6KrV21VKquYREMUeh0ZkhKYhlvN+bXET8
+         TnYA==
+X-Gm-Message-State: AOJu0Ywi+Ra0VgYNM//rIMKhaVEEZa2qqGn8YfB5JN+KlBJnu75ovvu1
+	BAnK8pC2/S/aeJz4CNj82fzU3FDLhpeAx3CZYLkt9eZd+W7SMm2Kn9QYS8uVy9e0E31DbyD/uJc
+	6ynI=
+X-Gm-Gg: ASbGncuL4C3ckkT6IATth5n/gZvacmqpsShkCjmsVH8+gcmI+nyBmlTJ/xV0FSSi4cr
+	Ag5f5vi9ruo5kAX9rIsjYpMBaR20DD2RbHDCe74ViA/iBCUwcdKTKpKk0JeY+hhc2c1maYJv1rv
+	7BnwlssC8CiAFuEDjcGUzJpsoEKCg1gL/+vInW8C4wP0+lVu/C0D0mHEBQZVSKckuAWuyOqzvCS
+	Aqy5WCFPOMeERRMx0QgqQVibwje5rr9TgfApq1JDcwP3LO5GJqh+wyWkKVR8AWc7T9AmxRc4S5S
+	qUkVVJn1+2J5CyG1xmwPyTryp0xTENkTpKG+OaUZYw==
+X-Google-Smtp-Source: AGHT+IGcqFdywyT7BmHQdjL1lxMMJ0m3a/OhXACPBytFTP1F4XVvvlyFqAfBdI+C3IdufJ/0bR2S4Q==
+X-Received: by 2002:a17:907:da3:b0:ab6:f0d3:9687 with SMTP id a640c23a62f3a-aba5150a7fdmr231134666b.21.1739455585543;
+        Thu, 13 Feb 2025 06:06:25 -0800 (PST)
+Return-Path: <paola.gatti@unito.it>
+Received: from [10.0.13.2] (nat3.di.unito.it. [130.192.156.246])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aba5337674asm137406366b.99.2025.02.13.06.06.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 13 Feb 2025 06:06:25 -0800 (PST)
+Message-ID: <1607f578-8c94-4580-a8a6-5ed1962f010c@unito.it>
+Date: Thu, 13 Feb 2025 15:06:24 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: collaborazione art 11 su Principi di Programmazione Orientata agli
+ Oggetti
+Content-Language: it
+To: luca.barra@edu.unito.it, vladimiro.loverarulfi@unito.it,
+ lorenzo.falchi@edu.unito.it, paolo.giordano494@edu.unito.it
+Cc: Sara Capecchi <sara.capecchi@unito.it>,
+ Jeremy Sproston <sproston@di.unito.it>, Luigi Di Caro <luigi.dicaro@unito.it>
+References: <6d64f5a6-ecca-49c8-86d9-8491c6a9280a@di.unito.it>
+ <d1015378-08b6-4dd3-a4f9-cce3854fb574@unito.it>
+ <CAEw4pn7MwBtKdsmeCGHKbcjFVzRQd_gq3t9cPpsmp+=j4DZAtA@mail.gmail.com>
+From: Gatti Paola <paola.gatti@unito.it>
+In-Reply-To: <CAEw4pn7MwBtKdsmeCGHKbcjFVzRQd_gq3t9cPpsmp+=j4DZAtA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Carissimi,
+
+la presente per ricordarvi di organizzarvi tra di voi per l'assistenza 
+ai turni di laboratorio dell'insegnamento in oggetto, e di avvisare di 
+conseguenza poi i docenti che ci leggono in copia.
+
+(pagina insegnamento:
+https://laurea.informatica.unito.it/do/corsi.pl/Show?_id=kjs9
+al fondo, puntatore alla pagina orari: l'insegnamento e' del 2 anno, 
+spartito in canale A e canale B)
+
+grazie
+paola gatti

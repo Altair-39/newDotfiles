@@ -1,0 +1,223 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a54a:0:b0:328:ea4:e135 with SMTP id e10csp63388ljn;
+        Fri, 16 May 2025 01:59:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEP15NeUzxzafWQ912BzLk8eYqc/UPcrTzUdUS5/W6X/WI0wv81tj1R9/jNnO5b7Uaky/cW
+X-Received: by 2002:a17:907:2890:b0:abf:689a:ed2c with SMTP id a640c23a62f3a-ad52d5374camr62975866b.6.1747385953022;
+        Fri, 16 May 2025 01:59:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1747385953; cv=none;
+        d=google.com; s=arc-20240605;
+        b=BHamrclbFSen1vnbFOqopNnFJAbmMzNTDr5OBh17JyS3LazxnLshuWb0rW6hc5AKQc
+         TOPLRGG/krQMWAoLtwf7KCtiR/3NQiIUoMfj7MyF38U4F8UVxiMwvTuKOYdSVbkHqCxV
+         E2Y9zvsASoLv1la1ltQHRyn47uJ/TPb5a2/uKZN++4y/eLDWflYVqwFSyXhhWUzDfzrR
+         mzL0UMw2UTIOlekOwVK5H1UXjCu3LVGCHckkbkw3s2GvsMewzP5O8af00MgndZLU9TI8
+         NXouGVKJX4+Ors3F3LVO2v2AE+kxAb8Ngyc3ttCNuKAcjjhwSpR4lIkhROX8ReQIb41M
+         AwhQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=qO5Qzms9U+eS+WUldlfhY1WdT6+LfHSQ4mkQfAUEGAA=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=hA1tgxkOzbZkddPYX8XSHSChkmNpcI1doHC9ehADBaLBXhi6MfDhIm1z6P2oeuh10e
+         H1sjsvuICtOoHQO34vt9dfJ69fwGesVJFI7q7VWrY3gLlSWSz3HK7jTiFi0EPWEOZxgA
+         XJEq9yopevurfDTaY2X9vJa4YuqLu9yFbyJmfXWGtmsmq2U0Hr6Qxf/lm1zfqBcwcVR/
+         CWHT5lfzu9kE3Bzdlz42RJ49paGzcr2tJ03C2iGPQV2LeaixMFOyIGBAe28w0QHSw6Ys
+         PrGGvCRc7VdYMxGg1JN4GI/BOjZIO0bS1EVyjR+DTLcKl5+7ooeOyg3gxxTxXigWPy4q
+         Hx2w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ad52d5486f4si120738066b.769.2025.05.16.01.59.12
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 May 2025 01:59:12 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 54G8xC0A1317056
+	for <luca.barra@edu.unito.it>; Fri, 16 May 2025 10:59:12 +0200
+Date: Fri, 16 May 2025 10:59:12 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Serrano Fernando (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: SisInt2425: China Releases New Labeling Requirements for AI-Generated Content
+Message-ID: <7ce6446ebd09108d883ba548cd888ae09c8b899d34c203179bc4ff7f30fccdf5@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Segnalazioni" <moodleforum7706@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7706
+X-Course-Id: 3092
+X-Course-Name: Sistemi Intelligenti
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=7706&d=44661>
+Thread-Topic: SisInt2425: China Releases New Labeling Requirements for AI-Generated Content
+Thread-Index: 7ce6446ebd09108d883ba548cd88
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_V455w5WqLbSafwUulzYczputjtG4LAJDl7ppXAaKA"
+
+This is a multi-part message in MIME format.
+
+--b1_V455w5WqLbSafwUulzYczputjtG4LAJDl7ppXAaKA
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SisInt2425 -> Forums -> Segnalazioni -> China Releases New Labeling
+Requirements for AI-Generated Content
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44661#p72407
+China Releases New Labeling Requirements for AI-Generated Content
+by Serrano Fernando - Friday, 16 May 2025, 10:42 AM
+---------------------------------------------------------------------
+Fonte:
+https://www.insideprivacy.com/international/china/china-releases-new-labeli=
+ng-requirements-for-ai-generated-content/
+[1]
+
+Questo ARTICOLO INFORMATIVO vuole presentare l'introduzione in Cina di
+norme per la regolamentazione dei prodotti digitali, creati tramite IA, da
+parte di service provider di informazioni online (es. Cluodflare, Azure,
+AWS negli USA) e di provider di servizi di distribuzione di contenuti
+online (es. TIM, Sky, Vodafone, ecc.).
+
+Questa regolamentazione vuole introdurre due tipologie di etichettature dei
+prodotti:
+
+* esplicita: qualsiasi immagine, chat, ecc. deve avere un'etichetta
+visibile che faccia capire all'utente che ci=C3=B2 che sta usufruendo =
+=C3=A8 stato
+generato dall'IA; inoltre se una chat pu=C3=B2 essere salvata su file,
+anch'essa dovr=C3=A0 possedere questa etichetta.
+* implicita: i metadati del contenuto generato deve possedere informazioni
+sul content ID del service provider e il suo nome, pi=C3=B9 ulteriori
+informazioni non specificate nell'articolo.
+
+L'articolo pone l'enfasi anche sulla TRACCIABILIT=C3=80 di questi contenuti=
+,
+indicando delle categorie di riconoscimento quali:
+
+* contenuto certamente generato tramite IA.
+* contenuto possibilmente generato dall'IA.
+* contenuto che si sospetta essere stato generato tramite IA.
+
+Anche queste categorie dovranno possedere metadati con informazioni
+dettagliate sull'IA che l'ha generata e sul provider di servizi di
+distribuzione di contenuti online.
+
+Il tono dell'articolo =C3=A8 neutrale.
+
+Dell'articolo mi ha colpito il fatto di quanto sia importante combattere la
+disinformazione tramite le fake news. Con strumenti di IA sempre pi=C3=
+=B9
+avanzati, si =C3=A8 in grado di scrivere, ritoccare articoli o replicare
+immagini modificandole, per distorcere la realt=C3=A0 a scopi, molto spesso=
+,
+malevoli, che diffondono dissenso, sfiducia o sono volti a generare atti di
+violenza indiscriminata.
+
+Links:
+------
+[1]
+https://www.insideprivacy.com/international/china/china-releases-new-labeli=
+ng-requirements-for-ai-generated-content/
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SisInt2425.
+
+To reply click on this link:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D72407
+Unsubscribe from this forum:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706
+Unsubscribe from this discussion:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D=
+44661
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092
+
+--b1_V455w5WqLbSafwUulzYczputjtG4LAJDl7ppXAaKA
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3092">SisInt2425</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3092">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+706">Segnalazioni</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44661">China Rel=
+eases New Labeling Requirements for AI-Generated Content</a>=0A</div>=0A=0A=
+<table border=3D"0" cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost"=
+>=0A    <tr class=3D"header">=0A        <td width=3D"35" valign=3D"top" cla=
+ss=3D"picture left">=0A            <a href=3D"https://informatica.i-learn.u=
+nito.it/user/view.php?id=3D29688&amp;course=3D3092" class=3D"d-inline-block=
+ aabtn"><img src=3D"https://informatica.i-learn.unito.it/theme/image.php/_s=
+/lambda/core/1745224313/u/f2" class=3D"userpicture defaultuserpic" width=3D=
+"35" height=3D"35" alt=3D"" /></a>=0A        </td>=0A        <td class=3D"t=
+opic starter">=0A            <div class=3D"subject">=0A                Chin=
+a Releases New Labeling Requirements for AI-Generated Content=0A           =
+ </div>=0A            <div class=3D"author">=0A                by <a target=
+=3D'_blank' href=3D'https://informatica.i-learn.unito.it/user/view.php?id=
+=3D29688&course=3D3092'>Serrano Fernando</a> - Friday, 16 May 2025, 10:42 A=
+M=0A            </div>=0A        </td>=0A    </tr>=0A    <tr>=0A        <td=
+ class=3D"left side" valign=3D"top">=0A                &nbsp;=0A        </t=
+d>=0A        <td class=3D"content">=0A            <p dir=3D"ltr" style=3D"t=
+ext-align:left;">Fonte: <a href=3D"https://www.insideprivacy.com/internatio=
+nal/china/china-releases-new-labeling-requirements-for-ai-generated-content=
+/">https://www.insideprivacy.com/international/china/china-releases-new-lab=
+eling-requirements-for-ai-generated-content/</a></p><p dir=3D"ltr" style=3D=
+"text-align:left;">Questo <strong>articolo informativo</strong><span> vuole=
+ presentare l'introduzione in Cina di norme per la regolamentazione dei pro=
+dotti digitali, creati tramite IA, da parte di service provider di informaz=
+ioni online<strong> </strong><span>(es. Cluodflare, Azure, AWS negli<strong=
+> </strong><span>USA)</span></span><strong> </strong><span>e di provider di=
+ servizi di distribuzione di contenuti online (es. TIM, Sky, Vodafone, ecc.=
+).<br /></span></span></p><p dir=3D"ltr" style=3D"text-align:left;"><span><=
+span>Questa regolamentazione vuole introdurre due tipologie di etichettatur=
+e dei prodotti:</span></span></p><ul dir=3D"ltr"><li style=3D"text-align:le=
+ft;">esplicita: qualsiasi immagine, chat, ecc. deve avere un'etichetta visi=
+bile che faccia capire all'utente che ci=C3=B2 che sta usufruendo =C3=A8 st=
+ato generato dall'IA; inoltre se una chat pu=C3=B2 essere salvata su file, =
+anch'essa dovr=C3=A0 possedere questa etichetta.</li><li style=3D"text-alig=
+n:left;">implicita: i metadati del contenuto generato deve possedere inform=
+azioni sul content ID del service provider e il suo nome, pi=C3=B9 ulterior=
+i informazioni non specificate nell'articolo.</li></ul><div>L'articolo pone=
+ l'enfasi anche sulla <strong>tracciabilit=C3=A0</strong><span> di questi c=
+ontenuti, indicando delle categorie di riconoscimento quali:</span></div><d=
+iv><ul><li>contenuto certamente generato tramite IA.</li><li>contenuto poss=
+ibilmente generato dall'IA.</li><li>contenuto che si sospetta essere stato =
+generato tramite IA.</li></ul></div><div>Anche queste categorie dovranno po=
+ssedere metadati con informazioni dettagliate sull'IA che l'ha generata e s=
+ul <span><span>provider di servizi di distribuzione di contenuti online.</s=
+pan></span></div><div><span><span><br /></span></span></div><div><span><spa=
+n>Il tono dell'articolo =C3=A8 neutrale.</span></span></div><div><span><spa=
+n><br /></span></span></div><div>Dell'articolo mi ha colpito il fatto di qu=
+anto sia importante combattere la disinformazione tramite le fake news. Con=
+ strumenti di IA sempre pi=C3=B9 avanzati, si =C3=A8 in grado di scrivere, =
+ritoccare articoli o replicare immagini modificandole, per distorcere la re=
+alt=C3=A0 a scopi, molto spesso, malevoli, che diffondono dissenso, sfiduci=
+a o sono volti a generare atti di violenza indiscriminata.</div>=0A=0A     =
+       <div class=3D"commands">=0A                    <a target=3D"_blank" =
+href=3D"https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D724=
+07">=0A                        Reply=0A                    </a>=0A         =
+   </div>=0A=0A            <div class=3D"link">=0A                <a target=
+=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/discuss.=
+php?d=3D44661#p72407">=0A                    See this post in context=0A   =
+             </a>=0A            </div>=0A        </td>=0A    </tr>=0A</tabl=
+e>=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=0A    <a href=3D=
+"https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706">Un=
+subscribe from this forum</a>&nbsp;=0A    <a href=3D"https://informatica.i-=
+learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D44661">Unsubscribe fro=
+m this discussion</a>&nbsp;=0A    <a href=3D"https://informatica.i-learn.un=
+ito.it/mod/forum/index.php?id=3D3092">Change your forum digest preferences<=
+/a>=0A</div>
+
+--b1_V455w5WqLbSafwUulzYczputjtG4LAJDl7ppXAaKA--
+

@@ -1,0 +1,110 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a781:0:b0:361:9897:9696 with SMTP id c1csp1505034ljf;
+        Sun, 28 Sep 2025 23:40:14 -0700 (PDT)
+X-Received: by 2002:a05:600c:4709:b0:46e:3c73:2f9d with SMTP id 5b1f17b1804b1-46e3c733343mr60171085e9.6.1759128014191;
+        Sun, 28 Sep 2025 23:40:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1759128014; cv=none;
+        d=google.com; s=arc-20240605;
+        b=QgOeG6NqXdi0BjwG5qVoUMsibMfGy8cAZT+rytusFMlOL+Ngr8EdKMfXeHLguv6qpN
+         lu/8q7yH4Leub73wXwLDCmWEA3+n1lSBge5TR95wxmhoq6swJuaWlhue3zM+MnLdcPJT
+         wE2LVmyM7ek7+8iAolRhYH3n8FfuqQkGGL4lPrr/Fi+TtWhAMBHATh8OadxvAKf+BIf4
+         W+rF9dpwV9BaC0C+rMTLB0PCZ5p01aS1iq0r5sIE9msdcQqurU44UYbFsqvnfdQc7MH5
+         Fkj/sGqIbVOShCb8WoVeBe/Gj14B68sNIC+8nPH8O0XWtHCZsXdHKmQmTEx27v+W2qAc
+         f6WQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=date:message-id:from:mime-version:subject:to:dkim-signature;
+        bh=7DPCasOndHYU/rnba7D3d3yUV3rlyFQmT0o0WY0kePw=;
+        fh=IxM04YauqXzCozmF/ngeXvaWuWeW7uONbHgj9jmZsgE=;
+        b=HNw8Mj0eTJLN0YjT+j1jSrKo/+e3mgj/Y1l67CQtvp91IZcuS+lA6etXciDYb11PeM
+         CEldUcPYsj4MbCy5MLOPI1IvhlzxbIdovQTnk2RCAkF3uWJgJHnfKFrSt3XaSRTk6N5J
+         nsOrocVGhDQ34KVKQs6GI2NaLAooPjhswBVxKjGgwiBiC6zvbeFwc8qizbDReQIh3ER5
+         SH2J1HJ8eR8dnnVZbmOFUiJSWYcjy6M7U5qgmhMObyWPpLzz4dm8ZOgDnuVFe/jwU50j
+         521fx6HB1zrwV5WE8o56XpVpxmTk0ndUTnoJwztqa7dJ4cq6JVzJtHcNtIGW7lvdBEmp
+         K87w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=oJ9EmSFs;
+       spf=none (google.com: s_ide@ide-sync-srv.ateneo.unito.it does not designate permitted sender hosts) smtp.mailfrom=s_ide@ide-sync-srv.ateneo.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <s_ide@ide-sync-srv.ateneo.unito.it>
+Received: from mail-sor-f97.google.com (mail-sor-f97.google.com. [209.85.220.97])
+        by mx.google.com with SMTPS id ffacd0b85a97d-40fb9670f19sor2045532f8f.7.2025.09.28.23.40.13
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Sun, 28 Sep 2025 23:40:14 -0700 (PDT)
+Received-SPF: none (google.com: s_ide@ide-sync-srv.ateneo.unito.it does not designate permitted sender hosts) client-ip=209.85.220.97;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=oJ9EmSFs;
+       spf=none (google.com: s_ide@ide-sync-srv.ateneo.unito.it does not designate permitted sender hosts) smtp.mailfrom=s_ide@ide-sync-srv.ateneo.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1759128013; x=1759732813; darn=edu.unito.it;
+        h=date:message-id:from:mime-version:subject:to:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=7DPCasOndHYU/rnba7D3d3yUV3rlyFQmT0o0WY0kePw=;
+        b=oJ9EmSFsrCrmWLZ859tzQ18i2kU2qhwSJSfe7nA363lfxuiVXeW8t5bB6I6BP8xF4W
+         lVSodsZD2BJE4HGlAf6VQtHLdyVzAmtY2rmuUrmtakJNOERe1a3moe8l/7jsGO+/ryMV
+         IJFahjTisiElfIpOTLdxs+U0LTGNrJynduWY9zjcDiEftWRhRC/ta51aZq9/vQWJCRe2
+         wfkeT6PtlI12CfRpCFqvEM4pHw8FumlkR5vO02IWzLtEPxWuXMb8dhouB5Gjv9CmYR7j
+         +gDHd8SNycB0xCwQTFUzsC1dUaH6Dk2RUy9AJneASMmVc9jN7qGRqk8zOCMi++Xv8cEG
+         q9zg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759128013; x=1759732813;
+        h=date:message-id:from:mime-version:subject:to:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7DPCasOndHYU/rnba7D3d3yUV3rlyFQmT0o0WY0kePw=;
+        b=tzLNKILhUYmZYPlQlvdLTC1801Gmw/bsqsMq3NUC6OvUXff6iVq77hWFhhyf+NEG0f
+         IxapbyQ/K/f6BBO2qsKqpbj4VnnQpGYa+Sv7O4Jrq7B50L7gkDDvZmO6y/LAQ9rF3mRO
+         wVeDlNYcEEodyaabomj49WnE9btZDSBYYq2yeSh3LT2dMoTL5mssSr14foC8xXuwpCI5
+         vk0m3x5eKeHaIrOENFVQ40dvwIJR7hUy2boTMC+V8GjlGw1pNcAAjB909ILVF623j1A+
+         PAFcpjs18a/TZZjrpp8Gig5QYlbnR0Aw68hXc1fS/qYwduS6NoTgCTaXe5ib8eh+VikK
+         1ryw==
+X-Gm-Message-State: AOJu0Yw7hgwktliHUZbt9InQ+CQ8/Tp2vrbZQYaSYQ4vM+03NyHNdQQC
+	8gArTsoNIIWNckmKEecDCmpnS3YS+eIFYxCP4CfnZruMJNYqgOH81mp77Lcbl1M/PTDWLW0fUax
+	ph4uUV4co+MnnzBuEUFWGIfaZZ2pFSv+RroyFA57YBIhxKhU=
+X-Gm-Gg: ASbGncvThADO5xpehk2RPOtET7hxiHy3z8/1yJaqp9HUMSFsvdzyDK08xRfCxAQAoxg
+	1DSi+y+az3hDmX9DqWlcfyjgIeawFjVZCrmQwHnASNiIEUeflpJD1iNUfj7USI/IZ0QgOjlICsI
+	JWqc0nxRk2oVCvXqPrIcs/olBJYWigcpCOR4m1VF/7jHT0QUYR7uP/VIyQnHgiHrqqDM56VNd1l
+	6kmOGy5g4nvt5mDnHVkuV6RftI/8XkPnES7UkK2L3t89cznrMUYuiEcwrwKLD2BoOMLy+Bf6Vqu
+	8F/wxkG7zXbyCvr3h/8rYa7W5abYVV6VQEWM9S2d+l1SSliK2wV62DbygWJP3nf9sBADp4J4d3I
+	EfmL/vJxcXeOa
+X-Google-Smtp-Source: AGHT+IGoKqqzcvNa1dn514pWatKK/yUaFuI2SREVT4lNdGsPdwHTlIcy6PxJECABqdlm9vENhMoLQwl8z/xP
+X-Received: by 2002:a05:6000:26c3:b0:3f7:b7ac:f3d4 with SMTP id ffacd0b85a97d-40e4486b5f5mr14880569f8f.5.1759128013495;
+        Sun, 28 Sep 2025 23:40:13 -0700 (PDT)
+Return-Path: <s_ide@ide-sync-srv.ateneo.unito.it>
+Received: from ide-sync-srv.ateneo.unito.it ([130.192.126.2])
+        by smtp-relay.gmail.com with ESMTPS id 5b1f17b1804b1-46e56bd55dcsm34685e9.22.2025.09.28.23.40.13
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 28 Sep 2025 23:40:13 -0700 (PDT)
+X-Relaying-Domain: unito.it
+Received: by ide-sync-srv.ateneo.unito.it (Postfix, from userid 497855955)
+	id 897FE202459; Mon, 29 Sep 2025 08:31:27 +0200 (CEST)
+To: luca.barra@edu.unito.it
+Subject: Scadenza Password credenziali SCU di Unito
+MIME-Version: 1.0
+Content-type: text/html; charset=UTF-8
+From: noreply.id@unito.it
+Message-Id: <20250929063127.897FE202459@ide-sync-srv.ateneo.unito.it>
+Date: Mon, 29 Sep 2025 08:31:27 +0200 (CEST)
+
+Gentile Utente,<br><br>
+la password delle sue credenziali SCU scadr&agrave; tra  2 giorni. &Egrave; necessario quindi procedere al suo rinnovo.<br>
+Per rinnovare la password deve collegarsi al portale di Unito (www.unito.it), fare login, cliccare sul proprio nome in alto a destra e poi selezionare la voce "SCU cambio password".<br>
+Si ricorda che per motivi di sicurezza &egrave; necessario inserire una password diversa dalle precedenti.<br>
+A seguito del cambio password, noter&agrave; di non riuscire pi&ugrave; ad accedere alle reti WiFi di UniTo.<br>
+Per riconnettersi, occorre cancellare la configurazione della rete ed eseguire nuovamente l'accesso, avendo cura di inserire la nuova password. Per maggiori dettagli pu&ograve; visitare la sezione dedicata al servizio WiFi sul portale di UniTo.<br><br>
+
+Per il Personale : Le ricordiamo inoltre di salvare un indirizzo email personale sulla Rubrica di Ateneo al seguente <a href="https://servizipersonale.unito.it/areaRiservataPersonale/menu.php">link</a>, questo per poter utilizzare il servizio Ricordami Password in caso di smarrimento password.<br><br>
+
+Per gli Studenti : Le ricordiamo di controllare nella sezione Iscrizione -> Dati anagrafici se la mail personale è aggiornata, per poter utilzzare il servizio Ricordami Password in caso di smarrimento della password.<br><br>
+
+
+
+
+
+Cordiali Saluti<br><br>
+
+Direzione Sistemi Informativi, Portale, E-learning

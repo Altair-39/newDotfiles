@@ -1,0 +1,317 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:95d5:0:b0:30c:2dd2:a8c1 with SMTP id y21csp1854044ljh;
+        Tue, 15 Apr 2025 02:25:34 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCX05uWL6AuShKZuvWvk+EvqolN6Gt36krf3LCNbI1NqQK5g/FZnlzbcO22wqDs3EWXt8GxWOY67seLT@edu.unito.it
+X-Received: by 2002:a05:6402:2711:b0:5e5:e5fd:d090 with SMTP id 4fb4d7f45d1cf-5f36f526ad0mr4221748a12.2.1744709134468;
+        Tue, 15 Apr 2025 02:25:34 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1744709134; cv=none;
+        d=google.com; s=arc-20240605;
+        b=fcbXQhUePV6OPAid956T8gyp1K6MLIufliAhBN6GJEbSQWwzhNwJZE2mQEXMiWBWJ5
+         BQMvXGBDU9uN7XonKvg2Gso1fF45xEjngQkPosL+7/zVd1FrecZA2nE+TIAKmhC4jAhU
+         M6UwT2FdR9g3Ci3I4H5xIPdHPK7JB2EI8PV/6ISAGKpaYQPG7KRRg4ZGzCrz/dKM3RqK
+         blA81S3SAC5cAo2p9WGhoiREQ0LiN08x/DCGlRTJR2fkxRoianGyPmlb9odxl1EpoZ20
+         rAorCW91KGfzKQgJJUzB6VpYyyisjTZYYhh04y7YjrC1vmrN1AuMUpJ/RHPRMMtzzaa8
+         2VPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=TZ5ItElQ/PkZAsBxI2lvnSeaTIQkB9nhhd1iwPlCuDE=;
+        fh=0KLrS/yMm7ns2qkIoSjJpqMAItTMtQh5QBMXiI5xEeE=;
+        b=aZX940FfgnWoIQfpBHP5RLyhsli04PFbtp0hTnN8EUZJ9OF+5OJCXhkyqakH/shjsQ
+         Zznb5l9moVqn0z9RGkwSOJzVfxZWMofh0sUazoEwzYBOidvfDNx59DY/w8YklxoXhx72
+         qM7mP2uBGYa5gtB6rtyGoVJRT+Wrb4/aEgdzrKcmfUr+1goKRh2IIovOPA43znYl0cTN
+         heIHT5LlSiui3mUQaFAMhsW1vO1PWJzfe/t5Obi0+4YTmQFXrsC4fL4se8VJO0sMXKpn
+         NyuVJuv6nVWq30ud082zV94QX3hARwc4xNlTm8MU1x7hYwAbcrTpnlgH7LgbemB9hGpA
+         IO/w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=J0OCrcIA;
+       spf=pass (google.com: domain of fabiana.vernero@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=fabiana.vernero@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <fabiana.vernero@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 4fb4d7f45d1cf-5f2fbced7dfsor5030292a12.7.2025.04.15.02.25.34
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Tue, 15 Apr 2025 02:25:34 -0700 (PDT)
+Received-SPF: pass (google.com: domain of fabiana.vernero@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=J0OCrcIA;
+       spf=pass (google.com: domain of fabiana.vernero@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=fabiana.vernero@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1744709134; x=1745313934; darn=edu.unito.it;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=TZ5ItElQ/PkZAsBxI2lvnSeaTIQkB9nhhd1iwPlCuDE=;
+        b=J0OCrcIAll9QS6JjEyI3fSqs1ERip51UxztyJUhX8bm2Dn6c6nG62lFq7BkcyhGc3l
+         XHZ/OXtGMLPrDe3oyz1w85H26TIHDunjoRjmNJSyVq8HycyJXLikMW3nZV2jiA/p3ffl
+         3W09aHE2FX0iyAoksUJS8xwWEH+fjNDYIPYUd62zkj3a8DmWZgATQGYU6MyWGTogjk6X
+         wGkqy+T35/2Lf/8hHyN+2SHmAwHTFaJoWdlTCibt8lL1m/7buu2fwW8rHql/08Zuvcap
+         QhA2S5hgtU2T3dEViRj/Lv65/NC9QXCR0a3jvAffk3n8DzL/JKSLK162EuEdmyP4bFNh
+         3dEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744709134; x=1745313934;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TZ5ItElQ/PkZAsBxI2lvnSeaTIQkB9nhhd1iwPlCuDE=;
+        b=oDQRsP3UqASVvhFrOCDi3SNRLS/bzrMWAM+3VZZVyetNNBrjpepZLiSeaHtKRA0Vho
+         OvlHfolSMOUyw5kqGQnqtqGKCpGEuWqNleFgGuN8GScsLanJ3GtbnXesdNwK05Qo4OQP
+         UzGLwyA6gTIOjmrkd7esofwsrL/JYp3JFqCAo4jJuIUSd1O8QvABMZIlT9DPFTLOGpTj
+         IgcOjycfA6tfZxFP4rUSsugwZH+1jP2GobY8K3DUdGLEwR6HFGVKg+E5VjgEuMnBI9iR
+         i8tFF9MVGEt6hIx/wnnIpOt1asuZ5yaCv0CnWt6WyYsDlrPd2ssa20VPnU8/4dGz1991
+         SRsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU5jgzqZEMznoa33KFdu75mgRC2NdnV4kIs9ogdkURHQQMKKrY8dqwu33uqC51X9gGKuXYdGJZeEcPz@edu.unito.it
+X-Gm-Message-State: AOJu0YwhPF1gHEjarun2kTgU7ImdG+c9ycvllg73fMlSycefS+emEK16
+	c5/xvUnLy+hjyN/edRY0UCTXlfxLNv5be8eDBT5rh93vAMhqBe/3pGQCvgzIdWWbUEQxEtM3yTh
+	uB8RZn08v21zrs8sQtO7R9/7RPsmcNZzIb8O7ytZD
+X-Gm-Gg: ASbGncvArEpPisOpsn23n+lHVAzjeg3fA9ptLPJVG5/NmJHBT+Fd9E8jVpzYRyHeG2/
+	ZlhDjkt8Eq+bpeVhk4UqgMX8lEFq1W38AX0y3NmP6sdf7OdBgmmS2RMva1gOLe4Hq/3os618WLh
+	7z9jRVI2njOOTmQCs3r0hUPsMnqTJhZUxm8BM=
+X-Google-Smtp-Source: AGHT+IFOxT0UxuzoonQfyindgOu2JTlWjUHyFHH3i2nroUzF8lgTiYI0+DHCMmTlgUXcb9vAS6hds75sOsAvQIE413Y=
+X-Received: by 2002:a05:6402:254d:b0:5db:f5bc:f696 with SMTP id
+ 4fb4d7f45d1cf-5f36f526b93mr12486431a12.5.1744709133858; Tue, 15 Apr 2025
+ 02:25:33 -0700 (PDT)
+MIME-Version: 1.0
+References: <GVAP278MB06630F3285E4081046579B9C97B22@GVAP278MB0663.CHEP278.PROD.OUTLOOK.COM>
+In-Reply-To: <GVAP278MB06630F3285E4081046579B9C97B22@GVAP278MB0663.CHEP278.PROD.OUTLOOK.COM>
+From: Fabiana Vernero <fabiana.vernero@unito.it>
+Date: Tue, 15 Apr 2025 11:25:22 +0200
+X-Gm-Features: ATxdqUFh6ZnkACD9oSl9mNIM7IRmCyjE-VKs-rcRaUBOcX17RQJERvIMm-paWnE
+Message-ID: <CAFqqSgiUOFqaHiEwnHnaLXN-L4_85oTtmHEaH=7KjOLR+c9u=g@mail.gmail.com>
+Subject: Re: Passaggio di consegne LBD T2
+To: Rizzo Gianluca <gianluca.rizzo@hevs.ch>
+Cc: Luca Anselma <luca.anselma@unito.it>, "Ruggero G. Pensa" <pensa@di.unito.it>, 
+	Luca Barra <luca.barra@edu.unito.it>, 
+	"gianluca.rizzo@unito.it" <gianluca.rizzo@unito.it>
+Content-Type: multipart/alternative; boundary="0000000000002913720632cdc0d2"
+
+--0000000000002913720632cdc0d2
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Ciao Gianluca,
+
+grazie per il passaggio di consegne. Oltre alla correzione dell'esercizio
+6.3 restano quindi da fare i blocchi 97, 98 e le
+esercitazioni riepilogative finali, giusto?
+A presto,
+
+fabiana
+
+Il giorno mar 15 apr 2025 alle ore 10:52 Rizzo Gianluca <
+gianluca.rizzo@hevs.ch> ha scritto:
+
+> Ciao a tutti,
+> A Fabiana: Con la lezione di ieri, io ho concluso la mia parte di lezioni
+> regolare per il Laboratorio Basi Di Dati.
+> Quindi dalla prossima dovrebbe toccare a te (Ruggero conferma, per
+> piacere).
+> Siamo arrivati agli esercizi 6.1 , 6.1 e 6.3. Sono sicuramente tra i piu'
+> difficili che hanno visto sinora, e ci hanno messo un po' per risolverli.
+> Ho comunque dato loro tutto il tempo per provarci, in quanto chi viene a
+> lezione ci tiene a provarci, e senza aiuti.  Abbiamo visto insieme le
+> soluzioni del 6.1 e 6.2. Solo qualcuno tra i presenti ha provato a fare
+> anche il 6.3.
+>
+> Sarebbe carino riuscire a trovare il modo di ricevere e diffondere le
+> soluzioni alternative proposte da vari studenti, secondo me arricchirebbe
+> le lezioni. Avete delle idee su come implementare questo?
+>
+> Per l'anno prossimo, ho chiesto a Luca Barra di metter su una versione un
+> po' pi=C3=B9 guidata dell' intro a Pgadmin, visto che molti hanno avuto
+> difficolt=C3=A0 a collegarsi e qualcuno ancora adesso non vi riesce. Inol=
+tre,
+> secondo me sarebbe bene trovare un client
+> per  Android, in quanto non sempre siamo in una aula con PC, e non tutti
+> portano a lezione un pc. Di fatto molti usano tablet o carta e penna +
+> telefonino (di solito Android) per fare gli esercizi. Luca Barra sta
+> vedendo come fare per facilitare anche questo tipo di studenti.
+>
+> Sulla falsariga da quanto fatto dall' altro borsista, ho chiesto a Luca d=
+i
+> organizzare una serie di incontro con gli studenti, per poterli assistere
+> con il progetto. Come d'accordo con Ruggero, anche io organizzer=C3=B2 (c=
+redo
+> tre) incontri con gli studenti, per rispondere a qualsiasi richiesta di
+> chiarimento metodologica sul progetto e a domande sull'intero programma d=
+el
+> laboratorio.
+>
+> Vi ringrazio in anticipo per ogni feedback e commento.
+> Ciao,
+> G
+>
+>
+>
+>
+>
+>
+>
+>
+> Dr. Gianluca Rizzo, PhD
+> Connected Experience Lab (ConExLab) - Institute of Information Systems
+> (IIG)
+> University of Applied Sciences of Western Switzerland - HES SO Valais
+> gianluca.rizzo@hevs.ch
+> Associate Professor, Dipartimento di Informatica - Universita' di Torino,
+> Italy
+> gianluca.rizzo@unito.it <gianluca.rizzo@unifg.it>
+> Whatsapp chat/call <https://rb.gy/s8ku9a>
+>
+> =E2=80=8B
+>
+
+--0000000000002913720632cdc0d2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Ciao Gianluca,<div><br></div><div>grazie per il passaggio =
+di consegne. Oltre alla correzione dell&#39;esercizio 6.3 restano quindi=C2=
+=A0da fare i blocchi 97, 98 e le esercitazioni=C2=A0riepilogative finali, g=
+iusto?</div><div>A presto,</div><div><br></div><div>fabiana</div></div><br>=
+<div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"=
+gmail_attr">Il giorno mar 15 apr 2025 alle ore 10:52 Rizzo Gianluca &lt;<a =
+href=3D"mailto:gianluca.rizzo@hevs.ch">gianluca.rizzo@hevs.ch</a>&gt; ha sc=
+ritto:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div clas=
+s=3D"msg7502172764622717987">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Ciao a tutti,</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+A Fabiana: Con la lezione di ieri, io ho concluso la mia parte di lezioni r=
+egolare per il Laboratorio Basi Di Dati.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Quindi dalla prossima dovrebbe toccare a te (Ruggero conferma, per piacere)=
+.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Siamo arrivati agli esercizi 6.1 , 6.1 e 6.3. Sono sicuramente tra i piu&#3=
+9; difficili che hanno visto sinora, e ci hanno messo un po&#39; per risolv=
+erli. Ho comunque dato loro tutto il tempo per provarci, in quanto chi vien=
+e a lezione ci tiene a provarci, e senza
+ aiuti.=C2=A0 Abbiamo visto insieme le soluzioni del 6.1 e 6.2. Solo qualcu=
+no tra i presenti ha provato a fare anche il 6.3.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Sarebbe carino riuscire a trovare il modo di ricevere e diffondere le soluz=
+ioni alternative proposte da vari studenti, secondo me arricchirebbe le lez=
+ioni. Avete delle idee su come implementare questo?</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+=C2=A0</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Per l&#39;anno prossimo, ho chiesto a Luca Barra di metter su una versione =
+un po&#39; pi=C3=B9 guidata dell&#39; intro a Pgadmin, visto che molti hann=
+o avuto difficolt=C3=A0 a collegarsi e qualcuno ancora adesso non vi riesce=
+. Inoltre, secondo me sarebbe bene trovare un client=C2=A0</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+per=C2=A0 Android, in quanto non sempre siamo in una aula con PC, e non tut=
+ti portano a lezione un pc. Di fatto molti usano tablet o carta e penna +=
+=C2=A0 telefonino (di solito Android) per fare gli esercizi. Luca Barra sta=
+ vedendo come fare per facilitare anche questo
+ tipo di studenti.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Sulla falsariga da quanto fatto dall&#39; altro borsista, ho chiesto a Luca=
+ di organizzare una serie di incontro con gli studenti, per poterli assiste=
+re con il progetto. Come d&#39;accordo con Ruggero, anche io organizzer=C3=
+=B2 (credo tre) incontri con gli studenti, per
+ rispondere a qualsiasi richiesta di chiarimento metodologica sul progetto =
+e a domande sull&#39;intero programma del laboratorio.=C2=A0</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Vi ringrazio in anticipo per ogni feedback e commento.</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+Ciao,</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+G=C2=A0</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+=C2=A0</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+=C2=A0=C2=A0</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Aptos,Aptos_EmbeddedFont,Aptos_MSFontService,Cali=
+bri,Helvetica,sans-serif;font-size:11pt;color:rgb(0,0,0)">
+<br>
+</div>
+<div id=3D"m_7502172764622717987Signature" style=3D"color:inherit">
+<div style=3D"direction:ltr;font-size:12pt">Dr. Gianluca Rizzo, PhD</div>
+<div style=3D"direction:ltr;font-size:12pt">Connected Experience Lab (ConEx=
+Lab) - Institute of Information Systems (IIG)</div>
+<div style=3D"direction:ltr;font-size:12pt">University of Applied Sciences =
+of Western Switzerland - HES SO Valais</div>
+<div style=3D"direction:ltr;font-family:Calibri,Arial,Helvetica,sans-serif;=
+font-size:12pt;color:rgb(17,85,204)">
+<a href=3D"mailto:gianluca.rizzo@hevs.ch" style=3D"color:rgb(17,85,204)" ta=
+rget=3D"_blank">gianluca.rizzo@hevs.ch</a></div>
+<div style=3D"font-size:12pt;color:rgb(0,0,0)">
+<span style=3D"background-color:rgba(0,0,0,0)">Associate Professor, Diparti=
+mento di Informatica - Universita&#39; di Torino, Italy</span></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<a href=3D"mailto:gianluca.rizzo@unifg.it" title=3D"gianluca.rizzo@unifg.it=
+" target=3D"_blank">gianluca.rizzo@unito.it</a></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<a href=3D"https://rb.gy/s8ku9a" title=3D"https://rb.gy/s8ku9a" target=3D"_=
+blank">Whatsapp chat/call</a></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
+;color:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-size:12pt">=E2=80=8B</div>
+</div>
+</div>
+
+</div></blockquote></div>
+
+--0000000000002913720632cdc0d2--

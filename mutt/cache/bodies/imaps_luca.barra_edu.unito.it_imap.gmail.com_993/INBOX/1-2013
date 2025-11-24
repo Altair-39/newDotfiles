@@ -1,0 +1,110 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b990:0:b0:2fb:4c9b:a38b with SMTP id p16csp2974990ljp;
+        Wed, 20 Nov 2024 02:24:33 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCWBeeK4XfKIX2LWIPaR0jESh6etOXZuF9ZL1RsFaqdSGBm98Nio/Dr0AZAL6X+DaMWYyba3qGaExwBH@edu.unito.it
+X-Google-Smtp-Source: AGHT+IGOSrJx2BQ1yJpzZsvfpWnTdQrDWgjby7LBhoy/pIUhWDdbCduIzQFfS+fV9B6zut8eNOeF
+X-Received: by 2002:a05:6000:1541:b0:382:4a92:7943 with SMTP id ffacd0b85a97d-3824cd4fc2dmr4996574f8f.20.1732098273135;
+        Wed, 20 Nov 2024 02:24:33 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1732098273; cv=none;
+        d=google.com; s=arc-20240605;
+        b=DuoaGFXN+1KXisPwVC2lpQgsVyisQ1vOr+W3H/IfkYPqn6nlZc1JtND3R9kr/4J+Wi
+         cuaCIhudayKNpIYeamlna/Nz8b0TR8ZViqZAovHqVXCKxByy+Zh48bC51MsWb57SKfVn
+         9SIIixdgqoSoNTnFLNXQP+0GVz+CDAJaXPHfXHhoXylgnjq4v6HdZqXTJU8UfbEuAd6G
+         jb+ZwISvfxhsTWRDgXBshTM17Xfp9poO3DjsFVL2kwkkhaVZOsxzVQtd7fktcbgYxe/F
+         22NbYO8IHgHBs8ZZPEBNvKEhGEjyfMP60Gctag1uvwzf8xk84Mh8ntsi0Gv+ZqFx6dGs
+         7zQQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=WeMNPWPLQfHkEE7JtVNUOJCtH832JMN99O5BFJazDu0=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=c1Ci69rx9Wad2zlRxqEidu9Ird2TlxYLBs2FghkNjwYmkSFgAX/FJrK8SBHqPYs8CQ
+         cUiQS3Xcw+8IounFDs99FzfGmo43IlyAjRWiAJ98uLx5VIzpazdX684recstgICpsNBQ
+         xavsAQBYswPbRk+WI8lSFje6xRH5cEwze4g0YK1A1r8jFyy59zzy5nLGmBD5o0Rp5XbO
+         LS8JJO4qH5H0r8huwGxd2kZ9c3h09d2nczA/o5olz4nLZ36ohSH2pzmZWpbAS26PhYFq
+         Ni5NqSJapyMh4SZmon/7/Yhtwjxwgpjb2+aryZBRIJYyYXMZaPteZhhTOEQz4ySHM/qP
+         iV9A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=Kiql8vjA;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id e9e14a558f8ab-3a7481220edsi83817305ab.93.2024.11.20.02.24.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 20 Nov 2024 02:24:33 -0800 (PST)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=Kiql8vjA;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 82C02220E0;
+	Wed, 20 Nov 2024 11:24:27 +0100 (CET)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id nofyjBTggNXa; Wed, 20 Nov 2024 11:24:27 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id B165C21F14;
+	Wed, 20 Nov 2024 11:24:12 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it B165C21F14
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1732098254;
+	bh=WeMNPWPLQfHkEE7JtVNUOJCtH832JMN99O5BFJazDu0=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=Kiql8vjAI+K556zwgh1gJoKu1jZ7F7dSpERN4vMpbWqwIXEUMZ4khds5CQQuGJq6p
+	 z+FJRzamTW5WLNM+qAjEXMdYEsdPaacZh6Ccer9p89UBAsMYktAzc3VyYwCQhhJGkc
+	 l5vG0lapaHU3CI1nGsOUedXG04z4ZkYdVG075hdJafmE51p4r2zaLqKqc3Yna1FBo+
+	 lvWwGTuKdsG8kxZfRPjpEgsrJNBwcwT/XEPNKeE/kXa3/A58Kl+rtPNJw2RIlEzeml
+	 vlzACQu60+wltP+S28882NdQnoNNWhC7L4aMTjJRJ9IEoLbvwV1uxymuvV4ZWlU9oj
+	 AW7+JoMhMqBqA==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id 0cOjX2SUmyTn; Wed, 20 Nov 2024 11:24:12 +0100 (CET)
+Received: from esse3appjboss22.private.cineca.it (esse3appjboss22.cineca.it [130.186.5.143])
+	by smtp4.cineca.it (Postfix) with ESMTP id 2B3CB23D0F;
+	Wed, 20 Nov 2024 11:23:23 +0100 (CET)
+Received: from esse3appjboss22.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss22.private.cineca.it (Postfix) with ESMTP id 5A570A3;
+	Wed, 20 Nov 2024 11:23:20 +0100 (CET)
+Date: Wed, 20 Nov 2024 11:23:20 +0100 (CET)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <645442716.1.1732098200321@esse3appjboss22.private.cineca.it>
+Subject: Valutazione didattica primo semestre A.A. 24/25
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+Gentili studentesse e gentili studenti,
+
+desideriamo ricordarvi che la VALUTAZIONE degli insegnamenti da voi
+frequentati nel primo semestre dell=E2=80=99anno accademico 24/25 costituis=
+ce
+una fonte indispensabile per la valutazione delle politiche di qualit=C3=A0
+del corso di studi e il miglioramento dell=E2=80=99organizzazione della did=
+attica.
+
+Come sapete, inoltre, la valutazione =C3=A8 obbligatoria per l=E2=80=99iscr=
+izione
+agli esami che intendete sostenere.
+
+I documenti relativi alla valutazione degli insegnamenti nello scorso aa
+sono disponibili all'url (per cortesia, leggeteli prima di procedere
+alla valutazione per questo aa):
+
+- https://informatica.i-learn.unito.it/course/view.php?id=3D3084 (per la
+Laurea)
+
+- https://informatica.i-learn.unito.it/course/view.php?id=3D3086 (per la LM=
+)
+La procedura di valutazione si trova alla pagina
+http://www.edumeter.unito.it/
+
+Grazie in anticipo per la collaborazione,
+
+la Commissione Valutazione Didattica

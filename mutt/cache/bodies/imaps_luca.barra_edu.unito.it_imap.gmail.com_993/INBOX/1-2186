@@ -1,0 +1,148 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:205e:b0:309:27f0:106e with SMTP id t30csp166765ljo;
+        Fri, 21 Feb 2025 03:58:42 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCVRYggLGpO85ZpbzncX/GEZkagVHPKCkfQ6mDsNn3WL7OivOmkfK+5IXlQuDlbXlc7LQLVWR8lmvhvI@edu.unito.it
+X-Google-Smtp-Source: AGHT+IHh2r5ZjhmSnXs+9Gy+pZdLTN/mBj48fZWQpfcf7K7IiY6ycsj1Vp/sJw7vh6pQOJeOp9h3
+X-Received: by 2002:a17:906:6a11:b0:ab9:4451:331e with SMTP id a640c23a62f3a-abc09c1355cmr96048966b.13.1740139122005;
+        Fri, 21 Feb 2025 03:58:42 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1740139121; cv=none;
+        d=google.com; s=arc-20240605;
+        b=SqwdJMHraulL6kNNkWUc3RW8auBlwFTSdyMEX8WxEzDb1XbGDQAPOad2EatlNDus0h
+         oOwNJv92+dKb7kOBTx0KgYvIOX/LPeQDmSrRtcZWB4vFl/MEPOjFNyOT/gxr0UthB1Ms
+         ilXqzRIFL8XNqKkEwb1+aVTEXov1wD+mx+pz5P/VFL2F2/iaNMacEh7z6J4nV+y1qc0/
+         GQmmNv3FfsuGpBLJdnlL3j/aNdrMvrVyI1M9XB/u7JcOb8aYYSqtr6GgSNb9cKk2VvTq
+         UmG1kS9Yhpg9DdDuD1Y6Kc++F7+UXrVQJf+Hko0z/9bm32pkH/TWZYCMutemNx5oLwVw
+         NobQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=4eCPcBUGfZ89VTPg6chDzNFk4RGH3DhUAJcDQADiGTY=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=EF9XECdgBPkIZ6H2c+fXqopZmjy+ROTJ5OkzMBGPFhcl7WlJFHBwUhYOOsw/EuBMFS
+         aLxVExACWGqQTb34Z/rMO48aVIOo8cFOK8R78hJ4GKCyK60kf9m8khL2+FsbFjzg/ObM
+         ae9Ug7lvkvFMimMxn+QdYkMUIA2n/caU0DbKNuhZTEp6un0EoLBdcH0ENlx/3Ad+1ACH
+         zS5Do5irJLQwM0dT0EFr+RFQRjTs+Fq2k/vjjKGCwQ3tKFLdZ6+xoii5T3XFy3ULFdca
+         Lb9XKCQqr8NBr7XH9fqNSX1+RlKoetf0cYDqBSpe0pQelk1ovC+tEAMtV1FgwqN9snB4
+         yjpg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=nJ3nyI2I;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id a640c23a62f3a-abbda288e5fsi432371166b.289.2025.02.21.03.58.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 21 Feb 2025 03:58:41 -0800 (PST)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=nJ3nyI2I;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 77474247F5;
+	Fri, 21 Feb 2025 12:58:40 +0100 (CET)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id PUa5aJSQOBm9; Fri, 21 Feb 2025 12:58:40 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 39C3424CBF;
+	Fri, 21 Feb 2025 12:58:33 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 39C3424CBF
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1740139114;
+	bh=4eCPcBUGfZ89VTPg6chDzNFk4RGH3DhUAJcDQADiGTY=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=nJ3nyI2IqV7e4uBlnrfkJxikNMVbv4FfhEG2Dmi8pNrhB5cAHZaQt1jzjYrw4BUPZ
+	 gqxRr904M9TkXN1eDMrQ0lKP1aV/DX4GElYXInWDCX1LAQNDQCzbydsuIwZGUSILPA
+	 /ul8CPenqtMJtOVpieyqjvR+UbZBC5AOQBNsqleizg9qZVO/dJ7pZkVIfoY7/j4Ogn
+	 rQYj9feyBXogLo8ytwvZMzz9gAwPV9lAqXBwMHdtpfcNMHAzJ0cev9dPP2RGHCLTDd
+	 zHq3zWjldzwhX/2EztWoK0tX03nFvkYdAdeA4Wbl+F5iM+8n9dNmVQ8H+5hAslfuu2
+	 TG5EJtr4tL37w==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id dRGqbGfTcxmp; Fri, 21 Feb 2025 12:58:32 +0100 (CET)
+Received: from esse3appjboss23.private.cineca.it (esse3appjboss23.cineca.it [130.186.5.144])
+	by smtp4.cineca.it (Postfix) with ESMTP id DFEE223380;
+	Fri, 21 Feb 2025 12:58:24 +0100 (CET)
+Received: from esse3appjboss23.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss23.private.cineca.it (Postfix) with ESMTP id E7BFB89;
+	Fri, 21 Feb 2025 12:58:22 +0100 (CET)
+Date: Fri, 21 Feb 2025 12:58:22 +0100 (CET)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <1130678911.109.1740139102938@esse3appjboss23.private.cineca.it>
+Subject: =?UTF-8?Q?Accetta_la_sfida!_Michelin_Students=E2=80=99_Green_C?=
+ =?UTF-8?Q?hallenge_=E2=80=93_Iscriviti_entro_il_16_marzo_2025_?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+Michelin & UniTo cercano studentesse e studenti di ogni disciplina per riso=
+lvere una sfida reale.
+
+
+
+C=E2=80=99=C3=A8 un problema: ogni giorno, nei siti produttivi Michelin, un=
+a risorsa preziosa va sprecata. =20
+
+C=E2=80=99=C3=A8 un obiettivo: trovare soluzioni smart per recuperare e riu=
+tilizzare l=E2=80=99acqua di condensa, riducendo l=E2=80=99impatto idrico e=
+d energetico. =20
+
+La soluzione? Ancora non esiste. =20
+
+
+Questa sfida ha bisogno di idee fresche e prospettive diverse provenienti d=
+a tutte le discipline perch=C3=A9 una grande idea funziona solo se =C3=A8 t=
+ecnicamente fattibile, economicamente sostenibile e ben comunicata.=20
+
+
+CHI PU=C3=92 PARTECIPARE?
+
+Se studi a UniTo, questa challenge =C3=A8 per te. Qualunque sia il tuo cors=
+o di laurea
+
+
+COME ISCRIVERSI?
+
+Compilando il modulo di partecipazione (https://tinyurl.com/2tt5vc7t entro =
+il 16 marzo 2025! I Meglio prima, i posti sono limitati!)
+
+
+Scopri come si sviluppa la challenge qui:  https://tinyurl.com/58tsnzth
+
+
+PERCH=C3=89 DOVRESTI FARLO?
+
+--> Perch=C3=A9 non sai resistere alle sfide
+
+--> Per testare anche la tua capacit=C3=A0 di collaborare con studenti di a=
+ltre discipline =20
+
+--> Per far emergere il tuo talento confrontandoti sul campo con una multin=
+azionale
+
+--> Per imparare a costruire un pitch che convinca davvero =20
+
+
+Il tuo team presenter=C3=A0 il progetto davanti alla giuria composta da man=
+ager Michelin ed esperti: non basta avere una buona idea, bisogna saperla c=
+ostruire, presentare e vendere! =20
+
+
+Innovare significa vedere oltre. Michelin sta cercando chi ha lo sguardo gi=
+usto. =20
+
+
+
+Per info e supporto
+
+Scrivi a: ufficio.spinoff@unito.it =20
+
+
+Ci vediamo alla challenge!
+

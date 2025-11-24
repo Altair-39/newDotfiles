@@ -1,0 +1,198 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:30e4:b0:361:9897:9696 with SMTP id dp4csp320478ljb;
+        Wed, 12 Nov 2025 12:02:52 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHagSPyGyUsyuj9kwoo1gE5iYB0GTi2VEMjDmpgAtpQeN1FSKYa0pY9OAMh8Wzl8BjMANto
+X-Received: by 2002:a05:6402:3508:b0:640:be87:a86b with SMTP id 4fb4d7f45d1cf-6433764c0f8mr72751a12.5.1762977772310;
+        Wed, 12 Nov 2025 12:02:52 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762977772; cv=none;
+        d=google.com; s=arc-20240605;
+        b=aGYfLxCU5+3Z2FrARcXX0uUIogBKDE6+qHQp4MDwQxOkCh9jhN9PyPU+59F90t+hau
+         q2nRvDlXSVUz3vD/tMZMYdtK6kiyiOPu7yBNml/X2aKn2UtBwxSEob+Na26aCHTI62Di
+         Cnqqeb1h3yYPAt5GDSiN9nDtNJcFHsu+jTIWjKT4cMu1S2995JxSBqZfCJK8H0CfWgWn
+         eYKd877dYNye/st9G7uENjpNV0hUSLihXttFqPsVbxLSIZcw5XbwUfX8FYdCHFVU7T40
+         l7c9S2YpfOJxJOi610/WZ09KVW+qWCKWfhHwt05vSxlCMWOOkAV8jrDyCo+Q/watp2ak
+         RQ+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-signature:dkim-filter;
+        bh=ST5Y73CPsx+oqy3yEGriac8iZtLeG3GC1movX5IRZPo=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=lxqWWFXJuG20Ju8TvECDaRh2UDlgZU0HTuCgidsWRaqbstuMlymMcSQSY5rlxND6uw
+         LP6Sbaeq2jEf/TjpBTZdPNpAvci95dDLhfWPY0eyD9JfQP9EpTOwU7RrQMR2VyybTe6P
+         bYsSDFkCUPAyv9QiaA7OR3UIQ3Iac65s5dKg3OzJiyXh1dJ5k7H9/64fHv5Adoh96CIR
+         QpepXW6zONsuKMFSsGEXopgnhsrumINFOwPKRKO1lCCMLKMePI9xnGyJmz8y8abgyjQA
+         a6+T6p8iuHQyvvAP7Nh9uFVsMtJbyauaC1KiRZHP981USHL6XFXYZwdGN3Ka+gjDFUQc
+         nOEg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=uPMUQjoX;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-6430b4497f1si2519764a12.318.2025.11.12.12.02.52
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Nov 2025 12:02:52 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=uPMUQjoX;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 5ACK2mR01491114
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Wed, 12 Nov 2025 21:02:48 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 5ACK2mR01491114
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=i-learn.unito.it;
+	s=default; t=1762977768;
+	bh=ST5Y73CPsx+oqy3yEGriac8iZtLeG3GC1movX5IRZPo=;
+	h=Date:To:From:Reply-To:Subject:List-Id:List-Help:List-Unsubscribe:
+	 From;
+	b=uPMUQjoX/eTDFp36RBfxPb+Ofwx9zbblmIE21xiC8NjxpAVLdf/0v1YAgak1v99KX
+	 9w2mE7BnfQ0SdKzZkpwqszUw6XsyRBHhf5RiM445PewOHd2SkWHv76LQq492wfyJoj
+	 Mq1lnwfhUzZpDbdO1IbO4A2Qnam8KXXrEEwN/Bn0=
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 5ACK2mFY4008771
+	for <luca.barra@edu.unito.it>; Wed, 12 Nov 2025 21:02:48 +0100
+Date: Wed, 12 Nov 2025 21:02:48 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Popescu Mihaela (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: SisInt2425: marketing nell'era dell'AI: il sorpasso della Geo sulla Seo
+Message-ID: <4398b1e1345bd45cb068da7e32d5eb87fc980e4fe40a53ceaf3b94963d4a8573@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.6.5 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Segnalazioni" <moodleforum7706@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7706
+X-Course-Id: 3092
+X-Course-Name: Sistemi Intelligenti
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=7706&d=45874>
+Thread-Topic: SisInt2425: marketing nell'era dell'AI: il sorpasso della Geo sulla Seo
+Thread-Index: 4398b1e1345bd45cb068da7e32d5
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_3DQ1dZXiXYAQxDP5yKM8kogBRuzlbdU4STQcrMms9xA"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 5ACK2mR01491114
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply-informatica@i-learn.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_3DQ1dZXiXYAQxDP5yKM8kogBRuzlbdU4STQcrMms9xA
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SisInt2425 -> Forums -> Segnalazioni -> marketing nell'era dell'AI: il
+sorpasso della Geo sulla Seo
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45874#p73888
+marketing nell'era dell'AI: il sorpasso della Geo sulla Seo
+by Popescu Mihaela - Wednesday, 12 November 2025, 8:42 PM
+---------------------------------------------------------------------
+1. FONTE:
+https://www.wired.it/article/geo-generative-engine-optimization-che-cosa-e-=
+marketing-intelligenza-artificiale/
+
+2. TIPOLOGIA DI COMUNICAZIONE: articolo.=C2=A0
+
+3. TONO: informativo, analitico.=C2=A0
+
+4. BREVE RIASSUNTO: l'articolo spiega come il marketing online stia
+passando dalla SEO (Search Engine Optimization) alla GEO (Generative Engine
+Optimization). Con l'ascesa dei chatbot AI le abitudini di ricerca degli
+utenti stanno cambiando, le persone chiedono consigli e nomi di prodotti
+direttamente all'intelligenza artificiale. I chatbot (come ChatGPT) stanno
+diventando il nuovo punto di riferimento per scoprire prodotti e le aziende
+devono adattare i contenuti dei loro siti per essere riconosciuti dai
+motori AI, che preferiscono testi chiari e strutturati. Brand, come ad
+esempio la LG, stanno gi=C3=A0 modificando le loro strategie.=C2=A0
+
+5. L'articolo mi ha colpita perch=C3=A9 descrive un cambiamento concreto ne=
+l
+modo in cui le persone cercano online che ora parlano con chatbot e non si
+fiondano subito su Google a fare ricerche - =C3=A8 interessante vedere come=
+ le
+aziende debbano reinventarsi per farsi trovare.
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SisInt2425.
+
+To reply click on this link:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D73888
+Unsubscribe from this forum:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706
+Unsubscribe from this discussion:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D=
+45874
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092
+
+--b1_3DQ1dZXiXYAQxDP5yKM8kogBRuzlbdU4STQcrMms9xA
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3092">SisInt2425</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3092">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+706">Segnalazioni</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45874">marketing=
+ nell'era dell'AI: il sorpasso della Geo sulla Seo</a>=0A</div>=0A=0A<table=
+ border=3D"0" cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A  =
+  <tr class=3D"header">=0A        <td width=3D"35" valign=3D"top" class=3D"=
+picture left">=0A            <a href=3D"https://informatica.i-learn.unito.i=
+t/user/view.php?id=3D18522&amp;course=3D3092" class=3D"d-inline-block aabtn=
+"><span class=3D"userinitials size-35">PM</span></a>=0A        </td>=0A    =
+    <td class=3D"topic starter">=0A            <div class=3D"subject">=0A  =
+              marketing nell'era dell'AI: il sorpasso della Geo sulla Seo=
+=0A            </div>=0A            <div class=3D"author">=0A              =
+  by <a target=3D'_blank' href=3D'https://informatica.i-learn.unito.it/user=
+/view.php?id=3D18522&course=3D3092'>Popescu Mihaela</a> - Wednesday, 12 Nov=
+ember 2025, 8:42 PM=0A            </div>=0A        </td>=0A    </tr>=0A    =
+<tr>=0A        <td class=3D"left side" valign=3D"top">=0A                &n=
+bsp;=0A        </td>=0A        <td class=3D"content">=0A            <p dir=
+=3D"ltr" style=3D"text-align:left;"><strong>1</strong>.<strong> Fonte:</str=
+ong> https://www.wired.it/article/geo-generative-engine-optimization-che-co=
+sa-e-marketing-intelligenza-artificiale/</p><p dir=3D"ltr" style=3D"text-al=
+ign:left;"><strong>2.</strong> <strong>Tipologia di comunicazione:</strong>=
+ articolo.=C2=A0</p><p dir=3D"ltr" style=3D"text-align:left;"><strong>3.</s=
+trong> <strong>Tono: </strong>informativo, analitico.=C2=A0</p><p dir=3D"lt=
+r" style=3D"text-align:left;"><strong>4. </strong><strong>Breve riassunto:<=
+/strong> l'articolo spiega come il marketing online stia passando dalla SEO=
+ (Search Engine Optimization) alla GEO (Generative Engine Optimization). Co=
+n l'ascesa dei chatbot AI le abitudini di ricerca degli utenti stanno cambi=
+ando, le persone chiedono consigli e nomi di prodotti direttamente all'inte=
+lligenza artificiale. I chatbot (come ChatGPT) stanno diventando il nuovo p=
+unto di riferimento per scoprire prodotti e le aziende devono adattare i co=
+ntenuti dei loro siti per essere riconosciuti dai motori AI, che preferisco=
+no testi chiari e strutturati. Brand, come ad esempio la LG, stanno gi=
+=C3=A0 modificando le loro strategie.=C2=A0</p><p dir=3D"ltr" style=3D"text=
+-align:left;"><strong>5.</strong> L'articolo mi ha colpita perch=C3=A9 desc=
+rive un cambiamento concreto nel modo in cui le persone cercano online che =
+ora parlano con chatbot e non si fiondano subito su Google a fare ricerche =
+- =C3=A8 interessante vedere come le aziende debbano reinventarsi per farsi=
+ trovare.</p>=0A=0A            <div class=3D"commands">=0A                 =
+   <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/fo=
+rum/post.php?reply=3D73888">=0A                        Reply=0A            =
+        </a>=0A            </div>=0A=0A            <div class=3D"link">=0A =
+               <a target=3D"_blank" href=3D"https://informatica.i-learn.uni=
+to.it/mod/forum/discuss.php?d=3D45874#p73888">=0A                    See th=
+is post in context=0A                </a>=0A            </div>=0A        </=
+td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubscrib=
+elink">=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/forum/sub=
+scribe.php?id=3D7706">Unsubscribe from forum</a>&nbsp;=0A    <a href=3D"htt=
+ps://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D458=
+74">Unsubscribe from this discussion</a>&nbsp;=0A    <a href=3D"https://inf=
+ormatica.i-learn.unito.it/mod/forum/index.php?id=3D3092">Change your forum =
+digest preferences</a>=0A</div>
+
+--b1_3DQ1dZXiXYAQxDP5yKM8kogBRuzlbdU4STQcrMms9xA--
+

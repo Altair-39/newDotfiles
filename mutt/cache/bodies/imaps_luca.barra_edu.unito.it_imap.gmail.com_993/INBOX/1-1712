@@ -1,0 +1,143 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a1cf:0:b0:2e2:75a4:21a3 with SMTP id c15csp1123344ljm;
+        Fri, 24 May 2024 04:21:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFg6UQBJtzBkeCakzZTAQpTrnxvB0+/ZmqfTm6RBpwHiaa1ihlHjlBtWEn4B+ZvW61nY9BT
+X-Received: by 2002:a17:906:46d2:b0:a62:7fff:7218 with SMTP id a640c23a62f3a-a627fff7e7cmr69800866b.41.1716549697461;
+        Fri, 24 May 2024 04:21:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1716549697; cv=none;
+        d=google.com; s=arc-20160816;
+        b=gBenmZAFhTjp6vChjJZXqPUPBE7N7j6n4sJMAwxhfz6sVY9EWdyRczId3Hjf2zCb+k
+         jRJI+am8G/aeNJvNJSFp63O8yK1zqDz3C0QB+gw5zyqdOQxiKsCA8rcQWULTyrGZXlIH
+         vV+4ytF06uJQnEzSe4j/fUI3E+wXcuPDtYeFpjzKVZWHg/DucUcBl8bz59k5sDgu5uRq
+         eB8yRmmkwDsFC4a+NQt9Dgndg3/iV/TgCpPmJ2rTRyxreIw1T04hqC0tCOBG7u6Vindo
+         JPj+VaYBElEAorWKBn8noT0QOE6OY7BwXLndAq9pAU1yS2G5IhAsH2oQaDViJV1VxaPY
+         EmBQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=SdhMmAQvzhdKRFEfT1Jwa1gZwCG+RfKsCYA5C35DnI4=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=D8NhernTeUGyualSGNTg093R660lXX2QGM9kF/lXfhrUr+aRCFnhNNLw2jppruTSAI
+         O3YoXPMtpFtxMZfA1XjV6f0vijn+TaoLqLiVuMtBpnhKRhn6XKkAZqHMXVfb+hE9lInV
+         xNKk2vWfMSlAhtG/BRpdwps8XSc+EWoUpyK5i3kopgeWnym3unxJK+O6TF/rqsWq+N47
+         PRd43GZTSAdL6s/P+6IYB3UuVLBOA4L92BNFZu/TjBG4I4Mbg0JOwEL4z02Uir0PsyUZ
+         ryzCc1cJvMyo5Tkhb5fljUaJ0XDXFAKlsqLiYceJK/uZ5yOGkUmf3qRpPQfGFS9XD/bE
+         s58g==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-a626cc6336esi71760966b.493.2024.05.24.04.21.36
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 May 2024 04:21:37 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 44OBLX6w2486702
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Fri, 24 May 2024 13:21:33 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 44OBLX6w2486702
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 44OBLXxB050091
+	for <luca.barra@edu.unito.it>; Fri, 24 May 2024 13:21:33 +0200
+Date: Fri, 24 May 2024 13:21:33 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "=?utf-8?B?Qmlya2UgUm9iZXJ0IFJlbsOoIE1hcmlhIChkYSBpbmZvcm1hdGljYSk=?=" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: SAS-Lab-2324: Link per votare
+Message-ID: <350a82d369efb6eec1d2dd5c23ac0084f6ed6472a47a28cbbfcbf6103fe10224@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7124@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7124
+X-Course-Id: 2832
+X-Course-Name: Sviluppo delle Applicazioni Software - LABORATORIO T* - 2023/24
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: SAS-Lab-2324: Link per votare
+Thread-Index: 350a82d369efb6eec1d2dd5c23ac
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_UAqbNqix1CzreewMkpzrBXiNwCG3dl4u4Pq88LR8hok"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 44OBLX6w2486702
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_UAqbNqix1CzreewMkpzrBXiNwCG3dl4u4Pq88LR8hok
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SAS-Lab-2324 -> Forum -> Annunci -> Link per votare
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41820#p69010
+Link per votare
+di Birke Robert Ren=C3=A8 Maria - venerd=C3=AC, 24 maggio 2024, 13:20
+---------------------------------------------------------------------
+https://app.sli.do/event/wERk77jLM6FFCaHcGTDaZ3
+
+Password:
+
+4jlrjo
+
+---------------------------------------------------------------------
+Questa =C3=A8 la copia di un intervento effettuato su SAS-Lab-2324 .
+
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2832
+
+--b1_UAqbNqix1CzreewMkpzrBXiNwCG3dl4u4Pq88LR8hok
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2832">SAS-Lab-2324</a>=0A    &raqu=
+o;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/index.php?id=3D2832">Forum</a>=0A    &raquo;=0A    <a target=3D"_=
+blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D=
+7124">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://=
+informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41820">Link per vota=
+re</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" cellspacing=3D"0=
+" class=3D"forumpost">=0A    <tr class=3D"header">=0A        <td width=3D"3=
+5" valign=3D"top" class=3D"picture left">=0A            <a href=3D"https://=
+informatica.i-learn.unito.it/user/view.php?id=3D30636&amp;course=3D2832" cl=
+ass=3D"d-inline-block aabtn"><img src=3D"https://informatica.i-learn.unito.=
+it/theme/image.php/_s/lambda/core/1707437411/u/f2" class=3D"userpicture def=
+aultuserpic" width=3D"35" height=3D"35" alt=3D"" /></a>=0A        </td>=0A =
+       <td class=3D"topic starter">=0A            <div class=3D"subject">=
+=0A                Link per votare=0A            </div>=0A            <div =
+class=3D"author">=0A                di <a target=3D'_blank' href=3D'https:/=
+/informatica.i-learn.unito.it/user/view.php?id=3D30636&course=3D2832'>Birke=
+ Robert Ren=C3=A8 Maria</a> - venerd=C3=AC, 24 maggio 2024, 13:20=0A       =
+     </div>=0A        </td>=0A    </tr>=0A    <tr>=0A        <td class=3D"l=
+eft side" valign=3D"top">=0A                &nbsp;=0A        </td>=0A      =
+  <td class=3D"content">=0A            <p dir=3D"ltr" style=3D"text-align:l=
+eft;">https://app.sli.do/event/wERk77jLM6FFCaHcGTDaZ3<br /></p><p dir=3D"lt=
+r" style=3D"text-align:left;"><br /></p><p dir=3D"ltr" style=3D"text-align:=
+left;">Password:</p><p dir=3D"ltr" style=3D"text-align:left;">4jlrjo</p>=0A=
+=0A            <div class=3D"commands">=0A            </div>=0A=0A         =
+   <div class=3D"link">=0A                <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41820#p69010">=
+=0A                    Visualizza questo intervento nel contesto=0A        =
+        </a>=0A            </div>=0A        </td>=0A    </tr>=0A</table>=0A=
+=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=0A    <a href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2832">Modifica pr=
+eferenze email di raccolta</a>=0A</div><p>Reading this in an email? <a href=
+=3D"https://download.moodle.org/mobile?version=3D2021051718&amp;lang=3Dit&a=
+mp;iosappid=3D633359593&amp;androidappid=3Dcom.moodle.moodlemobile">Downloa=
+d the mobile app and receive notifications on your mobile device</a>.</p>
+
+--b1_UAqbNqix1CzreewMkpzrBXiNwCG3dl4u4Pq88LR8hok--
+

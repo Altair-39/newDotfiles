@@ -1,0 +1,1980 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:9201:0:b0:2f3:ec6d:e6a7 with SMTP id k1csp1490008ljg;
+        Mon, 7 Oct 2024 09:29:15 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGNHZOd7M3S8Jkp8SMd4j+X/xmxlkF4r3+239L9iC3nKjzbMRjbAYo2BiCa3ov3qeTI3bAe
+X-Received: by 2002:a05:6000:1f8e:b0:374:ca43:ac00 with SMTP id ffacd0b85a97d-37d0e77be72mr3483591f8f.4.1728318555513;
+        Mon, 07 Oct 2024 09:29:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1728318555; cv=none;
+        d=google.com; s=arc-20240605;
+        b=DVo1nFazNFx7CZKGLyUTv50i96xc4ZJaNhK7CkhG2I/uTbJ0jBvROqw/x0AsOCN6ka
+         sHp4WRPxn5Bu3mOW1dSkp1RmQZLJ/ClxFQtipc8S0ID0w+HRKvDwx3REEMK672/JRXOZ
+         k4KIjsBAfTWP38Lwwhe97lwEui9WKLFexFgw3XMP2MEXCMDaXluNJQsQCuaEjbdbFiQx
+         qvK9NdwjYRh1REBLifWfiDCp69hZYdz8/+H7730jvBQTVy5hauhG0/YSBzrj0fMLKgWJ
+         qlxnqOTxOOhXIf4QdFAsLwCM248iRLbEbyurxroKxWJbQnUT7gpRfa/zVb4hrKnMpuNv
+         yXug==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:list-unsubscribe-post:list-unsubscribe:list-id
+         :feedback-id:message-id:date:to:reply-to:from:subject:dkim-signature;
+        bh=RzCuwREJbqsnqaIjIjIpZDQKSoS8d72v4VNY18FPK9w=;
+        fh=xpCbwfyCj7juB2XBXeKPAEox/uolJN8bWu8gXB3p8ow=;
+        b=aEaBoplH7/ZME/cU7nw2DC5dalkQxXZhZlwG/8Ziw82mi1wJZ8KxifxI4NiTGMM94a
+         2TrEMHrwowCZylkBZRDrwSlZA2vSbeMaYwy0zlUlwZg+eSC9/2FqHC/EUj3Q5dwrEwYP
+         uK26P27kLi+N2GtngWdK6WNearLIdUdKgfepWrvU3xNemkfDib9GPaQQMzPdlpHz0VKg
+         WlLBbZY1qU/ZriQrqwK+EIoz4T1vUolZi7ovKFZF0XvoG+NcamHD1+asGtwTmOCfqX5S
+         vQ7JdxnsxL04r278tsw8DC/DpxBM/vcp5CBqK3nCHS6pSp8+h7GyzrY6lg95F3o2njDY
+         qSpw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@github.com header.s=k3 header.b="W8/F3oGn";
+       spf=pass (google.com: domain of bounce-mc.us11_46716125.5749115-c8fd1f9f3f@mail14.atl111.rsgsv.net designates 198.2.131.14 as permitted sender) smtp.mailfrom=bounce-mc.us11_46716125.5749115-c8fd1f9f3f@mail14.atl111.rsgsv.net;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Return-Path: <bounce-mc.us11_46716125.5749115-c8fd1f9f3f@mail14.atl111.rsgsv.net>
+Received: from mail14.atl111.rsgsv.net (mail14.atl111.rsgsv.net. [198.2.131.14])
+        by mx.google.com with ESMTPS id 00721157ae682-6e2d93e0b78si39855357b3.227.2024.10.07.09.29.15
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Oct 2024 09:29:15 -0700 (PDT)
+Received-SPF: pass (google.com: domain of bounce-mc.us11_46716125.5749115-c8fd1f9f3f@mail14.atl111.rsgsv.net designates 198.2.131.14 as permitted sender) client-ip=198.2.131.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@github.com header.s=k3 header.b="W8/F3oGn";
+       spf=pass (google.com: domain of bounce-mc.us11_46716125.5749115-c8fd1f9f3f@mail14.atl111.rsgsv.net designates 198.2.131.14 as permitted sender) smtp.mailfrom=bounce-mc.us11_46716125.5749115-c8fd1f9f3f@mail14.atl111.rsgsv.net;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com; s=k3;
+	t=1728313386; x=1728573886; i=education@github.com;
+	bh=RzCuwREJbqsnqaIjIjIpZDQKSoS8d72v4VNY18FPK9w=;
+	h=Subject:From:Reply-To:To:Date:Message-ID:X-MC-User:Feedback-ID:
+	 List-ID:List-Unsubscribe:List-Unsubscribe-Post:Content-Type:
+	 MIME-Version:CC:Date:Subject:From;
+	b=W8/F3oGniqLk4qvs4C2hTADQQpwyQ06vUf7vXdC9rw2mbQW38dKreC1uN/SnreCNl
+	 r5+VSPEVGXTm0IlKeXoAWvGnrEJRXochPg9+YcNH1GzWEyszFXVA7s84lR1ug/mcE8
+	 0nlR80ztrasHJQjW4S5jO27ykJbtwYtGqCjZNbWGKv8iQJxI8vNO9mS2qH8kXnDQWO
+	 tEEYNOQkws1H2KOlsiqaYud5ae3A5cm+XkAkGS1wVZG5Vmr4w+IQCKVBUUaJyRD6uu
+	 eNXdwcuEtNXsYOixGm1nhXC05bUyfeYloSKT5aEhjum7KtZoMBhkO7kkwUyJiKh6Ip
+	 HRJ8r7VAWmsGQ==
+Received: from localhost (localhost [127.0.0.1])
+	by mail14.atl111.rsgsv.net (Mailchimp) with ESMTP id 4XMj7t3V2dzNNHycp
+	for <luca.barra@edu.unito.it>; Mon,  7 Oct 2024 15:03:06 +0000 (GMT)
+Subject: =?utf-8?Q?Luca=2DBarra=2C=20there=27s=20a=20lot=20to=20unpack=20here...?=
+From: GitHub Education <education@github.com>
+Reply-To: =?utf-8?Q?GitHub=20Education?= <education@github.com>
+To: =?utf-8?Q?Luca=2DBarra?= <luca.barra@edu.unito.it>
+Date: Mon,  7 Oct 2024 14:48:06 +0000
+Message-ID: <9d7ced8c4bbd6c2f238673f0f.c8fd1f9f3f.20241007144759.310ef8ff67.f658c59a@mail14.atl111.rsgsv.net>
+X-Mailer: Mailchimp Mailer - **CID310ef8ff67c8fd1f9f3f**
+X-Campaign: mailchimp9d7ced8c4bbd6c2f238673f0f.310ef8ff67
+X-campaignid: mailchimp9d7ced8c4bbd6c2f238673f0f.310ef8ff67
+X-Report-Abuse: Please report abuse for this campaign here: https://mailchimp.com/contact/abuse/?u=9d7ced8c4bbd6c2f238673f0f&id=310ef8ff67&e=c8fd1f9f3f
+X-MC-User: 9d7ced8c4bbd6c2f238673f0f
+Feedback-ID: 46716125:46716125.5749115:us11:mc
+List-ID: 9d7ced8c4bbd6c2f238673f0fmc list <9d7ced8c4bbd6c2f238673f0f.365417.list-id.mcsv.net>
+X-Accounttype: pr
+List-Unsubscribe: <https://github.us11.list-manage.com/unsubscribe?u=9d7ced8c4bbd6c2f238673f0f&id=a500d68878&t=h&e=c8fd1f9f3f&c=310ef8ff67>, <mailto:unsubscribe-mc.us11_9d7ced8c4bbd6c2f238673f0f.310ef8ff67-c8fd1f9f3f@unsubscribe.mailchimpapp.net?subject=unsubscribe>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+Content-Type: multipart/alternative; boundary="_----------=_MCPart_14513825"
+MIME-Version: 1.0
+
+This is a multi-part message in MIME format
+
+--_----------=_MCPart_14513825
+Content-Type: text/plain; charset="utf-8"; format="fixed"
+Content-Transfer-Encoding: quoted-printable
+
+Amazing AI feats=2C events=2C projects=2C certificates=2C free learning re=
+sources... you should check this out.
+
+View this email in your browser (https://mailchi.mp/github.com/student-new=
+sletter-summercode-5749115?e=3Dc8fd1f9f3f)
+https://github.com/edu/?mc_cid=3D310ef8ff67&mc_eid=3DUNIQID
+
+
+** Student newsletter
+September 2024
+------------------------------------------------------------
+
+Hey Luca-Barra=2C we=E2=80=99re already a few days into October but=
+ wouldn=E2=80=99t miss the opportunity to spotlight some of September=E2=
+=80=99s events you might have missed=2C and point you towards all the grea=
+t stuff happening this month!
+
+In this newsletter=2C you=E2=80=99ll find:
+* Copilot is now available on GitHub.com
+* Classroom hits 2 million students
+* Your first step into open source
+* GitHub Universe 2024 is near
+* Setting up and securing your profile
+
+* Students decoded 2=2C000-year-old texts
+* GitHub Foundations Certificate
+* Cod=C3=A9dex Campus Tour
+* Microsoft Student Innovator Series
+* Project spotlight: LeRobot
+
+
+** GitHub Copilot is now available on GitHub.com
+------------------------------------------------------------
+
+Great news for students using GitHub Copilot with the Student Developer Pa=
+ck! You can now use Copilot directly in your browser on GitHub.com=2C alon=
+gside your repositories=2C pull requests=2C and more=E2=80=94no IDE needed=
+=2E
+
+GitHub Copilot integrates seamlessly=2C helping you explore codebases=2C d=
+raft pull request summaries=2C and even troubleshoot GitHub Actions.
+Learn more (https://github.blog/news-insights/product-news/github-copilot-=
+now-available-in-github-com-for-copilot-individual-and-copilot-business-pl=
+ans/?mc_cid=3D310ef8ff67&mc_eid=3DUNIQID)
+https://github.blog/news-insights/product-news/github-copilot-now-availabl=
+e-in-github-com-for-copilot-individual-and-copilot-business-plans/?mc_cid=
+=3D310ef8ff67&mc_eid=3DUNIQID
+
+
+** GitHub Classroom hits 2 million students
+------------------------------------------------------------
+
+GitHub Classroom (https://classroom.github.com/?mc_cid=3D310ef8ff67&mc_eid=
+=3DUNIQID) has officially hit 2 million students accepting assignments=2C=
+ helping them gain real-world coding experience. Educators worldwide are u=
+sing Classroom to streamline assignments and guide students in developing=
+ practical coding skills.
+
+Thank you to all the teachers and students who=E2=80=99ve contributed to t=
+his milestone!
+https://classroom.github.com/?mc_cid=3D310ef8ff67&mc_eid=3DUNIQID
+
+
+** Your first step into open source starts here
+------------------------------------------------------------
+
+If you=E2=80=99re new to GitHub=2C contributing to open source can feel in=
+timidating=E2=80=94but it doesn=E2=80=99t have to be! First Contributions=
+ (https://github.com/firstcontributions/first-contributions?mc_cid=3D310ef=
+8ff67&mc_eid=3DUNIQID) is a beginner-friendly project that walks you throu=
+gh making your very first pull request. It=E2=80=99s the perfect way to le=
+arn GitHub=2C gain real-world experience=2C and start collaborating with t=
+he open-source community.
+Get started with your first contribution (https://github.com/firstcontribu=
+tions/first-contributions?mc_cid=3D310ef8ff67&mc_eid=3DUNIQID)
+https://github.com/firstcontributions/first-contributions?mc_cid=3D310ef8f=
+f67&mc_eid=3DUNIQID
+
+
+** GitHub Universe 2024 is almost here!
+------------------------------------------------------------
+
+GitHub Universe 2024 (https://githubuniverse.com/?mc_cid=3D310ef8ff67&mc_e=
+id=3DUNIQID) is happening later this month=2C and you won=E2=80=99t want t=
+o miss it! Whether you=E2=80=99re a developer=2C student=2C or educator=2C=
+ you can join virtually for free (https://githubuniverse.com/?mc_cid=3D310=
+ef8ff67&mc_eid=3DUNIQID#tickets) and catch all the sessions live. From exp=
+loring AI-powered coding tools like Copilot to diving into the latest inno=
+vations on GitHub=2C there=E2=80=99s something for everyone.
+
+Mark your calendars for October 29-30 and explore the session catalog (htt=
+ps://reg.githubuniverse.com/flow/github/universe24/attendee-portal/page/se=
+ssioncatalog?tab.day=3D20241029&mc_cid=3D310ef8ff67&mc_eid=3DUNIQID) to se=
+e the talks most relevant to you.
+Get your free virtual ticket (https://githubuniverse.com/?mc_cid=3D310ef8f=
+f67&mc_eid=3DUNIQID#tickets)
+https://githubuniverse.com/?mc_cid=3D310ef8ff67&mc_eid=3DUNIQID
+
+
+** Beginner=E2=80=99s guide: Setting up and securing your profile
+------------------------------------------------------------
+
+Ready for the next chapter in our beginner=E2=80=99s guide? This time=2C w=
+e=E2=80=99re showing you how to set up and secure your GitHub profile so y=
+ou can start collaborating with confidence. Whether you=E2=80=99re new to=
+ GitHub or just need a refresher=2C this guide has you covered.
+Check out the full series (https://www.youtube.com/playlist?list=3DPL0lo9M=
+OBetEFcp4SCWinBdpml9B2U25-f&mc_cid=3D310ef8ff67&mc_eid=3DUNIQID)
+https://www.youtube.com/watch?v=3DT_PKBNImooA&list=3DPL0lo9MOBetEFcp4SCWin=
+Bdpml9B2U25-f&index=3D8&ab_channel=3DGitHub&mc_cid=3D310ef8ff67&mc_eid=3DU=
+NIQID
+
+
+** How students used GitHub Copilot to decode 2=2C000-year-old texts
+------------------------------------------------------------
+
+A team of students=2C equipped with GitHub Copilot from the GitHub Student=
+ Developer Pack=2C tackled an incredible challenge=E2=80=94decoding ancien=
+t scrolls using AI. These crafty students applied machine learning to unlo=
+ck mysteries hidden for centuries. It=E2=80=99s a powerful example of how=
+ GitHub tools are empowering the next generation of developers to solve re=
+al-world problems.
+
+Want to learn how they did it?
+Read the full story (https://github.blog/ai-and-ml/machine-learning/how-st=
+udents-teamed-up-to-decode-2000-year-old-texts-using-ai/?mc_cid=3D310ef8ff=
+67&mc_eid=3DUNIQID)
+https://github.blog/ai-and-ml/machine-learning/how-students-teamed-up-to-d=
+ecode-2000-year-old-texts-using-ai/?mc_cid=3D310ef8ff67&mc_eid=3DUNIQID
+
+
+** Get ready for your GitHub Foundations Certificate
+------------------------------------------------------------
+
+Prepare for the GitHub Foundations certification (https://resources.github=
+=2Ecom/learn/certifications/?mc_cid=3D310ef8ff67&mc_eid=3DUNIQID) with a ser=
+ies of free Microsoft Reactor episodes available in Portuguese=2C Spanish=
+=2C and English. Each session covers GitHub fundamentals=2C GitHub Actions=
+=2C and security basics=2C helping you get exam-ready.
+
+Even better=2C the GitHub Foundations exam will be available for free agai=
+n soon as part of the GitHub Student Developer Pack (https://education.git=
+hub.com/experiences/foundations_certificate?mc_cid=3D310ef8ff67&mc_eid=3DU=
+NIQID) . But if you=E2=80=99re eager to certify now=2C there=E2=80=99s als=
+o a big discount available.
+* Portuguese series (Oct 2=2C 9=2C 16 at 11 AM BRT):
+Register here (https://developer.microsoft.com/en-us/reactor/series/S-1375=
+/?wt.mc_id=3Dseriespg_S-1375_webpage_reactor&mc_cid=3D310ef8ff67&mc_eid=3D=
+UNIQID)
+* Spanish series (Oct 5=2C 12=2C 19 at 6 PM CEST):
+Register here (https://developer.microsoft.com/es-es/reactor/series/S-1388=
+/?wt.mc_id=3Dblog_S-1388_webpage_reactor&mc_cid=3D310ef8ff67&mc_eid=3DUNIQ=
+ID)
+* English series (Oct 10=2C 24 at 9 AM PT):
+Register here (https://techcommunity.microsoft.com/t5/microsoft-developer-=
+community/get-certified-with-learn-live-github-universe-series/ba-p/424465=
+9?wt.mc_id=3Dseriespg_S-1387_webpage_reactor&mc_cid=3D310ef8ff67&mc_eid=3D=
+UNIQID)
+
+Start preparing now=2C and stay tuned for the free certification offer com=
+ing back soon to the Student Developer Pack!
+https://resources.github.com/learn/certifications/?mc_cid=3D310ef8ff67&mc_=
+eid=3DUNIQID
+
+
+** Cod=C3=A9dex Campus Tour is wrapping up
+------------------------------------------------------------
+
+The Cod=C3=A9dex (https://www.codedex.io/github-students?mc_cid=3D310ef8ff=
+67&mc_eid=3DUNIQID) Campus Tour is reaching its final stop=2C and what a j=
+ourney it=E2=80=99s been! Students across campuses have explored coding ch=
+allenges and discovered the benefits of the GitHub Student Developer Pack=
+=E2=80=94now with Cod=C3=A9dex included=2C offering tools and resources to=
+ grow their skills.
+
+Missed the tour? You can still dive into Cod=C3=A9dex and the Student Deve=
+loper Pack at your own pace. Learn more here (https://www.codedex.io/githu=
+b-students?mc_cid=3D310ef8ff67&mc_eid=3DUNIQID) !
+https://www.codedex.io/github-students?mc_cid=3D310ef8ff67&mc_eid=3DUNIQID
+
+
+** The Imagine Cup is back! Join the Microsoft Student Innovator Series
+------------------------------------------------------------
+
+The 2025 Imagine Cup (https://imaginecup.microsoft.com/en-us?wt.mc_id=3Dic=
+25_multichannel_student&mc_cid=3D310ef8ff67&mc_eid=3DUNIQID) season just k=
+icked off=2C and you can start preparing with the Student Innovator Series=
+ (https://developer.microsoft.com/en-us/reactor/series/S-1386?wt.mc_id=3DS=
+ocial_S-1386_social_Student_Reactor&mc_cid=3D310ef8ff67&mc_eid=3DUNIQID) .=
+ Check out upcoming events to help you build AI solutions on the Microsoft=
+ Cloud and get competition-ready:
+* Azure AI Sessions (Oct 12=2C 19=2C 26 at 10 AM PT)
+* Founders Hub Welcome Day (Nov 2 at 12 PM PT)
+
+These sessions are available in multiple languages=2C including English=2C=
+ Spanish=2C Portuguese=2C and Mandarin.
+Explore the full schedule (https://developer.microsoft.com/en-us/reactor/s=
+eries/S-1386?wt.mc_id=3DSocial_S-1386_social_Student_Reactor&mc_cid=3D310e=
+f8ff67&mc_eid=3DUNIQID)
+https://developer.microsoft.com/en-us/reactor/series/S-1386?wt.mc_id=3DSoc=
+ial_S-1386_social_Student_Reactor&mc_cid=3D310ef8ff67&mc_eid=3DUNIQID
+
+
+** Project spotlight: LeRobot by Hugging Face
+------------------------------------------------------------
+
+Ever wondered how AI can help with GitHub issues? Check out LeRobot (https=
+://github.com/huggingface/lerobot?mc_cid=3D310ef8ff67&mc_eid=3DUNIQID) =2C=
+ an open-source bot developed by Hugging Face that uses AI to automaticall=
+y manage GitHub issues. It=E2=80=99s a perfect tool for developers looking=
+ to streamline their workflows and stay on top of project management.
+
+Dive into the code and see how LeRobot works (https://github.com/huggingfa=
+ce/lerobot?mc_cid=3D310ef8ff67&mc_eid=3DUNIQID) .
+https://github.com/huggingface/lerobot?mc_cid=3D310ef8ff67&mc_eid=3DUNIQID
+
+Thanks for being a part of our community! We=E2=80=99re excited to support=
+ your learning journey=E2=80=94stay curious=2C keep coding=2C and see you=
+ next month!
+https://www.facebook.com/GitHubEducation?mc_cid=3D310ef8ff67&mc_eid=3DUNIQ=
+ID
+https://www.instagram.com/githubeducation/?hl=3Den&mc_cid=3D310ef8ff67&mc_=
+eid=3DUNIQID
+https://twitter.com/GitHubEducation?mc_cid=3D310ef8ff67&mc_eid=3DUNIQID
+https://www.youtube.com/@githubeducation4427/featured?mc_cid=3D310ef8ff67&=
+mc_eid=3DUNIQID
+https://www.threads.net/@githubeducation?mc_cid=3D310ef8ff67&mc_eid=3DUNIQ=
+ID
+
+Copyright (C) 2024 GitHub=2C Inc. All rights reserved.
+You're receiving this email because you signed up for GitHub Education.
+Our mailing address is:
+GitHub=2C Inc
+88 Colin P Kelly Jr St
+San Francisco=2C CA 94107-2008
+USA
+Want to change how you receive these emails? You can update your preferenc=
+es (https://github.us11.list-manage.com/profile?u=3D9d7ced8c4bbd6c2f238673=
+f0f&id=3Da500d68878&e=3Dc8fd1f9f3f&c=3D310ef8ff67) or unsubscribe (https://g=
+ithub.us11.list-manage.com/unsubscribe?u=3D9d7ced8c4bbd6c2f238673f0f&id=3D=
+a500d68878&t=3Db&e=3Dc8fd1f9f3f&c=3D310ef8ff67) .
+--_----------=_MCPart_14513825
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html><html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn=
+:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:of=
+fice"><head>
+<!--[if gte mso 15]>
+<xml>
+<o:OfficeDocumentSettings>
+<o:AllowPNG/>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml>
+<![endif]-->
+<meta charset=3D"UTF-8" />
+<meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge" />
+<meta name=3D"viewport" content=3D"width=3Ddevice-width=2C initial-scale=
+=3D1" />
+<title>*|MMERGE5|*=2C there's a lot to unpack here...</title>
+<style>          img{-ms-interpolation-mode:bicubic;}
+          table=2C td{mso-table-lspace:0pt; mso-table-rspace:0pt;}
+          .mceStandardButton=2C .mceStandardButton td=2C .mceStandardButto=
+n td a{mso-hide:all !important;}
+          p=2C a=2C li=2C td=2C blockquote{mso-line-height-rule:exactly;}
+          p=2C a=2C li=2C td=2C body=2C table=2C blockquote{-ms-text-size-=
+adjust:100%; -webkit-text-size-adjust:100%;}
+          @media only screen and (max-width: 480px){
+            body=2C table=2C td=2C p=2C a=2C li=2C blockquote{-webkit-text=
+-size-adjust:none !important;}
+          }
+          .mcnPreviewText{display: none !important;}
+          .bodyCell{margin:0 auto; padding:0; width:100%;}
+          .ExternalClass=2C .ExternalClass p=2C .ExternalClass td=2C .Exte=
+rnalClass div=2C .ExternalClass span=2C .ExternalClass font{line-height:10=
+0%;}
+          .ReadMsgBody{width:100%;} .ExternalClass{width:100%;}
+          a[x-apple-data-detectors]{color:inherit !important; text-decora=
+tion:none !important; font-size:inherit !important; font-family:inherit !i=
+mportant; font-weight:inherit !important; line-height:inherit !important;}
+            body{height:100%; margin:0; padding:0; width:100%; background:=
+ #ffffff;}
+            p{margin:0; padding:0;}
+            table{border-collapse:collapse;}
+            td=2C p=2C a{word-break:break-word;}
+            h1=2C h2=2C h3=2C h4=2C h5=2C h6{display:block; margin:0; padd=
+ing:0;}
+            img=2C a img{border:0; height:auto; outline:none; text-decorat=
+ion:none;}
+            a[href^=3D"tel"]=2C a[href^=3D"sms"]{color:inherit; cursor:d=
+efault; text-decoration:none;}
+            li p {margin: 0 !important;}
+            .ProseMirror a {
+                pointer-events: none;
+            }
+            @media only screen and (max-width: 640px){
+                .mceClusterLayout td{padding: 4px !important;}
+            }
+            @media only screen and (max-width: 480px){
+                body{width:100% !important; min-width:100% !important; }
+                body.mobile-native {
+                    -webkit-user-select: none; user-select: none; transiti=
+on: transform 0.2s ease-in; transform-origin: top center;
+                }
+                body.mobile-native.selection-allowed a=2C body.mobile-nati=
+ve.selection-allowed .ProseMirror {
+                    user-select: auto;
+                    -webkit-user-select: auto;
+                }
+                colgroup{display: none;}
+                img{height: auto !important;}
+                .mceWidthContainer{max-width: 660px !important;}
+                .mceColumn{display: block !important; width: 100% !importa=
+nt;}
+                .mceColumn-forceSpan{display: table-cell !important; width=
+: auto !important;}
+                .mceColumn-forceSpan .mceButton a{min-width:0 !important;}
+                .mceBlockContainer{padding-right:16px !important; padding-=
+left:16px !important;}
+                .mceTextBlockContainer{padding-right:16px !important; padd=
+ing-left:16px !important;}
+                .mceBlockContainerE2E{padding-right:0px; padding-left:0px;=
+}
+                .mceSpacing-24{padding-right:16px !important; padding-left=
+:16px !important;}
+                .mceImage=2C .mceLogo{width: 100% !important; height: auto=
+ !important;}
+                .mceFooterSection .mceText=2C .mceFooterSection .mceText p=
+{font-size: 16px !important; line-height: 140% !important;}
+            }
+            div[contenteditable=3D"true"] {outline: 0;}
+            .ProseMirror h1.empty-node:only-child::before=2C
+            .ProseMirror h2.empty-node:only-child::before=2C
+            .ProseMirror h3.empty-node:only-child::before=2C
+            .ProseMirror h4.empty-node:only-child::before {
+                content: 'Heading';
+            }
+            .ProseMirror p.empty-node:only-child::before=2C .ProseMirror:e=
+mpty::before {
+                content: 'Start typing...';
+            }
+            .mceImageBorder {display: inline-block;}
+            .mceImageBorder img {border: 0 !important;}
+body=2C #bodyTable { background-color: rgb(77=2C 77=2C 77); }.mceText=2C .=
+mcnTextContent=2C .mceLabel { font-family: "Helvetica Neue"=2C Helvetica=
+=2C Arial=2C Verdana=2C sans-serif; }.mceText=2C .mcnTextContent=2C .mceLa=
+bel { color: rgb(0=2C 0=2C 0); }.mceText h1 { margin-bottom: 0px; }.mceTex=
+t p { margin-bottom: 0px; }.mceText ul { margin-bottom: 0px; }.mceText lab=
+el { margin-bottom: 0px; }.mceText input { margin-bottom: 0px; }.mceSpacin=
+g-24 .mceInput + .mceErrorMessage { margin-top: -12px; }.mceText h1 { marg=
+in-bottom: 0px; }.mceText p { margin-bottom: 0px; }.mceText ul { margin-bo=
+ttom: 0px; }.mceText label { margin-bottom: 0px; }.mceText input { margin-=
+bottom: 0px; }.mceSpacing-12 .mceInput + .mceErrorMessage { margin-top: -6=
+px; }.mceInput { background-color: transparent; border: 2px solid rgb(208=
+=2C 208=2C 208); width: 60%; color: rgb(77=2C 77=2C 77); display: block; }=
+=2EmceInput[type=3D"radio"]=2C .mceInput[type=3D"checkbox"] { float: left;=
+ margin-right: 12px; display: inline; width: auto !important; }.mceLabel >=
+ .mceInput { margin-bottom: 0px; margin-top: 2px; }.mceLabel { display: bl=
+ock; }.mceText p=2C .mcnTextContent p { color: rgb(0=2C 0=2C 0); font-fami=
+ly: "Helvetica Neue"=2C Helvetica=2C Arial=2C Verdana=2C sans-serif; font-=
+size: 16px; font-weight: normal; line-height: 150%; text-align: left; dire=
+ction: ltr; }.mceText h1=2C .mcnTextContent h1 { color: rgb(0=2C 0=2C 0);=
+ font-family: "Helvetica Neue"=2C Helvetica=2C Arial=2C Verdana=2C sans-se=
+rif; font-size: 31px; font-weight: bold; line-height: 150%; text-align: ce=
+nter; direction: ltr; }.mceText a=2C .mcnTextContent a { color: rgb(33=2C=
+ 121=2C 62); font-style: normal; font-weight: bold; text-decoration: under=
+line; direction: ltr; }
+@media only screen and (max-width: 480px) {
+            .mceText p { margin: 0px; font-size: 16px !important; line-hei=
+ght: 150% !important; }
+          }
+@media only screen and (max-width: 480px) {
+            .mceText h1 { font-size: 31px !important; line-height: 150% !i=
+mportant; }
+          }
+@media only screen and (max-width: 480px) {
+            .mceBlockContainer { padding-left: 16px !important; padding-ri=
+ght: 16px !important; }
+          }
+@media only screen and (max-width: 480px) {
+            .mceButtonContainer { width: fit-content !important; max-width=
+: fit-content !important; }
+          }
+@media only screen and (max-width: 480px) {
+            .mceButtonLink { padding: 18px 28px !important; font-size: 16p=
+x !important; }
+          }
+@media only screen and (max-width: 480px) {
+            .mceDividerBlock { border-top-width: 2px !important; }
+          }
+@media only screen and (max-width: 480px) {
+            .mceDividerContainer { width: 100% !important; }
+          }
+#dataBlockId-9 p=2C #dataBlockId-9 h1=2C #dataBlockId-9 h2=2C #dataBlockId=
+-9 h3=2C #dataBlockId-9 h4=2C #dataBlockId-9 ul { text-align: center; }</s=
+tyle></head>
+<body>
+<!--
+-->
+<!--[if !gte mso 9]><!----><span class=3D"mcnPreviewText" style=3D"displa=
+y:none; font-size:0px; line-height:0px; max-height:0px; max-width:0px; opa=
+city:0; overflow:hidden; visibility:hidden; mso-hide:all;">Amazing AI feat=
+s=2C events=2C projects=2C certificates=2C free learning resources... you=
+ should check this out.</span><!--<![endif]-->
+<!--
+-->
+<center>
+<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" height=3D"100%" wi=
+dth=3D"100%" id=3D"bodyTable" style=3D"background-color: rgb(77=2C 77=2C 7=
+7);">
+<tbody><tr>
+<td class=3D"bodyCell" align=3D"center" valign=3D"top">
+<table id=3D"root" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%"><tbody data-block-id=3D"13" class=3D"mceWrapper"><tr><td align=
+=3D"center" valign=3D"top" class=3D"mceWrapperOuter"><!--[if (gte mso 9)|=
+(IE)]><table align=3D"center" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"660" style=3D"width:660px;"><tr><td><![endif]--><table bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"max=
+-width:660px" role=3D"presentation"><tbody><tr><td style=3D"background-col=
+or:#ffffff;background-position:center;background-repeat:no-repeat;backgrou=
+nd-size:cover" class=3D"mceWrapperInner" valign=3D"top"><table align=3D"ce=
+nter" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=
+=3D"presentation" data-block-id=3D"12"><tbody><tr class=3D"mceRow"><td sty=
+le=3D"background-position:center;background-repeat:no-repeat;background-si=
+ze:cover" valign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td style=3D"paddin=
+g-top:0;padding-bottom:0" class=3D"mceColumn" data-block-id=3D"-31" valign=
+=3D"top" colspan=3D"12" width=3D"100%"><table border=3D"0" cellpadding=3D"=
+0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td s=
+tyle=3D"padding-top:0;padding-bottom:0;padding-right:0;padding-left:0" val=
+ign=3D"top"><table width=3D"100%" style=3D"border:0;background-color:#0000=
+00;border-radius:0;border-collapse:separate"><tbody><tr><td style=3D"paddi=
+ng-left:48px;padding-right:48px;padding-top:8px;padding-bottom:8px" class=
+=3D"mceTextBlockContainer"><div data-block-id=3D"1" class=3D"mceText" id=
+=3D"dataBlockId-1" style=3D"width:100%"><p style=3D"text-align: center;" c=
+lass=3D"last-child"><a href=3D"https://mailchi.mp/github.com/student-newsl=
+etter-summercode-5749115?e=3Dc8fd1f9f3f" style=3D"color: #cccccc;"><span sty=
+le=3D"font-size: 12px"><span style=3D"font-weight:normal;">View this email=
+ in your browser</span></span></a></p></div></td></tr></tbody></table></td=
+></tr><tr><td class=3D"mceGutterContainer" valign=3D"top"><table border=3D=
+"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"border-col=
+lapse:separate" role=3D"presentation"><tbody><tr><td style=3D"background-c=
+olor:#000000;padding-top:4px;padding-bottom:24px;padding-right:0;padding-l=
+eft:0" class=3D"mceLayoutContainer" valign=3D"top"><table align=3D"center"=
+ border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"p=
+resentation" data-block-id=3D"939" id=3D"section_3ec69707a92cc1ea13b7c69e6=
+a583cd4" class=3D"mceLayout"><tbody><tr class=3D"mceRow"><td style=3D"back=
+ground-position:center;background-repeat:no-repeat;background-size:cover"=
+ valign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" wi=
+dth=3D"100%" role=3D"presentation"><tbody><tr><td class=3D"mceColumn" data=
+-block-id=3D"-32" valign=3D"top" colspan=3D"12" width=3D"100%"><table bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presen=
+tation"><tbody><tr><td align=3D"center" valign=3D"top"><table align=3D"cen=
+ter" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=
+=3D"presentation" data-block-id=3D"-8"><tbody><tr class=3D"mceRow"><td sty=
+le=3D"background-position:center;background-repeat:no-repeat;background-si=
+ze:cover" valign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td class=3D"mceCol=
+umn" data-block-id=3D"-44" valign=3D"top" colspan=3D"12" width=3D"100%"><t=
+able border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=
+=3D"presentation"><tbody><tr><td valign=3D"top"><table align=3D"center" bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"pres=
+entation" data-block-id=3D"942"><tbody><tr class=3D"mceRow"><td style=3D"b=
+ackground-position:center;background-repeat:no-repeat;background-size:cove=
+r" valign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"24"=
+ width=3D"100%" role=3D"presentation"><tbody><tr><td style=3D"padding-top:=
+0;padding-bottom:0" class=3D"mceColumn" data-block-id=3D"941" valign=3D"to=
+p" colspan=3D"12" width=3D"100%"><table border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td style=
+=3D"background-color:#000000;padding-top:48px;padding-bottom:32px;padding-=
+right:0;padding-left:0" class=3D"mceBlockContainer" align=3D"center" valig=
+n=3D"top"><a href=3D"https://github.us11.list-manage.com/track/click?u=3D9=
+d7ced8c4bbd6c2f238673f0f&id=3Dfe301c6c9d&e=3Dc8fd1f9f3f" style=3D"display=
+:block" target=3D"_blank" data-block-id=3D"1189"><span class=3D"mceImageBo=
+rder" style=3D"border:0;border-radius:0;vertical-align:top;margin:0"><img=
+ width=3D"538" height=3D"auto" style=3D"width:538px;height:auto;max-width:=
+660px !important;border-radius:0;display:block" alt=3D"" src=3D"https://mc=
+usercontent.com/9d7ced8c4bbd6c2f238673f0f/images/082ff1d9-383a-d576-20cc-a=
+8f81fd2f004.png" role=3D"presentation" class=3D"imageDropZone mceImage" />=
+</span></a></td></tr><tr><td style=3D"padding-top:0;padding-bottom:0;paddi=
+ng-right:0;padding-left:0" valign=3D"top"><table width=3D"100%" style=3D"b=
+order:0;border-radius:0;border-collapse:separate"><tbody><tr><td style=3D"=
+padding-left:6px;padding-right:24px;padding-top:12px;padding-bottom:24px"=
+ class=3D"mceTextBlockContainer"><div data-block-id=3D"321" class=3D"mceTe=
+xt" id=3D"dataBlockId-321" style=3D"width:100%"><h1 style=3D"line-height:=
+ 125%; text-align: center; direction: ltr;" class=3D"last-child"><span sty=
+le=3D"color:#f0f0f0;"><span style=3D"font-size: 32px"><span style=3D"font-=
+family: 'Helvetica Neue'=2C Helvetica=2C Arial=2C Verdana=2C sans-serif">S=
+tudent newsletter<br /></span></span></span><span style=3D"color:#d0d0d0;"=
+><span style=3D"font-size: 32px"><span style=3D"font-family: 'Helvetica Ne=
+ue'=2C Helvetica=2C Arial=2C Verdana=2C sans-serif">September 2024</span><=
+/span></span></h1></div></td></tr></tbody></table></td></tr></tbody></tabl=
+e></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></=
+table></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbod=
+y></table></td></tr></tbody></table></td></tr></tbody></table></td></tr></=
+tbody></table></td></tr><tr><td style=3D"background-color:transparent" val=
+ign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" role=3D"presentation" data-block-id=3D"1100"><tbody><tr><td clas=
+s=3D"mceSpacerBlock" height=3D"28" valign=3D"top"></td></tr></tbody></tabl=
+e></td></tr><tr><td style=3D"padding-top:0;padding-bottom:0;padding-right:=
+0;padding-left:0" valign=3D"top"><table width=3D"100%" style=3D"border:0;b=
+order-radius:0;border-collapse:separate"><tbody><tr><td style=3D"padding-l=
+eft:28px;padding-right:28px;padding-top:12px;padding-bottom:12px" class=3D=
+"mceTextBlockContainer"><div data-block-id=3D"521" class=3D"mceText" id=3D=
+"dataBlockId-521" style=3D"width:100%"><p style=3D"line-height: 150%; text=
+-align: center;" class=3D"last-child"><span style=3D"color:#4d4d4d;"><span=
+ style=3D"font-size: 19px">Hey Luca-Barra=2C we=E2=80=99re already a=
+ few days into October but wouldn=E2=80=99t miss the opportunity to spotli=
+ght some of September=E2=80=99s events you might have missed=2C and point=
+ you towards all the great stuff happening this month!</span></span></p></=
+div></td></tr></tbody></table></td></tr><tr><td style=3D"background-color:=
+transparent" valign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspac=
+ing=3D"0" width=3D"100%" role=3D"presentation" data-block-id=3D"1817"><tbo=
+dy><tr><td class=3D"mceSpacerBlock" height=3D"24" valign=3D"top"></td></tr=
+></tbody></table></td></tr><tr><td style=3D"padding-top:0;padding-bottom:0=
+;padding-right:0;padding-left:0" valign=3D"top"><table width=3D"100%" styl=
+e=3D"border:0;border-radius:0;border-collapse:separate"><tbody><tr><td sty=
+le=3D"padding-left:24px;padding-right:24px;padding-top:12px;padding-bottom=
+:0" class=3D"mceTextBlockContainer"><div data-block-id=3D"1816" class=3D"m=
+ceText" id=3D"dataBlockId-1816" style=3D"width:100%"><p class=3D"last-chil=
+d"><strong><span style=3D"color:#21793e;"><span style=3D"font-size: 18px">=
+In this newsletter=2C you=E2=80=99ll find:</span></span></strong></p></div=
+></td></tr></tbody></table></td></tr><tr><td class=3D"mceGutterContainer"=
+ valign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" wi=
+dth=3D"100%" style=3D"border-collapse:separate" role=3D"presentation"><tbo=
+dy><tr><td style=3D"padding-top:12px;padding-bottom:12px;padding-right:0;p=
+adding-left:0" class=3D"mceLayoutContainer" valign=3D"top"><table align=3D=
+"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" r=
+ole=3D"presentation" data-block-id=3D"1808" id=3D"section_2e7e7b57675add06=
+89628ce9781ef56a" class=3D"mceLayout"><tbody><tr class=3D"mceRow"><td styl=
+e=3D"background-position:center;background-repeat:no-repeat;background-siz=
+e:cover" valign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td class=3D"mceCol=
+umn" data-block-id=3D"-39" valign=3D"top" colspan=3D"12" width=3D"100%"><t=
+able border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=
+=3D"presentation"><tbody><tr><td align=3D"center" valign=3D"top"><table al=
+ign=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" role=3D"presentation" data-block-id=3D"-22"><tbody><tr class=3D"mceRo=
+w"><td style=3D"background-position:center;background-repeat:no-repeat;bac=
+kground-size:cover" valign=3D"top"><table border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td class=
+=3D"mceColumn" data-block-id=3D"-51" valign=3D"top" colspan=3D"12" width=
+=3D"100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" role=3D"presentation"><tbody><tr><td valign=3D"top"><table align=3D=
+"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" r=
+ole=3D"presentation" data-block-id=3D"1813"><tbody><tr class=3D"mceRow"><t=
+d style=3D"background-position:center;background-repeat:no-repeat;backgrou=
+nd-size:cover;padding-top:0px;padding-bottom:0px" valign=3D"top"><table bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"24" width=3D"100%" style=3D"ta=
+ble-layout:fixed" role=3D"presentation"><colgroup><col span=3D"1" width=3D=
+"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col=
+ span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.3333=
+33333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=
+=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333=
+333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1"=
+ width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332=
+%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=
+=3D"8.333333333333332%" /></colgroup><tbody><tr><td style=3D"padding-top:0=
+;padding-bottom:0" class=3D"mceColumn" data-block-id=3D"1810" valign=3D"to=
+p" colspan=3D"6" width=3D"50%"><table border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td style=3D"=
+padding-top:0;padding-bottom:0;padding-right:0;padding-left:0" valign=3D"t=
+op"><table width=3D"100%" style=3D"border:0;border-radius:0;border-collaps=
+e:separate"><tbody><tr><td style=3D"padding-left:24px;padding-right:8px;pa=
+dding-top:12px;padding-bottom:12px" class=3D"mceTextBlockContainer"><div d=
+ata-block-id=3D"1814" class=3D"mceText" id=3D"dataBlockId-1814" style=3D"w=
+idth:100%"><ul class=3D"last-child"><li style=3D"line-height: 150%;"><p st=
+yle=3D"line-height: 150%;">Copilot is now available on GitHub.com</p><p st=
+yle=3D"line-height: 150%;"><br /></p></li><li style=3D"line-height: 150%;"=
+><p style=3D"line-height: 150%;">Classroom hits 2 million students</p><p s=
+tyle=3D"line-height: 150%;"><br /></p></li><li style=3D"line-height: 150%;=
+"><p style=3D"line-height: 150%;">Your first step into open source</p><p s=
+tyle=3D"line-height: 150%;"><br /></p></li><li style=3D"line-height: 150%;=
+"><p style=3D"line-height: 150%;">GitHub Universe 2024 is near</p><p style=
+=3D"line-height: 150%;"><br /></p></li><li style=3D"line-height: 150%;"><p=
+ style=3D"line-height: 150%;">Setting up and securing your profile</p></li=
+></ul></div></td></tr></tbody></table></td></tr></tbody></table></td><td s=
+tyle=3D"padding-top:0;padding-bottom:0" class=3D"mceColumn" data-block-id=
+=3D"1812" valign=3D"top" colspan=3D"6" width=3D"50%"><table border=3D"0" c=
+ellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"><t=
+body><tr><td style=3D"padding-top:0;padding-bottom:0;padding-right:0;paddi=
+ng-left:0" valign=3D"top"><table width=3D"100%" style=3D"border:0;border-r=
+adius:0;border-collapse:separate"><tbody><tr><td style=3D"padding-left:8px=
+;padding-right:24px;padding-top:12px;padding-bottom:12px" class=3D"mceText=
+BlockContainer"><div data-block-id=3D"1815" class=3D"mceText" id=3D"dataBl=
+ockId-1815" style=3D"width:100%"><ul class=3D"last-child"><li><p>Students=
+ decoded 2=2C000-year-old texts</p><p><br /></p></li><li><p>GitHub Foundat=
+ions Certificate</p><p><br /></p></li><li><p>Cod=C3=A9dex Campus Tour</p><=
+p><br /></p></li><li><p>Microsoft Student Innovator Series</p><p><br /></p=
+></li><li><p>Project spotlight: LeRobot</p></li></ul></div></td></tr></tbo=
+dy></table></td></tr></tbody></table></td></tr></tbody></table></td></tr><=
+/tbody></table></td></tr></tbody></table></td></tr></tbody></table></td></=
+tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table></t=
+d></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td style=
+=3D"background-color:transparent" valign=3D"top"><table border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" data-b=
+lock-id=3D"1884"><tbody><tr><td class=3D"mceSpacerBlock" height=3D"20" val=
+ign=3D"top"></td></tr></tbody></table></td></tr><tr><td style=3D"backgroun=
+d-color:transparent;padding-top:24px;padding-bottom:24px;padding-right:0;p=
+adding-left:0" class=3D"mceBlockContainer" valign=3D"top"><table align=3D"=
+center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" st=
+yle=3D"background-color:transparent;width:100%" role=3D"presentation" clas=
+s=3D"mceDividerContainer" data-block-id=3D"1883"><tbody><tr><td style=3D"m=
+in-width:100%;border-top-width:2px;border-top-style:solid;border-top-color=
+:#6a737d" class=3D"mceDividerBlock" valign=3D"top"></td></tr></tbody></tab=
+le></td></tr><tr><td style=3D"padding-top:0;padding-bottom:0;padding-right=
+:0;padding-left:0" class=3D"mceGutterContainer" valign=3D"top"><table bord=
+er=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"borde=
+r-collapse:separate" role=3D"presentation"><tbody><tr><td style=3D"padding=
+-top:12px;padding-bottom:12px;padding-right:0;padding-left:0" class=3D"mce=
+LayoutContainer" valign=3D"top"><table align=3D"center" border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" data-b=
+lock-id=3D"1751" id=3D"section_e3350474000e664465df9ae2f227863a" class=3D"=
+mceLayout"><tbody><tr class=3D"mceRow"><td style=3D"background-position:ce=
+nter;background-repeat:no-repeat;background-size:cover" valign=3D"top"><ta=
+ble border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=
+=3D"presentation"><tbody><tr><td class=3D"mceColumn" data-block-id=3D"-33"=
+ valign=3D"top" colspan=3D"12" width=3D"100%"><table border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><t=
+r><td align=3D"center" valign=3D"top"><table align=3D"center" border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"=
+ data-block-id=3D"-10"><tbody><tr class=3D"mceRow"><td style=3D"background=
+-position:center;background-repeat:no-repeat;background-size:cover" valign=
+=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+100%" role=3D"presentation"><tbody><tr><td class=3D"mceColumn" data-block-=
+id=3D"-45" valign=3D"top" colspan=3D"12" width=3D"100%"><table border=3D"0=
+" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"=
+><tbody><tr><td valign=3D"top"><table align=3D"center" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" data-bl=
+ock-id=3D"1756"><tbody><tr class=3D"mceRow"><td style=3D"background-positi=
+on:center;background-repeat:no-repeat;background-size:cover;padding-top:0p=
+x;padding-bottom:0px" valign=3D"top"><table border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"24" width=3D"100%" style=3D"table-layout:fixed" role=3D"pr=
+esentation"><colgroup><col span=3D"1" width=3D"8.333333333333332%" /><col=
+ span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.3333=
+33333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=
+=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333=
+333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1"=
+ width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332=
+%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=
+=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><=
+/colgroup><tbody><tr><td style=3D"padding-top:0;padding-bottom:0" class=3D=
+"mceColumn" data-block-id=3D"1753" valign=3D"top" colspan=3D"9" width=3D"7=
+5%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%"=
+ role=3D"presentation"><tbody><tr><td style=3D"padding-top:0;padding-botto=
+m:0;padding-right:0;padding-left:0" valign=3D"top"><table width=3D"100%" s=
+tyle=3D"border:0;border-radius:0;border-collapse:separate"><tbody><tr><td=
+ style=3D"padding-left:28px;padding-right:28px;padding-top:12px;padding-bo=
+ttom:12px" class=3D"mceTextBlockContainer"><div data-block-id=3D"1758" cla=
+ss=3D"mceText" id=3D"dataBlockId-1758" style=3D"width:100%"><h1 style=3D"l=
+ine-height: 125%; text-align: left;" class=3D"last-child">GitHub Copilot i=
+s now available on GitHub.com</h1></div></td></tr></tbody></table></td></t=
+r><tr><td style=3D"padding-top:0;padding-bottom:0;padding-right:0;padding-=
+left:0" valign=3D"top"><table width=3D"100%" style=3D"border:0;border-radi=
+us:0;border-collapse:separate"><tbody><tr><td style=3D"padding-left:24px;p=
+adding-right:20px;padding-top:12px;padding-bottom:12px" class=3D"mceTextBl=
+ockContainer"><div data-block-id=3D"1759" class=3D"mceText" id=3D"dataBloc=
+kId-1759" style=3D"width:100%"><p>Great news for students using GitHub Cop=
+ilot with the Student Developer Pack! You can now use Copilot directly in=
+ your browser on GitHub.com=2C alongside your repositories=2C pull request=
+s=2C and more=E2=80=94no IDE needed. </p><p><br /></p><p class=3D"last-chi=
+ld">GitHub Copilot integrates seamlessly=2C helping you explore codebases=
+=2C draft pull request summaries=2C and even troubleshoot GitHub Actions.<=
+/p></div></td></tr></tbody></table></td></tr><tr><td style=3D"padding-top:=
+12px;padding-bottom:12px;padding-right:24px;padding-left:24px" class=3D"mc=
+eBlockContainer" align=3D"center" valign=3D"top"><table align=3D"center" b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"ma=
+x-width:224px" role=3D"presentation" data-block-id=3D"1855" class=3D"mceBu=
+ttonContainer"><tbody><tr><!--[if !mso]><!--></tr><tr class=3D"mceStandar=
+dButton"><td style=3D"background-color:#21793e;border-radius:50px;text-ali=
+gn:center" class=3D"mceButton" valign=3D"top"><a href=3D"https://github.us=
+11.list-manage.com/track/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3De99eeaba=
+e7&e=3Dc8fd1f9f3f" target=3D"_blank" class=3D"mceButtonLink" style=3D"bac=
+kground-color:#21793e;border-radius:50px;border:1px solid #21793e;color:#f=
+fffff;display:block;font-family:'Helvetica Neue'=2C Helvetica=2C Arial=2C=
+ Verdana=2C sans-serif;font-size:16px;font-weight:normal;font-style:normal=
+;padding:16px 28px;text-decoration:none;min-width:30px;text-align:center;d=
+irection:ltr;letter-spacing:0px" rel=3D"noreferrer">Learn more</a></td></t=
+r><tr><!--<![endif]--></tr><tr>
+<!--[if mso]>
+<td align=3D"center">
+<v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml"
+xmlns:w=3D"urn:schemas-microsoft-com:office:word"
+href=3D"https://github.blog/news-insights/product-news/github-copilot-now-=
+available-in-github-com-for-copilot-individual-and-copilot-business-plans/=
+"
+style=3D"v-text-anchor:middle; width:224px; height:53px;"
+arcsize=3D"22%"
+strokecolor=3D"#21793e"
+strokeweight=3D"1px"
+fillcolor=3D"#21793e">
+<v:stroke dashstyle=3D"solid"/>
+<w:anchorlock />
+<center style=3D"
+color: #ffffff;
+display: block;
+font-family: 'Helvetica Neue'=2C Helvetica=2C Arial=2C Verdana=2C sans-ser=
+if;
+font-size: 16;
+font-style: normal;
+font-weight: normal;
+letter-spacing: 0px;
+text-decoration: none;
+text-align: center;
+direction: ltr;"
+>
+Learn more
+</center>
+</v:roundrect>
+</td>
+<![endif]-->
+</tr></tbody></table></td></tr></tbody></table></td><td style=3D"padding-t=
+op:0;padding-bottom:0" class=3D"mceColumn" data-block-id=3D"1755" valign=
+=3D"top" colspan=3D"3" width=3D"25%"><table border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td sty=
+le=3D"padding-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8p=
+x" class=3D"mceBlockContainer" align=3D"center" valign=3D"top"><a href=3D"=
+https://github.us11.list-manage.com/track/click?u=3D9d7ced8c4bbd6c2f238673=
+f0f&id=3Dce83f13c55&e=3Dc8fd1f9f3f" style=3D"display:block" target=3D"_bl=
+ank" data-block-id=3D"1760"><span class=3D"mceImageBorder" style=3D"border=
+:0;border-radius:12px;vertical-align:top;margin:0"><img width=3D"149" heig=
+ht=3D"auto" style=3D"width:149px;height:auto;max-width:149px !important;bo=
+rder-radius:12px;display:block" alt=3D"" src=3D"https://mcusercontent.com/=
+9d7ced8c4bbd6c2f238673f0f/images/6dfd39c2-1d1d-515a-0aad-fca3f416b8c9.png"=
+ role=3D"presentation" class=3D"imageDropZone mceImage" /></span></a></td>=
+</tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><=
+/td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></tab=
+le></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody><=
+/table></td></tr></tbody></table></td></tr><tr><td style=3D"background-col=
+or:transparent;padding-top:24px;padding-bottom:24px;padding-right:0;paddin=
+g-left:0" class=3D"mceBlockContainer" valign=3D"top"><table align=3D"cente=
+r" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=
+=3D"background-color:transparent;width:100%" role=3D"presentation" class=
+=3D"mceDividerContainer" data-block-id=3D"1882"><tbody><tr><td style=3D"mi=
+n-width:100%;border-top-width:2px;border-top-style:solid;border-top-color:=
+#6a737d" class=3D"mceDividerBlock" valign=3D"top"></td></tr></tbody></tabl=
+e></td></tr><tr><td style=3D"padding-top:0;padding-bottom:0;padding-right:=
+0;padding-left:0" class=3D"mceGutterContainer" valign=3D"top"><table borde=
+r=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"border=
+-collapse:separate" role=3D"presentation"><tbody><tr><td style=3D"padding-=
+top:12px;padding-bottom:12px;padding-right:0;padding-left:0" class=3D"mceL=
+ayoutContainer" valign=3D"top"><table align=3D"center" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" data-bl=
+ock-id=3D"1848" id=3D"section_d0db50e9d9117c3c9417a25e3464a5d9" class=3D"m=
+ceLayout"><tbody><tr class=3D"mceRow"><td style=3D"background-position:cen=
+ter;background-repeat:no-repeat;background-size:cover" valign=3D"top"><tab=
+le border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D=
+"presentation"><tbody><tr><td class=3D"mceColumn" data-block-id=3D"-41" va=
+lign=3D"top" colspan=3D"12" width=3D"100%"><table border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><=
+td align=3D"center" valign=3D"top"><table align=3D"center" border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" dat=
+a-block-id=3D"-26"><tbody><tr class=3D"mceRow"><td style=3D"background-pos=
+ition:center;background-repeat:no-repeat;background-size:cover" valign=3D"=
+top"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%=
+" role=3D"presentation"><tbody><tr><td class=3D"mceColumn" data-block-id=
+=3D"-53" valign=3D"top" colspan=3D"12" width=3D"100%"><table border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation">=
+<tbody><tr><td valign=3D"top"><table align=3D"center" border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" data-blo=
+ck-id=3D"1854"><tbody><tr class=3D"mceRow"><td style=3D"background-positio=
+n:center;background-repeat:no-repeat;background-size:cover;padding-top:0px=
+;padding-bottom:0px" valign=3D"top"><table border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"24" width=3D"100%" style=3D"table-layout:fixed" role=3D"pr=
+esentation"><colgroup><col span=3D"1" width=3D"8.333333333333332%" /><col=
+ span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.3333=
+33333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=
+=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333=
+333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1"=
+ width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332=
+%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=
+=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><=
+/colgroup><tbody><tr><td style=3D"padding-top:0;padding-bottom:0" class=3D=
+"mceColumn" data-block-id=3D"1851" valign=3D"top" colspan=3D"9" width=3D"7=
+5%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%"=
+ role=3D"presentation"><tbody><tr><td style=3D"padding-top:0;padding-botto=
+m:0;padding-right:0;padding-left:0" valign=3D"top"><table width=3D"100%" s=
+tyle=3D"border:0;border-radius:0;border-collapse:separate"><tbody><tr><td=
+ style=3D"padding-left:28px;padding-right:28px;padding-top:12px;padding-bo=
+ttom:12px" class=3D"mceTextBlockContainer"><div data-block-id=3D"1849" cla=
+ss=3D"mceText" id=3D"dataBlockId-1849" style=3D"width:100%"><h1 style=3D"l=
+ine-height: 125%; text-align: left;" class=3D"last-child">GitHub Classroom=
+ hits 2 million students</h1></div></td></tr></tbody></table></td></tr><tr=
+><td style=3D"padding-top:0;padding-bottom:0;padding-right:0;padding-left:=
+0" valign=3D"top"><table width=3D"100%" style=3D"border:0;border-radius:0;=
+border-collapse:separate"><tbody><tr><td style=3D"padding-left:24px;paddin=
+g-right:20px;padding-top:12px;padding-bottom:12px" class=3D"mceTextBlockCo=
+ntainer"><div data-block-id=3D"1850" class=3D"mceText" id=3D"dataBlockId-1=
+850" style=3D"width:100%"><p><a href=3D"https://github.us11.list-manage.co=
+m/track/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3D97d7bfff83&e=3Dc8fd1f9f3f" target=3D"_blank">GitHub Classroom</a> has officially hit 2 million stu=
+dents accepting assignments=2C helping them gain real-world coding experie=
+nce. Educators worldwide are using Classroom to streamline assignments and=
+ guide students in developing practical coding skills.</p><p><br /></p><p=
+ style=3D"text-align: center;" class=3D"last-child"><strong><span style=3D=
+"color:#21793e;">Thank you to all the teachers and students who=E2=80=99ve=
+ contributed to this milestone!</span></strong></p></div></td></tr></tbody=
+></table></td></tr></tbody></table></td><td style=3D"padding-top:0;padding=
+-bottom:0" class=3D"mceColumn" data-block-id=3D"1853" valign=3D"top" colsp=
+an=3D"3" width=3D"25%"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td style=3D"paddin=
+g-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8px" class=3D"=
+mceBlockContainer" align=3D"center" valign=3D"top"><a href=3D"https://gith=
+ub.us11.list-manage.com/track/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3D816=
+4216cd9&e=3Dc8fd1f9f3f" style=3D"display:block" target=3D"_blank" data-bl=
+ock-id=3D"1852"><span class=3D"mceImageBorder" style=3D"border:0;border-ra=
+dius:12px;vertical-align:top;margin:0"><img width=3D"149" height=3D"auto"=
+ style=3D"width:149px;height:auto;max-width:149px !important;border-radius=
+:12px;display:block" alt=3D"" src=3D"https://mcusercontent.com/9d7ced8c4bb=
+d6c2f238673f0f/images/0708ebd9-dd41-7cc9-4395-ab8ac05a3373.png" role=3D"pr=
+esentation" class=3D"imageDropZone mceImage" /></span></a></td></tr></tbod=
+y></table></td></tr></tbody></table></td></tr></tbody></table></td></tr></=
+tbody></table></td></tr></tbody></table></td></tr></tbody></table></td></t=
+r></tbody></table></td></tr></tbody></table></td></tr></tbody></table></td=
+></tr></tbody></table></td></tr><tr><td style=3D"background-color:transpar=
+ent;padding-top:24px;padding-bottom:24px;padding-right:0;padding-left:0" c=
+lass=3D"mceBlockContainer" valign=3D"top"><table align=3D"center" border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"backgro=
+und-color:transparent;width:100%" role=3D"presentation" class=3D"mceDivide=
+rContainer" data-block-id=3D"1880"><tbody><tr><td style=3D"min-width:100%;=
+border-top-width:2px;border-top-style:solid;border-top-color:#6a737d" clas=
+s=3D"mceDividerBlock" valign=3D"top"></td></tr></tbody></table></td></tr><=
+tr><td class=3D"mceGutterContainer" valign=3D"top"><table border=3D"0" cel=
+lpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"border-collapse:s=
+eparate" role=3D"presentation"><tbody><tr><td style=3D"padding-top:12px;pa=
+dding-bottom:12px;padding-right:0;padding-left:0" class=3D"mceLayoutContai=
+ner" valign=3D"top"><table align=3D"center" border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" width=3D"100%" role=3D"presentation" data-block-id=3D"1=
+859" id=3D"section_d9ef1d7807a461372c9ef7231e06d52b" class=3D"mceLayout"><=
+tbody><tr class=3D"mceRow"><td style=3D"background-position:center;backgro=
+und-repeat:no-repeat;background-size:cover" valign=3D"top"><table border=
+=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presenta=
+tion"><tbody><tr><td class=3D"mceColumn" data-block-id=3D"-42" valign=3D"t=
+op" colspan=3D"12" width=3D"100%"><table border=3D"0" cellpadding=3D"0" ce=
+llspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td align=
+=3D"center" valign=3D"top"><table align=3D"center" border=3D"0" cellpaddin=
+g=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" data-block-=
+id=3D"-28"><tbody><tr class=3D"mceRow"><td style=3D"background-position:ce=
+nter;background-repeat:no-repeat;background-size:cover" valign=3D"top"><ta=
+ble border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=
+=3D"presentation"><tbody><tr><td class=3D"mceColumn" data-block-id=3D"-54"=
+ valign=3D"top" colspan=3D"12" width=3D"100%"><table border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><t=
+r><td valign=3D"top"><table align=3D"center" border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0" width=3D"100%" role=3D"presentation" data-block-id=3D"=
+1864"><tbody><tr class=3D"mceRow"><td style=3D"background-position:center;=
+background-repeat:no-repeat;background-size:cover;padding-top:0px;padding-=
+bottom:0px" valign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspaci=
+ng=3D"24" width=3D"100%" style=3D"table-layout:fixed" role=3D"presentation=
+"><colgroup><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1"=
+ width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332=
+%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=
+=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><=
+col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.3=
+33333333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col spa=
+n=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.33333333=
+3333332%" /><col span=3D"1" width=3D"8.333333333333332%" /></colgroup><tbo=
+dy><tr><td style=3D"padding-top:0;padding-bottom:0" class=3D"mceColumn" da=
+ta-block-id=3D"1861" valign=3D"top" colspan=3D"9" width=3D"75%"><table bor=
+der=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"prese=
+ntation"><tbody><tr><td style=3D"padding-top:0;padding-bottom:0;padding-ri=
+ght:0;padding-left:0" valign=3D"top"><table width=3D"100%" style=3D"border=
+:0;border-radius:0;border-collapse:separate"><tbody><tr><td style=3D"paddi=
+ng-left:28px;padding-right:28px;padding-top:12px;padding-bottom:12px" clas=
+s=3D"mceTextBlockContainer"><div data-block-id=3D"1841" class=3D"mceText"=
+ id=3D"dataBlockId-1841" style=3D"width:100%"><h1 style=3D"line-height: 12=
+5%; text-align: left;" class=3D"last-child">Your first step into open sour=
+ce starts here</h1></div></td></tr></tbody></table></td></tr><tr><td style=
+=3D"padding-top:0;padding-bottom:0;padding-right:0;padding-left:0" valign=
+=3D"top"><table width=3D"100%" style=3D"border:0;border-radius:0;border-co=
+llapse:separate"><tbody><tr><td style=3D"padding-left:24px;padding-right:2=
+0px;padding-top:12px;padding-bottom:12px" class=3D"mceTextBlockContainer">=
+<div data-block-id=3D"1842" class=3D"mceText" id=3D"dataBlockId-1842" styl=
+e=3D"width:100%"><p class=3D"last-child">If you=E2=80=99re new to GitHub=
+=2C contributing to open source can feel intimidating=E2=80=94but it doesn=
+=E2=80=99t have to be! <a href=3D"https://github.us11.list-manage.com/trac=
+k/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3Dbf1024b555&e=3Dc8fd1f9f3f" tar=
+get=3D"_blank">First Contributions</a> is a <strong>beginner-friendly proj=
+ect</strong> that walks you through making your very first pull request. I=
+t=E2=80=99s the perfect way to learn GitHub=2C gain real-world experience=
+=2C and start collaborating with the open-source community.</p></div></td>=
+</tr></tbody></table></td></tr><tr><td style=3D"padding-top:12px;padding-b=
+ottom:12px;padding-right:24px;padding-left:24px" class=3D"mceBlockContaine=
+r" align=3D"center" valign=3D"top"><table align=3D"center" border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0" role=3D"presentation" data-block-id=3D"1=
+857" class=3D"mceButtonContainer"><tbody><tr><!--[if !mso]><!--></tr><tr=
+ class=3D"mceStandardButton"><td style=3D"background-color:#21793e;border-=
+radius:50px;text-align:center" class=3D"mceButton" valign=3D"top"><a href=
+=3D"https://github.us11.list-manage.com/track/click?u=3D9d7ced8c4bbd6c2f23=
+8673f0f&id=3D3c38db911e&e=3Dc8fd1f9f3f" target=3D"_blank" class=3D"mceBut=
+tonLink" style=3D"background-color:#21793e;border-radius:50px;border:1px s=
+olid #21793e;color:#ffffff;display:block;font-family:'Helvetica Neue'=2C H=
+elvetica=2C Arial=2C Verdana=2C sans-serif;font-size:16px;font-weight:norm=
+al;font-style:normal;padding:16px 28px;text-decoration:none;min-width:30px=
+;text-align:center;direction:ltr;letter-spacing:0px" rel=3D"noreferrer">Ge=
+t started with your first contribution</a></td></tr><tr><!--<![endif]--><=
+/tr><tr>
+<!--[if mso]>
+<td align=3D"center">
+<v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml"
+xmlns:w=3D"urn:schemas-microsoft-com:office:word"
+href=3D"https://github.com/firstcontributions/first-contributions"
+style=3D"v-text-anchor:middle; width:329.43px; height:53px;"
+arcsize=3D"15%"
+strokecolor=3D"#21793e"
+strokeweight=3D"1px"
+fillcolor=3D"#21793e">
+<v:stroke dashstyle=3D"solid"/>
+<w:anchorlock />
+<center style=3D"
+color: #ffffff;
+display: block;
+font-family: 'Helvetica Neue'=2C Helvetica=2C Arial=2C Verdana=2C sans-ser=
+if;
+font-size: 16;
+font-style: normal;
+font-weight: normal;
+letter-spacing: 0px;
+text-decoration: none;
+text-align: center;
+direction: ltr;"
+>
+Get started with your first contribution
+</center>
+</v:roundrect>
+</td>
+<![endif]-->
+</tr></tbody></table></td></tr></tbody></table></td><td style=3D"padding-t=
+op:0;padding-bottom:0" class=3D"mceColumn" data-block-id=3D"1863" valign=
+=3D"top" colspan=3D"3" width=3D"25%"><table border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td sty=
+le=3D"padding-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8p=
+x" class=3D"mceBlockContainer" align=3D"center" valign=3D"top"><a href=3D"=
+https://github.us11.list-manage.com/track/click?u=3D9d7ced8c4bbd6c2f238673=
+f0f&id=3D4a6726c4cf&e=3Dc8fd1f9f3f" style=3D"display:block" target=3D"_bl=
+ank" data-block-id=3D"1858"><span class=3D"mceImageBorder" style=3D"border=
+:0;border-radius:12px;vertical-align:top;margin:0"><img width=3D"126.64999=
+999999999" height=3D"auto" style=3D"width:126.64999999999999px;height:auto=
+;max-width:149px !important;border-radius:12px;display:block" alt=3D"" src=
+=3D"https://mcusercontent.com/9d7ced8c4bbd6c2f238673f0f/images/0b9445f8-59=
+03-67de-5fd6-4c64ef6f35ed.png" role=3D"presentation" class=3D"imageDropZon=
+e mceImage" /></span></a></td></tr></tbody></table></td></tr></tbody></tab=
+le></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody><=
+/table></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbo=
+dy></table></td></tr></tbody></table></td></tr></tbody></table></td></tr><=
+tr><td style=3D"background-color:transparent;padding-top:24px;padding-bott=
+om:24px;padding-right:0;padding-left:0" class=3D"mceBlockContainer" valign=
+=3D"top"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacin=
+g=3D"0" width=3D"100%" style=3D"background-color:transparent;width:100%" r=
+ole=3D"presentation" class=3D"mceDividerContainer" data-block-id=3D"1879">=
+<tbody><tr><td style=3D"min-width:100%;border-top-width:2px;border-top-sty=
+le:solid;border-top-color:#6a737d" class=3D"mceDividerBlock" valign=3D"top=
+"></td></tr></tbody></table></td></tr><tr><td class=3D"mceGutterContainer"=
+ valign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" wi=
+dth=3D"100%" style=3D"border-collapse:separate" role=3D"presentation"><tbo=
+dy><tr><td style=3D"padding-top:12px;padding-bottom:12px;padding-right:0;p=
+adding-left:0" class=3D"mceLayoutContainer" valign=3D"top"><table align=3D=
+"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" r=
+ole=3D"presentation" data-block-id=3D"1866" id=3D"section_44046f65defadfa0=
+a596d9ac29767179" class=3D"mceLayout"><tbody><tr class=3D"mceRow"><td styl=
+e=3D"background-position:center;background-repeat:no-repeat;background-siz=
+e:cover" valign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td class=3D"mceCol=
+umn" data-block-id=3D"-43" valign=3D"top" colspan=3D"12" width=3D"100%"><t=
+able border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=
+=3D"presentation"><tbody><tr><td align=3D"center" valign=3D"top"><table al=
+ign=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" role=3D"presentation" data-block-id=3D"-30"><tbody><tr class=3D"mceRo=
+w"><td style=3D"background-position:center;background-repeat:no-repeat;bac=
+kground-size:cover" valign=3D"top"><table border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td class=
+=3D"mceColumn" data-block-id=3D"-55" valign=3D"top" colspan=3D"12" width=
+=3D"100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" role=3D"presentation"><tbody><tr><td valign=3D"top"><table align=3D=
+"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" r=
+ole=3D"presentation" data-block-id=3D"1873"><tbody><tr class=3D"mceRow"><t=
+d style=3D"background-position:center;background-repeat:no-repeat;backgrou=
+nd-size:cover;padding-top:0px;padding-bottom:0px" valign=3D"top"><table bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"24" width=3D"100%" style=3D"ta=
+ble-layout:fixed" role=3D"presentation"><colgroup><col span=3D"1" width=3D=
+"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col=
+ span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.3333=
+33333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=
+=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333=
+333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1"=
+ width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332=
+%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=
+=3D"8.333333333333332%" /></colgroup><tbody><tr><td style=3D"padding-top:0=
+;padding-bottom:0" class=3D"mceColumn" data-block-id=3D"1870" valign=3D"to=
+p" colspan=3D"9" width=3D"75%"><table border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td style=3D"=
+padding-top:0;padding-bottom:0;padding-right:0;padding-left:0" valign=3D"t=
+op"><table width=3D"100%" style=3D"border:0;border-radius:0;border-collaps=
+e:separate"><tbody><tr><td style=3D"padding-left:28px;padding-right:28px;p=
+adding-top:12px;padding-bottom:12px" class=3D"mceTextBlockContainer"><div=
+ data-block-id=3D"1867" class=3D"mceText" id=3D"dataBlockId-1867" style=3D=
+"width:100%"><h1 style=3D"line-height: 125%; text-align: left;" class=3D"l=
+ast-child">GitHub Universe 2024 is almost here!</h1></div></td></tr></tbod=
+y></table></td></tr><tr><td style=3D"padding-top:0;padding-bottom:0;paddin=
+g-right:0;padding-left:0" valign=3D"top"><table width=3D"100%" style=3D"bo=
+rder:0;border-radius:0;border-collapse:separate"><tbody><tr><td style=3D"p=
+adding-left:24px;padding-right:20px;padding-top:12px;padding-bottom:12px"=
+ class=3D"mceTextBlockContainer"><div data-block-id=3D"1868" class=3D"mceT=
+ext" id=3D"dataBlockId-1868" style=3D"width:100%"><p><a href=3D"https://gi=
+thub.us11.list-manage.com/track/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3D0=
+10a263bee&e=3Dc8fd1f9f3f" target=3D"_blank">GitHub Universe 2024</a> is h=
+appening later this month=2C and you won=E2=80=99t want to miss it! Whethe=
+r you=E2=80=99re a developer=2C student=2C or educator=2C you can <a href=
+=3D"https://github.us11.list-manage.com/track/click?u=3D9d7ced8c4bbd6c2f23=
+8673f0f&id=3Df1a2688062&e=3Dc8fd1f9f3f" target=3D"_blank">join virtually=
+ for free</a> and catch all the sessions live. From exploring AI-powered c=
+oding tools like Copilot to diving into the latest innovations on GitHub=
+=2C there=E2=80=99s something for everyone.</p><p><br /></p><p class=3D"la=
+st-child">Mark your calendars for <strong>October 29-30</strong> and explo=
+re the <a href=3D"https://github.us11.list-manage.com/track/click?u=3D9d7c=
+ed8c4bbd6c2f238673f0f&id=3D654e56eaa3&e=3Dc8fd1f9f3f">session catalog</a>=
+ to see the talks most relevant to you.</p></div></td></tr></tbody></table=
+></td></tr><tr><td style=3D"padding-top:12px;padding-bottom:12px;padding-r=
+ight:24px;padding-left:24px" class=3D"mceBlockContainer" align=3D"center"=
+ valign=3D"top"><table align=3D"center" border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"0" role=3D"presentation" data-block-id=3D"1869" class=3D"mceBu=
+ttonContainer"><tbody><tr><!--[if !mso]><!--></tr><tr class=3D"mceStandar=
+dButton"><td style=3D"background-color:#21793e;border-radius:50px;text-ali=
+gn:center" class=3D"mceButton" valign=3D"top"><a href=3D"https://github.us=
+11.list-manage.com/track/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3Db8490ef0=
+ae&e=3Dc8fd1f9f3f" target=3D"_blank" class=3D"mceButtonLink" style=3D"bac=
+kground-color:#21793e;border-radius:50px;border:1px solid #21793e;color:#f=
+fffff;display:block;font-family:'Helvetica Neue'=2C Helvetica=2C Arial=2C=
+ Verdana=2C sans-serif;font-size:16px;font-weight:normal;font-style:normal=
+;padding:16px 28px;text-decoration:none;min-width:30px;text-align:center;d=
+irection:ltr;letter-spacing:0px" rel=3D"noreferrer">Get your free virtual=
+ ticket</a></td></tr><tr><!--<![endif]--></tr><tr>
+<!--[if mso]>
+<td align=3D"center">
+<v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml"
+xmlns:w=3D"urn:schemas-microsoft-com:office:word"
+href=3D"https://githubuniverse.com/#tickets"
+style=3D"v-text-anchor:middle; width:242.02px; height:53px;"
+arcsize=3D"21%"
+strokecolor=3D"#21793e"
+strokeweight=3D"1px"
+fillcolor=3D"#21793e">
+<v:stroke dashstyle=3D"solid"/>
+<w:anchorlock />
+<center style=3D"
+color: #ffffff;
+display: block;
+font-family: 'Helvetica Neue'=2C Helvetica=2C Arial=2C Verdana=2C sans-ser=
+if;
+font-size: 16;
+font-style: normal;
+font-weight: normal;
+letter-spacing: 0px;
+text-decoration: none;
+text-align: center;
+direction: ltr;"
+>
+Get your free virtual ticket
+</center>
+</v:roundrect>
+</td>
+<![endif]-->
+</tr></tbody></table></td></tr></tbody></table></td><td style=3D"padding-t=
+op:0;padding-bottom:0" class=3D"mceColumn" data-block-id=3D"1872" valign=
+=3D"top" colspan=3D"3" width=3D"25%"><table border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td sty=
+le=3D"padding-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8p=
+x" class=3D"mceBlockContainer" align=3D"center" valign=3D"top"><a href=3D"=
+https://github.us11.list-manage.com/track/click?u=3D9d7ced8c4bbd6c2f238673=
+f0f&id=3D7e64a08db1&e=3Dc8fd1f9f3f" style=3D"display:block" target=3D"_bl=
+ank" data-block-id=3D"1871"><span class=3D"mceImageBorder" style=3D"border=
+:0;border-radius:12px;vertical-align:top;margin:0"><img width=3D"126.65" h=
+eight=3D"auto" style=3D"width:126.65px;height:auto;max-width:149px !import=
+ant;border-radius:12px;display:block" alt=3D"" src=3D"https://mcuserconten=
+t.com/9d7ced8c4bbd6c2f238673f0f/images/d6f97182-230a-0587-3ed7-8bb499da63d=
+e.png" role=3D"presentation" class=3D"imageDropZone mceImage" /></span></a=
+></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></t=
+able></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody=
+></table></td></tr></tbody></table></td></tr></tbody></table></td></tr></t=
+body></table></td></tr></tbody></table></td></tr><tr><td style=3D"backgrou=
+nd-color:transparent;padding-top:24px;padding-bottom:24px;padding-right:0;=
+padding-left:0" class=3D"mceBlockContainer" valign=3D"top"><table align=3D=
+"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" s=
+tyle=3D"background-color:transparent;width:100%" role=3D"presentation" cla=
+ss=3D"mceDividerContainer" data-block-id=3D"1878"><tbody><tr><td style=3D"=
+min-width:100%;border-top-width:2px;border-top-style:solid;border-top-colo=
+r:#6a737d" class=3D"mceDividerBlock" valign=3D"top"></td></tr></tbody></ta=
+ble></td></tr><tr><td class=3D"mceGutterContainer" valign=3D"top"><table b=
+order=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"bo=
+rder-collapse:separate" role=3D"presentation"><tbody><tr><td style=3D"padd=
+ing-top:12px;padding-bottom:12px;padding-right:0;padding-left:0" class=3D"=
+mceLayoutContainer" valign=3D"top"><table align=3D"center" border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" dat=
+a-block-id=3D"1829" id=3D"section_3cb041a1a0d7cf6da59c2677ece72d44" class=
+=3D"mceLayout"><tbody><tr class=3D"mceRow"><td style=3D"background-positio=
+n:center;background-repeat:no-repeat;background-size:cover" valign=3D"top"=
+><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" ro=
+le=3D"presentation"><tbody><tr><td class=3D"mceColumn" data-block-id=3D"-4=
+0" valign=3D"top" colspan=3D"12" width=3D"100%"><table border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody>=
+<tr><td align=3D"center" valign=3D"top"><table align=3D"center" border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation=
+" data-block-id=3D"-24"><tbody><tr class=3D"mceRow"><td style=3D"backgroun=
+d-position:center;background-repeat:no-repeat;background-size:cover" valig=
+n=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" role=3D"presentation"><tbody><tr><td class=3D"mceColumn" data-block=
+-id=3D"-52" valign=3D"top" colspan=3D"12" width=3D"100%"><table border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation=
+"><tbody><tr><td valign=3D"top"><table align=3D"center" border=3D"0" cellp=
+adding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" data-b=
+lock-id=3D"1834"><tbody><tr class=3D"mceRow"><td style=3D"background-posit=
+ion:center;background-repeat:no-repeat;background-size:cover;padding-top:0=
+px;padding-bottom:0px" valign=3D"top"><table border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"24" width=3D"100%" style=3D"table-layout:fixed" role=3D"p=
+resentation"><colgroup><col span=3D"1" width=3D"8.333333333333332%" /><col=
+ span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.3333=
+33333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=
+=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333=
+333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1"=
+ width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332=
+%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=
+=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><=
+/colgroup><tbody><tr><td style=3D"padding-top:0;padding-bottom:0" class=3D=
+"mceColumn" data-block-id=3D"1831" valign=3D"top" colspan=3D"8" width=3D"6=
+6.66666666666666%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ width=3D"100%" role=3D"presentation"><tbody><tr><td style=3D"padding-top:=
+0;padding-bottom:0;padding-right:0;padding-left:0" valign=3D"top"><table w=
+idth=3D"100%" style=3D"border:0;border-radius:0;border-collapse:separate">=
+<tbody><tr><td style=3D"padding-left:28px;padding-right:28px;padding-top:1=
+2px;padding-bottom:12px" class=3D"mceTextBlockContainer"><div data-block-i=
+d=3D"1820" class=3D"mceText" id=3D"dataBlockId-1820" style=3D"width:100%">=
+<h1 style=3D"line-height: 125%; text-align: left;" class=3D"last-child">Be=
+ginner=E2=80=99s guide: Setting up and securing your profile</h1></div></t=
+d></tr></tbody></table></td></tr><tr><td style=3D"padding-top:0;padding-bo=
+ttom:0;padding-right:0;padding-left:0" valign=3D"top"><table width=3D"100%=
+" style=3D"border:0;border-radius:0;border-collapse:separate"><tbody><tr><=
+td style=3D"padding-left:24px;padding-right:20px;padding-top:12px;padding-=
+bottom:12px" class=3D"mceTextBlockContainer"><div data-block-id=3D"1821" c=
+lass=3D"mceText" id=3D"dataBlockId-1821" style=3D"width:100%"><p class=3D"=
+last-child">Ready for the next chapter in our beginner=E2=80=99s guide? Th=
+is time=2C we=E2=80=99re showing you how to set up and secure your GitHub=
+ profile so you can start collaborating with confidence. Whether you=E2=80=
+=99re new to GitHub or just need a refresher=2C this guide has you covered=
+=2E </p></div></td></tr></tbody></table></td></tr><tr><td style=3D"padding-t=
+op:12px;padding-bottom:12px;padding-right:24px;padding-left:24px" class=3D=
+"mceBlockContainer" align=3D"center" valign=3D"top"><table align=3D"center=
+" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" role=3D"presentation" d=
+ata-block-id=3D"1886" class=3D"mceButtonContainer"><tbody><tr><!--[if !ms=
+o]><!--></tr><tr class=3D"mceStandardButton"><td style=3D"background-color=
+:#21793e;border-radius:50px;text-align:center" class=3D"mceButton" valign=
+=3D"top"><a href=3D"https://github.us11.list-manage.com/track/click?u=3D9d=
+7ced8c4bbd6c2f238673f0f&id=3D33344128d0&e=3Dc8fd1f9f3f" target=3D"_blank"=
+ class=3D"mceButtonLink" style=3D"background-color:#21793e;border-radius:5=
+0px;border:1px solid #21793e;color:#ffffff;display:block;font-family:'Helv=
+etica Neue'=2C Helvetica=2C Arial=2C Verdana=2C sans-serif;font-size:16px;=
+font-weight:normal;font-style:normal;padding:16px 28px;text-decoration:non=
+e;min-width:30px;text-align:center;direction:ltr;letter-spacing:0px" rel=
+=3D"noreferrer">Check out the full series</a></td></tr><tr><!--<![endif]-=
+-></tr><tr>
+<!--[if mso]>
+<td align=3D"center">
+<v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml"
+xmlns:w=3D"urn:schemas-microsoft-com:office:word"
+href=3D"https://www.youtube.com/playlist?list=3DPL0lo9MOBetEFcp4SCWinBdpml=
+9B2U25-f"
+style=3D"v-text-anchor:middle; width:230.18px; height:53px;"
+arcsize=3D"22%"
+strokecolor=3D"#21793e"
+strokeweight=3D"1px"
+fillcolor=3D"#21793e">
+<v:stroke dashstyle=3D"solid"/>
+<w:anchorlock />
+<center style=3D"
+color: #ffffff;
+display: block;
+font-family: 'Helvetica Neue'=2C Helvetica=2C Arial=2C Verdana=2C sans-ser=
+if;
+font-size: 16;
+font-style: normal;
+font-weight: normal;
+letter-spacing: 0px;
+text-decoration: none;
+text-align: center;
+direction: ltr;"
+>
+Check out the full series
+</center>
+</v:roundrect>
+</td>
+<![endif]-->
+</tr></tbody></table></td></tr></tbody></table></td><td style=3D"padding-t=
+op:0;padding-bottom:0" class=3D"mceColumn" data-block-id=3D"1833" valign=
+=3D"top" colspan=3D"4" width=3D"33.33333333333333%"><table border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tb=
+ody><tr><td style=3D"padding-top:8px;padding-bottom:8px;padding-right:8px;=
+padding-left:8px" class=3D"mceBlockContainer" align=3D"center" valign=3D"t=
+op"><a href=3D"https://github.us11.list-manage.com/track/click?u=3D9d7ced8=
+c4bbd6c2f238673f0f&id=3Ddcfbf74ff0&e=3Dc8fd1f9f3f" style=3D"display:block=
+" target=3D"_blank" data-block-id=3D"1828"><span class=3D"mceImageBorder"=
+ style=3D"border:0;border-radius:12px;vertical-align:top;margin:0"><img wi=
+dth=3D"192" height=3D"auto" style=3D"width:192px;height:auto;max-width:640=
+px !important;border-radius:12px;display:block" alt=3D"" src=3D"https://mc=
+usercontent.com/9d7ced8c4bbd6c2f238673f0f/video_thumbnails_new/e59e1e8a922=
+711a606da16bd3bfe36d5.png" role=3D"presentation" class=3D"imageDropZone mc=
+eImage" /></span></a></td></tr></tbody></table></td></tr></tbody></table><=
+/td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></tab=
+le></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody><=
+/table></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><=
+td style=3D"background-color:transparent;padding-top:24px;padding-bottom:2=
+4px;padding-right:0;padding-left:0" class=3D"mceBlockContainer" valign=3D"=
+top"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D=
+"0" width=3D"100%" style=3D"background-color:transparent;width:100%" role=
+=3D"presentation" class=3D"mceDividerContainer" data-block-id=3D"1885"><tb=
+ody><tr><td style=3D"min-width:100%;border-top-width:2px;border-top-style:=
+solid;border-top-color:#6a737d" class=3D"mceDividerBlock" valign=3D"top"><=
+/td></tr></tbody></table></td></tr><tr><td style=3D"padding-top:0;padding-=
+bottom:0;padding-right:0;padding-left:0" class=3D"mceGutterContainer" vali=
+gn=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" style=3D"border-collapse:separate" role=3D"presentation"><tbody>=
+<tr><td style=3D"padding-top:12px;padding-bottom:12px;padding-right:0;padd=
+ing-left:0" class=3D"mceLayoutContainer" valign=3D"top"><table align=3D"ce=
+nter" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=
+=3D"presentation" data-block-id=3D"1800" id=3D"section_375e29a9ca7f2b4b26c=
+10817202b5358" class=3D"mceLayout"><tbody><tr class=3D"mceRow"><td style=
+=3D"background-position:center;background-repeat:no-repeat;background-size=
+:cover" valign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td class=3D"mceCol=
+umn" data-block-id=3D"-38" valign=3D"top" colspan=3D"12" width=3D"100%"><t=
+able border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=
+=3D"presentation"><tbody><tr><td align=3D"center" valign=3D"top"><table al=
+ign=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" role=3D"presentation" data-block-id=3D"-20"><tbody><tr class=3D"mceRo=
+w"><td style=3D"background-position:center;background-repeat:no-repeat;bac=
+kground-size:cover" valign=3D"top"><table border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td class=
+=3D"mceColumn" data-block-id=3D"-50" valign=3D"top" colspan=3D"12" width=
+=3D"100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" role=3D"presentation"><tbody><tr><td valign=3D"top"><table align=3D=
+"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" r=
+ole=3D"presentation" data-block-id=3D"1806"><tbody><tr class=3D"mceRow"><t=
+d style=3D"background-position:center;background-repeat:no-repeat;backgrou=
+nd-size:cover;padding-top:0px;padding-bottom:0px" valign=3D"top"><table bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"24" width=3D"100%" style=3D"ta=
+ble-layout:fixed" role=3D"presentation"><colgroup><col span=3D"1" width=3D=
+"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col=
+ span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.3333=
+33333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=
+=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333=
+333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1"=
+ width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332=
+%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=
+=3D"8.333333333333332%" /></colgroup><tbody><tr><td style=3D"padding-top:0=
+;padding-bottom:0" class=3D"mceColumn" data-block-id=3D"1803" valign=3D"to=
+p" colspan=3D"9" width=3D"75%"><table border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td style=3D"=
+padding-top:0;padding-bottom:0;padding-right:0;padding-left:0" valign=3D"t=
+op"><table width=3D"100%" style=3D"border:0;border-radius:0;border-collaps=
+e:separate"><tbody><tr><td style=3D"padding-left:28px;padding-right:28px;p=
+adding-top:12px;padding-bottom:12px" class=3D"mceTextBlockContainer"><div=
+ data-block-id=3D"1801" class=3D"mceText" id=3D"dataBlockId-1801" style=3D=
+"width:100%"><h1 style=3D"line-height: 125%; text-align: left;" class=3D"l=
+ast-child">How students used GitHub Copilot to decode 2=2C000-year-old tex=
+ts</h1></div></td></tr></tbody></table></td></tr><tr><td style=3D"padding-=
+top:0;padding-bottom:0;padding-right:0;padding-left:0" valign=3D"top"><tab=
+le width=3D"100%" style=3D"border:0;border-radius:0;border-collapse:separa=
+te"><tbody><tr><td style=3D"padding-left:24px;padding-right:20px;padding-t=
+op:12px;padding-bottom:12px" class=3D"mceTextBlockContainer"><div data-blo=
+ck-id=3D"1802" class=3D"mceText" id=3D"dataBlockId-1802" style=3D"width:10=
+0%"><p>A team of students=2C equipped with GitHub Copilot from the GitHub=
+ Student Developer Pack=2C tackled an incredible challenge=E2=80=94decodin=
+g ancient scrolls using AI. These crafty students applied machine learning=
+ to unlock mysteries hidden for centuries. It=E2=80=99s a powerful example=
+ of how GitHub tools are empowering the next generation of developers to s=
+olve real-world problems.</p><p><br /></p><p class=3D"last-child">Want to=
+ learn how they did it?</p></div></td></tr></tbody></table></td></tr><tr><=
+td style=3D"padding-top:12px;padding-bottom:12px;padding-right:24px;paddin=
+g-left:24px" class=3D"mceBlockContainer" align=3D"center" valign=3D"top"><=
+table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" ro=
+le=3D"presentation" data-block-id=3D"1807" class=3D"mceButtonContainer"><t=
+body><tr><!--[if !mso]><!--></tr><tr class=3D"mceStandardButton"><td styl=
+e=3D"background-color:#21793e;border-radius:50px;text-align:center" class=
+=3D"mceButton" valign=3D"top"><a href=3D"https://github.us11.list-manage.c=
+om/track/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3D2c315f715d&e=3Dc8fd1f9f3f" target=3D"_blank" class=3D"mceButtonLink" style=3D"background-color:#2=
+1793e;border-radius:50px;border:1px solid #21793e;color:#ffffff;display:bl=
+ock;font-family:'Helvetica Neue'=2C Helvetica=2C Arial=2C Verdana=2C sans-=
+serif;font-size:16px;font-weight:normal;font-style:normal;padding:16px 28p=
+x;text-decoration:none;min-width:30px;text-align:center;direction:ltr;lett=
+er-spacing:0px" rel=3D"noreferrer">Read the full story</a></td></tr><tr><!=
+--<![endif]--></tr><tr>
+<!--[if mso]>
+<td align=3D"center">
+<v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml"
+xmlns:w=3D"urn:schemas-microsoft-com:office:word"
+href=3D"https://github.blog/ai-and-ml/machine-learning/how-students-teamed=
+-up-to-decode-2000-year-old-texts-using-ai/"
+style=3D"v-text-anchor:middle; width:187.8px; height:53px;"
+arcsize=3D"27%"
+strokecolor=3D"#21793e"
+strokeweight=3D"1px"
+fillcolor=3D"#21793e">
+<v:stroke dashstyle=3D"solid"/>
+<w:anchorlock />
+<center style=3D"
+color: #ffffff;
+display: block;
+font-family: 'Helvetica Neue'=2C Helvetica=2C Arial=2C Verdana=2C sans-ser=
+if;
+font-size: 16;
+font-style: normal;
+font-weight: normal;
+letter-spacing: 0px;
+text-decoration: none;
+text-align: center;
+direction: ltr;"
+>
+Read the full story
+</center>
+</v:roundrect>
+</td>
+<![endif]-->
+</tr></tbody></table></td></tr></tbody></table></td><td style=3D"padding-t=
+op:0;padding-bottom:0" class=3D"mceColumn" data-block-id=3D"1805" valign=
+=3D"top" colspan=3D"3" width=3D"25%"><table border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td sty=
+le=3D"padding-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8p=
+x" class=3D"mceBlockContainer" align=3D"center" valign=3D"top"><a href=3D"=
+https://github.us11.list-manage.com/track/click?u=3D9d7ced8c4bbd6c2f238673=
+f0f&id=3Df6591c91f7&e=3Dc8fd1f9f3f" style=3D"display:block" target=3D"_bl=
+ank" data-block-id=3D"1804"><span class=3D"mceImageBorder" style=3D"border=
+:0;border-radius:12px;vertical-align:top;margin:0"><img width=3D"149" heig=
+ht=3D"auto" style=3D"width:149px;height:auto;max-width:149px !important;bo=
+rder-radius:12px;display:block" alt=3D"" src=3D"https://mcusercontent.com/=
+9d7ced8c4bbd6c2f238673f0f/images/34ba2d5f-3a29-c6a4-a3d5-026855c8d7de.jpeg=
+" role=3D"presentation" class=3D"imageDropZone mceImage" /></span></a></td=
+></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table>=
+</td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></ta=
+ble></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody>=
+</table></td></tr></tbody></table></td></tr><tr><td style=3D"background-co=
+lor:transparent;padding-top:24px;padding-bottom:24px;padding-right:0;paddi=
+ng-left:0" class=3D"mceBlockContainer" valign=3D"top"><table align=3D"cent=
+er" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=
+=3D"background-color:transparent;width:100%" role=3D"presentation" class=
+=3D"mceDividerContainer" data-block-id=3D"1876"><tbody><tr><td style=3D"mi=
+n-width:100%;border-top-width:2px;border-top-style:solid;border-top-color:=
+#6a737d" class=3D"mceDividerBlock" valign=3D"top"></td></tr></tbody></tabl=
+e></td></tr><tr><td style=3D"padding-top:0;padding-bottom:0;padding-right:=
+0;padding-left:0" class=3D"mceGutterContainer" valign=3D"top"><table borde=
+r=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"border=
+-collapse:separate" role=3D"presentation"><tbody><tr><td style=3D"padding-=
+top:12px;padding-bottom:12px;padding-right:0;padding-left:0" class=3D"mceL=
+ayoutContainer" valign=3D"top"><table align=3D"center" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" data-bl=
+ock-id=3D"1773" id=3D"section_1add5a8beb017c362082f900a2d2917f" class=3D"m=
+ceLayout"><tbody><tr class=3D"mceRow"><td style=3D"background-position:cen=
+ter;background-repeat:no-repeat;background-size:cover" valign=3D"top"><tab=
+le border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D=
+"presentation"><tbody><tr><td class=3D"mceColumn" data-block-id=3D"-35" va=
+lign=3D"top" colspan=3D"12" width=3D"100%"><table border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><=
+td align=3D"center" valign=3D"top"><table align=3D"center" border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" dat=
+a-block-id=3D"-14"><tbody><tr class=3D"mceRow"><td style=3D"background-pos=
+ition:center;background-repeat:no-repeat;background-size:cover" valign=3D"=
+top"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%=
+" role=3D"presentation"><tbody><tr><td class=3D"mceColumn" data-block-id=
+=3D"-47" valign=3D"top" colspan=3D"12" width=3D"100%"><table border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation">=
+<tbody><tr><td valign=3D"top"><table align=3D"center" border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" data-blo=
+ck-id=3D"1778"><tbody><tr class=3D"mceRow"><td style=3D"background-positio=
+n:center;background-repeat:no-repeat;background-size:cover;padding-top:0px=
+;padding-bottom:0px" valign=3D"top"><table border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"24" width=3D"100%" style=3D"table-layout:fixed" role=3D"pr=
+esentation"><colgroup><col span=3D"1" width=3D"8.333333333333332%" /><col=
+ span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.3333=
+33333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=
+=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333=
+333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1"=
+ width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332=
+%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=
+=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><=
+/colgroup><tbody><tr><td style=3D"padding-top:0;padding-bottom:0" class=3D=
+"mceColumn" data-block-id=3D"1775" valign=3D"top" colspan=3D"9" width=3D"7=
+5%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%"=
+ role=3D"presentation"><tbody><tr><td style=3D"padding-top:0;padding-botto=
+m:0;padding-right:0;padding-left:0" valign=3D"top"><table width=3D"100%" s=
+tyle=3D"border:0;border-radius:0;border-collapse:separate"><tbody><tr><td=
+ style=3D"padding-left:28px;padding-right:28px;padding-top:12px;padding-bo=
+ttom:12px" class=3D"mceTextBlockContainer"><div data-block-id=3D"1772" cla=
+ss=3D"mceText" id=3D"dataBlockId-1772" style=3D"width:100%"><h1 style=3D"l=
+ine-height: 125%; text-align: left;" class=3D"last-child">Get ready for yo=
+ur GitHub Foundations Certificate</h1></div></td></tr></tbody></table></td=
+></tr><tr><td style=3D"padding-top:0;padding-bottom:0;padding-right:0;padd=
+ing-left:0" valign=3D"top"><table width=3D"100%" style=3D"border:0;border-=
+radius:0;border-collapse:separate"><tbody><tr><td style=3D"padding-left:24=
+px;padding-right:20px;padding-top:12px;padding-bottom:12px" class=3D"mceTe=
+xtBlockContainer"><div data-block-id=3D"1774" class=3D"mceText" id=3D"data=
+BlockId-1774" style=3D"width:100%"><p>Prepare for the <a href=3D"https://g=
+ithub.us11.list-manage.com/track/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3D=
+d1343e36f8&e=3Dc8fd1f9f3f" target=3D"_blank">GitHub Foundations certifica=
+tion</a> with a series of free Microsoft Reactor episodes available in Por=
+tuguese=2C Spanish=2C and English. Each session covers GitHub fundamentals=
+=2C GitHub Actions=2C and security basics=2C helping you get exam-ready.</=
+p><p><br /></p><p>Even better=2C the GitHub Foundations exam will be avail=
+able for free again soon as part of the <a href=3D"https://github.us11.lis=
+t-manage.com/track/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3D3f75adfb47&e=
+=3Dc8fd1f9f3f" target=3D"_blank">GitHub Student Developer Pack</a>. But i=
+f you=E2=80=99re eager to certify now=2C there=E2=80=99s also a big discou=
+nt available.</p><ul><li><p><strong>Portuguese series</strong> (Oct 2=2C 9=
+=2C 16 at 11 AM BRT): <br /><a href=3D"https://github.us11.list-manage.com=
+/track/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3D3c52275079&e=3Dc8fd1f9f3f=
+">Register here</a></p><p><br /></p></li><li><p><strong>Spanish series</st=
+rong> (Oct 5=2C 12=2C 19 at 6 PM CEST): <br /><a href=3D"https://github.us=
+11.list-manage.com/track/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3D94fe04fd=
+6b&e=3Dc8fd1f9f3f">Register here</a></p><p><br /></p></li><li><p><strong>=
+English series</strong> (Oct 10=2C 24 at 9 AM PT): <br /><a href=3D"https:=
+//github.us11.list-manage.com/track/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=
+=3D22cb5761ee&e=3Dc8fd1f9f3f">Register here</a></p></li></ul><p><br /></p=
+><p class=3D"last-child">Start preparing now=2C and <strong>stay tuned for=
+ the free certification offer coming back soon to the Student Developer Pa=
+ck!</strong></p></div></td></tr></tbody></table></td></tr></tbody></table>=
+</td><td style=3D"padding-top:0;padding-bottom:0" class=3D"mceColumn" data=
+-block-id=3D"1777" valign=3D"top" colspan=3D"3" width=3D"25%"><table borde=
+r=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"present=
+ation"><tbody><tr><td style=3D"padding-top:8px;padding-bottom:8px;padding-=
+right:8px;padding-left:8px" class=3D"mceBlockContainer" align=3D"center" v=
+align=3D"top"><a href=3D"https://github.us11.list-manage.com/track/click?u=
+=3D9d7ced8c4bbd6c2f238673f0f&id=3D7ce545ec99&e=3Dc8fd1f9f3f" style=3D"dis=
+play:block" target=3D"_blank" data-block-id=3D"1776"><span class=3D"mceIma=
+geBorder" style=3D"border:0;border-radius:12px;vertical-align:top;margin:0=
+"><img width=3D"149" height=3D"auto" style=3D"width:149px;height:auto;max-=
+width:149px !important;border-radius:12px;display:block" alt=3D"" src=3D"h=
+ttps://mcusercontent.com/9d7ced8c4bbd6c2f238673f0f/images/d04e61e0-16f9-b5=
+e4-0956-14547f4c6f53.png" role=3D"presentation" class=3D"imageDropZone mce=
+Image" /></span></a></td></tr></tbody></table></td></tr></tbody></table></=
+td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></tabl=
+e></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></=
+table></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><t=
+d style=3D"background-color:transparent;padding-top:24px;padding-bottom:24=
+px;padding-right:0;padding-left:0" class=3D"mceBlockContainer" valign=3D"t=
+op"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"=
+0" width=3D"100%" style=3D"background-color:transparent;width:100%" role=
+=3D"presentation" class=3D"mceDividerContainer" data-block-id=3D"1877"><tb=
+ody><tr><td style=3D"min-width:100%;border-top-width:2px;border-top-style:=
+solid;border-top-color:#6a737d" class=3D"mceDividerBlock" valign=3D"top"><=
+/td></tr></tbody></table></td></tr><tr><td style=3D"padding-top:0;padding-=
+bottom:0;padding-right:0;padding-left:0" class=3D"mceGutterContainer" vali=
+gn=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" style=3D"border-collapse:separate" role=3D"presentation"><tbody>=
+<tr><td style=3D"padding-top:12px;padding-bottom:12px;padding-right:0;padd=
+ing-left:0" class=3D"mceLayoutContainer" valign=3D"top"><table align=3D"ce=
+nter" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=
+=3D"presentation" data-block-id=3D"1763" id=3D"section_d5dcf078a26436e1fa1=
+fef391dd035ec" class=3D"mceLayout"><tbody><tr class=3D"mceRow"><td style=
+=3D"background-position:center;background-repeat:no-repeat;background-size=
+:cover" valign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td class=3D"mceCol=
+umn" data-block-id=3D"-34" valign=3D"top" colspan=3D"12" width=3D"100%"><t=
+able border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=
+=3D"presentation"><tbody><tr><td align=3D"center" valign=3D"top"><table al=
+ign=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"1=
+00%" role=3D"presentation" data-block-id=3D"-12"><tbody><tr class=3D"mceRo=
+w"><td style=3D"background-position:center;background-repeat:no-repeat;bac=
+kground-size:cover" valign=3D"top"><table border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td class=
+=3D"mceColumn" data-block-id=3D"-46" valign=3D"top" colspan=3D"12" width=
+=3D"100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" role=3D"presentation"><tbody><tr><td valign=3D"top"><table align=3D=
+"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" r=
+ole=3D"presentation" data-block-id=3D"1768"><tbody><tr class=3D"mceRow"><t=
+d style=3D"background-position:center;background-repeat:no-repeat;backgrou=
+nd-size:cover;padding-top:0px;padding-bottom:0px" valign=3D"top"><table bo=
+rder=3D"0" cellpadding=3D"0" cellspacing=3D"24" width=3D"100%" style=3D"ta=
+ble-layout:fixed" role=3D"presentation"><colgroup><col span=3D"1" width=3D=
+"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col=
+ span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.3333=
+33333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=
+=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333=
+333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1"=
+ width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332=
+%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=
+=3D"8.333333333333332%" /></colgroup><tbody><tr><td style=3D"padding-top:0=
+;padding-bottom:0" class=3D"mceColumn" data-block-id=3D"1765" valign=3D"to=
+p" colspan=3D"9" width=3D"75%"><table border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td style=3D"=
+padding-top:0;padding-bottom:0;padding-right:0;padding-left:0" valign=3D"t=
+op"><table width=3D"100%" style=3D"border:0;border-radius:0;border-collaps=
+e:separate"><tbody><tr><td style=3D"padding-left:28px;padding-right:28px;p=
+adding-top:12px;padding-bottom:12px" class=3D"mceTextBlockContainer"><div=
+ data-block-id=3D"1762" class=3D"mceText" id=3D"dataBlockId-1762" style=3D=
+"width:100%"><h1 style=3D"line-height: 125%; text-align: left;" class=3D"l=
+ast-child">Cod=C3=A9dex Campus Tour is wrapping up</h1></div></td></tr></t=
+body></table></td></tr><tr><td style=3D"padding-top:0;padding-bottom:0;pad=
+ding-right:0;padding-left:0" valign=3D"top"><table width=3D"100%" style=3D=
+"border:0;border-radius:0;border-collapse:separate"><tbody><tr><td style=
+=3D"padding-left:24px;padding-right:20px;padding-top:12px;padding-bottom:1=
+2px" class=3D"mceTextBlockContainer"><div data-block-id=3D"1764" class=3D"=
+mceText" id=3D"dataBlockId-1764" style=3D"width:100%"><p>The <a href=3D"ht=
+tps://github.us11.list-manage.com/track/click?u=3D9d7ced8c4bbd6c2f238673f0=
+f&id=3D550392f3df&e=3Dc8fd1f9f3f" target=3D"_blank">Cod=C3=A9dex</a> <str=
+ong>Campus Tour</strong> is reaching its final stop=2C and what a journey=
+ it=E2=80=99s been! Students across campuses have explored coding challeng=
+es and discovered the benefits of the GitHub Student Developer Pack=E2=80=
+=94now with Cod=C3=A9dex included=2C offering tools and resources to grow=
+ their skills.</p><p><br /></p><p class=3D"last-child">Missed the tour? Yo=
+u can still dive into Cod=C3=A9dex and the Student Developer Pack at your=
+ own pace. Learn more <a href=3D"https://github.us11.list-manage.com/track=
+/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3Daf58994cd0&e=3Dc8fd1f9f3f" targ=
+et=3D"_blank">here</a>!</p></div></td></tr></tbody></table></td></tr></tbo=
+dy></table></td><td style=3D"padding-top:0;padding-bottom:0" class=3D"mceC=
+olumn" data-block-id=3D"1767" valign=3D"top" colspan=3D"3" width=3D"25%"><=
+table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=
+=3D"presentation"><tbody><tr><td style=3D"padding-top:8px;padding-bottom:8=
+px;padding-right:8px;padding-left:8px" class=3D"mceBlockContainer" align=
+=3D"center" valign=3D"top"><a href=3D"https://github.us11.list-manage.com/=
+track/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3D16be557fd3&e=3Dc8fd1f9f3f"=
+ style=3D"display:block" target=3D"_blank" data-block-id=3D"1766"><span cl=
+ass=3D"mceImageBorder" style=3D"border:0;border-radius:12px;vertical-align=
+:top;margin:0"><img width=3D"149" height=3D"auto" style=3D"width:149px;hei=
+ght:auto;max-width:149px !important;border-radius:12px;display:block" alt=
+=3D"" src=3D"https://mcusercontent.com/9d7ced8c4bbd6c2f238673f0f/images/be=
+41e2b2-2d2e-fa63-f496-b41e2b4e3034.jpeg" role=3D"presentation" class=3D"im=
+ageDropZone mceImage" /></span></a></td></tr></tbody></table></td></tr></t=
+body></table></td></tr></tbody></table></td></tr></tbody></table></td></tr=
+></tbody></table></td></tr></tbody></table></td></tr></tbody></table></td>=
+</tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><=
+/td></tr><tr><td style=3D"background-color:transparent;padding-top:24px;pa=
+dding-bottom:24px;padding-right:0;padding-left:0" class=3D"mceBlockContain=
+er" valign=3D"top"><table align=3D"center" border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" width=3D"100%" style=3D"background-color:transparent;wi=
+dth:100%" role=3D"presentation" class=3D"mceDividerContainer" data-block-i=
+d=3D"1875"><tbody><tr><td style=3D"min-width:100%;border-top-width:2px;bor=
+der-top-style:solid;border-top-color:#6a737d" class=3D"mceDividerBlock" va=
+lign=3D"top"></td></tr></tbody></table></td></tr><tr><td style=3D"padding-=
+top:0;padding-bottom:0;padding-right:0;padding-left:0" class=3D"mceGutterC=
+ontainer" valign=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=
+=3D"0" width=3D"100%" style=3D"border-collapse:separate" role=3D"presentat=
+ion"><tbody><tr><td style=3D"padding-top:12px;padding-bottom:12px;padding-=
+right:0;padding-left:0" class=3D"mceLayoutContainer" valign=3D"top"><table=
+ align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" role=3D"presentation" data-block-id=3D"1783" id=3D"section_8e5b2=
+71e0735fec97c6af9478dbc4824" class=3D"mceLayout"><tbody><tr class=3D"mceRo=
+w"><td style=3D"background-position:center;background-repeat:no-repeat;bac=
+kground-size:cover" valign=3D"top"><table border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td class=
+=3D"mceColumn" data-block-id=3D"-36" valign=3D"top" colspan=3D"12" width=
+=3D"100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D=
+"100%" role=3D"presentation"><tbody><tr><td align=3D"center" valign=3D"top=
+"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ width=3D"100%" role=3D"presentation" data-block-id=3D"-16"><tbody><tr cla=
+ss=3D"mceRow"><td style=3D"background-position:center;background-repeat:no=
+-repeat;background-size:cover" valign=3D"top"><table border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><t=
+r><td class=3D"mceColumn" data-block-id=3D"-48" valign=3D"top" colspan=3D"=
+12" width=3D"100%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0"=
+ width=3D"100%" role=3D"presentation"><tbody><tr><td valign=3D"top"><table=
+ align=3D"center" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=
+=3D"100%" role=3D"presentation" data-block-id=3D"1788"><tbody><tr class=3D=
+"mceRow"><td style=3D"background-position:center;background-repeat:no-repe=
+at;background-size:cover;padding-top:0px;padding-bottom:0px" valign=3D"top=
+"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"24" width=3D"100%"=
+ style=3D"table-layout:fixed" role=3D"presentation"><colgroup><col span=3D=
+"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333=
+332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" wid=
+th=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /=
+><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8=
+=2E333333333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col s=
+pan=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333=
+333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"=
+1" width=3D"8.333333333333332%" /></colgroup><tbody><tr><td style=3D"paddi=
+ng-top:0;padding-bottom:0" class=3D"mceColumn" data-block-id=3D"1785" vali=
+gn=3D"top" colspan=3D"9" width=3D"75%"><table border=3D"0" cellpadding=3D"=
+0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td s=
+tyle=3D"padding-top:0;padding-bottom:0;padding-right:0;padding-left:0" val=
+ign=3D"top"><table width=3D"100%" style=3D"border:0;border-radius:0;border=
+-collapse:separate"><tbody><tr><td style=3D"padding-left:28px;padding-righ=
+t:28px;padding-top:12px;padding-bottom:12px" class=3D"mceTextBlockContaine=
+r"><div data-block-id=3D"1782" class=3D"mceText" id=3D"dataBlockId-1782" s=
+tyle=3D"width:100%"><h1 style=3D"line-height: 125%; text-align: left;" cla=
+ss=3D"last-child">The Imagine Cup is back! Join the Microsoft Student Inno=
+vator Series</h1></div></td></tr></tbody></table></td></tr><tr><td style=
+=3D"padding-top:0;padding-bottom:0;padding-right:0;padding-left:0" valign=
+=3D"top"><table width=3D"100%" style=3D"border:0;border-radius:0;border-co=
+llapse:separate"><tbody><tr><td style=3D"padding-left:24px;padding-right:2=
+0px;padding-top:12px;padding-bottom:12px" class=3D"mceTextBlockContainer">=
+<div data-block-id=3D"1784" class=3D"mceText" id=3D"dataBlockId-1784" styl=
+e=3D"width:100%"><p>The <a href=3D"https://github.us11.list-manage.com/tra=
+ck/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3D3f1f838367&e=3Dc8fd1f9f3f" ta=
+rget=3D"_blank">2025 Imagine Cup</a> season just kicked off=2C and you can=
+ start preparing with the <a href=3D"https://github.us11.list-manage.com/t=
+rack/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3Debadf13840&e=3Dc8fd1f9f3f"=
+ target=3D"_blank">Student Innovator Series</a>. Check out upcoming events=
+ to help you build AI solutions on the Microsoft Cloud and get competition=
+-ready:</p><ul><li><p><strong>Azure AI Sessions</strong> (Oct 12=2C 19=2C=
+ 26 at 10 AM PT)</p></li><li><p><strong>Founders Hub Welcome Day</strong>=
+ (Nov 2 at 12 PM PT)</p></li></ul><p><br /></p><p class=3D"last-child">The=
+se sessions are available in multiple languages=2C including English=2C Sp=
+anish=2C Portuguese=2C and Mandarin.</p></div></td></tr></tbody></table></=
+td></tr><tr><td style=3D"padding-top:12px;padding-bottom:12px;padding-righ=
+t:24px;padding-left:24px" class=3D"mceBlockContainer" align=3D"center" val=
+ign=3D"top"><table align=3D"center" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0" role=3D"presentation" data-block-id=3D"1887" class=3D"mceButton=
+Container"><tbody><tr><!--[if !mso]><!--></tr><tr class=3D"mceStandardBut=
+ton"><td style=3D"background-color:#21793e;border-radius:50px;text-align:c=
+enter" class=3D"mceButton" valign=3D"top"><a href=3D"https://github.us11.l=
+ist-manage.com/track/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3D272394b252&e=
+=3Dc8fd1f9f3f" target=3D"_blank" class=3D"mceButtonLink" style=3D"backgro=
+und-color:#21793e;border-radius:50px;border:1px solid #21793e;color:#fffff=
+f;display:block;font-family:'Helvetica Neue'=2C Helvetica=2C Arial=2C Verd=
+ana=2C sans-serif;font-size:16px;font-weight:normal;font-style:normal;padd=
+ing:16px 28px;text-decoration:none;min-width:30px;text-align:center;direct=
+ion:ltr;letter-spacing:0px" rel=3D"noreferrer">Explore the full schedule</=
+a></td></tr><tr><!--<![endif]--></tr><tr>
+<!--[if mso]>
+<td align=3D"center">
+<v:roundrect xmlns:v=3D"urn:schemas-microsoft-com:vml"
+xmlns:w=3D"urn:schemas-microsoft-com:office:word"
+href=3D"https://developer.microsoft.com/en-us/reactor/series/S-1386?wt.mc_=
+id=3DSocial_S-1386_social_Student_Reactor"
+style=3D"v-text-anchor:middle; width:233.14000000000001px; height:53px;"
+arcsize=3D"21%"
+strokecolor=3D"#21793e"
+strokeweight=3D"1px"
+fillcolor=3D"#21793e">
+<v:stroke dashstyle=3D"solid"/>
+<w:anchorlock />
+<center style=3D"
+color: #ffffff;
+display: block;
+font-family: 'Helvetica Neue'=2C Helvetica=2C Arial=2C Verdana=2C sans-ser=
+if;
+font-size: 16;
+font-style: normal;
+font-weight: normal;
+letter-spacing: 0px;
+text-decoration: none;
+text-align: center;
+direction: ltr;"
+>
+Explore the full schedule
+</center>
+</v:roundrect>
+</td>
+<![endif]-->
+</tr></tbody></table></td></tr></tbody></table></td><td style=3D"padding-t=
+op:0;padding-bottom:0" class=3D"mceColumn" data-block-id=3D"1787" valign=
+=3D"top" colspan=3D"3" width=3D"25%"><table border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><td sty=
+le=3D"padding-top:8px;padding-bottom:8px;padding-right:8px;padding-left:8p=
+x" class=3D"mceBlockContainer" align=3D"center" valign=3D"top"><a href=3D"=
+https://github.us11.list-manage.com/track/click?u=3D9d7ced8c4bbd6c2f238673=
+f0f&id=3D1143e1f06f&e=3Dc8fd1f9f3f" style=3D"display:block" target=3D"_bl=
+ank" data-block-id=3D"1786"><span class=3D"mceImageBorder" style=3D"border=
+:0;border-radius:12px;vertical-align:top;margin:0"><img width=3D"149" heig=
+ht=3D"auto" style=3D"width:149px;height:auto;max-width:149px !important;bo=
+rder-radius:12px;display:block" alt=3D"" src=3D"https://mcusercontent.com/=
+9d7ced8c4bbd6c2f238673f0f/images/ad1a1f4b-5d58-1ba1-5b70-73977fecf45d.png"=
+ role=3D"presentation" class=3D"imageDropZone mceImage" /></span></a></td>=
+</tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><=
+/td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></tab=
+le></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody><=
+/table></td></tr></tbody></table></td></tr><tr><td style=3D"background-col=
+or:transparent;padding-top:24px;padding-bottom:24px;padding-right:0;paddin=
+g-left:0" class=3D"mceBlockContainer" valign=3D"top"><table align=3D"cente=
+r" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=
+=3D"background-color:transparent;width:100%" role=3D"presentation" class=
+=3D"mceDividerContainer" data-block-id=3D"1874"><tbody><tr><td style=3D"mi=
+n-width:100%;border-top-width:2px;border-top-style:solid;border-top-color:=
+#6a737d" class=3D"mceDividerBlock" valign=3D"top"></td></tr></tbody></tabl=
+e></td></tr><tr><td style=3D"padding-top:0;padding-bottom:0;padding-right:=
+0;padding-left:0" class=3D"mceGutterContainer" valign=3D"top"><table borde=
+r=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" style=3D"border=
+-collapse:separate" role=3D"presentation"><tbody><tr><td style=3D"padding-=
+top:12px;padding-bottom:12px;padding-right:0;padding-left:0" class=3D"mceL=
+ayoutContainer" valign=3D"top"><table align=3D"center" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" data-bl=
+ock-id=3D"1790" id=3D"section_872387079670dea717166e982eea4ed2" class=3D"m=
+ceLayout"><tbody><tr class=3D"mceRow"><td style=3D"background-position:cen=
+ter;background-repeat:no-repeat;background-size:cover" valign=3D"top"><tab=
+le border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D=
+"presentation"><tbody><tr><td class=3D"mceColumn" data-block-id=3D"-37" va=
+lign=3D"top" colspan=3D"12" width=3D"100%"><table border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"><tbody><tr><=
+td align=3D"center" valign=3D"top"><table align=3D"center" border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" dat=
+a-block-id=3D"-18"><tbody><tr class=3D"mceRow"><td style=3D"background-pos=
+ition:center;background-repeat:no-repeat;background-size:cover" valign=3D"=
+top"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%=
+" role=3D"presentation"><tbody><tr><td class=3D"mceColumn" data-block-id=
+=3D"-49" valign=3D"top" colspan=3D"12" width=3D"100%"><table border=3D"0"=
+ cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation">=
+<tbody><tr><td valign=3D"top"><table align=3D"center" border=3D"0" cellpad=
+ding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" data-blo=
+ck-id=3D"1797"><tbody><tr class=3D"mceRow"><td style=3D"background-positio=
+n:center;background-repeat:no-repeat;background-size:cover;padding-top:0px=
+;padding-bottom:0px" valign=3D"top"><table border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"24" width=3D"100%" style=3D"table-layout:fixed" role=3D"pr=
+esentation"><colgroup><col span=3D"1" width=3D"8.333333333333332%" /><col=
+ span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.3333=
+33333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=
+=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333=
+333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1"=
+ width=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332=
+%" /><col span=3D"1" width=3D"8.333333333333332%" /><col span=3D"1" width=
+=3D"8.333333333333332%" /><col span=3D"1" width=3D"8.333333333333332%" /><=
+/colgroup><tbody><tr><td style=3D"padding-top:0;padding-bottom:0" class=3D=
+"mceColumn" data-block-id=3D"1794" valign=3D"top" colspan=3D"9" width=3D"7=
+5%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%"=
+ role=3D"presentation"><tbody><tr><td style=3D"padding-top:0;padding-botto=
+m:0;padding-right:0;padding-left:0" valign=3D"top"><table width=3D"100%" s=
+tyle=3D"border:0;border-radius:0;border-collapse:separate"><tbody><tr><td=
+ style=3D"padding-left:28px;padding-right:28px;padding-top:12px;padding-bo=
+ttom:12px" class=3D"mceTextBlockContainer"><div data-block-id=3D"1791" cla=
+ss=3D"mceText" id=3D"dataBlockId-1791" style=3D"width:100%"><h1 style=3D"l=
+ine-height: 125%; text-align: left;" class=3D"last-child">Project spotligh=
+t: LeRobot by Hugging Face</h1></div></td></tr></tbody></table></td></tr><=
+tr><td style=3D"padding-top:0;padding-bottom:0;padding-right:0;padding-lef=
+t:0" valign=3D"top"><table width=3D"100%" style=3D"border:0;border-radius:=
+0;border-collapse:separate"><tbody><tr><td style=3D"padding-left:24px;padd=
+ing-right:20px;padding-top:12px;padding-bottom:12px" class=3D"mceTextBlock=
+Container"><div data-block-id=3D"1792" class=3D"mceText" id=3D"dataBlockId=
+-1792" style=3D"width:100%"><p>Ever wondered how AI can help with GitHub i=
+ssues? Check out <a href=3D"https://github.us11.list-manage.com/track/clic=
+k?u=3D9d7ced8c4bbd6c2f238673f0f&id=3Dd7602330c2&e=3Dc8fd1f9f3f" target=3D=
+"_blank">LeRobot</a>=2C an open-source bot developed by Hugging Face that=
+ uses AI to automatically manage GitHub issues. It=E2=80=99s a perfect too=
+l for developers looking to streamline their workflows and stay on top of=
+ project management.</p><p><br /></p><p class=3D"last-child">Dive into the=
+ code and <a href=3D"https://github.us11.list-manage.com/track/click?u=3D9=
+d7ced8c4bbd6c2f238673f0f&id=3De1590320ff&e=3Dc8fd1f9f3f" target=3D"_blank=
+">see how LeRobot works</a>.</p></div></td></tr></tbody></table></td></tr>=
+</tbody></table></td><td style=3D"padding-top:0;padding-bottom:0" class=3D=
+"mceColumn" data-block-id=3D"1796" valign=3D"top" colspan=3D"3" width=3D"2=
+5%"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%"=
+ role=3D"presentation"><tbody><tr><td style=3D"padding-top:8px;padding-bot=
+tom:8px;padding-right:8px;padding-left:8px" class=3D"mceBlockContainer" al=
+ign=3D"center" valign=3D"top"><a href=3D"https://github.us11.list-manage.c=
+om/track/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3D6e3906f29e&e=3Dc8fd1f9f3f" style=3D"display:block" target=3D"_blank" data-block-id=3D"1795"><span=
+ class=3D"mceImageBorder" style=3D"border:0;border-radius:12px;vertical-al=
+ign:top;margin:0"><img width=3D"149" height=3D"auto" style=3D"width:149px;=
+height:auto;max-width:149px !important;border-radius:12px;display:block" a=
+lt=3D"" src=3D"https://mcusercontent.com/9d7ced8c4bbd6c2f238673f0f/images/=
+4bb9bb84-1c0f-c92f-6c5b-13527e0cae03.png" role=3D"presentation" class=3D"i=
+mageDropZone mceImage" /></span></a></td></tr></tbody></table></td></tr></=
+tbody></table></td></tr></tbody></table></td></tr></tbody></table></td></t=
+r></tbody></table></td></tr></tbody></table></td></tr></tbody></table></td=
+></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table>=
+</td></tr><tr><td style=3D"background-color:transparent;padding-top:24px;p=
+adding-bottom:24px;padding-right:0;padding-left:0" class=3D"mceBlockContai=
+ner" valign=3D"top"><table align=3D"center" border=3D"0" cellpadding=3D"0"=
+ cellspacing=3D"0" width=3D"100%" style=3D"background-color:transparent;wi=
+dth:100%" role=3D"presentation" class=3D"mceDividerContainer" data-block-i=
+d=3D"1781"><tbody><tr><td style=3D"min-width:100%;border-top-width:2px;bor=
+der-top-style:solid;border-top-color:#6a737d" class=3D"mceDividerBlock" va=
+lign=3D"top"></td></tr></tbody></table></td></tr><tr><td style=3D"padding-=
+top:0;padding-bottom:0;padding-right:0;padding-left:0" valign=3D"top"><tab=
+le width=3D"100%" style=3D"border:0;border-radius:0;border-collapse:separa=
+te"><tbody><tr><td style=3D"padding-left:24px;padding-right:24px;padding-t=
+op:12px;padding-bottom:12px" class=3D"mceTextBlockContainer"><div data-blo=
+ck-id=3D"782" class=3D"mceText" id=3D"dataBlockId-782" style=3D"width:100%=
+"><p style=3D"text-align: center;" class=3D"last-child"><span style=3D"col=
+or:#4d4d4d;"><span style=3D"font-size: 19px">Thanks for being a part of ou=
+r community! We=E2=80=99re excited to support your learning journey=E2=80=
+=94stay curious=2C keep coding=2C and see you next month!</span></span></p=
+></div></td></tr></tbody></table></td></tr><tr><td style=3D"background-col=
+or:transparent" valign=3D"top"><table border=3D"0" cellpadding=3D"0" cells=
+pacing=3D"0" width=3D"100%" role=3D"presentation" data-block-id=3D"1749"><=
+tbody><tr><td class=3D"mceSpacerBlock" height=3D"28" valign=3D"top"></td><=
+/tr></tbody></table></td></tr><tr><td style=3D"padding-top:12px;padding-bo=
+ttom:12px;padding-right:24px;padding-left:24px" class=3D"mceBlockContainer=
+" align=3D"center" valign=3D"top"><span class=3D"mceImageBorder" style=3D"=
+border:0;border-radius:0;vertical-align:top;margin:0"><img data-block-id=
+=3D"1780" width=3D"312.11999999999995" height=3D"auto" style=3D"width:312.=
+11999999999995px;height:auto;max-width:312.12px !important;border-radius:0=
+;display:block" alt=3D"" src=3D"https://mcusercontent.com/9d7ced8c4bbd6c2f=
+238673f0f/images/3c5ec124-a9eb-d04a-b6c9-1c235883be51.png" role=3D"present=
+ation" class=3D"imageDropZone mceLogo" /></span></td></tr><tr><td style=3D=
+"padding-top:12px;padding-bottom:12px;padding-right:0;padding-left:0" clas=
+s=3D"mceLayoutContainer" valign=3D"top"><table align=3D"center" border=3D"=
+0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation=
+" data-block-id=3D"7"><tbody><tr class=3D"mceRow"><td style=3D"background-=
+position:center;background-repeat:no-repeat;background-size:cover" valign=
+=3D"top"><table border=3D"0" cellpadding=3D"0" cellspacing=3D"24" width=3D=
+"100%" role=3D"presentation"><tbody><tr><td class=3D"mceColumn" data-block=
+-id=3D"-6" valign=3D"top" colspan=3D"12" width=3D"100%"><table border=3D"0=
+" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation"=
+><tbody><tr><td valign=3D"top"><table align=3D"center" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0" role=3D"presentation" class=3D"mceSocialFoll=
+owBlock" data-block-id=3D"-5"><tbody><tr><td align=3D"center" valign=3D"mi=
+ddle"><!--[if mso]><table align=3D"left" border=3D"0" cellspacing=3D "0"=
+ cellpadding=3D"0"><tr><![endif]--><!--[if mso]><td align=3D"center" val=
+ign=3D"top"><![endif]--><table align=3D"left" border=3D"0" cellpadding=3D=
+"0" cellspacing=3D"0" style=3D"display:inline;float:left" role=3D"presenta=
+tion"><tbody><tr><td style=3D"padding-top:3px;padding-bottom:3px;padding-l=
+eft:21px;padding-right:21px" class=3D"mceSocialFollowIcon" align=3D"center=
+" width=3D"40" valign=3D"top"><a href=3D"https://github.us11.list-manage.c=
+om/track/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3Dad37aae66c&e=3Dc8fd1f9f3f" target=3D"_blank" rel=3D"noreferrer"><img class=3D"mceSocialFollowImag=
+e" width=3D"40" height=3D"40" alt=3D"Facebook icon" src=3D"https://cdn-ima=
+ges.mailchimp.com/icons/social-block-v3/block-icons-v3/facebook-filled-col=
+or-40.png" /></a></td></tr></tbody></table><!--[if mso]></td><![endif]--=
+><!--[if mso]><td align=3D"center" valign=3D"top"><![endif]--><table ali=
+gn=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"disp=
+lay:inline;float:left" role=3D"presentation"><tbody><tr><td style=3D"paddi=
+ng-top:3px;padding-bottom:3px;padding-left:21px;padding-right:21px" class=
+=3D"mceSocialFollowIcon" align=3D"center" width=3D"40" valign=3D"top"><a h=
+ref=3D"https://github.us11.list-manage.com/track/click?u=3D9d7ced8c4bbd6c2=
+f238673f0f&id=3Dacf3aa251b&e=3Dc8fd1f9f3f" target=3D"_blank" rel=3D"noref=
+errer"><img class=3D"mceSocialFollowImage" width=3D"40" height=3D"40" alt=
+=3D"Instagram icon" src=3D"https://cdn-images.mailchimp.com/icons/social-b=
+lock-v3/block-icons-v3/instagram-filled-color-40.png" /></a></td></tr></tb=
+ody></table><!--[if mso]></td><![endif]--><!--[if mso]><td align=3D"cen=
+ter" valign=3D"top"><![endif]--><table align=3D"left" border=3D"0" cellpa=
+dding=3D"0" cellspacing=3D"0" style=3D"display:inline;float:left" role=3D"=
+presentation"><tbody><tr><td style=3D"padding-top:3px;padding-bottom:3px;p=
+adding-left:21px;padding-right:21px" class=3D"mceSocialFollowIcon" align=
+=3D"center" width=3D"40" valign=3D"top"><a href=3D"https://github.us11.lis=
+t-manage.com/track/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3Db014c766c3&e=
+=3Dc8fd1f9f3f" target=3D"_blank" rel=3D"noreferrer"><img class=3D"mceSoci=
+alFollowImage" width=3D"40" height=3D"40" alt=3D"Twitter icon" src=3D"http=
+s://cdn-images.mailchimp.com/icons/social-block-v3/block-icons-v3/twitter-=
+filled-color-40.png" /></a></td></tr></tbody></table><!--[if mso]></td><!=
+[endif]--><!--[if mso]><td align=3D"center" valign=3D"top"><![endif]-->=
+<table align=3D"left" border=3D"0" cellpadding=3D"0" cellspacing=3D"0" sty=
+le=3D"display:inline;float:left" role=3D"presentation"><tbody><tr><td styl=
+e=3D"padding-top:3px;padding-bottom:3px;padding-left:21px;padding-right:21=
+px" class=3D"mceSocialFollowIcon" align=3D"center" width=3D"40" valign=3D"=
+top"><a href=3D"https://github.us11.list-manage.com/track/click?u=3D9d7ced=
+8c4bbd6c2f238673f0f&id=3D8a33273423&e=3Dc8fd1f9f3f" target=3D"_blank" rel=
+=3D"noreferrer"><img class=3D"mceSocialFollowImage" width=3D"40" height=3D=
+"40" alt=3D"YouTube icon" src=3D"https://cdn-images.mailchimp.com/icons/so=
+cial-block-v3/block-icons-v3/youtube-filled-color-40.png" /></a></td></tr>=
+</tbody></table><!--[if mso]></td><![endif]--><!--[if mso]><td align=3D=
+"center" valign=3D"top"><![endif]--><table align=3D"left" border=3D"0" ce=
+llpadding=3D"0" cellspacing=3D"0" style=3D"display:inline;float:left" role=
+=3D"presentation"><tbody><tr><td style=3D"padding-top:3px;padding-bottom:3=
+px;padding-left:21px;padding-right:21px" class=3D"mceSocialFollowIcon" ali=
+gn=3D"center" width=3D"40" valign=3D"top"><a href=3D"https://github.us11.l=
+ist-manage.com/track/click?u=3D9d7ced8c4bbd6c2f238673f0f&id=3Dcd1e68b9d3&e=
+=3Dc8fd1f9f3f" target=3D"_blank" rel=3D"noreferrer"><img class=3D"mceSoci=
+alFollowImage" width=3D"40" height=3D"40" alt=3D"Threads icon" src=3D"http=
+s://cdn-images.mailchimp.com/icons/social-block-v3/block-icons-v3/threads-=
+filled-color-40.png" /></a></td></tr></tbody></table><!--[if mso]></td><!=
+[endif]--><!--[if mso]></tr></table><![endif]--></td></tr></tbody></tab=
+le></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody><=
+/table></td></tr><tr><td style=3D"background-color:#ffffff;padding-top:8px=
+;padding-bottom:8px;padding-right:8px;padding-left:8px" class=3D"mceLayout=
+Container" valign=3D"top"><table align=3D"center" border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" data-block-i=
+d=3D"11" id=3D"section_23e792df33fb76f2e68fed7bca1a0619" class=3D"mceFoote=
+rSection"><tbody><tr class=3D"mceRow"><td style=3D"background-color:#fffff=
+f;background-position:center;background-repeat:no-repeat;background-size:c=
+over;padding-top:0px;padding-bottom:0px" valign=3D"top"><table border=3D"0=
+" cellpadding=3D"0" cellspacing=3D"12" width=3D"100%" role=3D"presentation=
+"><tbody><tr><td style=3D"padding-top:0;padding-bottom:0" class=3D"mceColu=
+mn" data-block-id=3D"-3" valign=3D"top" colspan=3D"12" width=3D"100%"><tab=
+le border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100%" role=3D=
+"presentation"><tbody><tr><td style=3D"padding-top:0;padding-bottom:0;padd=
+ing-right:0;padding-left:0" align=3D"center" valign=3D"top"><table width=
+=3D"100%" style=3D"border:0;border-radius:0;border-collapse:separate"><tbo=
+dy><tr><td style=3D"padding-left:16px;padding-right:16px;padding-top:12px;=
+padding-bottom:12px" class=3D"mceTextBlockContainer"><div data-block-id=3D=
+"9" class=3D"mceText" id=3D"dataBlockId-9" style=3D"display:inline-block;w=
+idth:100%"><p class=3D"last-child"><em><span style=3D"font-size: 12px">Cop=
+yright (C) 2024 GitHub=2C Inc. All rights reserved.</span></em><br /><span=
+ style=3D"font-size: 12px">
+You're receiving this email because you signed up for GitHub Education.
+</span><br /><span style=3D"font-size: 12px">Our mailing address is:</span=
+><br /><span style=3D"font-size: 12px">
+GitHub=2C Inc
+88 Colin P Kelly Jr St
+San Francisco=2C CA 94107-2008
+USA
+</span><br /><span style=3D"font-size: 12px">Want to change how you receiv=
+e these emails? You can </span><a href=3D"https://github.us11.list-manage.=
+com/profile?u=3D9d7ced8c4bbd6c2f238673f0f&id=3Da500d68878&e=3Dc8fd1f9f3f&c=
+=3D310ef8ff67"><span style=3D"font-size: 12px">update your preferences</sp=
+an></a><span style=3D"font-size: 12px"> or </span><a href=3D"https://githu=
+b.us11.list-manage.com/unsubscribe?u=3D9d7ced8c4bbd6c2f238673f0f&id=3Da500=
+d68878&t=3Db&e=3Dc8fd1f9f3f&c=3D310ef8ff67"><span style=3D"font-size: 12px">=
+unsubscribe</span></a><span style=3D"font-size: 12px">.</span></p></div></=
+td></tr></tbody></table></td></tr><tr><td class=3D"mceLayoutContainer" ali=
+gn=3D"center" valign=3D"top"><table align=3D"center" border=3D"0" cellpadd=
+ing=3D"0" cellspacing=3D"0" width=3D"100%" role=3D"presentation" data-bloc=
+k-id=3D"-2"><tbody><tr class=3D"mceRow"><td style=3D"background-position:c=
+enter;background-repeat:no-repeat;background-size:cover;padding-top:0px;pa=
+dding-bottom:0px" valign=3D"top"><table border=3D"0" cellpadding=3D"0" cel=
+lspacing=3D"24" width=3D"100%" role=3D"presentation"><tbody></tbody></tabl=
+e></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></=
+table></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbod=
+y></table></td></tr></tbody></table></td></tr></tbody></table><!--[if (gt=
+e mso 9)|(IE)]></td></tr></table><![endif]--></td></tr></tbody></table>
+</td>
+</tr>
+</tbody></table>
+</center>
+<img src=3D"https://github.us11.list-manage.com/track/open.php?u=3D9d7ced8=
+c4bbd6c2f238673f0f&id=3D310ef8ff67&e=3Dc8fd1f9f3f" height=3D"1" width=3D"=
+1" alt=3D""></body></html>
+--_----------=_MCPart_14513825--

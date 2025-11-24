@@ -1,0 +1,165 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:8e91:0:b0:2e2:75a4:21a3 with SMTP id z17csp4009227ljk;
+        Sun, 19 May 2024 03:43:52 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFprU632rlRR+jvbCW0lZNvr6tJQA8V8Q55S93pNQYyXsRqCsFoJSYr55ZmyMUdQVxWTvp6
+X-Received: by 2002:a05:6512:15a8:b0:520:df8f:9997 with SMTP id 2adb3069b0e04-5220fb681bcmr21966178e87.9.1716115432208;
+        Sun, 19 May 2024 03:43:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1716115432; cv=none;
+        d=google.com; s=arc-20160816;
+        b=iMmrOeh0CoDtz7ZUxiCjy3leobGW2ukqOxRxmyIFpkHww8uNs+NZDhJIMcNcLgq7UN
+         c4Rkwxlb8MsS6PupG8waYoVCyPgQ47URs52VXqjxDiNt/n987CO7fOTaxQitXMxmVrTW
+         Mr2fMMYBDx1LfcU+hWTUgRAXrebq4HDqHKON0e57mbXuujwIHXeKH04ujoMRTW8Gd1rS
+         HwFh1YtDX/1begTGTKnqYnhPMfu8mPO27NlNtqijKsXJJc8pea5GRxPkYZgJMASAJcUg
+         732yg3hr6ezTby75m/4Mk+yb/0c+/KRMRVVRjgBD6Yc09phgw164Gr22vRB9jCZZbXnF
+         PYNQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=gX2T663XG6Rkyoh0aRWnk0ZhqfFQcCpjb2aLEuwmEdI=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=y/fMnu5OCjhPGOmqfy65bgPL4w3NGTZ1RF1lMNGWgbw4jNwzUyFhWZWkT4GUSNRLuE
+         /8s9Y3OviuvoJzR3mLQ2Ilgpca37IrDNMGHayJ3NWhSBkhvKxM1RIsgMKagBilt++I5M
+         cGAL1uSoGqJvDmU6mxfhHID/zBrvdrcxVH/9yiQBEfUA2TkRogpNDd8DbxrNVBY9LPyQ
+         G75WHZLQ8RMXGMPv8WIf0vuRv945ehffvB0kDyfssCgR6dzC2sno30fYeunBepurduDh
+         NzUmumuMMXZd/zjXkVWsiPNFf8wB10b5tFLR+CTJBWpQ+PJozQvZvhKJALLQm52ustlI
+         H53Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-a5a916d051asi557951766b.720.2024.05.19.03.43.51
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 19 May 2024 03:43:52 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 44JAhmKs1953821
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Sun, 19 May 2024 12:43:48 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 44JAhmKs1953821
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 44JAhlIT102237
+	for <luca.barra@edu.unito.it>; Sun, 19 May 2024 12:43:47 +0200
+Date: Sun, 19 May 2024 12:43:47 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Lonigro Francesca (da informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: Fisica-A: Tutoraggio#9 Svolgimento
+Message-ID: <5ac7dd5cb81aa91e93eba8eb2b9b2f18446c981635cd965a61d0f6170f4c5b11@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Forum comunicazioni docenti-studenti" <moodleforum7274@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7274
+X-Course-Id: 2722
+X-Course-Name: FISICA (A) [Cognomi A-K]
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: Fisica-A: Tutoraggio#9 Svolgimento
+Thread-Index: 5ac7dd5cb81aa91e93eba8eb2b9b
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_tOS3tSy2kaMXALyKYPkxtRl977lj11VPnCOH9OCHA"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 44JAhmKs1953821
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_tOS3tSy2kaMXALyKYPkxtRl977lj11VPnCOH9OCHA
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+Fisica-A -> Forum -> Forum comunicazioni docenti-studenti -> Tutoraggio#9
+Svolgimento
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41694#p68864
+Tutoraggio#9 Svolgimento
+di Lonigro Francesca - domenica, 19 maggio 2024, 12:26
+---------------------------------------------------------------------
+Cari Studenti,
+
+allego lo svolgimento del tutoraggio#9. Se avete dubbi, potete contattarmi
+anche via mail francesca.lonigro@edu.unito.it.
+
+https://informatica.i-learn.unito.it/pluginfile.php/399602/mod_forum/post/6=
+8864/Correzione%20Tutoraggio%209.pdf
+[1]
+
+Cordialmente
+
+Francesca Lonigro
+
+Links:
+------
+[1]
+https://informatica.i-learn.unito.it/pluginfile.php/399602/mod_forum/post/6=
+8864/Correzione%20Tutoraggio%209.pdf
+
+---------------------------------------------------------------------
+Questa =C3=A8 la copia di un intervento effettuato su Fisica-A .
+
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2722
+
+--b1_tOS3tSy2kaMXALyKYPkxtRl977lj11VPnCOH9OCHA
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2722">Fisica-A</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D2722">Forum</a>=0A    &raquo;=0A    <a target=3D"_bl=
+ank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D72=
+74">Forum comunicazioni docenti-studenti</a>=0A    &raquo;=0A    <a target=
+=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/discuss.=
+php?d=3D41694">Tutoraggio#9 Svolgimento</a>=0A</div>=0A=0A<table border=3D"=
+0" cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=
+=3D"header">=0A        <td width=3D"35" valign=3D"top" class=3D"picture lef=
+t">=0A            <a href=3D"https://informatica.i-learn.unito.it/user/view=
+.php?id=3D32830&amp;course=3D2722" class=3D"d-inline-block aabtn"><img src=
+=3D"https://informatica.i-learn.unito.it/theme/image.php/_s/lambda/core/170=
+7437411/u/f2" class=3D"userpicture defaultuserpic" width=3D"35" height=3D"3=
+5" alt=3D"" /></a>=0A        </td>=0A        <td class=3D"topic starter">=
+=0A            <div class=3D"subject">=0A                Tutoraggio#9 Svolg=
+imento=0A            </div>=0A            <div class=3D"author">=0A        =
+        di <a target=3D'_blank' href=3D'https://informatica.i-learn.unito.i=
+t/user/view.php?id=3D32830&course=3D2722'>Lonigro Francesca</a> - domenica,=
+ 19 maggio 2024, 12:26=0A            </div>=0A        </td>=0A    </tr>=0A =
+   <tr>=0A        <td class=3D"left side" valign=3D"top">=0A               =
+ &nbsp;=0A        </td>=0A        <td class=3D"content">=0A            <p d=
+ir=3D"ltr" style=3D"text-align:left;">Cari Studenti,</p><p dir=3D"ltr" styl=
+e=3D"text-align:left;"><br /></p><p dir=3D"ltr" style=3D"text-align:left;">=
+allego lo svolgimento del tutoraggio#9. Se avete dubbi, potete contattarmi =
+anche via mail francesca.lonigro@edu.unito.it.</p><p dir=3D"ltr" style=3D"t=
+ext-align:left;"><a href=3D"https://informatica.i-learn.unito.it/tokenplugi=
+nfile.php/d5647e184a176e57cf4c733cca637475/399602/mod_forum/post/68864/Corr=
+ezione%20Tutoraggio%209.pdf">https://informatica.i-learn.unito.it/tokenplug=
+infile.php/d5647e184a176e57cf4c733cca637475/399602/mod_forum/post/68864/Cor=
+rezione%20Tutoraggio%209.pdf</a></p><p dir=3D"ltr" style=3D"text-align:left=
+;"><br /></p><p dir=3D"ltr" style=3D"text-align:left;">Cordialmente</p><p d=
+ir=3D"ltr" style=3D"text-align:left;">Francesca Lonigro<br /></p>=0A=0A    =
+        <div class=3D"commands">=0A            </div>=0A=0A            <div=
+ class=3D"link">=0A                <a target=3D"_blank" href=3D"https://inf=
+ormatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41694#p68864">=0A      =
+              Visualizza questo intervento nel contesto=0A                <=
+/a>=0A            </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=
+=0A<div class=3D"mdl-align unsubscribelink">=0A    <a href=3D"https://infor=
+matica.i-learn.unito.it/mod/forum/index.php?id=3D2722">Modifica preferenze =
+email di raccolta</a>=0A</div><p>Reading this in an email? <a href=3D"https=
+://download.moodle.org/mobile?version=3D2021051718&amp;lang=3Dit&amp;iosapp=
+id=3D633359593&amp;androidappid=3Dcom.moodle.moodlemobile">Download the mob=
+ile app and receive notifications on your mobile device</a>.</p>
+
+--b1_tOS3tSy2kaMXALyKYPkxtRl977lj11VPnCOH9OCHA--
+

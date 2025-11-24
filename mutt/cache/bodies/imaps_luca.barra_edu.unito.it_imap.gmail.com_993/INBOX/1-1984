@@ -1,0 +1,143 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b615:0:b0:2fb:4c9b:a38b with SMTP id r21csp375353ljn;
+        Fri, 1 Nov 2024 09:48:20 -0700 (PDT)
+X-Received: by 2002:a17:907:9623:b0:a99:f2a7:e378 with SMTP id a640c23a62f3a-a9de5cea258mr903533666b.1.1730479700534;
+        Fri, 01 Nov 2024 09:48:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1730479700; cv=none;
+        d=google.com; s=arc-20240605;
+        b=kvEnogVRHxtI/wwHbxL9/zrdHnMtlN2ZvF0kHwCJN1lCUgrz4dMdgbMuTTNqhC0/hC
+         Sg+Ex5evMNWdUcPdXBj2C/n/CKLhkMl1HwJn2yGMbyV8zW64tjkcoiAs+zd2HAglU6xm
+         O/T7yZ8ekOyYBJSR+F1hiUfY9+u5N34kSIDrZXMUWrFXCXAjSeqSU2NunhNOLvwFT/Xw
+         DN8Rkr4SIr/fDsto+QNBSZi+fuqj67SJmVRIEDJr8SG3WEQavZhXAfOaDOBcFBKUQuGz
+         pJRXfiEdNVgCn4OsdsBNgxbhG+hhqNsKgRZkm2JQLx9nqMpUlqbpJkbY15wu1gCmaemw
+         o5Bg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:to:from:importance:in-reply-to:subject:date
+         :savedfromemail:message-id:dkim-signature;
+        bh=CQvgyFzzuTlIlSWHOGqJlb7VD6bCJEF9CNovaD3S7ZQ=;
+        fh=wnoTQjHgWz4kRW5W3Yv210Aj9LolbdJ/Lvc/uyAoO3M=;
+        b=gRE8Z3JN8sPsSLbApTOOlwz3xsQnEN/biaxQyNrR2K+YmlQbQg14EvvtWyF7vvvBPH
+         H3blABbwa9KSh2h4uNSc66R2u5ilfMVtb8BOKMixeUxcgOvOqG5XgVF8o7wIi1+vokel
+         TYEe8IgL1wY5/ENRVlMPsKbBO98oM8W9BxOakEgv4vV2PwkjP3VjnSBIPWpI8kG2ZgEb
+         Sm6obDqExFVCfh2V3MSS3xeju6L7LJHYyqNgqDwMXoterWl0dn1zRfpHlV1nq71Mldxd
+         N4KWCceTkW3obMzr5euzM60a1HkNiNKPsGlMubSYQp4mrJ9z7WR+qJXmvUxWcnTbqijt
+         CBtQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=R+2PzM+9;
+       spf=pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.65 as permitted sender) smtp.mailfrom=paola.gatti@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <paola.gatti@unito.it>
+Received: from mail-sor-f65.google.com (mail-sor-f65.google.com. [209.85.220.65])
+        by mx.google.com with SMTPS id a640c23a62f3a-a9e565a9079sor189267066b.15.2024.11.01.09.48.20
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Fri, 01 Nov 2024 09:48:20 -0700 (PDT)
+Received-SPF: pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.65 as permitted sender) client-ip=209.85.220.65;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=R+2PzM+9;
+       spf=pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.65 as permitted sender) smtp.mailfrom=paola.gatti@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1730479700; x=1731084500; darn=edu.unito.it;
+        h=mime-version:to:from:importance:in-reply-to:subject:date
+         :savedfromemail:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CQvgyFzzuTlIlSWHOGqJlb7VD6bCJEF9CNovaD3S7ZQ=;
+        b=R+2PzM+9iGBilJ6EPpcVYhDZ9Km+NMT70Yh2IuKk4gkicKx08E1L0FjKx82LwuosmH
+         jzMs/COQoTeEvqbfbKcSxu5/33NdOsGl2g4/yUrqTUiznSZNcJowmYEwxmKI2EneUCnB
+         Q4n3YGh6O6aLmBh1KvKUnZ7L/HzbTnH6qaqPk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730479700; x=1731084500;
+        h=mime-version:to:from:importance:in-reply-to:subject:date
+         :savedfromemail:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=CQvgyFzzuTlIlSWHOGqJlb7VD6bCJEF9CNovaD3S7ZQ=;
+        b=Uj/mp9EmFftIhj/ueVpRotjevxKXdxvxAZE8KO4/AS24as78JN6FDNCw5OGj3VScsv
+         APB0lC+m665d0XFTSEx2A22BpqZDhiPWTTPWjOtmfd9A+4aCfDjUK5n113AUGj7/O6ZL
+         Tk4SBhu4xe4kueSov4BPSJpLqnQBKJTjnP3OJTjDx5AZhdsHfe7NPnPhVqqK+H3CZNRm
+         xTvyT6SLGEHwoTzjeGKxipyra1UkKeyjrOglvIn9Gkj6J1Z7zVAe2/TfwtPjqYoqVr+E
+         dQZ4FiCyKKaiWoOKKVdi+YyRTgAZFdC9jia+ZBBWsuBsikMZB2EVmdNZi9NF+9hEfaJa
+         qrpQ==
+X-Gm-Message-State: AOJu0YzghSxtMufkoafacEfr6tohZaNLhSadGcbQKCTqBVG8lT5IXez5
+	tQcdlCb77IYH+Xgsga+mAsZEZPgsX/jefhuZADNBojlWfmATUiQOwul+Hd35o5iI5rX0j9Lw9qP
+	xeHW7ySWp
+X-Google-Smtp-Source: AGHT+IG6NieFL6vGHIJutDSdbbh/hKUvNqAhc0dGS4k30110K6oCO61dXSyWr3huo+WJb6MTSOhQUw==
+X-Received: by 2002:a17:907:7291:b0:a99:8a0e:8710 with SMTP id a640c23a62f3a-a9e6556fa89mr378896466b.14.1730479699748;
+        Fri, 01 Nov 2024 09:48:19 -0700 (PDT)
+Return-Path: <paola.gatti@unito.it>
+Received: from [10.39.243.57] (93-40-76-132.ip37.fastwebnet.it. [93.40.76.132])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9e564940a9sm204061166b.42.2024.11.01.09.48.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Nov 2024 09:48:19 -0700 (PDT)
+Message-ID: <67250653.170a0220.947a7.63c1@mx.google.com>
+SavedFromEmail: paola.gatti@unito.it
+Date: Fri, 01 Nov 2024 17:48:18 +0100
+Subject: RE: Lauree 7 Settembre - Presentazione Tesi
+In-Reply-To: <CAAhooxvinE-2MJUrJDprOGdkujoigm-G2T-5SpJXaNuzBjbLEw@mail.gmail.com>
+Importance: normal
+From: Paola Gatti <paola.gatti@unito.it>
+To: Luca Barra <luca.barra@edu.unito.it>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="--_com.samsung.android.email_54182009792964870"
+
+----_com.samsung.android.email_54182009792964870
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+Q2FybyBMdWNhLMKgbmVzc3VuIHByb2JsZW1hIGEgY29uc2VnbmFyZSBzb2xvIGlsIHBkZi4gTGEg
+bWFnZ2lvciBwYXJ0ZSB1c2F0YSBwcHQgcGVyIG1hZ2FyaSBxdWFsY2hlIGFuaW1hemlvbmUsIG1h
+IHBkZiB2YSBiZW5pc3NpbW8uR3JhemllLMKgcGFvbGEgZ2F0dGkKLS0tLS0tLS0gTWVzc2FnZ2lv
+IG9yaWdpbmFsZSAtLS0tLS0tLURhOiBMdWNhIEJhcnJhIDxsdWNhLmJhcnJhQGVkdS51bml0by5p
+dD4gRGF0YTogMDEvMTEvMjQgIDE3OjExICAoR01UKzAxOjAwKSBBOiBwYW9sYS5nYXR0aUB1bml0
+by5pdCBPZ2dldHRvOiBMYXVyZWUgNyBTZXR0ZW1icmUgLSBQcmVzZW50YXppb25lIFRlc2kgQnVv
+bmFzZXJhLExlIHNjcml2byBwZXIgdW4gZHViYmlvIGNoZSBtaSDDqCB2ZW51dG8gcmlndWFyZG8g
+bGEgY29uc2VnbmEgZGVsbGEgcHJlc2VudGF6aW9uZSBkZWxsYSB0ZXNpLlN1bGxlIGlzdHJ1emlv
+bmkgYyfDqCBzY3JpdHRvIGRpIGNvbnNlZ25hcmUgZHVlIGZpbGUgKHVuIHB0dC9wcHR4IGUgdW4g
+cGRmKSwgdHV0dGF2aWEgaW8gaG8gdXRpbGl6emF0byBMYVRlWCAoYmVhbWVyKSBwZXIgZmFyZSBs
+ZSBzbGlkZXMgcXVpbmRpIGhvIHNvbG8gaWwgcGRmLiBWYSBiZW5lIGNvbnNlZ25hcmUgc29sbyBx
+dWVsbG8gbyBkZXZvIHBlciBmb3J6YSBmYXJlIGFuY2hlIHVuIHB0dC9wcHR4P0Rpc3RpbnRpIHNh
+bHV0aSzCoExCCgoKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tSW5kaXJpenpvIGlzdGl0dXppb25h
+bGUgZGkgcG9zdGEgZWxldHRyb25pY2EgZGVnbGkgc3R1ZGVudGkgZSBkZWkgbGF1cmVhdGkgZGVs
+bCdVbml2ZXJzaXTDoCBkaSBUb3Jpbm9PZmZpY2lhbMKgVW5pdmVyc2l0eSBvZiBUdXJpbsKgZW1h
+aWwgYWRkcmVzc8KgZm9yIHN0dWRlbnRzIGFuZCBncmFkdWF0ZXPCoA==
+
+----_com.samsung.android.email_54182009792964870
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PGh0bWw+PGhlYWQ+PG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0
+L2h0bWw7IGNoYXJzZXQ9VVRGLTgiPjwvaGVhZD48Ym9keSBkaXI9ImF1dG8iPkNhcm8gTHVjYSwm
+bmJzcDs8ZGl2IGRpcj0iYXV0byI+bmVzc3VuIHByb2JsZW1hIGEgY29uc2VnbmFyZSBzb2xvIGls
+IHBkZi4gTGEgbWFnZ2lvciBwYXJ0ZSB1c2F0YSBwcHQgcGVyIG1hZ2FyaSBxdWFsY2hlIGFuaW1h
+emlvbmUsIG1hIHBkZiB2YSBiZW5pc3NpbW8uPGRpdiBkaXI9ImF1dG8iPjxicj48L2Rpdj48ZGl2
+IGRpcj0iYXV0byI+R3JhemllLCZuYnNwOzwvZGl2PjxkaXYgZGlyPSJhdXRvIj5wYW9sYSBnYXR0
+aTwvZGl2PjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXYgYWxpZ249ImxlZnQiIGRpcj0iYXV0byIg
+c3R5bGU9ImZvbnQtc2l6ZToxMDAlO2NvbG9yOiMwMDAwMDAiPjxkaXY+LS0tLS0tLS0gTWVzc2Fn
+Z2lvIG9yaWdpbmFsZSAtLS0tLS0tLTwvZGl2PjxkaXY+RGE6IEx1Y2EgQmFycmEgJmx0O2x1Y2Eu
+YmFycmFAZWR1LnVuaXRvLml0Jmd0OyA8L2Rpdj48ZGl2PkRhdGE6IDAxLzExLzI0ICAxNzoxMSAg
+KEdNVCswMTowMCkgPC9kaXY+PGRpdj5BOiBwYW9sYS5nYXR0aUB1bml0by5pdCA8L2Rpdj48ZGl2
+Pk9nZ2V0dG86IExhdXJlZSA3IFNldHRlbWJyZSAtIFByZXNlbnRhemlvbmUgVGVzaSA8L2Rpdj48
+ZGl2Pjxicj48L2Rpdj48L2Rpdj48ZGl2IGRpcj0iYXV0byI+QnVvbmFzZXJhLDxkaXYgZGlyPSJh
+dXRvIj5MZSBzY3Jpdm8gcGVyIHVuIGR1YmJpbyBjaGUgbWkgw6ggdmVudXRvIHJpZ3VhcmRvIGxh
+IGNvbnNlZ25hIGRlbGxhIHByZXNlbnRhemlvbmUgZGVsbGEgdGVzaS48L2Rpdj48ZGl2IGRpcj0i
+YXV0byI+U3VsbGUgaXN0cnV6aW9uaSBjJ8OoIHNjcml0dG8gZGkgY29uc2VnbmFyZSBkdWUgZmls
+ZSAodW4gcHR0L3BwdHggZSB1biBwZGYpLCB0dXR0YXZpYSBpbyBobyB1dGlsaXp6YXRvIExhVGVY
+IChiZWFtZXIpIHBlciBmYXJlIGxlIHNsaWRlcyBxdWluZGkgaG8gc29sbyBpbCBwZGYuIFZhIGJl
+bmUgY29uc2VnbmFyZSBzb2xvIHF1ZWxsbyBvIGRldm8gcGVyIGZvcnphIGZhcmUgYW5jaGUgdW4g
+cHR0L3BwdHg/PC9kaXY+PGRpdiBkaXI9ImF1dG8iPkRpc3RpbnRpIHNhbHV0aSwmbmJzcDs8L2Rp
+dj48ZGl2IGRpcj0iYXV0byI+TEI8L2Rpdj48L2Rpdj4KCjxicj4KPGRpdiBzdHlsZT0iZm9udC1z
+aXplOjEuM2VtIj4tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS08L2Rpdj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOnNtYWxsIj48ZGl2PjxpbWcgc3JjPSJodHRwczovL3dlYi51bml0by5pdC9sb2dvZmly
+bWFzdHUucG5nIiBvbm1vdXNlb3Zlcj0iaW1hZ2VNb3VzZVBvaW50ZXJVcGRhdGUodHJ1ZSkiIG9u
+bW91c2VvdXQ9ImltYWdlTW91c2VQb2ludGVyVXBkYXRlKGZhbHNlKSI+PGJyPjwvZGl2PkluZGly
+aXp6byBpc3RpdHV6aW9uYWxlIGRpIHBvc3RhIGVsZXR0cm9uaWNhIGRlZ2xpIHN0dWRlbnRpIGUg
+ZGVpIGxhdXJlYXRpIGRlbGwnVW5pdmVyc2l0w6AgZGkgVG9yaW5vPC9zcGFuPjxkaXY+PGZvbnQg
+c2l6ZT0iMiI+T2ZmaWNpYWwmbmJzcDtVbml2ZXJzaXR5IG9mIFR1cmluJm5ic3A7ZW1haWwgYWRk
+cmVzcyZuYnNwO2ZvciBzdHVkZW50cyBhbmQgZ3JhZHVhdGVzJm5ic3A7PC9mb250PjwvZGl2Pjwv
+Ym9keT48L2h0bWw+
+
+----_com.samsung.android.email_54182009792964870--
+

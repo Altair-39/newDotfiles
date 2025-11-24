@@ -1,0 +1,256 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:7e09:0:b0:302:3d35:6815 with SMTP id z9csp451681ljc;
+        Thu, 13 Feb 2025 08:54:02 -0800 (PST)
+X-Received: by 2002:a17:906:6a08:b0:ab7:cd83:98b7 with SMTP id a640c23a62f3a-ab7f34da837mr224803366b.11.1739465642546;
+        Thu, 13 Feb 2025 08:54:02 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1739465642; cv=none;
+        d=google.com; s=arc-20240605;
+        b=VHfsodT0o0RwUptmiRWWPrW65qA2HaTgzVNjhFl5rKuNT+NCDzyZNOwZgAsNyx1xA8
+         DUs/ujpjPE3G4N88VNamjKuTw/FBK//17jNmXdYKSWOUKrZPHNpHA2cz9ewXFONl+0A+
+         /feHsFltF7RYunmH+Kr91Wq9cchgwiwjM06IEA3aC2Ik8D2OdlmVBg3RrceXHJqTi6M+
+         8W8kayh1Z7nmLszI//36vFqiYBk49sBEeiYooD2lAwm2vm25gZrlmMxh8J986EJv9z7S
+         6POCgCWN1QhypnHu2KoymlSToOlKLFX8ixmhemUP1VzzBVl1sgtMGtrsyYCF7Fv8bNgJ
+         biFg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=KPYp6WCjnvXgBRPZKSshs4JgHWl7jeiRQnFByeZUsBI=;
+        fh=aXvp9oOoQR6w0OdnqaQUOcNB5S5MTKHa7sMaY26FWxQ=;
+        b=B4gmW3K4I8VApDwxPXNYNj9g/15vI6SNgR0PQcAejLGINLUwCAfLHvTnK/oZWcKVvy
+         qd35GQjUibBeQOsv6TBTUwRU6OKEUXIw20SxcTMYTL6l+RJ38AmqdMKq2sDYEcSad60o
+         SALmVOkbRSKRwjDvt1MQFahTcH5YodyH7WFwCuMhFwj1Yb9iNyQdvYPTPyXRMpx1vjTJ
+         Z6lYBAwBdJOLSyEpVLZQItoj+p/PBS/8e/YrkCef7MihgZ87+denpnhKS96yYIX0b/Du
+         IV9//aRHgQkbxKBA3jxNbsqLCYpZEOsbnOuG0rR1U7drYroTOpnulFV2HnzXq2VunYfy
+         +kDA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=D+8vwHFJ;
+       spf=pass (google.com: domain of sara.capecchi@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=sara.capecchi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <sara.capecchi@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-aba5325ab13sor78416566b.6.2025.02.13.08.54.01
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Thu, 13 Feb 2025 08:54:02 -0800 (PST)
+Received-SPF: pass (google.com: domain of sara.capecchi@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=D+8vwHFJ;
+       spf=pass (google.com: domain of sara.capecchi@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=sara.capecchi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1739465641; x=1740070441; darn=edu.unito.it;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=KPYp6WCjnvXgBRPZKSshs4JgHWl7jeiRQnFByeZUsBI=;
+        b=D+8vwHFJjf1MY0doqp67bobksxzFgoQU8VA+RRKvzLZdo76McgUhwMsF2NQMxULJAz
+         GUU8qpIyu/MnzOK9WNLoNnZtPxCwUdwXMgT6nB1UeCYBv0D2nFLjx6/pfzkEIhkejPJR
+         8ib0RgjrSsmnikKqLGzNqngMgDQ5ihtuQauQPf3zVE/ClPTJAOhdpnZ656pqTJPPsfiW
+         QfDGDgjbhZ5g0Fy0nnGErghXhFsPnHCQOOXuuxdx3iryaP3CM03qb6nqdMzf7CM+vh2O
+         ovVuvTpdVr9TdTsq6ozB6CKKz3Th9dwpyGQZgQdfHLH00xpMDO50myUsa/+iYgoE3+HF
+         IANw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739465641; x=1740070441;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KPYp6WCjnvXgBRPZKSshs4JgHWl7jeiRQnFByeZUsBI=;
+        b=tzXAYjkBqIfKpRVbGQ+Egnvwvtfts2oP6Nvv5k+wJyrbUX49jV0L9FpgrbTItbt8QH
+         8WWoBQx1Hyak1tnouY8mi0lPifOBLzU8TaOarxs3VCFvXT2u4HHrLsXfbQPPir9JXUjA
+         SZ2vQgz3q5y++jhkgg2kLMHfYSElhy6JPFbhbez07Swsv+pz3D4pW+k2azwZ+ivJaDgI
+         D46/CNUTywdiKutn63nOK6ZW25U2doX1FB/tJ9YDJ+yb9AJ5ylwE0HC4H4h5UoCmpc7E
+         mMlLIJS3+f9BRTkow6EOjMXJ49qZAPg56xo11mQWm6fT/dZV9Ge9mUBebMwY4n1873mk
+         XTWQ==
+X-Gm-Message-State: AOJu0YzgXhffh2MdLPxTyqgb0iO4DZoDTcKYIcxtRGIJujanj9P7vL8J
+	bBfvVYEubH69sKTOx8xQopf1kdXYnC+DHVapvXRkQQzJc3uUysuwpl3FIO22tr2SaIWWPq3KWmi
+	WbXUVK0VGgW5+v3+XebEl9r5C+8CdmgcpaE7uqqnw0gK4mb4RVBisbYsDJm0=
+X-Gm-Gg: ASbGncsU9vGRIyu2Jebet8qys78/8EljCY2aOcpvTMbP6zgZRR4cG60ddNSrCDap/2a
+	K7EfM5W9dU7jdbOLYmQjGJHah6emsaC2FSLdmE93XBQVpTEsJ+rf4WJ49ZaM/zWrI7PC5ZLL+dg
+	==
+X-Google-Smtp-Source: AGHT+IGM2uRU8s41oQTWdjYc5sGgALBqhrDcz3K8RPlOQneUF7+QShfr7tleWmA7hfknYbzj5C1uaawdF/UB1ND4PfI=
+X-Received: by 2002:a05:6402:2353:b0:5dc:71f6:9725 with SMTP id
+ 4fb4d7f45d1cf-5dec9faa37emr9157379a12.27.1739465640707; Thu, 13 Feb 2025
+ 08:54:00 -0800 (PST)
+MIME-Version: 1.0
+References: <6d64f5a6-ecca-49c8-86d9-8491c6a9280a@di.unito.it>
+ <d1015378-08b6-4dd3-a4f9-cce3854fb574@unito.it> <CAEw4pn7MwBtKdsmeCGHKbcjFVzRQd_gq3t9cPpsmp+=j4DZAtA@mail.gmail.com>
+ <1607f578-8c94-4580-a8a6-5ed1962f010c@unito.it>
+In-Reply-To: <1607f578-8c94-4580-a8a6-5ed1962f010c@unito.it>
+From: Sara Capecchi <sara.capecchi@unito.it>
+Date: Thu, 13 Feb 2025 17:53:49 +0100
+X-Gm-Features: AWEUYZlFNCyhTnY8HENwvV0x9PwMGraimwbhtwdXBn0rewMV6ss81Mvl-SAIqyM
+Message-ID: <CAEw4pn7byAq+z_Mt4AFVEEd2oyUdT3aojMUeBXSFP9zmbKnu1w@mail.gmail.com>
+Subject: Re: collaborazione art 11 su Principi di Programmazione Orientata
+ agli Oggetti
+To: luca.barra@edu.unito.it, vladimiro.loverarulfi@unito.it, 
+	lorenzo.falchi@edu.unito.it, paolo.giordano494@edu.unito.it
+Cc: Jeremy Sproston <sproston@di.unito.it>, Luigi Di Caro <luigi.dicaro@unito.it>
+Content-Type: multipart/alternative; boundary="0000000000009d2fb7062e08e71a"
+
+--0000000000009d2fb7062e08e71a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+buonasera a tutti
+
+un benvenuto ai collaboratori!
+
+Come prima cosa avremmo bisogno di sapere  chi potr=C3=A0 essere in laborat=
+orio
+per la prima lezione dei turni del canale B la prossima settimana, sotto vi
+ho  incollato le informazioni sull'orario.
+
+Grazie per la collaborazione!
+
+Sara Capecchi, Jeremy Sproston, Luigi Di Caro
+
+orario canale A
+<https://unito.prod.up.cineca.it/calendarioPubblico/linkCalendarioId=3D613b=
+940fda7aec0018faeede>
+orario canale B
+<https://unito.prod.up.cineca.it/calendarioPubblico/linkCalendarioId=3D613b=
+951ac10c8a0017da45cf>
+
+Come potete vedere e prime lezioni di laboratorio seguiranno questo
+calendario:
+
+*Canale A Lab T1*
+
+- la data d'inizio del laboratorio e` il 25 febbraio anziche' il 18 febbrai=
+o
+
+- *lezioni cancellate: 18 febbraio, 4 marzo*
+
+*Canale A Lab T**2*
+
+- la data d'inizio del  laboratorio e` il 24 febbraio anziche' il 17
+febbraio
+
+-  *lezioni cancellate:** 17 febbraio, 3 marzo*
+
+*Canale B Lab T**1*
+
+- la data d'inizio del  laboratorio e` quella attualmente prevista (19
+febbraio)
+
+-  *lezione cancellat: **26 febbraio*
+
+*Canale B Lab T**2*
+
+- la data d'inizio del  laboratorio e` quella attualmente prevista (20
+febbraio)
+
+-  *lezioni cancellate:** 27 febbraio, 6 marzo*
+
+
+Il giorno gio 13 feb 2025 alle ore 15:06 Gatti Paola <paola.gatti@unito.it>
+ha scritto:
+
+> Carissimi,
+>
+> la presente per ricordarvi di organizzarvi tra di voi per l'assistenza
+> ai turni di laboratorio dell'insegnamento in oggetto, e di avvisare di
+> conseguenza poi i docenti che ci leggono in copia.
+>
+> (pagina insegnamento:
+> https://laurea.informatica.unito.it/do/corsi.pl/Show?_id=3Dkjs9
+> al fondo, puntatore alla pagina orari: l'insegnamento e' del 2 anno,
+> spartito in canale A e canale B)
+>
+> grazie
+> paola gatti
+>
+
+
+--=20
+Sara Capecchi, Ph.D.
+Assistant Professor - Researcher
+Universit=C3=A0 di Torino
+Department  of  Computer Science
+Corso Svizzera 185
+10149 Torino
+Italy
+
+Tel: +39 011 6706747
+Fax: +39 011 751603
+e-mail: capecchi@di.unito.it
+www.di.unito.it/~capecchi
+https://unito.webex.com/meet/sara.capecchi
+
+--0000000000009d2fb7062e08e71a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>buonasera a tutti</div><div><br></div><div>un benvenu=
+to ai collaboratori!</div><div><br></div><div dir=3D"ltr">Come prima cosa a=
+vremmo=C2=A0bisogno di sapere=C2=A0 chi potr=C3=A0 essere in laboratorio pe=
+r la prima lezione dei turni del canale B la prossima settimana, sotto vi h=
+o=C2=A0 incollato le informazioni sull&#39;orario.</div><div dir=3D"ltr"><b=
+r></div><div dir=3D"ltr">Grazie per la collaborazione!</div><div dir=3D"ltr=
+">=C2=A0</div><div dir=3D"ltr">Sara Capecchi, Jeremy Sproston, Luigi Di Car=
+o<br><div><br></div><div><a href=3D"https://unito.prod.up.cineca.it/calenda=
+rioPubblico/linkCalendarioId=3D613b940fda7aec0018faeede">orario canale A</a=
+></div><div><a href=3D"https://unito.prod.up.cineca.it/calendarioPubblico/l=
+inkCalendarioId=3D613b951ac10c8a0017da45cf">orario canale B</a></div><div><=
+br></div><div>Come potete=C2=A0vedere e prime lezioni di laboratorio seguir=
+anno questo calendario:</div><div><br></div><div><p><b>Canale A Lab T1</b><=
+/p><p>- la data d&#39;inizio del laboratorio e` il 25 febbraio anziche&#39;=
+ il 18 febbraio</p><p>-=C2=A0<b>lezioni cancellate: 18 febbraio, 4 marzo</b=
+><br></p><p><b>Canale A Lab T</b><b>2</b></p><p>- la data d&#39;inizio del=
+=C2=A0=C2=A0laboratorio=C2=A0e` il 24 febbraio anziche&#39; il 17 febbraio<=
+/p><p>-=C2=A0=C2=A0<b>lezioni cancellate:</b><b>=C2=A017 febbraio, 3 marzo<=
+/b></p><p></p><p><b>Canale B Lab T</b><b>1</b>=C2=A0</p><p>- la data d&#39;=
+inizio del=C2=A0=C2=A0laboratorio=C2=A0e` quella attualmente prevista (19 f=
+ebbraio)<br></p><p>-=C2=A0=C2=A0<b>lezione cancellat:=C2=A0</b><b>26 febbra=
+io</b><br></p><p><b>Canale B Lab T</b><b>2</b>=C2=A0</p><p>- la data d&#39;=
+inizio del=C2=A0=C2=A0laboratorio=C2=A0e` quella attualmente prevista (20 f=
+ebbraio)<br></p><p>-=C2=A0=C2=A0<b>lezioni cancellate:</b><b>=C2=A027 febbr=
+aio, 6 marzo</b></p></div><div><br></div></div><br><div class=3D"gmail_quot=
+e"><div dir=3D"ltr" class=3D"gmail_attr">Il giorno gio 13 feb 2025 alle ore=
+ 15:06 Gatti Paola &lt;<a href=3D"mailto:paola.gatti@unito.it" target=3D"_b=
+lank">paola.gatti@unito.it</a>&gt; ha scritto:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex">Carissimi,<br>
+<br>
+la presente per ricordarvi di organizzarvi tra di voi per l&#39;assistenza =
+<br>
+ai turni di laboratorio dell&#39;insegnamento in oggetto, e di avvisare di =
+<br>
+conseguenza poi i docenti che ci leggono in copia.<br>
+<br>
+(pagina insegnamento:<br>
+<a href=3D"https://laurea.informatica.unito.it/do/corsi.pl/Show?_id=3Dkjs9"=
+ rel=3D"noreferrer" target=3D"_blank">https://laurea.informatica.unito.it/d=
+o/corsi.pl/Show?_id=3Dkjs9</a><br>
+al fondo, puntatore alla pagina orari: l&#39;insegnamento e&#39; del 2 anno=
+, <br>
+spartito in canale A e canale B)<br>
+<br>
+grazie<br>
+paola gatti<br>
+</blockquote></div><div><br clear=3D"all"></div><div><br></div><span class=
+=3D"gmail_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_s=
+ignature"><div dir=3D"ltr">Sara Capecchi, Ph.D.<br>
+Assistant Professor - Researcher<br>
+Universit=C3=A0 di Torino<br>
+Department=C2=A0 of=C2=A0 Computer Science<br>
+Corso Svizzera 185<br>
+10149 Torino<br>
+Italy<br>
+<br>
+Tel: +39 011 6706747<br>
+Fax: +39 011 751603<br>
+e-mail: <a href=3D"mailto:capecchi@di.unito.it" target=3D"_blank"><span>cap=
+ecchi@di.unito.it</span></a><br>
+<div><a href=3D"http://www.di.unito.it/~capecchi" rel=3D"noreferrer" target=
+=3D"_blank">www.di.unito.it/~capecchi</a><font color=3D"#888888"><br></font=
+></div><div><span><span><span dir=3D"auto" title=3D"https://unito.webex.com=
+/meet/sara.capecchi"><a href=3D"https://unito.webex.com/meet/sara.capecchi"=
+ target=3D"_blank">https://unito.webex.com/meet/sara.capecchi</a></span></s=
+pan></span></div><div><font color=3D"#888888">
+</font></div></div></div>
+</div>
+
+--0000000000009d2fb7062e08e71a--

@@ -1,0 +1,196 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:30e4:b0:361:9897:9696 with SMTP id dp4csp186145ljb;
+        Wed, 12 Nov 2025 07:23:56 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEeRnkIetHyBr28TmfxGEpWiJH4u3OGvZM2MTDOvoK6wnEevwC+3NDBBrFfFknY5HzLR/8C
+X-Received: by 2002:a17:907:7f26:b0:b71:9c99:7ba0 with SMTP id a640c23a62f3a-b7331a9ca09mr191737866b.7.1762961035910;
+        Wed, 12 Nov 2025 07:23:55 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1762961035; cv=none;
+        d=google.com; s=arc-20240605;
+        b=iVm9QPKSgSSv4t1Xo0ojzmEUGB85CbyoWQwjqI7HS4NZLst6uQinDpQ1yT/W74hj70
+         rUZgzzPSrybBhdtL7+mj0MlzjwThpAJmsMFs3Gr4sFBBhrW32EgXXnBpFVs6PtO96/FW
+         JIcNEAL84QSZVi4bCa3oixn2ESvn7yNCdukwSYDOuFltL2KHEGPxG3P9ZfZBAEGqeLF0
+         yNHtPk6evYNK4OfhB5VMTtCCUQPW6C2ErMHgxcAWafHHZWIkmev5D4ONKH93UoD+9UQ9
+         A2M4Krf6YvJ6WOWDaOCGvjjmLfQD8sY/1Dioa+b1zL2DpT4v7UGW+V2UNVh/G/oxVwkM
+         afRg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-signature:dkim-filter;
+        bh=RUPl9KuitSnAokOJtAYZh49g/kGPqumg6dHHBivHnTk=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=gC+YUNX0BF45nJ+5AKq/8yUqgM7FXgBvf/wvdSet4qSsgJF9F/mUbAAEFth8KctfnV
+         YilLq7Bl1bPb/sdOAwrELzXPbI8/vYwOslPj02aKts4CWYmqu4IotvRZnZjmSlC4zoZA
+         iDhG5hMSOqvw9HF48bQXxqTnrRhpAaLfTES82I1KJwZNgpLbZ5mBJcuojjLogQfedZsH
+         rjpyq9hjJSgFK48d9mUncaZivoHUTKqGLST/4T92mbdDVWFU9wXzucWImYAXaiOoMKAr
+         PdG4W1WMK0+kIPAL4i9c9A9lLrlzMfhatb9reaAjgnkBrQiUMuvdcny5WY0h4w2reVaq
+         64IA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=epZdX7d5;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-b733704230asi105339466b.901.2025.11.12.07.23.55
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 12 Nov 2025 07:23:55 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=epZdX7d5;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 5ACFNne41473815
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Wed, 12 Nov 2025 16:23:49 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 5ACFNne41473815
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=i-learn.unito.it;
+	s=default; t=1762961029;
+	bh=RUPl9KuitSnAokOJtAYZh49g/kGPqumg6dHHBivHnTk=;
+	h=Date:To:From:Reply-To:Subject:List-Id:List-Help:List-Unsubscribe:
+	 From;
+	b=epZdX7d531+yqmFGn3ItzgGW5JHgkTYq2IOTLI8oV/k7/dSvJeuJ0p4UOHo51BF+Z
+	 Xi6gX6vJ/Ek4LepCUAVJhSHp5f0uyK3PL0lyIxmURMNBHI3PKEzRfDRl7it00Lj6yn
+	 nHQj5/A0MI7gfwXekzW9bBCOwvDfE4kzRNt0rp+0=
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 5ACFNniC2132613
+	for <luca.barra@edu.unito.it>; Wed, 12 Nov 2025 16:23:49 +0100
+Date: Wed, 12 Nov 2025 16:23:49 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Picardi Claudia (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: TAASS-2526: Mistero svelato
+Message-ID: <90abceae9089ceca0c526bc2dc777263cc087568dd56ca6f9d1259e58c00e6a8@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.6.5 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum8319@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=8319
+X-Course-Id: 3521
+X-Course-Name: Tecniche e Architetture Avanzate per lo Sviluppo del Software 2025/26
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: TAASS-2526: Mistero svelato
+Thread-Index: 90abceae9089ceca0c526bc2dc77
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_DNt9XvpepK0k3ROghfHM9pRPAw1hS8m8otRCuYfE"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 5ACFNne41473815
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply-informatica@i-learn.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_DNt9XvpepK0k3ROghfHM9pRPAw1hS8m8otRCuYfE
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+TAASS-2526 -> Forums -> Annunci -> Mistero svelato
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45866#p73880
+Mistero svelato
+by Picardi Claudia - Wednesday, 12 November 2025, 4:07 PM
+---------------------------------------------------------------------
+PERCH=C3=89 I SERVIZI ORDINI-RMQ E SALA-RMQ NON COMUNICAVANO CORRETTAMENTE
+NELLA LEZIONE DI MARTED=C3=8C 11 (DI CUI STO PER PUBBLICARE IL VIDEO)?
+
+=C3=88 successo questo: venerd=C3=AC scorso, nel mostrarvi il servizio ORDI=
+NI-RMQ,
+mi sono accorta che per errore il nome dell'Exchange utilizzato era
+indicato come "siamofusionE.events", con una e di troppo. L'ho dunque
+corretto al volo all'interno della classe RabbitContracts, nel modulo
+INFRASTRUCTURE.
+
+Purtroppo non ho curato, man mano che "evolvevo" il modulo INFRASTRUCTURE,
+di aggiornare il suo numero di versione. Di conseguenza, quando facevo la
+build di=C2=A0SALA-RMQ, Maven non si accorgeva che nel local repository il
+modulo infrastructure era cambiato; di conseguenza non aggiornava i
+relativi file .class.
+
+Forzando la rebuild del progetto SALA-RMQda zero le cose sono andate a
+posto. In generale IntelliJ, a meno che non si forzi un REBUILD DA ZERO, fa
+un caching delle classi compilate, e decide "da solo" cosa ricompilare (o
+re-impacchettare, nel caso di dipendenze da altre librerie) e cosa no, in
+base a quello che ritiene sia stato modificato.=C2=A0
+
+Purtroppo in casi come questi il comportamento risulta un po'
+imprevedibile. Se nel progetto fosse cambiato qualcos'altro che rendeva
+necessaria una rebuild da zero, probabilmente il problema non sarebbe
+nemmeno venuto fuori...
+
+Ci dice anche che se si realizzano librerie che vengono utilizzate in altri
+progetti =C3=A8 meglio stare attenti ad aggiornare il relativo numero di
+versione quando si fanno modifiche!=C2=A0
+
+---------------------------------------------------------------------
+This is a copy of a message posted in TAASS-2526.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3521
+
+--b1_DNt9XvpepK0k3ROghfHM9pRPAw1hS8m8otRCuYfE
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3521">TAASS-2526</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3521">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D8=
+319">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://i=
+nformatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45866">Mistero svelat=
+o</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" cellspacing=3D"0"=
+ class=3D"forumpost">=0A    <tr class=3D"header">=0A        <td width=3D"35=
+" valign=3D"top" class=3D"picture left">=0A            <a href=3D"https://i=
+nformatica.i-learn.unito.it/user/view.php?id=3D889&amp;course=3D3521" class=
+=3D"d-inline-block aabtn"><img src=3D"https://informatica.i-learn.unito.it/=
+pluginfile.php/17427/user/icon/lambda/f2?rev=3D1" class=3D"userpicture" wid=
+th=3D"35" height=3D"35" alt=3D"Picardi Claudia" title=3D"Picardi Claudia" /=
+></a>=0A        </td>=0A        <td class=3D"topic starter">=0A            =
+<div class=3D"subject">=0A                Mistero svelato=0A            </d=
+iv>=0A            <div class=3D"author">=0A                by <a target=3D'=
+_blank' href=3D'https://informatica.i-learn.unito.it/user/view.php?id=3D889=
+&course=3D3521'>Picardi Claudia</a> - Wednesday, 12 November 2025, 4:07 PM=
+=0A            </div>=0A        </td>=0A    </tr>=0A    <tr>=0A        <td =
+class=3D"left side" valign=3D"top">=0A                &nbsp;=0A        </td=
+>=0A        <td class=3D"content">=0A            <p dir=3D"ltr" style=3D"te=
+xt-align:left;"><strong>Perch=C3=A9 i servizi ordini-rmq e sala-rmq non com=
+unicavano correttamente nella lezione di marted=C3=AC 11 (di cui sto per pu=
+bblicare il video)?</strong></p><p dir=3D"ltr" style=3D"text-align:left;">=
+=C3=88 successo questo: venerd=C3=AC scorso, nel mostrarvi il servizio <str=
+ong>ordini-rmq</strong>, mi sono accorta che per errore il nome dell'Exchan=
+ge utilizzato era indicato come "siamofusion<span><strong>e</strong>.events=
+", con una e di troppo. L'ho dunque corretto al volo all'interno della clas=
+se RabbitContracts, nel modulo <strong>infrastructure</strong>.</span></p><=
+p dir=3D"ltr" style=3D"text-align:left;">Purtroppo non ho curato, man mano =
+che "evolvevo" il modulo <strong>infrastructure</strong>, di aggiornare il =
+suo numero di versione. Di conseguenza, quando facevo la build di=C2=A0<str=
+ong>sala-rmq</strong>, Maven non si accorgeva che nel local repository il m=
+odulo infrastructure era cambiato; di conseguenza non aggiornava i relativi=
+ file .class.</p><p dir=3D"ltr" style=3D"text-align:left;">Forzando la rebu=
+ild del progetto <strong>sala-rmq=C2=A0</strong>da zero le cose sono andate=
+ a posto. In generale IntelliJ, a meno che non si forzi un <b>rebuild da ze=
+ro</b>, fa un caching delle classi compilate, e decide "da solo" cosa ricom=
+pilare (o re-impacchettare, nel caso di dipendenze da altre librerie) e cos=
+a no, in base a quello che ritiene sia stato modificato.=C2=A0</p><p dir=3D=
+"ltr" style=3D"text-align:left;">Purtroppo in casi come questi il comportam=
+ento risulta un po' imprevedibile. Se nel progetto fosse cambiato qualcos'a=
+ltro che rendeva necessaria una rebuild da zero, probabilmente il problema =
+non sarebbe nemmeno venuto fuori...</p><p dir=3D"ltr" style=3D"text-align:l=
+eft;">Ci dice anche che se si realizzano librerie che vengono utilizzate in=
+ altri progetti =C3=A8 meglio stare attenti ad aggiornare il relativo numer=
+o di versione quando si fanno modifiche!=C2=A0</p>=0A=0A            <div cl=
+ass=3D"commands">=0A            </div>=0A=0A            <div class=3D"link"=
+>=0A                <a target=3D"_blank" href=3D"https://informatica.i-lear=
+n.unito.it/mod/forum/discuss.php?d=3D45866#p73880">=0A                    S=
+ee this post in context=0A                </a>=0A            </div>=0A     =
+   </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsub=
+scribelink">=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/foru=
+m/index.php?id=3D3521">Change your forum digest preferences</a>=0A</div>
+
+--b1_DNt9XvpepK0k3ROghfHM9pRPAw1hS8m8otRCuYfE--
+

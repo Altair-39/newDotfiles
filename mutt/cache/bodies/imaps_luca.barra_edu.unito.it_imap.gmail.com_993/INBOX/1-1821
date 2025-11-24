@@ -1,0 +1,74 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a41a:0:b0:2ef:b2c9:28ac with SMTP id p26csp330417ljn;
+        Wed, 7 Aug 2024 11:55:12 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFBjX+/B4CjVtwq/hNM4BbvsfWXuCvMEPTcPeUabtsoUdGswD5TTy3AGYQa8gxmRZVNYleo
+X-Received: by 2002:a05:6000:184d:b0:36b:aa27:3f79 with SMTP id ffacd0b85a97d-36bf0d91f08mr3032905f8f.4.1723056912498;
+        Wed, 07 Aug 2024 11:55:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1723056912; cv=none;
+        d=google.com; s=arc-20160816;
+        b=uA9RVz2igNmDTJNny3vov+yGZNVbAYLC3tf7pxAQN3E0mW+7m085ifA5IF//IwUKrD
+         +J/umHQoDKNzbRr36It9pVUe/O5Y7PQzwczUvI2QCf6HpCsWuK6SKmNCO2cexRGIH1ou
+         59N4EYgwkCW/TwJqmNmM7B1rocdAAxA5FacKQSepEZRKVuGVvfTpCnumRyLZ4UJw1VQ4
+         vFyXBGVYm+kiNhGZu++oFsfTo8AqMw1tD6poLdB9nmeJtr/T8K8BRhrGKcLRsX1/HDIH
+         QD3r0npxQUO1X8GX5T3L2IVyMQHLQZs42G8qYUwfMZrYEf9h0AVEwz7Xdr/e6EuVrFj8
+         tZAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:subject:message-id:to:from
+         :date:dkim-signature;
+        bh=LAB8YmHBzeSZjxJfdZ8ujfEUwkoY8OSc/pD8rpGQekQ=;
+        fh=wnoTQjHgWz4kRW5W3Yv210Aj9LolbdJ/Lvc/uyAoO3M=;
+        b=LT8tpwEQ7LHlVmcdCqe4JfjXV3r8hQzbQq/iGzk47li7JHUS/l88gFlHZQyt3z2qVJ
+         P9FMn5K0tCcnJVYy0XKrsQYtwHXqSS24cf4NByyC4IkMRQ/DzGe96tUJR/sECI6W3gfM
+         nx6QKM0UHqNhv7OBwCEdxFGw4sXAlcI21Xqrqxf04XN2rv7p5Py42ExOxuPCgwkCWmvI
+         ds3Park2J4XC/vIy+PmBCQOJFJ1NpXPTzx3BsYAqfsd+uyfy7sk1n+KbqPYE+Qx9V1ay
+         y/5Ev2IIrnNmYU55+elF09BR21wKoYYg7z8ti/nQpGzYjlv+5eEVSn5B2auhy0fb7XWd
+         mUgw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@github.com header.s=pf2023 header.b="Dh/A6005";
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.201 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Return-Path: <noreply@github.com>
+Received: from out-18.smtp.github.com (out-18.smtp.github.com. [192.30.252.201])
+        by mx.google.com with ESMTPS id 6a1803df08f44-6bbbb838757si24920826d6.167.2024.08.07.11.55.11
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 07 Aug 2024 11:55:12 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@github.com designates 192.30.252.201 as permitted sender) client-ip=192.30.252.201;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@github.com header.s=pf2023 header.b="Dh/A6005";
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.201 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Received: from github.com (hubbernetes-node-195c380.va3-iad.github.net [10.48.154.36])
+	by smtp.github.com (Postfix) with ESMTPA id A9230E0BEE
+	for <luca.barra@edu.unito.it>; Wed,  7 Aug 2024 11:55:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	s=pf2023; t=1723056911;
+	bh=LAB8YmHBzeSZjxJfdZ8ujfEUwkoY8OSc/pD8rpGQekQ=;
+	h=Date:From:To:Subject:From;
+	b=Dh/A6005mLRniEBrgl3q8VUCsIUwXt16RnTjtgtJm8X5sUSnbMeeZn5EGPJ5lrYw3
+	 18NfOw0czjNE/TxaNm7Gu+ha5V7QnGBFnUtXV/aTX7OiAH0GaDj8GyNS2PDfmvxvVs
+	 ZI10/WRvIueRfIF69rBxl+g+Ps/aaVczxfABE+Ss=
+Date: Wed, 07 Aug 2024 11:55:11 -0700
+From: GitHub <noreply@github.com>
+To: Luca Barra <luca.barra@edu.unito.it>
+Message-ID: <66b3c30fa7a30_9e1c7019199@lowworker-7996f4894-7k2r2.mail>
+Subject: [GitHub] A personal access token (classic) has been regenerated for
+ your account
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Auto-Response-Suppress: All
+
+Hey Luca-Barra!
+
+A personal access token (classic) "PC" with admin:enterprise, admin:gpg_key, admin:org, admin:org_hook, admin:public_key, admin:repo_hook, admin:ssh_signing_key, audit_log, codespace, copilot, delete:packages, delete_repo, gist, notifications, project, repo, user, workflow, write:discussion, and write:packages scopes was recently regenerated for your account. Visit https://github.com/settings/tokens for more information.
+
+To see this and other security events for your account, visit https://github.com/settings/security-log
+
+If you run into problems, please contact support by visiting https://github.com/contact
+
+Thanks,
+The GitHub Team
+

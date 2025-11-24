@@ -1,0 +1,183 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:2204:0:b0:37b:a51c:a37f with SMTP id i4csp175520lji;
+        Wed, 19 Nov 2025 07:23:45 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCVdhePA15GRG7Uqcap3uKrOxTcinLTF4iYWwEUGqVrq5C7nP/JXQHNQbirJsaA6+2dxQeXWZt0LOnxR@edu.unito.it
+X-Google-Smtp-Source: AGHT+IG1+JiGAwSgYzs3IUakGxIFbYZ7zpTXSYZN1KZoHQCkhbymtMQR2a+/nrA2qWtv4YmTknel
+X-Received: by 2002:a17:907:7fab:b0:b72:5a54:1713 with SMTP id a640c23a62f3a-b7637a43c18mr329949066b.58.1763565825475;
+        Wed, 19 Nov 2025 07:23:45 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1763565825; cv=none;
+        d=google.com; s=arc-20240605;
+        b=igQ0I8k9xUCXnLgzxphjl00d4R2B24wthVKXIlo+ndUpw5g6PK+tnCld02+kU9Pb9l
+         caZZ3ib+zIYfVZdzCC53aXVjkJ7/u5XT4Cday8x1jT5GzbWsk83j7/Og8c2zNzFbQ+tH
+         s5gcbAa0N6PnxEUYF7FyJKpl/ROJohcQf2IrQI2C/9YeZ1s7KX789tOk4SyGgixASgb/
+         y/vD2w+TW3NqP9Cv/Ini9y7fke1nkWDpkTc7RdKDLIrS08yw8scCE0gTxfQW7KXTdE1O
+         HDdOLTMpanE5hsUUNphJl3kEwWsygyfG0bCI22k2CvB+eIRcxeyiGVcD2IPbkHXO9O4s
+         SK8g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:mime-version:subject:message-id:from:date
+         :dkim-signature:dkim-filter;
+        bh=JJlwT5OpZewx2EtR4+MSf1d1/ET9RxCsPgJ825JgkBQ=;
+        fh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+        b=dDzT5WQvyHGtiEKXE2zVj7rYsFPxXAA4E3VyUhtPb83HWmzDdlF05h8wbehHnMrTMz
+         o62tFNMblUJF0FiwB1RC984T53wu8kdaMxAFyNWk3WH3yRob8Us6dKRH5hGecPktKXuP
+         c2zTBpu4BZsVHYFBHEp6BKuJx8rmFsrUJBCEpdPKr8vaBo4xEwrS7JHA0EGllXgEUllI
+         rkF/lwLonU6O5CS1mwKQBiIkcYzQsZ4ps/xZ669bCw07k7ESXGB9h6C4DDTWjZv82JJU
+         KQJiov4Emu6R6GTaQR4Q7RaC5eACVXGoVER2w1koKwhrA7cptmlxMebRqn/SOKPXkHmo
+         llWQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=ZqjbqiIu;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id a640c23a62f3a-b734fcbe83bsi935308666b.743.2025.11.19.07.23.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Nov 2025 07:23:45 -0800 (PST)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=ZqjbqiIu;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 02B4123D40;
+	Wed, 19 Nov 2025 16:23:43 +0100 (CET)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id SgupWEjW9mr2; Wed, 19 Nov 2025 16:23:42 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 63EA423EBF;
+	Wed, 19 Nov 2025 16:23:42 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 63EA423EBF
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1763565822;
+	bh=JJlwT5OpZewx2EtR4+MSf1d1/ET9RxCsPgJ825JgkBQ=;
+	h=Date:From:Message-ID:MIME-Version;
+	b=ZqjbqiIu9KAgGL1LuguDJxEVAKaUggSxN9Go+mNblp3DXLbGlHS+uEn8f87y1a3pO
+	 PGUZ0ySIB33uf4imxDSs91qrpmI9G0yyh2mET3OKBoNHZLJt622h6elSVMpUhqNV2v
+	 wGvHGdgzL5Y4B4PUX0oz5HasqO2/VU5cCnPiIUVt++lGegJCRExvKUfgENxY8GtANt
+	 yYfhFbbkfnIWQMNe/Jnhvq5KjYIX+Sluv9Lj5olZbTjNAsaIwjNdUqJDU78Iwwr0L2
+	 sagbTS8+y/lvBYmB8DfL/Ox3goq+wlPmXXodNhhnv4JicDXlOtNrJ5qnsD8GRsHa92
+	 02tNoWhJsLLzQ==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id T-ZcepCGfdef; Wed, 19 Nov 2025 16:23:42 +0100 (CET)
+Received: from esse3be408.private.cineca.it (esse3be408.private.cineca.it [10.100.48.130])
+	by smtp4.cineca.it (Postfix) with ESMTP id 579AB246A0;
+	Wed, 19 Nov 2025 16:23:40 +0100 (CET)
+Received: from esse3be408.private.cineca.it (localhost [127.0.0.1])
+	by esse3be408.private.cineca.it (Postfix) with ESMTP id 4518B20060;
+	Wed, 19 Nov 2025 16:23:40 +0100 (CET)
+Date: Wed, 19 Nov 2025 16:23:40 +0100 (CET)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <2061785535.301.1763565820281@esse3be408.private.cineca.it>
+Subject: =?UTF-8?Q?Bando_CHORAL_=E2=80=93_Dottorati_internazionali_sul_P?=
+ =?UTF-8?Q?atrimonio_Culturale_=E2=80=93_Scadenza_17_gennaio_2026?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+=C3=88 aperta la terza call del programma europeo CHORAL (Cultural Heritage=
+ Outreach in RomAnce Languages). Il bando offre 14 posizioni di dottorato i=
+n cotutela internazionale, con avvio il 1=C2=B0 settembre 2026, nel campo d=
+el =E2=80=9CCultural Heritage=E2=80=9D.
+Coordinato dall=E2=80=99Universit=C3=A9 de Pau et des Pays de l'Adour, CHOR=
+AL =C3=A8 un programma Horizon Europe Marie Sk=C5=82odowska-Curie cofinanzi=
+ato dall=E2=80=99Unione Europea. Si tratta di un programma prestigioso, col=
+legato al Cultural Heritage Hub, una rete internazionale di ricerca all=E2=
+=80=99interno dell=E2=80=99Alleanza UNITA che struttura il proprio ecosiste=
+ma scientifico affrontando le sfide legate al patrimonio culturale.
+Il programma CHORAL
+CHORAL mira a formare ricercatori e ricercatrici internazionali di alta qua=
+lit=C3=A0 e a promuovere lo sviluppo di una ricerca interdisciplinare, inte=
+rnazionale e intersettoriale che affronti ogni dimensione del Cultural Heri=
+tage. Pur essendo radicato nel patrimonio culturale, il programma copre un=
+=E2=80=99ampia gamma di domini scientifici, tra cui architettura, antropolo=
+gia, arti e cultura, informatica, storia, letteratura, linguistica, managem=
+ent, musicologia e altri ancora.
+I candidati selezionati saranno iscritti a programmi di dottorato in co-tut=
+ela, con rilascio di doppio titolo e obbligo di mobilit=C3=A0 internazional=
+e.
+Perch=C3=A8 svolgere un PhD CHORAL?
+=E2=80=A2 Formazione alla ricerca di alto livello, guidata da esperti, attr=
+averso il Cultural Heritage Hub dell=E2=80=99Alleanza UNITA, che comprende =
+discipline sia interne sia affini al patrimonio culturale.
+=E2=80=A2 Supporto dedicato dalle fasi iniziali del dottorato fino all=E2=
+=80=99integrazione professionale.
+=E2=80=A2 Impatto trasformativo: contributo alla trasformazione socio-econo=
+mica e culturale dei territori rurali e di montagna transfrontalieri.
+=E2=80=A2 Supporto finanziario: copertura di spese di viaggio, mobilit=C3=
+=A0 e costi di ricerca.
+=E2=80=A2 Conseguimento di un doppio titolo presso due universit=C3=A0 euro=
+pee.
+Dettagli e scadenze
+Scadenza application: 17 gennaio 2026
+20 PhD Research Topics per 14 posizioni in 6 universit=C3=A0 dell=E2=80=99A=
+lleanza UNITA:
+=E2=80=A2=09Universit=C3=A9 de Pau et des Pays de l=E2=80=99Adour
+=E2=80=A2=09Universit=C3=A9 Savoie Mont Blanc
+=E2=80=A2=09Universit=C3=A0 di Torino
+=E2=80=A2=09Universidad de Zaragoza
+=E2=80=A2=09Universit=C3=A0 degli Studi di Brescia
+=E2=80=A2=09Universitatea Transilvania din Bra=C8=99ov
+
+Finanziamento: Dottorati interamente finanziati di durata triennale, con in=
+izio previsto nell=E2=80=99autunno 2026.
+Come partecipare=20
+Informazioni dettagliate sui PhD Research Topics e sui requisiti di candida=
+tura: https://www.research.univ-unita.eu/en/choral-project.html
+Candidature: https://aap.univ-pau.fr
+Per ulteriori informazioni, contattare il CHORAL Support Office all=E2=80=
+=99indirizzo: choral@univ-pau.fr=20
+3rd CHORAL Call =E2=80=93 International PhD Positions in Cultural Heritage =
+- Deadline: January 17, 2026
+As part of the UNITA Alliance, 14 excellent Doctoral Candidates (DCs) will =
+enrol the CHORAL programme in Cultural Heritage.
+Coordinated by the Universit=C3=A9 de Pau et des Pays de l'Adour, CHORAL (C=
+ultural Heritage Outreach in RomAnce Languages) is a Horizon Europe Marie S=
+k=C5=82odowska Curie programme co-funded by the European Union. This presti=
+gious programme is linked to the Cultural Heritage Hub, an international re=
+search network within the UNITA Alliance, which structures its research eco=
+system facing cultural related challenges.
+About the CHORAL Programme
+CHORAL aims to train high-quality international researchers and to nurture =
+the development of interdisciplinary, international and inter-sectoral rese=
+arch that addresses any aspect of Cultural Heritage. While rooted in cultur=
+al heritage, the program spans a wide range of scientific domains, includin=
+g architecture, anthropology, arts and culture, computer science, history, =
+literature, linguistics, management, musicology and more.
+Selected candidates will be enrolled in PhD programs under joint supervisio=
+n, awarding a double degree and requiring international mobility.
+Why Pursue a CHORAL PhD?
+=E2=80=A2=09High-Quality Training: Receive expert-led research training thr=
+ough the UNITA Alliance=E2=80=99s dedicated Cultural Heritage Hub, encompas=
+sing diverse fields within and beyond cultural heritage.
+=E2=80=A2=09Comprehensive Support: Benefit from dedicated guidance from the=
+ initial stages of your PhD to professional integration.
+=E2=80=A2=09Transformative Impact: Contribute to the socio-economic and cul=
+tural transformation of rural and cross-border mountain territories.
+=E2=80=A2=09Financial Support: Includes travel, mobility, and research cost=
+s.
+=E2=80=A2=09Double Degree: Graduate with a double degree from two European =
+universities.
+=20
+Programme Details
+=C2=B7       Application Deadline: January 17, 2026
+=E2=80=A2=0920 PhD Research Topics for 14 positions in 6 universities withi=
+n the UNITA Alliance:
+o=09Universit=C3=A9 de Pau et des Pays de l=E2=80=99Adour
+o=09Universit=C3=A9 Savoie Mont Blanc
+o=09Universit=C3=A0 di Torino
+o=09Universidad de Zaragoza
+o=09Universit=C3=A0 degli Studi di Brescia
+o=09Universitatea Transilvania din Bra=C8=99ov
+=C2=B7       Funding: 3-year fully funded PhDs, starting Fall 2026
+How to Apply
+apply: https://www.research.univ-unita.eu/en/choral-project.html
+Where to apply: https://aap.univ-pau.fr
+Detailed information about the PhD Research Topics and the conditions to Fo=
+r more details, please contact the choral support office at choral@univ-pau=
+.fr

@@ -1,0 +1,452 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:9d59:0:b0:2fb:4c9b:a38b with SMTP id y25csp774274ljj;
+        Wed, 30 Oct 2024 07:25:09 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCWPow9bpijXpVjavxXBAMOJdW9OL0AYwh+UulwJKl3Elc1/vEOE+k9B83pbheosFu56zNEu0L4Lxtxt@edu.unito.it
+X-Received: by 2002:a5d:6481:0:b0:37c:cf75:3945 with SMTP id ffacd0b85a97d-3806121a3c8mr5566944f8f.13.1730298309042;
+        Wed, 30 Oct 2024 07:25:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1730298309; cv=none;
+        d=google.com; s=arc-20240605;
+        b=BLy8w3GLYR2V/ZzbfDDaTiUrpLXviNfevd/sUZ2HUZoH9/EbGVv6GJRuvlgeTu6ffP
+         sNIYhwI3Jp3bwA1mCiOBwLzbqQsbWVjOVMjStedGRa0H0L62WZtSMA+d7di3biJM4Sx5
+         HlpcuzN/j9adOCBY5wY0xEfZMlS5f8BgmSyKBP9RyEKd/Ya9hLJP4QhBVq9yXQaF6Rde
+         BG4NcfN7SyQUucHT9ny46PkRo+BXG9hgFHHfEtJDbCRiwnr41Mjf/FUQ0pLXPdawYY3P
+         OTBJZTeZN83zvySduMdm2e8wfDeBlcKGCblpa5RLLBkc/XLo7XRw0KhVdOAnck7WNpZs
+         oveQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:in-reply-to:references:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :dkim-signature;
+        bh=j6e4wtGIlZwDaf8DOXFJHxAe9HunMmvCx6AvchJL9ho=;
+        fh=khC5i9rlFccbH9MSekLYEqAy/qelcb52VdLedT/emMs=;
+        b=I9uaqvxCbawyKu8yqbWGK0MEht5UxRmbKPl/yx5FZSQstOB8/Tgbam06sFmm/Yj/0A
+         Fb2Y+Se8Rd4h5R7xoDvTREpKJGOSDUfCqW0qVgKWWJCKGZvsk1RQtQcjYwCoD3EIqikQ
+         uawhXTQzJF88rXS/sPhIsieERK/1qZ67W7gObx9TUK/4cENzKIrylGz3Mggf49pfQeXu
+         uUQB3Ib213q8ya0GhIlKgMxBx+wwpOrv5QtJOiE6IK8Nq6AhpS5nK/usG24nb8+a3fhr
+         tgdQj/K0BRAGPeNTDqswnS2Yar5w4L9ulTRYXFmh9renV89UqJCQfcemGTXn2Goiw3iL
+         YkVg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=JHRn1AaU;
+       spf=pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=paola.gatti@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <paola.gatti@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-a9b1f23f899sor516771566b.10.2024.10.30.07.25.08
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Wed, 30 Oct 2024 07:25:09 -0700 (PDT)
+Received-SPF: pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=JHRn1AaU;
+       spf=pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=paola.gatti@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1730298308; x=1730903108; darn=edu.unito.it;
+        h=content-transfer-encoding:in-reply-to:references:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=j6e4wtGIlZwDaf8DOXFJHxAe9HunMmvCx6AvchJL9ho=;
+        b=JHRn1AaUbZkBd6D2VvFZlyXIBsgGrN6HdYVkjwyIRz82t6zlZ7cszFPfvXiGNt790R
+         +kP1Gj/RXQlprUHtL3+go2NIL3q2HDWq/5Cv5qPrNM2lLbjT92qQCy1/tYxjEANonb6z
+         bgwOIeZAc3yD2Au6JZX02RP01YNbkkBJR7n+U=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730298308; x=1730903108;
+        h=content-transfer-encoding:in-reply-to:references:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=j6e4wtGIlZwDaf8DOXFJHxAe9HunMmvCx6AvchJL9ho=;
+        b=G5NRqEre1l7wb3rrSACJUXYqFB3ENuDgII6qw4pM41NPRRqgLMws/Bk7DjA/0ou7o1
+         tiEs7GhXePhrrvuXb/cyEz8av5ZwlFxsTDd8ZuC/OPWLdVq42SKhbqs7dcDe+5uUdb42
+         kyFOuD8su/5KQvVCNNncgWTPDrUuhQ44mVtbLqMr8uky01iG5aywFYnRWh135kTwLRd0
+         RastcMq82cfZBtN9Tx3gaxP8bm1lllb2Amwm6Vt+sJvmtYIyA95zEg34H+RscFQL2xa9
+         P/1wpYs7gyS5ZqArMb3KnrgOgFsg/3blwdH9ZkErDRb4+fD1amtKczPFcRUfXziM+dR/
+         kp3A==
+X-Forwarded-Encrypted: i=1; AJvYcCXNsTOGdY8RVVvBsoICU6xKnuyMvdyc8SSk1x8Ni4gaG7nNRN7GzqLd7vB0NxuHOdlG7IpqCtrfPMnH@edu.unito.it
+X-Gm-Message-State: AOJu0Yw4i3QypslbDJPggR1Tc9UpaMfFW9qw/IBGpM2K8jNRQlVmgWx1
+	pmDHayoAKjvjD5nibbmNjRRq9wvRjXBZ9ZyfOGMYTPjN7WSHAeKhE1O5razTGz9xiw==
+X-Google-Smtp-Source: AGHT+IEjROVc3Uyadl5TXUE5TcSdrbpf/EOcwN0LuWceTZL+q7pcKL2tebY/LkSooa5n4Dm9CLgbnA==
+X-Received: by 2002:a17:907:1a4a:b0:a9e:447b:6f6d with SMTP id a640c23a62f3a-a9e447b709dmr111732766b.35.1730298306620;
+        Wed, 30 Oct 2024 07:25:06 -0700 (PDT)
+Return-Path: <paola.gatti@unito.it>
+Received: from [10.0.13.2] (nat3.di.unito.it. [130.192.156.246])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9b1e1a6bc5sm574047966b.24.2024.10.30.07.25.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Oct 2024 07:25:06 -0700 (PDT)
+Message-ID: <6617e552-d4cb-447e-8874-b5b77108628e@unito.it>
+Date: Wed, 30 Oct 2024 15:25:01 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: ai laureandi del giorno 7 novembre 2024 (triennali)
+Content-Language: it
+From: Gatti Paola <paola.gatti@unito.it>
+To: Paola Gatti <paola.gatti@unito.it>
+References: <b2f9b1dc-d7c0-43e2-8c8c-1233a53bab45@unito.it>
+ <bd9a610b-e6f6-41ca-967b-491d4c314ebb@unito.it>
+ <47c0cc40-adc8-4430-aab2-f8459ab48463@unito.it>
+ <1cb2baf7-59c4-4cce-b540-77af28459c4a@unito.it>
+ <d7617eb8-67f6-4f9f-a38f-25dcdd1d9f43@unito.it>
+In-Reply-To: <d7617eb8-67f6-4f9f-a38f-25dcdd1d9f43@unito.it>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Carissimi,
+nel ricordarvi di compilare il questionario su 
+https://di.unito.it/consensolaurea 8per ottenere il link al datacloud su 
+cui caricare le presentazioni), vi avviso che al momento ho una bozza di 
+commissioni assolutamente ancora da confermare, che vi riporto al fondo.
+
+grazie
+paola gatti
+
+----------------------
+BOZZA COMMISSIONI
+----------------------
+
+MATTINA – 7 novembre 2024 commissione 1 (Aula A), ore 9.00
+Durata commissione: 180min
+Baldoni    presidente    3T
+Fiandrotti        1T
+Paolini           4T
+Roversi
+Sproston          4T
+
+MATTINA – 7 novembre 2024 commissione 2 (Aula B), ore 9.00
+Durata commissione: 165min
+Donatelli presidente    2T
+Birke            2T
+Cardone          2T
+Cavagnino        1T
+Colonnelli       2T
+Damiano          1T
+Sirovich         1T
+
+MATTINA – 7 novembre 2024 commissione 3 (Aula C), ore 9.00
+Durata commissione: 165min
+Aldinucci presidente    1T
+Di Caro          2T
+Mazzei           1T
+Picardi          6T
+Polito           1T
+
+MATTINA – 7 novembre 2024 commissione 4 (Aula D), ore 9.00
+Durata commissione: 165min
+Beccuti  presidente        1T
+Horvath         3T + 4T candidati di Bini
+Amparore         1T
+Lucenteforte     1T
+Torta            1T
+
+MATTINA – 7 novembre 2024 commissione 5 (Aula F), ore 9.00
+Durata commissione: 165min
+Berardi presidente    1T
+Basile           1T
+Patti            1T
+Pernice          2T + 5 T candidati di Castagno
+Schifanella      1T
+
+MATTINA – 7 novembre 2024 commissione 6 (Aula centro congressi), ore 9.00
+Durata commissione: 165min
+Grangetto presidente    1T
+Bocca Garetto    1T + 3T candidati di Sereno
+Bono             2T
+Pensa            4T
+
+POMERIGGIO – 7 novembre 2024 commissione 7 (Aula A), ore 14.00
+Durata commissione: 180min
+Bergadano presidente    1T
+Damiani          1T
+Drago            9T
+Gliozzi          1T
+
+POMERIGGIO – 7 novembre 2024 commissione 8 (Aula B), ore 14.00
+Durata commissione: 180min
+Ardissono presidente    2T
+Anselma          6T
+Mauro            2T
+Segnan           2T
+
+POMERIGGIO – 7 novembre 2024 commissione 9 (Aula C), ore 14.00
+Durata commissione: 165min
+Baroglio  presidente       4T
+Ciravegna     3T
+Micalizio        4T
+(supplente Antelmi)
+
+POMERIGGIO – 7 novembre 2024 commissione 10 (Aula D), ore 14.00
+Durata commissione: 180min
+Pozzato presidente    1T
+Botta
+Gena             8T
+Polato           3T
+----------------------------------------------
+
+Il 27/10/2024 15:39, Gatti Paola ha scritto:
+> Carissimi,
+> al momento non ho ancora notizie sulle commissioni, ma sicuramente visto 
+> quanti siete, avremo commissioni sia al mattino che al pomeriggio 
+> (potete leggere gli appunti al fondo della prima mail che vi avevo 
+> mandato, che si vede ancora qui sotto): vi mandero' la bozza appena 
+> l'avro' (e vi avvisero' anche non appena la segreteria dara' conferma 
+> delle vostre medie di partenza).
+> 
+> Passata la scadenza per l'upload delle tesi, vi chiedo di compilare il 
+> questionario laureandi sotto indicato, in modo da ottenere il link al 
+> data cloud su cui caricare le vostre presentazioni:
+> 
+> --------------------------------------------------------------
+> QUESTIONARIO E LINK DATACLOUD PER PRESENTAZIONI
+> --------------------------------------------------------------
+> al seguente link trovate un questionario da compilare (accettando o 
+> negando la richiesta che vi viene fatta) per ottenere alla fine della 
+> compilazione il link al data cloud su cui caricare le vostre 
+> presentazioni: https://di.unito.it/consensolaurea
+> 
+> Le presentazioni vanno caricate entro il giorno prima della discussione: 
+> meglio entro le 10 e non attendere l'ultimo momento, in caso ci fossero 
+> malfunzionamenti, quindi entro le ore 10 del 6 novembre 2024 (istruzioni 
+> in allegato)
+> Il sistema non rilascia ricevuta, quindi quando caricate non potete 
+> visionare il file: in caso rifacciate il caricamento, il sistema 
+> mettera' un numero progressivo al fondo del titolo del file (es. 
+> "Rossi_Sergio_matricola(2)") quindi quando sarete in aula, dovrete 
+> selezionare voi il file corretto che troverete nella cartella che sara' 
+> posizionata sul desktop (solitamente il presidente di commissione 
+> scarica in locale sul pc d'aula le vostre presentazioni che caricate sul 
+> cloud: sarete voi a scegliere il file da aprire e mostrare).
+> In caso di problemi, suggeriamo di avere sempre con se' un supporto tipo 
+> pen drive con il vostro materiale, come indicato nelle istruzioni.
+> 
+> Chi avesse preso accordi con il proprio relatore per usare il proprio 
+> portatile per la presentazione, è tenuto ugualmente a caricarla sul 
+> datacloud.
+> Chi presenta in coppia con altro candidato, e ha la presentazione unica, 
+> può caricarne una sola inserendo entrambi i cognomi/matricola (esempio: 
+> "Rossi_matricola_Bianchi_matricola")
+> ------------------------------------------------------------
+> 
+> cari saluti
+> paola gatti
+> 
+> Il 25/10/2024 11:50, Gatti Paola ha scritto:
+>> Carissimi,
+>> vi ricordo la scadenza di caricamento tesi su Myunito, fissata dalla 
+>> segreteria studenti a stasera 25 ottobre 2024:
+>>
+>> grazie
+>> paola gatti
+>>
+>> Il 21/10/2024 16:00, Gatti Paola ha scritto:
+>>> Carissimi,
+>>> (sapete che al momento alcuni servizi Unito non sono ancora stati 
+>>> ripristinati, per via dei problemi legati al maltempo di cui avrete 
+>>> penso letto notizia: gli aggiornamenti sono pubblicati a partire 
+>>> dalla pagina https://www.unito.it/avvisi/problemi-di-accesso-ai- 
+>>> servizi-online)
+>>>
+>>> vi ricordo la scadenza di caricamento tesi su Myunito, fissata dalla 
+>>> segreteria studenti al 25 ottobre 2024:
+>>>
+>>> nelle istruzioni alla pagina della segreteria
+>>> https://www.scienzedellanatura.unito.it/it/servizi/esame-di-laurea 
+>>> (link diretto https://www.unito.it/sites/default/files/ 
+>>> istruzioni_conseguimento_titolo_studio.pdf) sul caricamento 
+>>> dell'elaborato dicono:
+>>>
+>>> "Dal menù Prova finale clicca sul link Conseguimento titolo"
+>>>
+>>> Mi raccomando provvedete per tempo.
+>>> Non appena avro' notizie su commissioni/scalette/caricamento delle 
+>>> slide di presentazione, vi avvisero' (nel frattempo tenete a mente le 
+>>> istruzioni gia' mandate nella mail precedente, qui sotto)
+>>>
+>>> grazie
+>>> paola gatti
+>>>
+>>> Il 01/10/2024 00:27, Gatti Paola ha scritto:
+>>>> Buonasera,
+>>>> mi auguro di trovarvi bene, voi e le vostre famiglie.
+>>>>
+>>>> La segreteria studenti ci ha inviato gli elenchi dei laureandi del 
+>>>> del 23 ottobre e del 7 novembre 2024, quindi volevo tranquillizzare 
+>>>> chi mi ha scritto: se ricevete questa mail e' perche' siete in tali 
+>>>> elenchi e si presume che la domanda di laurea sia andata a buon fine.
+>>>>
+>>>> Perdonerete la lunga mail, ma vi chiedo di leggerla tutta perche' 
+>>>> contiene le informazioni per tutti i passi da compiere fino alla 
+>>>> data della laurea. Mi scuso in anticipo per possibili errori che 
+>>>> potrebbero esserci nel testo.
+>>>>
+>>>> Inizio segnalandovi una comunicazione della segreteria studenti:
+>>>>
+>>>> ---------------------------------------------------------------------
+>>>> ESAMI IN SOVRANNUMERO
+>>>> ---------------------------------------------------------------------
+>>>> "gli attuali laureandi, che hanno già inserito da web gli esami 
+>>>> oltre i 180 o i 120, per considerarli sovranumerari ed esclusi dalla 
+>>>> media devono inviarci un ticket e dichiararlo nel testo del ticket."
+>>>>
+>>>> Pertanto, chi tra di voi, tra gli esami LIBERI, avesse inserito dei 
+>>>> cfu in piu' sforando i 12 cfu necessari per laurearsi, e volesse 
+>>>> farli escludere dalla media, deve aprire un ticket alla segreteria 
+>>>> studenti (service desk dentro la vostra area myunito) e scrivere 
+>>>> qualcosa tipo:
+>>>>
+>>>> "richiedo di escludere dalla media di laurea l'insegnamento:
+>>>> NOME ESAME-CODICE-CFU"
+>>>>
+>>>> Chi desiderasse mantenerli nella media finale, non deve fare alcuna 
+>>>> comunicazione.
+>>>>
+>>>> ---------------------------------------------------------------------
+>>>> VERIFICA DOMANDA DI LAUREA/ALLEGATI
+>>>> ---------------------------------------------------------------------
+>>>> Vista la nuova domanda di laurea/conseguimento titolo che e' stata 
+>>>> attivata dalla segreteria studenti, vedervi nella lista fa supporre 
+>>>> che tutto sia andato a buon fine, che abbiate anche pagato la tassa 
+>>>> di laurea e che su Myunito vediate la domanda in stato "presentata": 
+>>>> ipotizziamo che la segreteria effettuerà i controlli più accurati 
+>>>> nei prossimi giorni.
+>>>> Ricordiamo che l'interfaccia dell'applicativo e' uguale per tutto 
+>>>> l'Ateneo, quindi alcune funzioni servono ad altri Corsi di Studio: 
+>>>> infatti, come indicato sullo scadenzario della segreteria 
+>>>> (di.unito.it/lauree) non e' previsto che vengano inseriti ulteriori 
+>>>> allegati (a meno che abbiate ancora il libretto cartaceo) oltre al 
+>>>> file di tesi il cui caricamento scade più avanti, sempre come da 
+>>>> scadenzario della segreteria studenti
+>>>>
+>>>> ---------------------------------------------------------------------
+>>>> UPLOAD TESI sito ATENEO (NON ASPETTARE L'ULTIMO SECONDO!) da 
+>>>> concordare con il relatore
+>>>> ---------------------------------------------------------------------
+>>>> ---> ENTRO le ore 23.59 del giorno del giorno indicato dallo 
+>>>> scadenzario della segreteria studenti (di.unito.it/lauree) va 
+>>>> caricato il file di tesi.
+>>>> Suggeriamo di scambiarvi prima le varie versioni con il relatore e 
+>>>> arrivare poi al caricamento solo con il file definitivo
+>>>>
+>>>> -----> IMPORTANTE:
+>>>> il CCL-LM del 17 settembre 2020 (regolamento prova finale qui: 
+>>>> http://laurea.educ.di.unito.it/index.php/accreditamento/ 
+>>>> consultazione/ListaDocumenti?commissione=9 e qui http:// 
+>>>> magistrale.educ.di.unito.it/index.php/accreditamento/consultazione/ 
+>>>> ListaDocumenti?commissione=9) ha approvato la richiesta che venga 
+>>>> inserita nei vostri lavori la dichiarazione seguente (in una pagina 
+>>>> qualunque, magari a sè, prima o dopo l'indice, scegliete voi):
+>>>>
+>>>> DICHIARAZIONE DI ORIGINALITÀ
+>>>> "Dichiaro di essere responsabile del contenuto dell'elaborato che 
+>>>> presento al fine del conseguimento del titolo, di non avere plagiato 
+>>>> in tutto o in parte il lavoro prodotto da altri e di aver citato le 
+>>>> fonti originali in modo congruente alle normative vigenti in materia 
+>>>> di plagio e di diritto d'autore. Sono inoltre consapevole che nel 
+>>>> caso la mia dichiarazione risultasse mendace, potrei incorrere nelle 
+>>>> sanzioni previste dalla legge e la mia ammissione alla prova finale 
+>>>> potrebbe essere negata."
+>>>>
+>>>> versione inglese in caso servisse
+>>>> ---------------
+>>>> I declare to be responsible for the content I'm presenting in order 
+>>>> to obtain the final degree, not to have plagiarized in all or part 
+>>>> of, the work produced by others and having cited original sources in 
+>>>> consistent way with current plagiarism regulations and copyright. I 
+>>>> am also aware that in case of false declaration, I could incur in 
+>>>> law penalties and my admission to final exam could be denied
+>>>> ---------------
+>>>>
+>>>> Ricordatevi pertanto di inserire questa frase nei file dei vostri 
+>>>> lavori e di controllare le indicazioni di Ateneo che trovate alla 
+>>>> pagina https://www.unito.it/didattica/esame-di-laurea
+>>>>
+>>>> ---------------------------------------------------------------------
+>>>> COPIE CARTACEE ELABORATO FINALE
+>>>> ---------------------------------------------------------------------
+>>>> non è richiesto di consegnare copia cartacea del proprio elaborato; 
+>>>> potrete portare la vostra copia personale che a fine proclamazione 
+>>>> potrete riprendere (la Commissione visionerà anche gli upload 
+>>>> effettuati)
+>>>>
+>>>> Indicazioni Unito per frontespizio: https://www.unito.it/didattica/ 
+>>>> esame-di-laurea
+>>>> (Colore copertina: Informatica non impone vincoli; margini e font 
+>>>> adeguati)
+>>>>
+>>>> ---------------------------------------------------------------------
+>>>> PRESENTAZIONI (formato .pdf, .ppt/pptx, prezi, ecc; in caso di 
+>>>> materiale pesante, creare file zip) da concordare con il relatore
+>>>> ---------------------------------------------------------------------
+>>>> Vi faremo consegnare le PRESENTAZIONI SUL DATACLOUD del Dipartimento 
+>>>> (normalmente la scadenza e' il giorno prima della seduta), ma vi 
+>>>> inviero' indicazioni precise.
+>>>>
+>>>> Per la presentazione ognuno di voi avrà a disposizione:
+>>>> * TRIENNALI: 15 minuti di tempo, comprensivi di eventuali 1-2 minuti 
+>>>> per eventuali domande
+>>>> * MAGISTRALI: 20 minuti di tempo, comprensivi di 1-2 minuti per 
+>>>> eventuali domande
+>>>> * MAGISTRALI con contro-relatore: 30 minuti di tempo, comprensivi di 
+>>>> 2-3 minuti per eventuali domande
+>>>>
+>>>> ---------------------------------------------------------------------
+>>>> MEDIA DI PARTENZA
+>>>> ---------------------------------------------------------------------
+>>>> non appena avremo l'ok dalla segreteria studenti (di solito un paiio 
+>>>> di giorni prima della seduta) vi invieremo la vostra media di 
+>>>> partenza, che vi ricordo che come da regolamento di prova finale 
+>>>> (https://laurea.informatica.unito.it/do/verbali.pl/View?doc=/ 
+>>>> verbali/esami_di_laurea.html), si calcola come segue:
+>>>>
+>>>> =========================================================================
+>>>> - LAUREA:
+>>>> sommatoria (ciascun voto in 30/esimi * CFU assegnato)
+>>>> -------------------------------------------------------------- * 115/30
+>>>> CFU totali dei corsi che prevedono un esame con voto
+>>>>
+>>>> + eventuali lodi (0.02 x CFU dell’esame)
+>>>> =========================================================================
+>>>>
+>>>> =========================================================================
+>>>>        - LAUREA MAGISTRALE
+>>>> media dei voti degli esami di profitto, convertita in 110-esimi,
+>>>> aggiungendo 0.1 per ogni lode riportata nei corsi da 3 CFU (0.2 per
+>>>> corsi da 6 CFU, 0.3 per corsi da 9 CFU e 0.4 per corsi da 12 CFU)
+>>>> =========================================================================
+>>>>
+>>>> ---------------------------------------------------------------------
+>>>> GIORNO DELLA SEDUTA (discussioni e proclamazioni nella stessa giornata)
+>>>> ---------------------------------------------------------------------
+>>>> Per la seduta, verrete suddivisi tra commissioni, ma non so ancora 
+>>>> se useremo solo il mattino (9/13) o anche il pomeriggio (14/18); 
+>>>> stante la possibilità di portare ospiti, il Dipartimento ed il Corso 
+>>>> di Studi RACCOMANDANO DI NON SUPERARE IL MASSIMO DI 10 ospiti per 
+>>>> candidato/candidata: se durante una discussione e/o alla 
+>>>> proclamazione, la commissione si ritrovasse con l'aula affollata, 
+>>>> farebbe uscire tutti mantenendo i soli candidati.
+>>>> Se avete piu' ospiti del numero raccomandato, l'importante e' che in 
+>>>> aula ci sia posto per tutti quindi (sebbene sia raccomandato a tutti 
+>>>> di non girovagare per tutto il piano e non stazionare di fronte alle 
+>>>> aule per non disturbare) avvisate i vostri ospiti di stare in aula 
+>>>> al piu' per la discussione che precede e segue la vostra: questo 
+>>>> permettera' anche di non tardare l'inizio di ogni presentazione, 
+>>>> evitando troppi ingressi/uscite.
+>>>>
+>>>> I candidati che avessero necessità di segnalare la propria presenza al
+>>>> datore di lavoro, possono ottenere un giustificativo dal presidente 
+>>>> di commissione/relatore alla fine della proclamazione.
+>>>>
+>>>> ---------------------------------------------------------------------
+>>>>
+>>>> Al momento attuale non ho altre indicazioni.
+>>>> In attesa di potervi mandare gli aggiornamenti e le indicazioni 
+>>>> complete (chiedo scusa per eventuali errori), per ora vi mando un 
+>>>> caro saluto
+>>>>
+>>>> a presto
+>>>> paola gatti
+>>>>
+>>>>
+>>>>
+>>>>
+>>>>
+

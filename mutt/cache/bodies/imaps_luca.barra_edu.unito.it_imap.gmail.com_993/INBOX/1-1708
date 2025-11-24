@@ -1,0 +1,182 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a1cf:0:b0:2e2:75a4:21a3 with SMTP id c15csp704101ljm;
+        Thu, 23 May 2024 06:24:42 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCVPhSuyEA9R5aL5uGidgz99KgOMgH5D141e6XBSmQn52eWUjkm0GUbkWQ4FxowtbTE4QGzZOxwAvXUKfdSGjJ92LGAEL/+XNQ==
+X-Google-Smtp-Source: AGHT+IEc7jNdh2Pis3G1yWgDWrRLfYe1IftsmrQn1Eck6EvGoW9JwrZAxBjLeC/lThAYqsWj8Ic0
+X-Received: by 2002:a05:6512:3156:b0:51c:bd90:e60b with SMTP id 2adb3069b0e04-526bd694942mr2825331e87.25.1716470682294;
+        Thu, 23 May 2024 06:24:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1716470682; cv=none;
+        d=google.com; s=arc-20160816;
+        b=MNmSDntV/k9EMCnen/IOQG9KWBpnU00SpuvJAT3YuNZjCHkGiZnQ9JxnMQtXu20Jof
+         cEMFMplXZn2Ohng0yKTq9GFGQz/O+4zd2kt0nauoWYHszyP8ZpdcS9HndWgzAIJZ4trF
+         iqHvjeQpCN9KgD5IbPTHKZYBjd/IsuF+H5eNml0SQHeRVJxAe9lCjj3iwKxyb1vbx62K
+         BqjJ746T+eSKRZHc3sxq4RoCgDYxhIosOrsxKA2MY4D6PRDHEFqFIcYCmxopKOiXQrXO
+         e8Zlxo9cHvmVLSW9lEqVDpcvmkX7jyPfaqRsLZZvs611i/jCieWIiecExqhhji6i4egS
+         ae+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date;
+        bh=pfnRlBdYzz2fdivCd/IiVbIhH6VUb3kmPszGIsuuQmg=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=i0fpSgEznKIgrgQ++rAdu/uGYjs6iCKXRikwUCwkfnof9N1YuB5D8IF/vplpRbUBX/
+         yMiPUuj+/2Lx/HmNmRUb1LYrLlXLVFGsqt39hc8xIDWan1su11nFQbLWoDk+gHUfPUAt
+         bqw6re99VrL7lGc69EEAqHwiaDdMFBpwjRyqTPww2ObAFMzvvEd0+q9yVc0XfZThqRAk
+         0SJWYASB+DL587eJ8aCD/2sykcD9smcezVPHleHva8hgTpiPrIthMmniX0RzeL1z2xNP
+         iPLNpAKDdhKQlISWSaCTh1pU1fZ3NHl/GQizv/afJHnAbdaS+CJxyEyLVvBP8AwDw1qq
+         7+Lg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-48936edb2b7si13962061173.66.2024.05.23.06.24.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 May 2024 06:24:41 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 1EE992DB25;
+	Thu, 23 May 2024 15:24:36 +0200 (CEST)
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id oCxf4BDzgCqh; Thu, 23 May 2024 15:24:35 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 8A7C32DB99;
+	Thu, 23 May 2024 15:24:35 +0200 (CEST)
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id d3i2N7YVnoJ3; Thu, 23 May 2024 15:24:35 +0200 (CEST)
+Received: from esse3appjboss22.private.cineca.it (esse3appjboss22.cineca.it [130.186.5.143])
+	by smtp4.cineca.it (Postfix) with ESMTP id 32B632D9CD;
+	Thu, 23 May 2024 15:24:31 +0200 (CEST)
+Received: from esse3appjboss22.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss22.private.cineca.it (Postfix) with ESMTP id 746E464B;
+	Thu, 23 May 2024 15:24:29 +0200 (CEST)
+Date: Thu, 23 May 2024 15:24:29 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <1634576556.897.1716470669470@esse3appjboss22.private.cineca.it>
+Subject: =?UTF-8?Q?SAVE_THE_DATE_|_Conferenza_-_2?=
+ =?UTF-8?Q?8/05/2024_ore_15:45_-_=E2=80=9C3Rs:_Re?=
+ =?UTF-8?Q?duce,_Reuse,_Recycle=E2=80=9D_|_Bardon?=
+ =?UTF-8?Q?ecchia_Weekend_-_01-02/06/2024?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+Cara/o Studente,
+
+i volontari di ESN Torino - all=E2=80=99interno del Progetto europeo del pr=
+ogramma Erasmus+ =E2=80=98Be a changemaker for sustainable campus=E2=80=99 =
+insieme all=E2=80=99EDISU Piemonte e al corrispettivo francese Crous Versai=
+lles - stanno organizzando una serie di iniziative volte a definire e promu=
+overe il concetto di =E2=80=98Sustainable Campus=E2=80=99 inteso come un ca=
+mpus che riduce la propria impronta ecologica, promuove l=E2=80=99inclusion=
+e, la giustizia sociale ed ambientale e si impegna nell=E2=80=99implementaz=
+ione degli SDGs dell=E2=80=99Agenda 2030 (Agenda per lo Sviluppo Sostenibil=
+e). A ciascun evento gratuito parteciperanno, in qualit=C3=A0 di speaker, f=
+igure esperte in questo campo (professori e professoresse dell=E2=80=99Univ=
+ersit=C3=A0 di Torino e del Politecnico di Torino ma anche rappresentanti d=
+i associazioni, organizzazioni, start-up e aziende)
+
+QUANDO
+Tutti gli appuntamenti sono caratterizzati da una conferenza teorica seguit=
+a da un workshop pi=C3=B9 interattivo su diverse tematiche legate alla sost=
+enibilit=C3=A0.
+La prossima data:
+28/05/2024  | 3Rs: Reduce, Reuse, Recycle
+
+Evento finale:
+01-02/06/2024  | Dive into Sustainability: Bardonecchia Weekend=20
+Insieme ai volontari di ESN Torino ed ESN Italia, i partecipanti potranno s=
+coprire e approfondire la conoscenza di piccole azioni e comportamenti sost=
+enibili da mettere in atto per ridurre la propria impronta di carbonio. Per=
+ l'occasione studenti e volontari trascorreranno insieme un fine settimana =
+a Bardonecchia, e le spese di vitto e alloggio saranno interamente coperte =
+dal budget del progetto.=20
+
+DOVE
+Gli incontri si terranno in lingua inglese presso
+
+Sala Conferenze Aula Magna =E2=80=98Cavour=E2=80=99
+Residenza Cavour di EDISU
+Piazza Cavour, 5 - ore 15:45
+
+Evento conclusivo - Weekend a Bardonecchia
+
+COME
+Per partecipare, iscriviti prima di ciascun incontro compilando il google f=
+orm che trovi sui social media di ESN Torino e in particolare su instagram =
+@esntorino.
+
+Per la terza conferenza segui il link evento del 28/05/2024 (https://docs.g=
+oogle.com/forms/d/e/1FAIpQLSdwa9u5wK5pgMRt1VyzlxKSJp4iLTpNP4jg30QADDumBXcmM=
+g/viewform)
+
+Per l=E2=80=99iscrizione al soggiorno a Bardonecchia segui il link Weekend =
+01-02/06/2024 (https://forms.gle/tELhbmfYYY6JsoQk8) o contatta green.team@e=
+sntorino.it
+
+AFFRETTATI! I POSTI SONO LIMITATI!
+
+
+Object: SAVE THE DATE | Conference - 28/05/2024 h. 15:45 =E2=80=9C3Rs: Redu=
+ce, Reuse, Recycle=E2=80=9D | Bardonecchia Weekend - 01-02/06/2024
+
+Dear Student,
+
+ESN=E2=80=99s volunteers of Turin - within the European Project Erasmus+ =
+=E2=80=98Be a changemaker for sustainable campus=E2=80=99 and in collaborat=
+ion  with EDISU Piemonte and Crous Versailles - are planning many initiativ=
+es in order to promote a =E2=80=98Sustainable Campus=E2=80=99 understood as=
+ a =E2=80=9Cgreen campus=E2=80=9D which promotes inclusion, social and envi=
+ronmental justice and, in the meantime, enriches the SDGs of the 2030 Agend=
+a (Agenda for Sustainable Development). Events are free. Experts in this fi=
+eld will participate as speakers (professors from the University of Turin a=
+nd the Polytechnic of Turin but also representatives of associations, organ=
+izations, start-ups and companies)
+
+WHEN
+For each date there will be a theoretical conference followed by a more int=
+eractive workshop on various sustainability-related topics.
+
+Please find below next data
+28/05/2024  | 3Rs: Reduce, Reuse, Recycle
+
+The conclusion of the journay:
+01-02/06/2024  | Dive into Sustainability: Bardonecchia Weekend=20
+Together with the volunteers of ESN Torino and ESN Italia, participants wil=
+l get to discover and deepen their knowledge about small actions, sustainab=
+le behaviors to be done to reduce their own carbon footprint. For this occa=
+sion students and volunteers will spend all together a weekend in Bardonecc=
+hia, and the expenses for board and lodging will be entirely covered by the=
+ project budget.=20
+
+VENUE
+Conferences will take place at
+
+Sala Conferenze Aula Magna =E2=80=98Cavour=E2=80=99
+Residenza Cavour di EDISU
+Piazza Cavour, 5 -  h 15:45
+ (english language will be used)=20
+
+The conclusion of the journey =E2=80=93 Bardonecchia Trip
+
+HOW
+To attend meetings, please use google application form before each conferen=
+ce. You can find it on ESN=E2=80=99s social media especially on instagram @=
+esntorino=20
+
+For the third conference follow this link meeting - 28/05/2024 (https://doc=
+s.google.com/forms/d/e/1FAIpQLSdwa9u5wK5pgMRt1VyzlxKSJp4iLTpNP4jg30QADDumBX=
+cmMg/viewform)
+
+To attend Bardonecchia Trip follow this link Weekend 01-02/06/2024 (https:/=
+/forms.gle/tELhbmfYYY6JsoQk8) or e-mail to green.team@esntorino.it
+
+
+HURRY UP! THERE ARE FEW SEATS!

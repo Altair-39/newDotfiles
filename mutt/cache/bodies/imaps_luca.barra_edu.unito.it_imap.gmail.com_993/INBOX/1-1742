@@ -1,0 +1,282 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:1a28:b0:2ea:83d6:7f34 with SMTP id by40csp1411157ljb;
+        Mon, 3 Jun 2024 06:33:35 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCXxLw8Q8KthstoQBcQ5JIJ/gDEV47VPHYB4xTJrjFF7gmPZ/ipkrAltiIkIJ5wKcgST8OQhgEhMMiuiSQQi6uhTgfbJ02GKRQ==
+X-Received: by 2002:a50:9358:0:b0:579:d01a:938b with SMTP id 4fb4d7f45d1cf-57a3657be64mr6184897a12.35.1717421615056;
+        Mon, 03 Jun 2024 06:33:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1717421615; cv=none;
+        d=google.com; s=arc-20160816;
+        b=WIItG6DaH4iUij3p1EzieADT3QqKtHK81oulnsNmbKrDIWhkX2APCxclxTPWvdGIbd
+         kOtaWM5Nn5+U8Okyz9y22nBnqwLNJkL1isZnI9+I5/auolSpJZOyfAEPRzJ8s2p/tv1l
+         MklqB8lrWP7tbY+6Axhe+88DuLDxKoEAPhO9yots1RAsBiRh2U8fBLfCJEgcpcsoehT1
+         MP4Ms9DvUsl7Ep6b4rjzfPCn7nfvuWutC26F7NQM+uzEQ8QFoQMCYn6a/pFl+Q8QtfQN
+         tEMVCH7pTUel1Kv1/byXLBntfbVQtaU74sPgWdc1tVKy3ZZ5IJPtxvT7d7xZnzCgZLcs
+         rGuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:dkim-signature;
+        bh=U6i87lHiyeZbWVVcx6mirmHYYW3KUuYzP9nhd1CIx14=;
+        fh=UNN1j9bStizQaKToXA8t/wtiAegmoKgzfYvFi9KDs/M=;
+        b=cRDziN1UnhLynJElzXREGx7enIYepE5SWTQjZ9oZ+uOSJcMqzoKEiEwEbVGUfDf5SS
+         EKifK7bS7zl47m0zD6ALNUkxYB0pmuXgBPwWd3Doc+i0nsKuMNTo++L9Z7/+I7I15np6
+         7oDfXP4bZ5MpETbkpoKQgT4xOmIaIr7mBumJRZmCFv6tC+I6M11ke/c7SwCt/5scwbu+
+         ix4HYlHfTzXjZRJV+hprzBnlUZbRSh3SGQtfMIl09QQhpJwMGMkbJR8bdSi1uV6OxhRL
+         JmlGhIuV8UomTr/HqD1vCpM0RIlxhaFSYyjuLc7FjL8x2fmkyXrolCLB/vGDr57nxYaC
+         xORg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=Dobbveh8;
+       spf=pass (google.com: domain of tutorato.scienzedellanatura@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.scienzedellanatura@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <tutorato.scienzedellanatura@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 4fb4d7f45d1cf-57a31b7b258sor1385690a12.1.2024.06.03.06.33.34
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Mon, 03 Jun 2024 06:33:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of tutorato.scienzedellanatura@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=Dobbveh8;
+       spf=pass (google.com: domain of tutorato.scienzedellanatura@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.scienzedellanatura@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1717421614; x=1718026414; darn=edu.unito.it;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=U6i87lHiyeZbWVVcx6mirmHYYW3KUuYzP9nhd1CIx14=;
+        b=Dobbveh8cIpf5wEpu+lHqQ0OnSjWNJCSKRcX6dKFhLq8NUjgyempJPf5IrplFk8nun
+         WM2kY79tRSpOeDZwaeNQvwz5b/fTZsRE7lZlBuDnFJJ21prXxaIQEslw0ALAKd+uQf+5
+         oHYdvwrhwmuqNfiQWTY3J3gmjAPIeXEItUg44=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1717421614; x=1718026414;
+        h=in-reply-to:from:references:to:content-language:subject:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=U6i87lHiyeZbWVVcx6mirmHYYW3KUuYzP9nhd1CIx14=;
+        b=jw9ZaCchj/Tle0VNzu3znccM5XakUa+5ZgLE/mpN+mkxu7370xjPgZX8hq6fabx0vA
+         T0c0izt3ir/L6G5c89t2+qov8ZNcC4795bzrejcumNsZ6ovHfUqLiyM0jGEBa0N3G6R3
+         BhiW05A6Eoop5WVGi2V1JbI5qqeOPBS+L9wNbBbd+Wh4x4Wek3F6rpwbReU9WLm0+OM9
+         yw5WLO7UEI/fhXE2ZY2bMI3fsziRIIAM8+l3BbahkHgG8psYqaa0CklHzdfF3Ddz23YN
+         UzFGej2jAcLf5sfnjs/CWP10jCIWImmbx6mgpRZVBHsfploK2DzjGuj55pkvgler6iFn
+         BWqg==
+X-Forwarded-Encrypted: i=1; AJvYcCVgi/3oWqzCXsv559x3PbNvlxEZG8hHfHHHEZz3sVeJgfkC3/CclABB4C3BRYCf/KuD2qBTAP6xQmKBWTO2tNJejX8X/8OTrQ==
+X-Gm-Message-State: AOJu0YzHb9gEW3/7FMoRFxvAgq01hZnZJAQ7+QRs/UfjhQHeIIbShQLi
+	35YLGpBMcSiKNaTpIoEQPfasN5SkhzotBqAmJ25qMRHVj5wwppUF7+IjShRrf7kNia8LjUJBP95
+	uQT4=
+X-Google-Smtp-Source: AGHT+IHvr4V5HtfJVHqAPRNxIz/3RdJTRX7SwuluM4ZQA2dv4TWZCvil36PMqaUZ+pV+KcB30sCM4w==
+X-Received: by 2002:a50:8a92:0:b0:579:c393:82ad with SMTP id 4fb4d7f45d1cf-57a36539135mr5710525a12.30.1717421614419;
+        Mon, 03 Jun 2024 06:33:34 -0700 (PDT)
+Return-Path: <tutorato.scienzedellanatura@unito.it>
+Received: from [192.168.0.116] (93-32-154-253.ip34.fastwebnet.it. [93.32.154.253])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-57a31b99445sm5265642a12.18.2024.06.03.06.33.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Jun 2024 06:33:34 -0700 (PDT)
+Content-Type: multipart/alternative;
+ boundary="------------c01G3qJJguKZR31IsFVXEI3L"
+Message-ID: <5a72f7e3-2753-4cc3-a873-00543774670a@unito.it>
+Date: Mon, 3 Jun 2024 15:33:34 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: Richiesta pagamento collaborazione art. 11 - Bando tutorato
+ matricole 2023
+Content-Language: it
+To: collaborazioni studenti <collaborazioni.studenti@unito.it>
+References: <847e46f6-13b6-4af1-b2d5-7599122f2373@unito.it>
+ <CANZjD0+wpetSb=D499yVOGadVj4VXV8sJ65zujqoE5CvCi6rVw@mail.gmail.com>
+From: "tutorato.scienzedellanatura@unito.it"
+ <tutorato.scienzedellanatura@unito.it>
+In-Reply-To: <CANZjD0+wpetSb=D499yVOGadVj4VXV8sJ65zujqoE5CvCi6rVw@mail.gmail.com>
+
+This is a multi-part message in MIME format.
+--------------c01G3qJJguKZR31IsFVXEI3L
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Cara Daniela
+ti ringrazio per il gentile riscontro
+Buon pomeriggio
+Stefania Pegoraro
+
+Il 03/06/2024 15:31, collaborazioni studenti ha scritto:
+> Gentilissima collega,
+> grazie per la comunicazione.
+> Il compenso verrà inserito nel prossimo d.d. di pagamento.
+> Buon pomeriggio.
+> Cordialmente.
+> Daniela Tropea
+>
+> Università degli Studi di Torino
+> Area Servizi agli Studenti
+> Sezione Diritto allo Studio
+> Complesso Aldo Moro - Palazzina D
+> Via S. Ottavio 12/B  -10124 Torino
+> e-mail: collaborazioni.studenti@unito.it
+> Tel.:011/6702647
+>
+>
+>
+> Il giorno lun 3 giu 2024 alle ore 13:31 
+> tutorato.scienzedellanatura@unito.it 
+> <tutorato.scienzedellanatura@unito.it> ha scritto:
+>
+>     Buongiorno
+>
+>     in merito all'oggetto, vi inviamo la richiesta di pagamento per la
+>     collaborazione art. 11 - tutorato matricole anno 2023:
+>
+>     -*Barra Luca *matr. 989505  - CdS in Informatica (Dip.to di
+>     Informatica) - 100 ore  - II^ tranche collaborazione terminata
+>
+>     Rimaniamo a disposizione e ringraziamo per la collaborazione
+>
+>     Cordiali saluti
+>
+>     Stefania Pegoraro
+>
+>     -- 
+>
+>     Area Didattica e Servizi agli Studenti del Polo Scienze della Natura
+>     Servizi Orientamento e Tutorato - Scuola di Scienze della Natura
+>     Via Michelangelo 32 - 10126 Torino
+>     Tel. 0116705397 - orario lun. - ven. ore 10-12 e 14-16
+>     www.unito.it/scienzedellanatura  <http://www.unito.it/scienzedellanatura>
+>
+>
+>
+>
+>
+>
+>
+-- 
+Area Didattica e Servizi agli Studenti del Polo di Scienze della Natura
+Servizi Orientamento e Tutorato - Scuola di Scienze della Natura
+Via Michelangelo 32 - 10126 Torino
+Tel. 011 670 5397
+
+--------------c01G3qJJguKZR31IsFVXEI3L
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    Cara Daniela<br>
+    ti ringrazio per il gentile riscontro<br>
+    Buon pomeriggio<br>
+    Stefania Pegoraro<br>
+    <div class="moz-cite-prefix"><br>
+    </div>
+    <div class="moz-cite-prefix">Il 03/06/2024 15:31, collaborazioni
+      studenti ha scritto:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CANZjD0+wpetSb=D499yVOGadVj4VXV8sJ65zujqoE5CvCi6rVw@mail.gmail.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div dir="ltr">Gentilissima collega,
+        <div>grazie per la comunicazione.</div>
+        <div>Il compenso verrà inserito nel prossimo d.d. di pagamento.</div>
+        <div>Buon pomeriggio.</div>
+        <div>Cordialmente.</div>
+        <div>Daniela Tropea</div>
+        <div><br>
+        </div>
+        <div>
+          <div dir="ltr" class="gmail_signature"
+            data-smartmail="gmail_signature">
+            <div dir="ltr">
+              <div dir="ltr">
+                <div dir="ltr">
+                  <div dir="ltr">
+                    <div dir="ltr">
+                      <div style="font-size:small"><font
+                          face="georgia, serif">Università degli Studi
+                          di Torino</font></div>
+                      <div style="font-size:small"><font
+                          face="georgia, serif">Area Servizi agli
+                          Studenti</font></div>
+                      <div dir="ltr" style="font-size:small"><font
+                          face="georgia, serif">Sezione Diritto allo
+                          Studio </font></div>
+                      <div dir="ltr" style="font-size:small">
+                        <div><span style="font-family:georgia,serif">Complesso
+                            Aldo Moro - Palazzina D</span></div>
+                        <div>Via S. Ottavio 12/B <span
+                            style="font-family:georgia,serif"> -10124   
+                            Torino</span></div>
+                        <div><font face="georgia, serif">e-mail: <a
+href="mailto:collaborazioni.studenti@unito.it" target="_blank"
+                              moz-do-not-send="true"
+                              class="moz-txt-link-freetext">collaborazioni.studenti@unito.it</a></font></div>
+                        <div><font face="georgia, serif">Tel.:011/6702647<br>
+                          </font></div>
+                        <div><font face="georgia, serif"><br>
+                          </font></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+      <br>
+      <div class="gmail_quote">
+        <div dir="ltr" class="gmail_attr">Il giorno lun 3 giu 2024 alle
+          ore 13:31 <a
+            href="mailto:tutorato.scienzedellanatura@unito.it"
+            moz-do-not-send="true" class="moz-txt-link-freetext">tutorato.scienzedellanatura@unito.it</a>
+          &lt;<a href="mailto:tutorato.scienzedellanatura@unito.it"
+            moz-do-not-send="true" class="moz-txt-link-freetext">tutorato.scienzedellanatura@unito.it</a>&gt;
+          ha scritto:<br>
+        </div>
+        <blockquote class="gmail_quote"
+style="margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+          <div>
+            <p> Buongiorno </p>
+            <p>in merito all'oggetto, vi inviamo la richiesta di
+              pagamento per la collaborazione art. 11 - tutorato
+              matricole anno 2023: </p>
+            <p>-<b> Barra Luca </b>matr. 989505  - CdS in Informatica
+              (Dip.to di Informatica) - 100 ore  - II^ tranche
+              collaborazione terminata<br>
+            </p>
+            <p> Rimaniamo a disposizione e ringraziamo per la
+              collaborazione </p>
+            <p>Cordiali saluti</p>
+            Stefania Pegoraro<br>
+            <br>
+            <pre>-- 
+
+Area Didattica e Servizi agli Studenti del Polo Scienze della Natura
+Servizi Orientamento e Tutorato - Scuola di Scienze della Natura
+Via Michelangelo 32 - 10126 Torino
+Tel. 0116705397 - orario lun. - ven. ore 10-12 e 14-16
+<a href="http://www.unito.it/scienzedellanatura" target="_blank"
+            moz-do-not-send="true">www.unito.it/scienzedellanatura</a>
+
+
+
+
+
+
+
+</pre>
+          </div>
+        </blockquote>
+      </div>
+    </blockquote>
+    <pre class="moz-signature" cols="72">-- 
+Area Didattica e Servizi agli Studenti del Polo di Scienze della Natura
+Servizi Orientamento e Tutorato - Scuola di Scienze della Natura
+Via Michelangelo 32 - 10126 Torino
+Tel. 011 670 5397</pre>
+  </body>
+</html>
+
+--------------c01G3qJJguKZR31IsFVXEI3L--

@@ -1,0 +1,169 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:8944:0:b0:302:3d35:6815 with SMTP id b4csp187765ljk;
+        Tue, 21 Jan 2025 09:32:58 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFxz6TBXHPGgpEdIPp2qijpy0BGfEaqRlStRJCxhfU14VXtORAXr8bH9IC2z9rTg0yCy6vC
+X-Received: by 2002:a17:907:3f29:b0:ab3:7812:b3c2 with SMTP id a640c23a62f3a-ab38b1b471emr700158266b.2.1737480777742;
+        Tue, 21 Jan 2025 09:32:57 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1737480777; cv=none;
+        d=google.com; s=arc-20240605;
+        b=kvTipRrXgryK5zsxUl9z63HhOEdy9O2fvHQtOXmE/e+snfKjHKAeUdk4HCEcM6jFcj
+         GviHLwSpvEPAsmn2O9qyTUiPdqlluWKCegl0Y19cl0mNH3dYLNtM5LxMR8CKJ2OfInJ2
+         9NTYVcwc7/Gnqnwye+336Xf1RooUynpJoiEVU2V5wFbFhQ0tPLoAMmWyv+JX3L8uE0V5
+         sXJ6RbrqJw+9AgFs3G+RXhoUU2pzihv2He61oDXmz1f9T/fo/Fn/V+CTz9AQ0b0wk/PO
+         En88gw9QpDfTiqgIG8g0KKpY9KBNQREZb7PxxgoHkC/yErrPnSR9jlDDrgPX8uQNptJn
+         yeDA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-signature:dkim-filter;
+        bh=VrCMCf3R0it5ZrIDW5U/YWLAOZrvkoaPEmFaeCGAjbU=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=ZiS2Qckl2grP+jkdvuGnRHQ/AevYS8mJcd8VYjUscUeHtrRVrhNb8GWF/gkkkU8Upv
+         BeiSqd83DsmoNuYySIAELF7Mgx1Upc+kGj4iG4sDWHV3pzHYW7RIIU9AeMbsXIrCF+8J
+         5wiJHjgpsPlFjVZTvmkGC/bsnkNF+c/gcN6KWOoSkb7Yccz719k3GucsvinQbloeXhs5
+         IT6hdBQ8icoRgJ+U/gfiXJ6z1zr8c3kefAhW8gd0D0W3MoPyiNZOR5wDEboioKmOBlT5
+         +0kNlU6CJ1fkA5k+z0UdKt6LiXxC2kO8L6T8xIB/7OSSvxnEPu1b1WHq8lWkH9czccsW
+         msDQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=jGmJyBUX;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ab384fec82fsi757766766b.538.2025.01.21.09.32.57
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Jan 2025 09:32:57 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=jGmJyBUX;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 50LHWuP3724154
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Tue, 21 Jan 2025 18:32:56 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 50LHWuP3724154
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=i-learn.unito.it;
+	s=default; t=1737480776;
+	bh=VrCMCf3R0it5ZrIDW5U/YWLAOZrvkoaPEmFaeCGAjbU=;
+	h=Date:To:From:Reply-To:Subject:List-Id:List-Help:List-Unsubscribe:
+	 From;
+	b=jGmJyBUXgylxQkRRv9bZyCwwhmkktvKLIMra/nzMboL7em51wc3KirYkJlEE/6bnV
+	 A/mz2nfPlZ4q3aQMt7OlO2Y9kO0JKRxkuaGmuvD3KpfdyC+ennQxXOlLpDNyBS9Es5
+	 BKntnqoI9gVNLVC/R3eazhAc7H3kHrxovsEI/xM8=
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 50LHWulq006555
+	for <luca.barra@edu.unito.it>; Tue, 21 Jan 2025 18:32:56 +0100
+Date: Tue, 21 Jan 2025 18:32:56 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Damiano Rossana (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: ModSem 24/25: Roadmap per i progetti
+Message-ID: <b7bd5200896313f6ee77affc55c43bf11243e796bd749efc51612b6fd1d57cf1@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7530@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7530
+X-Course-Id: 3022
+X-Course-Name: Modellazione Concettuale per il Web Semantico
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: ModSem 24/25: Roadmap per i progetti
+Thread-Index: b7bd5200896313f6ee77affc55c4
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_UbxucKjd7mJDgHugmmXLWiBVQE4QVBMfASAYqjCSDM"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 50LHWuP3724154
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply-informatica@i-learn.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_UbxucKjd7mJDgHugmmXLWiBVQE4QVBMfASAYqjCSDM
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+ModSem 24/25 -> Forums -> Annunci -> Roadmap per i progetti
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43564#p71040
+Roadmap per i progetti
+by Damiano Rossana - Tuesday, 21 January 2025, 6:31 PM
+---------------------------------------------------------------------
+Sul sito del corso e allegato a questo messaggio trovate il pdf delle slide
+viste nella lezione extra di gennaio (ROADMAP PER I PROGETTI), che
+riassumono a grandi linee i passi da fare per realizzare il progetto
+d'esame (o rivederlo per chi l'ha gi=C3=A0 realizzato).=C2=A0
+
+Ricordo che non =C3=A8 necessario portare la relazione in formato cartaceo.=
+=C2=A0
+
+La docente
+
+Attachment roadmap_2024.pdf:
+https://informatica.i-learn.unito.it/pluginfile.php/413208/mod_forum/attach=
+ment/71040/roadmap_2024.pdf
+
+---------------------------------------------------------------------
+This is a copy of a message posted in ModSem 24/25.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3022
+
+--b1_UbxucKjd7mJDgHugmmXLWiBVQE4QVBMfASAYqjCSDM
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3022">ModSem 24/25</a>=0A    &raqu=
+o;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/index.php?id=3D3022">Forums</a>=0A    &raquo;=0A    <a target=3D"=
+_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=
+=3D7530">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https=
+://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43564">Roadmap pe=
+r i progetti</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" cellsp=
+acing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=0A        <td =
+width=3D"35" valign=3D"top" class=3D"picture left">=0A            <a href=
+=3D"https://informatica.i-learn.unito.it/user/view.php?id=3D18391&amp;cours=
+e=3D3022" class=3D"d-inline-block aabtn"><img src=3D"https://informatica.i-=
+learn.unito.it/pluginfile.php/106276/user/icon/lambda/f2?rev=3D545076" clas=
+s=3D"userpicture" width=3D"35" height=3D"35" alt=3D"" /></a>=0A        </td=
+>=0A        <td class=3D"topic starter">=0A            <div class=3D"subjec=
+t">=0A                Roadmap per i progetti=0A            </div>=0A       =
+     <div class=3D"author">=0A                by <a target=3D'_blank' href=
+=3D'https://informatica.i-learn.unito.it/user/view.php?id=3D18391&course=3D=
+3022'>Damiano Rossana</a> - Tuesday, 21 January 2025, 6:31 PM=0A           =
+ </div>=0A        </td>=0A    </tr>=0A    <tr>=0A        <td class=3D"left =
+side" valign=3D"top">=0A                &nbsp;=0A        </td>=0A        <t=
+d class=3D"content">=0A                <div class=3D"attachments">=0A      =
+              <a href=3D"https://informatica.i-learn.unito.it/pluginfile.ph=
+p/413208/mod_forum/attachment/71040/roadmap_2024.pdf"><img class=3D"icon ic=
+on" alt=3D"PDF document" title=3D"PDF document" src=3D"https://informatica.=
+i-learn.unito.it/theme/image.php/_s/lambda/core/1733926583/f/pdf" /></a> <a=
+ href=3D"https://informatica.i-learn.unito.it/pluginfile.php/413208/mod_for=
+um/attachment/71040/roadmap_2024.pdf">roadmap_2024.pdf</a><br />=0A        =
+        </div>=0A            <p dir=3D"ltr" style=3D"text-align:left;">Sul =
+sito del corso e allegato a questo messaggio trovate il pdf delle slide vis=
+te nella lezione extra di gennaio (<strong>Roadmap per i progetti</strong>)=
+, che riassumono a grandi linee i passi da fare per realizzare il progetto =
+d'esame (o rivederlo per chi l'ha gi=C3=A0 realizzato).=C2=A0</p><p dir=3D"=
+ltr" style=3D"text-align:left;">Ricordo che non =C3=A8 necessario portare l=
+a relazione in formato cartaceo.=C2=A0</p><p dir=3D"ltr" style=3D"text-alig=
+n:left;">La docente</p><p dir=3D"ltr" style=3D"text-align:left;"><br /></p>=
+=0A=0A            <div class=3D"commands">=0A            </div>=0A=0A      =
+      <div class=3D"link">=0A                <a target=3D"_blank" href=3D"h=
+ttps://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43564#p71040"=
+>=0A                    See this post in context=0A                </a>=0A =
+           </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div=
+ class=3D"mdl-align unsubscribelink">=0A    <a href=3D"https://informatica.=
+i-learn.unito.it/mod/forum/index.php?id=3D3022">Change your forum digest pr=
+eferences</a>=0A</div>
+
+--b1_UbxucKjd7mJDgHugmmXLWiBVQE4QVBMfASAYqjCSDM--
+

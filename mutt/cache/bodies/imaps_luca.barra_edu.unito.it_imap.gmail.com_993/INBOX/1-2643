@@ -1,0 +1,118 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:8543:0:b0:32a:7f76:203e with SMTP id u3csp1036502ljj;
+        Mon, 9 Jun 2025 07:52:35 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCWQkBwDI/XUFGT+omefoqbONI2G0I8HzommBszUzBkPzOUYUYXBcOh2OkSkYneFBIq/BIIWnTIGDo3a@edu.unito.it
+X-Google-Smtp-Source: AGHT+IFIozFpxdIYnO450XKvBRDwSslM2Bu2eDZ8Li/jGJxEx3EU5aJOoq9mc0PREFOnvMz2zEg3
+X-Received: by 2002:a05:651c:1993:b0:308:f48a:5560 with SMTP id 38308e7fff4ca-32adfd43f9amr12215941fa.8.1749480755641;
+        Mon, 09 Jun 2025 07:52:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1749480755; cv=none;
+        d=google.com; s=arc-20240605;
+        b=EBMY4ot7er6MSkaKpCfA3IwgDReV5tb0coLgRMGicCuPwSMhXiu1DMupBsjbGD7YZN
+         u8rkYqNNet7H4v4zLJbtBNyTR3XNMhHxWQ0RQwdLSsG0L5B/tIy/D6PsKWE3LT7zOQgU
+         Ki0eGXv42rIG/TIw0g9GyZ+ljo3ymtsmIRuLhEKHs1DBePmE0Q22aVSm3TTqzVem88zA
+         WkDV7zU4s+Whl0dhAo+tEkPmzLqthtzw7u4G8MMMkslnBrTyWJpy/EPVkaIiF+RD9IyQ
+         qyrTGaK/qs+MqjoDeR47H59vkgQWj9HVeAvbSXUUNBbB2tW91K9dLeRuGhtiYPHVOGlv
+         c46g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=hMt40RXcvhJZm174rSfSRTCTvKeXyheqygaTaYrKlag=;
+        fh=2M7veYaodce6q7HbrnUOvHOCPnnPq2oSFWZWyE7y22w=;
+        b=Wd3zmbpD8IOw09CTPg6CmrtYaqvhNdY8Ep0GBXG9Ifufif3zwpPNVP5FzvIckJo0Wf
+         g1bpFtrlIBY6IQ4Gwh8fWhC4IhBe5Vh8fYhcPwM1MlWSBSrF4Tka2LFnoqA/5Qo48sk+
+         fME0iOatSPhe96hqh0p4RhjsuZ2qm12e/zhjwFcLvbjk3HUn//opAYMu/xx5bf4GZS+y
+         sqiTUIN452tpdSvlWlIw3gJY8z+0VdCAqIq10mfKrpsZqQ6nAJTRampxaJTJhreiYiWk
+         K/f3YqObscQKNB/xNXAZpUamBQuRo6vRO97PJ0siz3x59/75ZIuohL/QM1MpsC106Fc0
+         Mnsg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=kcZjo5QM;
+       spf=pass (google.com: domain of luigi.dicaro@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=luigi.dicaro@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <luigi.dicaro@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 38308e7fff4ca-32ad3138c80sor17633141fa.2.2025.06.09.07.52.35
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Mon, 09 Jun 2025 07:52:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of luigi.dicaro@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=kcZjo5QM;
+       spf=pass (google.com: domain of luigi.dicaro@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=luigi.dicaro@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1749480755; x=1750085555; darn=edu.unito.it;
+        h=cc:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=hMt40RXcvhJZm174rSfSRTCTvKeXyheqygaTaYrKlag=;
+        b=kcZjo5QMkDaiTNPLwin0UcjFYbHTRuHOFbV5qRzhRhYiaiuPfQFywuxoGT8CQFJt0c
+         6PjkDOjQ26PsFEDB6rbATQCPq5O7YMY4wbxXDrTN0gPhCs1DhlMVZ8cbb0Mgf2UW1yPh
+         iqLIVcBKBCu/K41i58yY2BoN6vPqLaA4U5F74ElKcA7KgCUqPW46j51dFiLuNVN2pYV4
+         3aVI4OT0jtYfQjToSOZOY3mL75MNeW6NQ6pH0k53ytTK5zn27i9kI8W/Abie5/zxVHPz
+         QW/PihMZ3L6koyBvkdrOpVxCmz79cw/pTF5SFGOr8C4rr7IlF6kWiIlJa0lVDcQLsuuR
+         HtyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749480755; x=1750085555;
+        h=cc:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hMt40RXcvhJZm174rSfSRTCTvKeXyheqygaTaYrKlag=;
+        b=Dqz8ILvkGVe4IgqX8Lo9fiE6cKbHPPzONrNRVm+Zb36qFDJhq7nyzpvdEE6kT5fziC
+         Fh0AdzwvMhoJ6VxdAeT3++/tw5iOZfLzZJ/z6Ns4LRKbpR78ttkdu6R/6MwCOYooQoYl
+         4fHjn797KN0JtYmnIe6LL1qc0SSSEuyAdqXVreU2QyHJK4WeOfrwhGW68c68rrP0D+yi
+         n4n6T2FK9oc0M1P3KvRFl0Vr7kEuDYKDtAVohuADNonJWZ7BmHu1AyLZIGmiUox/uuUX
+         Sbllsio6dswSlFOV9gGv/KM69nUwMEwmvy5tLz6KIVQ5l2qybKbA90nHCSUqNnIHXAPl
+         F/gw==
+X-Forwarded-Encrypted: i=1; AJvYcCVfHpisRm5jl3ER72AhSfQR2MxPFyINaClhUU7LauJS4ptPuhXHenHTeH+GAMrWGLF7xsKX1jerjjBo@edu.unito.it
+X-Gm-Message-State: AOJu0YwTV5XdYTYanCBd7QTgxtUDS1lktf92flbMM3IILGQl64JuyRiY
+	kR3tOhzNxgAjRG7W575NrLFp8n9rdozcZpGroC524vKxGF5y+zqM27teKDxhY1SJuME2rQicAJT
+	yF1b8lY4SfkSiAL2d1ASKYj4Coei3wvlynLUaDuftWuMa
+X-Gm-Gg: ASbGnctyz/G0XTswXzBn/u04TIUTujlbvMkbLdoZ3rpDosqGli4zL4oWCAklP/C5BHB
+	A2EMGoorry9Q+HtbYbO9KOCDuAmrOftwdN0ePUY1ua7CepaMhHfaTWAwNGXNlP/0IVA/WVocCmh
+	Y2drP2JPyPoW2KF7xEHfIYgt3qGol2I8Qa95yG72aFvRQ=
+X-Received: by 2002:a2e:9ac2:0:b0:30b:b78e:c445 with SMTP id
+ 38308e7fff4ca-32b12299890mt270451fa.17.1749480755089; Mon, 09 Jun 2025
+ 07:52:35 -0700 (PDT)
+MIME-Version: 1.0
+From: Luigi Di Caro <luigi.dicaro@unito.it>
+Date: Mon, 9 Jun 2025 16:52:23 +0200
+X-Gm-Features: AX0GCFvoQsHp3WfH7TgVfjSEDyJLqsklghKz3NEKITCPivqpxyywpQbsPt6eDfM
+Message-ID: <CAH2i-5+aGX+rPTq3_QviMyP=a0Tohfc0p7gfZv5AhE9eMraGQQ@mail.gmail.com>
+Subject: Esame 17 Giugno - TLN parte III
+Cc: Luigi Di Caro <luigi.dicaro@unito.it>
+Content-Type: multipart/alternative; boundary="000000000000f3fd1b063724baf8"
+Bcc: luca.barra@edu.unito.it
+
+--000000000000f3fd1b063724baf8
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Buongiorno,
+
+lo scheduling del 17 Giugno partir=C3=A0 alle ore 9 del mattino e continuer=
+=C3=A0
+fino a tardo pomeriggio.
+
+Vi prego di 1) comunicarmi se siete in gruppo o meno (comunicazione
+obbligatoria in ogni caso), 2) se avete sovrapposizioni con altri esami,
+con visite mediche o altri seri impedimenti nell'arco di tutta la giornata,
+3) consegnare il laboratorio nel repository su Moodle entro Domenica ore
+23:59.
+
+Buona settimana!
+Cordiali saluti
+
+--000000000000f3fd1b063724baf8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Buongiorno,<div><br><div>lo scheduling del 17 Giugno parti=
+r=C3=A0 alle ore 9 del mattino e continuer=C3=A0 fino a tardo pomeriggio.</=
+div></div><div><br></div><div>Vi prego di 1) comunicarmi se siete in gruppo=
+ o meno (comunicazione obbligatoria in ogni caso), 2) se avete sovrapposizi=
+oni con altri esami, con visite mediche o altri seri impedimenti nell&#39;a=
+rco di tutta la giornata, 3) consegnare il laboratorio nel repository su Mo=
+odle entro Domenica ore 23:59.</div><div><br></div><div>Buona settimana!</d=
+iv><div>Cordiali saluti</div></div>
+
+--000000000000f3fd1b063724baf8--

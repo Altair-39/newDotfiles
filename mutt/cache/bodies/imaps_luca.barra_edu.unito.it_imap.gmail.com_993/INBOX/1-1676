@@ -1,0 +1,108 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:339:b0:2e2:75a4:21a3 with SMTP id b25csp851391ljp;
+        Thu, 9 May 2024 07:39:39 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFmQgtHWDBKZE0ggXtCyDTQ9rYTb3scVyZt2NKDV0Klxeb6tAmJ1T+JL/7AjvLYu57cR5Fr
+X-Received: by 2002:a17:906:d14e:b0:a59:b138:e415 with SMTP id a640c23a62f3a-a59fb9f33dfmr366150266b.66.1715265579207;
+        Thu, 09 May 2024 07:39:39 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1715265579; cv=none;
+        d=google.com; s=arc-20160816;
+        b=jNgoz7EJ3VEWYcOqt9k8/JSPaERk4guBzr/Xs3mM/z6YwjzmvKZ7I+Lec/O6d2rE3R
+         DTMUR9gBQMU/6TE3OyeuXh8GK3S8QKfdkNu6epggV0L0RFAFIUINIBvSbnqdrCuFRyQf
+         KQYBjv8a+o+aotniVFXYOou41PQgdbVHfTxotnEkzEWkcwON1eQSpZwMKYxMRhHUnsfE
+         /DUS0V3LAa3KxVKqiICka6AYrC3bdX45zXhHzm3Dc0XIGm03yrrGKxGJ1hoqvi0oT0xN
+         tLqTl4KCA/+XpTgTnIko9utMpkfc0SkBFmjfGIkTNu8Cz9L4BaTus/xmvEQJM2claabs
+         a/zA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:in-reply-to:to:references:date:subject:mime-version
+         :content-transfer-encoding:from:dkim-signature:dkim-filter;
+        bh=5wusV90KO2h2ANgUvsdwhcgR4aSs+QMjLPddv5R3fn8=;
+        fh=wnoTQjHgWz4kRW5W3Yv210Aj9LolbdJ/Lvc/uyAoO3M=;
+        b=Sld6zOT/O1H4m6gM0CQGioArlCZG2wOM1xZBuFpvD0EtTKV9g+XxUwgoRdS0Wu2HdP
+         RTrFMZQjleAyjXFnp58D4bCzkM6WDIVCvsC6F3a0HWXY0OIMbUS/+++E6iI2r27q4Q+q
+         3r2m99Z16a0y8LdOWaEF51qevp0mbAOT+y39ow8PHHVNNgq4RBxWX2ge7qvE9nz7GuTL
+         fGmGBaAeoQN7l5RekA1DvPOoz51eH3/QH22wRT0sLoEsoprKdpmvdHwhaLNOLB9csEVz
+         7LCp3rXKqCT3WorB5nZlA9E2sp8C988N57bkehXjMD2ugnk3Qk8kCIfD6T3W+QXDLNSw
+         ZXkw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@di.unito.it header.s=dipinfo2011 header.b="oPzGUv5/";
+       spf=pass (google.com: domain of felice@di.unito.it designates 130.192.156.1 as permitted sender) smtp.mailfrom=felice@di.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=di.unito.it
+Return-Path: <felice@di.unito.it>
+Received: from mail.di.unito.it (pianeta.di.unito.it. [130.192.156.1])
+        by mx.google.com with ESMTPS id a640c23a62f3a-a5a17b3751dsi91669666b.315.2024.05.09.07.39.38
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 09 May 2024 07:39:39 -0700 (PDT)
+Received-SPF: pass (google.com: domain of felice@di.unito.it designates 130.192.156.1 as permitted sender) client-ip=130.192.156.1;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@di.unito.it header.s=dipinfo2011 header.b="oPzGUv5/";
+       spf=pass (google.com: domain of felice@di.unito.it designates 130.192.156.1 as permitted sender) smtp.mailfrom=felice@di.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=di.unito.it
+X-MailScanner-From: felice@di.unito.it
+X-SpamCheck: not spam, SpamAssassin (not cached, score=-102.387, required 3,
+	autolearn=not spam, ALL_TRUSTED -1.00, AUTHENTICATEDUSER -100.00,
+	AWL 0.51, BAYES_00 -1.90, URIBL_BLOCKED 0.00)
+X-AntiVirus: Email Clean
+X-dipinfo-MailScanner-ID: 449Edbxs012761
+X-dipinfo-MailScanner-Information: Please contact Department of Computer Science technical staff for more information
+Received: from mail.di.unito.it ([130.192.156.1])
+         by mail.di.unito.it (INFO-DIP) with ESMTPSA id 449Edbxs012761
+	 (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO AuthenticatedUser=felice )
+	 for <luca.barra@edu.unito.it>; Thu, 9 May 2024 16:39:38 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.di.unito.it 449Edbxs012761
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=di.unito.it;
+	s=dipinfo2011; t=1715265578;
+	bh=5wusV90KO2h2ANgUvsdwhcgR4aSs+QMjLPddv5R3fn8=;
+	h=From:Subject:Date:References:To:In-Reply-To;
+	b=oPzGUv5/XaCISPZbIJz7wBmoyAru96grEqEzZX1kNQROS0DzpbbCcBMUd52NrFd90
+	 cetA/O4U0ZkcG3kGCWkNxSB0fX5diiZbKruf1ekgI1VrhMfN+JE66lvXRcThy90yQg
+	 Ez/jPtzUKjMLByase25M7GMWoJ5QNdjPQaFONYcI=
+From: felice cardone <felice@di.unito.it>
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.500.171.1.1\))
+Subject: Re: Luca Barra - Primo capitolo Tesi
+Date: Thu, 9 May 2024 16:39:26 +0200
+References: <CAAhooxsZtDvu9DBMY62bWAu5WtFSSaGUeXbOVbmpsrdaLsqRgg@mail.gmail.com>
+To: Luca Barra <luca.barra@edu.unito.it>
+In-Reply-To: <CAAhooxsZtDvu9DBMY62bWAu5WtFSSaGUeXbOVbmpsrdaLsqRgg@mail.gmail.com>
+Message-Id: <F64ABFA8-8D3A-458D-B619-6675AB577FD3@di.unito.it>
+X-Mailer: Apple Mail (2.3774.500.171.1.1)
+
+Buonasera Barra, ho letto rapidamente il suo primo capitolo, e ho solo =
+visto
+alcuni difetti stilistici che corregger=C3=B2 in un secondo tempo: per =
+il resto va molto
+bene.
+Il logo dovrebbe essere quello che mi ha mandato, o almeno, questo =C3=A8 =
+quello che=20
+hanno usato altri suoi colleghi.
+A presto, FC
+
+> Il giorno 9 mag 2024, alle ore 15:25, Luca Barra =
+<luca.barra@edu.unito.it> ha scritto:
+>=20
+> Buongiorno, le scrivo perch=C3=A9 ho terminato la stesura del primo =
+capitolo della tesi e volevo chiederle se andasse bene o se dovessi =
+aggiungere/rimuovere qualcosa (le allego l'estratto). Al momento sto =
+anche scrivendo i successivi due capitoli e nel secondo (Gli automi =
+cellulari) parto dalla fine della sezione 1.2.4, dalle "regolarit=C3=A0 =
+cristalline" e dal costruttore universale solamente accennati in questo =
+primo capitolo.
+> Un dubbio che mi =C3=A8 venuto riguarda il frontespizio della tesi: il =
+logo che deve essere utilizzato =C3=A8 quello contenente sia il logo che =
+il testo, giusto? (le allego quello che sto utilizzando)
+>=20
+> Distinti saluti,
+> LB
+>=20
+> ------------------------
+>=20
+> Indirizzo istituzionale di posta elettronica degli studenti e dei =
+laureati dell'Universit=C3=A0 di Torino
+> Official University of Turin email address for students and graduates =
+<PrimoCapitolo.pdf><logo_unito.pdf>
+
+

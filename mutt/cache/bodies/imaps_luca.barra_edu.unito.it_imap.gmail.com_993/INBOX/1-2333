@@ -1,0 +1,136 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:3614:0:b0:30c:2dd2:a8c1 with SMTP id d20csp5977883lja;
+        Thu, 10 Apr 2025 01:20:21 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG0h0+kt/SCOn38W4BuFVNRhsevydL0hTwpZPPtwmynX2kOM6NiBuVcvQdD6Bs1+J7dvNjU
+X-Received: by 2002:a17:907:f212:b0:abf:689a:ed2c with SMTP id a640c23a62f3a-aca9b6bf52amr205772566b.6.1744273220995;
+        Thu, 10 Apr 2025 01:20:20 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1744273220; cv=none;
+        d=google.com; s=arc-20240605;
+        b=bkdx5zUYJDr4LaA35WLX3kJfNvwhRZsxt1/Tv4RLGPBMysRqKovkmzUcn8NWOauWdm
+         ynOoE4javKKuOL5mFO+JZmYL1vhHNX+ZLEPI9Ihp3awSxctYD+CFJq9P7RYTrsKNB3fu
+         jfVf0jbH0cNfUE/CPpYqvIqCm/NM7BkEHIu/KDQBYv1RO+SJ9Vr7Yr23u8d7fjlcZTt0
+         lNEPbLu5YcEHGajw9OxSDFpYC1g+RZal9H3hflCWUq5UngPcWh3x1vXszVZwksCAFQ/s
+         kMbaJngpZdD+hnNfePXO+Nu1I5R1e8DwxUFO+1+Smh3XhQjuwFtCjS3myWQIQ8KNBAoi
+         T3LQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:references:in-reply-to
+         :list-unsubscribe:auto-submitted:precedence:list-help:list-id
+         :message-id:subject:reply-to:from:to:date;
+        bh=yNGM3++Ilska86ecxWCf6H8uvkssmqJmzCqek3bjtwI=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=UnKKrwcq9QZLG+sqhjgBscmckNro5R1dh6lps2aMsKFiEd61yGmXyIlCo8PQLS0rER
+         z2AzNmMNI5S82FkuSRDL4Ysu4UWZjrf8XY9BN3pdD4p0Ek4U0L9CksugntssFpPpRbv3
+         STJe31WIqOGeS6RMzxQIK8MJa6GKNJr0lxQt9tbw/HyTmc5Gd1O1E9Cw+WAouWukm0Bw
+         /XGoaBAKcHv7m76hTAJzD5JGOKY4mTUIfVtT4EzRfYNG7yqy65OI7NR2rv1WCEiTOO9e
+         jYATA4tcS70m5eeWRWqPbxC9XEZxdB+U6l+msOQAZcRGwTZMIm97AVu4xO8I/H0rFw4i
+         xpCg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id a640c23a62f3a-acaa1cbff84si193996666b.594.2025.04.10.01.20.20
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Apr 2025 01:20:20 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 53A8KKuL2977244
+	for <luca.barra@edu.unito.it>; Thu, 10 Apr 2025 10:20:20 +0200
+Date: Thu, 10 Apr 2025 10:20:20 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Baroglio Cristina (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: SisInt2425: Ri: Variazioni di orario
+Message-ID: <03f54463c5cbc3eac8aee94f619697c3fa397c7ab6e694e535a77fbd3825f341@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7702@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7702
+X-Course-Id: 3092
+X-Course-Name: Sistemi Intelligenti
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+In-Reply-To: <465505fdd65d03594084e740d28356cb887e8723a8f5bf57ddf3cf4c26b9c873@informatica.i-learn.unito.it>
+References: <465505fdd65d03594084e740d28356cb887e8723a8f5bf57ddf3cf4c26b9c873@informatica.i-learn.unito.it>
+Thread-Topic: SisInt2425: Variazioni di orario
+Thread-Index: 465505fdd65d03594084e740d283
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_wyJNDwgyygbSCdaGVSn7e3arsCBb4QXeXq6HEvuC44"
+
+This is a multi-part message in MIME format.
+
+--b1_wyJNDwgyygbSCdaGVSn7e3arsCBb4QXeXq6HEvuC44
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SisInt2425 -> Forums -> Annunci -> Variazioni di orario
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43838#p71881
+Ri: Variazioni di orario
+by Baroglio Cristina - Thursday, 10 April 2025, 10:04 AM
+---------------------------------------------------------------------
+Vi ricordo che marted=C3=AC 15 aprile la lezione di sistemi intelligenti no=
+n
+avr=C3=A0 luogo; invece quella prevista per mercoled=C3=AC 16 aprile si svo=
+lger=C3=A0
+regolarmente.
+
+Cristina Baroglio
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SisInt2425.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092
+
+--b1_wyJNDwgyygbSCdaGVSn7e3arsCBb4QXeXq6HEvuC44
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3092">SisInt2425</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3092">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+702">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://i=
+nformatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43838">Variazioni di =
+orario</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" cellspacing=
+=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=0A        <td width=
+=3D"35" valign=3D"top" class=3D"picture left">=0A            <a href=3D"htt=
+ps://informatica.i-learn.unito.it/user/view.php?id=3D37&amp;course=3D3092" =
+class=3D"d-inline-block aabtn"><img src=3D"https://informatica.i-learn.unit=
+o.it/pluginfile.php/16311/user/icon/lambda/f2?rev=3D1" class=3D"userpicture=
+" width=3D"35" height=3D"35" alt=3D"" /></a>=0A        </td>=0A        <td =
+class=3D"topic ">=0A            <div class=3D"subject">=0A                R=
+i: Variazioni di orario=0A            </div>=0A            <div class=3D"au=
+thor">=0A                by <a target=3D'_blank' href=3D'https://informatic=
+a.i-learn.unito.it/user/view.php?id=3D37&course=3D3092'>Baroglio Cristina</=
+a> - Thursday, 10 April 2025, 10:04 AM=0A            </div>=0A        </td>=
+=0A    </tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=
+=0A                &nbsp;=0A        </td>=0A        <td class=3D"content">=
+=0A            <div class=3D"text_to_html">Vi ricordo che marted=C3=AC 15 a=
+prile la lezione di sistemi intelligenti non avr=C3=A0 luogo; invece quella=
+ prevista per mercoled=C3=AC 16 aprile si svolger=C3=A0 regolarmente.<br />=
+=0A<br />=0ACristina Baroglio</div>=0A=0A            <div class=3D"commands=
+">=0A                    <a target=3D"_blank" href=3D"https://informatica.i=
+-learn.unito.it/mod/forum/discuss.php?d=3D43838&parent=3D71338">=0A        =
+                Show parent=0A                    </a>=0A            </div>=
+=0A=0A            <div class=3D"link">=0A                <a target=3D"_blan=
+k" href=3D"https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D4=
+3838#p71881">=0A                    See this post in context=0A            =
+    </a>=0A            </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<=
+hr />=0A<div class=3D"mdl-align unsubscribelink">=0A    <a href=3D"https://=
+informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092">Change your for=
+um digest preferences</a>=0A</div>
+
+--b1_wyJNDwgyygbSCdaGVSn7e3arsCBb4QXeXq6HEvuC44--
+

@@ -1,0 +1,163 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:7e05:0:b0:32a:7f76:203e with SMTP id z5csp1334168ljc;
+        Mon, 16 Jun 2025 03:30:55 -0700 (PDT)
+X-Received: by 2002:a05:600c:500d:b0:442:e608:12a6 with SMTP id 5b1f17b1804b1-4533ca468d3mr30689035e9.1.1750069855213;
+        Mon, 16 Jun 2025 03:30:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1750069855; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Ioln7l2fW/ahUjQhl35V/6VvmkDXZBD8j2VskI8Ew931+FBn5meVrHF2J88kaF3m93
+         Tr4ZSVes0bATs10V1mSh1aq7h13Yj+Gk5mCCRiV+hejFiYbqu5i+LiqtHGmFSvqHockF
+         zsuCkcXB5FAOuYWzgoOLb+wl5o7PioEA5tAnmehf/Yr0BQeZYuV1aj4I5pZ2pWfpKPlv
+         wdT+KRiogTkqKzs7NSZW+EIQDHYeeR1Z8XasQCGzGUuPK4WB35ssXWzAnRfs+Zv5WhoZ
+         u0ekHUwVThx1zXeOcKIYxXscd72eVDqhz4OTBxzZepagTDXfJEzfxeBRrgiibh+bHld+
+         Nikw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:in-reply-to:references:message-id:date:subject:mime-version:from
+         :content-transfer-encoding:dkim-signature;
+        bh=VWfoudlB7He/M8MObipQt+bNWasgLOF5R3E+vsDVCOY=;
+        fh=75fMJZTXFZnsyxtinu+dx14CCVab1rFxDVSsvcMtt0Y=;
+        b=FoNSyqZIVUpy1OX6smGXaAHQMEWNkPqE3L+oTHXtz8UW4IR+uMvzPY9IQ/zEjw5oo2
+         oQL3xi1x6rMO8lGmzPxEXQnHvucWW55BGf15zESKex30wLuCD76Dun/VcgMI08nOd0R3
+         +DhS0dqB3b3EtyriwzsE4p486XMsTJJqyvg2xFsIiiBLL4Mkyc2J1O+uIMHgcfEclJRp
+         BZXTCaUUGO3bGcyyil86usLpMyj+GLuH+mnZ22yNNqHjOXdM0my/hTgcdd5yLj28tiOL
+         yNhJnbMU5vsX8+lxzUgfs8ZGol/jV7FWAopE+ampCe1mff4LXWCXUalSjNYKhZWb6hE+
+         IohA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=OoXnOrwD;
+       spf=pass (google.com: domain of luigi.dicaro@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=luigi.dicaro@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <luigi.dicaro@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 5b1f17b1804b1-4532dd0de7esor34039875e9.11.2025.06.16.03.30.55
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Mon, 16 Jun 2025 03:30:55 -0700 (PDT)
+Received-SPF: pass (google.com: domain of luigi.dicaro@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=OoXnOrwD;
+       spf=pass (google.com: domain of luigi.dicaro@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=luigi.dicaro@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1750069854; x=1750674654; darn=edu.unito.it;
+        h=to:in-reply-to:references:message-id:date:subject:mime-version:from
+         :content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VWfoudlB7He/M8MObipQt+bNWasgLOF5R3E+vsDVCOY=;
+        b=OoXnOrwDao3IwJuKZZnMnXvg0esmrykctupuaQJ64cNA5XtRWXp7Dj+XIgicLKfpJv
+         59W08Mslsje/FZiVw8z2aoJvP1EfAa8L1g8cOSvpjyJuUnleR6F4unVEZVoTG6sQlcHh
+         BV2AtkPDG5mRpdfZj6iLbFU4hwjJ4Sddd0hYPdOm9cdpjmXgTLbckV1dNfA8jeyxm1O9
+         yd7KQZshnSeXjAYBlh0I5IMJx3AeLWnaQWtCOV+ZnsnxaJJxKSCp4Y7+xmX1V0QSYjiX
+         GQ+/gISW19v/1UmGnDBNp1MXtzLjJ3WEefgHiZGz+tT8R8ClsaYUM5CM7Z9DzkHnTK/r
+         hnOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1750069854; x=1750674654;
+        h=to:in-reply-to:references:message-id:date:subject:mime-version:from
+         :content-transfer-encoding:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=VWfoudlB7He/M8MObipQt+bNWasgLOF5R3E+vsDVCOY=;
+        b=VohuUW7PMaLb7sMGv7NsrYzoYa2JZfnNEKcDXW9+OXM1vQA0Q/rWKrep/L3E4DgQ1a
+         ciTkF3ZM03HzmABohV0H4NFfrb2e/I0COpRg+gFzZkA38PoRoNaCLaRfub6phHp7/816
+         3GBU5HISlyiyUTSdzz4hWwpuKVysLKF8agWdraPU+y0JxaIvSW+8CPrxpLYDOFQZUT8s
+         1C2yiFNG7Vdq9V9iWEA9D7yytihUMtyGqlqU1zTXSJSJ4kIyUZSgEQRDIW50q3UiBkPv
+         yuk4MxcdmyIg2pWgwloJzkC4X8SuIg7ZMVtGxYolPWg9coFJyuCAYM0vT59V12f6lbyq
+         lkjw==
+X-Gm-Message-State: AOJu0YyOeIB8bQ098SHykmBW8jsVsYOUp9BxIcw+y20RByQX0KRIMvKt
+	ra/DAcALDAG47k+xdEFTgf2oNti8dQRz7ZsbwMDmffrJxJXg36yhnaumxQulNUEIEziduSQ3dfB
+	Pvn8HpS0=
+X-Gm-Gg: ASbGnctCWKtGan+s8/ayXDfuYr6fZon3kyR9PxYzZDMdE8bBiUAt8QiFYPVM5eVZBMD
+	4XeuRQKsHIIVc6Z4HPKJS6pNZTZ+W6I4sc+6QPDN94wnnFnRorKT9358Gr/uZEo7EOGrlNA6334
+	f9GntrFNHz6Jj8oDuMjizaSexD/dRf9WU/fQ5AipoXgjvQPHRVq07QpDUs5J6D1vv0Ts6u7gF47
+	bkKtqpUXzlaYKElV3suEg+zELtX0dfH9Yu5B/VAd+WrOU5KRMPQV8TbZTJeWCdmwmIRPsxiMHNf
+	kpXvPP4X2jItdCKPQellrQSayiUJtWBwln/9E+oy7GEHXs11w7CDbY/Db/fz2it4yVIDpQo4y1+
+	FLA27DpqpBr2wv4QYUtbF2/rcW5DbRNKxciAZ
+X-Google-Smtp-Source: AGHT+IGEgfU5izOw2TYrkivZMx61NV77SCQ6x+Ntkkg4gJnCnzOi+kfg+0sJlkca8/ve2KH/mokwzA==
+X-Received: by 2002:a05:600c:1ca1:b0:43c:ea1a:720a with SMTP id 5b1f17b1804b1-4533cacf2d1mr66223785e9.1.1750069854456;
+        Mon, 16 Jun 2025 03:30:54 -0700 (PDT)
+Return-Path: <luigi.dicaro@unito.it>
+Received: from smtpclient.apple (93-41-28-194.ip79.fastwebnet.it. [93.41.28.194])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4533fb97d88sm75075375e9.36.2025.06.16.03.30.53
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Jun 2025 03:30:54 -0700 (PDT)
+Content-Type: multipart/alternative; boundary=Apple-Mail-3BF86DFF-5DBF-46DC-9000-121778C1CCF1
+Content-Transfer-Encoding: 7bit
+From: Luigi Di Caro <luigi.dicaro@unito.it>
+Mime-Version: 1.0 (1.0)
+Subject: Re: TLN - Progetto
+Date: Mon, 16 Jun 2025 12:30:43 +0200
+Message-Id: <2752B974-56EA-4341-B753-39D8B50AFE46@unito.it>
+References: <08BFE8D6-CC6F-415A-A220-9DE2488F6E55@edu.unito.it>
+In-Reply-To: <08BFE8D6-CC6F-415A-A220-9DE2488F6E55@edu.unito.it>
+To: Luca <luca.barra@edu.unito.it>
+X-Mailer: iPhone Mail (22F76)
+
+
+--Apple-Mail-3BF86DFF-5DBF-46DC-9000-121778C1CCF1
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto"><div dir=3D"ltr"></div><div dir=3D"ltr">Per=
+fetto, grazie</div><div dir=3D"ltr"><br><blockquote type=3D"cite">Il giorno 1=
+6 giu 2025, alle ore 12:10, Luca &lt;luca.barra@edu.unito.it&gt; ha scritto:=
+<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=
+=BF<meta http-equiv=3D"content-type" content=3D"text/html; charset=3Dutf-8">=
+<div dir=3D"auto">No, nessun problema<br>Saluti,<br>LB</div><br><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"auto">On June 16, 2025 8:25:55 AM UTC, Luigi D=
+i Caro &lt;luigi.dicaro@unito.it&gt; wrote:</div><blockquote class=3D"gmail_=
+quote" style=3D"margin: 0pt 0pt 0pt 0.8ex; border-left: 1px solid rgb(204, 2=
+04, 204); padding-left: 1ex;">
+<div dir=3D"ltr"></div><div dir=3D"ltr">Caro Luca</div><div dir=3D"ltr">Sare=
+bbe un problema spostare l=E2=80=99esame al giorno successivo, mercoled=C3=AC=
+? Stesso orario</div><div dir=3D"ltr">Grazie</div><div dir=3D"ltr"><br></div=
+><div dir=3D"ltr"><br><blockquote type=3D"cite">Il giorno 10 giu 2025, alle o=
+re 16:39, Luigi Di Caro &lt;luigi.dicaro@unito.it&gt; ha scritto:<br><br></b=
+lockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=
+=3D"ltr">S=C3=AC molto interessante. In effetti sui singoli termini ci posso=
+no essere riduzioni diverse a seconda delle lingue incrociate. Procedi pure<=
+div>Grazie</div></div><br><div class=3D"gmail_quote gmail_quote_container"><=
+div dir=3D"ltr" class=3D"gmail_attr">Il giorno mar 10 giu 2025 alle ore 16:3=
+1 Luca Barra &lt;<a href=3D"mailto:luca.barra@edu.unito.it">luca.barra@edu.u=
+nito.it</a>&gt; ha scritto:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;b=
+order-left-color:rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div>Bu=
+onasera,</div><div>le scrivo per un'idea che mi =C3=A8 venuta in mente duran=
+te la scrittura del paper per il progetto di TLN (creazione di una nuova lin=
+gua). Ho notato, facendo alcuni test con BabelNet, che la distribuzione dei t=
+ermini ambigui non =C3=A8 puramente casuale: per esempio combinando una ling=
+ua <i>L1</i> e una lingua <i>L2</i> e poi combinando la stessa <i>L1</i> con=
+ una terza lingua <i>L3</i> non si ha un aumento o una diminuzione "assoluta=
+", ma a livello dei singoli termini. Quindi si possono avere termini meno am=
+bigui in <i>L1-L2</i> che sono pi=C3=B9 ambigui nella coppia<i> L1-L3</i> (e=
+ viceversa).&nbsp;</div><div><br></div><div>E.g.<i> L1</i>: Italiano, <i>L2<=
+/i>: Inglese, <i>L3</i>: Tedesco</div><div>Per la parola "Casa" lo score di r=
+iduzione dell'ambiguit=C3=A0 risulta maggiore in<i> L1-L3</i>, mentre per la=
+ parola "Cane" risulta maggiore in <i>L1-L2</i>.</div><div><br></div><div>Vo=
+levo chiederle&nbsp;se secondo lei avesse senso incentrare il paper su un'an=
+alisi di tipo pi=C3=B9 linguistico andando a fare ipotesi sul perch=C3=A9 ci=
+=C3=B2 si verifichi con degli esempi.</div><div><br></div><div>Distinti salu=
+ti,</div><div>LB</div></div>
+
+<br>
+<div style=3D"font-size:1.3em">------------------------</div><span style=3D"=
+font-size:small"><div><img src=3D"https://web.unito.it/logofirmastu.png" dat=
+a-unique-identifier=3D""><br></div>Indirizzo istituzionale di posta elettron=
+ica degli studenti e dei laureati dell'Universit=C3=A0 di Torino</span><div>=
+<font size=3D"2">Official&nbsp;University of Turin&nbsp;email address&nbsp;f=
+or students and graduates&nbsp;</font></div></blockquote></div>
+</div></blockquote></blockquote></div><div dir=3D"auto">luca.barra@edu.unito=
+.it</div>
+<br>
+<div style=3D"font-size:1.3em">------------------------</div><span style=3D"=
+font-size:small"><div><img src=3D"https://web.unito.it/logofirmastu.png" dat=
+a-unique-identifier=3D""><br></div>Indirizzo istituzionale di posta elettron=
+ica degli studenti e dei laureati dell'Universit=C3=A0 di Torino</span><div>=
+<font size=3D"2">Official&nbsp;University of Turin&nbsp;email address&nbsp;f=
+or students and graduates&nbsp;</font></div></div></blockquote></body></html=
+>=
+
+--Apple-Mail-3BF86DFF-5DBF-46DC-9000-121778C1CCF1--

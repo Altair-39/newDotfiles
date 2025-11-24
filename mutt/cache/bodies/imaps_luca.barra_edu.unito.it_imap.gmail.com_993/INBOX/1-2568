@@ -1,0 +1,168 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:1467:b0:328:ea4:e135 with SMTP id r7csp2934895ljc;
+        Sun, 25 May 2025 23:42:59 -0700 (PDT)
+X-Received: by 2002:a17:906:84f0:b0:ad5:1bd7:d122 with SMTP id a640c23a62f3a-ad85b0d0042mr200440466b.2.1748241779429;
+        Sun, 25 May 2025 23:42:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1748241779; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ldLF4y86QT0AoIuBh+W836kwLex136ID4FI8HtM5fy6rZb1NwE3pdYF30SiLVUYlnn
+         lGofGa74Gy1Vdmw9wGU6/lpoTp12nIMY390e+2lyrVy42DH+DS/jUtk/3PwR4Iawnl6q
+         AKXib+paWCVo39gmdn4/tDLs1iwxIPSan6uofiB5SjZeN+vDYcgouDrd95ZnTq0cLt0R
+         2Q+bZYETeGWw15ddE9Ovqsr5dUKDyWQipM0YHNzY9m7MtS9heWpBmd6ub06n6EaaZMl6
+         W6oRmqEIFAUnOK5cD+sT7oAqggAkV4+V6tcqUWO4SQPZWANMm20l7+i6GpXpmK+CZSFS
+         rnjA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :dkim-signature;
+        bh=/W52LnlEYp+HZVIn5NgpLRCv24iT0WbxuKEptXcgau8=;
+        fh=wnoTQjHgWz4kRW5W3Yv210Aj9LolbdJ/Lvc/uyAoO3M=;
+        b=H6AL+izJi4E3Py+3ex7a/DxCCCKgMeAk1DNowu2ljXzQ/bAMHD0Ig2uWl7H21jARiP
+         Nw0tLWxRaETofyIpOCZrig2+HzJQDntNLjZYbt6HX5h2pGsT3YbklusT8U8q2FSi0le3
+         ak7qdN4hmaWgwEmtIue1QinopDAt2b4FRINd7m0yIEJJ59g9vjHKxsOCUx+7GKwRvoee
+         NkEowxG01CwlGl4X1me67VKz+cWSgwRJw/gAfgAni9NsNIOLiMKyTVeIFAgYObVU2/sC
+         fUjczDgQy2GbgBa3psx6OHAdjmpwCQjfC8BdIzNB6qj57g5rdtZw81qObaj1aza/va1h
+         yTtA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=NmaA1qlI;
+       spf=pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=paola.gatti@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <paola.gatti@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-ad52d438378sor1055874766b.16.2025.05.25.23.42.58
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Sun, 25 May 2025 23:42:59 -0700 (PDT)
+Received-SPF: pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=NmaA1qlI;
+       spf=pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=paola.gatti@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1748241778; x=1748846578; darn=edu.unito.it;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/W52LnlEYp+HZVIn5NgpLRCv24iT0WbxuKEptXcgau8=;
+        b=NmaA1qlI3ncHpm2EtBKe1aqNJGwbRImZ52aXLsv4viQUEGn6Do2GUbEylSIy71jJ72
+         S/u51qqZO+YV+xgshOSxLpm17w9i5cF/dAJpGTqjuUdfkmuHodDHkNhFPDxMuWTOjjoa
+         HHVMsCGy+nZiJRTyeOuApAsx/JSygKb9jqFoFE/LG5SQSQJSTf37UKfxoWqr7sP0EfOf
+         VxRRGdxD2xXGO9UdvXQbnTaXX2b3kWW+Vnmp36vuQrlEwOMTS/hS2jFD3x6xJZcKBi6U
+         glFrt21rfvn0oIaqxjwpEAzq1plY9xYsWxa2m8R0esD1BC6N2lTbDC1HPzIwW4MnMKuV
+         9tPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1748241778; x=1748846578;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/W52LnlEYp+HZVIn5NgpLRCv24iT0WbxuKEptXcgau8=;
+        b=hvA+TKAbipoRVaAjECup1yHqKwubZLVB6xgSkMk5lUzaeNEJ7BOexcuRwxoiYfkYGC
+         e//jGuWn1WLx3GiwLBo1AxZ/OCROa46GGUQ/80jcAEMOA1/RrX4JQIjFC1lfSco+667p
+         8a6KifNQtTXKq3dV+R7ZptlNvhR+crt6pInIwwjfZSE7esoCgAECKEYCeSyQddtmDHLd
+         it2hcaWfn6CLZnx8ymYRQGpqIPXbes3xcxf9ygCoQcLDgK1+4zJRo37CxGald4xe1wls
+         4tKh/B5W20CGAFM/UP8GDDuCOFqukbF5NpUkX5an7HVNXLToWCkc6bxSfVAQyD9/8PlB
+         Ig/Q==
+X-Gm-Message-State: AOJu0Ywm8nQ9rkj1CED3bNtPOcNB1KH3z6+cHoqzsgZFjviMLN+Q0B1a
+	yjLhaGpj72bfaCOsnZZUUhA11AqVkf0UNFxY5hA7oCiizXzVW+dJIalvK+rQB/LHs4aJDe486RG
+	1Xj5uiBs=
+X-Gm-Gg: ASbGncvaTQjFHtzrPsj/AloOe0tBL6c4EQtp9TkZm4SfA/vVJ20GsfUr/AsIDvakQ5s
+	v1HL9E2M6+mQvdBclfLDUKMWCOGjgicgHXQ+eoDOKb5PGw3/Mgpb3eSFYx25LfZYP2l9D4uvGk+
+	5d0pe0GhAbUcqpmvGGSoI6M+PkyYdZKDKINwN99BnNQakCfgsx4HRbKiIANLqG0Vu+LP15LjwgP
+	RbAzVxwtJrUm7VpQQ5R8N1kqA7ODNcJRUnvhfpgyl3fogGQtOT118r3exKAVuc8YcpfPKah+BLo
+	kcxRxqApq9M/7zD/bijqO8DYWBXlPwjQa5T6LfXQ6Y1SU2mcUBD0Wa7IbYWJ6lHGwqfr1HblqoC
+	Ur5Rvq7Vf48Xm9GcIr3iG9n7NKoM5baA1oIA=
+X-Google-Smtp-Source: AGHT+IF5enitLQa0b1S0k+nMXVb5ps33xRMMXMN02WFWY7hOw0qtix7qFIxOv0RfPQs5jru5RnQBAg==
+X-Received: by 2002:a17:907:728d:b0:ad5:a210:a3ef with SMTP id a640c23a62f3a-ad85b1de305mr878139866b.45.1748241778498;
+        Sun, 25 May 2025 23:42:58 -0700 (PDT)
+Return-Path: <paola.gatti@unito.it>
+Received: from [192.168.1.67] (93-36-161-133.ip60.fastwebnet.it. [93.36.161.133])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ad52d4ca5c5sm1620489566b.162.2025.05.25.23.42.57
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 25 May 2025 23:42:58 -0700 (PDT)
+Message-ID: <75b42d05-e9b9-4e47-826a-8e3dc26cbc12@unito.it>
+Date: Mon, 26 May 2025 08:42:57 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: Ore Collaborazioni Art. 11
+Content-Language: it
+To: Luca Barra <luca.barra@edu.unito.it>
+References: <CAAhooxvirznhKGt9hEz5=T0_vW+95iXnL30P3bR6c9s2MFDqmA@mail.gmail.com>
+ <b09f537e-97de-45ca-be0d-75942beb4000@unito.it>
+ <CAAhooxs7JujJX8_uZMVFaeH1t04WB8aH-CMGc1bARrXJ+PBHWA@mail.gmail.com>
+From: Gatti Paola <paola.gatti@unito.it>
+In-Reply-To: <CAAhooxs7JujJX8_uZMVFaeH1t04WB8aH-CMGc1bARrXJ+PBHWA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Ma scusa, e il promemoria che ogni mese manda la vostra collega che ha 
+la collaborazione per il CCL-LM?
+L'anno scorso la collaborazione era gestita dalla scuola, quest'anno e' 
+con fondi dipartimentali, quindi serviva ricevere i rendiconti ogni mese.
+Prepara il tutto allora cosi' vediamo cosa fare (dovro' far aggiornare i 
+file dei mesi scorsi in cui mancano le tue ore)
+
+cari saluti
+pg
+
+Il 26/05/2025 08:00, Luca Barra ha scritto:
+> In realtà pensavo di fare come l'anno scorso quando ero tutor matricole 
+> e inviare tutta la documentazione alla fine. In ogni caso questa 
+> settimana mi occupo degli ultimi documenti.                             
+>                                                              Distinti 
+> saluti,
+> LB
+> 
+> On Sun, 25 May 2025 at 22:40, Gatti Paola <paola.gatti@unito.it 
+> <mailto:paola.gatti@unito.it>> wrote:
+> 
+>     Caro Luca,
+>     mi spiace che non ti facciano terminare tutte le ore della tua
+>     collaborazione: sicuro che non ci siano speranze? Quante te ne mancano?
+>     Hai fatto presente la cosa ai docenti?
+>     Vedo pero' dai rendiconti mensili che da te non ne ho mai ricevuti:
+>     come
+>     mai? Possibile che mi sia persa ogni tua comunicazione?
+> 
+>     In ogni caso, per poter fare richiesta del pagamento, ho bisogno di
+>     ricevere (al netto dei rendiconti mensili che mi mancano):
+>     - modulo richiesta pagamento firmato da te e da uno dei docenti della
+>     collaborazione
+>     - relazione finale firmata da uno dei docenti
+>     - eventuale modulo di rinuncia ore, se ne avanzassero, firmato da te
+> 
+>     Sono tutti moduli che trovi nella mail che la Scuola ti aveva mandato
+>     per l'accettazione. In quella mail ci sono anche le FAQ.
+> 
+>     Appena ricevo da te la documentazione, faro' richiesta di pagamento.
+> 
+>     saluti
+>     paola gatti
+> 
+>     Il 25/05/2025 08:00, Luca Barra ha scritto:
+>      > Buongiorno,
+>      > le scrivo per un dubbio riguardante le ore di collaborazione. Per
+>     via di
+>      > motivi logistici non sono riuscito a fare tutte le ore delle mie
+>      > collaborazioni. In questo caso mando semplicemente le ore che ho
+>     svolto
+>      > regolarmente?
+>      > Distinti saluti,
+>      > LB
+>      >
+>      > ------------------------
+>      >
+>      > Indirizzo istituzionale di posta elettronica degli studenti e dei
+>      > laureati dell'Università di Torino
+>      > Official University of Turin email address for students and graduates
+> 
+> 
+> ------------------------
+> 
+> Indirizzo istituzionale di posta elettronica degli studenti e dei 
+> laureati dell'Università di Torino
+> Official University of Turin email address for students and graduates
+

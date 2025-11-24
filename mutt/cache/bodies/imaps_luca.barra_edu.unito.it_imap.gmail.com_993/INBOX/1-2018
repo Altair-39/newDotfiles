@@ -1,0 +1,127 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b5b0:0:b0:2fb:4c9b:a38b with SMTP id f16csp178934ljn;
+        Tue, 26 Nov 2024 07:16:34 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCUxAjplpl7pHBDk4xp1J1OzR8vAK3BvZ4n8BQ6XgTbbC5hT5VyqKLdEL9aD0MEJpEn61kX8oK8IzKOw@edu.unito.it
+X-Google-Smtp-Source: AGHT+IGffRvLgaNARSQ847yPcHbXOOooVSlFUmPPJDMlnrxqaj9RZXwOoXPvXgRAyUaf/iknAKHR
+X-Received: by 2002:a2e:bcc7:0:b0:2fb:5688:55a4 with SMTP id 38308e7fff4ca-2ffa712e7f1mr95342201fa.17.1732634194555;
+        Tue, 26 Nov 2024 07:16:34 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1732634194; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ZLSxm6ohbjtKAHA8AxpqEvAv9uTY83ROl1oP0DV2WVHLEiaNC7Z/5tXQu9vqK395B9
+         c+ogjgL7Q350nns49nGTYdZmrOr8uV6Cq/9qe8yLCB3wr3TxKXMJi3m/jls+rnurNHFd
+         dn6FyCZy7z56qwn6lxwb9W6jwXh0vA6pDyB0RHKSngezZwAAgYuDi2tjhOwbf2r6lbXQ
+         jcwqkMVmrKrf6GrlvYdyYnuDQKwxzTIomwywFZYLgV7BF3TJG8Ern18vTqCbG8e+OtlG
+         GSNVcuUqfnPnM7+P/+EyuVyrtQtok4Nys/5/247J2mXqZcr6ts14E4DOmvShwugFCYjx
+         RFsA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=lBftYwZV3T3el7C2NQ0R/kv9QjwyajsOzkAcZxnVxT4=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=lLPHTZBUZFU4g1Ig2NfN9WqgntNXeO3fIFzQLID0TYY/HUtsxF+JCghPwiG4y3cvaC
+         pXKkweGQ1jnyiuvsueykuSBxhjiCoEKBVjXgS5/LwQuudPCaqx/dVCVtyWTrSMK25U+n
+         mdws3opfI9WIMzWHzfUqrsOfyUflI6lqJSMyDHNbTrhSjhkiE1baU0KhvbWbDyLs/Iql
+         JOMPQgEgWPgzCi0V+ZfG7coOqiDjXfJsxAqUenTGtFxYbndthlAPg58iRxUBnmkEmPau
+         dggsASE/sLzSO+nw5P97wXyO9bzWUcBQj++oGaWiC5zenbx0+TAHgh75fKUDOdE/smBL
+         bosQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b="B1M/juiS";
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id e9e14a558f8ab-3a79ab4b99asi58897945ab.47.2024.11.26.07.16.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 26 Nov 2024 07:16:34 -0800 (PST)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b="B1M/juiS";
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id F3DAE2356A;
+	Tue, 26 Nov 2024 16:16:30 +0100 (CET)
+Authentication-Results: zm20.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id I7iCTTA0MwmK; Tue, 26 Nov 2024 16:16:30 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 0176B24DC9;
+	Tue, 26 Nov 2024 16:16:28 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 0176B24DC9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1732634190;
+	bh=lBftYwZV3T3el7C2NQ0R/kv9QjwyajsOzkAcZxnVxT4=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=B1M/juiSI4CIYQeKYa7ISc9n3iD8X83xiQgbX+FtxcMZVtAfS6aoVOK2IdZBHPDfC
+	 T6Zd5YZPDxw+eyj2YAO23j/J4WdWm5O22KyiTkbJN5TzFDIzxzYzBSpV+f9tiNskeK
+	 FrKjHSzplNQPiMZpI1I0BmIZtbspej20CTFXCfDpld0xvryw8WJJmKEIaRu28c+TCo
+	 QEv3MT7QAgW+rWihM14fUYmNBcXzG368Q1obhq8x/fZPv3kGr7dq9DJPk1Tr0gLUEO
+	 Q2v9wS4Fj5b5MDv3cNMJ74kltWmG91dYu5kBFFQ3R0qz+ZWG2QRWg36tUYnt5YWdoT
+	 IFn+c06L1Zl8Q==
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id lzFqe3wnEauv; Tue, 26 Nov 2024 16:16:28 +0100 (CET)
+Received: from esse3appjboss22.private.cineca.it (esse3appjboss22.cineca.it [130.186.5.143])
+	by smtp4.cineca.it (Postfix) with ESMTP id 845FF22297;
+	Tue, 26 Nov 2024 16:16:26 +0100 (CET)
+Received: from esse3appjboss22.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss22.private.cineca.it (Postfix) with ESMTP id 7D321B04;
+	Tue, 26 Nov 2024 16:16:24 +0100 (CET)
+Date: Tue, 26 Nov 2024 16:16:24 +0100 (CET)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <1050550588.121.1732634184505@esse3appjboss22.private.cineca.it>
+Subject: Partecipa alla seconda edizione del corso "Imprenditori Gen-Next"!
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+Cari studenti e care studentesse,
+
+Siamo entusiasti di annunciare la seconda edizione del corso Imprenditori G=
+en-Next, un'opportunit=C3=A0 formativa unica, creata da UniCredit in collab=
+orazione con l'Universit=C3=A0 di Torino e altre sei universit=C3=A0 del No=
+rd Ovest Italia. Questo percorso =C3=A8 pensato per fornire nozioni e compe=
+tenze fondamentali su come fondare una start-up, come finanziarla e come fa=
+rla crescere in maniera sostenibile.
+
+Il corso prevede sessioni tenute da key speaker provenienti dal mondo impre=
+nditoriale, bancario e accademico, che condivideranno la loro esperienza e =
+conoscenza per aiutarvi a comprendere le dinamiche del mondo delle start-up=
+ e dell'imprenditoria. =20
+
+Cosa imparerai:
+
+I pro e i contro di fondare una start-up, per comprendere le sfide e le opp=
+ortunit=C3=A0 di avviare un'impresa.
+Come valutare e fare investimenti in una start-up, analizzando i rischi e l=
+e potenzialit=C3=A0 di crescita.
+Come finanziare una start-up e farla crescere in modo sostenibile, esploran=
+do le diverse fonti di capitale e le strategie di gestione.
+Non perdere questa opportunit=C3=A0 per acquisire competenze pratiche e teo=
+riche che potranno fare la differenza nel tuo percorso professionale!
+
+Per maggiori informazioni sul corso e per iscriverti, visita il sito uffici=
+ale:
+Imprenditori Gen-Next - Universit=C3=A0 di Torino al link (da copiare ed in=
+collare sul proprio browser)
+
+https://www.unito.it/ricerca-e-innovazione/dalle-idee-al-mercato/imprendito=
+ri-gen-next/imprenditori-gen-next-2deg#:~:text=3D%E2%80%9CImprenditori%20%2=
+3GenNext%E2%80%9D%20%C3%A8%20un,farla%20crescere%20in%20maniera%20sostenibi=
+le
+
+Le iscrizioni sono gi=C3=A0 aperte!
+Puoi registrarti facilmente al corso tramite il seguente link
+
+https://docs.google.com/forms/d/e/1FAIpQLSff6bMO-X8UJNieROzeq-hrvpiGC3uHeME=
+T2srBEbXKGoSxqg/viewform?pli=3D1
+
+
+Non perdere questa occasione unica per imparare dai migliori!
+
+Per informazioni: ufficio.spinoff@unito.it

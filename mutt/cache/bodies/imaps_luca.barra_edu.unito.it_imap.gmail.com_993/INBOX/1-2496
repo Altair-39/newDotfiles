@@ -1,0 +1,296 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a54a:0:b0:328:ea4:e135 with SMTP id e10csp72901ljn;
+        Fri, 16 May 2025 02:27:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFal21S/0+gkGrHVH1iwTkEf0bj1+fUsHuCWqznesHiNkkC/yY6nIl1qCb4pyNtZ9zt812N
+X-Received: by 2002:a17:906:459c:b0:ad2:292d:6b9f with SMTP id a640c23a62f3a-ad52d4c7865mr75616166b.7.1747387639819;
+        Fri, 16 May 2025 02:27:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1747387639; cv=none;
+        d=google.com; s=arc-20240605;
+        b=XQeB/4xc+MsXxrvkb5PxjiPRzDHiq10cpC0YA0g+rRLd7KTe28PmTksvbF9Wumnq84
+         sDUnN09DLX4evuMgWC1Xjzw6QXturKi5ubO8+C2VB7FyP5hAuD25wZw6MPjVM12kun+i
+         MZw3MU4kMhv+VRq0dLoU5V+z713/b05aO5fHhSGbjt7SmP7Hm0qotaasHIZM99SWmXAT
+         IIu1toxHeFhCmCYjtvXP3wR3xCjx7KDMh90tr9luixx7eYmGG2Wd6FcgDvC+CALvFhyc
+         ukBbZ1C5RT/KxoPQjwhqmzYlBsN9eLKBj+LKEMA00MIo4xYu00/0GWz5c/ki1bH2r0NI
+         q2HA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=G0u0pLSATTANCbQHc7VmXleSGuVmKwLh+fcoim1SwD0=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=E97dxe/4O8nUayRAnE84CFfFHbTwRRnQtzqb99wImWiOuWT3PbGCLakqmCRmD0DPAG
+         yimP9OYFGaG7oqzt+iNqOQ+TswcmvdlZgeUKXfFbh8rFzn0OLiX3krP1zFlkai+/FnuT
+         n7iEqInpRvGPsCfia0Xt9950gDRp15NY0XvqHa/MIyBvx//U3oTpbr2oGt2f8pW0msQ3
+         sywrdKXlRLo3e26jiCFzbeWnuzIcECJd7dtBg1JloJxL0Pyzovlf1ItljyMDuqhamGp+
+         /RRLu4/mYqDM98GXNIKA75uMc+OAItDfvNGIgZNRzOcY9SBA2SHtZte4W3HShrJMmiYR
+         XZ9Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ad52d27c1e9si120546466b.188.2025.05.16.02.27.19
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 May 2025 02:27:19 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 54G9RJjD1504188
+	for <luca.barra@edu.unito.it>; Fri, 16 May 2025 11:27:19 +0200
+Date: Fri, 16 May 2025 11:27:19 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Turco Simone (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: =?utf-8?B?U2lzSW50MjQyNTogTGVnb0dQVDogbOKAmUFJIGNoZSB0cmFzZm9ybWEgdGVz?=
+ =?utf-8?B?dGkgaW4gaXN0cnV6aW9uaSBwZXIgY29zdHJ1emlvbmkgTGVnbw==?=
+Message-ID: <1b2849c62cac9cb4df000583286e81877497f7fb2312eccaa22159b5c5459ac7@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Segnalazioni" <moodleforum7706@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7706
+X-Course-Id: 3092
+X-Course-Name: Sistemi Intelligenti
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=7706&d=44663>
+Thread-Topic: =?utf-8?B?U2lzSW50MjQyNTogTGVnb0dQVDogbOKAmUFJIGNoZSB0cmFzZm9ybWEgdGVz?=
+ =?utf-8?B?dGkgaW4gaXN0cnV6aW9uaSBwZXIgY29zdHJ1emlvbmkgTGVnbw==?=
+Thread-Index: 1b2849c62cac9cb4df000583286e
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_dFL7NUBuuxkzaUp1r6w6tJBnOlDJN83b8Mh2lDCU"
+
+This is a multi-part message in MIME format.
+
+--b1_dFL7NUBuuxkzaUp1r6w6tJBnOlDJN83b8Mh2lDCU
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SisInt2425 -> Forums -> Segnalazioni -> LegoGPT: l=E2=80=99AI che trasforma=
+ testi
+in istruzioni per costruzioni Lego
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44663#p72409
+LegoGPT: l=E2=80=99AI che trasforma testi in istruzioni per costruzioni Leg=
+o
+by Turco Simone - Friday, 16 May 2025, 11:11 AM
+---------------------------------------------------------------------
+FONTE:=C2=A0https://www.wired.it/article/legogpt-ai-costruzioni-lego/=C2=
+=A0[1]
+
+TIPOLOGIA=C2=A0DI=C2=A0COMUNICAZIONE:=C2=A0articolo=C2=A0online=C2=A0divulg=
+ativo
+
+TONO=C2=A0DELLA=C2=A0COMUNICAZIONE:=C2=A0informativo,=C2=A0con=C2=A0tono=
+=C2=A0leggero=C2=A0e=C2=A0curioso
+
+Riassunto:
+L=E2=80=99articolo=C2=A0presenta=C2=A0LegoGPT,=C2=A0un=C2=A0innovativo=
+=C2=A0modello=C2=A0di=C2=A0linguaggio=C2=A0sviluppato=C2=A0dalla=C2=A0Carne=
+gie=C2=A0Mellon=C2=A0University,=C2=A0
+ispirato=C2=A0al=C2=A0mondo=C2=A0dei=C2=A0mattoncini=C2=A0Lego.=C2=A0
+L=E2=80=99obiettivo=C2=A0di=C2=A0questo=C2=A0sistema=C2=A0di=C2=A0intellige=
+nza=C2=A0artificiale=C2=A0=C3=A8=C2=A0trasformare=C2=A0descrizioni=C2=A0tes=
+tuali=C2=A0(chiamate=C2=A0_prompt)_
+in=C2=A0istruzioni=C2=A0dettagliate=C2=A0e=C2=A0coerenti=C2=A0per=C2=A0cost=
+ruire=C2=A0oggetti=C2=A0Lego.=C2=A0
+
+A=C2=A0differenza=C2=A0di=C2=A0altre=C2=A0IA=C2=A0che=C2=A0generano=C2=
+=A0immagini=C2=A0o=C2=A0testi,=C2=A0LegoGPT=C2=A0produce=C2=A0guide=C2=
+=A0passo=C2=A0passo=C2=A0per=C2=A0assemblare=C2=A0strutture=C2=A0
+solide=C2=A0e=C2=A0realistiche,=C2=A0tenendo=C2=A0conto=C2=A0di=C2=A0forma,=
+=C2=A0colore,=C2=A0e=C2=A0stabilit=C3=A0.
+Alla=C2=A0base=C2=A0del=C2=A0progetto=C2=A0c=E2=80=99=C3=A8=C2=A0LLaMA-3.2-=
+1B-Instruct,=C2=A0un=C2=A0modello=C2=A0linguistico=C2=A0open=C2=A0source=
+=C2=A0che=C2=A0=C3=A8=C2=A0stato=C2=A0appositamente=C2=A0
+riaddestrato=C2=A0per=C2=A0comprendere=C2=A0linguaggio=C2=A0naturale=C2=
+=A0e=C2=A0convertirlo=C2=A0in=C2=A0sequenze=C2=A0operative.
+
+L=E2=80=99IA=C2=A0=C3=A8=C2=A0in=C2=A0grado=C2=A0di=C2=A0elaborare=C2=A0ric=
+hieste=C2=A0come=C2=A0=E2=80=9Cun=C2=A0divano=C2=A0vintage=C2=A0con=C2=
+=A0tessuto=C2=A0rosso=C2=A0e=C2=A0verde=C2=A0a=C2=A0fiori=E2=80=9D=C2=A0o=
+=C2=A0
+=E2=80=9Cuna=C2=A0chitarra=C2=A0elettrica=E2=80=9D=C2=A0e=C2=A0generare=
+=C2=A0le=C2=A0istruzioni=C2=A0come=C2=A0se=C2=A0provenissero=C2=A0da=C2=
+=A0un=C2=A0vero=C2=A0manuale=C2=A0Lego,=C2=A0indicando=C2=A0l=E2=80=99uso=
+=C2=A0
+di=C2=A0ogni=C2=A0singolo=C2=A0mattoncino=C2=A0nella=C2=A0giusta=C2=A0posiz=
+ione.
+Per=C2=A0addestrare=C2=A0il=C2=A0modello,=C2=A0i=C2=A0ricercatori=C2=A0hann=
+o=C2=A0costruito=C2=A0un=C2=A0immenso=C2=A0database=C2=A0con=C2=A0pi=C3=
+=B9=C2=A0di=C2=A047.000=C2=A0costruzioni=C2=A0e=C2=A0
+28.000=C2=A0oggetti=C2=A03D,=C2=A0permettendo=C2=A0a=C2=A0LegoGPT=C2=A0di=
+=C2=A0avere=C2=A0un=E2=80=99ampia=C2=A0conoscenza=C2=A0di=C2=A0forme,=C2=
+=A0incastri=C2=A0e=C2=A0strutture.=C2=A0
+Il=C2=A0sistema=C2=A0=C3=A8=C2=A0anche=C2=A0in=C2=A0grado=C2=A0di=C2=A0cons=
+iderare=C2=A0aspetti=C2=A0strutturali=C2=A0come=C2=A0l=E2=80=99equilibrio,=
+=C2=A0il=C2=A0peso=C2=A0e=C2=A0l=E2=80=99ingombro,=C2=A0
+assicurandosi=C2=A0che=C2=A0gli=C2=A0oggetti=C2=A0non=C2=A0siano=C2=A0solo=
+=C2=A0esteticamente=C2=A0coerenti,=C2=A0ma=C2=A0anche=C2=A0fisicamente=
+=C2=A0stabili.
+
+Un=C2=A0aspetto=C2=A0rilevante=C2=A0=C3=A8=C2=A0che=C2=A0il=C2=A0progetto=
+=C2=A0=C3=A8=C2=A0open=C2=A0source:=C2=A0codice=C2=A0e=C2=A0dataset=C2=
+=A0sono=C2=A0disponibili=C2=A0pubblicamente=C2=A0su=C2=A0GitHub,=C2=A0
+rendendo=C2=A0la=C2=A0tecnologia=C2=A0accessibile=C2=A0ad=C2=A0altri=C2=
+=A0sviluppatori=C2=A0e=C2=A0ricercatori.=C2=A0
+L=E2=80=99IA=C2=A0=C3=A8=C2=A0attualmente=C2=A0operativa=C2=A0su=C2=A0grigl=
+ie=C2=A0di=C2=A0piccole=C2=A0dimensioni,=C2=A0ma=C2=A0=C3=A8=C2=A0gi=C3=
+=A0=C2=A0compatibile=C2=A0con=C2=A0bracci=C2=A0robotici,=C2=A0
+oltre=C2=A0che=C2=A0interpretabile=C2=A0da=C2=A0esseri=C2=A0umani.
+
+Motivo=C2=A0per=C2=A0cui=C2=A0mi=C2=A0ha=C2=A0colpito:
+Questo=C2=A0progetto=C2=A0unisce=C2=A0in=C2=A0modo=C2=A0originale=C2=A0inte=
+lligenza=C2=A0artificiale,=C2=A0creativit=C3=A0=C2=A0e=C2=A0ingegneria=
+=C2=A0pratica.
+Dimostra=C2=A0come=C2=A0un=C2=A0modello=C2=A0linguistico=C2=A0possa=C2=
+=A0essere=C2=A0usato=C2=A0non=C2=A0solo=C2=A0per=C2=A0elaborare=C2=A0testi=
+=C2=A0o=C2=A0immagini,=C2=A0
+ma=C2=A0per=C2=A0guidare=C2=A0la=C2=A0costruzione=C2=A0fisica=C2=A0di=C2=
+=A0oggetti,=C2=A0rendendo=C2=A0il=C2=A0confine=C2=A0tra=C2=A0digitale=C2=
+=A0e=C2=A0reale=C2=A0sempre=C2=A0pi=C3=B9=C2=A0sottile.
+
+Inoltre,=C2=A0ci=C3=B2=C2=A0che=C2=A0trovo=C2=A0particolarmente=C2=A0intere=
+ssante=C2=A0=C3=A8=C2=A0che=C2=A0questo=C2=A0approccio=C2=A0non=C2=A0si=
+=C2=A0limita=C2=A0solo=C2=A0ai=C2=A0Lego:=C2=A0
+rappresenta=C2=A0un=C2=A0possibile=C2=A0modello=C2=A0generale=C2=A0per=
+=C2=A0la=C2=A0generazione=C2=A0automatica=C2=A0di=C2=A0istruzioni=C2=A0o=
+=C2=A0progetti=C2=A0fisici.=C2=A0
+
+Potenzialmente,=C2=A0sistemi=C2=A0simili=C2=A0potrebbero=C2=A0essere=C2=
+=A0applicati=C2=A0anche=C2=A0in=C2=A0settori=C2=A0come=C2=A0la=C2=A0stampa=
+=C2=A03D=C2=A0o=C2=A0simili,
+aprendo=C2=A0la=C2=A0strada=C2=A0a=C2=A0strumenti=C2=A0che=C2=A0aiutano=
+=C2=A0chiunque=C2=A0(anche=C2=A0senza=C2=A0competenze=C2=A0tecniche)=C2=
+=A0a=C2=A0realizzare=C2=A0oggetti=C2=A0
+partendo=C2=A0da=C2=A0una=C2=A0semplice=C2=A0descrizione.
+
+Links:
+------
+[1] https://www.wired.it/article/legogpt-ai-costruzioni-lego/
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SisInt2425.
+
+To reply click on this link:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D72409
+Unsubscribe from this forum:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706
+Unsubscribe from this discussion:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D=
+44663
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092
+
+--b1_dFL7NUBuuxkzaUp1r6w6tJBnOlDJN83b8Mh2lDCU
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3092">SisInt2425</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3092">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+706">Segnalazioni</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44663">LegoGPT: =
+l=E2=80=99AI che trasforma testi in istruzioni per costruzioni Lego</a>=0A<=
+/div>=0A=0A<table border=3D"0" cellpadding=3D"3" cellspacing=3D"0" class=3D=
+"forumpost">=0A    <tr class=3D"header">=0A        <td width=3D"35" valign=
+=3D"top" class=3D"picture left">=0A            <a href=3D"https://informati=
+ca.i-learn.unito.it/user/view.php?id=3D30080&amp;course=3D3092" class=3D"d-=
+inline-block aabtn"><img src=3D"https://informatica.i-learn.unito.it/theme/=
+image.php/_s/lambda/core/1745224313/u/f2" class=3D"userpicture defaultuserp=
+ic" width=3D"35" height=3D"35" alt=3D"" /></a>=0A        </td>=0A        <t=
+d class=3D"topic starter">=0A            <div class=3D"subject">=0A        =
+        LegoGPT: l=E2=80=99AI che trasforma testi in istruzioni per costruz=
+ioni Lego=0A            </div>=0A            <div class=3D"author">=0A     =
+           by <a target=3D'_blank' href=3D'https://informatica.i-learn.unit=
+o.it/user/view.php?id=3D30080&course=3D3092'>Turco Simone</a> - Friday, 16 =
+May 2025, 11:11 AM=0A            </div>=0A        </td>=0A    </tr>=0A    <=
+tr>=0A        <td class=3D"left side" valign=3D"top">=0A                &nb=
+sp;=0A        </td>=0A        <td class=3D"content">=0A            <pre><st=
+rong>Fonte:=C2=A0</strong><a href=3D"https://www.wired.it/article/legogpt-a=
+i-costruzioni-lego/">https://www.wired.it/article/legogpt-ai-costruzioni-le=
+go/</a></pre><p><strong></strong></p><p dir=3D"ltr"></p><pre><strong>Tipolo=
+gia di comunicazione: </strong>articolo online divulgativo</pre><h4></h4><p=
+re><strong>Tono della comunicazione: </strong><span>i</span>nformativo, con=
+ tono leggero e curioso</pre>
+<pre><strong>Riassunto:<br /></strong><span>L=E2=80=99articolo presenta <sp=
+an>LegoGPT</span>, un innovativo modello di linguaggio sviluppato dalla <sp=
+an>Carnegie Mellon University</span>,=20
+ispirato al mondo dei mattoncini Lego.=20
+L=E2=80=99obiettivo di questo sistema di intelligenza artificiale =C3=A8 tr=
+asformare descrizioni testuali (chiamate <em>prompt)</em>
+in <span>istruzioni dettagliate e coerenti per costruire oggetti Lego</span=
+>.=20
+
+A differenza di altre IA che generano immagini o testi, LegoGPT produce gui=
+de passo passo per assemblare strutture=20
+solide e realistiche, tenendo conto di forma, colore, e stabilit=C3=A0.<br =
+/>Alla base del progetto c=E2=80=99=C3=A8 <span>LLaMA-3.2-1B-Instruct</span=
+>, un modello linguistico open source che =C3=A8 stato appositamente=20
+riaddestrato per comprendere linguaggio naturale e convertirlo in sequenze =
+operative.
+
+L=E2=80=99IA =C3=A8 in grado di elaborare richieste come =E2=80=9Cun divano=
+ vintage con tessuto rosso e verde a fiori=E2=80=9D o=20
+=E2=80=9Cuna chitarra elettrica=E2=80=9D e generare le istruzioni come se p=
+rovenissero da un vero manuale Lego, indicando l=E2=80=99uso=20
+di ogni singolo mattoncino nella giusta posizione.<br />Per addestrare il m=
+odello, i ricercatori hanno costruito un <span>immenso database</span> con =
+pi=C3=B9 di <span>47.000 costruzioni e=20
+28.000 oggetti 3D</span>, permettendo a LegoGPT di avere un=E2=80=99ampia c=
+onoscenza di forme, incastri e strutture.=20
+Il sistema =C3=A8 anche in grado di considerare <span>aspetti strutturali</=
+span> come l=E2=80=99equilibrio, il peso e l=E2=80=99ingombro,=20
+assicurandosi che gli oggetti non siano solo esteticamente coerenti, ma anc=
+he fisicamente stabili.
+<br />Un aspetto rilevante =C3=A8 che il progetto =C3=A8 <span>open source<=
+/span>: codice e dataset sono disponibili pubblicamente su GitHub,=20
+rendendo la tecnologia accessibile ad altri sviluppatori e ricercatori.=20
+L=E2=80=99IA =C3=A8 attualmente operativa su griglie di piccole dimensioni,=
+ ma =C3=A8 gi=C3=A0 compatibile con <span>bracci robotici</span>,=20
+oltre che interpretabile da esseri umani.</span></pre>
+
+
+
+<pre><strong>Motivo per cui mi ha colpito:<br /></strong><span>Questo proge=
+tto unisce in modo originale <span>intelligenza artificiale, creativit=
+=C3=A0 e ingegneria pratica</span>.
+Dimostra come un modello linguistico possa essere usato non solo per elabor=
+are testi o immagini,=20
+ma per <span>guidare la costruzione fisica di oggetti</span>, rendendo il c=
+onfine tra digitale e reale sempre pi=C3=B9 sottile.<br />
+Inoltre, ci=C3=B2 che trovo particolarmente interessante =C3=A8 che questo =
+approccio <span>non si limita solo ai Lego</span>:=20
+rappresenta un possibile <span>modello generale per la generazione automati=
+ca di istruzioni o progetti fisici</span>.=20
+
+Potenzialmente, sistemi simili potrebbero essere applicati anche in settori=
+ come<span> la stampa 3D o simili</span>,
+aprendo la strada a strumenti che aiutano chiunque (anche senza competenze =
+tecniche) a realizzare oggetti=20
+partendo da una semplice descrizione.</span></pre><p></p>=0A=0A            =
+<div class=3D"commands">=0A                    <a target=3D"_blank" href=3D=
+"https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D72409">=0A=
+                        Reply=0A                    </a>=0A            </di=
+v>=0A=0A            <div class=3D"link">=0A                <a target=3D"_bl=
+ank" href=3D"https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=
+=3D44663#p72409">=0A                    See this post in context=0A        =
+        </a>=0A            </div>=0A        </td>=0A    </tr>=0A</table>=0A=
+=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=0A    <a href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706">Unsubsc=
+ribe from this forum</a>&nbsp;=0A    <a href=3D"https://informatica.i-learn=
+.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D44663">Unsubscribe from thi=
+s discussion</a>&nbsp;=0A    <a href=3D"https://informatica.i-learn.unito.i=
+t/mod/forum/index.php?id=3D3092">Change your forum digest preferences</a>=
+=0A</div>
+
+--b1_dFL7NUBuuxkzaUp1r6w6tJBnOlDJN83b8Mh2lDCU--
+

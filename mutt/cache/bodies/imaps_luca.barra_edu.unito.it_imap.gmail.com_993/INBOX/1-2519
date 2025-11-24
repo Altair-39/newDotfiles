@@ -1,0 +1,150 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a54a:0:b0:328:ea4:e135 with SMTP id e10csp1375398ljn;
+        Mon, 19 May 2025 06:16:58 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFreOqYa5iI05863KpHNA6TtB4L6j21hwhu5kBxT7eKKVIiPXmNmI3p/ThyNuBxyKggTJxO
+X-Received: by 2002:a05:6000:4205:b0:3a3:7769:4f8b with SMTP id ffacd0b85a97d-3a37769519cmr93888f8f.14.1747660618235;
+        Mon, 19 May 2025 06:16:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1747660618; cv=none;
+        d=google.com; s=arc-20240605;
+        b=UyoiG6X9qsSrGsbEReOeqHYBSDII+5oL+fx0F7gzFhftPw6apmU+HlaBfm3jXgdCSi
+         zUW3P1L9UuwcXrorf0Xaz8Snwuk5JojWOZwslULLX4XR5vMsq7MJY7F0XJZfAsUixDRG
+         H+YcbKZH7UdPuz1sk0DaLHVrUp93szDCQDUtjuESHjcJW5mirx2bbvG9kAd5LRgzLol/
+         WfHe4jpt4/Ol1dRgCkaguyhyeIYEEyd3VVPLSDft302/uMIv7Qj4FNSa9fyLul6VZ26x
+         /q9rGWWkQPeB7rx1Vav7rHjCbpVYRgbIDHZ39aosQPPIbrCuZ/kaoHmr07YwsmPiPQXT
+         M/Xg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=destinations:list-unsubscribe-post:list-unsubscribe:list-post
+         :list-archive:list-id:precedence:content-transfer-encoding
+         :mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=2z8KYabRDIVsBEsDsqUQtg5eFnTyAEdhg67xaJDRyz0=;
+        fh=QWgY2YJ9WLz2BQOW4jd7Lw7V6l3KFEqjtRC/Gc5f77I=;
+        b=GnKJOzBx1i/KCO808VB0PfX/2Fz928AiWlK/R9Hu4NGxf6ZYF4rVLLrgHlgOWKGKZh
+         Vd9LPhws2s2DDlOjjQf3hDVGax18qm2LaWrn3RQy5aNRC/iPt/M79ymAVhFuGsQjWOzD
+         Nk7IdjjoGM80OYYYQdVWec8Po8RXey8xyisGtGxAFjC+9t7gvbvkDnKV+gIkxEtwa/0C
+         58RlLRJZwQ8Npl6LxXhuzPu/lZmaN8rro2YnDVY5Vx/T38merDYgJTlCmeLzBVZXBq9S
+         SzE1pdXFq2G7tMIhpmnEHGoRyLz/qM2H9BDMGjHG8CxumeZSG9K2+05B07tRHy26WP8b
+         wUOA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@github.com header.s=pf2023 header.b=bpKMufhS;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.207 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Return-Path: <noreply@github.com>
+Received: from out-24.smtp.github.com (out-24.smtp.github.com. [192.30.252.207])
+        by mx.google.com with ESMTPS id ada2fe7eead31-4dfa68bbfbbsi3448527137.583.2025.05.19.06.16.57
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 May 2025 06:16:58 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@github.com designates 192.30.252.207 as permitted sender) client-ip=192.30.252.207;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@github.com header.s=pf2023 header.b=bpKMufhS;
+       spf=pass (google.com: domain of noreply@github.com designates 192.30.252.207 as permitted sender) smtp.mailfrom=noreply@github.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=github.com
+Received: from github.com (hubbernetes-node-3789cd5.ac4-iad.github.net [10.52.11.46])
+	by smtp.github.com (Postfix) with ESMTPA id 7FF39640E08
+	for <luca.barra@edu.unito.it>; Mon, 19 May 2025 06:16:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=github.com;
+	s=pf2023; t=1747660617;
+	bh=2z8KYabRDIVsBEsDsqUQtg5eFnTyAEdhg67xaJDRyz0=;
+	h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:List-ID:
+	 List-Archive:List-Post:List-Unsubscribe:List-Unsubscribe-Post:
+	 From;
+	b=bpKMufhShSkzIkT98ygbhV9zl/kkaxdGjgJDr/K1B530ArPUq3o6Vt7LEP/FLkkjF
+	 NKuUkEPLoA2t5cq2OnwwlVtEu3Gk0XObTKIiqFnKPG28dIxS08rW34Gr1U4IR/rmKd
+	 dK7Hyp4LTcrRzIzfM80YUEulR8VflXfr6KOoZsoA=
+Date: Mon, 19 May 2025 06:16:57 -0700
+From: Alessandro Zangrandi <notifications@github.com>
+Reply-To: AlexzanDev/telegram-downloader-bot <reply+BAG3TZKCVBCFTXDPCKSLGBGGG4IETEVBNHHLONGAQ4@reply.github.com>
+To: AlexzanDev/telegram-downloader-bot <telegram-downloader-bot@noreply.github.com>
+Cc: Altair <luca.barra@edu.unito.it>, 
+ Author <author@noreply.github.com>
+Message-ID: <AlexzanDev/telegram-downloader-bot/pull/8/issue_event/17714992811@github.com>
+In-Reply-To: <AlexzanDev/telegram-downloader-bot/pull/8@github.com>
+References: <AlexzanDev/telegram-downloader-bot/pull/8@github.com>
+Subject: Re: [AlexzanDev/telegram-downloader-bot] fix video (PR #8)
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_682b2f497d9ca_e21010308112";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Precedence: list
+X-GitHub-Sender: AlexzanDev
+X-GitHub-Recipient: Altair-39
+X-GitHub-Reason: author
+List-ID: AlexzanDev/telegram-downloader-bot
+ <telegram-downloader-bot.AlexzanDev.github.com>
+List-Archive: https://github.com/AlexzanDev/telegram-downloader-bot
+List-Post: <mailto:reply+BAG3TZKCVBCFTXDPCKSLGBGGG4IETEVBNHHLONGAQ4@reply.github.com>
+List-Unsubscribe: <mailto:unsub+BAG3TZKCVBCFTXDPCKSLGBGGG4IETEVBNHHLONGAQ4@reply.github.com>,
+ <https://github.com/notifications/unsubscribe/one-click/BAG3TZJPUFZODOFNL7PX35L27HKUTANCNFSM6AAAAAB5NT3HHM>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+X-Auto-Response-Suppress: All
+destinations: luca.barra@edu.unito.it
+X-GitHub-Recipient-Address: luca.barra@edu.unito.it
+
+
+----==_mimepart_682b2f497d9ca_e21010308112
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Merged #8 into master.
+
+-- 
+Reply to this email directly or view it on GitHub:
+https://github.com/AlexzanDev/telegram-downloader-bot/pull/8#event-17714992811
+You are receiving this because you authored the thread.
+
+Message ID: <AlexzanDev/telegram-downloader-bot/pull/8/issue_event/17714992811@github.com>
+----==_mimepart_682b2f497d9ca_e21010308112
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p></p>
+<p dir=3D"auto">Merged <a class=3D"issue-link js-issue-link" data-error-t=
+ext=3D"Failed to load title" data-id=3D"3073687687" data-permission-text=3D=
+"Title is private" data-url=3D"https://github.com/AlexzanDev/telegram-dow=
+nloader-bot/issues/8" data-hovercard-type=3D"pull_request" data-hovercard=
+-url=3D"/AlexzanDev/telegram-downloader-bot/pull/8/hovercard" href=3D"htt=
+ps://github.com/AlexzanDev/telegram-downloader-bot/pull/8">#8</a> into ma=
+ster.</p>
+
+<p style=3D"font-size:small;-webkit-text-size-adjust:none;color:#666;">&m=
+dash;<br />Reply to this email directly, <a href=3D"https://github.com/Al=
+exzanDev/telegram-downloader-bot/pull/8#event-17714992811">view it on Git=
+Hub</a>, or <a href=3D"https://github.com/notifications/unsubscribe-auth/=
+BAG3TZLA4KCO7FQKTDDA5BT27HKUTAVCNFSM6AAAAAB5NT3HHOVHI2DSMVQWIX3LMV45UABCJ=
+FZXG5LFIV3GK3TUJZXXI2LGNFRWC5DJN5XDWMJXG4YTIOJZGI4DCMI">unsubscribe</a>.<=
+br />You are receiving this because you authored the thread.<img src=3D"h=
+ttps://github.com/notifications/beacon/BAG3TZNAWFWBWJIV7HT5SW327HKUTA5CNF=
+SM6AAAAAB5NT3HHOWGG33NNVSW45C7OR4XAZNWJFZXG5LFIV3GK3TUJZXXI2LGNFRWC5DJN5X=
+KUY3PNVWWK3TUL5UWJTYAAAAAIH7FK2VQ.gif" height=3D"1" width=3D"1" alt=3D"" =
+/><span style=3D"color: transparent; font-size: 0; display: none; visibil=
+ity: hidden; overflow: hidden; opacity: 0; width: 0; height: 0; max-width=
+: 0; max-height: 0; mso-hide: all">Message ID: <span>&lt;AlexzanDev/teleg=
+ram-downloader-bot/pull/8/issue_event/17714992811</span><span>@</span><sp=
+an>github</span><span>.</span><span>com&gt;</span></span></p>
+<script type=3D"application/ld+json">[
+{
+"@context": "http://schema.org",
+"@type": "EmailMessage",
+"potentialAction": {
+"@type": "ViewAction",
+"target": "https://github.com/AlexzanDev/telegram-downloader-bot/pull/8#e=
+vent-17714992811",
+"url": "https://github.com/AlexzanDev/telegram-downloader-bot/pull/8#even=
+t-17714992811",
+"name": "View Pull Request"
+},
+"description": "View this Pull Request on GitHub",
+"publisher": {
+"@type": "Organization",
+"name": "GitHub",
+"url": "https://github.com"
+}
+}
+]</script>=
+
+----==_mimepart_682b2f497d9ca_e21010308112--

@@ -1,0 +1,160 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:548:b0:2ea:83d6:7f34 with SMTP id q8csp627874ljp;
+        Fri, 7 Jun 2024 02:09:30 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEEFyQxDUrwEmkTLLU7frEzxd4xU3Ib2M43OsTtV/c0o/nuFAY5vmSGOfqkGhairDzpx/7C
+X-Received: by 2002:a17:906:1305:b0:a68:67e4:7f06 with SMTP id a640c23a62f3a-a6cd5610885mr126533666b.10.1717751370280;
+        Fri, 07 Jun 2024 02:09:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1717751370; cv=none;
+        d=google.com; s=arc-20160816;
+        b=dzUk+rnAqG6enXlbKaOoUoycfKWv74W4TXPUweNS9oFZKhPWjoskBw0wAOVPkjIp2u
+         9LrMADGUf6IhufkeQIBSbDJ4r/GH+m2alEEkEkG5p0Km8e7yYdZGp8BkQKuFv+VpIRG3
+         TDMNv8lJ7l85nT+u2w8vbB4KtuzPuqcpXOiWhjtiHCZ4wT5Oqat2G9W7vJOq375s+sgo
+         wsc55J9sMHbRtQmb3B6e9inMaJ6lIx4znaNZynRCGLv1NEH0GS852b8vUcga4hJ8IPsQ
+         zdL+zh2yaSv02sxwkqvaPffC7stG4QinHAuao6YrL8dgqPxMtZHRQqo6NB3IjUPRxbYG
+         YQRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=RxURskFE+XAvpfUCi3bzSgyIgLtaB+EtXXck4wfFeOc=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=F5VgWdAc0SClo1KjD9YDrR1Iss2DUFShjjKmUiF1NsmtyBc8lI7RTig6pJAaTQNBx3
+         54eNyseRRq3s/AjZNu6H4EDG4rWdkTXXT03Ndn6+A7KGKvLufllI5UEboPEgAy0yG2xR
+         vTIF8OoC5o5H2Gq2DRbsxT4WL0xupJRXqhdOaAzMADE3urAwX1g2/TS1HLDVcl+551/6
+         TQXhiGZmnaOiomQvvqz5D3JdluVxC+KWgOVMAEZgqSY91lZJ1GJhoZv/OiLpOKVageOD
+         dM0VptMr9MIL+DV+/uiWv0pu5iZ5B9eTHVwshOeTzyd54/S0Np7UbKkFqhzyEOso9ELJ
+         +omg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-a6c8070bf0csi157892766b.568.2024.06.07.02.09.30
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Jun 2024 02:09:30 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 45799PW43675081
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Fri, 7 Jun 2024 11:09:25 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 45799PW43675081
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 45799Pp9025812
+	for <luca.barra@edu.unito.it>; Fri, 7 Jun 2024 11:09:25 +0200
+Date: Fri, 7 Jun 2024 11:09:25 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Schifanella Rossano (da informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: SAS-Lab-2324: Orale T1
+Message-ID: <503d1f62193502fb96035f68df8f19fa745c04b8dd68acc2fa95349632497539@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7124@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7124
+X-Course-Id: 2832
+X-Course-Name: Sviluppo delle Applicazioni Software - LABORATORIO T* - 2023/24
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: SAS-Lab-2324: Orale T1
+Thread-Index: 503d1f62193502fb96035f68df8f
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_FxR8xWZ3uwHGLwcXPETpIENmCVvq44TJLxF61S9BIOk"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 45799PW43675081
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_FxR8xWZ3uwHGLwcXPETpIENmCVvq44TJLxF61S9BIOk
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SAS-Lab-2324 -> Forum -> Annunci -> Orale T1
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D42064#p69308
+Orale T1
+di Schifanella Rossano - venerd=C3=AC, 7 giugno 2024, 10:52
+---------------------------------------------------------------------
+Buongiorno,=C2=A0
+
+ricordo che anche per T1 =C3=A8 aperto il form per la prenotazione dell'ora=
+le.
+Potete andare nell'apposita sezione relativa agli esami nel moodle del
+corso o qui [1]. Aggiunger=C3=B2 degli slot non appena si riempiranno quell=
+i
+attuali. Ricordatevi di iscrivere solo 1 componente per gruppo.=C2=A0
+
+Grazie,=C2=A0
+
+Rossano Schifanella
+
+Links:
+------
+[1] https://informatica.i-learn.unito.it/mod/choice/view.php?id=3D242760
+
+---------------------------------------------------------------------
+Questa =C3=A8 la copia di un intervento effettuato su SAS-Lab-2324 .
+
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2832
+
+--b1_FxR8xWZ3uwHGLwcXPETpIENmCVvq44TJLxF61S9BIOk
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2832">SAS-Lab-2324</a>=0A    &raqu=
+o;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/index.php?id=3D2832">Forum</a>=0A    &raquo;=0A    <a target=3D"_=
+blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D=
+7124">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://=
+informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D42064">Orale T1 </a>=
+=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" cellspacing=3D"0" clas=
+s=3D"forumpost">=0A    <tr class=3D"header">=0A        <td width=3D"35" val=
+ign=3D"top" class=3D"picture left">=0A            <a href=3D"https://inform=
+atica.i-learn.unito.it/user/view.php?id=3D2031&amp;course=3D2832" class=3D"=
+d-inline-block aabtn"><img src=3D"https://informatica.i-learn.unito.it/plug=
+infile.php/19199/user/icon/lambda/f2?rev=3D1486562" class=3D"userpicture" w=
+idth=3D"35" height=3D"35" alt=3D"" /></a>=0A        </td>=0A        <td cla=
+ss=3D"topic starter">=0A            <div class=3D"subject">=0A             =
+   Orale T1 =0A            </div>=0A            <div class=3D"author">=0A  =
+              di <a target=3D'_blank' href=3D'https://informatica.i-learn.u=
+nito.it/user/view.php?id=3D2031&course=3D2832'>Schifanella Rossano</a> - ve=
+nerd=C3=AC, 7 giugno 2024, 10:52=0A            </div>=0A        </td>=0A   =
+ </tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=0A     =
+           &nbsp;=0A        </td>=0A        <td class=3D"content">=0A      =
+      <p dir=3D"ltr" style=3D"text-align:left;">Buongiorno,=C2=A0</p><p dir=
+=3D"ltr" style=3D"text-align:left;">ricordo che anche per T1 =C3=A8 aperto =
+il form per la prenotazione dell'orale. Potete andare nell'apposita sezione=
+ relativa agli esami nel moodle del corso o <a href=3D"https://informatica.=
+i-learn.unito.it/mod/choice/view.php?id=3D242760" target=3D"_blank" rel=3D"=
+noreferrer noopener">qui</a>. Aggiunger=C3=B2 degli slot non appena si riem=
+piranno quelli attuali. Ricordatevi di iscrivere solo <strong>1 </strong>co=
+mponente per gruppo.=C2=A0<br /></p><p dir=3D"ltr" style=3D"text-align:left=
+;">Grazie,=C2=A0<br /></p><p dir=3D"ltr" style=3D"text-align:left;">Rossano=
+ Schifanella</p><p dir=3D"ltr" style=3D"text-align:left;"><br /></p>=0A=0A =
+           <div class=3D"commands">=0A            </div>=0A=0A            <=
+div class=3D"link">=0A                <a target=3D"_blank" href=3D"https://=
+informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D42064#p69308">=0A   =
+                 Visualizza questo intervento nel contesto=0A              =
+  </a>=0A            </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr=
+ />=0A<div class=3D"mdl-align unsubscribelink">=0A    <a href=3D"https://in=
+formatica.i-learn.unito.it/mod/forum/index.php?id=3D2832">Modifica preferen=
+ze email di raccolta</a>=0A</div><p>Reading this in an email? <a href=3D"ht=
+tps://download.moodle.org/mobile?version=3D2021051718&amp;lang=3Dit&amp;ios=
+appid=3D633359593&amp;androidappid=3Dcom.moodle.moodlemobile">Download the =
+mobile app and receive notifications on your mobile device</a>.</p>
+
+--b1_FxR8xWZ3uwHGLwcXPETpIENmCVvq44TJLxF61S9BIOk--
+

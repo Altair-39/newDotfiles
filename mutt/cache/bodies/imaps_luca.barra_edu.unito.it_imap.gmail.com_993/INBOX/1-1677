@@ -1,0 +1,154 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:339:b0:2e2:75a4:21a3 with SMTP id b25csp950614ljp;
+        Thu, 9 May 2024 11:09:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHc73HdcYE3oAgguXCmVV1WOKlEiRQii53DEJBq6iGB4iDS1tCw6aeAsIxec68JInoLkh/b
+X-Received: by 2002:a50:aade:0:b0:572:9dc3:ce38 with SMTP id 4fb4d7f45d1cf-5734d5ce499mr446817a12.19.1715278171986;
+        Thu, 09 May 2024 11:09:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1715278171; cv=none;
+        d=google.com; s=arc-20160816;
+        b=QJKBIWSuJD+WTHtrdYM66NyD9QuKAzd0HJuHF9Kg4Vx8jN+bIHmaPcN9v3RfcukvAA
+         3/fWgRc68a35fBaHGnbXw2H83nk7jBm/dBDqvSwZ1wxHXPJRoky2692GwLUnhXH2WkXm
+         emCzH1VqowcTfkaeeYXpzKvlwsz7cUEqYsEpfbiopOo0B2YXw+sM1QXxpNCvuOD3/gJ9
+         v4jgL9Sjj+umbrhJ+eMAEmmyqV/ZlDaot/mzAHoTxp8QAnZWutUALqvAQcwVUSevFRbU
+         jSiMfMVv1qBVSgpd8oxJIp+JNoBt2a7JB/SOP1xFiQdiSAauptWXuyaEvEI+8EX67XLU
+         mF3A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=7C1x+8H7AsB/PA9GcGsAxkzuLUnSEwXWWRNT27y/LIc=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=Ta0KLP2Sb/GxfpgHWN3Vhrtv213a0O988R88S3gPnbGFqjZVcynrFnHH2mYQ3t7JEz
+         GLCcxNFT7NRfAhkQ8dmPKikFYlJCNEJRvl5uamWvtD0vye9w6eWawdy/0cXlW8Lu3Udi
+         5RWEBs0dmRUWfJRgnJzFFNMkN9N9VneaSJQJ5lcS7th95j8TJWC3FJUK3YpWrw/lNkSE
+         Hrwm3gV8OWpN4amU7Zq7609QoFry+5AuUKwWkIaPV0Lod2dEmK/JVcI6r+abY//4cCLd
+         VGYnmXyqvugsmQV+79hJCM+ihWqvnhXEb6T4pmJLrCnwNZCym4nPFP4PQlpfyvpaj1fO
+         YtJg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-5733beaceb3si1021960a12.47.2024.05.09.11.09.31
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 May 2024 11:09:31 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 449I9R8V1233850
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Thu, 9 May 2024 20:09:27 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 449I9R8V1233850
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 449I9RIv077232
+	for <luca.barra@edu.unito.it>; Thu, 9 May 2024 20:09:27 +0200
+Date: Thu, 9 May 2024 20:09:27 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Polato Mirko (da informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Non rispondere a questa email" <noreply@educ.di.unito.it>
+Subject: SAS-Lab-2324: Incontro con azienda Skillbit
+Message-ID: <00c8959e1a244dae6534929c478be144f1d674f9ce4d5d4461d110e1bd9a04fd@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7124@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7124
+X-Course-Id: 2832
+X-Course-Name: Sviluppo delle Applicazioni Software - LABORATORIO T* - 2023/24
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: SAS-Lab-2324: Incontro con azienda Skillbit
+Thread-Index: 00c8959e1a244dae6534929c478b
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_1rNmElFOZYxReOg3oMq0Z1CvUA9ongPhQVsWm8OQo"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 449I9R8V1233850
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_1rNmElFOZYxReOg3oMq0Z1CvUA9ongPhQVsWm8OQo
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SAS-Lab-2324 -> Forum -> Annunci -> Incontro con azienda Skillbit
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41586#p68738
+Incontro con azienda Skillbit
+di Polato Mirko - gioved=C3=AC, 9 maggio 2024, 20:07
+---------------------------------------------------------------------
+Cari student*,
+
+si ricorda che domani dalle 14 ALLE 15 IN AULA B=C2=A0ospiteremo due
+rappresentati dell'azienda SKILLBIT che ci presenteranno come loro
+gestiscono una commessa, dalla pianificazione (anche economica)
+all'implementazione.
+
+Partecipate numerosi!!
+
+Un caro saluto,
+=C2=A0 =C2=A0i docenti di LabSAS
+
+---------------------------------------------------------------------
+Questa =C3=A8 la copia di un intervento effettuato su SAS-Lab-2324 .
+
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2832
+
+--b1_1rNmElFOZYxReOg3oMq0Z1CvUA9ongPhQVsWm8OQo
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D2832">SAS-Lab-2324</a>=0A    &raqu=
+o;=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/index.php?id=3D2832">Forum</a>=0A    &raquo;=0A    <a target=3D"_=
+blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D=
+7124">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://=
+informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D41586">Incontro con =
+azienda Skillbit</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" ce=
+llspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=0A        =
+<td width=3D"35" valign=3D"top" class=3D"picture left">=0A            <a hr=
+ef=3D"https://informatica.i-learn.unito.it/user/view.php?id=3D27914&amp;cou=
+rse=3D2832" class=3D"d-inline-block aabtn"><img src=3D"https://informatica.=
+i-learn.unito.it/theme/image.php/_s/lambda/core/1707437411/u/f2" class=3D"u=
+serpicture defaultuserpic" width=3D"35" height=3D"35" alt=3D"" /></a>=0A   =
+     </td>=0A        <td class=3D"topic starter">=0A            <div class=
+=3D"subject">=0A                Incontro con azienda Skillbit=0A           =
+ </div>=0A            <div class=3D"author">=0A                di <a target=
+=3D'_blank' href=3D'https://informatica.i-learn.unito.it/user/view.php?id=
+=3D27914&course=3D2832'>Polato Mirko</a> - gioved=C3=AC, 9 maggio 2024, 20:=
+07=0A            </div>=0A        </td>=0A    </tr>=0A    <tr>=0A        <t=
+d class=3D"left side" valign=3D"top">=0A                &nbsp;=0A        </=
+td>=0A        <td class=3D"content">=0A            <p dir=3D"ltr" style=3D"=
+text-align:left;">Cari student*,</p><p dir=3D"ltr" style=3D"text-align:left=
+;">si ricorda che domani dalle <strong>14 alle 15 in Aula B</strong>=C2=
+=A0ospiteremo due rappresentati dell'azienda <strong>Skillbit</strong> che =
+ci presenteranno come loro gestiscono una commessa, dalla pianificazione (a=
+nche economica) all'implementazione.</p><p dir=3D"ltr" style=3D"text-align:=
+left;">Partecipate numerosi!!<br /></p><p dir=3D"ltr" style=3D"text-align:l=
+eft;"><br /></p><p dir=3D"ltr" style=3D"text-align:left;">Un caro saluto,<b=
+r />=C2=A0 =C2=A0i docenti di LabSAS</p>=0A=0A            <div class=3D"com=
+mands">=0A            </div>=0A=0A            <div class=3D"link">=0A      =
+          <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it=
+/mod/forum/discuss.php?d=3D41586#p68738">=0A                    Visualizza =
+questo intervento nel contesto=0A                </a>=0A            </div>=
+=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-ali=
+gn unsubscribelink">=0A    <a href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/index.php?id=3D2832">Modifica preferenze email di raccolta</a>=0A=
+</div><p>Reading this in an email? <a href=3D"https://download.moodle.org/m=
+obile?version=3D2021051718&amp;lang=3Dit&amp;iosappid=3D633359593&amp;andro=
+idappid=3Dcom.moodle.moodlemobile">Download the mobile app and receive noti=
+fications on your mobile device</a>.</p>
+
+--b1_1rNmElFOZYxReOg3oMq0Z1CvUA9ongPhQVsWm8OQo--
+

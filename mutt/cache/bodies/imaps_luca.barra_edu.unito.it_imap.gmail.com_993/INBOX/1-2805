@@ -1,0 +1,170 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a00e:0:20b0:361:9897:9696 with SMTP id q14-n2csp223632ljb;
+        Fri, 19 Sep 2025 08:44:48 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEgmkI/D5dPe3jhADJCFti/mkAeJNGFtYnE4RP/At7+qIVWCWGCWCmPsIAK6Y8nh6uQaORm
+X-Received: by 2002:a05:6402:50d2:b0:62f:386d:aeaf with SMTP id 4fb4d7f45d1cf-62fc0a938d4mr1568055a12.6.1758296688232;
+        Fri, 19 Sep 2025 08:44:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1758296688; cv=none;
+        d=google.com; s=arc-20240605;
+        b=aMF4AUWi5m3KBqyg63Y1ObY0V1/VHTbSy3RTJnPB5HPHnuw3dxAT9DX4Es7JCi+icb
+         GUreGEykBr8C28pqBpGEv3+6oJb56GlMkuqBmMjXFp4uoz3U/A4MDza1G1yNPmwOjx7l
+         v8fq36ikVLobJXoFcoF/gS1I10dL/X0vP4mdH+FWBI3b3OpnmjYUcfqr9FOPfYNQ1w+2
+         BwqZAD3+M967tBUHyn3CjFlTInoBIEajv55dmR0w2F88GO87CdGKjFIUiPx3KKfesQ40
+         jLSXgOR/tz23JiP4QeW+ZxBp/wDXKIZ4ueaKd+3CCytpwdeUBWL+V1u+3YzTeu3GbKEt
+         5Rgg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-signature:dkim-filter;
+        bh=3pFOOUvA4L0mX3zgZepG7KMZt7jKCI6Xr8hNNEgExI0=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=bGGBsGlIgAUM74nFUDLwbIh91C9myWsjLRj9lsSjc6plJ8rDoHp5KmaIa4bWpe1lLy
+         0pGnrvDHFu2oeoBo9ZcQp0j0OTqOsrtGPRfxhUj9KXK211HDAwSzFNW3RaT8KSkpgmWI
+         y0RkONBC1oAeC42NU47Xcvo9731no78SQylV0QtdQ4kJCeBIJHWBKzFQZ4V1zoVYb0J/
+         Nu7ACqothdTCCKyIEP2vzeFrdidRglaZP+v5COzUFfrmvl2H0RzLPthbxYcP/ZmlHyz1
+         EjkEKMS71BQip3BjWMkCdYA3zOVIYfmVB3Tap72sEuD8uKP474R4FChT1Q+vwoM+pAH9
+         0ekQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b="JMZ/q3JJ";
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-62fb3a0ffa7si1937177a12.495.2025.09.19.08.44.47
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 19 Sep 2025 08:44:48 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b="JMZ/q3JJ";
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it [130.192.157.4])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 58JFieEt2315265
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Fri, 19 Sep 2025 17:44:40 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 58JFieEt2315265
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=i-learn.unito.it;
+	s=default; t=1758296680;
+	bh=3pFOOUvA4L0mX3zgZepG7KMZt7jKCI6Xr8hNNEgExI0=;
+	h=Date:To:From:Reply-To:Subject:List-Id:List-Help:List-Unsubscribe:
+	 From;
+	b=JMZ/q3JJhRCwazY773kGOMHPqY0bIoQuynqtkE6No8t2Xkl+tjSJXeogLAn8M9+Yc
+	 24dVDVa8Sh+ndrAnDV9OIqkGOCq3MrjCSzYBnzQ5TKghqBKXAaZ9MRkkjP/X/kyq8O
+	 L6FZ54X5NSLf400I6J8F/7ZFoMdmIiRiRgjhN7o8=
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 58JFiefG4008160
+	for <luca.barra@edu.unito.it>; Fri, 19 Sep 2025 17:44:40 +0200
+Date: Fri, 19 Sep 2025 17:44:40 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Picardi Claudia (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: TAASS-2526: Preview argomenti lezione - settimana del 22/9
+Message-ID: <452edf1cadf14bbc8f9003f89df760b5780fae2c7f0daa18e3cc907a32e4f17b@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.6.5 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum8319@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=8319
+X-Course-Id: 3521
+X-Course-Name: Tecniche e Architetture Avanzate per lo Sviluppo del Software 2025/26
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: TAASS-2526: Preview argomenti lezione - settimana del 22/9
+Thread-Index: 452edf1cadf14bbc8f9003f89df7
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_R17P2TEAs5Cz0RqCa9R9Dp9y6jMSoTpuPZE0y8"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 58JFieEt2315265
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply-informatica@i-learn.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_R17P2TEAs5Cz0RqCa9R9Dp9y6jMSoTpuPZE0y8
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+TAASS-2526 -> Forums -> Annunci -> Preview argomenti lezione - settimana
+del 22/9
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45381#p73223
+Preview argomenti lezione - settimana del 22/9
+by Picardi Claudia - Friday, 19 September 2025, 5:28 PM
+---------------------------------------------------------------------
+Care studentesse e studenti, spero di farvi cosa gradita dandovi una
+piccola preview degli argomenti delle lezioni di TAASS di settimana
+prossima.
+
+* LUNED=C3=8C 22/9 - sciopero generale * MARTED=C3=8C 23/9 - vedremo strume=
+nti per
+analisi dei requisiti e del dominio di business in ottica microservizi; su
+questo tema vi proporr=C3=B2 anche qualche piccola esperienza pratica in
+classe, allo scopo fra le altre cose di stimolare la fantasia su possibili
+idee progettuali * VENERD=C3=8C 26/9 - ripasso su SpringBoot - vi presenter=
+=C3=B2
+qualche esempio base, il livello sar=C3=A0 quello degli insegnamenti trienn=
+ali
+(quindi se avete visto SpringBoot alla triennale potete anche saltare). Gli
+esempi saranno in ogni caso resi disponibili tramite Gitlab.
+
+---------------------------------------------------------------------
+This is a copy of a message posted in TAASS-2526.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3521
+
+--b1_R17P2TEAs5Cz0RqCa9R9Dp9y6jMSoTpuPZE0y8
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3521">TAASS-2526</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3521">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D8=
+319">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://i=
+nformatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45381">Preview argome=
+nti lezione - settimana del 22/9</a>=0A</div>=0A=0A<table border=3D"0" cell=
+padding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"hea=
+der">=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=0A =
+           <a href=3D"https://informatica.i-learn.unito.it/user/view.php?id=
+=3D889&amp;course=3D3521" class=3D"d-inline-block aabtn"><img src=3D"https:=
+//informatica.i-learn.unito.it/pluginfile.php/17427/user/icon/lambda/f2?rev=
+=3D1" class=3D"userpicture" width=3D"35" height=3D"35" alt=3D"Picardi Claud=
+ia" title=3D"Picardi Claudia" /></a>=0A        </td>=0A        <td class=3D=
+"topic starter">=0A            <div class=3D"subject">=0A                Pr=
+eview argomenti lezione - settimana del 22/9=0A            </div>=0A       =
+     <div class=3D"author">=0A                by <a target=3D'_blank' href=
+=3D'https://informatica.i-learn.unito.it/user/view.php?id=3D889&course=3D35=
+21'>Picardi Claudia</a> - Friday, 19 September 2025, 5:28 PM=0A            =
+</div>=0A        </td>=0A    </tr>=0A    <tr>=0A        <td class=3D"left s=
+ide" valign=3D"top">=0A                &nbsp;=0A        </td>=0A        <td=
+ class=3D"content">=0A            <p dir=3D"ltr" style=3D"text-align:left;"=
+>Care studentesse e studenti, spero di farvi cosa gradita dandovi una picco=
+la preview degli argomenti delle lezioni di TAASS di settimana prossima.</p=
+><p dir=3D"ltr" style=3D"text-align:left;"></p><ul><li><strong>luned=C3=
+=AC 22/9</strong> - <span>sciopero generale</span></li><li><span><strong>ma=
+rted=C3=AC 23/9</strong> - vedremo strumenti per analisi dei requisiti e de=
+l dominio di business in ottica microservizi; su questo tema vi proporr=
+=C3=B2 anche qualche piccola esperienza pratica in classe, allo scopo fra l=
+e altre cose di stimolare la fantasia su possibili idee progettuali</span><=
+/li><li><span><strong>venerd=C3=AC 26/9</strong> - <span>ripasso su SpringB=
+oot - vi presenter=C3=B2 qualche esempio base, il livello sar=C3=A0 quello =
+degli insegnamenti triennali (quindi se avete visto SpringBoot alla trienna=
+le potete anche saltare). Gli esempi saranno in ogni caso resi disponibili =
+tramite Gitlab.</span></span></li></ul>=0A=0A            <div class=3D"comm=
+ands">=0A            </div>=0A=0A            <div class=3D"link">=0A       =
+         <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/discuss.php?d=3D45381#p73223">=0A                    See this pos=
+t in context=0A                </a>=0A            </div>=0A        </td>=0A=
+    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribelink"=
+>=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/forum/index.php=
+?id=3D3521">Change your forum digest preferences</a>=0A</div>
+
+--b1_R17P2TEAs5Cz0RqCa9R9Dp9y6jMSoTpuPZE0y8--
+

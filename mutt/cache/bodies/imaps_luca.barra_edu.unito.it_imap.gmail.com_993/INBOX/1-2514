@@ -1,0 +1,448 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a54a:0:b0:328:ea4:e135 with SMTP id e10csp1219727ljn;
+        Sun, 18 May 2025 22:52:53 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFuxTYig2pdZ7IDGSuro6v+A5KTlYVh+uEq6W+qWUN1fWf1O0jv9UYokPQG6lybKXlIFk3v
+X-Received: by 2002:a17:907:c914:b0:ad5:3d3e:4ec4 with SMTP id a640c23a62f3a-ad53d3e5071mr273044066b.9.1747633973334;
+        Sun, 18 May 2025 22:52:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1747633973; cv=none;
+        d=google.com; s=arc-20240605;
+        b=KogYN0s1/AJz8dL9RFhorZ6JAbVbVUhO5DKBBja2J/qoufDEg0dwAJL1Be50gmT4Sy
+         HIIFhfX1UVX4PJBDFriO1WT4OUrJ2E2uvRD4g68QMAMECJzgpCzJUR2LqO0IFZ7LGClV
+         tzN1dhmoEloawjCQnVW0oIzTDLu/3/UFyvD6LpDtiFb/YYMMB4P1qFrG6ma3gEyQBtPW
+         ZB7bhANhVy0P11ji14iB47lg7/mZFgpjmbPZZB4Rai+IAZsoPiFqVQ0ewm4go5CEV6th
+         rVIAZ0sb7vOohrJC5UUTfeHAKI/x97dNyZHoxZ2h8xDikmwdQhE8FpNZ/z8dt7UQKp3U
+         wUVw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=subject:from:cc:to:content-language:user-agent:mime-version:date
+         :message-id:dkim-signature:dkim-filter;
+        bh=hlJ8TANRjEmInWzanH4/0CcuCmmaYCJ4G8W9fPmTwdY=;
+        fh=4JhodVgJhhIGmq5V2KsBwtmpLQuJOBqgrRMRuX24ZV8=;
+        b=ZAVxQarrltGOXv8Gzfp9zPq9tZRY/X1w+J2vrKhECdHtcZ4xz+2wYNVJnA8hDAzgkp
+         aZ46Mae0ZcWqwKJa5FKPfKdcNRLkM/P7+vzt6Ta0uF8BYML8oixR0JWiAmzJwpHRE+CQ
+         bUqOjTIWhtrxRKF0DPJeCjHH9sD+6Bby9WpN4sMl1B8lEJke9QC4B7Wc7TeuHkHYhUze
+         QdNqWyQgXYWWoFISu2wJUHk6EBQP8o+flOF9Lkk1WtR0iUR+wnySF0zRgoViyhiZjQjN
+         EGm5XzfckXXZPCBy1iDM288WA4GL3BJz7owARQp+1Ef0GOWaTE8xM3H/43rP4imJMxh1
+         Xd9g==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@di.unito.it header.s=dipinfo2011 header.b=Wb79iGnG;
+       spf=pass (google.com: domain of sproston@di.unito.it designates 130.192.156.1 as permitted sender) smtp.mailfrom=sproston@di.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=di.unito.it
+Return-Path: <sproston@di.unito.it>
+Received: from mail.di.unito.it (pianeta.di.unito.it. [130.192.156.1])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ad52d071e8esi579319366b.29.2025.05.18.22.52.52
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 18 May 2025 22:52:53 -0700 (PDT)
+Received-SPF: pass (google.com: domain of sproston@di.unito.it designates 130.192.156.1 as permitted sender) client-ip=130.192.156.1;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@di.unito.it header.s=dipinfo2011 header.b=Wb79iGnG;
+       spf=pass (google.com: domain of sproston@di.unito.it designates 130.192.156.1 as permitted sender) smtp.mailfrom=sproston@di.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=di.unito.it
+X-MailScanner-From: sproston@di.unito.it
+X-SpamCheck: not spam, SpamAssassin (not cached, score=-101.821, required 3,
+	autolearn=not spam, ALL_TRUSTED -1.00, AUTHENTICATEDUSER -100.00,
+	AWL -0.08, BAYES_00 -1.90, HTML_MESSAGE 0.00,
+	HTML_TAG_BALANCE_BODY 1.16)
+X-AntiVirus: Email Clean
+X-dipinfo-MailScanner-ID: 54J5ql3Q017539
+X-dipinfo-MailScanner-Information: Please contact Department of Computer Science technical staff for more information
+Received: from mail.di.unito.it ([130.192.156.1])
+         by mail.di.unito.it (INFO-DIP) with ESMTPSA id 54J5ql3Q017539
+	 (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO AuthenticatedUser=sproston );
+	 Mon, 19 May 2025 07:52:47 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.di.unito.it 54J5ql3Q017539
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=di.unito.it;
+	s=dipinfo2011; t=1747633967;
+	bh=Cz7Ggqqx0qnOPG2JiyJtu+Y7+++Azo5RwFmnOStC+4g=;
+	h=Date:To:Cc:From:Subject;
+	b=Wb79iGnGUNUAAcZN6/D/5B0/D4lZqO7UP3j9kyf0kM5NfYYV7YsXh1R5pPxvsqQuY
+	 PWGpco6U61hxXNdHRemrPP6aiAvdvEmVhnnRQM2asiIKybCi+Uxev5BAhQFDLAtgtU
+	 ty84lDbImZpK80r/qoiYAJkb457infsNeFDSiNvo=
+Content-Type: multipart/alternative;
+ boundary="------------vIsMrec1QNRhjawqg3nQxRrI"
+Message-ID: <15e17b9e-93c9-42e3-981a-6202c0251d94@di.unito.it>
+Date: Mon, 19 May 2025 07:52:46 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Content-Language: it
+To: Luca <luca.barra@edu.unito.it>
+Cc: Jeremy Sproston <sproston@di.unito.it>
+From: Jeremy Sproston <sproston@di.unito.it>
+Subject: PPOO T2 lezione 9
+
+This is a multi-part message in MIME format.
+--------------vIsMrec1QNRhjawqg3nQxRrI
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Ciao Luca,
+
+ti mando gli esercizi che faremo questo pomeriggio: il testo di alcuni 
+esercizi deve essere modificato un po'. Ti mando le proposte di 
+soluzioni piu` tardi.
+
+Ciao,
+
+Jeremy
+
+-----
+
+Estendere la classe Person in modo da sovrascrivere il metodo equals() 
+(più precisamente, il metodo con la signature public boolean 
+equals(Object o)).Testare il funzionamento della nuova classe nel 
+contesto di DynamicQueue<T> e Set<T> degli esercizi della Lezione 6 
+(14/04/2025). La classe Person e le classi TestDynamicQueue e TestSet 
+per controllare il corretto funzionamento della estensione della classe 
+Person sono fornite.
+
+-----
+
+Modificare la gerarchia di classi dell’esercizio 1 della scorsa lezione 
+(classi Elettrodomestico, Forno etc..) aggiungendo un’interfaccia 
+chiamata SmartControl che rappresenta il comportamento smart di un 
+elettrodomestico connesso. L’interfaccia deve dichiarare i seguenti 
+metodi pubblici: - void connettiRete(String reteWifi); collega 
+l’elettrodomestico a una rete WiFi. - void aggiornaFirmware(); aggiorna 
+il software interno del dispositivo. Implementare due classi FornoSmart 
+e LavatriceSmart che implementano SmartControl e estendono 
+rispettivamente Forno e Lavatrice.
+
+Nel caso della classe FornoSmart, il metodo connettiRete(String 
+reteWifi) stampa a video la concatenazione della stringa che rappresenta 
+il modello con la stringa "connesso a rete Wifi”, seguita dalla stringa 
+della rete Wifi (cioe` il parametro). Il metodo aggiornaFirmware() 
+stampa a video il modello con la stringa "firmware forno aggiornato”.
+
+Analogamente, nel caso della classe LavatriceSmart, il metodo 
+connettiRete(String reteWifi) stampa a video la concatenazione della 
+stringa che rappresenta il modello con la stringa "connessa a rete 
+Wifi”, seguita dalla stringa della rete Wifi (cioe` il parametro). Il 
+metodo aggiornaFirmware() stampa a video il modello con la stringa 
+"firmware lavatrice aggiornato”.
+
+Inoltre si richiede di ridefinire in FornoSmart e LavatriceSmart il 
+metodo accendi(String modalita) in modo che stampi a video la 
+concatenazione della stringa che rappresenta il modello con la stringa 
+"versione smart-accensione forno” e "versione smart-accensione 
+lavatrice”, rispettivamente, seguita dalla stringa della modalita` di 
+accensione (cioè il parametro): considerando il nostro esempio, stampa a 
+video la stringa “Bosch9000 smart-accensione forno eco”.
+
+Scrivere una classe di test SmartCasa in cui viene creato almeno un 
+elettrodomestico per tipologia.
+
+-----
+
+Riprendiamo la gerarchia dell'esercizio precedente.
+
+Creare una classe generica GestoreSmart<T extends Elettrodomestico & 
+SmartControl>che permette di:
+
+  *
+
+    Connettere in rete tutti gli elettrodomestici smart passati
+
+  *
+
+    Aggiornare il firmware di tutti
+
+  *
+
+    Stampare le loro descrizioni e funzioni principali
+
+la classe contiene i seguenti metodi:
+
+  *
+
+    public void aggiungiDispositivo(T dispositivo): aggiunge un
+    dispositivo alla lista dispositivi.
+
+  *
+
+    public void connettiTutti(String reteWiFi)
+
+Per ogni dispositivo presente nella lista:
+
+  *
+
+    Chiama connettiRete(reteWiFi)definito nell’interfaccia SmartControl.
+
+  *
+
+    Deve stampare un messaggio per ogni connessione avvenuta.
+
+  *
+
+    public void aggiornaTutti()
+
+Per ogni dispositivo nella lista:
+
+  *
+
+    Chiama aggiornaFirmware()definito in SmartControl.
+
+  *
+
+    Deve stampare un messaggio che conferma l’aggiornamento del firmware
+    per ciascun dispositivo.
+
+  *
+
+    public void stampaInfo()
+
+Per ogni dispositivo nella lista stampa:
+
+  *
+
+    La descrizione (dispositivo.toString())
+
+  *
+
+    La funzione principale (dispositivo.funzionePrincipale())
+
+-----
+
+Si considerino le classi Rubrica e Contatto viste a lezione e fornite 
+per comodità su Moodle insieme a questo testo.
+
+Si modifichi la classe Contatto in modo che implementi l’interfaccia 
+Comparable<Contatto>.
+
+Si sfrutti questo fatto per modificare la classe Rubrica in modo che 
+esponga un metodo sort() che ordina l’array contatti. Si estenda infine 
+RubricaDemo per testare le modifiche fatte.
+
+--------------vIsMrec1QNRhjawqg3nQxRrI
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Ciao Luca,</p>
+    <p>ti mando gli esercizi che faremo questo pomeriggio: il testo di
+      alcuni esercizi deve essere modificato un po'. Ti mando le
+      proposte di soluzioni piu` tardi.</p>
+    <p>Ciao,</p>
+    <p>Jeremy</p>
+    <p>-----</p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"
+      id="docs-internal-guid-b8778c1e-7fff-5372-2eb2-872bd07a8487"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Estendere la classe Person in modo da sovrascrivere il metodo equals() (più precisamente, il metodo con la signature public boolean equals(Object o)).Testare il funzionamento della nuova classe nel contesto di DynamicQueue&lt;T&gt; e Set&lt;T&gt; degli esercizi della Lezione 6 (14/04/2025). La classe Person e le classi TestDynamicQueue e TestSet per controllare il corretto funzionamento della estensione della classe Person sono fornite.</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">
+</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">-----</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">
+</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Modificare la gerarchia di classi dell’esercizio 1 della scorsa lezione (classi Elettrodomestico, Forno etc..) aggiungendo  un’interfaccia chiamata SmartControl che rappresenta il comportamento smart di un elettrodomestico connesso. L’interfaccia deve dichiarare i seguenti metodi pubblici:
+- void connettiRete(String reteWifi); collega l’elettrodomestico a una rete WiFi.
+- void aggiornaFirmware(); aggiorna il software interno del dispositivo.
+
+Implementare due classi FornoSmart e LavatriceSmart  che implementano SmartControl e estendono rispettivamente Forno e Lavatrice.</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">
+</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Nel caso della classe FornoSmart, il metodo connettiRete(String reteWifi) stampa a video la concatenazione della stringa che rappresenta il modello con la stringa "connesso a rete Wifi”, seguita dalla stringa della rete Wifi (cioe` il parametro). Il metodo aggiornaFirmware() stampa a video il modello con la stringa "firmware forno aggiornato”.
+</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">
+</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Analogamente, nel caso della classe LavatriceSmart, il metodo connettiRete(String reteWifi) stampa a video la concatenazione della stringa che rappresenta il modello con la stringa "connessa a rete Wifi”, seguita dalla stringa della rete Wifi (cioe` il parametro). Il metodo aggiornaFirmware() stampa a video il modello con la stringa "firmware lavatrice aggiornato”.
+</span></p>
+    <p dir="ltr"
+style="line-height:1.38;text-align: justify;margin-top:12pt;margin-bottom:12pt;"
+      id="docs-internal-guid-4c1b295b-7fff-6a98-88f2-ef7198d2a585"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Inoltre si richiede di ridefinire in FornoSmart e LavatriceSmart il metodo accendi(String modalita) in modo che stampi a video la concatenazione della stringa che rappresenta il modello con la stringa "versione smart-accensione forno” e "versione smart-accensione lavatrice”, rispettivamente, seguita dalla stringa della modalita` di accensione (cioè il parametro): considerando il nostro esempio, stampa a video la stringa “Bosch9000 smart-accensione forno eco”.</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Scrivere una classe di test SmartCasa in cui viene creato almeno un elettrodomestico per tipologia.
+</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">
+</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">-----
+</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">
+</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"
+      id="docs-internal-guid-d4ef675c-7fff-99d2-fb37-7964e481c431"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Riprendiamo la gerarchia dell'esercizio precedente.</span></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:12pt;margin-bottom:12pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Creare una classe generica </span><span
+style="font-size:11pt;font-family:'Roboto Mono',monospace;color:#188038;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">GestoreSmart&lt;T extends Elettrodomestico &amp; SmartControl&gt;</span><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> che permette di:</span></p>
+    <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+      <li dir="ltr"
+style="list-style-type:disc;font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"
+      aria-level="1"><p dir="ltr"
+      style="line-height:1.38;margin-top:12pt;margin-bottom:0pt;"
+      role="presentation"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Connettere in rete tutti gli elettrodomestici smart passati</span><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">
+
+</span></p></li>
+      <li dir="ltr"
+style="list-style-type:disc;font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"
+      aria-level="1"><p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"
+      role="presentation"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Aggiornare il firmware di tutti</span><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">
+
+</span></p></li>
+      <li dir="ltr"
+style="list-style-type:disc;font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"
+      aria-level="1"><p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:12pt;"
+      role="presentation"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Stampare le loro descrizioni e funzioni principali</span></p></li>
+    </ul>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:12pt;margin-bottom:12pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">la classe contiene i seguenti metodi:</span></p>
+    <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+      <li dir="ltr"
+style="list-style-type:disc;font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"
+      aria-level="1"><p dir="ltr"
+      style="line-height:1.2;margin-top:12pt;margin-bottom:12pt;"
+      role="presentation"><span
+style="font-size:11pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">public void aggiungiDispositivo(T dispositivo)</span><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">: aggiunge un dispositivo alla lista dispositivi.</span></p></li>
+    </ul>
+    <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+      <li dir="ltr"
+style="list-style-type:disc;font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"
+      aria-level="1"><p dir="ltr"
+      style="line-height:1.2;margin-top:12pt;margin-bottom:12pt;"
+      role="presentation"><span
+style="font-size:11pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">public void connettiTutti(String reteWiFi)</span></p></li>
+    </ul>
+    <p dir="ltr"
+style="line-height:1.2;text-indent: 36pt;margin-top:12pt;margin-bottom:12pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Per ogni dispositivo presente nella lista:</span></p>
+    <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+      <li dir="ltr"
+style="list-style-type:circle;font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;margin-left: 36pt;"
+      aria-level="2"><p dir="ltr"
+      style="line-height:1.2;margin-top:12pt;margin-bottom:0pt;"
+      role="presentation"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Chiama </span><span
+style="font-size:11pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">connettiRete(reteWiFi)</span><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> definito nell’interfaccia </span><span
+style="font-size:11pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">SmartControl</span><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">.</span></p></li>
+      <li dir="ltr"
+style="list-style-type:circle;font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;margin-left: 36pt;"
+      aria-level="2"><p dir="ltr"
+      style="line-height:1.2;margin-top:0pt;margin-bottom:12pt;"
+      role="presentation"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Deve stampare un messaggio per ogni connessione avvenuta.</span></p></li>
+    </ul>
+    <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+      <li dir="ltr"
+style="list-style-type:disc;font-size:11pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"
+      aria-level="1"><p dir="ltr"
+      style="line-height:1.2;margin-top:12pt;margin-bottom:12pt;"
+      role="presentation"><span
+style="font-size:11pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">public void aggiornaTutti()</span></p></li>
+    </ul>
+    <p dir="ltr"
+style="line-height:1.2;text-indent: 36pt;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Per ogni dispositivo nella lista:</span></p>
+    <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+      <li dir="ltr"
+style="list-style-type:circle;font-size:11pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;margin-left: 36pt;"
+      aria-level="2"><p dir="ltr"
+      style="line-height:1.2;margin-top:12pt;margin-bottom:0pt;"
+      role="presentation"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Chiama </span><span
+style="font-size:11pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">aggiornaFirmware()</span><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> definito in </span><span
+style="font-size:11pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">SmartControl</span><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">.</span></p></li>
+      <li dir="ltr"
+style="list-style-type:circle;font-size:11pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;margin-left: 36pt;"
+      aria-level="2"><p dir="ltr"
+      style="line-height:1.2;margin-top:0pt;margin-bottom:12pt;"
+      role="presentation"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Deve stampare un messaggio che conferma l’aggiornamento del firmware per ciascun dispositivo.</span></p></li>
+    </ul>
+    <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+      <li dir="ltr"
+style="list-style-type:disc;font-size:11pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"
+      aria-level="1"><p dir="ltr"
+      style="line-height:1.2;margin-top:12pt;margin-bottom:12pt;"
+      role="presentation"><span
+style="font-size:11pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">public void stampaInfo()</span></p></li>
+    </ul>
+    <p dir="ltr"
+style="line-height:1.2;margin-left: 36pt;margin-top:12pt;margin-bottom:12pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Per ogni dispositivo nella lista stampa:</span></p>
+    <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+      <li dir="ltr"
+style="list-style-type:disc;font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;margin-left: 36pt;"
+      aria-level="1"><p dir="ltr"
+      style="line-height:1.2;margin-top:12pt;margin-bottom:0pt;"
+      role="presentation"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">La descrizione (</span><span
+style="font-size:11pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">dispositivo.toString()</span><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">)</span></p></li>
+      <li dir="ltr"
+style="list-style-type:disc;font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;margin-left: 36pt;"
+      aria-level="1"><p dir="ltr"
+      style="line-height:1.2;margin-top:0pt;margin-bottom:12pt;"
+      role="presentation"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">La funzione principale (</span><span
+style="font-size:11pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">dispositivo.funzionePrincipale()</span><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">)</span></p></li>
+    </ul>
+    <p>-----</p>
+    <p dir="ltr"
+style="line-height:1.38;text-align: justify;margin-top:0pt;margin-bottom:0pt;"
+      id="docs-internal-guid-ac5c39f5-7fff-27ab-b483-1fc3db5533de"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Si considerino le classi Rubrica e Contatto viste a lezione e fornite per comodità su Moodle insieme a questo testo.</span></p>
+    <p dir="ltr"
+style="line-height:1.38;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Si modifichi la classe Contatto in modo che implementi l’interfaccia Comparable&lt;Contatto&gt;.</span></p>
+    <p dir="ltr"
+style="line-height:1.38;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Si sfrutti questo fatto per modificare la classe Rubrica in modo che esponga un metodo sort() che ordina l’array contatti. Si estenda infine RubricaDemo per testare le modifiche fatte.</span></p>
+    <p></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"></p>
+    <p dir="ltr"
+      style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">
+</span></p>
+    <p></p>
+  </body>
+</html>
+
+--------------vIsMrec1QNRhjawqg3nQxRrI--

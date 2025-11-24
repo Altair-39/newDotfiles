@@ -1,0 +1,93 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:8e91:0:b0:2e2:75a4:21a3 with SMTP id z17csp2858944ljk;
+        Thu, 16 May 2024 06:27:09 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEPEUKogvWQcyLyEAlm9l4UW4BlkdGThZsuUC1KoPMct19nxZukQPvstfadbHt2XZRMoPdI
+X-Received: by 2002:a17:907:86a8:b0:a59:a282:5db7 with SMTP id a640c23a62f3a-a5a2d67e024mr1496654366b.65.1715866029293;
+        Thu, 16 May 2024 06:27:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1715866029; cv=none;
+        d=google.com; s=arc-20160816;
+        b=bGyElyaktJDS/2WACrlOuEOZdi6MAJmO2BJ9Z8FogaZeOfbME8N7pe1obC4UT1nEZw
+         44G1xTVoJo6qFUzWPs/m2Buo78KxkAH2HPrJEx+fWahcjVGKffB27cee2jinkVx3PYGz
+         i2HATYw35lN6Hq8LH9JTMRX29Qh2UbMTf9ZhskZjlUffC/jAsMFA3n1hnJRwKd73oEap
+         4me+Ua0/ggxXn8mMDs6i9yx/zlXZkczsIxpvYTCeY1uwlkABPFo0NBrkeO0K3ek+sjXh
+         +muGniaaf8ARr/vOoqwicJmEZHZIqlNMhp3sPKxHbAckTDGrF3ScnlYeyJqId4wHORAx
+         Ymhg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-transfer-encoding:mime-version:subject:message-id:to:from
+         :date;
+        bh=uZtKu0mlYWSyYkYOI3ol2CzheKFQxfHL0o1/mgR3x6g=;
+        fh=IxM04YauqXzCozmF/ngeXvaWuWeW7uONbHgj9jmZsgE=;
+        b=kbRN81K5toljugQgDVbsC4SxBEtDon5+vdjhY0HX1hPx4PRj4z5+7sp6aMw0Za2vbO
+         dnI4V85D9tc9L9MQx1fhqf5ZqlsVkxVkMm5U4Cr5A1K3c2sYS9E0LgEURUBeSnXcrWUo
+         /3h8KpTEH7jXfpLdcsWbAJbupkPKWgK/s41mKj+VYMNu+8eEYoHTDu94gWKptG1aio0G
+         4LU9guPB9KgVWMSKUVwYKP7ndqnfVNsUQMq0ijoZreh5L0CwdTxLuq46+CMhmDgql8Al
+         L26XYYjWV7IlHKSQSTbzb/6OJAaYkcRxlPeZXQ2s/3JFeRMQ0gv5C5kB9xNK2Ph+sqpD
+         9agg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id a640c23a62f3a-a5a1ac885b0si914724566b.514.2024.05.16.06.27.08
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 May 2024 06:27:09 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id B679F2F519
+	for <luca.barra@edu.unito.it>; Thu, 16 May 2024 15:27:08 +0200 (CEST)
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id 9DJqFIAMaEWv for <luca.barra@edu.unito.it>;
+ Thu, 16 May 2024 15:27:08 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 2414A2F452
+	for <luca.barra@edu.unito.it>; Thu, 16 May 2024 15:27:05 +0200 (CEST)
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id fyJLDoIzgqR3 for <luca.barra@edu.unito.it>;
+ Thu, 16 May 2024 15:27:05 +0200 (CEST)
+Received: from esse3appjboss26.private.cineca.it (esse3appjboss26.cineca.it [130.186.5.161])
+	by smtp4.cineca.it (Postfix) with ESMTP id 21CEA2F468
+	for <luca.barra@edu.unito.it>; Thu, 16 May 2024 15:27:03 +0200 (CEST)
+Received: from esse3appjboss26.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss26.private.cineca.it (Postfix) with ESMTP id 16FB1EFB
+	for <luca.barra@edu.unito.it>; Thu, 16 May 2024 15:27:03 +0200 (CEST)
+Date: Thu, 16 May 2024 15:27:03 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+To: luca.barra@edu.unito.it
+Message-ID: <859412339.10851.1715866023093@esse3appjboss26.private.cineca.it>
+Subject: Pubblicazione Voto Appello
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Le comunichiamo che l'esito della prova d'esame relativa all'attivit=C3=A0 =
+didattica PROGRAMMAZIONE III,
+da Lei sostenuta in data 16/05/2024, =C3=A8: 29/30 .
+Voto di laboratorio (fa media con il voto della prova scritta, arrotondando=
+ per eccesso).=20
+
+Per coloro che hanno gi=C3=A0 superato lo scritto:
+Verbalizzer=C3=B2 i voti finali a giugno, dopo l'appello scritto del 5. Non=
+ dovete iscrivervi a nessun appello, invece controllate di ricevere il voto=
+ nei giorni successivi e mandatemi mail se notate anomalie.=20
+
+=20
+
+
+---------
+Attenzione: se questa e-mail proviene dall'indirizzo avvisi@unito.it =C3=A8=
+ stata generata automaticamente dal sistema informativo. Si prega pertanto =
+di non rispondere a questo messaggio. Per ulteriori informazioni sull'esame=
+ sostenuto contattare direttamente il docente o la Segreteria Studenti di a=
+ppartenenza.
+---------
+
+
+

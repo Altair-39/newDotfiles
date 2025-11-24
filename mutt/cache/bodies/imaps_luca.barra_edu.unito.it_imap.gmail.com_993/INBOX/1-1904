@@ -1,0 +1,173 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:109:b0:2f3:ec6d:e6a7 with SMTP id a9csp1267029ljb;
+        Mon, 30 Sep 2024 03:36:17 -0700 (PDT)
+X-Received: by 2002:a17:907:1c24:b0:a8a:81ec:f731 with SMTP id a640c23a62f3a-a93c48f87f6mr571256366b.2.1727692577108;
+        Mon, 30 Sep 2024 03:36:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727692577; cv=none;
+        d=google.com; s=arc-20240605;
+        b=I9ZXEMGLzxOioFlTdTrz1JtOXrJ9uqmBdKQ3aPRQ3xpdn+CzcYQE7TlwvBUmSH3vZb
+         2YaLWVZvLcrsDUxbff4/odmTG04nZPn2hghwQwGlDYBwcdyuKeK9y04qj+dSIke8IppP
+         AIbQ5yVSGI3bXkMF5VJ0/k5N2LTJyPmyJtRp6yf1WH7CK+Wn/U6dYKff7Fqcu72n/l+W
+         k6URFJMfMBMlDmtfld4g7B90uBJ0j9Bv5tmZEeZiOakIvKpn/ASIlzRuB+KZef1p4fke
+         Ro/1xw9/8JQetwEeSKSV2vQQqSVYo2zlB0xUGf6oy+b5f8NAxI2ssS/8Em+ZRrEYe92O
+         uvaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=RvLQG7ApZ6Y1D4XJxLaX1dkaCMHbMQpnvIMlqmZbsLk=;
+        fh=epe+Jc6ddzq5Dy7ByWwnX2h5L21juLLafyVAPuTGJoQ=;
+        b=X1NDz/TgrvftyRO+YXvGW7u7X99jh6mZ8jQ0ToDUiQs7/VrWGALRQIWX6f2DicQ6eH
+         5kt5LTtk9u/xX8EfFop1jafFsnHaZaU/430FE41PRKjhHPROirTnVJDvyS6m4rtYJeNM
+         /sGRvDmkRq2mFijcn0WWQH426U8vcsYkfw8XO9s3FlEMWNPJL5e2m3LOkpo2VAkv/g+1
+         NiNIJdtYMdYgH6ZWP4tYdgKTl+n0P2GKfXkpp0QPgScD7SdETt4PJyLZp+E8FyHImtmT
+         Yg3BIBtyVGEH9EDBiXSVKHT0BSkQ7EPxrf59zRUFf1oteXGx7hmruuDMc7DSmuGVtLxG
+         O+5g==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=JVhg83C3;
+       spf=pass (google.com: domain of luca.anselma@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=luca.anselma@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <luca.anselma@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-a93c27eed1esor270255266b.12.2024.09.30.03.36.16
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Mon, 30 Sep 2024 03:36:17 -0700 (PDT)
+Received-SPF: pass (google.com: domain of luca.anselma@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=JVhg83C3;
+       spf=pass (google.com: domain of luca.anselma@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=luca.anselma@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1727692576; x=1728297376; darn=edu.unito.it;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=RvLQG7ApZ6Y1D4XJxLaX1dkaCMHbMQpnvIMlqmZbsLk=;
+        b=JVhg83C3DLWNf7UyH3MoG09He57voi+gHIFV0PQjTkq2bKCH6q/HFCzOPzcfvh8eoE
+         izF7iY7gs003h1tlB5Hmk+1xJrOeaFIglsDgJtAn3Kg6a7Q9A5tDYofT8fvu+Kk3/y6D
+         57exQfmHSHwWhTISiemZn8LzWauzG0gTZWlKY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727692576; x=1728297376;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RvLQG7ApZ6Y1D4XJxLaX1dkaCMHbMQpnvIMlqmZbsLk=;
+        b=DyO+bAi7wpa1Stuw1bIeDZFu5+PLkGK4+iavJ+ZGPbrv96vDOoSNdTDoYjoBERZoD5
+         bLt4OqsfQgW+OcMoW27LBL3V2z6tBhXlLZkaTUq1nGS6krx5ZWjprwiL74r3CMCok40c
+         BOHETy580wbQK5Uk+ghNaWY1Eo6GDZUd13CgcypOMK4o1QjtT2QXoaD2gh3ymJRJvpIN
+         0dEDWhmEepP68/5pUt11Gsh+j60TDTxqvcBsOUAHPWN3GTX8CHKhp/huMBK1ksgYnSL2
+         OxHhqT7mclrsiXMaqdcp74v3hT/BsZuciTw0TMTAIyJ5HX6fz5jgjdpXF47EhFYm9kIo
+         rflw==
+X-Gm-Message-State: AOJu0YxtTd65SxzGgr6byPCq1w/1bCYJJUb6HE0fjM7KHTvQm5w3P1/Q
+	7TuKG7qUPtJa3LYUbRS39FL/w778hA7mkYrCkcK0uyX3taUoUu1+DAzjyWjtvOaV3GfnzKWR2qW
+	1bXYE/HkYq+joiRGA1b9LOUpeuK8rBgV9wMyOQ4b4fIBiYo4VoLQ=
+X-Google-Smtp-Source: AGHT+IG8+ww4REYf9cOj1/OJsbLiRrb3eyvDtM8lG/mM9Ok9K9LnoHpVU4CWo+G7sRHJxMuyw2tCFmDPxIr3aKOQNgE=
+X-Received: by 2002:a17:907:7ea5:b0:a86:842a:104a with SMTP id
+ a640c23a62f3a-a93c4ac936dmr1242318966b.57.1727692575996; Mon, 30 Sep 2024
+ 03:36:15 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAAhooxudM6uO7sHtkrFhEkYEN0KEW4rAbc=8iG8iZM9E02LZdA@mail.gmail.com>
+In-Reply-To: <CAAhooxudM6uO7sHtkrFhEkYEN0KEW4rAbc=8iG8iZM9E02LZdA@mail.gmail.com>
+From: Luca Anselma <luca.anselma@unito.it>
+Date: Mon, 30 Sep 2024 12:35:39 +0200
+Message-ID: <CAFf2f7ZtTNag8i3yo=USToV9W77on3LMO-912fcdWJnQWUA50A@mail.gmail.com>
+Subject: Re: Collaborazione art.11 - BD
+To: Luca Barra <luca.barra@edu.unito.it>
+Cc: ruggero.pensa@unito.it, noemi.mauro@unito.it, fabiana.vernero@unito.it
+Content-Type: multipart/alternative; boundary="000000000000460fd0062353c622"
+
+--000000000000460fd0062353c622
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Buongiorno,
+grazie per averci scritto.
+Prevediamo che sar=C3=A0 utile la sua presenza nelle lezioni di laboratorio=
+ di
+SQL, che sono nella seconda met=C3=A0 del secondo semestre.
+Ci pu=C3=B2 per favore ricontattare verso marzo, cos=C3=AC abbiamo gli orar=
+i delle
+lezioni e un'idea di quando pu=C3=B2 iniziare?
+
+Cordialmente,
+Luca Anselma
+
+---
+Luca Anselma, PhD
+Associate Professor in Computer Science
+Dipartimento di Informatica
+Universit=C3=A0 di Torino
+
+e-mail:   luca.anselma@unito.it
+web:      http://www.di.unito.it/~anselma
+webex: https://unito.webex.com/meet/luca.anselma
+address: ufficio 032_D_P03_0050, terzo piano, scala L, centro Piero della
+Francesca, corso Svizzera 185, 10149 Torino, Italy
+
+Please do not feel obliged to reply to this email outside of your normal
+working hours
+
+
+On Mon, Sep 30, 2024 at 8:00=E2=80=AFAM Luca Barra <luca.barra@edu.unito.it=
+> wrote:
+
+> Buongiorno,
+> Sono Luca Barra, uno degli studenti collaboratori per il corso di "Basi d=
+i
+> Dati". Scrivo questa mail per  presentarmi in attesa del secondo semestre=
+.
+> Distinti saluti,
+> LB
+>
+> ------------------------
+>
+> Indirizzo istituzionale di posta elettronica degli studenti e dei laureat=
+i
+> dell'Universit=C3=A0 di Torino
+> Official University of Turin email address for students and graduates
+>
+
+--000000000000460fd0062353c622
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Buongiorno,<div>grazie per averci scritto.<br><div>Prevedi=
+amo che sar=C3=A0 utile la sua presenza nelle lezioni di laboratorio di SQL=
+, che sono nella seconda met=C3=A0 del secondo semestre.</div><div>Ci pu=C3=
+=B2 per favore ricontattare=C2=A0verso marzo, cos=C3=AC abbiamo gli orari d=
+elle lezioni e un&#39;idea di quando pu=C3=B2 iniziare?<br clear=3D"all"><d=
+iv><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signa=
+ture"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><br></div><div dir=
+=3D"ltr">Cordialmente,<div>Luca Anselma</div><div><br>---<br><font size=3D"=
+1">Luca Anselma, PhD</font></div><div><font size=3D"1">Associate Professor =
+in Computer Science<br>Dipartimento di Informatica<br>Universit=C3=A0 di To=
+rino<br><br>e-mail:=C2=A0 =C2=A0<a href=3D"mailto:luca.anselma@unito.it" ta=
+rget=3D"_blank">luca.anselma@unito.it</a><br>web:=C2=A0 =C2=A0 =C2=A0=C2=A0=
+<a href=3D"http://www.di.unito.it/~anselma" target=3D"_blank">http://www.di=
+.unito.it/~anselma</a><br>webex:=C2=A0<a href=3D"https://unito.webex.com/me=
+et/luca.anselma" target=3D"_blank">https://unito.webex.com/meet/luca.anselm=
+a</a><br>address: ufficio 032_D_P03_0050, terzo piano, scala L, centro Pier=
+o della Francesca, corso Svizzera 185, 10149 Torino, Italy</font></div><div=
+><font size=3D"1"><br></font></div><div><font size=3D"1">Please do not feel=
+ obliged to reply to this email outside of your normal working hours</font>=
+</div></div></div></div></div></div><br></div></div></div><br><div class=3D=
+"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep 30, 2024 at=
+ 8:00=E2=80=AFAM Luca Barra &lt;<a href=3D"mailto:luca.barra@edu.unito.it">=
+luca.barra@edu.unito.it</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex"><div dir=3D"ltr"><div>Buongiorno,</div><div>Sono Luc=
+a Barra, uno degli studenti collaboratori per il corso di &quot;Basi di Dat=
+i&quot;. Scrivo questa mail per=C2=A0 presentarmi in attesa del secondo sem=
+estre.</div><div>Distinti saluti,</div><div>LB<br></div></div>
+
+<br>
+<div style=3D"font-size:1.3em">------------------------</div><span style=3D=
+"font-size:small"><div><img src=3D"https://web.unito.it/logofirmastu.png"><=
+br></div>Indirizzo istituzionale di posta elettronica degli studenti e dei =
+laureati dell&#39;Universit=C3=A0 di Torino</span><div><font size=3D"2">Off=
+icial=C2=A0University of Turin=C2=A0email address=C2=A0for students and gra=
+duates=C2=A0</font></div></blockquote></div>
+
+--000000000000460fd0062353c622--

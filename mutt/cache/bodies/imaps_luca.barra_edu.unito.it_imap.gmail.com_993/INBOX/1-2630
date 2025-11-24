@@ -1,0 +1,267 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:9dd8:0:b0:32a:7f76:203e with SMTP id x24csp2944324ljj;
+        Wed, 4 Jun 2025 05:28:01 -0700 (PDT)
+X-Received: by 2002:a05:600c:1c02:b0:442:fac9:5e2f with SMTP id 5b1f17b1804b1-451f0a63cefmr8247015e9.2.1749040081581;
+        Wed, 04 Jun 2025 05:28:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1749040081; cv=none;
+        d=google.com; s=arc-20240605;
+        b=CvBxV/70EJUQyeLGUL7vlt413SScyI0Ton3TEnhbtBPfSZ3ASThOvE+RZiGwxes2AN
+         zfGQQwsuGafVmj3Hc0JU/9V45FJsS6V4V9H8vpbgI+E1Qp1HBoB9f+2fqQDPdq6J3HlR
+         kaXimZYDLhglGXD2j94ZfOMHGq/L1/4KQJzdlOY35v0d/I6kqhj1iWcdrU3xfMGP4CAM
+         4J7kKeSf+Lhjo2+WOVMxB7XC6sbV9IHFjWdZ5HDlkS3QuzcYZM+R+Huyxlryxu2rIl1C
+         ly5BH/nDwaDALo9fnr4/eEuqrFhQK7Uk0vcp+/ofZpHLSpwe6JQHitpVv3000wkVEpMZ
+         bFxw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:from:subject:date:message-id:feedback-id:mime-version
+         :dkim-signature;
+        bh=uPeCrXTN0NoIDtp7JgBO1bL2YE7+3hpBmhaUu6uGVto=;
+        fh=IxM04YauqXzCozmF/ngeXvaWuWeW7uONbHgj9jmZsgE=;
+        b=UAgzMk2srHVk/vdGYMwJqP6FlNKLVrUtb5CFwaD6K1RZPzPW5zytgxy5WQ741gNHAi
+         G7xqE5JjzOonNKKHzrqBRDyPd2FjbaZbDKjqblK7O67LGtXrXR7IyQmMujobTubTWfT0
+         ABNbnNjprRHI4WytVIKmx9bnurunpi409/i3IEfcECi+7scMVmMZsl3jgQfVe7vrypzC
+         kc9HjcQkQ4+SGkPPqlQcAuWY70qdCLzxJux77cWAPfgkuMMO2UTWTPXrA0gTWHW/yRmk
+         HVZkW3wgnIdAvhKmILB/9aIuYSiXIzEDNYUTk2OMGFZAXpNq1lsBFKuyTJ587YBY8ESH
+         Squg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=HHjB8qup;
+       spf=pass (google.com: domain of 30dtaabykaje09c7d-czxz3aed-89cza6j19916z.x97@trix.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=30DtAaBYKAJE09C7D-Czxz3AED-89CzA6J19916z.x97@trix.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <30DtAaBYKAJE09C7D-Czxz3AED-89CzA6J19916z.x97@trix.bounces.google.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id 5b1f17b1804b1-450d7f207c7sor17651415e9.0.2025.06.04.05.28.01
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Wed, 04 Jun 2025 05:28:01 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 30dtaabykaje09c7d-czxz3aed-89cza6j19916z.x97@trix.bounces.google.com designates 209.85.220.69 as permitted sender) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@google.com header.s=20230601 header.b=HHjB8qup;
+       spf=pass (google.com: domain of 30dtaabykaje09c7d-czxz3aed-89cza6j19916z.x97@trix.bounces.google.com designates 209.85.220.69 as permitted sender) smtp.mailfrom=30DtAaBYKAJE09C7D-Czxz3AED-89CzA6J19916z.x97@trix.bounces.google.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=google.com;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1749040081; x=1749644881; darn=edu.unito.it;
+        h=to:from:subject:date:message-id:feedback-id:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uPeCrXTN0NoIDtp7JgBO1bL2YE7+3hpBmhaUu6uGVto=;
+        b=HHjB8qupUXRkMQyonwOzevUZSqv0yvLiHnseJT1jYmb51mqEHgdA5+VQoB2vhcrtlb
+         5iYo2J7aISIg1Blf2PoLnPG5HCKpMQnWUzCrwlTW6Ylz2gBEXE457okob4LxfTAevtlW
+         7VssZKBFoV0xgAVnBKD5RQRDPMuamrIGlVDt8bI2e+xldlPPqm/oFhiKcsCwyyQogdr3
+         l6GDHRbn8q1+KoUkutQ8WjExBTUyUSTeNeLhEobSip9JoQUE3XyAMIzN4yyUt3LR2GHs
+         tQgRRzLC1Rl9EncR0bU3DoxUeFJB/hJwSfqCmUGZqEeXmVz0CJJfUSJjfgfstvGW9qOA
+         Musw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1749040081; x=1749644881;
+        h=to:from:subject:date:message-id:feedback-id:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uPeCrXTN0NoIDtp7JgBO1bL2YE7+3hpBmhaUu6uGVto=;
+        b=Oiw6Up6DOCbhBsPvGK79zgdDMqpmOj76LTzTQ+cANSctFFdyzuWSsYbkOv8U9p+ywA
+         mjR4lvN7dY88/AXcdTzgEQl5KI5Fnu4U4sf19muiFfBNz+HQGv0adPW+BlXdV5rfSlBG
+         jVx8aUXp2NlMTTfC6L+j3oRO5aGW0FP8oM7KWZl9Ct3Rp59qqPpdE13VMaof54IrTlg1
+         4CAoObIAMciGZHgj26CEfyY9D5JvebvErUp3uhLiDhi0SUkpg/56ynFJljTaw3yFvtua
+         yMKqpxHf0xB3U5x2evdOkEq/vY87ITt6ARNKGGtdlkkfHjrL5BgmYNsjxqffsbjiL+cr
+         t+Mg==
+X-Gm-Message-State: AOJu0YxK/kg6qGN476jTNoHzita88WBqyQbg0WO9KvotSRMndr4P0x9Q
+	MzpA65N3KpF7GIJC86ybfPcUhl/s9XJ4GPGhghb/8sfLs/O+c8AzW79MuL5ZbZd0AtG/YrtX/+5
+	1P0Y9URa9Cr9PVopYohDJgMzBe31X+5P+TK6YG/hicWrTovTmK0oEa7uRj8UtC7Ey2VYSlEMmZH
+	ZE2IfKDzqGZjsB2RGC+lHnPTS0J8lrcbwrB/dePkInxa9/
+X-Google-Smtp-Source: AGHT+IFpa7GTk5UKqi2i5pDisBvf6vqhbDYhod7TpzrBgLTMo5jm58xefDbz4OEulOBMstz82KAz3ThKJF3T6w80aHwjZA==
+MIME-Version: 1.0
+X-Received: by 2002:a05:6000:144e:b0:3a4:edad:2a55 with SMTP id
+ ffacd0b85a97d-3a51d8f440fmr848197f8f.1.1749040080816; Wed, 04 Jun 2025
+ 05:28:00 -0700 (PDT)
+Feedback-ID: MailTypeResponseReceipt:GoogleForms
+X-GoogleForms-FormId: e/1FAIpQLSeuauri8kW_UJfBTTC8weQPp8t563mkyyW-MgZmMESNgfxWuQ
+X-GoogleForms-CustomerDisplayName: =?UTF-8?Q?Universit=C3=A0_di_Torino?=
+Message-ID: <autogen-java-d7e16c27-2091-4f28-a683-9fae1b89af1c@google.com>
+Date: Wed, 04 Jun 2025 12:28:00 +0000
+Subject: colloqui TLN - parte 2 (RADICIONI) - 12.05.2025
+From: Moduli Google <forms-receipts-noreply@google.com>
+To: luca.barra@edu.unito.it
+Content-Type: multipart/alternative; boundary="000000000000b725dc0636be201a"
+
+--000000000000b725dc0636be201a
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+Content-Transfer-Encoding: quoted-printable
+
+Moduli Google
+
+
+Grazie per aver compilato colloqui TLN - parte 2 (RADICIONI) - 12.05.2025
+Ecco le risposte ricevute.
+
+Modifica risposta
+
+
+colloqui TLN - parte 2 (RADICIONI) - 12.05.2025
+
+
+Email *
+
+
+luca.barra@edu.unito.it
+
+
+Componenti del gruppo. Indicare nome, cognome e email istituzionale di =20
+ciascuno dei componenti del gruppo.
+COMPONENTE 1
+*
+
+
+Luca Barra, luca.barra@edu.unito.it
+
+
+COMPONENTE 2
+
+
+COMPONENTE 3
+
+
+Esercitazioni. Caricare un archivio compresso contenente una directory per =
+=20
+ogni esercitazione. Non sono da caricare le risorse (per esempio gli =20
+embeddings utilizzati) o librerie eventualmente richiamate nel codice.
+
+
+File inviati
+
+
+
+Compressed archive esercitazioni - Luca Barra.zip
+
+
+Crea il tuo modulo Google
+
+Questo modulo sembra sospetto? Segnala
+
+
+
+--=20
+------------------------
+
+
+Indirizzo istituzionale di posta elettronica=20
+degli studenti e dei laureati dell'Universit=C3=A0 di TorinoOfficial=C2=A0U=
+niversity=20
+of Turin=C2=A0email address=C2=A0for students and graduates=C2=A0
+
+--000000000000b725dc0636be201a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><style nonce=3D"mdVQTXNlgTNMYlSZQugO2w">@import url(https://fon=
+ts.googleapis.com/css?family=3DGoogle+Sans:400,500|Roboto:300,400,400i,500,=
+700&subset=3Dlatin,vietnamese,latin-ext,cyrillic,greek,cyrillic-ext,greek-e=
+xt);</style><style nonce=3D"mdVQTXNlgTNMYlSZQugO2w">[class=3D"x_body-conten=
+t-wrapper"] * {white-space: normal !important;}</style></head><body dir=3D"=
+ltr" style=3D"color: #202124;font-family: Roboto,Helvetica,Arial,sans-serif=
+;font-size: 14px; font-weight: 400; line-height: 20px;text-align: start; wo=
+rd-wrap: break-word; margin: 0; padding: 0; height: 100%; width: 100%;"><ta=
+ble border=3D"0" cellpadding=3D"0" cellspacing=3D"0" style=3D"background-co=
+lor:rgb(103,58,183);" width=3D"100%" role=3D"presentation"><tbody><tr heigh=
+t=3D"64px"><td style=3D"padding: 0 24px;"><img alt=3D"Moduli Google" height=
+=3D"26px" style=3D"display: inline-block; margin: 0; vertical-align: middle=
+;" width=3D"143px" src=3D"https://www.gstatic.com/docs/forms/google_forms_l=
+ogo_lockup_white_2x.png"></td></tr></tbody></table><div class=3D"body-conte=
+nt-wrapper" style=3D"padding: 12px; background-color: rgb(237,231,246);"><d=
+iv style=3D"margin: 0 auto; max-width: 640px; min-width: 154px;"><div style=
+=3D"border: 1px solid #dadce0; padding: 20px 12px;background-color: #fff; b=
+order-radius: 8px; margin-bottom: 12px;padding: 20px;"><h1 style=3D"color: =
+#202124;font-family: Roboto,Helvetica,Arial,sans-serif;font-size: 20px; fon=
+t-weight: 400; line-height: 28px;margin: 0 0 12px;">Grazie per aver compila=
+to <a href=3D"https://docs.google.com/forms/d/e/1FAIpQLSeuauri8kW_UJfBTTC8w=
+eQPp8t563mkyyW-MgZmMESNgfxWuQ/viewform?usp=3Dmail_form_link" target=3D"_bla=
+nk" style=3D"white-space: pre-wrap;">colloqui TLN - parte 2 (RADICIONI) - 1=
+2.05.2025</a></h1>Ecco le risposte ricevute.<div style=3D"margin-top: 16px;=
+"><div style=3D"margin-top: 24px"><a href=3D"https://docs.google.com/forms/=
+d/e/1FAIpQLSeuauri8kW_UJfBTTC8weQPp8t563mkyyW-MgZmMESNgfxWuQ/viewform?edit2=
+=3D2_ABaOnueZbuL4kFb_Eql3L9nwf1S7d5Fw9boEVHMNPXgV6ey6HaHjF-ixSqr5nXDDrPO_Do=
+U" target=3D"_blank" style=3D"border-radius: 4px;font-family: &#39;Google S=
+ans&#39;,Roboto,Helvetica,Arial,sans-serif;font-size: 14px; font-weight: 50=
+0; padding: 8px 24px; text-align: center; text-decoration: none;background-=
+color: rgb(103,58,183); color: #fff;">Modifica risposta</a></div><div itemp=
+rop=3D"action" itemscope itemtype=3D"http://schema.org/ViewAction"><meta it=
+emprop=3D"url" content=3D"https://docs.google.com/forms/d/e/1FAIpQLSeuauri8=
+kW_UJfBTTC8weQPp8t563mkyyW-MgZmMESNgfxWuQ/viewform?edit2=3D2_ABaOnueZbuL4kF=
+b_Eql3L9nwf1S7d5Fw9boEVHMNPXgV6ey6HaHjF-ixSqr5nXDDrPO_DoU&amp;usp=3Dmail_go=
+to_form"><meta itemprop=3D"name" content=3D"Modifica la risposta"></div></d=
+iv></div><div style=3D"border-bottom: 1px solid #dadce0; border-left: 1px s=
+olid #dadce0; border-right: 1px solid #dadce0; border-top: 8px solid rgb(10=
+3,58,183); padding: 20px;background-color: #fff; border-radius: 8px; margin=
+-bottom: 12px;"><h1 dir=3D"ltr" style=3D"font-family: Roboto,Helvetica,Aria=
+l,sans-serif;font-size: 32px; font-weight: 400; line-height: 42px;white-spa=
+ce: pre-wrap;margin: 0 0 12px;">colloqui TLN - parte 2 (RADICIONI) - 12.05.=
+2025</h1><div style=3D"white-space: pre-wrap;margin-bottom: 12px;"></div></=
+div><div style=3D"border: 1px solid #dadce0; padding: 20px 12px;background-=
+color: #fff; border-radius: 8px; margin-bottom: 12px;margin-bottom: 12px;">=
+<div style=3D"padding: 0 12px;"><h2 dir=3D"auto" style=3D"color: #202124;fo=
+nt-family: Roboto,Helvetica,Arial,sans-serif;font-size: 16px; font-weight: =
+400; line-height: 24px;white-space: pre-wrap;margin: 0 0 16px;">Email<span =
+style=3D"color: #d93025;" aria-label=3D"Domanda obbligatoria"> *</span></h2=
+></div><div style=3D"padding: 0 12px;"><div style=3D"width: 100%;"><div dir=
+=3D"auto" style=3D"white-space: pre-wrap;border-bottom: 1px dotted rgba(0,0=
+,0,0.38);margin: 12px 0 8px; min-height: 20px;display: inline-block; max-wi=
+dth: 100%; min-width: 50%;">luca.barra@edu.unito.it</div></div></div></div>=
+<div style=3D"border: 1px solid #dadce0; padding: 20px 12px;background-colo=
+r: #fff; border-radius: 8px; margin-bottom: 12px;margin-bottom: 12px;"><div=
+ style=3D"padding: 0 12px;"><h2 dir=3D"auto" style=3D"color: #202124;font-f=
+amily: Roboto,Helvetica,Arial,sans-serif;font-size: 16px; font-weight: 400;=
+ line-height: 24px;white-space: pre-wrap;margin: 0 0 16px;">Componenti del =
+gruppo. Indicare nome, cognome e email istituzionale di ciascuno dei compon=
+enti del gruppo.<div>COMPONENTE 1</div><span style=3D"color: #d93025;" aria=
+-label=3D"Domanda obbligatoria"> *</span></h2></div><div style=3D"padding: =
+0 12px;"><div style=3D"width: 100%;"><div dir=3D"auto" style=3D"white-space=
+: pre-wrap;border-bottom: 1px dotted rgba(0,0,0,0.38);margin: 12px 0 8px; m=
+in-height: 20px;display: inline-block; max-width: 100%; min-width: 50%;">Lu=
+ca Barra, luca.barra@edu.unito.it</div></div></div></div><div style=3D"bord=
+er: 1px solid #dadce0; padding: 20px 12px;background-color: #fff; border-ra=
+dius: 8px; margin-bottom: 12px;margin-bottom: 12px;"><div style=3D"padding:=
+ 0 12px;"><h2 dir=3D"auto" style=3D"color: #202124;font-family: Roboto,Helv=
+etica,Arial,sans-serif;font-size: 16px; font-weight: 400; line-height: 24px=
+;white-space: pre-wrap;margin: 0 0 16px;"><span>COMPONENTE 2</span><br></h2=
+></div><div style=3D"padding: 0 12px;"><div style=3D"width: 100%;"><div dir=
+=3D"auto" style=3D"white-space: pre-wrap;border-bottom: 1px dotted rgba(0,0=
+,0,0.38);margin: 12px 0 8px; min-height: 20px;display: inline-block; max-wi=
+dth: 100%; min-width: 50%;"></div></div></div></div><div style=3D"border: 1=
+px solid #dadce0; padding: 20px 12px;background-color: #fff; border-radius:=
+ 8px; margin-bottom: 12px;margin-bottom: 12px;"><div style=3D"padding: 0 12=
+px;"><h2 dir=3D"auto" style=3D"color: #202124;font-family: Roboto,Helvetica=
+,Arial,sans-serif;font-size: 16px; font-weight: 400; line-height: 24px;whit=
+e-space: pre-wrap;margin: 0 0 16px;"><span>COMPONENTE 3</span><br></h2></di=
+v><div style=3D"padding: 0 12px;"><div style=3D"width: 100%;"><div dir=3D"a=
+uto" style=3D"white-space: pre-wrap;border-bottom: 1px dotted rgba(0,0,0,0.=
+38);margin: 12px 0 8px; min-height: 20px;display: inline-block; max-width: =
+100%; min-width: 50%;"></div></div></div></div><div style=3D"border: 1px so=
+lid #dadce0; padding: 20px 12px;background-color: #fff; border-radius: 8px;=
+ margin-bottom: 12px;margin-bottom: 12px;"><div style=3D"padding: 0 12px;">=
+<h2 dir=3D"auto" style=3D"color: #202124;font-family: Roboto,Helvetica,Aria=
+l,sans-serif;font-size: 16px; font-weight: 400; line-height: 24px;white-spa=
+ce: pre-wrap;margin: 0 0 16px;"><b>Esercitazioni</b>. Caricare un archivio =
+compresso contenente una directory per ogni esercitazione. <i>Non sono da c=
+aricare</i> le risorse (per esempio gli embeddings utilizzati) o librerie e=
+ventualmente richiamate nel codice.</h2></div><div style=3D"padding: 0 12px=
+;">File inviati<div role=3D"list" aria-label=3D"File inviati"><div dir=3D"a=
+uto" style=3D"border: 1px solid #dadce0; border-radius: 4px; margin-top: 8p=
+x; padding: 8px;"><table role=3D"listitem"><tr><td><img src=3D"https://ssl.=
+gstatic.com/docs/doclist/images/mediatype/icon_2_archive_x32.png" alt=3D"Co=
+mpressed archive" style=3D"height: 16px; width: 16px;"></td><td style=3D"mi=
+n-width: 4px;"></td><td style=3D"color: #202124;font-family: Roboto,Helveti=
+ca,Arial,sans-serif;font-size: 14px; font-weight: 400; line-height: 20px;; =
+word-break: break-word;">esercitazioni - Luca Barra.zip</td></tr></table></=
+div></div></div></div></div><table align=3D"center" cellpadding=3D"0" cells=
+pacing=3D"0" style=3D"max-width: 672px; min-width: 154px; border-collapse: =
+separate; border-spacing: 0 0.2em;" width=3D"100%" role=3D"presentation"><t=
+body><tr height=3D"24px"><td></td></tr><tr><td><a href=3D"https://docs.goog=
+le.com/forms?usp=3Dmail_form_link" style=3D"color: #424242; font-size: 13px=
+;">Crea il tuo modulo Google</a></td></tr><tr><td>Questo modulo sembra sosp=
+etto? <a href=3D"null" target=3D"_blank" style=3D"color: #424242; font-size=
+: 13px;">Segnala</a></td></tr></tbody></table></div></body></html>
+<br>
+<div style=3D"font-size:1.3em">------------------------</div><span style=3D=
+"font-size:small"><div><img src=3D"https://web.unito.it/logofirmastu.png"><=
+br></div>Indirizzo istituzionale di posta elettronica degli studenti e dei =
+laureati dell&#39;Universit=C3=A0 di Torino</span><div><font size=3D"2">Off=
+icial=C2=A0University of Turin=C2=A0email address=C2=A0for students and gra=
+duates=C2=A0</font></div>
+--000000000000b725dc0636be201a--

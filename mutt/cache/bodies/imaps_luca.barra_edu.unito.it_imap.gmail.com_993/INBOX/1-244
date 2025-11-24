@@ -1,0 +1,188 @@
+X-Google-Smtp-Source: APBJJlHBAY3ieWoXiIQ0RZJyKijUWv3e4sEq/TjPlQeMlS0hysTniR0ev2ri2KfJzpgPW/BmpL6s9vsdYaeJbj/HMg==
+X-Received: by 2002:a63:9316:0:b0:553:a9aa:965d with SMTP id b22-20020a639316000000b00553a9aa965dmr8819302pge.2.1688991465280;
+        Mon, 10 Jul 2023 05:17:45 -0700 (PDT)
+Received: from 292831042739
+	named unknown
+	by gmailapi.google.com
+	with HTTPREST;
+	Mon, 10 Jul 2023 05:17:45 -0700
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a17:90a:8912:0:0:0:0 with SMTP id u18csp2041128pjn;
+        Mon, 17 Jan 2022 06:23:59 -0800 (PST)
+X-Received: by 2002:a17:906:5603:: with SMTP id f3mr16744523ejq.272.1642429439454;
+        Mon, 17 Jan 2022 06:23:59 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1642429439; cv=none;
+        d=google.com; s=arc-20160816;
+        b=xptyecQnHzFpjDnEqmRWXIlJdU0zxQalgbE9on5oSr/xezIeP0Wt+EoUDccqE9wbCh
+         wT/M55AgEPfWQ2K8q2G3VQwAFUAUCKv4AhMF+nR1Ce+QQtDQsZ24fZbidAUKNWSSy0v8
+         mfVZ633HM9D01zHZIwMEbWfkfWJovpTvGq3LP0AvLUiwFamQV0rb7mtaSaZF1j/OWaIU
+         eXr2IEuqNOH6177Yu1pbjyJMWhFG//PUdTdgSZHQI7iHzXshBY+2LfWPhYBLWll+mjE3
+         i6JnR2qjj+83H0pgYd0J0NJ+ydHoOgH217P9eRWxzLLLa2FsgZSf6YB/wXZz1DMv/DKV
+         zfyQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:thread-index:thread-topic:references:in-reply-to
+         :list-unsubscribe:auto-submitted:precedence:list-help:list-id
+         :message-id:subject:from:to:date:dkim-filter;
+        bh=QRF7gnp2YMSc5EzcO90aAV7ogezLUvmFbam25VvIj6E=;
+        b=OX19B7Qwd+Y4dZEnxNtUQ1gGgu9XUXC8ZrTAAUDwsbgxA3foIA2cuLeFAgK+zY6Zg1
+         QPz8m1XiPruDJoafYpEr5UbKEkVRFXGw4ohMQGplTa7U6w39V4qQ7lcI/X8jhnkLmQQS
+         Stp4pKPkCVSsnoas1GnSwlAjCrTEM21MsP+G2CLECTWmQpYlNNlbMDs9RGqYQwiXR8+r
+         lUGpBtL8DqAMSSNvpqf7Y8EvosT8ijSnKvQizA9vr8kxUT6z2tEdpivvRPlkdJXEArGO
+         RMoUhFRNMqoDS+O++dALHoAklOfIIHGOnbemrNIFglvlr2BSuShSuHvOy6G40URwyPU/
+         EPFg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of learnadmin@di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=learnadmin@di.unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+Return-Path: <learnadmin@di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id hr20si1202374ejc.42.2022.01.17.06.23.59
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 17 Jan 2022 06:23:59 -0800 (PST)
+Received-SPF: pass (google.com: domain of learnadmin@di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of learnadmin@di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=learnadmin@di.unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.14.4/8.14.4) with ESMTP id 20HENxD7010694
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Mon, 17 Jan 2022 15:24:01 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 20HENxD7010694
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 20HENrtY130877
+	for <luca.barra@edu.unito.it>; Mon, 17 Jan 2022 15:23:53 +0100
+Date: Mon, 17 Jan 2022 15:23:53 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Cigoli Alan Stefano" <alan.cigoli@unito.it>
+Subject: MD21-22: Ri: Dubbio su una soluzione di un esame vecchio
+Message-ID:  <303a57384164dbe4c6de4d757ced7abee47003029346353061ab53d7291fb241@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer Moodle 2016052318 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Forum didattico" <moodleforum5860@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=5860
+X-Course-Id: 2322
+X-Course-Name: Matematica Discreta 21-22
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+In-Reply-To: <948ad36528dc40e083ccde323643f01a6433cea638dcc7af95ef1a28423bd2de@informatica.i-learn.unito.it>
+References: <948ad36528dc40e083ccde323643f01a6433cea638dcc7af95ef1a28423bd2de@informatica.i-learn.unito.it>
+Thread-Topic: MD21-22: Dubbio su una soluzione di un esame vecchio
+Thread-Index: 948ad36528dc40e083ccde323643
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="b1_ba96dd2f7547c7f5e32a28f77b9fa7b2"
+
+This is a multi-part message in MIME format.
+
+--b1_ba96dd2f7547c7f5e32a28f77b9fa7b2
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+MD21-22 -> Forum -> Forum didattico -> Dubbio su una soluzione di un esame
+vecchio=20
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D34590#p60084
+Ri: Dubbio su una soluzione di un esame vecchio
+di Cigoli Alan Stefano - luned=C3=AC, 17 gennaio 2022, 15:07
+---------------------------------------------------------------------
+Buon giorno,
+
+Si tratta senz'altro di un refuso nella soluzione, il periodo =C3=A8 3.
+
+Cordiali saluti,
+
+Alan Cigoli
+
+
+
+
+---------------------------------------------------------------------
+Questa =C3=A8 una copia del messaggio inserito nel forum del corso MD21-22.
+
+Per rispondere, utilizza il link seguente:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D60084
+Modifica le preferenze della raccolta giornaliera dai forum:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D2322
+
+
+--b1_ba96dd2f7547c7f5e32a28f77b9fa7b2
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">
+    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/cours=
+e/view.php?id=3D2322">MD21-22</a>
+    &raquo;
+    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/f=
+orum/index.php?id=3D2322">Forum</a>
+    &raquo;
+    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/f=
+orum/view.php?f=3D5860">Forum didattico</a>
+    &raquo;
+    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/f=
+orum/discuss.php?d=3D34590">Dubbio su una soluzione di un esame vecchio</a>
+</div>
+
+<table border=3D"0" cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost"=
+>
+    <tr class=3D"header">
+        <td width=3D"35" valign=3D"top" class=3D"picture left">
+            <a href=3D"https://informatica.i-learn.unito.it/user/view.php?i=
+d=3D27842&amp;course=3D2322"><img src=3D"https://informatica.i-learn.unito.=
+it/theme/image.php/_s/ilearn/core/1629886804/u/f2" alt=3D"Immagine Cigoli A=
+lan Stefano" title=3D"Immagine Cigoli Alan Stefano" class=3D"userpicture de=
+faultuserpic" width=3D"35" height=3D"35" /></a>
+        </td>
+        <td class=3D"topic ">
+            <div class=3D"subject">
+                Ri: Dubbio su una soluzione di un esame vecchio
+            </div>
+            <div class=3D"author">
+                di <a target=3D'_blank' href=3D'https://informatica.i-learn=
+=2Eunito.it/user/view.php?id=3D27842&course=3D2322'>Cigoli Alan Stefano</a> -=
+ luned=C3=AC, 17 gennaio 2022, 15:07
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class=3D"left side" valign=3D"top">
+                &nbsp;
+        </td>
+        <td class=3D"content">
+            <p>Buon giorno,</p><p>Si tratta senz'altro di un refuso nella s=
+oluzione, il periodo =C3=A8 3.</p><p>Cordiali saluti,<br /></p><p>Alan Cigo=
+li</p><p><br /></p>
+
+            <div class=3D"commands">
+                    <a target=3D"_blank" href=3D"https://informatica.i-lear=
+n.unito.it/mod/forum/discuss.php?d=3D34590&parent=3D60076">
+                        Visualizza intervento genitore
+                    </a>
+                        |
+                    <a target=3D"_blank" href=3D"https://informatica.i-lear=
+n.unito.it/mod/forum/post.php?reply=3D60084">
+                        Rispondi
+                    </a>
+            </div>
+
+            <div class=3D"link">
+                <a target=3D"_blank" href=3D"https://informatica.i-learn.un=
+ito.it/mod/forum/discuss.php?d=3D34590#p60084">
+                    Visualizza questo intervento nel contesto
+                </a>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<hr />
+<div class=3D"mdl-align unsubscribelink">
+    <a href=3D"https://informatica.i-learn.unito.it/mod/forum/index.php?id=
+=3D2322">Modifica preferenze email di raccolta</a>
+</div>
+
+
+--b1_ba96dd2f7547c7f5e32a28f77b9fa7b2--
+

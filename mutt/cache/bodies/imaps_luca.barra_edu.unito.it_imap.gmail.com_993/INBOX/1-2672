@@ -1,0 +1,141 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:be92:0:b0:32a:7f76:203e with SMTP id a18csp2184895ljr;
+        Mon, 23 Jun 2025 23:54:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFm/aW6qIlizaglgJS+zqx/aAYsle1VzWoBOzm+8lfmBbcP3G05ngLIY9i2Nu/w4d3zzn2f
+X-Received: by 2002:a17:907:1b18:b0:ad8:ac7f:2490 with SMTP id a640c23a62f3a-ae057abd107mr488472266b.12.1750748084034;
+        Mon, 23 Jun 2025 23:54:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1750748084; cv=none;
+        d=google.com; s=arc-20240605;
+        b=d3t9W7P2lKK0OMP20DC6BJWLD7MRZrRcA8Y30xLJQt1kqeQTMUdbSSciCQR2/NNzjs
+         VwmSCscoB6/MNjBuxMhyEwUeAHgSmCBpmImUjjBBKGNmPWUeYV4+38nTstfIrv+sPFJD
+         3z4HemDTahs9uxu+vSOlp05zF1cRUv+S7MpjD+CNiZO6kWEE/lcRhJ9ds4MOFC7v0VM8
+         tMgtA8gNa8Cb8RFMni1aeB9uU/oE/99SoqIGCPF6sLPy9Dmw/5iaJCvIjy5l67opAZq3
+         hY9r36d7PhpY9XutzsZbVRmU9rcEeRlYZuAVGiVyg2grsEkHPCyeub9V7lAu43x+qqcH
+         8HVg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=SXIG3WUcloj4aNWml/iDoO1Jv/bg9W6fIaaKo8WIyzo=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=QdigyWDhuRqpy2rt3Vj3J9Tt/wJTpU2NeuoBJFtBUhbvwHPPPjAIsF5OQp+FwjqFvA
+         kiOtOM0zbLJl9cbIMWv5KzAf8jQpH+jVZ7JNnVj2IUs9TS/pECmta9iBJhEY+MkMwpQl
+         661Cn7Nv3AXGoUaeiyvqvqGERycfU/ewM0wyKwE6UZ4g7l7UJaNsuXRTZaW08h2LJaMz
+         0CgWjxx/FajRWtJKvViFB5U0lDDyJy04rxowg7Pnet5lMJ5K8nvDd0WQP4fKEVmCoqhR
+         LeciW6goKnvKw6SfeRF2VwIPwQoj5qXqyoE63qMN5OKK0mD/RBmYqzUF6dGTYCdozlIV
+         FiYw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ae0a442ea1dsi135254466b.189.2025.06.23.23.54.43
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Jun 2025 23:54:44 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 55O6sgsw2708726
+	for <luca.barra@edu.unito.it>; Tue, 24 Jun 2025 08:54:42 +0200
+Date: Tue, 24 Jun 2025 08:54:42 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Roversi Luca (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: ALeC024/25: Appello dell'11 luglio 2025
+Message-ID: <ceaffed21e3061e28bc5b117820a326899911af731ac682ddd0acc82915973b7@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7632@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7632
+X-Course-Id: 3064
+X-Course-Name: =?utf-8?B?QWxnb3JpdG1pIGUgQ29tcGxlc3NpdMOgIGEuYS4yNC8yNQ==?=
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: ALeC024/25: Appello dell'11 luglio 2025
+Thread-Index: ceaffed21e3061e28bc5b117820a
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_cwQYyj7vmaxhYjER3fqQrdHrOupSwi2Vp43EeYGXM"
+
+This is a multi-part message in MIME format.
+
+--b1_cwQYyj7vmaxhYjER3fqQrdHrOupSwi2Vp43EeYGXM
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+ALeC024/25 -> Forums -> Annunci -> Appello dell'11 luglio 2025
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45077#p72893
+Appello dell'11 luglio 2025
+by Roversi Luca - Tuesday, 24 June 2025, 8:39 AM
+---------------------------------------------------------------------
+Buongiorno.
+
+Per motivi che non dipendono da me, l'appello in questione potr=C3=A0
+cominciare solo alle 14:30.
+
+Si svolger=C3=A0 in aula B.
+
+Se ci saranno molti iscritti non =C3=A8 scontato che riusciremo a terminare
+entro la giornata.
+
+Buono studio,
+
+Roversi
+
+---------------------------------------------------------------------
+This is a copy of a message posted in ALeC024/25.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3064
+
+--b1_cwQYyj7vmaxhYjER3fqQrdHrOupSwi2Vp43EeYGXM
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3064">ALeC024/25</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3064">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+632">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://i=
+nformatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45077">Appello dell'1=
+1 luglio 2025</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" cells=
+pacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"header">=0A        <td=
+ width=3D"35" valign=3D"top" class=3D"picture left">=0A            <a href=
+=3D"https://informatica.i-learn.unito.it/user/view.php?id=3D35&amp;course=
+=3D3064" class=3D"d-inline-block aabtn"><img src=3D"https://informatica.i-l=
+earn.unito.it/pluginfile.php/16307/user/icon/lambda/f2?rev=3D1" class=3D"us=
+erpicture" width=3D"35" height=3D"35" alt=3D"" /></a>=0A        </td>=0A   =
+     <td class=3D"topic starter">=0A            <div class=3D"subject">=0A =
+               Appello dell'11 luglio 2025=0A            </div>=0A         =
+   <div class=3D"author">=0A                by <a target=3D'_blank' href=3D=
+'https://informatica.i-learn.unito.it/user/view.php?id=3D35&course=3D3064'>=
+Roversi Luca</a> - Tuesday, 24 June 2025, 8:39 AM=0A            </div>=0A  =
+      </td>=0A    </tr>=0A    <tr>=0A        <td class=3D"left side" valign=
+=3D"top">=0A                &nbsp;=0A        </td>=0A        <td class=3D"c=
+ontent">=0A            <p dir=3D"ltr" style=3D"text-align:left;">Buongiorno=
+.</p><p dir=3D"ltr" style=3D"text-align:left;">Per motivi che non dipendono=
+ da me, l'appello in questione potr=C3=A0 cominciare solo alle 14:30.</p><p=
+ dir=3D"ltr" style=3D"text-align:left;">Si svolger=C3=A0 in aula B.</p><p d=
+ir=3D"ltr" style=3D"text-align:left;">Se ci saranno molti iscritti non =
+=C3=A8 scontato che riusciremo a terminare entro la giornata.</p><p dir=3D"=
+ltr" style=3D"text-align:left;">Buono studio,</p><p dir=3D"ltr" style=3D"te=
+xt-align:left;">Roversi</p>=0A=0A            <div class=3D"commands">=0A   =
+         </div>=0A=0A            <div class=3D"link">=0A                <a =
+target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/forum/di=
+scuss.php?d=3D45077#p72893">=0A                    See this post in context=
+=0A                </a>=0A            </div>=0A        </td>=0A    </tr>=0A=
+</table>=0A=0A<hr />=0A<div class=3D"mdl-align unsubscribelink">=0A    <a h=
+ref=3D"https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3064">=
+Change your forum digest preferences</a>=0A</div>
+
+--b1_cwQYyj7vmaxhYjER3fqQrdHrOupSwi2Vp43EeYGXM--
+

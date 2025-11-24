@@ -1,0 +1,163 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:510:b0:302:3d35:6815 with SMTP id o16csp29471ljp;
+        Mon, 3 Feb 2025 23:00:46 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCXBGfq0KVEVS9DJhXzn0pPB2kDlAYmt0O8rk1L8LgHCFnZXN2Hvk2MVNAfIayxj0dQNZZmttDHl77v9@edu.unito.it
+X-Received: by 2002:a17:907:3f1d:b0:ab6:9534:9903 with SMTP id a640c23a62f3a-ab747a66495mr90159666b.2.1738652446554;
+        Mon, 03 Feb 2025 23:00:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1738652446; cv=none;
+        d=google.com; s=arc-20240605;
+        b=R99irYpe4cAZwjUMQSohjLTTuSva68dFO3+PEyZ15znotttca4LTQzJ5kw416bAfT4
+         DSNIETK53RkxzWLiLjUPYC2x1m+gNf9WUU07g8b2zWfDB+4LBJOHuEdRZ6aIvskX/Zxj
+         07i/hAxr+LkIxIwtPmJsEmOobs8Im9rhuBubNcnHUcUMtTTbqAKX++4aAFoNr4OdYKf7
+         fvPRQ3mGuOxNydHyYcAdBtbHiy+rIeXMvan0/UwtChatUGHAAviZN3jwTM3lFl3IF9bf
+         3AsijxpFuhLZLV/txhiRoBwBixhB7iBPktS8MHDawrqXmg5CD/8kZhH/x2fTCgJTuTzT
+         gVew==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=haIdTYRMpb86+ALE2XIFm8RgUqoePBagBCUCeTTcFIo=;
+        fh=HT0j3h6OA7mA6RF0OU+lbnrJR+rHKQxW/q3OaLlhdjc=;
+        b=BjgUkqJ/w7GvI/jRqR1fKYtSRTlivRmSp6xaH27lKftE0WXOBdK0mPNNmMTyFgGYa0
+         6SGo3iJYS1lJDsUtRnB82MYWE1hXC64jI3W4ylzPsumwIaGollaYtzSidcN4pGZE8LIs
+         VnS5YTbTMhegfWDIvmK3ZIKXbskO//w9fcf650K1QSUbMo0+FfNgcQ10tBqc6Mkn2ZzR
+         SRS7VncDyQ53LZYDF2WSnot7O+RtvNVon76jiLvfGydDHKpDmR2cRicKk3Q37zs/uu2r
+         PF2DlEYGoQWk+YWTGO7xIxUJo9l5zXc4AcUU7m/8q1cQIWAAhFLsx6qfbkiddauFr1Qe
+         wv+g==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=HF+SIs5V;
+       spf=pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.inclusione@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <tutorato.inclusione@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-ab6e4a455b4sor531138866b.15.2025.02.03.23.00.46
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Mon, 03 Feb 2025 23:00:46 -0800 (PST)
+Received-SPF: pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=HF+SIs5V;
+       spf=pass (google.com: domain of tutorato.inclusione@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.inclusione@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1738652445; x=1739257245; darn=edu.unito.it;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=haIdTYRMpb86+ALE2XIFm8RgUqoePBagBCUCeTTcFIo=;
+        b=HF+SIs5VnkpOyoL9ezB1SCteaWKCsasqCS9sthuk+LFvV0HBIaYs6g1VE8RdDDZz27
+         0PDShPb/VhB6iwB1visPtXzUX9EraHWpdv3VMWU/RrzyHOhhQXp8dDA/5NTZtUwUNvPU
+         mYAEXWEgS+PP43qhCjAiTMGm/CnoYQmtDEtKnBLI0nCNuzkVGk6uhOy5UVv1neW7j/yt
+         4rv5qBup3Nk0EXkhNNOpFU/OJ1c0xhPDjLURycRnK5PrHy5goFTp2uemD5G8AjKU2XnY
+         paoTHf/9Z3Xn+Wb3MsheZVcMBUO6ZrkvPr3ppyl6arJp1aVnHTsINatLTKsLSi/bvpoA
+         2bZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738652445; x=1739257245;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=haIdTYRMpb86+ALE2XIFm8RgUqoePBagBCUCeTTcFIo=;
+        b=EeOI1sMTdPtoylRmHIyX2Nl7RkANVvlTxoJH34eGgmKuUkU9oExNZUkOOKK6OkFiFO
+         2JBMrS+ViLeJaXIBjOsGn2w0t8EUUIIsV6OD1Jqqduym0lQA/4n/7xQ2OtCzXfc6QywR
+         24IBmN6dTfqjgw+hpmZi9YGmfHHl0eRWkdsEh1ReEk95Q+yLA7nZzXtDFlbEiz2xlJtP
+         oyEocyfuiXMfeJRzbTJ582vSCEmOaETsgEx69SDPI67XKcw7NPs72BKmbhcRLnZn/Wtl
+         TumTTgmv5w+Bdi48+zTZPsgq/tMv2o8NGByWeHfOInhxpwr1Jj/tPnTykZOBxrssOleR
+         AsRw==
+X-Forwarded-Encrypted: i=1; AJvYcCVZjXmK9N6qCSTpB4x6CWIlfXNJ1hEZVGqxDfAPymv/yD25Ca1omvzZj1Ir5EiFMkPkGrVsnneuCJbA@edu.unito.it
+X-Gm-Message-State: AOJu0YxrcKNQAJpagCOwJ3sz2SoU9MP/eEtcHJZUkqOWxkcMhETWescu
+	RBllVe8joTnq++pG1R+qgM6xNxgcvFrlTY3skxOkzp7QM2RVtlSWvSxxjlFifHRPZnwsQXra9Jl
+	CDUWbjCjIZbhMsD/og/t8yYvkHv7spc0Ftd1HAt55DeLEzYBwzTArEw==
+X-Gm-Gg: ASbGncsaauDkYBovUJ6ghQMn/icJy56YFFL+21lOEuBk1GKn0eXaWk09bMeJ5gRsMKA
+	mip+iE7zGnXA/jstNbEho0uq0SGGJ30RetuQAJDryZ5Up1Gbmz7K+CRDcwZOgRvbrzsPhxU/B
+X-Google-Smtp-Source: AGHT+IGorYwdbNiG/CgmDpC+/Ivi7LBetjTFi9p5N1ERMd5wk9573YECMrkg9AmLNCYRR240EiPfF2i+fcak32dOYpk=
+X-Received: by 2002:a17:907:6d0a:b0:aa6:a228:afaf with SMTP id
+ a640c23a62f3a-ab6cfdc5fb9mr2697999666b.52.1738652444911; Mon, 03 Feb 2025
+ 23:00:44 -0800 (PST)
+MIME-Version: 1.0
+From: Tutorato Disabili <tutorato.inclusione@unito.it>
+Date: Tue, 4 Feb 2025 08:00:00 +0100
+X-Gm-Features: AWEUYZnOGpwJ5SgiS-Ojcnz4Vc2SzdyHCArH4d-853eVh8hNYqQB4qd24NJWIWA
+Message-ID: <CAOKF-fX051kCB5V-4FtniCP1p9Qqq4BZRRGC4W_pFxs84a8ehQ@mail.gmail.com>
+Subject: Link Incontro conoscitivo WebEx
+To: undisclosed-recipients:;
+Content-Type: multipart/alternative; boundary="0000000000005e04d3062d4b91c9"
+Bcc: luca.barra@edu.unito.it
+
+--0000000000005e04d3062d4b91c9
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Gent.m*,
+
+facendo seguito alle comunicazioni intercorse inerenti l'attivit=C3=A0 di
+tutorato, si informa che sar=C3=A0 organizzato un incontro di assegnazione =
+"a
+distanza" (sulla piattaforma Cisco Webex) nella giornata odierna, h
+*15 *attraverso
+videoconferenza.
+
+Il link per poter accedere alla sala riunioni virtuale =C3=A8: link incontr=
+o
+<https://unito.webex.com/meet/tutorato.inclusione>  (Cliccare sul link
+all'orario sopraindicato per accedere alla riunione)
+
+ A pi=C3=B9 tardi,
+
+
+Cordiali saluti
+Ufficio Studenti con Disabilit=C3=A0 e DSA
+Direzione Didattica Servizi agli Studenti
+Via Verdi 25 - 10124 Torino
+tel. 011.6704284
+mail tutorato.inclusione@unito.it <ufficio.dsa@unito.it>
+
+--0000000000005e04d3062d4b91c9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div dir=3D"ltr"><div class=3D"gmail_default" style=
+=3D"font-family:verdana,sans-serif"><div dir=3D"ltr"><div class=3D"gmail_de=
+fault"><div dir=3D"ltr"><div class=3D"gmail_default"><div dir=3D"ltr"><div =
+class=3D"gmail_default"><div dir=3D"ltr"><div class=3D"gmail_default"><div =
+dir=3D"ltr"><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">Ge=
+nt.m*,<br><br>facendo seguito alle comunicazioni intercorse inerenti l&#39;=
+attivit=C3=A0 di tutorato, si informa che sar=C3=A0 organizzato un incontro=
+ di assegnazione &quot;a distanza&quot; (sulla piattaforma Cisco Webex) nel=
+la giornata odierna, h <b>15=C2=A0</b>attraverso videoconferenza.<div>=C2=
+=A0 <br>Il link per poter accedere alla sala riunioni virtuale =C3=A8: <a h=
+ref=3D"https://unito.webex.com/meet/tutorato.inclusione" target=3D"_blank">=
+link incontro</a>=C2=A0 (Cliccare sul link all&#39;orario sopraindicato per=
+ accedere alla riunione)</div><div><br></div><div>=C2=A0A pi=C3=B9 tardi,</=
+div><div><br></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div><div><div dir=
+=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div><div><div d=
+ir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div><br></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div><div><div dir=3D"ltr" class=3D"gmail_sig=
+nature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div><font face=3D"verdana, sans-serif" style=
+=3D"color:rgb(34,34,34)">Cordiali saluti</font></div><div dir=3D"ltr"><font=
+ face=3D"verdana, sans-serif" style=3D"color:rgb(34,34,34)">Ufficio Student=
+i con Disabilit=C3=A0 e DSA</font><div style=3D"color:rgb(34,34,34)"><font =
+face=3D"verdana, sans-serif" color=3D"#666666">Direzione Didattica Servizi =
+agli Studenti</font></div><div style=3D"color:rgb(34,34,34)"><span style=3D=
+"color:rgb(102,102,102);font-family:verdana,sans-serif">Via Verdi 25 - 1012=
+4 Torino</span><br></div><div style=3D"color:rgb(34,34,34)"><font face=3D"v=
+erdana, sans-serif" color=3D"#666666">tel. 011.6704284</font></div><div sty=
+le=3D"color:rgb(34,34,34)"><font face=3D"verdana, sans-serif"><font color=
+=3D"#666666">mail</font>=C2=A0</font><a href=3D"mailto:ufficio.dsa@unito.it=
+" style=3D"color:rgb(17,85,204);font-family:verdana,sans-serif;font-size:12=
+.8px" target=3D"_blank">tutorato.inclusione@unito.it</a></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div>
+
+--0000000000005e04d3062d4b91c9--

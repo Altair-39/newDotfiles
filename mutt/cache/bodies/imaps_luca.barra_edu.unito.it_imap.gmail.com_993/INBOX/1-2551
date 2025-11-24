@@ -1,0 +1,225 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:1467:b0:328:ea4:e135 with SMTP id r7csp1299863ljc;
+        Thu, 22 May 2025 04:31:24 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGEHK/ZANiyGP8zUpFXWzbikQY427kGYFtTm0TsHQZxjev8YlsaOVu1mtrAwQ81otRPCWWc
+X-Received: by 2002:a05:6402:134b:b0:601:acee:fd7c with SMTP id 4fb4d7f45d1cf-601acef0123mr5026839a12.10.1747913483841;
+        Thu, 22 May 2025 04:31:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1747913483; cv=none;
+        d=google.com; s=arc-20240605;
+        b=bBla9eYX2fcVJR6uNVSVQHqa+5ipjEX+dgxxOEb7wHN/5djsnvyS1P0tvbInH9Qjmh
+         mKTTyxLtkTUiKtoeNaZQNlF9SaU7QrR/6qYgHt/IehFqABNv+6AoLR7KaZh8j9OpmcnI
+         /lJd1pP7saEq00oUH6sY3XPZEnMreIsAdeYPspCtYxc+S6GdZXcCVBe2CGLrJ/awBQM0
+         /bZiCjWARG2bzXDTV7RRghLdK2vjP7BOYV5UyvWNNYZvqc33Ilumd7Dpz2WqjYnlCnr3
+         f4YRAHQQr2uttEGe93ARlfV0K2nx2vW8vSWob20dou0KsI6/OB4WIzdRWwU0zETH6uhK
+         +j/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date;
+        bh=yxh1CgsF3Fg5W0qkhHop5ug7DOfESFAtlVb3+Xskrj8=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=k6qS7yBz9rM1zL4wk7n6qY06nc3EG4wDQA/AEQmH6gZPnGrVIOX3Y5kykjIgKzvJxX
+         kvicvLA/XuYQg5ed6Nuca4jlEwh+jf2ExcSFnOCIpnXjAyYG2g0aXxsED8yzt8yXlf/u
+         f1mbjs9MIu7/JoBtRu+W/GPRBJdrr0xcnLGv/E0X9j97SvKKCVAUzIksCyu3mgaZ9WDi
+         0ac9+CpuAZ1dEu31LLl032fTOdWZ7GD3u8CdcffilriIl6iAmKxxXrTFxMzqfl+cGDsR
+         bd+ye69XzTNQZynsQweA8+a/USHKi4bx82GRB/kgo1sOBJmAnCv3gNws+aDq0GvilG2x
+         KFlw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it. [130.192.157.4])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-6004d50375csi11086389a12.137.2025.05.22.04.31.23
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 May 2025 04:31:23 -0700 (PDT)
+Received-SPF: softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) client-ip=130.192.157.4;
+Authentication-Results: mx.google.com;
+       spf=softfail (google.com: domain of transitioning noreply-informatica@i-learn.unito.it does not designate 130.192.157.4 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=fail (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 54MBVNaW1243080
+	for <luca.barra@edu.unito.it>; Thu, 22 May 2025 13:31:23 +0200
+Date: Thu, 22 May 2025 13:31:23 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Iurlandino Angelo (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: =?utf-8?B?U2lzSW50MjQyNTogTnVyYWJvdDogbOKAmWluZmVybWllcmUgcm9ib3RpY28g?=
+ =?utf-8?B?Y2hlIHJpZHVjZSBpbCBjYXJpY28gZGkgbGF2b3JvIG5lZ2xpIG9zcGVkYWxp?=
+Message-ID: <ede98f1cfefc3bf6283fa274fb1c63dc8a9701ca782ec1095e1a0db00870a40e@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Segnalazioni" <moodleforum7706@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7706
+X-Course-Id: 3092
+X-Course-Name: Sistemi Intelligenti
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=7706&d=44769>
+Thread-Topic: =?utf-8?B?U2lzSW50MjQyNTogTnVyYWJvdDogbOKAmWluZmVybWllcmUgcm9ib3RpY28g?=
+ =?utf-8?B?Y2hlIHJpZHVjZSBpbCBjYXJpY28gZGkgbGF2b3JvIG5lZ2xpIG9zcGVkYWxp?=
+Thread-Index: ede98f1cfefc3bf6283fa274fb1c
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node2:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_fgR43d7o618T9yEl8TajTZWZxE1tNrruBqQAiuKOeXs"
+
+This is a multi-part message in MIME format.
+
+--b1_fgR43d7o618T9yEl8TajTZWZxE1tNrruBqQAiuKOeXs
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+SisInt2425 -> Forums -> Segnalazioni -> Nurabot: l=E2=80=99infermiere robot=
+ico
+che riduce il carico di lavoro negli ospedali
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44769#p72537
+Nurabot: l=E2=80=99infermiere robotico che riduce il carico di lavoro negli
+ospedali
+by Iurlandino Angelo - Thursday, 22 May 2025, 1:15 PM
+---------------------------------------------------------------------
+1. RIFERIMENTO:
+https://www.the-sun.com/tech/14289670/ai-robot-nurse-hospital-video-nvidia/
+[1]
+
+2. TIPOLOGIA DI COMUNICAZIONE: Articolo giornalistico tecnologico
+
+3. TONO DELLA COMUNICAZIONE: Informativo-Divulgativo
+
+4. BREVE SUNTO:=C2=A0L=E2=80=99articolo in questione presenta Nurabot, un r=
+obot
+infermiere progettato da Foxconn in collaborazione con NVIDIA, azienda
+specializzata in AI e GPU e spiega che Nurabot =C3=A8 stato ideato per
+supportare il personale sanitario in attivit=C3=A0 ripetitive e logistiche:
+infatti tra le sue funzionalit=C3=A0 principali troviamo il controllo dei
+reparti, l'assistenza ai visitatori e la consegna di medicinali ai pazienti
+o di campioni biologici. L=E2=80=99obiettivo dichiarato da Foxconn =C3=
+=A8 quello di
+ridurre il carico di lavoro del personale del 30%, rispondendo alla
+crescente carenza di operatori sanitari.
+
+5. MOTIVO PER CUI MI HA COLPITO:=C2=A0L'articolo mi ha colpito perch=C3=
+=A9
+rappresenta un caso concreto di intelligenza artificiale fisica autonoma in
+un ambiente cos=C3=AC critico e imprevedibile, infatti Nurabot agisce nel
+contesto ospedaliero, che =C3=A8 altamente dinamico e nel quale entrano in
+gioco variabili di ogni tipo e non sempre prevedibili (emergenze, reazioni
+dei pazienti, ostacoli fisici, necessit=C3=A0 improvvise). Mi viene spontan=
+eo
+chiedermi quanto un robot pu=C3=B2 davvero sostituire il contatto umano ed
+emotivo che si crea inevitabilmente tra un infermiere/dottore e il
+paziente, mettendomi specialmente nei panni del paziente che cos=C3=AC vivr=
+ebbe
+la sua "esperienza" in reparto, gi=C3=A0 di per s=C3=A9 brutta, in maniera =
+ancor
+pi=C3=B9 alienante e frustrante, avendo una macchina antropomorfa che si pr=
+ende
+cura di lui. Questo esempio, inoltre, mi porta anche a riflettere su quanto
+siamo pronti a delegare compiti simili a sistemi autonomi, e su quali siano
+i limiti pratici ed etici dell=E2=80=99automazione in ambito ospedaliero.
+
+6. LEGAME CON TEMI VISTI A LEZIONE:=C2=A0Dall'automazione all'autonomia e i=
+l
+comportamento razionale di un agente (che dipende dai 4 fattori: azioni
+nelle facolt=C3=A0 dell=E2=80=99agente, misura della prestazione, conoscenz=
+a
+dell=E2=80=99ambiente e percezione)
+
+Links:
+------
+[1]
+https://www.the-sun.com/tech/14289670/ai-robot-nurse-hospital-video-nvidia/
+
+---------------------------------------------------------------------
+This is a copy of a message posted in SisInt2425.
+
+To reply click on this link:
+https://informatica.i-learn.unito.it/mod/forum/post.php?reply=3D72537
+Unsubscribe from this forum:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706
+Unsubscribe from this discussion:
+https://informatica.i-learn.unito.it/mod/forum/subscribe.php?id=3D7706&d=3D=
+44769
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3092
+
+--b1_fgR43d7o618T9yEl8TajTZWZxE1tNrruBqQAiuKOeXs
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3092">SisInt2425</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3092">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+706">Segnalazioni</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"http=
+s://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44769">Nurabot: =
+l=E2=80=99infermiere robotico che riduce il carico di lavoro negli ospedali=
+</a>=0A</div>=0A=0A<table border=3D"0" cellpadding=3D"3" cellspacing=3D"0" =
+class=3D"forumpost">=0A    <tr class=3D"header">=0A        <td width=3D"35"=
+ valign=3D"top" class=3D"picture left">=0A            <a href=3D"https://in=
+formatica.i-learn.unito.it/user/view.php?id=3D33972&amp;course=3D3092" clas=
+s=3D"d-inline-block aabtn"><img src=3D"https://informatica.i-learn.unito.it=
+/theme/image.php/_s/lambda/core/1747904236/u/f2" class=3D"userpicture defau=
+ltuserpic" width=3D"35" height=3D"35" alt=3D"" /></a>=0A        </td>=0A   =
+     <td class=3D"topic starter">=0A            <div class=3D"subject">=0A =
+               Nurabot: l=E2=80=99infermiere robotico che riduce il carico =
+di lavoro negli ospedali=0A            </div>=0A            <div class=3D"a=
+uthor">=0A                by <a target=3D'_blank' href=3D'https://informati=
+ca.i-learn.unito.it/user/view.php?id=3D33972&course=3D3092'>Iurlandino Ange=
+lo</a> - Thursday, 22 May 2025, 1:15 PM=0A            </div>=0A        </td=
+>=0A    </tr>=0A    <tr>=0A        <td class=3D"left side" valign=3D"top">=
+=0A                &nbsp;=0A        </td>=0A        <td class=3D"content">=
+=0A            <p dir=3D"ltr"><strong>1. Riferimento:</strong> <a href=3D"h=
+ttps://www.the-sun.com/tech/14289670/ai-robot-nurse-hospital-video-nvidia/"=
+>https://www.the-sun.com/tech/14289670/ai-robot-nurse-hospital-video-nvidia=
+/</a></p><p dir=3D"ltr"><strong>2. Tipologia di comunicazione:</strong> Art=
+icolo giornalistico tecnologico</p><p dir=3D"ltr"><strong>3. Tono della com=
+unicazione:</strong> Informativo-Divulgativo</p><p dir=3D"ltr"><strong>4. B=
+reve sunto:=C2=A0</strong>L=E2=80=99articolo in questione presenta Nurabot,=
+ un robot infermiere progettato da Foxconn in collaborazione con NVIDIA, az=
+ienda specializzata in AI e GPU e spiega che Nurabot =C3=A8 stato ideato pe=
+r supportare il personale sanitario in attivit=C3=A0 ripetitive e logistich=
+e: infatti tra le sue funzionalit=C3=A0 principali troviamo il controllo de=
+i reparti, l'assistenza ai visitatori e la consegna di medicinali ai pazien=
+ti o di campioni biologici. L=E2=80=99obiettivo dichiarato da Foxconn =
+=C3=A8 quello di ridurre il carico di lavoro del personale del 30%, rispond=
+endo alla crescente carenza di operatori sanitari.</p><p dir=3D"ltr"><stron=
+g>5. Motivo per cui mi ha colpito:</strong>=C2=A0L'articolo mi ha colpito p=
+erch=C3=A9 rappresenta un caso concreto di intelligenza artificiale fisica =
+autonoma in un ambiente cos=C3=AC critico e imprevedibile, infatti Nurabot =
+agisce nel contesto ospedaliero, che =C3=A8 altamente dinamico e nel quale =
+entrano in gioco variabili di ogni tipo e non sempre prevedibili (emergenze=
+, reazioni dei pazienti, ostacoli fisici, necessit=C3=A0 improvvise). Mi vi=
+ene spontaneo chiedermi quanto un robot pu=C3=B2 davvero sostituire il cont=
+atto umano ed emotivo che si crea inevitabilmente tra un infermiere/dottore=
+ e il paziente, mettendomi specialmente nei panni del paziente che cos=
+=C3=AC vivrebbe la sua "esperienza" in reparto, gi=C3=A0 di per s=C3=A9 bru=
+tta, in maniera ancor pi=C3=B9 alienante e frustrante, avendo una macchina =
+antropomorfa che si prende cura di lui. Questo esempio, inoltre, mi porta a=
+nche a riflettere su quanto siamo pronti a delegare compiti simili a sistem=
+i autonomi, e su quali siano i limiti pratici ed etici dell=E2=80=99automaz=
+ione in ambito ospedaliero.</p><p dir=3D"ltr"><strong>6. Legame con temi vi=
+sti a lezione:=C2=A0</strong>Dall'automazione all'autonomia e il comportame=
+nto razionale di un agente (che dipende dai 4 fattori: azioni nelle facolt=
+=C3=A0 dell=E2=80=99agente, misura della prestazione, conoscenza dell=
+=E2=80=99ambiente e percezione)</p>=0A=0A            <div class=3D"commands=
+">=0A                    <a target=3D"_blank" href=3D"https://informatica.i=
+-learn.unito.it/mod/forum/post.php?reply=3D72537">=0A                      =
+  Reply=0A                    </a>=0A            </div>=0A=0A            <d=
+iv class=3D"link">=0A                <a target=3D"_blank" href=3D"https://i=
+nformatica.i-learn.unito.it/mod/forum/discuss.php?d=3D44769#p72537">=0A    =
+                See this post in context=0A                </a>=0A         =
+   </div>=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=
+=3D"mdl-align unsubscribelink">=0A    <a href=3D"https://informatica.i-lear=
+n.unito.it/mod/forum/subscribe.php?id=3D7706">Unsubscribe from this forum</=
+a>&nbsp;=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/forum/su=
+bscribe.php?id=3D7706&d=3D44769">Unsubscribe from this discussion</a>&nbsp;=
+=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/forum/index.php?=
+id=3D3092">Change your forum digest preferences</a>=0A</div>
+
+--b1_fgR43d7o618T9yEl8TajTZWZxE1tNrruBqQAiuKOeXs--
+

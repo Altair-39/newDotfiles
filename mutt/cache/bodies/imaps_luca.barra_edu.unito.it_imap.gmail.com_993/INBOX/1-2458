@@ -1,0 +1,1635 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:511a:0:b0:326:dd0e:fb84 with SMTP id f26csp508180ljb;
+        Sun, 11 May 2025 22:47:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFUA5CV15IiIwStxanQ6DYa32AcftI5REfvelvsEkNWal/x1wye5RD/kbT1Xxa6jMimEsmr
+X-Received: by 2002:a17:907:2e19:b0:acb:1d24:a9e0 with SMTP id a640c23a62f3a-ad219ac5111mr340812166b.11.1747028851804;
+        Sun, 11 May 2025 22:47:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1747028851; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Vxo2KXUCK2qfm+BcTYEjbm8t1WHO0jC3WUU6EVeRjGaewdQVLSSOe3edHT0SLGcxY+
+         Awzy6Lx3Qyf4iJE+Hk4WP7VfYikFjPfIuh+ghzxYSv5qbpP4/RLyQAOlk3EJ9DLIGmKR
+         52mjXYszRgKkQREy0e2VVNKM79WlEri3ox4plvNc+OhcEzfW21WeMcKNVywi1cZdQQ+c
+         jP75nCAWQUhuwyOZ2n1mAHFtEP6zG5Qu/qrOUwlox2cPWWwthFZ2tf9w82+QGLvH/zA3
+         Y9Wx7btlV36QK22WlY6rehkMHUwaED3JI4pi6+3b+vJapqr45Rc9ehnZy9lHIHSrOsa6
+         fZzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=in-reply-to:from:cc:content-language:references:to:subject
+         :user-agent:mime-version:date:message-id:dkim-signature:dkim-filter;
+        bh=WC35Q32JQDzjkydLYB1/itgV1cli8TJinM9jDJDxcnA=;
+        fh=4JhodVgJhhIGmq5V2KsBwtmpLQuJOBqgrRMRuX24ZV8=;
+        b=A3+2Iz0Zt1NmGdaC096AfSfGnIA9RPcVV5u6WYS6v+sKjQI/m/ZlHVIdLwEOew1Vq8
+         hSZeRCf/QYQeir741JtS84UE0PvscmcEGNNAdCF0PPoIaOOpLP6Nj6fgd1mtZsJbMjAg
+         7K+hyahpClX3CIPryd8vvo84/H5Ya2HvcE+PxBNeJO5rTeVrwZSZwbhd9WwYLtyGifEc
+         HRZZJZuhcnwKDDywxI2kRW5ZICrVBvvjmbnchnlHnPA/CT9SWwWWkrb7qIz+KDtkGaZe
+         wC5YLMS0sN/zqpxnROm7GkJZbVj/ediK+/ETnv7raGQAe1uVXNtohCVqcvThuxSdkzA+
+         pDfg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@di.unito.it header.s=dipinfo2011 header.b=T+LHNBFA;
+       spf=pass (google.com: domain of sproston@di.unito.it designates 130.192.156.1 as permitted sender) smtp.mailfrom=sproston@di.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=di.unito.it
+Return-Path: <sproston@di.unito.it>
+Received: from mail.di.unito.it (pianeta.di.unito.it. [130.192.156.1])
+        by mx.google.com with ESMTPS id a640c23a62f3a-ad230fc3a22si360408266b.147.2025.05.11.22.47.31
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 11 May 2025 22:47:31 -0700 (PDT)
+Received-SPF: pass (google.com: domain of sproston@di.unito.it designates 130.192.156.1 as permitted sender) client-ip=130.192.156.1;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@di.unito.it header.s=dipinfo2011 header.b=T+LHNBFA;
+       spf=pass (google.com: domain of sproston@di.unito.it designates 130.192.156.1 as permitted sender) smtp.mailfrom=sproston@di.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=di.unito.it
+X-MailScanner-From: sproston@di.unito.it
+X-SpamCheck: not spam, SpamAssassin (not cached, score=-101.266, required 3,
+	autolearn=not spam, ALL_TRUSTED -1.00, AUTHENTICATEDUSER -100.00,
+	AWL -0.64, BAYES_00 -1.90, HTML_MESSAGE 0.00,
+	HTML_TAG_BALANCE_BODY 1.16, MPART_ALT_DIFF_COUNT 1.11)
+X-AntiVirus: Email Clean
+X-dipinfo-MailScanner-ID: 54C5lSdK014700
+X-dipinfo-MailScanner-Information: Please contact Department of Computer Science technical staff for more information
+Received: from mail.di.unito.it ([130.192.156.1])
+         by mail.di.unito.it (INFO-DIP) with ESMTPSA id 54C5lSdK014700
+	 (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO AuthenticatedUser=sproston );
+	 Mon, 12 May 2025 07:47:28 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.di.unito.it 54C5lSdK014700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=di.unito.it;
+	s=dipinfo2011; t=1747028848;
+	bh=rsgmEXBoalN2uFgcxLJgROsJM1wvsERKrO1VkYQbdfE=;
+	h=Date:Subject:To:References:Cc:From:In-Reply-To;
+	b=T+LHNBFADWRc3bI7r0Y5L3jL8/56+34WO4f8AueDQ5pslST5N56fuHM4i1izjBloi
+	 wc19MzZp3Pd349zayxxWXVQOZzShxr+kBHZXcS0D5J1to7jQshSkKxz7GnmcoCOnKH
+	 dODjjHIn6Vg9fPt0jqSQzsckOJO4tJ+DmLZbNx4E=
+Content-Type: multipart/alternative;
+ boundary="------------Z4EnVWzg30JoX5YNjlCRh80t"
+Message-ID: <8d71520f-2a54-40a7-9001-b6bf86ad1ccb@di.unito.it>
+Date: Mon, 12 May 2025 07:47:27 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: PPOO T1 lezione 8
+To: Luca <luca.barra@edu.unito.it>
+References: <4552470d-f3cf-4ff9-80d3-382e7df177fe@di.unito.it>
+Content-Language: it
+Cc: Jeremy Sproston <sproston@di.unito.it>
+From: Jeremy Sproston <sproston@di.unito.it>
+In-Reply-To: <4552470d-f3cf-4ff9-80d3-382e7df177fe@di.unito.it>
+
+This is a multi-part message in MIME format.
+--------------Z4EnVWzg30JoX5YNjlCRh80t
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Ciao Luca,
+
+ecco il materiale dell'altro esercizio. Ti mando una proposta di 
+soluzione piu` tardi (o al limite lo vediamo durante la lezione), 
+perche' c'e` una parte della soluzione che abbiamo che non mi convince e 
+ho chiesto gli altri docenti del lab di controllare.
+
+Ciao,
+
+Jeremy
+
+-----
+
+Scrivere una classe astratta Elettrodomestico e le sue sottoclassi 
+concrete Lavatrice, Forno e Frigorifero. La classe astratta ha due 
+attributi modello (di tipo Stringa, ad esempio “LG123”, “Bosch9000”) e 
+potenza (di tipo int, in watt). Inoltre ha i seguenti metodi:
+
+  *
+
+    funzionePrincipale(): un metodo astratto, tipo di ritorno String;
+
+  *
+
+    - il metodo overloaded accendi():
+
+     1.
+
+        una versione senza parametri che stampa a video il modello e la
+        stringa "accensione standard”;
+
+     2.
+
+        una versione con un parametro di tipo String che indica la
+        modalita` di accensione, a cui si passa, per esempio, la stringa
+        “eco”. Il metodo stampa a video la concatenazione della stringa
+        che rappresenta il modello con la stringa “accensione”, seguita
+        dalla stringa della modalita` di accensione (cioè il parametro):
+        considerando il nostro esempio, stampa a video la stringa
+        “Bosch9000 accensione eco”;
+
+  *
+
+    i metodi overridden toString() e equals().
+
+Le classi concrete Lavatrice, Forno e Frigorifero implementano il metodo 
+astratto funzionePrincipale() nel seguente modo:
+
+  *
+
+    classe Lavatrice: funzionePrincipale() restituisce "Lavaggio dei
+    vestiti";
+
+  *
+
+    classe Forno: funzionePrincipale() restituisce "Cottura degli alimenti";
+
+  *
+
+    classe Frigorifero: funzionePrincipale() restituisce "Conservazione
+    degli alimenti".
+
+Scrivere, inoltre, una classe di test Casa, in cui vengono creati almeno 
+due elettrodomestici per tipologia, e in cui accendi(), accendi(“eco”), 
+funzionePrincipale() e equals() vengono eseguiti.
+
+
+                    ┌─────────────────────┐
+
+                    │   Elettrodomestico  │
+
+                    ├─────────────────────┤
+
+                    │ - modello: String    │
+
+                    │ - potenza: int       │
+
+                    ├─────────────────────┤
+
+                    │ + accendi()          │
+
+                    │ + accendi(String)    │
+
+                    │ + descrizione(): String │
+
+                    │ + equals(Object): boolean │
+
+                    │ + funzionePrincipale(): String [abstract] │
+
+                    └────────▲────────────┘
+
+                             │
+
+         ┌───────────────────┼─────────────────────┐
+
+         │                   │                     │
+
+┌───────────────┐   ┌───────────────┐   ┌────────────────┐
+
+│   Lavatrice   │   │     Forno     │   │ Frigorifero   │
+
+├───────────────┤   ├───────────────┤   ├────────────────┤
+
+│ + funzionePrincipale() │ + funzionePrincipale() │ + funzionePrincipale() │
+
+└───────────────┘   └───────────────┘   └────────────────┘
+
+
+On 5/11/2025 1:23 PM, Jeremy Sproston wrote:
+>
+> Ciao Luca,
+>
+> ti mando un po' di materiale per uno degli esercizi di domani, insieme 
+> con una proposta di soluzione (allegato). E` probabile che il 
+> materiale sara` modificato prima della lezione di domani.
+>
+> Ciao,
+>
+> Jeremy
+>
+> -----
+>
+>
+> Le classi astratte ricorsive. Abbiamo già visto nella Lezione 14 come 
+> rappresentare liste di oggetti usando la classe MiniLinkedList con 
+> attributo first = ”l’indirizzo del primo nodo nella lista”, first=null 
+> se la lista è vuota. Un’altra possibilità è rappresentare liste vuote 
+> e non vuote con oggetticon etichetta“lista vuota”e “lista non vuota”. 
+> Rappresentiamo in Java queste etichette con la classedelle liste vuote 
+> e la classe delle liste non vuote. Questa rappresentazione contiene 
+> delle informazioni in più, utili a Java per scegliere quale versione 
+> di un metodo usare attraverso il dynamic binding. Otteniamo questa 
+> rappresentazione considerando le liste come una classe astratta 
+> ricorsiva.
+>
+>
+> Nota.Non è essenziale usare le classi astratte ricorsive nel caso 
+> delle liste: usiamo le liste solo per avere un esempio semplice. Le 
+> classi astratte ricorsive diventano importanti per problemi avanzati, 
+> quando si considerano dati con molte “forme” possibili, con ogni dato 
+> composto di un diverso numero e tipo di dati più semplici. Un esempio 
+> sono gli alberi di parsing, che vedrete nel corso di Linguaggi 
+> Formali. Ora torniamo a parlare di liste come classi astratte ricorsive.
+>
+>
+>  Definiamo una classe astratta List delle liste ordinatesenza 
+> ripetizioni di interi. List ha due sottoclassi concrete. Abbiamo la 
+> classe Nil che contiene (oltre a null che NONusiamo in questa 
+> particolare rappresentazione per rappresentare le lista vuota) gli 
+> oggetti che rappresentano le liste vuote. Abbiamo la classe Consdegli 
+> oggetti che rappresentano liste contenenti un elemento “elem” e una 
+> lista “next”, fatta di elementi tutti più grandidi elem (oppure 
+> vuota). Dunque Cons è definito a partire da List che è definito a 
+> partire da Cons: la definizione di List e Cons è ricorsiva. Possiamo 
+> usare List per rappresentare insiemi finiti di interi. Abbiamo scelto 
+> di usare liste ordinate senza ripetizioni: questa scelta ha il 
+> vantaggio di avere una sola rappresentazione per ogni insieme di valori.
+>
+>
+>
+>  Il primo passo è scegliere quali metodi implementare (tutti dinamici 
+> e pubblici). Chiediamo di avere (i)un metodo boolean empty()per 
+> decidere se una lista è vuota, (ii)un metodo int size()per contare gli 
+> elementi di una lista, (iii)un metodo boolean contains(int x) per 
+> decidere se una lista contiene un elemento x, e due metodi per 
+> costruire nuoveliste ordinate senza ripetizioni. Innanzitutto il 
+> metodo (iv)List insert(int x), che crea una nuova lista aggiungendo un 
+> elemento x a una lista data, dopo gli elementi più piccoli e prima di 
+> quelli più grandi, e non aggiunge x se x c’è già. Quindi il metodo 
+> (v)List append(List l),che costruisce una nuova lista unione della 
+> lista data e della lista l. Infine (vi)nelle classi Nil e Cons  
+> riscriviamo il metodo String toString() per liste.
+>
+>
+>  In questo esercizio non definiamo metodi che modificano liste già 
+> esistenti: questa scelta ha il vantaggio di evitare il rischio di 
+> sovrascrivere dati che ancora ci servono, e lo svantaggio di usare 
+> tempo e memoria in più, per costruire le nuove liste. Sfruttiamo il 
+> più possibile le liste esistenti, come vedremo.
+>
+>
+>  Il costruttore Cons(int elem, List next), della classe Cons di liste 
+> non vuote, consente di definire liste non ordinate: per questo motivo 
+> non ne consentiamo l’uso fuori di List, della sua cartella e delle sue 
+> sottoclassi, e lo dichiariamo protected. Non possiamo definire Cons 
+> come private, perché Cons viene usato nella classe Nil e dunque fuori 
+> di Cons, anche se nella stessa cartella. La classe Nil ha il 
+> costruttore pubblico Nil()per la lista vuota.
+>
+>
+>  Un’ultima scelta di implementazione è la seguente. Quando definiamo 
+> una nuova lista (ordinata e senza ripetizioni), vogliamo riutilizzare 
+> per quanto possibile la lista da cui partiamo. Siano
+>
+> a= {10,20}
+>
+> b= a.insert(5)= {5,10,20}
+>
+> c= b.insert(15)= {5,10,15,20}
+>
+> d= c.insert(25)= {5,10,15,20,25}
+>
+>
+>  Vogliamo che insert costruisca le liste b,c,d riutilizzando per 
+> quando possibile le liste precedenti. Con la particolare definizione 
+> di List che sceglieremo, otterremo il seguente risultato: la lista b 
+> riutilizza tutti gli elementi di a, la lista c riutilizza l’elemento 
+> 20 di a e b, mentre la lista d riutilizza la sola costante Nil() che 
+> indica la lista vuota al fondo di a,b,c. Ecco il disegno:
+>
+>
+>
+> Le liste a,b,c,d di cui sopra si sovrappongono in parte (ovvero 
+> condividono alcuni nodi)
+>
+>
+> Le liste a, b, c, d costruite in modo parzialmente sovrapposto
+>
+> Ecco la definizione di List e delle sue sottoclassi.
+>
+>
+> /** List.java
+>
+>    Liste crescenti di interi per rappresentare insiemi.
+>
+>    INVARIANTE della classe: ogni lista in List e' crescente
+>
+>    (non ci sono quindi ripetizioni di elementi).
+>
+>    La classe astratta "Lista" elenca i metodi che voglio
+>
+>    definire.
+>
+>    Le sottoclassi Nil, Cons realizzano questi metodi nei vari casi:
+>
+>    Nil: nel caso di una lista con zero elementi (vuota);
+>
+>    Cons: nel caso di una lista con almeno un elemento. */
+>
+>
+> public abstract class List{
+>
+> // Zero costruttori per List. Tutti i metodi di List sono astratti.
+>
+>  // Elenco dei metodi astratti di List da sovrascrivere in Nil, Cons
+>
+>  public abstract boolean empty(); //controllo se this=vuota
+>
+>  public abstract int size(); //numero elementi di this
+>
+>  public abstract boolean contains(int x); //controllo se x in this
+>
+>  public abstract List insert(int x); //nuova lista=this unione {x}
+>
+>  public abstract List append(List l); //nuova lista=this unione l
+>
+>
+>  //Tutti i metodi di tipo List costruiscono una nuova lista,
+>
+>  //senza modificare this e la lista in input.
+>
+>  //In Nil e Cons sovrascrivo anche il metodo "toString"
+>
+>  //per descrivere una lista con una stringa.
+>
+> }
+>
+>
+>
+> //Nil.java - LISTE VUOTE
+>
+> /** Sottoclasse concreta (= non astratta) di List: sovrascriviamo
+>
+> tutti i metodi astratti di List. Nil contiene oggetti new Nil() che
+>
+> rappresentano la lista vuota, e null che invece rappresenta un 
+> elemento indefinito. In questa classe: this = oggetto istanziato = 
+> lista vuota. */
+>
+> /* NOTA. Questa classe non si puo' compilare prima di aver
+>
+> sovrascritto tutti i metodi astratti di List, ne' senza la classe
+>
+> Cons, perche' usa il costruttore di Cons. */
+>
+>
+> public class Nil extends List{
+>
+> /** Costruttore di default new Nil()
+>
+>      Riscriviamo i metodi astratti di List e il metodo toString nel
+>
+>      caso della lista vuota. */
+>
+>
+>   public boolean empty(){return true;}
+>
+> /** empty() e' costante = true sulla sottoclasse Nil, e' costante = 
+> false sulla sottoclasse Cons, dunque NON e' costante su List */
+>
+>
+>   public int size(){return 0;}
+>
+>   /** size() e' costante = 0 sulla sottoclasse Cons, NON e'
+>
+> costante sulla sottoclasse Cons, dunque NON e' costante su List */
+>
+>
+>   public boolean contains(int x){return false;}
+>
+>   /** contains(x) e' costante = false sulla sottoclasse Nil, NON e' 
+> costante sulla sottoclasse Cons, dunque NON e' costante su List */
+>
+>
+> /** insert. Metodo che aggiunge x a una lista
+>
+>   Quando aggiungo un elemento costruisco una nuova lista non vuota,
+>
+>   dunque nella sottoclasse concreta Cons. Devo quindi usare new e il
+>
+>   costruttore Cons per descrivere il risultato, e non posso compilare
+>
+>   Nil prima di compilare Cons.*/
+>
+>   public List insert(int x){ return new Cons(x, this); }
+>
+>    /* NOTA: qui this indica un elemento della classe Nil, la lista 
+> vuota. Evitando di scrivere new Nil() riutilizzo la precedente lista 
+> vuota, ovvero quella su cui ho chiamato il metodo. */
+>
+>
+>   /** toString. Sovrascrivo il metodo toString() (che fa parte di
+>
+>   ogni classe) per definire una stringa (vuota) che rappresenta la
+>
+>   lista vuota. */
+>
+>   public String toString(){ return ""; }
+>
+>
+>   public List append(List l){ return l; }
+>
+>   /* L’unione di una lista vuota e di l e' l. Restituendo l stessa
+>
+>   evito di definire un clone di l e risparmio memoria. */
+>
+> } // end class Nil
+>
+>
+>
+> //Cons.java LISTE NON VUOTE
+>
+> /** Sottoclasse concreta (= non astratta) di List: sovrascriviamo
+>
+> tutti i metodi astratti di List. Gli elementi di Cons rappresentano
+>
+> le liste NON vuote (con null elemento indefinito). Nella definizione
+>
+> ricorsiva di un metodo di Cons usiamo metodi di List, che a seconda
+>
+> del tipo esatto dell’oggetto List indicano un metodo di Cons o di Nil. */
+>
+>
+> public class Cons extends List{
+>
+> //Una lista (ordinata) non vuota ha due informazioni:
+>
+> private int elem; //primo elemento
+>
+>   private List next; //indirizzo degli elementi rimanenti
+>
+>
+> /* Definisco il costruttore Cons come protectedin modo che non sia 
+> accessibile da un programma esterno, perche' consente di
+>
+> costruire liste non ordinate, mentre vogliamo impedire a chi importa 
+> una cartella con la classe List di farlo. Usando protectedpossiamo 
+> usare Cons in Nil, che si trova nella stessa cartella. */
+>
+>   protected Cons(int elem, List next){
+>
+>     this.elem = elem;
+>
+>     this.next = next;
+>
+>   }
+>
+>
+> // Riscriviamo i metodi astratti di List e il metodo toString
+>
+> // nel caso della lista NON vuota. Quando restituiamo una lista
+>
+> // vogliamo avere o uno degli argomenti del metodo oppure una
+>
+> // lista nuova, quindi usiamo new e il costruttore Cons.
+>
+>   public boolean empty(){ return false; }
+>
+>    // empty() e' costante = false sulla sottoclasse Cons, e' costante
+>
+>    // = true sulla sottoclasse Nil, dunque NON e' costante su List
+>
+>   public int size(){ return 1 + next.size(); }
+>
+>    // size() chiama ricorsivamente se stesso se next e' in Cons,
+>
+>    // chiama il metodo size() di Nil se next e' in Nil
+>
+>   public boolean contains(int x)
+>
+>     {return x == elem || next.contains(x);}
+>
+>   // contains(x) chiama ricorsivamente se stesso se next e'
+>
+>   // in Cons, chiama il metodo contains(x) di Nil se next e' in Nil
+>
+>
+>   /** Insert. Metodo che aggiunge x, costruisce una nuovalista
+>
+>   riutilizzando this se possibile, e preserva l'ordine crescente */
+>
+>   public List insert(int x){
+>
+>     //Se x piu' piccolo del primo elem aggiungo x davanti a tutti:
+>
+>      if (x < elem)
+>
+>        return new Cons(x, this);
+>
+>     //Se x uguale al primo elem lascio this come si trova
+>
+>      else if (x == elem)
+>
+>        return this;
+>
+>    //Se x maggiore del primo elemento aggiungo x nel resto della
+>
+>    //lista
+>
+>           else //in questo caso x > elem
+>
+>              return new Cons(elem, next.insert(x));
+>
+>   }
+>
+>  //Il metodo insert(x) chiama ricorsivamente se stesso se next e'
+>
+>  //in Cons, chiama il metodo insert(x) su Nil se next e' in Nil
+>
+>
+>
+> /** Append. Aggiunge una lista l a this, costruendo una nuova
+>
+>   lista e preservando l'ordine crescente. Usiamo insert per
+>
+>   aggiungere il contenuto di l un elemento alla volta
+>
+>   preservando l'ordine ad ogni passo. */
+>
+> public List append(List l){
+>
+> if (l.empty()) return this;//questo test non e' strettamente
+>
+>     //necessario, ma rende la computazione piu' efficiente
+>
+> elsereturn next.append(l).insert(elem);
+>
+> }
+>
+>  /** toString. Metodo che restituisce una stringa che descrive la    
+> lista */
+>
+>  public String toString()
+>
+> // trasformo il primo elemento poi gli altri
+>
+>     {return elem + " " + next.toString();}
+>
+>
+> }
+>
+> // end class Cons
+>
+>
+>
+> //TestList.java
+>
+> //Proviamo a costruire e stampare delle liste realizzate con la
+>
+> //classe astratta List
+>
+> public class TestList {
+>
+>   public static void main(String[] args){
+>
+>    List a = new Nil(); a=a.insert(10).insert(20);
+>
+>    List b = a.insert(5); List c = b.insert(15);
+>
+>    List d = c.insert(25);
+>
+>    System.out.println( " d = " + d);
+>
+>
+>    System.out.println( "\nEsempi di unione di l={1,2} con m={3,4}");
+>
+>    System.out.println( "Aggiungendo l e m in ordine diverso il 
+> risultato non cambia");
+>
+>    List l = new Nil(); l=l.insert(1).insert(2);
+>
+>    List m = new Nil(); m=m.insert(3).insert(4);
+>
+>    System.out.println( " l.append(m) = " + l.append(m));
+>
+>    System.out.println( " m.append(l) = " + m.append(l));
+>
+>    System.out.println( "Aggiungere due volte non cambia il risultato");
+>
+>    System.out.println( " m.append(l).append(l) = " +
+>
+>                        m.append(l).append(l));
+>
+>    }
+>
+> }
+>
+>
+>
+>
+> Esercizio 1 (rappresentazione alternativa per le liste). Si consideri 
+> la seguente classe astratta che modifica la classe List.javavista a 
+> lezione con l’introduzione di alcuni nuovi metodi astratti:
+>
+> public abstract class List
+>
+> {
+>
+>   public abstract boolean empty();
+>
+>   public abstract int size();
+>
+>   public abstract boolean contains(int x);
+>
+>   public abstract List insert(int x);
+>
+>   public abstract List append(List l);
+>
+>   // NUOVI METODI
+>
+>   public abstract int sum();
+>
+>   public abstract int get(int i);
+>
+>   public abstract List succ();
+>
+>   public abstract List filter_le(int x);
+>
+>   public abstract List filter_gt(int x);
+>
+>   public abstract List intersect(List l);
+>
+> }
+>
+> per rappresentare liste (vuote o non vuote) di numeri interi ordinati. 
+> In ciascuna istanza di List, gli interi compaiono in ordine crescente, 
+> e non ci sono mai duplicati. Modificare le classi Nil e Cons viste a 
+> lezione per implementare i nuovi metodi di List. In particolare, dato 
+> un oggetto pdi tipo List, deve essere possibile eseguire le seguenti 
+> operazioni:
+>
+> • p.sum()ritorna la somma di tutti gli elementi della lista p.
+>
+> • p.get(i)ritorna, se esiste, l’elemento che si trova all’indice 
+> inella lista p. Al solito, il primo elemento di trova all’indice 0. 
+> Gestire in qualche modo il caso in cui isia un indice non valido.
+>
+> • p.succ()ritorna una nuova lista contenente tutti gli elementi di 
+> pincrementati di 1.
+>
+> • p.filter_le(x)ritorna la sotto-lista di pche contiene tutti gli 
+> elementi di pminori o uguali a x. La lista ritornata è nuova.
+>
+> • p.filter_gt(x)ritorna la sotto-lista di pche contiene tutti gli 
+> elementi di pmaggiori di x. La lista ritornata è nuova.
+>
+> • p.intersect(l)ritorna una nuova lista, intersezione di pe l.
+>
+> Per verificare il corretto funzionamento dei metodi implementati è 
+> possibile eseguire il programma TestList.java, disponibile su Moodle e 
+> facente parte del materiale di questa esercitazione (tale programma è 
+> l’estensione dell’omonimo programma visto a lezione, con il codice per 
+> testare i nuovi metodi).
+>
+> Nota
+>
+> • Tutti i metodi da implementare si scrivono in poche righe (molti in 
+> una sola riga, spesso corta) di codice. Se vi accorgete di scrivere 
+> codice più complicato, molto probabilmente la soluzione pensata non è 
+> quella ideale.
+>
+--------------Z4EnVWzg30JoX5YNjlCRh80t
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Ciao Luca,</p>
+    <p>ecco il materiale dell'altro esercizio. Ti mando una proposta di
+      soluzione piu` tardi (o al limite lo vediamo durante la lezione),
+      perche' c'e` una parte della soluzione che abbiamo che non mi
+      convince e ho chiesto gli altri docenti del lab di controllare. <br>
+    </p>
+    <p>Ciao,</p>
+    <p>Jeremy</p>
+    <p>-----</p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"
+      id="docs-internal-guid-4906968b-7fff-300e-0e37-6409b91b9c07"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Scrivere una classe astratta Elettrodomestico e le sue sottoclassi concrete Lavatrice, Forno e Frigorifero. La classe astratta ha due attributi modello (di tipo Stringa, ad esempio “LG123”, “Bosch9000”) e potenza (di tipo int, in watt). Inoltre ha i seguenti metodi:</span></p>
+    <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+      <li dir="ltr"
+style="list-style-type:disc;font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"
+      aria-level="1"><p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"
+      role="presentation"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">funzionePrincipale(): un metodo astratto, tipo di ritorno String;</span></p></li>
+      <li dir="ltr"
+style="list-style-type:disc;font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"
+      aria-level="1"><p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"
+      role="presentation"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">- il metodo overloaded accendi():</span></p></li>
+      <ol
+        style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+        <li dir="ltr"
+style="list-style-type:lower-alpha;font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"
+        aria-level="2"><p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"
+        role="presentation"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">una versione senza parametri che stampa a video il modello e la stringa "accensione standard”;</span></p></li>
+        <li dir="ltr"
+style="list-style-type:lower-alpha;font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"
+        aria-level="2"><p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"
+        role="presentation"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">una versione con un parametro di tipo String che indica la modalita` di accensione, a cui si passa, per esempio, la stringa “eco”. Il metodo stampa a video la concatenazione della stringa che rappresenta il modello con la stringa “accensione”, seguita dalla stringa della modalita` di accensione (cioè il parametro): considerando il nostro esempio, stampa a video la stringa “Bosch9000 accensione eco”;</span></p></li>
+      </ol>
+      <li dir="ltr"
+style="list-style-type:disc;font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"
+      aria-level="1"><p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"
+      role="presentation"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">i metodi overridden toString() e equals().</span></p></li>
+    </ul>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Le classi concrete Lavatrice, Forno e Frigorifero implementano il metodo astratto funzionePrincipale() nel seguente modo:</span></p>
+    <ul style="margin-top:0;margin-bottom:0;padding-inline-start:48px;">
+      <li dir="ltr"
+style="list-style-type:disc;font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"
+      aria-level="1"><p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"
+      role="presentation"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">classe Lavatrice: funzionePrincipale() restituisce "Lavaggio dei vestiti";</span></p></li>
+      <li dir="ltr"
+style="list-style-type:disc;font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"
+      aria-level="1"><p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"
+      role="presentation"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">classe Forno: funzionePrincipale() restituisce "Cottura degli alimenti";</span></p></li>
+      <li dir="ltr"
+style="list-style-type:disc;font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;"
+      aria-level="1"><p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"
+      role="presentation"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">classe Frigorifero: funzionePrincipale() restituisce "Conservazione degli alimenti".</span></p></li>
+    </ul>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Scrivere, inoltre, una classe di test Casa, in cui vengono creati almeno due elettrodomestici per tipologia, e in cui accendi(), accendi(“eco”), funzionePrincipale() e equals() vengono eseguiti.</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">
+</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><br
+        id="docs-internal-guid-72e538bb-7fff-8c4c-ab59-d4bbe64ba517">
+    </p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">                   ┌─────────────────────┐</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">                   │   Elettrodomestico  │</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">                   ├─────────────────────┤</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">                   │ - modello: String    │</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">                   │ - potenza: int       │</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">                   ├─────────────────────┤</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">                   │ + accendi()          │</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">                   │ + accendi(String)    │</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">                   │ + descrizione(): String │</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">                   │ + equals(Object): boolean │</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">                   │ + funzionePrincipale(): String [abstract] │</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">                   └────────▲────────────┘</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">                            │</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">        ┌───────────────────┼─────────────────────┐</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">        │                   │                     │</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">┌───────────────┐   ┌───────────────┐   ┌────────────────┐</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">│   Lavatrice   │   │     Forno     │   │ Frigorifero   │</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">├───────────────┤   ├───────────────┤   ├────────────────┤</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">│ + funzionePrincipale() │ + funzionePrincipale() │ + funzionePrincipale() │</span></p>
+    <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">└───────────────┘   └───────────────┘   └────────────────┘</span></p>
+    <p></p>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 5/11/2025 1:23 PM, Jeremy Sproston
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:4552470d-f3cf-4ff9-80d3-382e7df177fe@di.unito.it">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <p>Ciao Luca,</p>
+      <p>ti mando un po' di materiale per uno degli esercizi di domani,
+        insieme con una proposta di soluzione (allegato). E` probabile
+        che il materiale sara` modificato prima della lezione di domani.</p>
+      <p>Ciao,</p>
+      <p>Jeremy</p>
+      <p>-----<br>
+      </p>
+      <p><br>
+      </p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"
+        id="docs-internal-guid-6df7f453-7fff-42fd-a481-195119f63bd1"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Le classi astratte ricorsive. </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Abbiamo già visto nella Lezione 14 come rappresentare liste di oggetti usando la classe MiniLinkedList con attributo first = </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">”l’indirizzo del primo nodo nella lista”</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">, first=null se la lista è vuota. Un’altra possibilità è rappresentare liste vuote e non vuote con oggetti</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> con etichetta</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">“lista vuota”</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> e </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">“lista non vuota”</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">. Rappresentiamo in Java queste etichette con la </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">classe</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> delle liste vuote e la classe delle liste non vuote. Questa rappresentazione contiene delle informazioni in più, utili a Java per scegliere quale versione di un metodo usare attraverso il dynamic binding. Otteniamo questa rappresentazione considerando le liste come una </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">classe astratta ricorsiva</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">. </span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Nota.</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> Non è essenziale usare le classi astratte ricorsive nel caso delle liste: usiamo le liste solo per avere un esempio semplice. Le classi astratte ricorsive diventano importanti per problemi avanzati, quando si considerano dati con molte “forme” possibili, con ogni dato composto di un diverso numero e tipo di dati più semplici. Un esempio sono gli alberi di parsing, che vedrete nel corso di Linguaggi Formali. Ora torniamo a parlare di liste come classi astratte ricorsive.</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> Definiamo una classe astratta </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">List </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">delle </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">liste </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">ordinate</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> senza ripetizioni di interi</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">. List ha due sottoclassi concrete. Abbiamo la classe </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Nil </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">che contiene (oltre a null che </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">NON</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> usiamo in questa particolare rappresentazione per rappresentare le lista vuota) gli oggetti che rappresentano le liste vuote. Abbiamo la classe </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Cons</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> degli oggetti che rappresentano liste contenenti un elemento “elem” e una lista “next”, fatta di elementi </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">tutti più grandi</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> di elem (oppure vuota). Dunque Cons è definito a partire da List che è definito a partire da Cons: la definizione di List e Cons è </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">ricorsiva</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">. </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#00796b;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Possiamo usare List per rappresentare </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#00796b;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">insiemi finiti di interi</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#00796b;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">. Abbiamo scelto di usare liste ordinate senza ripetizioni: questa scelta ha il vantaggio di avere una sola rappresentazione per ogni insieme di valori.</span></p>
+      <br>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> Il primo passo è scegliere quali metodi implementare (tutti dinamici e pubblici). Chiediamo di avere </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">(i)</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> un metodo </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">boolean empty()</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> per decidere se una lista è vuota, </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">(ii)</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> un metodo </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">int size()</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> per contare gli elementi di una lista, </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">(iii)</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> un metodo </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">boolean contains(int x) </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">per decidere se una lista contiene un elemento x, e due metodi per costruire </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">nuove</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> liste ordinate senza ripetizioni. Innanzitutto il metodo </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">(iv)</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">List insert(int x)</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">, che crea una nuova lista aggiungendo un elemento x a una lista data, dopo gli elementi più piccoli e prima di quelli più grandi, e non aggiunge x se x c’è già. Quindi il metodo </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">(v)</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">List append(List l),</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> che costruisce una nuova lista unione della lista data e della lista l. Infine </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">(vi)</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> nelle classi Nil e Cons  riscriviamo il metodo </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">String toString() </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">per liste.</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> In questo esercizio non definiamo metodi che modificano liste già esistenti: questa scelta ha il vantaggio di evitare il rischio di sovrascrivere dati che ancora ci servono, e lo svantaggio di usare tempo e memoria in più, per costruire le nuove liste. Sfruttiamo il più possibile le liste esistenti, come vedremo.</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> Il costruttore </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Cons(int elem, List next)</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">, della classe Cons di liste non vuote, consente di definire liste non ordinate: per questo motivo non ne consentiamo l’uso fuori di List, della sua cartella e delle sue sottoclassi, e lo dichiariamo </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">protected</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">. Non possiamo definire Cons come </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">private</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">, perché Cons viene usato nella classe Nil e dunque fuori di Cons, anche se nella stessa cartella. La classe Nil ha il costruttore pubblico </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Nil()</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> per la lista vuota.</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> Un’ultima scelta di implementazione è la seguente. Quando definiamo una nuova lista (ordinata e senza ripetizioni), vogliamo riutilizzare per quanto possibile la lista da cui partiamo. Siano </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;text-indent: 36pt;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">a</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><span
+        class="Apple-tab-span" style="white-space:pre;">	</span></span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">= {10,20}</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;text-indent: 36pt;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">b</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><span
+        class="Apple-tab-span" style="white-space:pre;">	</span></span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">= a.insert(5)</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><span
+        class="Apple-tab-span" style="white-space:pre;">	</span></span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">= {5,10,20}</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;text-indent: 36pt;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">c</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><span
+        class="Apple-tab-span" style="white-space:pre;">	</span></span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">= b.insert(15)</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><span
+        class="Apple-tab-span" style="white-space:pre;">	</span></span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">= {5,10,15,20}</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;text-indent: 36pt;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">d</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><span
+        class="Apple-tab-span" style="white-space:pre;">	</span></span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">= c.insert(25)</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><span
+        class="Apple-tab-span" style="white-space:pre;">	</span></span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">= {5,10,15,20,25} </span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> Vogliamo che insert costruisca le liste b,c,d </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:italic;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">riutilizzando per quando possibile le liste precedenti</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">. Con la particolare definizione di List che sceglieremo, otterremo il seguente risultato: la lista b riutilizza tutti gli elementi di a, la lista c riutilizza l’elemento 20 di a e b, mentre la lista d riutilizza la sola costante Nil() che indica la lista vuota al fondo di a,b,c. Ecco il disegno:</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:10pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><span
+        style="width:100px;display:inline-block;position:relative;"></span></span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: center;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:13.999999999999998pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Le liste a,b,c,d di cui sopra si sovrappongono in parte (ovvero condividono alcuni nodi)</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:11pt;font-family:Calibri,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><span
+style="border:none;display:inline-block;overflow:hidden;width:602px;height:375px;"><img
+alt="Le liste a, b, c, d costruite in modo parzialmente sovrapposto"
+src="https://lh7-qw.googleusercontent.com/docsz/AD_4nXde_TKa5Hknthfnj94KSvx3UF_H9gip1zsxbG81uYA56jYV1lls8aG3Grk4aa2-gePHnAVoTvx0gibQOZ9_aTlLzAYmgF3OHHVM_Cz75Op1dZ99D7W1xBOQAKwU6kjKczzxthUE?key=dODH8sLSYQ8v4-BlH6re9ist"
+        width="602" height="375" style="margin-left:0px;margin-top:0px;"
+        moz-do-not-send="true"></span></span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;text-align: justify;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Ecco la definizione di List e delle sue sottoclassi. </span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">/** List.java</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   Liste crescenti di interi per rappresentare insiemi.</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   INVARIANTE della classe: ogni lista in List e' crescente</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   (non ci sono quindi ripetizioni di elementi).</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   La classe astratta "Lista" elenca i metodi che voglio</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   definire.</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   Le sottoclassi Nil, Cons realizzano questi metodi nei vari casi:</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   Nil: nel caso di una lista con zero elementi (vuota);</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   Cons: nel caso di una lista con almeno un elemento. */</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">public abstract class List{</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">// Zero costruttori per List. Tutti i metodi di List sono astratti.   </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> // Elenco dei metodi astratti di List da sovrascrivere in Nil, Cons</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> public abstract boolean empty(); </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">//controllo se this=vuota</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> public abstract int size();      </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">//numero elementi di this</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> public abstract boolean contains(int x); </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">//controllo se x in this</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> public abstract List insert(int x);  </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">//nuova lista=this unione {x} </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> public abstract List append(List l); </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">//nuova lista=this unione l</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> //Tutti i metodi di tipo List costruiscono una nuova lista, </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> //senza modificare this e la lista in input.</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> //In Nil e Cons sovrascrivo anche il metodo "toString"</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> //per descrivere una lista con una stringa.</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">}</span></p>
+      <br>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">//Nil.java - LISTE VUOTE</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">/** Sottoclasse concreta (= non astratta) di List: sovrascriviamo </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">tutti i metodi astratti di List. Nil contiene oggetti new Nil() che </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">rappresentano la lista vuota, e null che invece rappresenta un elemento indefinito. In questa classe: this = oggetto istanziato = lista vuota. */</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">/* NOTA. Questa classe non si puo' compilare prima di aver </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">sovrascritto tutti i metodi astratti di List, ne' senza la classe </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Cons, perche' usa il costruttore di Cons. */</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">public class Nil extends List{</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">/** Costruttore di default new Nil() </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">     Riscriviamo i metodi astratti di List e il metodo toString nel </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">     caso della lista vuota. */</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public boolean empty(){return true;} </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">/** empty() e' costante = true sulla sottoclasse Nil, e' costante = false sulla sottoclasse Cons, dunque NON e' costante su List */</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public int size(){return 0;}</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  /** size() e' costante = 0 sulla sottoclasse Cons, NON e' </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">costante sulla sottoclasse Cons, dunque NON e' costante su List */</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public boolean contains(int x){return false;}</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  /** contains(x) e' costante = false sulla sottoclasse Nil, NON e' costante sulla sottoclasse Cons, dunque NON e' costante su List */</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">/** insert. Metodo che aggiunge x a una lista</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  Quando aggiungo un elemento costruisco una nuova lista non vuota,</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  dunque nella sottoclasse concreta Cons. Devo quindi usare new e il</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  costruttore Cons per descrivere il risultato, e non posso compilare</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  Nil prima di compilare Cons.*/</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public List insert(int x){ return new Cons(x, this); } </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   /* NOTA: qui this indica un elemento della classe Nil, la lista vuota. Evitando di scrivere new Nil() riutilizzo la precedente lista vuota, ovvero quella su cui ho chiamato il metodo. */</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  /** toString. Sovrascrivo il metodo toString() (che fa parte di </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  ogni classe) per definire una stringa (vuota) che rappresenta la </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  lista vuota. */</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public String toString(){ return ""; }</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public List append(List l){ return l; }</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  /* L’unione di una lista vuota e di l e' l. Restituendo l stessa </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  evito di definire un clone di l e risparmio memoria. */ </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">} </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">// end class Nil</span></p>
+      <br>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">//Cons.java LISTE NON VUOTE</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">/** Sottoclasse concreta (= non astratta) di List: sovrascriviamo </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">tutti i metodi astratti di List. Gli elementi di Cons rappresentano </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">le liste NON vuote (con null elemento indefinito). Nella definizione </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">ricorsiva di un metodo di Cons usiamo metodi di List, che a seconda </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">del tipo esatto dell’oggetto List indicano un metodo di Cons o di Nil. */</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">public class Cons extends List{</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">//Una lista (ordinata) non vuota ha due informazioni:</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">private int elem;  </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">//primo elemento</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  private List next; </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">//indirizzo degli elementi rimanenti</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">/* Definisco il costruttore Cons come </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">protected</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> in modo che non sia accessibile da un programma esterno, perche' consente di </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">costruire liste non ordinate, mentre vogliamo impedire a chi importa una cartella con la classe List di farlo. Usando </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">protected</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> possiamo usare Cons in Nil, che si trova nella stessa cartella. */</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  protected Cons(int elem, List next){</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">    this.elem = elem; </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">    this.next = next;</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  }</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">// Riscriviamo i metodi astratti di List e il metodo toString </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">// nel caso della lista NON vuota. Quando restituiamo una lista</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">// vogliamo avere o uno degli argomenti del metodo oppure una</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">// lista nuova, quindi usiamo new e il costruttore Cons.</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">    </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public boolean empty(){ return false; }</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   // empty() e' costante = false sulla sottoclasse Cons, e' costante </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   // = true sulla sottoclasse Nil, dunque NON e' costante su List</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">    </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public int size(){ return 1 + next.size(); }</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   // size() chiama ricorsivamente se stesso se next e' in Cons, </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   // chiama il metodo size() di Nil se next e' in Nil</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">    </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public boolean contains(int x)</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">    {return x == elem || next.contains(x);}</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  // contains(x) chiama ricorsivamente se stesso se next e' </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  // in Cons, chiama il metodo contains(x) di Nil se next e' in Nil</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  /** Insert. Metodo che aggiunge x, costruisce una </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">nuova</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> lista </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  riutilizzando this se possibile, e preserva l'ordine crescente */</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public List insert(int x){</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">    //Se x piu' piccolo del primo elem aggiungo x davanti a tutti:</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">     if (x &lt; elem)</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">       return new Cons(x, this);</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">    //Se x uguale al primo elem lascio this come si trova</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">     else if (x == elem)</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">       return this;</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   //Se x maggiore del primo elemento aggiungo x nel resto della </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   //lista</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">          else </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">//in questo caso x &gt; elem</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">             return new Cons(elem, next.insert(x));</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  }</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> //Il metodo insert(x) chiama ricorsivamente se stesso se next e' </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> //in Cons, chiama il metodo insert(x) su Nil se next e' in Nil</span></p>
+      <br>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">/** Append. Aggiunge una lista l a this, costruendo una nuova</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  lista e preservando l'ordine crescente. Usiamo insert per</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  aggiungere il contenuto di l un elemento alla volta</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  preservando l'ordine ad ogni passo. */</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">public List append(List l){</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#4f6228;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">    </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">if (l.empty()) return this;</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">//questo test non e' strettamente </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">    //necessario, ma rende la computazione piu' efficiente</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">    </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#4f6228;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">else</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> return next.append(l).insert(elem);</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">}</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">      </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> /** toString. Metodo che restituisce una stringa che descrive la    lista */</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> public String toString() </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">// trasformo il primo elemento poi gli altri</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">    {return elem + " " + next.toString();}</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">}</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">// end class Cons</span></p>
+      <br>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">//TestList.java</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">//Proviamo a costruire e stampare delle liste realizzate con la</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#006600;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">//classe astratta List</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">public class TestList {</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public static void main(String[] args){</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   List a = new Nil(); a=a.insert(10).insert(20);</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   List b = a.insert(5); List c = b.insert(15); </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   List d = c.insert(25);</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   System.out.println( </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#c00000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">" d = " </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">+ d);</span></p>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   System.out.println( </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#c00000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">"\nEsempi di unione di l={1,2} con m={3,4}"</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">);</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   System.out.println( </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#c00000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">"Aggiungendo l e m in ordine diverso il risultato non cambia"</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">);</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   List l = new Nil(); l=l.insert(1).insert(2);</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   List m = new Nil(); m=m.insert(3).insert(4);</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   System.out.println( </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#c00000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">" l.append(m) = " </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">+ l.append(m));</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   System.out.println( </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#c00000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">" m.append(l) = " </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">+ m.append(l));</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   System.out.println( "</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#c00000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Aggiungere due volte non cambia il risultato"</span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">);</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   System.out.println( </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#c00000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">" m.append(l).append(l) = " </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">+  </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">                       m.append(l).append(l)); </span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">   }</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:10pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">}</span></p>
+      <br>
+      <br>
+      <br>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:10pt;"><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Esercizio 1 (rappresentazione alternativa per le liste). Si consideri la seguente classe astratta che modifica la classe </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">List.java</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> vista a lezione con l’introduzione di alcuni nuovi metodi astratti:</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">public abstract class List</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">{</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public abstract boolean empty();</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public abstract int size();</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public abstract boolean contains(int x);</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public abstract List insert(int x);</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public abstract List append(List l);</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  // NUOVI METODI</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public abstract int sum();</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public abstract int get(int i);</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public abstract List succ();</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public abstract List filter_le(int x);</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public abstract List filter_gt(int x);</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">  public abstract List intersect(List l);</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:0pt;"><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">}</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:10pt;"><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">per rappresentare liste (vuote o non vuote) di numeri interi ordinati. In ciascuna istanza di </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">List</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">, gli interi compaiono in ordine crescente, e non ci sono mai duplicati. Modificare le classi </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Nil </span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">e </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Cons </span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">viste a lezione per implementare i nuovi metodi di </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">List</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">. In particolare, dato un oggetto </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">p</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> di tipo </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">List</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">, deve essere possibile eseguire le seguenti operazioni:</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:10pt;"><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">• </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">p.sum()</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> ritorna la somma di tutti gli elementi della lista </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">p</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">.</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:10pt;"><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">• </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">p.get(i)</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> ritorna, se esiste, l’elemento che si trova all’indice </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">i</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> nella lista </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">p</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">. Al solito, il primo elemento di trova all’indice 0. Gestire in qualche modo il caso in cui </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">i</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> sia un indice non valido.</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:10pt;"><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">• </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">p.succ()</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> ritorna una nuova lista contenente tutti gli elementi di </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">p</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> incrementati di 1.</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:10pt;"><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">• </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">p.filter_le(x)</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> ritorna la sotto-lista di </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">p</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> che contiene tutti gli elementi di </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">p</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> minori o uguali a </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">x</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">. La lista ritornata è nuova.</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:10pt;"><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">• </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">p.filter_gt(x)</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> ritorna la sotto-lista di </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">p</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> che contiene tutti gli elementi di </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">p</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> maggiori di </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">x</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">. La lista ritornata è nuova.</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:10pt;"><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">• </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">p.intersect(l)</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> ritorna una nuova lista, intersezione di </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">p</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"> e </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">l</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">.</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:10pt;"><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Per verificare il corretto funzionamento dei metodi implementati è possibile eseguire il programma </span><span
+style="font-size:12pt;font-family:'Courier New',monospace;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">TestList.java</span><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">, disponibile su Moodle e facente parte del materiale di questa esercitazione (tale programma è l’estensione dell’omonimo programma visto a lezione, con il codice per testare i nuovi metodi).</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:10pt;"><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">Nota</span></p>
+      <p dir="ltr"
+style="line-height:1.3800000000000001;margin-top:0pt;margin-bottom:10pt;"><span
+style="font-size:12pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;">• Tutti i metodi da implementare si scrivono in poche righe (molti in una sola riga, spesso corta) di codice. Se vi accorgete di scrivere codice più complicato, molto probabilmente la soluzione pensata non è quella ideale.</span></p>
+    </blockquote>
+  </body>
+</html>
+
+--------------Z4EnVWzg30JoX5YNjlCRh80t--

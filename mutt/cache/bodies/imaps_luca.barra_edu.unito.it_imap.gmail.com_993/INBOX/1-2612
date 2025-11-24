@@ -1,0 +1,448 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:9dd8:0:b0:32a:7f76:203e with SMTP id x24csp346315ljj;
+        Thu, 29 May 2025 08:26:53 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCXsx8H4oc1DFImvSBxF47gr/42CDOtaBl1q3U27+8U6SG/o3GNBs3GoRIzGEOND0KGOce/nWCm27nep@edu.unito.it
+X-Google-Smtp-Source: AGHT+IGYAConFYdH+t9fD17Kt5K7dSSjKIbaFqCFc3zeB3OMbDabi/FPgsqeTmmAQ43plGu0UD8g
+X-Received: by 2002:a05:6402:5c9:b0:602:4405:7799 with SMTP id 4fb4d7f45d1cf-602da6f2209mr17143654a12.31.1748532413562;
+        Thu, 29 May 2025 08:26:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1748532413; cv=none;
+        d=google.com; s=arc-20240605;
+        b=lniJhPE6UAmHN0SF0jtiLG82c4jgdMLU2NHvZ0de+L2pzRtb3rSvwLdnrxUehRhzl7
+         L8Ij3C7ne3XEZhUnGWfi0lLKH58yOKjFr+yUSHyKD++gN6Qnd2lPK7kxPN3Ohf1jyPwb
+         aEzd3luRqZVjVKt0soMytOzKjcG/640su5pw2xuAIZoOs42fgILa9/9c+u4PEpKDqcTq
+         CC8QYrTN2ptKIxS7cOwW4RbM4ypB1950guauJ8sCkp9UQnzhWY9xv0c4HeQh4ELJL0gr
+         lQ/RrGDBr9u/gpxaTlFcUIIYELyXa08g74CvDgj0dEEuGbvcSS9xORLHMxfpfoS3Rh2O
+         1SDw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:mime-version:subject:message-id:from:date
+         :dkim-signature:dkim-filter;
+        bh=rsMfX+224VFZMkW17pnC/y7MehUGyYmsMRwYBYb5lbY=;
+        fh=47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=;
+        b=cBsrLrzwvnHVLThF79R7NFdFC/MJz2GQKg0of4S78imnjLDWdfbIWg+xJkqF7cSGJK
+         ciOrb1VgnVlFBJ3/uFpMmWChz8OOtMYl3ZeuNho2/8Cxwf0KVCWYerfDoWpKw7NdNt+p
+         7U51jAQ6aB6GdrehUveOTiITQlKMnd+FCd5U/+W3COHEosOkLC1DZq0PLmNGYQE3KuW7
+         /NksRJjbrQdRgazIMDUo9KhLntCKXbeDYTFHBEsCiiBP4lIddj1rcnZwC4MgJ+a8YfQL
+         XReCY+VqEk2fEPk95ntYxPeq7Bv8Va9/9+RaNhpFmOX6AvpslxLhhU/wIAsMZqXSL7ZT
+         dPaQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=o9yYjavS;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-60566c29fc0si158062a12.30.2025.05.29.08.26.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 May 2025 08:26:53 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=o9yYjavS;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 756453F2E1;
+	Thu, 29 May 2025 17:26:50 +0200 (CEST)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id 75Mq9NyIWFpd; Thu, 29 May 2025 17:26:50 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 58AAB3F39C;
+	Thu, 29 May 2025 17:26:49 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 58AAB3F39C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1748532410;
+	bh=rsMfX+224VFZMkW17pnC/y7MehUGyYmsMRwYBYb5lbY=;
+	h=Date:From:Message-ID:MIME-Version;
+	b=o9yYjavShR6T1KQHazBw0t9j3sIthwNgIxrwTC7+JLVSGpYse23tHUTryMQ1MDBe6
+	 q6sqS3xz6cxVSMDw9mLuF0N1S/DJipFOoWh++k317WD2dXhlog17THma6ul07LnaxW
+	 16xftSAaZqaoAxu45MZUoqs8vYHLCr4LXK3cUh82t6qZfJRZl1RBsbZ1vzQqH4ynhg
+	 QOes4oL+IszbaVY6bHMSyK+4pRwf+knDGFkOEN6tHOUSJ6zkb1mq95d2Ws+M5MfC/G
+	 OHzovoJIoTUpReH2CNwsglu9U7PrQDbg41LAVJN0ePqDVElgnfbFfNbeFgmPks15iJ
+	 3TZFIGkeEMEEw==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id b1KlLg25zSNn; Thu, 29 May 2025 17:26:49 +0200 (CEST)
+Received: from esse3be408.private.cineca.it (esse3be408.private.cineca.it [10.100.48.130])
+	by smtp4.cineca.it (Postfix) with ESMTP id 6414630B59;
+	Thu, 29 May 2025 17:26:46 +0200 (CEST)
+Received: from esse3be408.private.cineca.it (localhost [127.0.0.1])
+	by esse3be408.private.cineca.it (Postfix) with ESMTP id 0260120025;
+	Thu, 29 May 2025 17:26:44 +0200 (CEST)
+Date: Thu, 29 May 2025 17:26:44 +0200 (CEST)
+From: "SAMBA - Salute, Movimento e Benessere" <avvisi@unito.it>
+Message-ID: <1220546329.133.1748532404007@esse3be408.private.cineca.it>
+Subject: Partecipa alle iniziative SAMBA dal 3 al 7 giugno
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p align=3D"center" style=3D"padding-top: 20px; padding-right: 20px; paddin=
+g-bottom: 20px; padding-left: 20px">
+      <a href=3D"https://www.samba.unito.it"><img src=3D"https://www.samba.=
+unito.it/sites/www.samba.unito.it/files/logosamba_1.png" alt=3D"Logo SAMBA"=
+>
+      </a>
+    </p>
+    <p style=3D"line-height: 1.5; padding-top: 0; padding-bottom: 0; paddin=
+g-right: 20px; padding-left: 20px">
+      <strong>SAMBA</strong> &#232; un progetto che si pone come obiettivo =
+la <strong>promozione=20
+      del benessere psicofisico e contrasto ai fenomeni di disagio psicolog=
+ico=20
+      ed emotivo</strong> della popolazione studentesca attraverso <strong>=
+iniziative=20
+      gratuite rivolte a studenti</strong> degli Atenei e degli istituti AF=
+AM=20
+      partner del progetto.<br>Scopri di pi&#249; sulle iniziative e sul pr=
+ogetto=20
+      all&#8217;indirizzo <a href=3D"https://www.samba.unito.it">www.samba.=
+unito.it</a>
+    </p>
+    <h1 align=3D"left" style=3D"padding-top: 30px; padding-right: 20px; pad=
+ding-bottom: 10px; padding-left: 20px">
+      <strong><font size=3D"22px">Iniziative dal 3 al 7 giugno 2025</font><=
+/strong>
+    </h1>
+    <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" style=3D"marg=
+in-bottom: 30px">
+      <tr>
+        <td colspan=3D"2" style=3D"background-color: #6ce6e9; padding-top: =
+10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <strong><font size=3D"20px">3-4 giugno</font></strong> 2025 &#821=
+1; Sala=20
+          Massucco-Costa, Dipartimento di Psicologia, Via Verdi 10
+        </td>
+      </tr>
+      <tr>
+        <td width=3D"40%" valign=3D"top" style=3D"padding-top: 10px; paddin=
+g-right: 10px; padding-bottom: 10px; padding-left: 10px">
+          <img src=3D"https://www.samba.unito.it/sites/www.samba.unito.it/f=
+iles/Gestione-delle-emozioni.jpg" alt=3D"Tre giovani adulti con espressione=
+ seria in un'immagine in bianco e nero, posizionati davanti a uno sfondo vi=
+vace con blocchi colorati astratti in arancione, fucsia, verde e blu su bas=
+e azzurra." style=3D"display: block; width: 100%">
+         =20
+        </td>
+        <td width=3D"60%" valign=3D"top" style=3D"padding-top: 10px; paddin=
+g-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <p style=3D"margin-top: 0; margin-right: 0; margin-bottom: 10px; =
+margin-left: 0">
+            <strong>Gestione delle emozioni: un percorso di gruppo</strong>=
+<br>Percorsi=20
+            per migliorare la gestione delle situazioni di stress e di=20
+            relazione con gli altri, pu&#242; esserti utile se ti senti spe=
+sso in=20
+            ansia, triste o nervoso\a e irritabile.
+          </p>
+          <p align=3D"left">
+            <a href=3D"https://www.samba.unito.it/it/aree/ans" style=3D"bac=
+kground-color: #ff00ff; padding-top: 10px; padding-bottom: 10px; padding-ri=
+ght: 20px; padding-left: 20px; display: inline-block"><font color=3D"#fffff=
+f" face=3D"Arial" size=3D"4"><b>PARTECIPA</b></font></a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" style=3D"marg=
+in-bottom: 30px">
+      <tr>
+        <td colspan=3D"2" style=3D"background-color: #ff7f00; padding-top: =
+10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <strong><font size=3D"20px">3 giugno</font></strong> 2025 ore 9-1=
+8 &#8211;=20
+          Centro di Medicina Preventiva e dello Sport, Via Marenco 32
+        </td>
+      </tr>
+      <tr>
+        <td width=3D"40%" valign=3D"top" style=3D"padding-top: 10px; paddin=
+g-right: 10px; padding-bottom: 10px; padding-left: 10px">
+          <img src=3D"https://www.samba.unito.it/sites/www.samba.unito.it/f=
+iles/Check-Up4Students.jpg" alt=3D"Giovane operatrice sanitaria in bianco e=
+ nero misura la pressione sanguigna a uno studente seduto, utilizzando uno =
+sfigmomanometro e uno stetoscopio. Lo sfondo =C3=A8 composto da blocchi geo=
+metrici colorati in arancione, verde, fucsia e turchese." style=3D"display:=
+ block; width: 100%">
+         =20
+        </td>
+        <td width=3D"60%" valign=3D"top" style=3D"padding-top: 10px; paddin=
+g-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <p style=3D"margin-top: 0; margin-right: 0; margin-bottom: 10px; =
+margin-left: 0">
+            <strong>Check-Up4Students</strong><br>Visita clinica per avere =
+il=20
+            certificato medico per l'attivit&#224; motoria non agonistica,=
+=20
+            l&#8217;analisi di capacit&#224; fisiche, composizione corporea=
+, stato=20
+            nutrizionale e variabili antropometriche.
+          </p>
+          <p align=3D"left">
+            <a href=3D"https://www.samba.unito.it/it/aree/sport" style=3D"b=
+ackground-color: #ff00ff; padding-top: 10px; padding-bottom: 10px; padding-=
+right: 20px; padding-left: 20px; display: inline-block"><font color=3D"#fff=
+fff" face=3D"Arial" size=3D"4"><b>PARTECIPA</b></font></a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" style=3D"marg=
+in-bottom: 30px">
+      <tr>
+        <td colspan=3D"2" style=3D"background-color: #50f052; padding-top: =
+10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <strong><font size=3D"20px">4-5 giugno</font></strong> 2025 &#821=
+1; Spazio=20
+          BAC, Via Cottolengo 24/bis
+        </td>
+      </tr>
+      <tr>
+        <td width=3D"40%" valign=3D"top" style=3D"padding-top: 10px; paddin=
+g-right: 10px; padding-bottom: 10px; padding-left: 10px">
+          <img src=3D"https://www.samba.unito.it/sites/www.samba.unito.it/f=
+iles/HEARTS.jpg" alt=3D"Due giovani adulti in bianco e nero, con espression=
+e di fastidio o stress, si tengono la fronte con una mano. Sullo sfondo, bl=
+occhi geometrici colorati in verde, arancione, blu, fucsia e turchese." sty=
+le=3D"display: block; width: 100%">
+         =20
+        </td>
+        <td width=3D"60%" valign=3D"top" style=3D"padding-top: 10px; paddin=
+g-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <p style=3D"margin-top: 0; margin-right: 0; margin-bottom: 10px; =
+margin-left: 0">
+            <strong>HEARTS. Teatro e benessere</strong><br>Laboratori di=20
+            Teatro Sociale che promuovono la relazione, l'espressivit&#224;=
+, la=20
+            scoperta delle proprie risorse per migliorare il benessere.
+          </p>
+          <p align=3D"left">
+            <a href=3D"https://www.samba.unito.it/it/aree/lab" style=3D"bac=
+kground-color: #ff00ff; padding-top: 10px; padding-bottom: 10px; padding-ri=
+ght: 20px; padding-left: 20px; display: inline-block"><font color=3D"#fffff=
+f" face=3D"Arial" size=3D"4"><b>PARTECIPA</b></font></a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" style=3D"marg=
+in-bottom: 30px">
+      <tr>
+        <td colspan=3D"2" style=3D"background-color: #6ce6e9; padding-top: =
+10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <strong><font size=3D"20px">4 giugno</font></strong> 2025 ore 10 =
+&#8211;=20
+          Orto Botanico, Viale Pier Andrea Mattioli 25
+        </td>
+      </tr>
+      <tr>
+        <td width=3D"40%" valign=3D"top" style=3D"padding-top: 10px; paddin=
+g-right: 10px; padding-bottom: 10px; padding-left: 10px">
+          <img src=3D"https://www.samba.unito.it/sites/www.samba.unito.it/f=
+iles/Bellezza-che-cura.jpg" alt=3D"Giovane donna in bianco e nero seduta me=
+ntre suona il violino, con espressione concentrata e serena. Sullo sfondo, =
+blocchi colorati astratti in arancione, verde, blu e fucsia su base turches=
+e." style=3D"display: block; width: 100%">
+         =20
+        </td>
+        <td width=3D"60%" valign=3D"top" style=3D"padding-top: 10px; paddin=
+g-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <p style=3D"margin-top: 0; margin-right: 0; margin-bottom: 10px; =
+margin-left: 0">
+            <strong>Bellezza che cura</strong><br>Simulazioni in realt&#224=
+;=20
+            virtuale legate alla bellezza del mondo naturale per imparare c=
+ome=20
+            limitare gli stati d'ansia e altri stati mentali negativi.
+          </p>
+          <p align=3D"left">
+            <a href=3D"https://www.samba.unito.it/it/aree/lab" style=3D"bac=
+kground-color: #ff00ff; padding-top: 10px; padding-bottom: 10px; padding-ri=
+ght: 20px; padding-left: 20px; display: inline-block"><font color=3D"#fffff=
+f" face=3D"Arial" size=3D"4"><b>PARTECIPA</b></font></a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" style=3D"marg=
+in-bottom: 30px">
+      <tr>
+        <td colspan=3D"2" style=3D"background-color: #50f052; padding-top: =
+10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <strong><font size=3D"20px">4 giugno</font></strong> 2025 ore 9.3=
+0 &#8211;=20
+          Lab. di Osservazione del comportamento, Dipartimento di Psicologi=
+a,=20
+          Via Verdi 10
+        </td>
+      </tr>
+      <tr>
+        <td width=3D"40%" valign=3D"top" style=3D"padding-top: 10px; paddin=
+g-right: 10px; padding-bottom: 10px; padding-left: 10px">
+          <img src=3D"https://www.samba.unito.it/sites/www.samba.unito.it/f=
+iles/Gestione-dellansia-e-regolazione-emotiva.jpg" alt=3D"Ragazza sorrident=
+e in bianco e nero con zaino in spalla, in primo piano, circondata da altri=
+ giovani sfocati sullo sfondo. Lo sfondo =C3=A8 composto da blocchi colorat=
+i in verde, arancione, blu, fucsia e turchese." style=3D"display: block; wi=
+dth: 100%">
+         =20
+        </td>
+        <td width=3D"60%" valign=3D"top" style=3D"padding-top: 10px; paddin=
+g-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <p style=3D"margin-top: 0; margin-right: 0; margin-bottom: 10px; =
+margin-left: 0">
+            <strong>Ansia e somatizzazioni</strong><br>Incontri per=20
+            condividere e rielaborare pensieri, sentimenti e comportamenti=
+=20
+            spesso correlati ai sintomi somatici, per imparare a rendere pi=
+&#249;=20
+            &#8220;digeribili&#8221; emozioni negative.
+          </p>
+          <p align=3D"left">
+            <a href=3D"https://www.samba.unito.it/it/aree/ans" style=3D"bac=
+kground-color: #ff00ff; padding-top: 10px; padding-bottom: 10px; padding-ri=
+ght: 20px; padding-left: 20px; display: inline-block"><font color=3D"#fffff=
+f" face=3D"Arial" size=3D"4"><b>PARTECIPA</b></font></a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" style=3D"marg=
+in-bottom: 30px">
+      <tr>
+        <td colspan=3D"2" style=3D"background-color: #f883f8; padding-top: =
+10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <strong><font size=3D"20px">4-5 giugno</font></strong> 2025 &#821=
+1; Mercato=20
+          Centrale, Piazza della Repubblica 25
+        </td>
+      </tr>
+      <tr>
+        <td width=3D"40%" valign=3D"top" style=3D"padding-top: 10px; paddin=
+g-right: 10px; padding-bottom: 10px; padding-left: 10px">
+          <img src=3D"https://www.samba.unito.it/sites/www.samba.unito.it/f=
+iles/Cook-it-easy.jpg" alt=3D"Giovane cuoca sorridente in bianco e nero, co=
+n cappello da chef e utensili da cucina in mano, davanti a uno sfondo color=
+ato con blocchi geometrici in verde, arancione, blu e turchese su base fucs=
+ia." style=3D"display: block; width: 100%">
+         =20
+        </td>
+        <td width=3D"60%" valign=3D"top" style=3D"padding-top: 10px; paddin=
+g-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <p style=3D"margin-top: 0; margin-right: 0; margin-bottom: 10px; =
+margin-left: 0">
+            <strong>Cook it easy </strong><br>Incontri per imparare a compo=
+rre=20
+            un pasto equilibrato, salutare e sostenibile, a gestire gli=20
+            avanzi, utilizzare creativamente il tempo e le risorse, creare=
+=20
+            ricette.
+          </p>
+          <p align=3D"left">
+            <a href=3D"https://www.samba.unito.it/it/aree/lab" style=3D"bac=
+kground-color: #ff00ff; padding-top: 10px; padding-bottom: 10px; padding-ri=
+ght: 20px; padding-left: 20px; display: inline-block"><font color=3D"#fffff=
+f" face=3D"Arial" size=3D"4"><b>PARTECIPA</b></font></a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" style=3D"marg=
+in-bottom: 30px">
+      <tr>
+        <td colspan=3D"2" style=3D"background-color: #f883f8; padding-top: =
+10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <strong><font size=3D"20px">5 giugno</font></strong> 2025 ore 10.=
+30 &#8211;=20
+          Sala Concerti Conservatorio Giuseppe Verdi, Piazza Gianbattista=
+=20
+          Bodoni
+        </td>
+      </tr>
+      <tr>
+        <td width=3D"40%" valign=3D"top" style=3D"padding-top: 10px; paddin=
+g-right: 10px; padding-bottom: 10px; padding-left: 10px">
+          <img src=3D"https://www.samba.unito.it/sites/www.samba.unito.it/f=
+iles/La-frequenza-del-torace.jpg" alt=3D"Giovane uomo in bianco e nero con =
+espressione dolorante mentre si tocca il gomito sinistro. Sullo sfondo, for=
+me geometriche colorate in verde, arancione, blu e turchese su base fucsia.=
+" style=3D"display: block; width: 100%">
+         =20
+        </td>
+        <td width=3D"60%" valign=3D"top" style=3D"padding-top: 10px; paddin=
+g-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <p style=3D"margin-top: 0; margin-right: 0; margin-bottom: 10px; =
+margin-left: 0">
+            <strong>La frequenza del torace e dell'arto superiore</strong><=
+br>Laboratori=20
+            per imparare a leggere i messaggi del tuo corpo, a riconoscerne=
+ i=20
+            ritmi respiratori e i sintomi che minano lo stato di salute.
+          </p>
+          <p align=3D"left">
+            <a href=3D"https://www.samba.unito.it/it/aree/lab" style=3D"bac=
+kground-color: #ff00ff; padding-top: 10px; padding-bottom: 10px; padding-ri=
+ght: 20px; padding-left: 20px; display: inline-block"><font color=3D"#fffff=
+f" face=3D"Arial" size=3D"4"><b>PARTECIPA</b></font></a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" style=3D"marg=
+in-bottom: 30px">
+      <tr>
+        <td colspan=3D"2" style=3D"background-color: #ff7302; padding-top: =
+10px; padding-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <strong><font size=3D"20px">7 giugno</font></strong> 2025 ore 9 &=
+#8211;=20
+          Accademia Albertina, Aula S31 - Via Accademia Albertina 8
+        </td>
+      </tr>
+      <tr>
+        <td width=3D"40%" valign=3D"top" style=3D"padding-top: 10px; paddin=
+g-right: 10px; padding-bottom: 10px; padding-left: 10px">
+          <img src=3D"https://www.samba.unito.it/sites/www.samba.unito.it/f=
+iles/Trame-identita.jpg" alt=3D"Gomitolo di lana grigia con filo srotolato =
+disposto in modo curvo, su uno sfondo vivace composto da blocchi colorati i=
+n arancione, fucsia, turchese, verde e blu." style=3D"display: block; width=
+: 100%">
+         =20
+        </td>
+        <td width=3D"60%" valign=3D"top" style=3D"padding-top: 10px; paddin=
+g-bottom: 10px; padding-right: 20px; padding-left: 20px">
+          <p style=3D"margin-top: 0; margin-right: 0; margin-bottom: 10px; =
+margin-left: 0">
+            <strong>Trame di identit&#224; - Fiber Art</strong><br>Laborato=
+rio=20
+            creativo in cui darai vita a opere tessili uniche, sperimentand=
+o=20
+            colori, materiali e texture per raccontare qualcosa di te.
+          </p>
+          <p align=3D"left">
+            <a href=3D"https://www.samba.unito.it/it/aree/lab" style=3D"bac=
+kground-color: #ff00ff; padding-top: 10px; padding-bottom: 10px; padding-ri=
+ght: 20px; padding-left: 20px; display: inline-block"><font color=3D"#fffff=
+f" face=3D"Arial" size=3D"4"><b>PARTECIPA</b></font></a>
+          </p>
+        </td>
+      </tr>
+    </table>
+    <hr style=3D"height: 2px">
+   =20
+
+    <p>
+      Gli eventi proseguono la prossima settimana con:<br>9 e 10 giugno (II=
+=20
+      incontro) 2025, Cook it easy<br>9 giugno 2025, Cultura in Movimento -=
+=20
+      Fake news, social e reputation<br>9,10, 12 giugno 2025, HEARTS. Teatr=
+o e=20
+      benessere<br>10 giugno 2025, Bellezza che cura<br>10,11,12 giugno 202=
+5,=20
+      Check-Up4Students<br>10 giugno 2025, Supporto dipendenze<br>10 giugno=
+=20
+      2025, Cultura in Movimento - Intestino e (&#232;) salute!<br>11 giugn=
+o=20
+      2025, Supporto per tabagisti
+    </p>

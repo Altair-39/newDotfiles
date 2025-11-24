@@ -1,0 +1,88 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:205e:b0:309:27f0:106e with SMTP id t30csp976304ljo;
+        Sun, 23 Feb 2025 03:08:24 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHyhf+WwnliMwsxlF2PPvpZCcCq9/JduD/TN6xDPjvT3L/Yk7wEfqgqQjgrbXyxoPuCKK15
+X-Received: by 2002:a05:6402:50ce:b0:5e0:36c9:7605 with SMTP id 4fb4d7f45d1cf-5e0b6fdcccemr3168251a12.0.1740308904390;
+        Sun, 23 Feb 2025 03:08:24 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1740308904; cv=none;
+        d=google.com; s=arc-20240605;
+        b=B8t9DSvIemlJ78V9hHi/Po2vCgIa+zg8qgbBzMa3+QaJdhjALxAvAZFI0whF80gCpO
+         H1loFCxaGV8GDWjagAiNN/OqAmDTzwTkWog2LV2j9MKikD3L4yuRqunGKAuAtS4FwK8R
+         XJVDaeSZBOcBe8lOD+WyWiNqn56yNh/khzc8TQkc5hxRrFBPc1yDmDc6+dxajc193cWo
+         ltEveKelXjnoHfvZDVWhcKHNllFDW8UXAoCgdcrZO+Kh8EXwoMKMzRIW67WxSWhA8meH
+         P+NTZn3UugjdjruBinWDnTlnttd6cU4p49nDlb/MFAql9IBEnKK2G7hpc2/pJMdhB8CZ
+         8VEw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:in-reply-to:from:cc:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :dkim-signature:dkim-filter;
+        bh=L1Gzv1APJdRL+YXLsam5iKalj3M5gcLoCE+jNMZHhVg=;
+        fh=4JhodVgJhhIGmq5V2KsBwtmpLQuJOBqgrRMRuX24ZV8=;
+        b=Cp1vThrZb4Qx1DDjCIFa8Rvymcf85iny04gjv1gJ9YlH3IEcC6wT9sVCzpuGyj/2bZ
+         ihI5lz1NR1Cc/Db/f9TPptRcI/ySCmYheLl4vBMTvsrUmCGEDHx6DyY9vEWMhsj362IL
+         0OOp0LQgnn4FQUqj1f9HDYw5aUGN295TKHA6dA51jUEw4ACWqJslobLz/Q1UPjCH+aIT
+         2VpAssjOWIb0s9oo7lJ2YYnR2jKQLF4f/bHyN3gTKRdtdbL5jWp7W9kvgHP6wtWndfEN
+         W1t9I5ZKr1XKxOYvgT+mCSYvuoDPtJpU8UJouQrUZ9xcBNVUJYsGJP+GAe+NqrsAFu0q
+         u13g==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@di.unito.it header.s=dipinfo2011 header.b=SJv6fBP3;
+       spf=pass (google.com: domain of sproston@di.unito.it designates 130.192.156.1 as permitted sender) smtp.mailfrom=sproston@di.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=di.unito.it
+Return-Path: <sproston@di.unito.it>
+Received: from mail.di.unito.it (pianeta.di.unito.it. [130.192.156.1])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-5dece1ba986si16819371a12.163.2025.02.23.03.08.24
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 23 Feb 2025 03:08:24 -0800 (PST)
+Received-SPF: pass (google.com: domain of sproston@di.unito.it designates 130.192.156.1 as permitted sender) client-ip=130.192.156.1;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@di.unito.it header.s=dipinfo2011 header.b=SJv6fBP3;
+       spf=pass (google.com: domain of sproston@di.unito.it designates 130.192.156.1 as permitted sender) smtp.mailfrom=sproston@di.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=di.unito.it
+X-MailScanner-From: sproston@di.unito.it
+X-SpamCheck: not spam, SpamAssassin (not cached, score=-101.455, required 3,
+	autolearn=not spam, ALL_TRUSTED -1.00, AUTHENTICATEDUSER -100.00,
+	AWL -0.46)
+X-AntiVirus: Email Clean
+X-dipinfo-MailScanner-ID: 51NB8MmQ026382
+X-dipinfo-MailScanner-Information: Please contact Department of Computer Science technical staff for more information
+Received: from mail.di.unito.it ([130.192.156.1])
+         by mail.di.unito.it (INFO-DIP) with ESMTPSA id 51NB8MmQ026382
+	 (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO AuthenticatedUser=sproston );
+	 Sun, 23 Feb 2025 12:08:22 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.di.unito.it 51NB8MmQ026382
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=di.unito.it;
+	s=dipinfo2011; t=1740308902;
+	bh=SHW25NPo/Q31nZk5YqUtyguJr8gqHogPPzUO27JsfUo=;
+	h=Date:Subject:To:References:Cc:From:In-Reply-To;
+	b=SJv6fBP3OfH57R3WH6zUyoVCFDVYEPEZNEeCK00O3OqxDZaeAvT8Zss7vRduW3bKv
+	 nEZYCgxRuGa8Vni73PfxDcRQc4oymDVU0fbF9Apuk8N2f8/4gK93qr7RFySsALr/lp
+	 MveRTHCA9QRe/DvvKHhyLt9PnBa8ZW/X/TZ1pXmo=
+Message-ID: <f7a0f316-b94c-4dfd-bf56-d4e8c7b7d009@di.unito.it>
+Date: Sun, 23 Feb 2025 12:08:21 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: Assistenza Turno PPOO 24 Febbraio
+To: Luca <luca.barra@edu.unito.it>
+References: <BDE0C163-F67D-4DBF-BF04-02E3046D2171@edu.unito.it>
+Content-Language: it
+Cc: Jeremy Sproston <sproston@di.unito.it>
+From: Jeremy Sproston <sproston@di.unito.it>
+In-Reply-To: <BDE0C163-F67D-4DBF-BF04-02E3046D2171@edu.unito.it>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Caro Luca Barra,
+
+> Purtroppo, a causa dello sciopero della GTT del 24 Febbraio, non potrò 
+> essere presente alla prima lezione del turno A T2 di PPOO.
+
+
+Grazie per l'avviso. Si nota che la seconda lezione si terra` lunedi` 10 
+marzo.
+
+Ciao,
+
+Jeremy Sproston
+

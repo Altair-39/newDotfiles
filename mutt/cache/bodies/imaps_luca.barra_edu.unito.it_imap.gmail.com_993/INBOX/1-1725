@@ -1,0 +1,108 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:88d9:0:b0:2ea:83d6:7f34 with SMTP id a25csp446392ljk;
+        Thu, 30 May 2024 10:22:55 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCXRrgPUCMx9k8h27VjBc7tWjSiRmKc4BibSHnTl3exew/ARLc6ffo6QSuxp88SiQ9w0n0WkKATrHLN28wE4UBgsUQI+GbiJ6A==
+X-Google-Smtp-Source: AGHT+IE/vmIVSZF9gnDyJdbrX/43Y3P8H9zFlcNUifhbRjGiL00CkWpcNUOJVwcCr2mTTgbq6eiX
+X-Received: by 2002:a2e:98da:0:b0:2e9:d4fa:1cc with SMTP id 38308e7fff4ca-2ea8485bd1dmr17452521fa.39.1717089774959;
+        Thu, 30 May 2024 10:22:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1717089774; cv=none;
+        d=google.com; s=arc-20160816;
+        b=G2nxg+wJrfMwoUifAjY3Y2WjYHJJxO3uQziizihMXYUpKKeYDDuNG1WB3FM/hm9M/A
+         Fyn1+aULpdal7i5fBgF4Svr7whmBrMUjufphtaqH0/SwZBmKAW9F9/iIM68py6VYYeIc
+         Xt92UnXVrEzReVtLp8OkOnM9wePlukHGjAJSI2VSTuh03FVyzgII7/QY1ZEnj8rmtNEN
+         x9OFz+ZoQnWQoPX43KEQ1lPDgwKvdD+dK+bZRHkywIN/4IAWVGuSGM+k8+tl9+YcnZWm
+         TSbnfKRnh+lbYmoHKgDu4pzMp2rNkKrjLfeekSd8qp8zPpYv8koraRAB9NmUKMQTfKcF
+         pzaw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date;
+        bh=1nDyNcVAL4JAdbLy51Jc36S1sjQTDM7JS7/a4thgb2M=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=MxnIyGTb7j487+UJg7l+TqVUdb8vsY77NCRGfUc0VEo+XyGnXg8JYEYZlZioGAiLsl
+         b+FkYkusqkxH30XlhjDpPGOKhzKGugYf7GGkGaAFX2a43olwUyhqaJpQBmCF48mssFFW
+         MwVkhQrMA6DgSK9Q+DRAULQvwYy4ndx+gxCR3rkdv/NoXR8IZrRBmBRaf7Sf9KQ/ySTL
+         e8LoTz+zcW2nxmD6dwpT+3OugJIP9cCDy+o+QtXcNTTceDC7nTOXJdDKbPLkd2kKYHOh
+         T4fnkMtvkAl2b8n2HoaUX/N6cgegnNv1cR41xlD2lVoyek8AJjNg7gpGsij0Zpn/s0jN
+         BSMg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of matteo.baldoni@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=matteo.baldoni@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <matteo.baldoni@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-4b48bb87c03si41178173.97.2024.05.30.10.22.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 May 2024 10:22:54 -0700 (PDT)
+Received-SPF: pass (google.com: domain of matteo.baldoni@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of matteo.baldoni@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=matteo.baldoni@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id B23CE2C8BB;
+	Thu, 30 May 2024 19:22:51 +0200 (CEST)
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id A7UWHKmzf_Z6; Thu, 30 May 2024 19:22:51 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 414C52C967;
+	Thu, 30 May 2024 19:22:51 +0200 (CEST)
+X-Virus-Scanned: amavis at zm20.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm20.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id BttyEcHLmU7D; Thu, 30 May 2024 19:22:51 +0200 (CEST)
+Received: from esse3appjboss26.private.cineca.it (esse3appjboss26.cineca.it [130.186.5.161])
+	by smtp4.cineca.it (Postfix) with ESMTP id 2A3652C8BB;
+	Thu, 30 May 2024 19:22:48 +0200 (CEST)
+Received: from esse3appjboss26.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss26.private.cineca.it (Postfix) with ESMTP id 10816C21;
+	Thu, 30 May 2024 19:22:48 +0200 (CEST)
+Date: Thu, 30 May 2024 19:22:48 +0200 (CEST)
+From: MATTEO BALDONI <matteo.baldoni@unito.it>
+Message-ID: <19298904.28848.1717089768066@esse3appjboss26.private.cineca.it>
+Subject: Indicazioni per l'esonero di SAS del 31 maggio 2024
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+To: undisclosed-recipients:;
+
+<p>Buonasera,</p>
+
+<p>il data 31 maggio 2024 si svolge l&#39;esonero a cui vi siete iscritti. Potranno presentarsi solo i riceventi della presente comunicazione, non potranno essere ammessi altri studenti.</p>
+
+<p>Gli studenti dovranno presentarsi davanti alle seguenti aule al seguente orario:</p>
+
+<p>- Cognomi che iniziano con &quot;A&quot; sino a &quot;CAS&quot; compreso, davanti all&#39;entrata dell&#39;aula C alle ore 12:30;</p>
+
+<p>- Cognomi che iniziano con &quot;CAV&quot; sino a &quot;LAF&quot; compreso, davanti all&#39;entrata dell&#39;aula B alle ore 12:50;</p>
+
+<p>- Cognomi che iniziano con &quot;LAR&quot; sino a &quot;PAN&quot; compreso, davanti all&#39;entrata dell&#39;aula C alle ore 13:30;</p>
+
+<p>- Cognomi che iniziano con &quot;PAR&quot; sino a &quot;Z&quot; compreso, davanti all&#39;entrata dell&#39;aula B alle ore 13:50.</p>
+
+<p>Essendo ancora periodo di lezione, si raccomanda di parlare sottovoce durante l&#39;attesa della chiamata in aula per l&#39;esonero.</p>
+
+<p>Si ricorda che non sar&agrave; possibile utilizzare propri fogli, neppure se bianchi o di brutta, ma solo i fogli forniti.</p>
+
+<p>E&#39; possibile avere con s&egrave; solo una penna e il tesserino di riconoscimento, cellulare, auricolari, dispositivi elettronici indossabili (orologi connessi) non spossono essere utilizzati e devono essere lasciati chiusi nelle proprie borse.</p>
+
+<p>Non &egrave; possibile uscire durante lo svolgimento dell&#39;esonero. Sar&agrave; possibile uscire solo a termine dell&#39;esonero di tutti i partecipanti.</p>
+
+<p>La duranta dell&#39;esonero &egrave; di circa un&#39;ora.</p>
+
+<p>Il testo dell&#39;esonero sar&agrave; ritirato al termine dell&#39;ora, non &egrave; possibile consegnarlo prima.</p>
+
+<p>E&#39; possibile ritirarsi apponendo la scritta RITIRATO sul testo e firmandolo. Non &egrave; comunque possibile uscire dall&#39;aula sino a termine dell&#39;ora.</p>
+
+<p>Il massimo numero di correzioni &egrave; TRE, ritirarsi non conta come correzione.</p>
+
+<p>Scrivere immediatamente sul foglio il proprio nome, cognome, matricola. Fogli senza nome o cognome o matricola individuati durante la sorveglianza dello svolgimento dell&#39;esonero comporteranno il ritiro immediato del foglio e il ritiro dello studente che svolgeva tale esonero.</p>
+
+<p>Non &egrave; possibile comunicare con nessuno durante lo svolgimento dell&#39;esonero.</p>
+
+<p>&nbsp;</p>
+
+<p>Si ringrazia per l&#39;attenzione nella lettura di questa mail.</p>
+
+<p>Un cordiale saluto,</p>
+
+<p>i docenti</p>

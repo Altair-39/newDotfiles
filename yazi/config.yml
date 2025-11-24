@@ -1,0 +1,3 @@
+keymap:
+  q: ":shell-command pwd > ~/.yazi_last_dir; exit"
+

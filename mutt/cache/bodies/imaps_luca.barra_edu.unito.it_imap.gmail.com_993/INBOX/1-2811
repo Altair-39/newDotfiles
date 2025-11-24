@@ -1,0 +1,97 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:a00e:0:20b0:361:9897:9696 with SMTP id q14-n2csp1092536ljb;
+        Sun, 21 Sep 2025 15:12:24 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHqycASLoJJlkwByA0W9JHhGxvJtoAaTE8tgKFCif755BVFTviQsS/VayTY4NG8CDNNPICs
+X-Received: by 2002:a17:906:4fc9:b0:afe:dbfb:b113 with SMTP id a640c23a62f3a-b24f7c31f1bmr602541066b.10.1758492743791;
+        Sun, 21 Sep 2025 15:12:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1758492743; cv=none;
+        d=google.com; s=arc-20240605;
+        b=b2zBKm7pYFE77Ql9iJxfnLcsKZdEwJ0hwKp+UpasNgVzYNA88csQ55o8sQ/nv7uLc1
+         jUl73swpBhVWTn3UNM/jUyBr8RNtQBA64x+TMGSolkkn8eRVQJkkKFO6WPnT5KgaKa3p
+         AJ+nwEt0GC+NNNFtQ3nLE6jLTkdRTxhdYpp7njjQv2CXFe+82hWbbEH5ss5opIrGE1fG
+         oGIMdOfWrjxG7Yh8jUoU64qUzz0hdVuJRISV/M3gjoDSkZR7D5E9fWWn7OzTm+/H6QPZ
+         CqfsvYs58If20t0Zw1LtSqreR3/QrBAMfQ8LUZyScqRp162WlYe98lm/It/QlTUU0rGo
+         SaTQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:message-id:subject:reply-to:from:to:date
+         :dkim-signature:dkim-filter;
+        bh=gdPwGFncrDn7oxNQhXzyN9vgQshayUcfzxio0ncET6M=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=E7u7wbgvCpkyHHHOTqCkytZKGI9w1g4/dd6ARG0BFH83z5tGJ9J4OjCLUDRX5/65FH
+         5t8jzqGbM3PXtC07/2Z0L8GEj/DuvuDrujikhBTwPViiM+JdCjuKxGyQru146HSIYzc6
+         0Yj8kMJVpLzovYrLo16ePLU7t6UzasDrQ9H6Hxz+ukctqHgx/Sl/HTKDKw/zf0LX9JYD
+         Q34SiWM5lLOMUgexu1qXDyW4BgLcepLRag8SuIMAq9KZANRXDiDi4KwVrj2aQ8qiSUmj
+         ZO0qMlcLjdR+bpYhPl7VkK1wBDqwSOgJq1vv0bB+mrhjio73lGbPG/wZ0V70Oq4QUS8s
+         8pfg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b="Kst+T/9I";
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id a640c23a62f3a-b2d16478827si28313666b.708.2025.09.21.15.12.23
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 21 Sep 2025 15:12:23 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b="Kst+T/9I";
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 58LMCJ4h2395417
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Mon, 22 Sep 2025 00:12:19 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 58LMCJ4h2395417
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=i-learn.unito.it;
+	s=default; t=1758492739;
+	bh=gdPwGFncrDn7oxNQhXzyN9vgQshayUcfzxio0ncET6M=;
+	h=Date:To:From:Reply-To:Subject:From;
+	b=Kst+T/9InkFvlGZjpopySLTuXJr37AuK3wfwne0aAZdeaGx4fg2FS7sFk94tcsaK9
+	 sb1E7a9w7g7wBKD+q1H5Yay9gGkICG9hwft/NnicIJ66TbNBakBFtXa/0zK/3eJ980
+	 BHT6HBR6zD1JxehY2vTRh0ns9kEV/dQaxv52v/JE=
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 58LMCJlk497133
+	for <luca.barra@edu.unito.it>; Mon, 22 Sep 2025 00:12:19 +0200
+Date: Mon, 22 Sep 2025 00:12:19 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Meo Rosa (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: Welcome to Apprendimento Automatico, a.a.2025/2026
+Message-ID: <68d078433fbef5.89575183@informatica.i-learn.unito.it>
+X-Mailer: PHPMailer 6.6.5 (https://github.com/PHPMailer/PHPMailer)
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_bbTXpLGAlSkzWr9tqmGa2XRJwFCusxo7NNrewhfMaaw"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 58LMCJ4h2395417
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply-informatica@i-learn.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_bbTXpLGAlSkzWr9tqmGa2XRJwFCusxo7NNrewhfMaaw
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+Welcome to Apprendimento Automatico, a.a.2025/2026!
+
+If you have not done so already, you should edit your profile page so that
+we can learn more about you:
+
+https://informatica.i-learn.unito.it/user/view.php?id=3D28042&course=3D3579
+
+--b1_bbTXpLGAlSkzWr9tqmGa2XRJwFCusxo7NNrewhfMaaw
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Welcome to Apprendimento Automatico, a.a.2025/2026!<br />=0A<br />=0AIf you=
+ have not done so already, you should edit your profile page so that we can=
+ learn more about you:<br />=0A<br />=0A  https://informatica.i-learn.unito=
+.it/user/view.php?id=3D28042&course=3D3579
+
+--b1_bbTXpLGAlSkzWr9tqmGa2XRJwFCusxo7NNrewhfMaaw--
+

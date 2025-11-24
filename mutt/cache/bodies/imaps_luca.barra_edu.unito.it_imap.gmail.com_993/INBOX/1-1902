@@ -1,0 +1,124 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:109:b0:2f3:ec6d:e6a7 with SMTP id a9csp309478ljb;
+        Fri, 27 Sep 2024 08:02:52 -0700 (PDT)
+X-Received: by 2002:a17:907:8687:b0:a8d:2623:dd17 with SMTP id a640c23a62f3a-a93c4aae071mr149635666b.12.1727449372059;
+        Fri, 27 Sep 2024 08:02:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727449371; cv=none;
+        d=google.com; s=arc-20240605;
+        b=JMFPTZ6hZBXNIdHhG7VcjkEcnMAIc3j+Vqc88pkMox68MFKM1jrv3V1/1zTuVTTHdq
+         +LagGdHh1S2oQlkr0Lv9xM+gvqNhvim8hKAyfNUx52DxbLybIqM0Gm3k5JWfKMR+YYxZ
+         jJNYGP5bVdVO0Wo4iTabvI6JWQS+Lr1PrhBOhaknAYnpVJqAro3dwquF/svimUtKo20s
+         +v0BmccvjygQQoyLR6bPHU5qUtnk3DhfbuquM8QjkgpPFKneiu9aVhS0iqrLv6jwHqmx
+         PB18z3SyTDxJj0mGGZ1T/nFwAqgCl91kz1T0miutcQNCjfdkpitfrQk8bdzw+fT0Ks/8
+         IRNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :dkim-signature;
+        bh=IOMzyNiPUdL0PVLlOqEP8krXUCA5PJhig+05o7jOksI=;
+        fh=wnoTQjHgWz4kRW5W3Yv210Aj9LolbdJ/Lvc/uyAoO3M=;
+        b=f/7UR96zC2mfuV9cqQMArhFq1q7Fd5q1IshEOEFHPrAbzEJUUazXBiBNPLxtasFbEn
+         fTdTjoy6zljn89R6d250PxZryAGiu+0H2Pl8OO2z9q9ATaxFlKzBX7JyQKpFk6sPIv4m
+         lOBDZSrRqvg1iI5sb4U6z4QHYSL71UjX7y7MDTbL2WlwhmwsbAwIFXsDowHeQUWIQd0m
+         d5OvmWTnRFurmDbdZcE/WfwpL8CrpdlEGH0LeIn08KERQMGGBFNujSKo14hXA4pJralL
+         mddSb6hRmDycc41BiK1qex96NUu16JRn9JdHMUhxBfwhyFqz8wC0pztvfIIT/ry2eOjy
+         levQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b="f2GjAhD/";
+       spf=pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=paola.gatti@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <paola.gatti@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-a93c2777d40sor39741766b.4.2024.09.27.08.02.51
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Fri, 27 Sep 2024 08:02:51 -0700 (PDT)
+Received-SPF: pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b="f2GjAhD/";
+       spf=pass (google.com: domain of paola.gatti@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=paola.gatti@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1727449371; x=1728054171; darn=edu.unito.it;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IOMzyNiPUdL0PVLlOqEP8krXUCA5PJhig+05o7jOksI=;
+        b=f2GjAhD/618vECsraIFZ5wRKsN4cqcqXy+vHnNPWT6hJm/0UvKNkZXInaHDz4iBBxG
+         RS26NuPS/wdAqdOYLvRKhaDUsHtPJsX4kCSVZPXumufwZMRFfxCtYZOufc3C3WC96vbg
+         dY6FgsH7pG2YrKpfJdW2W8CLnqdthDd6ji8HU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727449371; x=1728054171;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IOMzyNiPUdL0PVLlOqEP8krXUCA5PJhig+05o7jOksI=;
+        b=sBfCYzDssxAdDjbvb4eRW5Gr2LuAhljk/gcxIe7knSN9SoRUUElpLZJuZ7s4GfxTmT
+         gTARncF6DYwa9mIPOnAhez+MeBDPSlUiJeVlbNU7SAxvusUqY+ABtcWGlGU0nZvhgGNS
+         a8PaGeMg/dGEgeAO8YpyD5ab/aPKD/56Y+OPUdNtAyUIJXTjEBpPsopBBIpN8R8/dDKF
+         839h8j506RxIfIu2K/NhCHg+FREuAxKfkH1oimblHO/CEjuzVmNbLYrY+nMV8QOclxvj
+         12o0loaTjw6gpgzUNSHRvU7oWOb/8OqjFBe50dIO/KcAHoaUQbZIZtLynFCv86L9xAKe
+         0Mag==
+X-Gm-Message-State: AOJu0YzZHP5lnTEJmCch8zBD+LFkA+GhBim+mnJIpdRH76gfQa2X7Qe/
+	WzBB8rr+mTjSUvMeGySxnPTW9siaW509L1mGe6xfgDRtvmo3Tqg/pT1VuhhdGLEF+viTJRxe45j
+	jmqs=
+X-Google-Smtp-Source: AGHT+IEBYwPuV9ZX/FQnkrnYsxn/ZxPmf5hnuUhE5Vs1pFcbd+lHMhyYAivOvT9wQhd2beaG8JuZ1g==
+X-Received: by 2002:a05:6402:42c2:b0:5c5:da5e:68e with SMTP id 4fb4d7f45d1cf-5c8824cd05fmr3832679a12.3.1727449371081;
+        Fri, 27 Sep 2024 08:02:51 -0700 (PDT)
+Return-Path: <paola.gatti@unito.it>
+Received: from [192.168.1.79] (93-36-162-117.ip61.fastwebnet.it. [93.36.162.117])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c88694e9f9sm122944a12.16.2024.09.27.08.02.46
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Sep 2024 08:02:46 -0700 (PDT)
+Message-ID: <5a01b0e0-2ced-4298-abcd-1d61e1a4d712@unito.it>
+Date: Fri, 27 Sep 2024 17:02:46 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: Dubbio Collaborazioni a tempo parziale
+Content-Language: it
+To: Luca Barra <luca.barra@edu.unito.it>
+References: <CAAhooxv_MfbjNJFUsQDYuzH=MeuZK=W0f1z2oHpGqn9nDoG-SQ@mail.gmail.com>
+From: Gatti Paola <paola.gatti@unito.it>
+In-Reply-To: <CAAhooxv_MfbjNJFUsQDYuzH=MeuZK=W0f1z2oHpGqn9nDoG-SQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Caro Luca,
+giusto perche' loro sappiano che sarai pronto ad organizzare le 
+asseistenze, potresti intanto mandare una mail cosi' loro poi si 
+organizzeranno (magari ti diranno di farti vivo piu' a ridosso del 2 
+sem, ma sempre meglio avvisarli)
+
+Tutti i docenti sono referenti allo stesso modo quindi dovresti scrivere 
+(per ciascun insegnamento) una sola mail con tutti loro tra i destinatari.
+Per tua comodita' ti indico i riferimenti
+
+BD: luca.anselma@unito.it, ruggero.pensa@unito.it, noemi.mauro@unito.it, 
+fabiana.vernero@unito.it
+
+PPOO: liliana.ardissono@unito.it, viviana.bono@unito.it, 
+sara.capecchi@unito.it, luigi.dicaro@unito.it, jeremy.sproston@unito.it
+
+cari saluti
+paola gatti
+
+Il 27/09/2024 13:50, Luca Barra ha scritto:
+> Buongiorno,
+> sono Luca Barra le scrivo per dei dubbi riguardanti le collaborazioni a 
+> tempo parziale:
+> 1) essendo entrambe le mie borse (BD e PPOO) al secondo semestre devo 
+> già contattare i docenti responsabili?
+> 2) in entrambe le borse ci sono più docenti, quali dovrei eventualmente 
+> contattare?
+> Distinti saluti,
+> LB
+> 
+> ------------------------
+> 
+> Indirizzo istituzionale di posta elettronica degli studenti e dei 
+> laureati dell'Università di Torino
+> Official University of Turin email address for students and graduates

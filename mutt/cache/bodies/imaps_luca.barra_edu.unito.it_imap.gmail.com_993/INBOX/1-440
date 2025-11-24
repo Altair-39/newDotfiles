@@ -1,0 +1,123 @@
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=WCPZVB9V
+X-Google-Smtp-Source: APBJJlFVxjdxh9sXp1H1MxTCjxTUzahA1gQsLDfAX7Z/6O4d4hhO8HlC4K0Yj4TnOG/J+AOvBUrzuk/lI8JWC/C2Og==
+X-Received: by 2002:a65:6a84:0:b0:55b:3391:2293 with SMTP id q4-20020a656a84000000b0055b33912293mr8999734pgu.4.1688991635281;
+        Mon, 10 Jul 2023 05:20:35 -0700 (PDT)
+Received: from 292831042739
+	named unknown
+	by gmailapi.google.com
+	with HTTPREST;
+	Mon, 10 Jul 2023 05:20:35 -0700
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a17:90a:318c:0:0:0:0 with SMTP id j12csp3142971pjb;
+        Tue, 21 Sep 2021 12:55:47 -0700 (PDT)
+X-Received: by 2002:a05:6512:376a:: with SMTP id z10mr25633740lft.496.1632254147120;
+        Tue, 21 Sep 2021 12:55:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1632254147; cv=none;
+        d=google.com; s=arc-20160816;
+        b=Zk0cYXShYSl82vzAmVLC9N/GTjFuIruzM3LHuk99H9THrwpINJxfG3YSgtnY/Yj0hA
+         T3tjHsWV75lcZQsfhXnUk8v4ICYNCBg6oU/KpU8/JWuXrCxqhAz7Rn7rk+wWRghMt5ly
+         Yykpzf71swQRRdCi5qNOp7nHqZnFnPE2+S6WNxwnyWQcj2pLoHyFCNuO9Ypi0wqwX5Cn
+         SxDpN5+omK9Evelk7pWuF41+5QDi+lkhhQ8k8l2kSzqmWdXA7+/HCzbuYl0OWTNO32NO
+         M9KUIV4MLTl8659RfKbbP2fefwxavA8VpeIw5fHJFHz5s6goSlWJV99NK+RhwYRzmyUc
+         SGIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:reply-to:mime-version
+         :dkim-signature;
+        bh=7/nZKF4KLFcJkvsa968bbZS4g/HmGO+leCO+HCbuGto=;
+        b=ITAzS0zOLNjJpa4YfS/hzcrGSEjJNR9lFEKjk40onMofMmhPu1VMGnL8a2h7cNxjNs
+         pcRF3z7kXFNyJ4zJsWZRiOQZlRYafECsLnJ7z/RXyEMNvgJxjmF6u097iMmusRxiXKoR
+         Pjs5OHPfhRtH5bxg9K8QIwFVJ59SidWanf8mDEwKz5+fW9/ci93s08hMDkTrbuxD4pe2
+         IeEyM6vTGmKH3WCovbQUDweWNgvnT9iNBp5rxIJHefxfvlPA8X5xc4yqlzB6ngaACTy5
+         VxQnFs2QfNcsXyB2XdNh2CvSGIAK7P4c9VALJ9B3rlE2UjdQ1EAP+ZdOv3zF0RiUXqSY
+         btfA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=WCPZVB9V;
+       spf=pass (google.com: domain of tutorato.informatica@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.informatica@unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+Return-Path: <tutorato.informatica@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id x8sor9195542ljc.54.2021.09.21.12.55.46
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Tue, 21 Sep 2021 12:55:47 -0700 (PDT)
+Received-SPF: pass (google.com: domain of tutorato.informatica@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=WCPZVB9V;
+       spf=pass (google.com: domain of tutorato.informatica@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=tutorato.informatica@unito.it;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=7/nZKF4KLFcJkvsa968bbZS4g/HmGO+leCO+HCbuGto=;
+        b=WCPZVB9VW2GojhUX4L6iM2PbvDGreckRWZ7Akaeh/0OYTW25d71+1QJNXOmY46SAaY
+         mjEsyD4e0QjTOZxMtitfQaQFgICrHrNVvNXk4wpRIrWehR9J0QFdYcXW1ApUBTPMWkuj
+         Ui87L4qIYD+5PP6S7XGSgFI6Hx2TCV85EYt9Q=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=7/nZKF4KLFcJkvsa968bbZS4g/HmGO+leCO+HCbuGto=;
+        b=hDXMnySgh6jqrUC9NAuIU5kgNta7dG2VLBuU2zisy8X7EQtuLv4wJOdDoco0+RYh58
+         5O+hKZkNjTEIn2H/dPg+VDjC4ZLpngQOWvlOU99Sid4j53eI4BpxCfYOmC+KdsJwo9gi
+         vHybvHkwmPaVDHMFMi6r+iwbJGvfBGJ/Z1P2gtevGbosuZe1Nfqe6NH3QEyVEz4EUfy1
+         S+eAPjvpxRLHDxJTrNZB5HYZs4uVmvRT7mWOxymRcv2ofmlhxSBsvVenYHHYaEMfKFVU
+         sdaMWdwU1OiQTd+/CjuvIQUR9u70Tb8M2cNl4k57AaPcdpY+jBoshoRKH+e2NGq7m/3i
+         hELA==
+X-Gm-Message-State: AOAM531VlnpysYv6GOyjh+5c8N4BxgPhCgopsM3KkemFIPAnZpo/ASvC
+	HDIDgo6LPfznTpPXv2yG0uPMD+04JD92MYWto+1U88wH
+X-Received: by 2002:a05:651c:154b:: with SMTP id y11mr30640918ljp.480.1632254146303;
+ Tue, 21 Sep 2021 12:55:46 -0700 (PDT)
+MIME-Version: 1.0
+Reply-To: tutorato.informatica@unito.it
+From: Tutorato Informatica <tutorato.informatica@unito.it>
+Date: Tue, 21 Sep 2021 21:55:25 +0200
+Message-ID: <CAHgZORijWBBHC0SEdQhosFdH1rpknDHNzR1Ay3Q1iTSNEi5e8Q@mail.gmail.com>
+Subject: Tutorato matricole
+To: undisclosed-recipients:;
+Content-Type: multipart/alternative; boundary="00000000000092f14c05cc86c850"
+Bcc: luca.barra@edu.unito.it
+
+--00000000000092f14c05cc86c850
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Gentili studenti e studentesse,
+vi comunichiamo gli orari di ricevimento per il tutorato matricole:
+
+Luned=C3=AC dalle 09:00 alle 12:00 e dalle 14:00 alle 17:00
+Mercoled=C3=AC dalle 14:00 alle 16:00
+Gioved=C3=AC dalle 09:00 alle 11:00 e dalle 18:00 alle 20:00
+Venerd=C3=AC dalle 11:00 alle 13:00
+Sabato dalle 09:00 alle 13:00
+
+Le ore di tutorato si svolgeranno tramite sportello online:
+
+link per accedere: https://meet.google.com/cdz-coua-ifb
+
+
+In ogni caso per qualsiasi dubbio potete contattarci alla mail:
+tutorato.informatica@unito.it
+
+Buona serata.
+
+--00000000000092f14c05cc86c850
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>Ge=
+ntili studenti e studentesse,<br></div><div>vi comunichiamo gli orari di ri=
+cevimento per il tutorato matricole:</div><div><br></div><div>Luned=C3=AC d=
+alle 09:00 alle 12:00 e dalle 14:00 alle 17:00</div><div>Mercoled=C3=AC dal=
+le 14:00 alle 16:00</div><div>Gioved=C3=AC dalle 09:00 alle 11:00 e dalle 1=
+8:00 alle 20:00</div><div>Venerd=C3=AC dalle 11:00 alle 13:00</div><div>Sab=
+ato dalle 09:00 alle 13:00</div><div><br></div><div>Le ore di tutorato si s=
+volgeranno tramite sportello online:</div><div><br></div><div>link per acce=
+dere: <a href=3D"https://meet.google.com/cdz-coua-ifb">https://meet.google.=
+com/cdz-coua-ifb</a></div><div><br></div><div><br></div><div>In ogni caso p=
+er qualsiasi dubbio potete contattarci alla mail:=C2=A0</div><div><div><a h=
+ref=3D"mailto:tutorato.informatica@unito.it">tutorato.informatica@unito.it<=
+/a></div><div><br></div></div><div>Buona serata.</div></div></div></div></d=
+iv>
+
+--00000000000092f14c05cc86c850--

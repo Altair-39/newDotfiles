@@ -1,0 +1,208 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:4388:20b0:336:e467:41f1 with SMTP id i8-n2csp232233ljv;
+        Tue, 16 Sep 2025 05:27:42 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHkJVdFq8vNjIGbCMUcg9tcjdNhEBYg6Td8nmeHk+C65TCkeOaJ/Ef/Wp0eL2tP6ftU9MyU
+X-Received: by 2002:a05:6402:3099:b0:62f:372f:31fb with SMTP id 4fb4d7f45d1cf-62f372f374cmr2568776a12.3.1758025661940;
+        Tue, 16 Sep 2025 05:27:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1758025661; cv=none;
+        d=google.com; s=arc-20240605;
+        b=IjZanIq2MhNm/9hIUqQi/c5P9N0MMQpkQ6GP5cpt09JVu+pb1ijX07kY7ck+ZHCfy+
+         LkEPKEonJeEv7/J23+Djct+2KDGtVPjR7V36HZ3JKQGnc91wgdLhtB0dnwnRr5CMI5tJ
+         bfPKI3TSaqIEhXcETKVftTu2VWyuUlprvZAZFGFD5sd5pm8ompxWHk6en1Ca2q8RasVb
+         VCDe9scebDBJdf41BpjpvK2SnII1zbKhEL2EbFKuwPEIq8udtuv2KCo5Gjqfd0ucF+b/
+         PsgI14/GV/SYwhuzPl02VjKo8+7rDBHOSkmt6jm7+7jjSNYI6m6CVxcKbBWdLz3+tdZR
+         DZ0w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-signature:dkim-filter;
+        bh=K9uhy7BQtA4b7Ke/mTQBnB4wrmry33kj0LFBaKNPLOo=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=Mma5YJ8nkWvmhgP8biKP8d1ULD6aP/pOIaKwPOW2mEdTkwOsp1s6kIWh/tgZYGKcCb
+         7kMon5DKi3vFoFBkPPxpHR1JJTgnFvjIpqZUtxwoFqN+yYDUiczU+BS0dYBhY4zhDWBI
+         BYkR35rwcKMju8WXWaCGfaHKyZsXIoWk415v97J/r+EftI8NkoXq4Nm0ryl8ZCD6/A9w
+         tC4fxl1XnBDeFsPsCTQTQvkAMHalux5D0CnLXEVgHfbe1nIUAyAp8eecQU5T8yjMm8Ld
+         +uBs2D9K07pG/6XSOFC1QLK4j7wVAysj5ppdaOtMp7uXUHkfuh8K3fST/PWH6BHAuceq
+         yMPA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=ShbvPTrk;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Return-Path: <noreply-informatica@i-learn.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id 4fb4d7f45d1cf-62eda32ac2esi6947346a12.449.2025.09.16.05.27.41
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 16 Sep 2025 05:27:41 -0700 (PDT)
+Received-SPF: pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@i-learn.unito.it header.s=default header.b=ShbvPTrk;
+       spf=pass (google.com: domain of noreply-informatica@i-learn.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply-informatica@i-learn.unito.it;
+       dmarc=pass (p=NONE sp=REJECT dis=NONE) header.from=i-learn.unito.it
+Received: from node2.educ.di.unito.it (apollotwo.educ.di.unito.it [130.192.157.4])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 58GCRbNf2082686
+	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Tue, 16 Sep 2025 14:27:37 +0200
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 58GCRbNf2082686
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=i-learn.unito.it;
+	s=default; t=1758025657;
+	bh=K9uhy7BQtA4b7Ke/mTQBnB4wrmry33kj0LFBaKNPLOo=;
+	h=Date:To:From:Reply-To:Subject:List-Id:List-Help:List-Unsubscribe:
+	 From;
+	b=ShbvPTrkqZMAWpVuTUF93Ksl2gwErRebIBCU6x7VEzxo5tmQloo0WbagBA1oLZ3z/
+	 IpS5wN5SuIabxK0hBGL0+RliBymrKisIYaA/HGeApuKrFcKH8H4sQEPdkzn/5/mqi3
+	 AXzSk/wjNK6P2CaYTQfsEx7XRh5EJQ086Sa29aY8=
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node2.educ.di.unito.it (8.15.2/8.14.7) with ESMTP id 58GCRbZs2585312
+	for <luca.barra@edu.unito.it>; Tue, 16 Sep 2025 14:27:37 +0200
+Date: Tue, 16 Sep 2025 14:27:37 +0200
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Hosteins Pierre (via informatica)" <noreply-informatica@i-learn.unito.it>
+Reply-To: "Do not reply to this email" <noreply-informatica@i-learn.unito.it>
+Subject: OC2024-25: Risultati appello 11 settembre e visione compiti
+Message-ID: <6a7c56f4bea3ea9c81a12efec5f36e483b2a7c94dcb3ff76f554f71a1b203690@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.6.5 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "Annunci" <moodleforum7510@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7510
+X-Course-Id: 3010
+X-Course-Name: Ottimizzazione Combinatoria (2024-25)
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: OC2024-25: Risultati appello 11 settembre e visione compiti
+Thread-Index: 6a7c56f4bea3ea9c81a12efec5f3
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_eUT3hnxgEhOi9uVb7kHpAK2oNCFMXeMNqE5j5QdjuI"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 58GCRbNf2082686
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply-informatica@i-learn.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_eUT3hnxgEhOi9uVb7kHpAK2oNCFMXeMNqE5j5QdjuI
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+OC2024-25 -> Forums -> Annunci -> Risultati appello 11 settembre e visione
+compiti
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45345#p73187
+Risultati appello 11 settembre e visione compiti
+by Hosteins Pierre - Tuesday, 16 September 2025, 2:12 PM
+---------------------------------------------------------------------
+Vi comunichiamo sotto i risultati per l'appello dell'11 settembre. La
+visione dei compiti avr=C3=A0 luogo il 23 settembre alle 13:30 in aula B. S=
+iete
+pregati di presentarvi in orario, in assenza di studenti si chiuder=C3=
+=A0
+l'incontro.
+
+PH e AG
+
+868162
+ASS
+
+913969
+ASS
+
+882818
+INS
+
+948999
+19
+
+836021
+ASS
+
+978392
+ASS
+
+913278
+22
+
+951543
+ASS
+
+917317
+INS
+
+994279
+ASS
+
+918758
+INS
+
+976609
+22
+
+913937
+RIT
+
+1094461
+INS
+
+918347
+22
+
+---------------------------------------------------------------------
+This is a copy of a message posted in OC2024-25.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3010
+
+--b1_eUT3hnxgEhOi9uVb7kHpAK2oNCFMXeMNqE5j5QdjuI
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3010">OC2024-25</a>=0A    &raquo;=
+=0A    <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mo=
+d/forum/index.php?id=3D3010">Forums</a>=0A    &raquo;=0A    <a target=3D"_b=
+lank" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7=
+510">Annunci</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D"https://i=
+nformatica.i-learn.unito.it/mod/forum/discuss.php?d=3D45345">Risultati appe=
+llo 11 settembre e visione compiti</a>=0A</div>=0A=0A<table border=3D"0" ce=
+llpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=0A    <tr class=3D"h=
+eader">=0A        <td width=3D"35" valign=3D"top" class=3D"picture left">=
+=0A            <a href=3D"https://informatica.i-learn.unito.it/user/view.ph=
+p?id=3D32874&amp;course=3D3010" class=3D"d-inline-block aabtn"><span class=
+=3D"userinitials size-35">HP</span></a>=0A        </td>=0A        <td class=
+=3D"topic starter">=0A            <div class=3D"subject">=0A               =
+ Risultati appello 11 settembre e visione compiti=0A            </div>=0A  =
+          <div class=3D"author">=0A                by <a target=3D'_blank' =
+href=3D'https://informatica.i-learn.unito.it/user/view.php?id=3D32874&cours=
+e=3D3010'>Hosteins Pierre</a> - Tuesday, 16 September 2025, 2:12 PM=0A     =
+       </div>=0A        </td>=0A    </tr>=0A    <tr>=0A        <td class=3D=
+"left side" valign=3D"top">=0A                &nbsp;=0A        </td>=0A    =
+    <td class=3D"content">=0A            <p dir=3D"ltr" style=3D"text-align=
+:left;">Vi comunichiamo sotto i risultati per l'appello dell'11 settembre. =
+La visione dei compiti avr=C3=A0 luogo il 23 settembre alle 13:30 in aula B=
+. Siete pregati di presentarvi in orario, in assenza di studenti si chiuder=
+=C3=A0 l'incontro.</p><p dir=3D"ltr" style=3D"text-align:left;">PH e AG</p>=
+<p dir=3D"ltr" style=3D"text-align:left;"><br /></p><p dir=3D"ltr" style=3D=
+"text-align:left;"></p><table cellspacing=3D"0" cellpadding=3D"0" dir=3D"lt=
+r" border=3D"1"><colgroup><col width=3D"100" /><col width=3D"100" /></colgr=
+oup><tbody><tr><td>868162</td><td>ASS</td></tr><tr><td>913969</td><td>ASS</=
+td></tr><tr><td>882818</td><td>INS</td></tr><tr><td>948999</td><td>19</td><=
+/tr><tr><td>836021</td><td>ASS</td></tr><tr><td>978392</td><td>ASS</td></tr=
+><tr><td>913278</td><td>22</td></tr><tr><td>951543</td><td>ASS</td></tr><tr=
+><td>917317</td><td>INS</td></tr><tr><td>994279</td><td>ASS</td></tr><tr><t=
+d>918758</td><td>INS</td></tr><tr><td>976609</td><td>22</td></tr><tr><td>91=
+3937</td><td>RIT</td></tr><tr><td>1094461</td><td>INS</td></tr><tr><td>9183=
+47</td><td>22</td></tr></tbody></table><br /><p></p>=0A=0A            <div =
+class=3D"commands">=0A            </div>=0A=0A            <div class=3D"lin=
+k">=0A                <a target=3D"_blank" href=3D"https://informatica.i-le=
+arn.unito.it/mod/forum/discuss.php?d=3D45345#p73187">=0A                   =
+ See this post in context=0A                </a>=0A            </div>=0A   =
+     </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-align uns=
+ubscribelink">=0A    <a href=3D"https://informatica.i-learn.unito.it/mod/fo=
+rum/index.php?id=3D3010">Change your forum digest preferences</a>=0A</div>
+
+--b1_eUT3hnxgEhOi9uVb7kHpAK2oNCFMXeMNqE5j5QdjuI--
+

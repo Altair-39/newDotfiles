@@ -1,0 +1,154 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b5b0:0:b0:2fb:4c9b:a38b with SMTP id f16csp929328ljn;
+        Wed, 27 Nov 2024 14:25:00 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGkIKe2ghw9gOvWjIzR2MMevu3wXWBB4j7xrgqZsZRxMC8Etc/E2yPcomJ4Bvqu7Du9oPu1
+X-Received: by 2002:a05:6000:2a4:b0:382:4b80:abb1 with SMTP id ffacd0b85a97d-385c6edb20dmr1542041f8f.10.1732746300329;
+        Wed, 27 Nov 2024 14:25:00 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1732746300; cv=none;
+        d=google.com; s=arc-20240605;
+        b=N4UFFOSo+hYa3/kN5yMr2AmDv9sLXEtlitpDzOxsRSoLZCbBdE9ANTYI6Oha6poZyj
+         REKgzBO8LE/twrE4jNLtOC+GkaJZgv+hMx3kRv9hXSFo/lrlGGcs1ZN6lyOoLiPeahL7
+         7gq8KimLa5HaFjuJvJDdOKUagvUouLftrk/DTtpx0zwW9OSfXeZiX52YhXZg23NLlI5u
+         HJNPqdc7nK/SCu8WEOZsArOhRTn3/TtrrVjQy9BeXt2SeXoc+bEzGp5G6THqXC3doZqz
+         j73P9QvUIyuHgMJ2gQJDKmQ2Ca3ukb2Qw/QN7aqCXMw6WD/rfYKUHGCGlfdTNBM7Un2V
+         0T1w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:thread-index:thread-topic:list-unsubscribe
+         :auto-submitted:precedence:list-help:list-id:message-id:subject
+         :reply-to:from:to:date:dkim-filter;
+        bh=YOCuXnoXwIMjnMwpGSmh9OqIU5uD/MJOKBKKDuy5e+4=;
+        fh=K3b8IVtvHTJMtWJQsW9dhkbphJO6jGQRe0KxZDCJ6X8=;
+        b=BYKGWx+adegwSFpWMwy8qQP6d9+Iylk/Tw+9I36fpriOWMmWmTafmtVwTRhO9NV1wN
+         6JfL5mpHCj+YpYTnlOvxbxYKz9LwfECP83oAZzVHBP28ea5XkjGoiK19QvqNudXRGf69
+         RUi5t95quaijnWUZqTCuAl9Eqh3m/2nVnBQWiY3RjSkhtI59W2bZwcM72PQe6ZAe4HOW
+         MSnmaEA7trHnIBWjLNWYEgp3m/XSVnVnXbg+85Vhnl97tAfkPs0K/NxcltEAlDjFl3S1
+         krtyKFcxuJfH6BbpPMxC80hWs+bmtx/be6I+GA6g3XFK9rtaPXB5qWptAqETjQ+uRNoZ
+         DOCQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Return-Path: <noreply@educ.di.unito.it>
+Received: from alcor.educ.di.unito.it (alcor.educ.di.unito.it. [130.192.157.14])
+        by mx.google.com with ESMTPS id e9e14a558f8ab-3a7ccbd3e58si1079905ab.25.2024.11.27.14.24.59
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 27 Nov 2024 14:25:00 -0800 (PST)
+Received-SPF: pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) client-ip=130.192.157.14;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: domain of noreply@educ.di.unito.it designates 130.192.157.14 as permitted sender) smtp.mailfrom=noreply@educ.di.unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it
+Received: from node1.educ.di.unito.it (apolloone.educ.di.unito.it [130.192.157.3])
+	by alcor.educ.di.unito.it (8.15.2/8.14.4) with ESMTPS id 4ARMOvlE2381811
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <luca.barra@edu.unito.it>; Wed, 27 Nov 2024 23:24:57 +0100
+DKIM-Filter: OpenDKIM Filter v2.11.0 alcor.educ.di.unito.it 4ARMOvlE2381811
+Received: from informatica.i-learn.unito.it (localhost [127.0.0.1])
+	by node1.educ.di.unito.it (8.14.7/8.14.7) with ESMTP id 4ARMOvYo083063
+	for <luca.barra@edu.unito.it>; Wed, 27 Nov 2024 23:24:57 +0100
+Date: Wed, 27 Nov 2024 23:24:57 +0100
+To: "Barra Luca" <luca.barra@edu.unito.it>
+From: "Esposito Roberto (via informatica)" <noreply@educ.di.unito.it>
+Reply-To: "Do not reply to this email" <noreply@educ.di.unito.it>
+Subject: NNDL24: Rescheduled Lecture on December 3rd Due to General Strike
+Message-ID: <277a59ea9c269e8b49bede2d6a5bfe2394dc8d35929138f6c93fec4bcd963ed5@informatica.i-learn.unito.it>
+X-Priority: 3
+X-Mailer: PHPMailer 6.5.3 (https://github.com/PHPMailer/PHPMailer)
+List-Id: "General Announcements" <moodleforum7542@informatica.i-learn.unito.it>
+List-Help: https://informatica.i-learn.unito.it/mod/forum/view.php?f=7542
+X-Course-Id: 3030
+X-Course-Name: Neural Networks and Deep Learning
+Precedence: Bulk
+X-Auto-Response-Suppress: All
+Auto-Submitted: auto-generated
+List-Unsubscribe: <>
+Thread-Topic: NNDL24: Rescheduled Lecture on December 3rd Due to General Strike
+Thread-Index: 277a59ea9c269e8b49bede2d6a5b
+X-Moodle-Originating-Script: https://informatica.i-learn.unito.it => node1:mod/forum/classes/task/send_user_notifications.php:369
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="b1_0FuQ9fO4JK0k7xnTUU5CB8GjZCCQ1F9kXi6L3tDA8"
+X-labinfo-MailScanner-Information: Please contact Servizi ICT for more information (http://www.di.unito.it)
+X-labinfo-MailScanner-ID: 4ARMOvlE2381811
+X-labinfo-MailScanner: Found to be clean
+X-labinfo-MailScanner-From: noreply@educ.di.unito.it
+X-Spam-Status: No
+
+This is a multi-part message in MIME format.
+
+--b1_0FuQ9fO4JK0k7xnTUU5CB8GjZCCQ1F9kXi6L3tDA8
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+NNDL24 -> Forums -> General Announcements -> Rescheduled Lecture on
+December 3rd Due to General Strike
+https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43142#p70512
+Rescheduled Lecture on December 3rd Due to General Strike
+by Esposito Roberto - Wednesday, 27 November 2024, 11:09 PM
+---------------------------------------------------------------------
+Dear students,
+
+On Friday, November 29th, I will be participating in the general strike
+organized by Italy's major unions. As a result, the lecture scheduled for
+that day will be rescheduled to Tuesday, December 3rd, from 9:00 to 11:00
+AM in Lecture Room F.
+
+You should now be able to view this update on the University Planner (UP)
+application.
+
+Thank you for your understanding.
+
+Best regards,
+Roberto Esposito
+
+---------------------------------------------------------------------
+This is a copy of a message posted in NNDL24.
+
+Change your forum digest preferences:
+https://informatica.i-learn.unito.it/mod/forum/index.php?id=3D3030
+
+--b1_0FuQ9fO4JK0k7xnTUU5CB8GjZCCQ1F9kXi6L3tDA8
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div class=3D"navbar">=0A    <a target=3D"_blank" href=3D"https://informati=
+ca.i-learn.unito.it/course/view.php?id=3D3030">NNDL24</a>=0A    &raquo;=0A =
+   <a target=3D"_blank" href=3D"https://informatica.i-learn.unito.it/mod/fo=
+rum/index.php?id=3D3030">Forums</a>=0A    &raquo;=0A    <a target=3D"_blank=
+" href=3D"https://informatica.i-learn.unito.it/mod/forum/view.php?f=3D7542"=
+>General Announcements</a>=0A    &raquo;=0A    <a target=3D"_blank" href=3D=
+"https://informatica.i-learn.unito.it/mod/forum/discuss.php?d=3D43142">Resc=
+heduled Lecture on December 3rd Due to General Strike</a>=0A</div>=0A=0A<ta=
+ble border=3D"0" cellpadding=3D"3" cellspacing=3D"0" class=3D"forumpost">=
+=0A    <tr class=3D"header">=0A        <td width=3D"35" valign=3D"top" clas=
+s=3D"picture left">=0A            <a href=3D"https://informatica.i-learn.un=
+ito.it/user/view.php?id=3D16954&amp;course=3D3030" class=3D"d-inline-block =
+aabtn"><img src=3D"https://informatica.i-learn.unito.it/pluginfile.php/7399=
+8/user/icon/lambda/f2?rev=3D1" class=3D"userpicture" width=3D"35" height=3D=
+"35" alt=3D"" /></a>=0A        </td>=0A        <td class=3D"topic starter">=
+=0A            <div class=3D"subject">=0A                Rescheduled Lectur=
+e on December 3rd Due to General Strike=0A            </div>=0A            =
+<div class=3D"author">=0A                by <a target=3D'_blank' href=3D'ht=
+tps://informatica.i-learn.unito.it/user/view.php?id=3D16954&course=3D3030'>=
+Esposito Roberto</a> - Wednesday, 27 November 2024, 11:09 PM=0A            =
+</div>=0A        </td>=0A    </tr>=0A    <tr>=0A        <td class=3D"left s=
+ide" valign=3D"top">=0A                &nbsp;=0A        </td>=0A        <td=
+ class=3D"content">=0A            <p>Dear students,</p>=0A=0A<p>On Friday, =
+November 29th, I will be participating in the general strike organized by I=
+taly's major unions. As a result, the lecture scheduled for that day will b=
+e rescheduled to Tuesday, December 3rd, from 9:00 to 11:00 AM in Lecture Ro=
+om F.</p>=0A=0A<p>You should now be able to view this update on the Univers=
+ity Planner (UP) application.</p>=0A=0A<p>Thank you for your understanding.=
+</p>=0A=0A<p>Best regards,=0A    Roberto Esposito</p>=0A=0A=0A            <=
+div class=3D"commands">=0A            </div>=0A=0A            <div class=3D=
+"link">=0A                <a target=3D"_blank" href=3D"https://informatica.=
+i-learn.unito.it/mod/forum/discuss.php?d=3D43142#p70512">=0A               =
+     See this post in context=0A                </a>=0A            </div>=
+=0A        </td>=0A    </tr>=0A</table>=0A=0A<hr />=0A<div class=3D"mdl-ali=
+gn unsubscribelink">=0A    <a href=3D"https://informatica.i-learn.unito.it/=
+mod/forum/index.php?id=3D3030">Change your forum digest preferences</a>=0A<=
+/div>
+
+--b1_0FuQ9fO4JK0k7xnTUU5CB8GjZCCQ1F9kXi6L3tDA8--
+

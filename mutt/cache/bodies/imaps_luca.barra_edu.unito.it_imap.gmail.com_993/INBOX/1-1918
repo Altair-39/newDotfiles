@@ -1,0 +1,189 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b1c1:0:b0:2f3:ec6d:e6a7 with SMTP id e1csp636266lja;
+        Wed, 9 Oct 2024 07:02:08 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCVDMXf7Zap+9/fJ84kmx5eOJILmQP70ox3Y59sRxSoXWoYzhPVsJYzPF/EesahJAx33pEHYJuED/iUK@edu.unito.it
+X-Google-Smtp-Source: AGHT+IGxMnYqtus9tnJ+OwUDbWT1cTE5yuLLthTICRY/LzGeqbu/NkSQhEy3pCoBpkEJWQhSa0gj
+X-Received: by 2002:a2e:a98e:0:b0:2fa:ddde:438b with SMTP id 38308e7fff4ca-2fb1872e626mr17081501fa.13.1728482528365;
+        Wed, 09 Oct 2024 07:02:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1728482526; cv=none;
+        d=google.com; s=arc-20240605;
+        b=kTM0q+821PUYv+sQQKfyGeu+JcW0b4fK2Q07nucD6JKKtuWVyKh7BhsbqY9G4aiadR
+         8c4a/yxQREWjS9TbmPPnsIXLvBr6rmODGs42s+rzQgK381ZexsThzhPkdcxEYgTtYCAM
+         NylVQew2rd/fGhIay66aiEexRxgNHEaA8JGDoosjhlRVwUahCm5JyOP0GaEAOjEBhGM+
+         XzGA7WF8hr93olSjPeG0BaLqbWOzt2fSlQLcVwCQfdPJPgrdTD6HCGmkGp4j8FwFXoL6
+         OcGi6Liu9VHrMqbYuJIn+TQIltpRe1gMnyojq9CLRud8FJ4W4ckv208YXJzsfRzIQwc0
+         sSvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:content-transfer-encoding:mime-version:subject:message-id:from
+         :date:dkim-signature:dkim-filter;
+        bh=E6xfkPmF/hw9boWNT1Qn+5g1aDJ3ch/LOke9h+bot0Q=;
+        fh=Pr2plYkJn0ovdHybgHvE53243CPsqSX0NRPDPDnAMwQ=;
+        b=JD7JsYtZ2n7c4U9CsX66M6HwcfYIxlhv0cr5olZHYA4E9vUNUxQJ+dj99O0r0rTVM4
+         VdlFj1hD2Jka8FNce1awaCj5r44+LGgQzgBr7l/t6lUSQSljFBcYtbjGKPCC0MLX4TGr
+         0rzNyFOCvFWRYAZLUtwHf0Ru5udIkPIuKQkOy2BbgfIlNDUDKz1UPly5dEldAvrGbXEa
+         4RKwxcCeXgKrCZrEFN9X8IFh55N4uJKCl2Izk8iCtIZw6ZPbLg70iB4IyMazB9EZaKMf
+         n6DKGTtRXj4OHPOBkAvEiZOjCnp7QtCCGmOkZXJejg2TvCWcNm9l6A9BYtHqwS2v7rhz
+         V3Kg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=IFLrWk6j;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Return-Path: <avvisi@unito.it>
+Received: from smtp4.cineca.it (smtp4.cineca.it. [130.186.31.165])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-4db6eba3dc0si4714623173.88.2024.10.09.07.01.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Oct 2024 07:02:06 -0700 (PDT)
+Received-SPF: pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) client-ip=130.186.31.165;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=ADCB6B56-231A-11EF-885A-1F64376BF254 header.b=IFLrWk6j;
+       spf=pass (google.com: domain of avvisi@unito.it designates 130.186.31.165 as permitted sender) smtp.mailfrom=avvisi@unito.it;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=unito.it
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 1EC6B2B2F0;
+	Wed,  9 Oct 2024 16:01:47 +0200 (CEST)
+Authentication-Results: zm19.private.cineca.it (amavis);
+ dkim=pass (2048-bit key) header.d=unito.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id bYto2cD9L9nL; Wed,  9 Oct 2024 16:01:46 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by smtp4.cineca.it (Postfix) with ESMTP id 1AD602B2DA;
+	Wed,  9 Oct 2024 16:01:45 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 smtp4.cineca.it 1AD602B2DA
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=unito.it;
+	s=ADCB6B56-231A-11EF-885A-1F64376BF254; t=1728482506;
+	bh=E6xfkPmF/hw9boWNT1Qn+5g1aDJ3ch/LOke9h+bot0Q=;
+	h=Date:From:Message-ID:MIME-Version:To;
+	b=IFLrWk6j4EX3+UvmWtuQOz+BEWIxhEhMHKhBuDZHoRQhlvkaH+I2N2hgtGfio5k07
+	 3WUtJL5Pnxk9w/xceabCoS9cTkJBHbfW/d1tAkK4njs+chNSngiQsDjv4AbfCGgd3C
+	 +2GamnwfDDbs8R1bByIbQgGokorysaEJTTRUu3t10EX/zHcFDMOK/HLTLTi4UJ6CYV
+	 s+aGrUACBgCtZ3PLMx18+/plOU5W/PTYwwz0za3DG3mZYFpdh5KN2bZgK2L3qDzimH
+	 aGv6IU36ahM+pe0cPZHZ+GHd4JTw5QLIiCHzP9lhXQALHgxAlPim4uxoSdAgddmSTP
+	 b3VEAl54zN4SQ==
+X-Virus-Scanned: amavis at zm19.private.cineca.it
+Received: from smtp4.cineca.it ([127.0.0.1])
+ by localhost (zm19.private.cineca.it [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id rI8S7lsRLkID; Wed,  9 Oct 2024 16:01:44 +0200 (CEST)
+Received: from esse3appjboss22.private.cineca.it (esse3appjboss22.cineca.it [130.186.5.143])
+	by smtp4.cineca.it (Postfix) with ESMTP id DADA52B6AC;
+	Wed,  9 Oct 2024 16:01:41 +0200 (CEST)
+Received: from esse3appjboss22.private.cineca.it (localhost [127.0.0.1])
+	by esse3appjboss22.private.cineca.it (Postfix) with ESMTP id 22F6D3BF;
+	Wed,  9 Oct 2024 16:01:39 +0200 (CEST)
+Date: Wed, 9 Oct 2024 16:01:39 +0200 (CEST)
+From: =?UTF-8?Q?Universit=C3=A0_degli_Studi_di_Torino?= <avvisi@unito.it>
+Message-ID: <2070489029.57.1728482499135@esse3appjboss22.private.cineca.it>
+Subject: =?UTF-8?Q?Puoi_ancora_iscriverti_a:_=E2=80=9CDiventare_imp?=
+ =?UTF-8?Q?renditori=E2=80=9D_=E2=80=93_I_edizione_del_corso_trasver?=
+ =?UTF-8?Q?sale_introduttivo_all=E2=80=99imprenditorialit=C3=A0_?=
+ =?UTF-8?Q?-_a.a._2024-25_=E2=80=93_dal_15/10/24_al_17/12/24?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+To: undisclosed-recipients:;
+
+=20
+
+Ti interessa conoscere pi=C3=B9 da vicino come si pu=C3=B2 creare e gestire=
+ un=E2=80=99impresa?=E2=80=A8
+
+Sai che conoscere meglio il mondo delle imprese e i suoi punti di accesso =
+=C3=A8 utile per il tuo futuro lavorativo e per migliorare la capacit=C3=A0=
+ di realizzare i tuoi progetti, anche se non intendi diventare un imprendit=
+ore?=20
+
+Hai in mente un=E2=80=99idea imprenditoriale e vorresti capire come svilupp=
+arla per renderti conto se sia realizzabile?
+
+=20
+
+Sei invitato a partecipare a:
+
+=20
+
+=E2=80=9CDIVENTARE IMPRENDITORI=E2=80=9D
+
+I EDIZIONE DEL CORSO INTRODUTTIVO SULL'IMPRENDITORIALIT=C3=80
+
+nb: =C3=A8 rivolto alle studentesse ed agli studenti di TUTTI i corsi di st=
+udio
+
+=20
+
+inizio: Marted=C3=AC 15 ottobre 2024, dalle ore 16 alle 19
+
+10 incontri a cadenza settimanale, tutti i marted=C3=AC
+
+Dipartimento di Biotecnologie Molecolari e Scienze per la Salute
+
+ Via Nizza, 52 =E2=80=93 Torino =E2=80=93 Aula GALILEO
+
+=20
+
+Il corso ti permette di:
+
+- orientarti nel mondo delle imprese e degli imprenditori
+
+- familiarizzare con le competenze necessarie per creare e condurre un=E2=
+=80=99impresa, intesa in senso ampio (include l=E2=80=99impresa sociale, le=
+ ONLUS, le associazioni ecc.)
+
+- valutare il tuo potenziale imprenditoriale, con un test apposito
+
+- conoscere i luoghi per lo sviluppo delle idee innovative e imprenditorial=
+i in Ateneo e sul territorio.
+
+Il corso =C3=A8 rivolto a:
+
+=E2=97=8F        Studentesse e studenti dell=E2=80=99Universit=C3=A0 degli =
+Studi di Torino di tutti i Corsi di Studi=20
+
+Il corso =C3=A8 inserito nell'offerta formativa di Ateneo con un valore di =
+5 CFU
+
+(Riferimenti: codice MAN0401 - Laboratorio per l=E2=80=99Imprenditorialit=
+=C3=A0, SSD SECS-P/07 - Corso di studio in Economia Aziendale del Dipartime=
+nto di Management)
+
+=E2=97=8F        Neolaureate/i, dottorande/i, studentesse e studenti di alt=
+ri Atenei, che sono ammessi nei limiti dei posti disponibili.     =20
+
+=20
+
+Per iscriverti: compila il modulo online reperibile anche sulla pagina dedi=
+cata sul portale
+
+https://docs.google.com/forms/d/e/1FAIpQLSfM8m5SGx8sUyLrsmXVPz7GD6gcWQ23_cL=
+ZqP6_OAZGwX69sg/viewform
+
+=20
+
+Si invita cortesemente a iscriversi solo se realmente interessati a seguire=
+ il corso.
+
+=20
+
+Per informazioni: consulta le pagine dedicate sul portale di Ateneo:
+
+https://www.unito.it/universita-e-lavoro/opportunita-ed-esperienze-di-lavor=
+o/studenti-e-laureati/formazione-imprenditorialita
+
+https://www.unito.it/territorio-e-societa/formazione-e-placement-imprese/di=
+ventare-imprenditori/corso-diventare-0
+
+=20
+
+Sono previsti alcuni requisiti di frequenza, come specificato nella pagina =
+web sotto indicata, alla voce =E2=80=9CFrequenza, esame finale e attestati=
+=E2=80=9D, di cui si prega di prendere attentamente visione in caso di iscr=
+izione al corso.
+
+=20
+
+Contatti:  formazione.imprenditorialita@unito.it     011.670.2420
+
+Direzione Ricerca, Innovazione e Internazionalizzazione
+
+Via Po 31 =E2=80=93 10124 Torino (Pian terreno, c/o Infopoint)
+

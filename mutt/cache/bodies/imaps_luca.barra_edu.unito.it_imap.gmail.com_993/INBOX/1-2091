@@ -1,0 +1,129 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a2e:b689:0:b0:302:3d35:6815 with SMTP id l9csp1162880ljo;
+        Sun, 12 Jan 2025 23:51:35 -0800 (PST)
+X-Received: by 2002:a17:907:7e92:b0:aa6:9574:1728 with SMTP id a640c23a62f3a-ab2ab6fcf4emr669459566b.6.1736754695289;
+        Sun, 12 Jan 2025 23:51:35 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1736754695; cv=none;
+        d=google.com; s=arc-20240605;
+        b=eiRPA1c1//ImSE40Nn8zcn8N6iKUAUXzJlzegIRByTfESofQbfuu+O2bcFU177YaJC
+         50VWE/sj3/QJUhwQtRqlynIPrGflqMpHPY7dRAQ8N6+lmZxjQ6x6zGxVCwwmDGzkYXmY
+         +0/mnu/NlusyWmdJbkfnaZGfD/6UXfgy1XniYhcy18alWXMMWK8e0SK68/9ZUxYyFasB
+         1NJ9nP30KDU0KxQhiEaAs3GcuYm6dJSpwG7fQCUG1ytriQgg21URazIq+Btbir8ZSjt5
+         AnOhI+3+S0dc4Lk4T+fXOqoSTfLi78tJWcWf3VkdBJfgb52LI9CU56CoGTFE8xZQqWBU
+         nEZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=a0rAmo99UR4DuCxpnR3XVLinW8zG91RXeTGtv9pgwjk=;
+        fh=wnoTQjHgWz4kRW5W3Yv210Aj9LolbdJ/Lvc/uyAoO3M=;
+        b=iS1cd+YqdnlndSn0eBhCN4BaL+RqwrSZJ3+IGfN0zsk0MIQB+tQpcZqzJ55Ul9i4TZ
+         PnjgZ8SM3/I3+nxj9K0czPRaYI6pcettSiid9XYDr6xMgbKbHBjW/SJbBbWVupYDAroP
+         QsE21hKyilN6J1HTlP2L6G6Jkdp175hTLVTkPwXBTEVLvtRFJBYnuTUz3QNOgcrQW9rb
+         QqXS6RpyWT3iBH5VwPdKKA3NwBA3QTCpeC6yB9RpSuL4WzN2dzNlhnEQZRIdrmN+ZCCQ
+         CAJIVUDq8jHiYitfYJkGt5Wfolv1zExpNxdKq9ALE6thCw1gxne5oQCrWFfuvb4KT5QT
+         TlNA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=XxSt0YAr;
+       spf=pass (google.com: domain of elviogilberto.amparore@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=elviogilberto.amparore@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+Return-Path: <elviogilberto.amparore@unito.it>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-ab2c956f5c2sor342753366b.16.2025.01.12.23.51.35
+        for <luca.barra@edu.unito.it>
+        (Google Transport Security);
+        Sun, 12 Jan 2025 23:51:35 -0800 (PST)
+Received-SPF: pass (google.com: domain of elviogilberto.amparore@unito.it designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@unito.it header.s=google header.b=XxSt0YAr;
+       spf=pass (google.com: domain of elviogilberto.amparore@unito.it designates 209.85.220.41 as permitted sender) smtp.mailfrom=elviogilberto.amparore@unito.it;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=unito.it;
+       dara=neutral header.i=@edu.unito.it
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=unito.it; s=google; t=1736754695; x=1737359495; darn=edu.unito.it;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=a0rAmo99UR4DuCxpnR3XVLinW8zG91RXeTGtv9pgwjk=;
+        b=XxSt0YArUwBQVXSg6VO+fERFks2CXDjlAfbrKPisKGo6K58iEC+RyG1BqOZbLjOkb/
+         xKYaO1gfuAcjVb54I7WAagoAHuMn2Qe5qhOBB2b6Q/MragdHnlLu/C+oQAkfkRtIKkwd
+         6MoX+ZZh+YWh+5XJSXy2PAQSJILVPAEVWPUSQZtzpYCVEtcRLo/GAdh8/0snVKZP1Fkj
+         ubFiHY5FmmwMEm/1kWzHcyCDHIJs7NFWEMDVnd1Fvj5PfRPiMbW7BsjbHLTCbt2zedbb
+         00nghOfjr3Aiizmzn1Vi+O8lY8dKS7HRPWKiLlaKzANF6yvK6sjDkiOrBwIAMLzVJkwy
+         Kwng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736754695; x=1737359495;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=a0rAmo99UR4DuCxpnR3XVLinW8zG91RXeTGtv9pgwjk=;
+        b=oQYvBa5EJfSbHw093sZ1N3HwZZfOz6anbkGLTW/TewanIwuWncGyQYQqEdG6Kqzg6G
+         bsvJIxyYT1t0Gv01Ef3vlfSdQCtsLNiYM7zoVS4XvH7h02HVOv/zQ/wimrilgyl9zEHg
+         VvFQ1z7cZ6QfIt/oIqUVP83ZWUh/GImwQm2rIs60hp42rmzvZgNjA/ZP7T2/5OrR9UM5
+         qzshJyEKFm3/Oodvbrx6mCwbTr11Pk5RTmou3aQGLfKuAQAvaVRnfzDg+zMe4ucSe7Lg
+         tzgeCPsHcE3U73Q6qoIG2LsIrRzEjT2vFxh0/rVcy2Qy0+Iyq41N1eqDF1suguTPr0+U
+         PJ0A==
+X-Gm-Message-State: AOJu0YzyJ3yY3RWGhkvix38FCXGs2kGvyGPiPJ/DvMz6528M5ywj11id
+	Woikn53fBPHxSk002zb4QQl91DzzzxDQ1XROVmpx2890IyRoijQ7qF8UdFvVGhFnBaf5sYvpkHd
+	le5sY4nlVwFJ4e537UntZaSDrAfg0/y6pbADosxIQAe2DJ76K5pY=
+X-Gm-Gg: ASbGncs7Zr+Hk6maukb8NBbX++o/8utN6KpHVjW2KY8N/G8M2o7GUzwPkD3BK0ctDTm
+	SVdgTHuKA63zX7PG8XmNSVhCgTeli8ESwJNkdmdkH
+X-Google-Smtp-Source: AGHT+IGa8wuzsdcg/EeoCQXRR722rZQ/MS81cSd2TFkWLrcTq6AZc92ocfvW0IWOZVmEl5uBfBneyb9qTEmfpylhPcM=
+X-Received: by 2002:a17:907:2cc6:b0:aa6:23ba:d8c8 with SMTP id
+ a640c23a62f3a-ab2ab6a8503mr1953955566b.11.1736754694798; Sun, 12 Jan 2025
+ 23:51:34 -0800 (PST)
+MIME-Version: 1.0
+References: <CAAhooxt8Y1EGSE6yzCqatX_NAbQSaJ1FYmTNbZNULD7sF_UPKw@mail.gmail.com>
+In-Reply-To: <CAAhooxt8Y1EGSE6yzCqatX_NAbQSaJ1FYmTNbZNULD7sF_UPKw@mail.gmail.com>
+From: Elvio Gilberto Amparore <elviogilberto.amparore@unito.it>
+Date: Mon, 13 Jan 2025 08:51:23 +0100
+X-Gm-Features: AbW1kvaS2QbNTRFX3sq_jBwQiAbSZRNRXe_aQ9auUF05RDIL8YSa8MhxljO2s8w
+Message-ID: <CACUPPoZv1xc7c7Dczo__JZrvVTQzxv+UW0VjMG=LKDTnn6hBoA@mail.gmail.com>
+Subject: Re: MCAD - Registrazione voto
+To: Luca Barra <luca.barra@edu.unito.it>
+Content-Type: multipart/alternative; boundary="000000000000a5627f062b91b68e"
+
+--000000000000a5627f062b91b68e
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ok
+
+Il giorno ven 10 gen 2025 alle ore 16:20 Luca Barra <luca.barra@edu.unito.i=
+t>
+ha scritto:
+
+> Buongiorno,
+> accetto il voto di MCAD.
+> Distinti saluti,
+> Luca Barra
+>
+> ------------------------
+>
+> Indirizzo istituzionale di posta elettronica degli studenti e dei laureat=
+i
+> dell'Universit=C3=A0 di Torino
+> Official University of Turin email address for students and graduates
+>
+
+--000000000000a5627f062b91b68e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">ok</div><br><div class=3D"gmail_quote gmail_quote_containe=
+r"><div dir=3D"ltr" class=3D"gmail_attr">Il giorno ven 10 gen 2025 alle ore=
+ 16:20 Luca Barra &lt;<a href=3D"mailto:luca.barra@edu.unito.it">luca.barra=
+@edu.unito.it</a>&gt; ha scritto:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex"><div dir=3D"ltr"><div>Buongiorno, <br></div><div>accetto =
+il voto di MCAD.</div><div>Distinti saluti,</div><div>Luca Barra<br></div><=
+/div>
+
+<br>
+<div style=3D"font-size:1.3em">------------------------</div><span style=3D=
+"font-size:small"><div><img src=3D"https://web.unito.it/logofirmastu.png"><=
+br></div>Indirizzo istituzionale di posta elettronica degli studenti e dei =
+laureati dell&#39;Universit=C3=A0 di Torino</span><div><font size=3D"2">Off=
+icial=C2=A0University of Turin=C2=A0email address=C2=A0for students and gra=
+duates=C2=A0</font></div></blockquote></div>
+
+--000000000000a5627f062b91b68e--

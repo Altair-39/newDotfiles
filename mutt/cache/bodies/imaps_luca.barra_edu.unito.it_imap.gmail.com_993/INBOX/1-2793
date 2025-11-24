@@ -1,0 +1,157 @@
+Delivered-To: luca.barra@edu.unito.it
+Received: by 2002:a05:651c:4388:20b0:336:e467:41f1 with SMTP id i8-n2csp216243ljv;
+        Tue, 16 Sep 2025 04:53:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHViY5Vhw/sUXwBgseE1rOUUEE8lzcp6ntsqns+NWbcohH5/xpt4XiE07oKLs5Mtuf72P8w
+X-Received: by 2002:a05:6000:1885:b0:3e6:270e:3f64 with SMTP id ffacd0b85a97d-3e7659fc7aemr6582888f8f.8.1758023593953;
+        Tue, 16 Sep 2025 04:53:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1758023593; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Ysa5c73XHNZWw6gTX3VPXFrjDzch4lrB5U5W8A7HX7rHJPl8gtwI1fPP50jJlsOHhA
+         kj35B06XKLjcMVwJp9jjiJ061cfJIe4LYU6y2AXpO3JYh0xnNjXaINXNSaYbiQ5MNlGt
+         j/wXwglpsGisDUq5GUEpckFlKewJbbzr5e2DwWHJUbeVd/XwBjYa74CRWRjXLQjTe8My
+         aLQ0MV60hx3t+wzNjP9N9kCjEcT401JNTq3aDZ6NtsCTflsCS3RqceJXzu9DJHFRP1+C
+         T2PAQ8I8PXHPx5kHdduaExm+Wq0j6thDPxMUEgX31a412z1oJ++h2pM24jflZrPSFDNL
+         0Lkw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=feedback-id:bimi-selector:mime-version:subject:message-id:to:from
+         :date:dkim-signature:dkim-signature;
+        bh=iHxpN+F4Gj2G2g4kqWriHWFP9mWGQhqwWP7GFwYZUhM=;
+        fh=wnoTQjHgWz4kRW5W3Yv210Aj9LolbdJ/Lvc/uyAoO3M=;
+        b=JjahATOEY+8I5dVzNYcGazsKjC6O5LyLQWhlern+jvE2Z6dm1gSlQlCKHY3M0gUGiI
+         ZHrXycCmEE9iPXDX7gzJUpVKHXhIChJOX7Xi8mu5FsILDlUP0UTcbOw5tcazW63czF8d
+         nl450DjTUpxmAR5z52sQm0BF8DtATrVg1mAdxrqXsEN1v++89zNJMipY1x3jYDsDIwKT
+         93B5OZIyoxMr5f1oUJ4LyZkgCPhjdoIXgKfCrXaPhQenvt2zGP2RUgNVbz9EH/folcVN
+         mHoMM8En0hRny1rLIfBcMpqKQmSNOnvxUqbH6jMp1iXwdMjOs/lhROpi8ZBUbVcHmi5U
+         DGRA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@jetbrains.com header.s=zkgsaqiift4rcbn6jvpkg25sgiase5fg header.b=SYILMaIO;
+       dkim=pass header.i=@amazonses.com header.s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn header.b=W0kOQzkK;
+       spf=pass (google.com: domain of 01020199525f2e5e-b032ac23-d73b-4a9a-b425-17daee6f6f6f-000000@mailer.jetbrains.com designates 69.169.229.162 as permitted sender) smtp.mailfrom=01020199525f2e5e-b032ac23-d73b-4a9a-b425-17daee6f6f6f-000000@mailer.jetbrains.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=jetbrains.com
+Return-Path: <01020199525f2e5e-b032ac23-d73b-4a9a-b425-17daee6f6f6f-000000@mailer.jetbrains.com>
+Received: from b229-162.smtp-out.eu-west-1.amazonses.com (b229-162.smtp-out.eu-west-1.amazonses.com. [69.169.229.162])
+        by mx.google.com with ESMTPS id ffacd0b85a97d-3e9aacd4335si4626771f8f.55.2025.09.16.04.53.13
+        for <luca.barra@edu.unito.it>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 16 Sep 2025 04:53:13 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 01020199525f2e5e-b032ac23-d73b-4a9a-b425-17daee6f6f6f-000000@mailer.jetbrains.com designates 69.169.229.162 as permitted sender) client-ip=69.169.229.162;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@jetbrains.com header.s=zkgsaqiift4rcbn6jvpkg25sgiase5fg header.b=SYILMaIO;
+       dkim=pass header.i=@amazonses.com header.s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn header.b=W0kOQzkK;
+       spf=pass (google.com: domain of 01020199525f2e5e-b032ac23-d73b-4a9a-b425-17daee6f6f6f-000000@mailer.jetbrains.com designates 69.169.229.162 as permitted sender) smtp.mailfrom=01020199525f2e5e-b032ac23-d73b-4a9a-b425-17daee6f6f6f-000000@mailer.jetbrains.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=jetbrains.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=zkgsaqiift4rcbn6jvpkg25sgiase5fg; d=jetbrains.com; t=1758023593;
+	h=Date:From:To:Message-ID:Subject:MIME-Version:Content-Type;
+	bh=66uJ+5Wb2kGWT3RT1ijuvQuPYH9NBy89DmakbXgzll8=;
+	b=SYILMaIO4YFaaYuXRgfe+9reoNC/2tqmvNpN8h4FLD4x2bUHvjn88OjK3L++/Jd5
+	NtUEd/86btn1p/DYJBsMWItHoEaqiLwekwt38S/vTvf4ptfmkXW+Xe5FVdmafnkizY8
+	2zZmNCb3UUr/CmDl3XGu6WvDy0Ayu36z28f6nBP0=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn; d=amazonses.com; t=1758023593;
+	h=Date:From:To:Message-ID:Subject:MIME-Version:Content-Type:Feedback-ID;
+	bh=66uJ+5Wb2kGWT3RT1ijuvQuPYH9NBy89DmakbXgzll8=;
+	b=W0kOQzkKpZcGvk8MatZJ9J2nWXST9+kdDBe5HMY1vB/dOH+5xTsPBuyMPFvPuK9B
+	ZHFmE2924mgoQsYoHRoWfsDjCrYz67E6c41DBKUQNPNOJweHEG+lNDvcVREGvG4eLKb
+	zxa3PpAvL/5vz29UA6m3s3xS5hJNcVdpbNj08unE=
+Date: Tue, 16 Sep 2025 11:53:13 +0000
+From: JetBrains Account <no_reply@jetbrains.com>
+To: Luca Barra <luca.barra@edu.unito.it>
+Message-ID: <01020199525f2e5e-b032ac23-d73b-4a9a-b425-17daee6f6f6f-000000@eu-west-1.amazonses.com>
+Subject: Your JetBrains Educational Pack has expired!
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_61686_1447473153.1758001588507"
+BIMI-Selector: v=BIMI1;s=main;
+X-Auto-Response-Suppress: OOF, DR, RN, NRN, AutoReply
+X-JETBRAINS-MESSAGE-ID: 0005D33C1A198B58016F02BBC7B135B35FB
+Feedback-ID: ::1.eu-west-1.K6LWIgPGRxjLgtEMceertZJEgVBGmuh0N+qjhP3uBkQ=:AmazonSES
+X-SES-Outgoing: 2025.09.16-69.169.229.162
+
+------=_Part_61686_1447473153.1758001588507
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Luca,
+
+We just wanted to quickly remind you that your JetBrains Educational Pack h=
+as now expired.
+
+If you are still a student, act now and make sure you don't lose access to =
+your JetBrains tools. Please use this link [ https://www.jetbrains.com/shop=
+/eform/students/prolong?data=3D001C19A74FE04BC857179C8325BB9C4ADFCAF76E168D=
+29435C8E6347FBC90C2465D7B19CF33B62D0571FD74AD335A4357AFAF499EB9A57916F8681D=
+59D88BD3AE1001F10485787FF63C44949B9DA3D06B6C0256AB547D0A108AD9B0EF1C4D24914=
+E7A5662AF91C07B20C9F119D22068E8B74DA5D541E01C4BA811BF5E35D6BC32E76 ] to con=
+tinue using your free license.
+If you've already graduated, we'd like to offer you a 40% graduation discou=
+nt so you can continue to use the tools as you embark on this next chapter =
+of your life and begin your new career. Select your preferred JetBrains too=
+l [ https://www.jetbrains.com/community/education/?utm_source=3Dnewsletter&=
+utm_medium=3Demail2&utm_campaign=3Dstudent#students/renewal ] to see your p=
+ersonal discounted price.
+
+If you have any questions, please email us =E2=80=93 we would be happy to h=
+elp.
+
+Kind regards,
+The JetBrains team
+www.jetbrains.com [ https://www.jetbrains.com ]
+The Drive to Develop
+
+=E2=80=94
+If you'd like to stop receiving notifications about the expiration of your =
+student license, click here to unsubscribe [ https://account.jetbrains.com/=
+unsubscribe?address=3D003B6A6ED0BFE4A39E482AFCCD484C04C5F46361A3F0B2726794C=
+2AABDCDA0762269C58A17C2FCC4F08C22DAFC424D0DB1041E6F0480AF84F43586B8CAF08D9D=
+63&mutedGroup=3D0049A8B7D463DB0D215786D2395E5E813EA425BFDFA1E08272C88C3E234=
+3775038655DDE1A3E4E314CA03291D3EF02F5B652C079695BFF3995D6A44F1FDA58E697 ]. =
+If you'd like to manage your privacy settings, click here [ https://account=
+.jetbrains.com/profile-details/privacy?accountAuthToken=3D0008F11EB882691D7=
+76F248FD618D2C2EDD0007D7F898493E6005DCA18F409DEA5F7E7000027723667D7FAF724A7=
+CE412BF70F9C8000379CCFD539FA8D00D1064CD1A912700E ].
+------=_Part_61686_1447473153.1758001588507
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>
+<html>
+  <body><p>Hi Luca,</p>
+<p>We just wanted to quickly remind you that your JetBrains Educational Pac=
+k has now expired.</p>
+<p>If you are still a student, act now and make sure you don't lose access =
+to your JetBrains tools. Please use <a href=3D"https://www.jetbrains.com/sh=
+op/eform/students/prolong?data=3D001C19A74FE04BC857179C8325BB9C4ADFCAF76E16=
+8D29435C8E6347FBC90C2465D7B19CF33B62D0571FD74AD335A4357AFAF499EB9A57916F868=
+1D59D88BD3AE1001F10485787FF63C44949B9DA3D06B6C0256AB547D0A108AD9B0EF1C4D249=
+14E7A5662AF91C07B20C9F119D22068E8B74DA5D541E01C4BA811BF5E35D6BC32E76">this =
+link</a> to continue using your free license.
+<br />If you've already graduated, we'd like to offer you a 40% graduation =
+discount so you can continue to use the tools as you embark on this next ch=
+apter of your life and begin your new career. <a href=3D"https://www.jetbra=
+ins.com/community/education/?utm_source=3Dnewsletter&utm_medium=3Demail2&ut=
+m_campaign=3Dstudent#students/renewal">Select your preferred JetBrains tool=
+</a> to see your personal discounted price.</p>
+<p>If you have any questions, please email us =E2=80=93 we would be happy t=
+o help.</p>
+<p>Kind regards,
+<br />The JetBrains team
+<br /><a href=3D"https://www.jetbrains.com">www.jetbrains.com</a>
+<br />The Drive to Develop</p>
+</body>
+</html><p style=3D"font-size:small;-webkit-text-size-adjust:none;color:#666=
+;">
+&mdash;  <br/>
+If you'd like to stop receiving notifications about the expiration of your =
+student license, <a href=3D"https://account.jetbrains.com/unsubscribe?addre=
+ss=3D003B6A6ED0BFE4A39E482AFCCD484C04C5F46361A3F0B2726794C2AABDCDA0762269C5=
+8A17C2FCC4F08C22DAFC424D0DB1041E6F0480AF84F43586B8CAF08D9D63&mutedGroup=3D0=
+049A8B7D463DB0D215786D2395E5E813EA425BFDFA1E08272C88C3E2343775038655DDE1A3E=
+4E314CA03291D3EF02F5B652C079695BFF3995D6A44F1FDA58E697">click here to unsub=
+scribe</a>.&#32;If you'd like to manage your privacy settings, <a href=3D"h=
+ttps://account.jetbrains.com/profile-details/privacy?accountAuthToken=3D000=
+8F11EB882691D776F248FD618D2C2EDD0007D7F898493E6005DCA18F409DEA5F7E700002772=
+3667D7FAF724A7CE412BF70F9C8000379CCFD539FA8D00D1064CD1A912700E">click here<=
+/a>.</p>
+------=_Part_61686_1447473153.1758001588507--
