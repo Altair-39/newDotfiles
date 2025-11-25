@@ -72,8 +72,6 @@
                     (kind: Text(" ")),
                 ])),
         (kind: Group([
-                    (kind: Property(Artist)),
-                    (kind: Text(" - ")),
                     (kind: Property(Title)),
                 ]), default: (kind: Property(Filename)))
     ],
